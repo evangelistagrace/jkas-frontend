@@ -1,0 +1,102 @@
+<app-rating></app-rating>
+
+<!-- ======= Top Bar ======= -->
+<app-topbar></app-topbar>
+
+<!-- ======= Header ======= -->
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+  <div class="container-fluid" ngStickyNav>
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand ">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+
+
+
+
+      <button class="navbar-toggler border-white" type="button" style="
+          background-color: black !important;
+          border: 1px solid white !important;
+        " data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/public" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/publicpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@main3">PSPPA
+              APPLICATION</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+              {{ username }}
+            </a>
+            <div class="dropdown-menu">
+              <a routerLink="/profileLog" class="dropdown-item" style=" cursor: pointer" i18n="@@Profile">Profile</a>
+              <a class="dropdown-item" style=" cursor: pointer" data-toggle="modal" data-target="#centralModalDanger"
+                class="dropdown-item" i18n="@@jflogout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- End Header -->
+<main id="main">
+  <section class="inner-page">
+    <div class="card">
+      <div class="text-center">
+        <div class="d-flex justify-content-center">
+          <img class="logo-proses" src="./assets/img/logo.png" height="100" alt="" />
+        </div>
+        <div class="section-title" style="padding: 30px 0 0 0">
+          <span i18n="@@maklumatheading">SITE VISIT INFORMATION</span>
+          <h2 i18n="@@maklumatheading">SITE VISIT INFORMATION</h2>
+        </div>
+        <div class="col-12 d-flex justify-content-between">
+          <!-- <button class="addNewRow" (click)="deleteSelected()" style="
+              padding-left: 2px;
+              padding-right: 2px;
+              background-color: #253d84;
+              margin-bottom: 0.3rem;
+              width: 3em;
+            " class="btn-danger">
+            <i class="fa fa-trash" style="font-size: 18px" aria-hidden="true "></i>
+          </button> -->
+        </div>
+        <div class="col-12" style="overflow-x: scroll">
+          <ng2-smart-table [settings]="settings" [source]="maklumat" (custom)="onCustomEvent($event)"
+            (userRowSelect)="onUserRowSelect($event)">
+          </ng2-smart-table>
+        </div>
+
+
+      </div>
+      <div>
+        <button (click)="cancel()" style="margin-right: 30px;" class="look_for_red" type="button" i18n="@@n74">
+          Back
+        </button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- <footer id="footer">
+ End Footer -->
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a>

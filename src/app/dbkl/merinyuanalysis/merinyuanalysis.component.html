@@ -1,0 +1,448 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+
+</ngx-spinner>
+<!-- ======= Top Bar ======= -->
+<app-topbar></app-topbar>
+
+<!-- ======= Header ======= -->
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+  <div class="container-fluid" ngStickyNav>
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand ">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
+        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item" style="list-style-type: none;">
+            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item dropdown" id="user" style="list-style-type: none;">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n25">
+              ANALYSIS & REPORTING
+            </a>
+            <div class="dropdown-menu">
+              <a routerLink="/dbkl/barchart" class="dropdown-item" style="color: white; cursor: pointer"
+                i18n="@@n26">Inventory Analysis</a>
+
+              <a class="dropdown-item" routerLink="/dbkl/merinyuanalysis" style="color: white; cursor: pointer"
+                i18n="@@n27">Merinyu Analysis</a>
+              <a class="dropdown-item" routerLink="/dbkl/compoundanalysis" style="color: white; cursor: pointer"
+                i18n="@@ana">Compound Analysis</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown" style="list-style-type: none;">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+              {{ username }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
+                i18n="@@Profile">Profile</a>
+              <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
+                i18n="@@jflogout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- End Header -->
+<main class="main">
+  <section id="home" class="home">
+    <div class="card">
+      <div class="section-title">
+        <span i18n="@@n27">Merinyu Analysis</span>
+        <h2 i18n="@@n27">Merinyu Analysis</h2>
+      </div>
+      <div class="bg-success">
+        <h5 class="text-center font-weight-bold p-1" style="margin-top: 7px" i18n="@@performancegraph">
+          Monthly Performance Graph (Merinyu)
+        </h5>
+      </div>
+      <div class="row">
+        <div class="col-4 mt-3" style="align-self: center">
+          <div class="col d-flex justify-content-center">
+            <div class="iteselect">
+              <div>
+                <label for="select" i18n="@@mtbwrkfrm33">Zone</label>
+              </div>
+              <select class="browser-default custom-select" id="select" (change)="getMTknames($event)">
+                <option i18n="@@selectoption" disabled>
+                  Select One Option
+                </option>
+                <option *ngFor="let zon of zons">{{ zon }}</option>
+              </select>
+              <div>
+                <i *ngIf="check1" style="color: #253d84; font-weight: 600; font-size: 13px" i18n="@@seleczone">Select
+                  Valid Zone</i>
+              </div>
+            </div>
+          </div>
+          <div class="col mt-3 d-flex justify-content-center">
+            <div class="iteselect">
+              <div>
+                <label for="txt" i18n="@@namamtk">Name of MTK</label>
+              </div>
+              <input type="text" name="mtkss" id="txt" [(ngModel)]="mtkss" class="form-control"
+                style="width: 16em !important; background: white" readonly />
+            </div>
+          </div>
+          <div class="col mt-3 d-flex justify-content-center">
+            <div class="iteselect">
+              <div>
+                <label for="select" i18n="@@bulan">Month</label>
+              </div>
+              <select class="browser-default custom-select" id="select" (change)="getmonth($event)">
+                <option i18n="@@selectoption">
+                  Select One Option
+                </option>
+
+                <option value="Jan"><span i18n="@@d1">January</span></option>
+                <option value="Feb"><span i18n="@@d2">February</span></option>
+                <option value="Mar"><span i18n="@@d3">March</span></option>
+                <option value="Apr"><span i18n="@@d4">April</span></option>
+                <option value="May"><span i18n="@@d5">May</span></option>
+                <option value="Jun"><span i18n="@@d6">June</span></option>
+                <option value="Jul"><span i18n="@@d7">July</span></option>
+                <option value="Aug"><span i18n="@@d8">August</span></option>
+                <option value="Sep"><span i18n="@@d9">September</span></option>
+                <option value="Oct"><span i18n="@@d10">October</span></option>
+                <option value="Nov"><span i18n="@@d11">November</span></option>
+                <option value="Dec"><span i18n="@@d12">December</span></option>
+              </select>
+
+              <div>
+                <i *ngIf="check3" style="color: #253d84; font-weight: 600; font-size: 13px" i18n="@@selectmonth">Select
+                  Valid Month</i>
+              </div>
+            </div>
+          </div>
+          <div class="col mt-3 d-flex justify-content-center">
+            <div class="iteselect">
+              <div>
+                <label for="select" i18n="@@years">Years</label>
+              </div>
+              <select class="browser-default custom-select" id="select" (change)="getyear($event)">
+                <option i18n="@@selectoption">
+                  Select One Option
+                </option>
+                <option *ngFor="let year of years">{{ year }}</option>
+              </select>
+              <div>
+                <i *ngIf="check2" style="color: #253d84; font-weight: 600; font-size: 13px" i18n="@@selectyear">Select
+                  Valid Year</i>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 mt-4 d-flex justify-content-center">
+              <button class="look_for" type="button" (click)="getData()" i18n="@@submit">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-8 mt-3">
+          <div #mapViewNode></div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12">
+          <div *ngIf="zone == 'Utara'" style="overflow-x: scroll !important">
+            <table style="border: 1px solid black; width: 100% !important" class="mb-2">
+              <tr>
+                <th colspan="2" style="
+                    text-align: center;
+                background-color: #253d84;
+                    color: white;
+                  ">
+                  Parlimen
+                </th>
+                <th colspan="2" style="
+                    text-align: center;
+                background-color: #253d84;
+                    color: white;
+                  ">
+                  SEGAMBUT
+                </th>
+                <th colspan="1" style="
+                    text-align: center;
+                background-color: #253d84;
+                    color: white;
+                  ">
+                  BATU
+                </th>
+                <th colspan="1" style="
+                text-align: center;
+            background-color: #253d84;
+                color: white;
+              ">
+                  KEPONG
+                </th>
+                <th colspan="1" style="
+                    text-align: center;
+                background-color: #253d84;
+                    color: white;
+                  ">
+                  WANGSA MAJU
+                </th>
+
+
+              </tr>
+              <tr>
+                <!-- <td style="text-align: left; vertical-align: bottom;height: 76px;">
+                  <span style="float: right;">PERKHIDMATAN </span> <hr style=" transform: rotate(364deg); background-color: black;"> <span >PARLIAMEN</span>
+                 </td> -->
+                <td colspan="2"
+                  style="background-color: #506491; color: white;text-align: left; vertical-align: bottom;width:12%">
+                  <span style="float: right;">Name MTB </span><br>
+                  <hr style=" transform: rotate(385deg); background-color: white;"> <span
+                    style="margin-left: 15%;">Tarikh</span>
+                </td>
+                <!-- <td colspan="2" style="background-color: #506491; color: white">
+                  <span>Name MTB &nbsp;Tarikh</span>
+                </td> -->
+                <td style="background-color: #B432DC; color: white">
+                  Muhammad AmierulAfiezal Bin Md Razip
+                </td>
+                <td style="background-color: #253d84; color: white">
+                  FazrulSazuan Bin Shaiful Anuar
+                </td>
+                <td style="background-color: #FFC800; color: white">
+                  Abdul Rahman Bin Koyakutty
+                </td>
+                <td style="background-color: #cc1616; color: white">
+                  Lidiawati Binti Musali
+                </td>
+                <td style="background-color: #33CC33; color: white">
+                  MohdShaharudden Bin Mat II
+                </td>
+              </tr>
+              <tr *ngFor="let key of data; index as i">
+                <td style="background-color: #506491; color: white" colspan="2">
+                  {{ key.tarikh }}
+                </td>
+                <td>
+                  <i *ngIf="key['940207-10-5249'] == true" style="color: cyan;" class="fa fa-check"
+                    aria-hidden="true"></i>
+                </td>
+                <td>
+                  <i *ngIf="key['930430-14-6167'] == true" style="color: red;" class="fa fa-check"
+                    aria-hidden="true"></i>
+                </td>
+                <td>
+                  <i *ngIf="key['640520-08-5673'] == true" class="fa fa-check" style="color: purple;"
+                    aria-hidden="true"></i>
+                </td>
+                <td>
+                  <i *ngIf="key['830209-14-5044'] == true" class="fa fa-check" style="color: coral;"
+                    aria-hidden="true"></i>
+                </td>
+                <td>
+                  <i *ngIf="key['780105-03-6641'] == true" class="fa fa-check" style="color: yellow;"
+                    aria-hidden="true"></i>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div *ngIf="zone == 'Tengah'">
+            <table style="
+                border: 1px solid black;
+                width: 100% !important;
+                overflow-x: scroll;
+              " class="mb-2">
+              <tr>
+                <th colspan="2" style="
+                    text-align: center;
+                background-color: #253d84;
+                    color: white;
+                  ">
+                  Parlimen
+                </th>
+                <th colspan="1" style="
+                    text-align: center;
+                background-color: #253d84;
+                    color: white;
+                  ">
+                  TITIWANGSA
+                </th>
+                <th colspan="1" style="
+                    text-align: center;
+                background-color: #253d84;
+                    color: white;
+                  ">
+                  SETIAWANGSA
+                </th>
+                <th colspan="2" style="
+                    text-align: center;
+                background-color: #253d84;
+                    color: white;
+                  ">
+                  BUKIT BINTANG
+                </th>
+              </tr>
+              <tr>
+                <td style="background-color: #506491; color: white" colspan="2">
+                  <span>Name MTB &nbsp;Tarikh</span>
+                </td>
+                <td style="background-color: #cc1616; color: white">
+                  CikNorazira Binti MohdArsad
+                </td>
+                <td style="background-color: #FFC800; color: white">
+                  Shamsuzlyn Bin Suliman
+                </td>
+                <td style="background-color: #B432DC; color: white">
+                  Sazali Bin Sanusi
+                </td>
+                <td style="background-color: #253d84; color: white">
+                  MohdKamaruzani Bin Mohamad Nowawi
+                </td>
+
+
+              </tr>
+              <tr *ngFor="let key of data; index as i">
+                <td colspan="2" style="background-color: #506491; color: white">
+                  {{ key.tarikh }}
+                </td>
+                <td>
+                  <i *ngIf="key['940307-14-5686'] == true" class="fa fa-check" style="color: red;"
+                    aria-hidden="true"></i>
+                </td>
+                <td>
+                  <i *ngIf="key['641023-03-5397'] == true" class="fa fa-check" style="color: gray;"
+                    aria-hidden="true"></i>
+                </td>
+
+                <td>
+                  <i *ngIf="key['730706-05-5375'] == true" style="color: green;" class="fa fa-check"
+                    aria-hidden="true"></i>
+                </td>
+                <td>
+                  <i *ngIf="key['850525-08-6427'] == true" style="color: blue;" class="fa fa-check"
+                    aria-hidden="true"></i>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div *ngIf="zone == 'Selatan'">
+            <table style="
+                border: 1px solid black;
+                width: 100% !important;
+                overflow-x: scroll;
+              " class="mb-2">
+              <tr>
+                <th colspan="2" style="
+                    text-align: center;
+                background-color: #253d84;
+                    color: white;
+                  ">
+                  Parlimen
+                </th>
+                <th colspan="1" style="
+                    text-align: center;
+                background-color: #253d84;
+                    color: white;
+                  ">
+                  BANDAR TUN RAZAK
+                </th>
+                <th colspan="1" style="
+                    text-align: center;
+                background-color: #253d84;
+                    color: white;
+                  ">
+                  CHERAS
+                </th>
+                <th colspan="1" style="
+                    text-align: center;
+                background-color: #253d84;
+                    color: white;
+                  ">
+                  LEMBAH PANTAI
+                </th>
+                <th colspan="2" style="
+                    text-align: center;
+                background-color: #253d84;
+                    color: white;
+                  ">
+                  SEPUTEH
+                </th>
+              </tr>
+              <tr>
+                <td style="background-color: #506491; color: white" colspan="2">
+                  <span>Name MTB &nbsp;Tarikh</span>
+                </td>
+                <td style="background-color: #33CC33; color: white">
+                  MTB En. Rosmaini Bin Ghazali
+                </td>
+                <td style="background-color: #cc1616; color: white">
+                  MTB En. Mohd Yasir Bin Abd Latif
+                </td>
+                <td style="background-color: #FFC800; color: white">
+                  MTB En. Devdas A/L Muniyendy
+                </td>
+
+                <td style="background-color: #B432DC; color: white">
+                  MTB En. Roslan Bin Pilus
+                </td>
+                <td style="background-color: #253d84; color: white">
+                  MTB En. Azizi Bin Mohd Badri
+                </td>
+
+              </tr>
+              <tr *ngFor="let key of data; index as i">
+                <td colspan="2" style="background-color: #506491; color: white">
+                  {{ key.tarikh }}
+                </td>
+                <td>
+                  <i *ngIf="key['761228-02-5607'] == true" style="color: green;" class="fa fa-check"
+                    aria-hidden="true"></i>
+                </td>
+                <td>
+                  <i *ngIf="key['820812-08-5219'] == true" style="color: olive;" class="fa fa-check"
+                    aria-hidden="true"></i>
+                </td>
+                <td>
+                  <i *ngIf="key['630306-10-7027'] == true" style="color: orange;" class="fa fa-check"
+                    aria-hidden="true"></i>
+                </td>
+
+                <td>
+                  <i *ngIf="key['681108-05-5297'] == true" style="color: blue;" class="fa fa-check"
+                    aria-hidden="true"></i>
+                </td>
+                <td>
+                  <i *ngIf="key['640515-08-6049'] == true" style="color: aqua;" class="fa fa-check"
+                    aria-hidden="true"></i>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center">
+        <i *ngIf="showInvalid" style="color: #253d84; font-weight: 800; font-size: 13px;" i18n="@@nodatfind">No data
+          found.</i>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a>

@@ -1,0 +1,547 @@
+/**
+* Template Name: PPKS - v2.2.1
+* Template URL: https://.com/PPKS-multipurpose-html-template-for-free/
+* Author: .com
+* License: https://.com/license/
+*/
+
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  /* border: 1px solid #ccc; */
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.fa-cloud-upload:before {
+  font-size: 70px;
+}
+
+.material-icons {
+  font-size: 72px;
+  color: #265a88;
+}
+
+.fa-cloud-upload{
+  color: #265a88;
+}
+
+
+
+#txt {
+  margin-left: -79px;
+  margin-top: 20px;
+  color: white;
+  font-weight: 700;
+  
+}
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #444444;
+  }
+
+  a {
+    color: #253d84;
+  }
+
+  a:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family:Arial, Helvetica, sans-serif;
+  }
+
+
+  /*--------------------------------------------------------------
+  # Back to top button
+  --------------------------------------------------------------*/
+
+ 
+.back-to-top {
+  position: fixed;
+  display: none;
+  right: 15px;
+  bottom: 15px;
+  z-index: 99999;
+}
+.back-to-top i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: #253d84;
+  color: #fff;
+  transition: all 0.4s;
+}
+
+  .back-to-top i:hover {
+    background: #e72323;
+    color: #fff;
+  }
+
+
+  /*--------------------------------------------------------------
+  # Preloader
+  --------------------------------------------------------------*/
+
+  #preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  #preloader:before {
+    content: "";
+    position: fixed;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    border: 6px solid #1111A3;
+    border-top-color: #efefef;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: animate-preloader 1s linear infinite;
+    animation: animate-preloader 1s linear infinite;
+  }
+
+  @-webkit-keyframes animate-preloader {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes animate-preloader {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+
+  /*--------------------------------------------------------------
+  # Disable aos animation delay on mobile devices
+  --------------------------------------------------------------*/
+
+  @media screen and (max-width: 768px) {
+    [data-aos-delay] {
+      transition-delay: 0 !important;
+    }
+  }
+
+
+
+  /*--------------------------------------------------------------
+  # Sections General
+  --------------------------------------------------------------*/
+
+  section {
+    padding: 60px 0;
+    overflow: hidden;
+  }
+
+  main section {
+    padding: 3rem 13rem;
+    overflow: hidden;
+  }
+  label{
+    font-weight: 700;
+  }
+
+  .section-title {
+    text-align: center;
+    padding: 30px 0;
+    position: relative;
+  }
+
+  .section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    color: #191919;
+    position: relative;
+    z-index: 2;
+  }
+
+  .section-title span {
+    position: absolute;
+    top: 30px;
+    color: #f4f4f4;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 52px !important;
+    text-transform: uppercase;
+    line-height: 0;
+  }
+
+  .section-title p {
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 575px) {
+    .section-title h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+  .card{
+    border: none;
+  }
+    .section-title span {
+      font-size: 30px !important;
+    }
+
+    main section {
+      padding: 0rem;
+      overflow: hidden;
+    }
+  }
+
+
+
+  .btn-get-started {
+    font-family:Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    padding: 10px 28px;
+    transition: 0.5s;
+    border: 2px solid #fff;
+    color: #fff;
+  }
+
+  @media (min-width: 992px) {
+    .col-lg-2 {
+      -ms-flex: 0 0 16.666667%;
+      flex: 0 0 16.666667%;
+      max-width: 25.666667%;
+    }
+  }
+  .look_for {
+    margin-top: 10px;
+    
+   background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+    /* background: #253d84; */
+    border: 0;
+    padding: 10px 20px;
+    color: #fff;
+    transition: 0.4s;
+  
+    font-size: 14px;
+    width:90px;
+    border-color: #245580;
+    border-radius: 4px;
+    border: 1px solid transparent;
+  }
+
+  .look_for:hover {
+    background: #23527c;
+  }
+  .look_for_red{
+    margin-top: 10px;
+    background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+    /* background: #253d84; */
+    border: 0;
+    padding: 10px 20px;
+    color: #fff;
+    transition: 0.4s;
+    float: right;
+    font-size: 14px;
+    width:90px;
+    margin-bottom: 24px;
+    border-color: red;
+    border-radius: 4px;
+    border: 1px solid transparent;
+  }
+  .look_for_red:hover {
+    background: #d9534f;
+  }
+  .model-content{
+    padding-left: 90px !important;
+    padding-right: 90px !important;
+  }
+
+
+  :host ::ng-deep ng2-smart-table tbody tr td a {
+    color:  #dc3545;
+    text-decoration: none !important;
+}
+
+:host ::ng-deep ng2-smart-table thead>tr>th {
+background-color: whitesmoke;
+    color: #333 !important;
+}
+
+:host ::ng-deep ng2-smart-table thead>tr>th a {
+    color: #333 !important;
+    text-decoration: none !important;
+}
+
+:host ::ng-deep .customformat {
+    text-align: center;
+}
+
+:host ::ng-deep ng2-smart-table tbody {
+    text-align: center;
+}
+
+:host ::ng-deep ng2-smart-table .custom-font {
+    font-size: 16px !important;
+    padding: 2px 2px;
+    color: #dc3545 ;
+}
+
+:host ::ng-deep ng2-smart-table .form-control:focus {
+    box-shadow: none;
+}
+
+:host ::ng-deep ng2-smart-table .form-control {
+    width: 12px;
+}
+
+
+
+
+/* pagination */
+
+:host ::ng-deep ng2-smart-table .page-item .page-link {
+    color: black;
+    font-weight: 500;
+    text-decoration: none !important;
+    font-size: 16px !important;
+}
+
+:host ::ng-deep ng2-smart-table .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+   background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+    /*  border-color: #253d84; */
+}
+
+:host ::ng-deep ng2-smart-table .page-item .page-link-prev {
+    font-size: 14px !important;
+    text-decoration: none !important;
+}
+
+:host ::ng-deep ng2-smart-table .page-item .page-link-next {
+    font-size: 14px !important;
+    text-decoration: none !important;
+}
+
+
+/* New code to make mobile responsive */
+:host ::ng-deep ng2-smart-table tr:nth-child(even) {
+    background-color: whitesmoke;
+}
+:host ::ng-deep ng2-smart-table td,th {
+    border: 1px solid #ddd;
+}
+
+.row{
+  margin-right: -5px;
+  margin-left: 0px;
+}
+
+.fa-exclamation-circle:before {
+  content: "\f06a";
+  font-size: 5em;
+  color: #253d84;
+}
+
+.modal-header {
+  padding: 10px !important;
+  border-bottom: none !important;
+}
+
+.modal-body {
+  padding-top: 0px !important;
+}
+
+.dialog-msg {
+  font-size: 17px;
+}
+
+
+.modal {
+  background: #0000003d !important;
+}
+
+
+
+
+
+/* Update Modal */
+
+a:hover{
+  color:#e82d2d;
+}
+.modal-body
+{
+  margin-top: 10px;
+  text-align: left !important;
+}
+
+
+#txt{
+  margin-left: -79px;
+  margin-top: 20px;
+  color: white;
+  font-weight: 700;
+}
+
+@media screen and (max-width:500px)and (min-width:400px){
+  #txt{
+      font-size: 15px;
+      margin-left:9px;
+      font-weight: 500;
+  }
+}
+
+@media screen and (max-width:400px)and (min-width:370px){
+  #txt{
+      font-size: 13px;
+      margin-left:9px;
+      font-weight: 500;
+  }
+}
+@media screen and (max-width:370px)and (min-width:330px){
+  #txt{
+      font-size: 12px;
+      margin-left:9px;
+      font-weight: 500;
+  }
+}
+
+@media screen and (max-width:330px)and (min-width:290px){
+  #txt{
+      font-size: 10px;
+      margin-left:9px;
+      font-weight: 500;
+  }
+}
+
+@media screen and (max-width:289px){
+  #txt{
+      font-size: 9px;
+      margin-left:8px;
+      font-weight: 500;
+  }
+}
+
+.fa-times{
+  margin: 0px;
+  color: white;
+}
+.swal2-icon.swal2-success [class^="swal2-success-line"][class$="long"] {
+  right: 0.3em !important;
+  color: #253d84;
+  border-color: #253d84 !important;
+  box-shadow: 0 0 2px #1111A3 !important;
+}
+.swal2-icon.swal2-error {
+  border-color: #253d84 !important;
+}
+.swal2-icon.swal2-success .swal2-success-ring {
+  position: absolute;
+  top: -0.25em;
+  left: -0.25em;
+  width: 100%;
+  height: 100%;
+  border: 0.25em solid #253d84!important;
+  border-radius: 50%;
+  z-index: 2;
+  box-sizing: content-box;
+}
+.swal2-icon.swal2-success [class^="swal2-success-line"] {
+  display: block;
+  position: absolute;
+  height: 0.3125em;
+  border-radius: 0.125em;
+  background-color: #253d84;
+  z-index: 2;
+}
+.swal2-popup.swal2-toast
+.swal2-success
+[class^="swal2-success-circular-line"][class$="left"] {
+top: -0.25em;
+left: -0.9375em;
+-webkit-transform: rotate(-45deg);
+transform: rotate(-45deg);
+-webkit-transform-origin: 2em 2em;
+transform-origin: 2em 2em;
+border-radius: 4em 0 0 4em;
+}
+
+.swal2-popup.swal2-toast
+.swal2-success
+[class^="swal2-success-circular-line"][class$="right"] {
+top: -0.25em;
+left: 0.9375em;
+-webkit-transform-origin: 0 2em;
+transform-origin: 0 2em;
+border-radius: 0 4em 4em 0;
+}
+
+
+/* End Update Modal */
+.test{
+  font-size: 12px;
+          margin-left: -258px !important;
+          margin-top: 41px !important;
+          font-weight: 700;
+  }
+  @media Screen and   (max-width: 761px) and (min-width : 360px){
+      .test{     
+          font-size: 11px;
+          margin-left: 63px !important;
+          margin-top: -56px !important;
+          font-weight: 700;
+  }
+  }
+  
+   @media Screen and   (max-width: 1100px) and (min-width : 768px){
+      .test{
+      font-size: 12px;
+      margin-left: -622px !important;
+      margin-top: 41px !important;
+      font-weight: 700;
+  }
+  }
+  
+  
+  

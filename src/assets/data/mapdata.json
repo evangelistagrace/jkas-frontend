@@ -1,0 +1,220 @@
+[
+  {
+    "parlamenName": "BATU",
+    "locality": [
+      {
+        "locality": "Jalan 1/16E,TAMAN NANYANG",
+        "latitude": "3.194729902482894",
+        "longitude": "101.66756138464088",
+        "flag": 1
+      },
+      {
+        "locality": "Jalan 2/16E,TAMAN NANYANG ",
+        "latitude": "3.225201744900275",
+        "longitude": "101.6631414413612",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan 3/16E,TAMAN NANYANG",
+        "latitude": "3.2252410969787726",
+        "longitude": "101.6636639135261",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan 4/16,TAMAN NANYANG",
+        "latitude": "3.243730401906966",
+        "longitude": "101.6695475098213",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan Miri 1,TAMAN BERINGIN",
+        "latitude": "3.2198313859763834",
+        "longitude": " 101.66620060014652",
+        "flag": 1
+      },
+      {
+        "locality": "Jalan Miri 2,TAMAN BERINGIN",
+        "latitude": "3.219530450346913",
+        "longitude": "101.66614998454384",
+        "flag": 1
+      },
+      {
+        "locality": "Jalan Miri 3,TAMAN BERINGIN",
+        "latitude": "3.2193018218592835",
+        "longitude": "101.6664610713426",
+        "flag": 1
+      },
+      {
+        "locality": "Jalan Niah 1,TAMAN BERINGIN",
+        "latitude": "3.22131054997572",
+        "longitude": "101.6662757578441",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan Niah,TAMAN BERINGIN",
+        "latitude": "3.220708762008473",
+        "longitude": "101.66624730009447",
+        "flag": 0
+      }
+    ]
+  },
+  {
+    "parlamenName": "KEPONG",
+    "locality": [
+      {
+        "locality": "Jalan Metro Perdana  1,KEPONG ENT. PARK (I.K.S)",
+        "latitude": "3.215096098685092",
+        "longitude": "101.64212618682697",
+        "flag": 1
+      },
+      {
+        "locality": "Jalan Metro Perdana  2,KEPONG ENT. PARK (I.K.S)",
+        "latitude": "3.215160370428261",
+        "longitude": " 101.64215837364759",
+        "flag": 1
+      },
+      {
+        "locality": "Jalan Metro Perdana  3,KEPONG ENT. PARK (I.K.S)",
+        "latitude": "3.2150425388731922",
+        "longitude": "101.64211545781937",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan Metro Perdana  4,KEPONG ENT. PARK (I.K.S)",
+        "latitude": "3.21507467477191",
+        "longitude": "101.6421154578911",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan Metro Perdana Barat 1,TAMAN SRI EDARAN",
+        "latitude": "3.2170322933681508",
+        "longitude": " 101.6401669031806",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan Metro Perdana Barat 2,TAMAN SRI EDARAN",
+        "latitude": "3.216411003500894",
+        "longitude": "101.64037075046012",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan Metro Perdana Barat 3,TAMAN SRI EDARAN",
+        "latitude": "3.2161217867072107",
+        "longitude": "101.63963045573517",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan Metro Perdana Barat 4,TAMAN SRI EDARAN",
+        "latitude": "3.2173169168984237",
+        "longitude": "101.64158882987915",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan Metro Perdana,KEPONG ENT. PARK (I.K.S)",
+        "latitude": "3.2159091507217084",
+        "longitude": "101.64519515784386",
+        "flag": 1
+      }
+    ]
+  },
+  {
+    "parlamenName": "SEGAMBUT",
+    "locality": [
+      {
+        "locality": "Jalan 1/42 A,TAMAN SEJAHTERA",
+        "latitude": "3.194729902482894",
+        "longitude": "101.66756138464088",
+        "flag": 1
+      },
+      {
+        "locality": "Jalan 2/42 A,TAMAN SEJAHTERA",
+        "latitude": "3.1934801147986835",
+        "longitude": "101.66714232908359",
+        "flag": 1
+      },
+      {
+        "locality": "Jalan 3/42 A,TAMAN SEJAHTERA",
+        "latitude": "3.215160370428261",
+        "longitude": "101.64215837364759",
+        "flag": 1
+      },
+      {
+        "locality": "Jalan 4/42 A,TAMAN SEJAHTERA",
+        "latitude": "3.2150425388731922",
+        "longitude": "101.64211545781937",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan 5/42 A,TAMAN SEJAHTERA",
+        "latitude": "3.193550463757464",
+        "longitude": "101.667362440357",
+        "flag": 0
+      }
+    ]
+  },
+  {
+    "parlamenName": "TITIWANGSA",
+    "locality": [
+      {
+        "locality": "Jalan 1/65 C,PEKELILING BUSINNESS CENTRE",
+        "latitude": "3.1778453620589393",
+        "longitude": "101.69550040560371",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan 2/65 C,PEKELILING BUSINNESS CENTRE",
+        "latitude": "3.175980957196636",
+        "longitude": "101.69611045764633",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan 3/65 C,PEKELILING BUSINNESS CENTRE",
+        "latitude": "3.1780167872811513",
+        "longitude": "101.69637941784151",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan 65 C,PEKELILING BUSINNESS CENTRE",
+        "latitude": "3.176002381878417",
+        "longitude": "101.69614264434418",
+        "flag": 1
+      },
+      {
+        "locality": "Jalan Kampar,PAHANG BARAT",
+        "latitude": "3.203752067635442",
+        "longitude": "101.7219152868959",
+        "flag": 1
+      },
+      {
+        "locality": "Jalan Pahang Barat,PAHANG BARAT",
+        "latitude": "3.1767870179091195",
+        "longitude": "101.69777718684848",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan Pekeliling Plaza,PAHANG BARAT",
+        "latitude": "3.1728724122987755",
+        "longitude": "101.69270933503034",
+        "flag": 1
+      },
+      {
+        "locality": "Jalan Tawau,PAHANG BARAT",
+        "latitude": "3.176561896495843",
+        "longitude": "101.69920414292574",
+        "flag": 0
+      },
+      {
+        "locality": "Jalan Tun Razak,PAHANG BARAT",
+        "latitude": "3.1733458806423713",
+        "longitude": "101.69555360032354",
+        "flag": 1
+      },
+      {
+        "locality": "Persiaran 65 C,PEKELILING BUSINNESS CENTRE",
+        "latitude": "3.1762273418692577",
+        "longitude": "101.6960675426861",
+        "flag": 0
+      }
+    ]
+  }
+]

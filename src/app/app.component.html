@@ -1,0 +1,28 @@
+<app-mtbcomplaint-daily-job-info1
+  *ngIf="path == 'mymap'"
+  [center]="mapCenter"
+  [basemap]="basemapType"
+  [zoom]="mapZoomLevel"
+  (mapLoadedEvent)="mapLoadedEvent($event)"
+>
+</app-mtbcomplaint-daily-job-info1>
+
+<app-merinyuanalysis
+  *ngIf="path == 'mymap1'"
+  [center]="mapCenter1"
+  [basemap]="basemapType1"
+  [zoom]="mapZoomLevel1"
+  (mapLoadedEvent)="mapLoadedEvent1($event)"
+>
+</app-merinyuanalysis>
+
+<app-inactive-area
+  *ngIf="path == 'mapview'"
+  [center]="mapCenter1"
+  [basemap]="basemapType1"
+  [zoom]="mapZoomLevel1"
+  (mapLoadedEvent)="mapLoadedEvent1($event)"
+>
+</app-inactive-area>
+
+<router-outlet></router-outlet>

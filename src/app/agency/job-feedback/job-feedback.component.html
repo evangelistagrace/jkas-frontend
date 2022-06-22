@@ -1,0 +1,165 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+
+</ngx-spinner>
+<!-- Error Modal Start -->
+<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: errorDisplay }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-12">
+          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                class="swal2-x-mark-line-right"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h6 style="text-align: center">
+          <span class="dialog-msg">{{ errormsg }}</span>
+        </h6>
+
+        <div class="d-flex justify-content-center mt-4">
+          <button class="btn" (click)="closeErrorModal()" i18n="@@ok1"
+            style="background-color: #253d84; color: white !important">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Error Modal End -->
+
+<app-topbar></app-topbar>
+<!-- ======= Header ======= -->
+<!-- End Header -->
+<!-- Header Start -->
+<div class="container-fluid sticky-nav" id="" style="background-color: #F2F2F2 !important">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+
+
+      <button class="navbar-toggler border-white" type="button" style="
+          border: 1px solid white !important;
+          background-color: black !important;
+        " data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/agency" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/agency/job-feedback" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@jobfeedback">Job Feedback</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+              {{ npid }}
+            </a>
+            <div class="dropdown-menu">
+             
+              <a class="dropdown-item" style="color: white; cursor: pointer" (click)="logout()"
+                i18n="@@jflogout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- Header End -->
+<main class="inner-page" id="main">
+  <!-- ======= Services Section ======= -->
+  <section id="Job_feedback" class="services">
+    <div class="card">
+      <div class="section-title">
+        <span i18n="@@FLORA" id="backhead"> FLORA NATURE WORK FEEDBACK</span>
+        <h2 i18n="@@FLORA">FLORA NATURE WORK FEEDBACK</h2>
+      </div>
+      <div class="container-fluid">
+        <div>
+          <fieldset>
+            <legend></legend>
+            <div class="row d-flex">
+              <div class="col-3"></div>
+              <div class="col-4">
+                <label for="disabledSelect" class="form-label font-weight-bold" i18n="@@noticeSerialNo">Notification
+                  Notice Series No.</label>
+              </div>
+              <div class="col-5">
+                <label for="" class="">{{ serielno }}</label>
+              </div>
+            </div>
+
+            <!-- <div class="col-md-6"></div> -->
+
+            <div class="row d-flex">
+              <div class="col-3"></div>
+              <div class="col-4">
+                <label for="disabledTextInput" class="form-label font-weight-bold" i18n="@@parliamen">Parliament</label>
+              </div>
+              <div class="col-5">
+                <label for="">{{ parliamen }}</label>
+              </div>
+            </div>
+            <!-- <div class="col-md"></div> -->
+
+            <div class="row d-flex">
+              <div class="col-3"></div>
+              <div class="col-4">
+                <label for="disabledTextInput" class="form-label font-weight-bold" i18n="@@location">Location</label>
+              </div>
+              <div class="col-5">
+                <label for="">{{ lokasi }}</label>
+              </div>
+            </div>
+            <div class="row d-flex">
+              <div class="col-3"></div>
+              <div class="col-4">
+                <label for="disabledTextInput" class="form-label font-weight-bold" i18n="@@inspectingOffName">Name of
+                  Inspecting Officer</label>
+              </div>
+              <div class="col-5">
+                <label for="">{{ name }}</label>
+              </div>
+            </div>
+            <div class="row d-flex" style="margin-bottom: 11px">
+              <div class="col-3"></div>
+              <div class="col-4">
+                <label for="disabledTextInput" class="form-label font-weight-bold" i18n="@@status">Action Status
+                </label>
+              </div>
+              <div class="col-5">
+                <label for="">{{ status }}</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="btn-upd mb-2">
+          <button class="look_for_red" routerLink="/agency/new-feedback" i18n="@@update">
+            Update
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Services Section -->
+</main>
+<!-- End #main -->
+<app-footer></app-footer>
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a>

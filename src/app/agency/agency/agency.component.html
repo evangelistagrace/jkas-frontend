@@ -1,0 +1,308 @@
+<!-- Error Modal Start -->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-12">
+          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left" style="left: 6px; top: 35px"></span><span
+                class="swal2-x-mark-line-right" style="right: 4px; top: 34px"></span></span>
+          </div>
+          <div class="col-12">
+            <h2 class="text-center" i18n="@@notfound"></h2>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h6 style="text-align: center">
+          <span class="dialog-msg" i18n="@@newinvoie">The invoice number entered is not in the system. Please press the
+            "Next" button to fill in the PSPPA claim form.</span>
+          <!-- <br /><span class="dialog-msg" i18n="@@invoiceinfo2">Do you want to create one?</span> -->
+        </h6>
+
+        <div class="d-flex justify-content-center mt-4">
+          <button class="look_for" routerLink="/agency/createinvoice" i18n="@@yes">
+            NEXT
+          </button>
+          <button type="button" class="look_for_red" i18n="@@no" (click)="onCloseHandled()">
+            BACK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Error Modal End -->
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+
+</ngx-spinner>
+<!-- ======= Top Bar ======= -->
+<app-topbar></app-topbar>
+
+<!-- Header  Start-->
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand ">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+        <!-- Integrated Waste Kuala Lumpur -->
+      </a>
+
+      <button class="navbar-toggler border-white" type="button" style="
+          border: 1px solid white !important;
+          background-color: black !important;
+        " data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/public" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item" id="signInn">
+            <a class="nav-link" style="color: #253d84 !important; cursor: pointer" i18n="@@b1">JOB FEEDBACK</a>
+          </li>
+          <li class="nav-item" id="signUpp">
+            <a class="nav-link" style="color: #253d84 !important; cursor: pointer" i18n="@@b2">JOB PAYMENT CLAIMS</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- Header end -->
+<main id="main">
+  <!-- ======= Breadcrumbs ======= -->
+  <!-- <section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
+    <h1>&nbsp;</h1>
+    <h2></h2>
+  </div>
+</section> -->
+  <!-- End Breadcrumbs -->
+
+  <!-- ======= Services Section ======= -->
+  <section id="cta" class="cta">
+    <div class="container login-zoom" data-aos="zoom-in">
+      <div class="text-center" id="">
+        <div class="container1" id="container1">
+          <div class="form-container sign-up-container">
+            <form action="void(0) return;" id="contact-form" class="main-form needs-validation" role="form" novalidate
+              style="height: 100%">
+              <div [formGroup]="agencyvalidator">
+                <h3 class="text-dark" id="jj" i18n="@@b4">JOB PAYMENT CLAIM</h3>
+
+                <div class="cont">
+                  <div class="form-group">
+                    <label>
+                      <!-- <input
+                      type="text"
+                      id="form_user"
+                      class="my_form-control"
+                      required
+                      [(ngModel)]="data1"
+                      [ngModelOptions]="{ standalone: true }"
+                    /> -->
+
+                      <!-- <small class="my_place">Please select:</small> -->
+                      <label for="exampleFormControlSelect1 " id="inputlable" style="
+                          color: var(--dark);
+                          font-weight: 600;
+                          text-align: center;
+                          font-size: small;
+
+                          margin-bottom: 1rem;
+                        "><small style="
+                            color: var(--dark);
+                            font-weight: 600;
+                            text-align: center;
+                            font-size: small;
+                          " class="my_place" i18n="@@agencyl1">Please Select</small>
+                      </label>
+                      <select class="form-control" id="exampleFormControlSelect1" style="width: 89%; margin-left: 4%"
+                        (change)="getKontraktors($event)" formControlName="kontract" [ngClass]="{
+                          'is-invalid': submitted && f2.kontract.errors
+                        }">
+                        <option selected></option>
+                        <option *ngFor="let item of kontraktor">
+                          {{ item }}
+                        </option>
+
+                        <option *ngIf="showSpinner">
+                          <button class="btn btn-primary" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Loading...
+                          </button>
+                        </option>
+                      </select>
+                    </label>
+                    <div class="co signup-error" id="User" *ngIf="submitted && f2.kontract.errors">
+                      <i *ngIf="f2.kontract.errors.required" i18n="@@b6" style="font-size: 14px; color: red !important">
+                        Please fill out this field.</i>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <!-- <input
+                        type="text"
+                        id="form_user"
+                        class="my_form-control"
+                        name="data2"
+                        [(ngModel)]="data2"
+                        (ngModelChange)="data2 = $event.toUpperCase()"
+                        formControlName="noinvoice"
+                        [ngClass]="{
+                          'is-invalid': submitted && f2.noinvoice.errors
+                        }"
+                      /> -->
+
+
+                      <small style="
+                          color: var(--dark);
+                          font-weight: 600;
+                          text-align: center;
+                          font-size: small;
+                        " class="my_place" i18n="@@agencyl2">No. Invoices</small>
+                      <!-- <div class="invalid-feedback" i18n="@@b6">
+
+                      </div> -->
+                    </label>
+                    <br>
+                    <br>
+                    <div>
+                      <div class="input-group mb-3 agency2nd">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text agency2nd1"><i class="icofont-ebook"></i></span>
+                        </div>
+                        <input type="text" class="form-control agency2nd2" placeholder="" [(ngModel)]="data2"
+                          (ngModelChange)="data2 = $event.toUpperCase()" formControlName="noinvoice" [ngClass]="{
+                            'is-invalid': submitted && f2.noinvoice.errors
+                          }">
+                      </div>
+                    </div>
+                    <div class="co signup-error" id="User" *ngIf="submitted && f2.noinvoice.errors">
+                      <i *ngIf="f2.noinvoice.errors.required" i18n="@@b6"
+                        style="font-size: 14px; color: red !important">
+                        Please fill out this field.</i>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group text-center">
+                  <button class="btn mt-2 mx-auto" (click)="createInvoice()"
+                    style="background-image: linear-gradient(to right, #517fa4 0%, #243949  51%, #517fa4  100%)"
+                    i18n="@@b8">
+                    LOG IN
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="form-container sign-in-container">
+            <form id="contact-form" class="main-form needs-validation npid_form" role="form" [formGroup]="agencyGroup">
+              <h3 class="text-dark job1" style="font-size: 38px" i18n="@@b1">
+                JOB FEEDBACK
+              </h3>
+              <div class="form-group">
+                <div style="
+                    color: var(--dark);
+                    font-weight: 600;
+                    text-align: center;
+                    font-size: small;
+                  " i18n="@@b10">
+                  Please enter the serial number of the Notification Notice (NP)
+                </div>
+                <br>
+                <div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text agnt2"><i class="icofont-ebook"></i></span>
+                    </div>
+                    <input type="text" class="form-control agent1" placeholder="" id="form_email" [(ngModel)]="npId"
+                      formControlName="npId" style="text-transform: uppercase" [ngClass]="{
+                        'is-invalid': submitted1 && f1.npId.errors
+                      }">
+                  </div>
+                </div>
+                <!-- <label>
+                  <input
+                    type="text"
+                    id="form_email"
+                    class="form1"
+                    [(ngModel)]="npId"
+                    formControlName="npId"
+                    style="text-transform: uppercase"
+                    [ngClass]="{
+                      'is-invalid': submitted1 && f1.npId.errors
+                    }"
+                  />
+                  <small
+                    class="my_place nperr"
+                    style="width: 200px; top: 20px; color: red; left: 7em"
+                  >
+                    <div class="row mt-2">
+                      <br />
+                      <br />
+                      <div class="col-md-4"></div>
+                    </div>
+                  </small>
+
+                  <span *ngIf="npError" style="color: red; font-size: small;font-style: italic;">{{
+                    npErrorMessage
+                  }}</span>
+                </label> -->
+                <div *ngIf="submitted1 && f1.npId.errors">
+                  <i *ngIf="f1.npId.errors.required" i18n="@@b11" style="color: red; font-size: small">
+                    *Np ID is required</i>
+                </div>
+              </div>
+              <div class="form-group text-center">
+                <button type="button" class="btn btn-danger mt-2 mx-auto" (click)="login()"
+                  style="background-image: linear-gradient(to right, #517fa4 0%, #243949  51%, #517fa4  100%);border-color: #253d84 !important;"
+                  i18n="@@b8">
+                  LOG IN
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="overlay-container">
+            <div class="overlay">
+              <div class="overlay-panel overlay-left">
+                <h1 class="JobF" i18n="@@b1">JOB FEEDBACK</h1>
+                <p style="font-weight: bolder">&nbsp;</p>
+                <button class="ghost" style="padding: 11px 34px;border-radius: .75em !important;" id="signIn">
+                  <i class="fa fa-chevron-circle-left" style="font-size: 17px;color: white;"></i><span
+                    style="font-weight: bold;font-size:16px;color: white !important;margin-left: 10px;"
+                    i18n="@@b8">Login</span>
+                </button>
+              </div>
+              <div class="overlay-panel overlay-right">
+                <h1 class="heading2" i18n="@@b4">JOB PAYMENT CLAIM</h1>
+                <p style="font-weight: bolder">&nbsp;</p>
+                <button class="ghost" style="padding: 11px 34px;border-radius: .75em !important;" id="signUp"><span
+                    style="font-weight: bold;font-size:16px;color: white !important;margin-right: 10px;"
+                    i18n="@@b8">Login</span>
+                  <i class="fa fa-chevron-circle-right" style="font-size: 17px;color: white;"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ======= Services Section ======= -->
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+
+<a (click)="backtotop()" class="back-to-top"><i class="icofont-simple-up"></i></a>

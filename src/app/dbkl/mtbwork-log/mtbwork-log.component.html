@@ -1,0 +1,155 @@
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+  <div class="container-fluid" ngStickyNav>
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand ">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+
+
+
+      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
+        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"
+              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+              id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" style="color: #253d84 !important; cursor: pointer" i18n="@@n11">
+              MTB
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item"
+                *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'" i18n="@@n12"
+                routerLink="/dbkl/mapview">Map View</a>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle"
+              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+              style="color: white; cursor: pointer" i18n="@@n15">Field Form</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a routerLink="/dbkl/mtbwork-form"
+                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+                  class="dropdown-item" i18n="@@n13">Work Form</a>
+              </li>
+              <li>
+                <a routerLink="/dbkl/mtbcompoundform" class="dropdown-item"
+                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+                  i18n="@@n14">Compound Form</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle"
+              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+              style="color: white; cursor: pointer" i18n="@@n16">Work Log</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a routerLink="/dbkl/mtbwork-log"
+                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+                  class="dropdown-item" i18n="@@n17">Daily Work / Complaints</a>
+              </li>
+              <li>
+                <a routerLink="/dbkl/mtblistofcompound"
+                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+                  class="dropdown-item" i18n="@@n18">List of Compounds</a>
+              </li>
+            </ul>
+          </li>
+      </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"
+          *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+          id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          style="color: #253d84 !important; cursor: pointer" i18n="@@n19">
+          MTK
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            style="color: white; cursor: pointer" routerLink="/dbkl/mtkmapview" i18n="@@n20">Monitoring
+            MTK</a>
+            <a routerLink="/dbkl/mtkworkform"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            class="dropdown-item" (click)="getUser('financial')" i18n="@@n13" style="cursor: pointer;">Work Form</a>
+          <a routerLink="/dbkl/mtbcompoundform"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            class="dropdown-item" i18n="@@n14" style="cursor: pointer;">Compound
+            Form</a>
+          <a routerLink="/dbkl/inspectingofficers"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n21">Work MTB</a>
+          <a routerLink="/dbkl/mtblistofcompound"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n22">Compound MTB</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+          {{ username }}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
+            i18n="@@Profile">Profile</a>
+          <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer" i18n="@@jflogout">Logout</a>
+        </div>
+      </li>
+      </ul>
+  </div>
+  </nav>
+</div>
+</div><!-- End Header -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+
+</ngx-spinner>
+<main>
+  <section class="inspecting" id="inspecting">
+    <div class="card">
+      <div class="text-center">
+        <div class="d-flex justify-content-center">
+          <img class="logo-proses" src="../../../assets/img/logo.png " height="100" alt="" />
+        </div>
+        <div class="section-title">
+          <!-- <span>PROSES PERMOHONAN PPSSPPA</span>
+                      <h2>PROSES PERMOHONAN PPSSPPA</h2> -->
+          <span i18n="@@mtbwrklog1">DAILY WORK LOG / COMPLAINT</span>
+          <h2 i18n="@@mtbwrklog1">DAILY WORK LOG / COMPLAINT</h2>
+        </div>
+      </div>
+
+      <div class="container" style="margin-bottom: 20px; width: 50%">
+        <div class="row-10 tablediv">
+          <div class="card" style="overflow-x: scroll">
+            <ng2-smart-table [settings]="settings" [source]="data">
+            </ng2-smart-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- End #main -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+
+</ngx-spinner>
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer"><i class="icofont-simple-up"></i></a>

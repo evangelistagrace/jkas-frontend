@@ -1,0 +1,110 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+
+</ngx-spinner>
+<!-- ======= Top Bar ======= -->
+<app-topbar></app-topbar>
+
+<!-- ======= Header ======= -->
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+  <div class="container-fluid" ngStickyNav>
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand ">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+
+
+
+
+      <button class="navbar-toggler border-white" type="button" style="
+        background-color: black !important;
+        border: 1px solid white !important;
+      " data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/public" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/publicLogin" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@psppaapplication">PSPPA APPLICATION</a>
+          </li>
+
+          <li *ngIf="isUser == 'public'" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@Users">
+              {{ username }}
+            </a>
+            <div class="dropdown-menu">
+              <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
+                i18n="@@Profile">Profile</a>
+              <a class="dropdown-item" style="cursor: pointer" (click)="logout()" i18n="@@jflogout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- End Header -->
+<main class="main">
+  <section id="home" class="home">
+    <div class="card">
+      <div class="section-title">
+        <span i18n="@@servicearea">LIST OF SERVICE AREAS</span>
+        <h2 i18n="@@servicearea">LIST OF SERVICE AREAS</h2>
+      </div>
+      <div class="row" style="margin-left: 3%">
+        <div class="col INV">
+          <h2><span class="inv1" i18n="@@parliamen">Parliament</span></h2>
+          <p>
+            <input class="form-control" list="data" placeholder="Sila pilih parlimen" [(ngModel)]="selectedGuest"
+              (change)="getParliament()" name="data" />
+            <datalist id="data">
+              <option *ngFor="let data of parliamens" [value]="data"></option>
+            </datalist>
+          </p>
+        </div>
+        <div class="col INV">
+          <h2><span class="inv1" i18n="@@location">Location</span></h2>
+          <p>
+
+            <select id="data1" class="form-control" name="data" [(ngModel)]="selectedGuest1"
+              (change)="getValue(selectedGuest1)">
+              <option selected i18n="@@namajalan">
+                Street name / Park name
+              </option>
+              <option *ngFor="let data of location" [value]="data">
+                {{ data }}
+              </option>
+            </select>
+          </p>
+        </div>
+        <div class="col-sm-2 INV">
+          <h2><span style="color: white !important;">Location</span></h2>
+          <button class="btn-danger btn-sm" class="look_forr" (click)="reset(3.139, 101.6869)">
+            <i style="font-size: 18px" class="fa fa-refresh" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div style="height: 100vh; margin: 2% 4% 4% 4%" leaflet [leafletOptions]="options"
+            (leafletMapReady)="onMapReady($event)"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a>

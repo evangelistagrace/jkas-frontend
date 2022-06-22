@@ -1,0 +1,86 @@
+.look_for {
+    margin-top: 10px;
+    margin-right: 10px;
+   background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+    /* background: #253d84; */
+    border: 0;
+    padding: 6px 20px;
+    color: #fff;
+    transition: 0.4s;
+    /* float: right; */
+    font-size: 14px;
+    width:23%;
+    margin-bottom: 24px;
+    border-color: #245580;
+    border-radius: 4px;
+    border: 1px solid transparent;
+  }
+
+  .look_for:hover {
+    background: #23527c;
+  }
+
+label{
+    font-weight: 700;
+}
+
+a:hover{
+    color:#e82d2d;
+}
+.modal-body
+{
+    margin-top: 10px;
+    text-align: left !important;
+}
+
+
+#txt{
+    margin-left: -115px;
+    margin-top: 20px;
+    color: white;
+    font-weight: 700;
+}
+
+@media screen and (max-width:500px)and (min-width:400px){
+    #txt{
+        font-size: 15px;
+        margin-left:1px;
+        font-weight: 500;
+    }
+}
+
+@media screen and (max-width:400px)and (min-width:370px){
+    #txt{
+        font-size: 13px;
+        margin-left:1px;
+        font-weight: 500;
+    }
+}
+@media screen and (max-width:370px)and (min-width:330px){
+    #txt{
+        font-size: 12px;
+        margin-left:1px;
+        font-weight: 500;
+    }
+}
+
+@media screen and (max-width:330px)and (min-width:290px){
+    #txt{
+        font-size: 10px;
+        margin-left:1px;
+        font-weight: 500;
+    }
+}
+
+@media screen and (max-width:289px){
+    #txt{
+        font-size: 9px;
+        margin-left:1px;
+        font-weight: 500;
+    }
+}
+
+.fa-times{
+    margin: 0px;
+    color: white;
+}

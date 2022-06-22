@@ -1,0 +1,539 @@
+<!-- Success Modal Start-->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+    [fullScreen]="true">
+
+</ngx-spinner>
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+    [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered" role="document ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+                    <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+                    <span class="swal2-success-line-tip"></span>
+                    <span class="swal2-success-line-long"></span>
+                    <div class="swal2-success-ring"></div>
+                    <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+                    <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center">
+                    <span class="dialog-msg">{{ sucessmsg }}</span>
+                </h4>
+                <div class="d-flex justify-content-center">
+                    <button type="button " i18n="@@ok" (click)="closeSuccessModal()" data-dismiss="modal " class="btn"
+                        style="
+              color: white !important;
+              border-radius: 4px !important;
+               background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+
+            ">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Success Modal End -->
+<!-- Error Modal Start -->
+<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+    [ngStyle]="{ display: errorDisplay }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="col-12">
+                    <div class="swal2-icon swal2-error swal2-animate-error-icon"
+                        style="display: flex; justify-content: center">
+                        <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                                class="swal2-x-mark-line-right"></span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h6 style="text-align: center">
+                    <span class="dialog-msg">{{ errmsg }}</span>
+                    <br />
+                </h6>
+                <div class="d-flex justify-content-center mt-4">
+                    <button class="btn" (click)="closeErrorModal()" i18n="@@ok" style="
+                 background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+              color: white !important;
+              border-radius: 4px !important;
+            ">
+                        Ok
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Error Modal End -->
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<app-headerc></app-headerc>
+<!-- End of Header -->
+<main>
+    <section class="Borang" id="Borang">
+        <div class="card">
+            <!-- ======= Services Section ======= -->
+            <form  (ngSubmit)="saveInventory()">
+                <div class="section-title">
+                    <span i18n="@@Inven2">New Data Registration Form</span>
+                    <h2 i18n="@@Inven2">New Data Registration Form</h2>
+                </div>
+              
+                  
+                <div class="form-row ">
+                    <div class="form-group col-md-6 col-lg-6 pl-0">
+                       
+                        <label for="textInput" i18n="@@Inven3">Parliament</label><sup>*</sup>
+                  
+                        <input class="form-control" list="data" placeholder="Sila pilih parlimen"
+                            [(ngModel)]="parlimenAbc" name="data" />
+
+                            <!-- <input class="form-control" list="data" placeholder="Sila pilih parlimen"
+                            [(ngModel)]="parlimenAbc" (change)="selectEvent($event)" name="data" /> -->
+                        <datalist id="data">
+                            <option *ngFor="let data of parliamens" [value]="data"></option>
+                        </datalist>
+                        <div *ngIf="check">
+                            <div style="color: red;" i18n="@@emvm">
+                                Please fill this required field.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6 pr-0">
+                      
+                        <label for="textInput" i18n="@@Inven5">Location</label><sup>*</sup>
+                      
+                        <!-- <input class="form-control" list="key" [(ngModel)]="lokasi" (change)=getValue($event)
+                            name="key" /> -->
+
+                            <input class="form-control" [ngModelOptions]="{standalone: true}"  [(ngModel)]="lokasi" name="lokasi"/>
+                            
+                        <!-- <datalist id="key">
+                            <option *ngFor="let key of location" [value]="key"></option>
+                        </datalist> -->
+                        <div *ngIf="check">
+                            <div style="color: red;" i18n="@@emvm">
+                                Please fill this required field.
+                            </div>
+                        </div>
+                    </div>
+              
+               
+            
+            
+                    <div class="form-group col-md-12">
+                        <div class="col-12">
+                            <label for="textInput" i18n="@@op8">Number of Premises Units </label>
+                        </div>
+                        <input type="text" [ngModelOptions]="{standalone: true}" id="textInput1"
+                            name="jumlah_unit_premis" class="form-control mb-2" [(ngModel)]="jumlah_unit_premis" />
+                    </div>
+                    <div class="form-group col-md-12 mt-top">
+                        <h5 style="background-color: #253d84"
+                            class="card-header info-color text-center white-text py-6">
+                            <strong style="color: white;font-size: 16px;" i18n="@@Inven7">
+                                Quotation Frequency</strong>
+                        </h5>
+                    </div>
+                    <div class="form-group col-md-12">
+
+                        <label for="textInput" i18n="@@Inven8">Domestic waste</label>
+
+                        <input type="text" id="textInput2" [ngModelOptions]="{standalone: true}" name="sisa_domestik"
+                            class="form-control mb-2" [(ngModel)]="sisa_domestik" />
+
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="textInput" i18n="@@Inven10">Bulk Trash</label>
+                        <input type="text" id="textInput3" class="form-control mb-2"
+                            [ngModelOptions]="{standalone: true}" name="sampah_pukal" [(ngModel)]="sampah_pukal" />
+
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div class="col-12">
+                            <label for="textInput" i18n="@@op16">Illegal Garbage</label>
+                        </div>
+                        <input type="text" id="textInput" class="form-control mb-2"
+                            [ngModelOptions]="{standalone: true}" name="sampah_haram" [(ngModel)]="sampah_haram" />
+
+                    </div>
+                    <div class="form-group col-md-12 mt-top">
+                        <h5 style="background-color: #253d84"
+                            class="card-header info-color text-center white-text py-6">
+                            <strong style="color: white;font-size: 16px;" i18n="@@Inven12">
+                                Cleaning Frequency</strong>
+                        </h5>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="col-12">
+                            <label class="d-block" for="textInput"><b i18n="@@Inven13">Sweep</b></label>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="textInput" i18n="@@Inven15">Road[m]</label>
+                            <input type="text" id="textInput" class="form-control mb-2"
+                                [ngModelOptions]="{standalone: true}" name="sapuan_jalan" [(ngModel)]="sapuan_jalan" />
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="textInput">TPKK [m<sup style="color: black;">2</sup>]</label>
+                            <input type="text" id="textInput" class="form-control mb-2"
+                                [ngModelOptions]="{standalone: true}" name="sapuan_TPKK" [(ngModel)]="sapuan_TPKK" />
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="textInput" i18n="@@Inven21">Open Space/Parking Area [m<sup style="color: black;">2</sup>]</label>
+                            <input type="text" id="textInput" class="form-control mb-2"
+                                [ngModelOptions]="{standalone: true}" name="sapuan_parkir"
+                                [(ngModel)]="sapuan_parkir" />
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="textInput" i18n="@@Inven24">Sweep[m]</label>
+                            <input type="text" id="textInput" class="form-control mb-2"
+                                [ngModelOptions]="{standalone: true}" name="cucian_jejantas"
+                                [(ngModel)]="cucian_jejantas" />
+
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="col-12">
+                            <label for="textInput"><b i18n="@@Inven14">Laundry</b></label>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="textInput" i18n="@@op29">Laundry[m]</label>
+                            <input type="text" id="textInput" class="form-control mb-2"
+                                [ngModelOptions]="{standalone: true}" name="sapuan_jejantas"
+                                [(ngModel)]="sapuan_jejantas" />
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="textInput" i18n="@@Inven20">Post Footer[m]</label>
+                            <input type="text" id="textInput" class="form-control mb-2"
+                                [ngModelOptions]="{standalone: true}" name="cucian_siarkaki"
+                                [(ngModel)]="cucian_siarkaki" />
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="textInput" i18n="@@Inven22">Covered Leg Post</label>
+                            <input type="text" id="textInput" class="form-control mb-2"
+                                [(ngModel)]="cucian_siarkaki_berbumbung" name="cucian_siarkaki_berbumbung"
+                                [ngModelOptions]="{standalone: true}" />
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="textInput">Jejantas [m]</label>
+                            <input type="text" id="textInput" class="form-control mb-2"
+                                [(ngModel)]="cucian_slesenbaslteksi" name="cucian_slesenbaslteksi"
+                                [ngModelOptions]="{standalone: true}" />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="textInput" i18n="@@Inven25">Drain[m]</label>
+                            <input type="text" id="textInput" class="form-control mb-2" [(ngModel)]="cucian_longkang"
+                                name="cucian_longkang" [ngModelOptions]="{standalone: true}" />
+
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <div class="col-12">
+                            <label for="textInput" class="d-block"><b i18n="@@Inven26">Others</b></label>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-12">
+                                <label for="textInput" i18n="@@Inven27"> Cut grass [m<sup style="color: black;">2</sup>] </label>
+                            </div>
+                            <input type="text" id="textInput" class="form-control mb-2" [(ngModel)]="potong_rumput"
+                                name="potong_rumput" [ngModelOptions]="{standalone: true}" />
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-12">
+                                <label for="textInput" i18n="@@Inven28">Garden Trash</label>
+                            </div>
+                            <input type="text" id="textInput" class="form-control mb-2" [(ngModel)]="sampah_kebun"
+                                name="sampah_kebun" [ngModelOptions]="{standalone: true}" />
+
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 mt-top">
+                        <h5 style="background-color: #253d84"
+                            class="card-header info-color text-center white-text py-6">
+                            <strong style="color: white;font-size: 16px;" i18n="@@Inven29"> Notes</strong>
+                        </h5>
+                        <textarea type="text" id="textInput" class="form-control mb-2" [(ngModel)]="catatan"
+                            name="catatan" [ngModelOptions]="{standalone: true}"></textarea>
+
+                    </div>
+                    <div class="form-group col-md-12 mt-top">
+                        <h5 style="background-color: #253d84"
+                            class="card-header info-color text-center white-text py-6">
+                            <strong style="color: white;font-size: 16px;" i18n="@@Inven30">
+                                Reference / Delivery Date</strong>
+                        </h5>
+                        <textarea type="text" id="textInput" class="form-control mb-2" name="rujuken_tarikh_serahan"
+                            [(ngModel)]="rujuken_tarikh_serahan" [ngModelOptions]="{standalone: true}"></textarea>
+
+                    </div>
+                    <div class="form-group col-md-12 mt-top">
+                        <h5 style="background-color: #253d84"
+                            class="card-header info-color text-center white-text py-6">
+                            <strong style="color: white;font-size: 16px;" i18n="@@Inven31">
+                                Field Review Date (if any)</strong>
+                        </h5>
+                        <div class="form-group col-md-12">
+                            <div class="col-12">
+                                <label for="textInput" i18n="@@there">There are</label>
+                            </div>
+                            <input type="text" id="textInput" class="form-control mb-2"
+                                name="tarikh_semakandi_lapangant_keadeansemata_ada"
+                                [(ngModel)]="tarikh_semakandi_lapangant_keadeansemata_ada"
+                                [ngModelOptions]="{standalone: true}" />
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-12">
+                                <label for="textInput" i18n="@@none">None</label>
+                            </div>
+                            <input type="text" id="textInput" class="form-control mb-2"
+                                name="tarikh_semakandi_lapangant_keadeansemata_tiada"
+                                [(ngModel)]="tarikh_semakandi_lapangant_keadeansemata_tiada"
+                                [ngModelOptions]="{standalone: true}" />
+
+                        </div>
+                        <div class="text-center form-group col-md-12">
+                            <button class="look_for" type="submit" i18n="@@sub1">Submit</button>
+                            <button routerLink="/dbkl/dbklmainpage" class="look_for_red" type="button" i18n="@@bc1">
+                                Back
+                            </button>
+
+                        </div>
+                    </div>
+        </div>
+    
+            </form>
+       
+            <section></section>
+
+            <div class="container-fluid input row">
+                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
+                    <label for="select" class="text-center" style="font-weight: 500" i18n="@@omp6">
+                        <!-- Tahun Permohonan -->
+                        OMP Search By Parliament :
+                    </label>
+                    <select id="yearOfApplication" (change)="selectChangeHandler($event)" class="form-control"
+                        aria-placeholder="Select the Parliament">
+                        <option value="" disabled selected i18n="@@cap">Choose a Parliament</option>
+                        <option>Batu</option>
+                        <option>Kepong</option>
+                        <option>Segambut</option>
+                        <option>Titiwangsa</option>
+                        <option>Wangsa Maju</option>
+                        <option>Setiawangsa</option>
+                        <option>Bukit Bintang</option>
+                        <option>Lembah Pantai</option>
+                        <option>Cheras</option>
+                        <option>Bandar Tun Razak</option>
+                        <option>Seputeh</option>
+                    </select>
+
+
+                </div>
+                <!-- <input type="number" class=" form-control mb-4" min="1990" placeholder="Tahun" max="2050"
+              id="yearOfApplication"> -->
+                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
+                    <div>
+                        <label for="select" class="text-center" style="font-weight: 500" i18n="@@subArea">
+                            <!-- Tahun Permohonan -->
+                            SubArea :
+                        </label>
+                        <div>
+                            <input class=" custom-select" list="dataly" name="dataly" (change)="activityly(($event))" />
+                            <datalist id="dataly">
+                                <option *ngFor="let dataly of subArea" [value]="dataly">{{ dataly }}
+                                </option>
+                            </datalist>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-2 col-sm-4">
+                    <button class="sbtn" (click)="searchButton()">
+                        <i class="icofont-search-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <br />
+            <div class="table-responsive col-md-12">
+                <table class="table table-bordered table-striped table-hover table-condensed" id="DyanmicTable">
+                    <thead>
+                        <tr style="
+                  background-color: #253d84;
+                  color: white;
+                  font-weight: normal !important;
+                ">
+                            <th class="text-center" rowspan="3" i18n="@@op4">Area code</th>
+                            <th class="text-center" rowspan="3" i18n="@@op5">Location</th>
+
+                            <th class="text-center" rowspan="3" i18n="@@op6">Parliament</th>
+                            <th class="text-center" rowspan="3" i18n="@@op7">Coordinates</th>
+                            <th class="text-center" rowspan="3" i18n="@@op8">
+                                Number of Premises Units
+                            </th>
+                            <th class="text-center" colspan="3" i18n="@@op9">
+                                Quotation Frequency
+                            </th>
+                            <th class="text-center" colspan="11" i18n="@@op10">
+                                Measurement of Length / Frequency of Cleaning
+                            </th>
+                            <th class="text-center" rowspan="3" i18n="@@op11">Notes</th>
+                            <th class="text-center" rowspan="3" i18n="@@op12">
+                                Reference / Delivery Date
+                            </th>
+                            <th class="text-center" colspan="2" i18n="@@op13">
+                                Field Review Date / Current Condition
+                            </th>
+                        </tr>
+                        <tr style="
+                  background-color: #253d84;
+                  color: white;
+                  font-weight: normal !important;
+                ">
+                            <th class="text-center" rowspan="2" i18n="@@op14">
+                                Domestic waste
+                            </th>
+                            <th class="text-center" rowspan="2" i18n="@@op15">
+                                Bulk Garbage
+                            </th>
+                            <th class="text-center" rowspan="2" i18n="@@op16">
+                                Illegal Garbage
+                            </th>
+                            <th class="text-center" colspan="3" i18n="@@op17">Sweep</th>
+                            <th class="text-center" colspan="2" i18n="@@op18">Bridges</th>
+                            <th class="text-center" colspan="3" i18n="@@op19">Laundry</th>
+                            <th class="text-center" rowspan="2" i18n="@@op20">
+                                Gutter Wash (m)
+                            </th>
+                            <th class="text-center" rowspan="2" i18n="@@op21">
+                                Cut the grass (m<sup style="color: white;">2</sup>)
+                            </th>
+                            <th class="text-center" rowspan="2" i18n="@@op22">
+                                Garden Waste
+                            </th>
+                            <th class="text-center" rowspan="2" i18n="@@op23">
+                                There are [√]
+                            </th>
+
+                            <th class="text-center" rowspan="2" i18n="@@op24">None [X]</th>
+                        </tr>
+                        <tr style="
+                  background-color: #253d84;
+                  color: white;
+                  font-weight: normal !important;
+                ">
+                            <th class="text-center" i18n="@@op25">Road [m]</th>
+                            <th class="text-center">TPKK [m<sup style="color: white;">2</sup>]</th>
+                            <th class="text-center" i18n="@@op26">
+                                Kaw Lapang Parking [m<sup style="color: white;">2</sup>]
+                            </th>
+                            <th class="text-center" i18n="@@op27">Sweep[m]</th>
+                            <th class="text-center" i18n="@@op28">Laundry[m]</th>
+                            <th class="text-center" i18n="@@op29">Post Footer [m]</th>
+                            <th class="text-center" i18n="@@op30">Post Covered Legs [m]</th>
+                            <th class="text-center" i18n="@@op31">Bus /Taxi Station</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr *ngFor="
+                  let key of data | paginate: { itemsPerPage: 8, currentPage: p }
+                ">
+                            <td>{{ key.kodarea }}</td>
+                            <td>{{ key.lokasi }}</td>
+                            <td>
+                                {{ key.parlimen }}
+                            </td>
+                            <td>{{ key.kordinat }}</td>
+                            <!-- <td>
+                                                  TARIKH:-<br />
+                                                  Masa:-<br />
+                                                  Tempat:-<br />
+                                              </td> -->
+                            <td>{{ key.jumlah_unit_premis }}</td>
+                            <td>
+                                <a style="color: black">{{
+                                    key.kekerapan_kutipan_sisa_domestik
+                                    }}</a>
+                            </td>
+                            <td>
+                                {{ key.kekerapan_kutipan_sampah_pukal }}
+                            </td>
+                            <td>
+                                {{ key.kekerapan_kutipan_sampah_haram }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_sapuan_jalan }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_sapuan_TPKK }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_sapuan_kewlapangparkir }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_jejantas_sapuan }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_jejantas_cucian }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_cucian_siarkaki }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_cucian_siarkaki_berbumbung }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_cucian_slesenbaslteksi }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_cucilongkan }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_potongrumput }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_sampahkebun }}
+                            </td>
+
+                            <td>
+                                {{ key.catatan }}
+                            </td>
+                            <td>
+                                {{ key.rujuken_tarikh_serahan }}
+                            </td>
+                            <td>
+                                {{ key.tarikh_semakandi_lapangant_keadeansemata_ada }}
+                            </td>
+                            <td>
+                                {{ key.tarikh_semakandi_lapangant_keadeansemata_tiada }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+        class="icofont-scroll-double-up"></i></a>

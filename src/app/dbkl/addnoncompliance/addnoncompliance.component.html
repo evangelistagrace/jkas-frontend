@@ -1,0 +1,349 @@
+<!-- Success Modal Start-->
+<div class="modal modal-box" tabindex="-1" style="background: #02020259; display: block" role="dialog"
+    [ngStyle]="{ display: display }">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+                    <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+                    <span class="swal2-success-line-tip"></span>
+                    <span class="swal2-success-line-long"></span>
+                    <div class="swal2-success-ring"></div>
+                    <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+                    <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center" i18n="@@application">
+                    Application Updated Successfully!
+                </h4>
+
+                <div class="d-flex justify-content-center">
+                    <button type="button" data-dismiss="modal" class="btn" (click)="closeSuccessModal()" i18n="@@okE">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- errorModal -->
+<div class="modal modal-box" tabindex="-1" style="background: #02020259; display: block" role="dialog"
+    [ngStyle]="{ display: errorDisplay }">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex">
+                    <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                            class="swal2-x-mark-line-right"></span></span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center" i18n="@@err">ERROR !</h4>
+                <p class="text-center font-weight-bold">{{ errorMessage }}</p>
+                <div class="d-flex justify-content-center">
+                    <button type="button" data-dismiss="modal" class="btn" (click)="closeSuccessModal()">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<app-headerc></app-headerc>
+<!-- End of Header -->
+
+<main id="main">
+    <section class="inner-page">
+        <div class="card" style="box-shadow: 0 0 30px rgb(214 215 216 / 60%)">
+            <!-- ======= Services Section ======= -->
+            <div class="d-flex justify-content-end">
+                <button printSectionId="main" [useExistingCss]="true" ngxPrint type="button"
+                    style="border: 1px solid transparent; background: transparent">
+                    <i style="
+              font-size: 30px;
+              color: #253d84;
+              cursor: pointer;
+              float: right;
+              margin-top: -6em;
+              margin-right: -1em;
+            " id="print" class="fa fa-print" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="section-title">
+                <span i18n="@@workpayent">AREA SUBMISSION NON-COMPLIANCE FORM</span>
+                <h2 i18n="@@workpayent">AREA SUBMISSION NON-COMPLIANCE FORM</h2>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 d-flex">
+                            <img style="width: 40px; height: 50px" src="./assets/img/logo.png" alt="" />
+                            <h6 class="text-dark">
+                                JABATAN KESHATAN DAN ALAM SEKITAR<br /> DEWAN BANDARAYA KUALA LUMPUR
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4">
+                            <p class="solid font-weight-bold text-center">
+                                Borang Ketidakpatuhan<br /> Penyerahan kawasan
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <input type="text" id="w1" [(ngModel)]="w1" /><br />
+                    </div>
+                    <div class="col-md-5"></div>
+                    <div class="col-md-5">
+                        <span style="margin-left: -20px"> Penerimaan:</span><input type="text" id="in1"
+                            [(ngModel)]="pengesahan_peneriman" /><br />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" id="w2" [(ngModel)]="w2" /><br />
+                    </div>
+                    <div class="col-md-5"></div>
+                    <div class="col-md-5">
+                        <span style="margin-left: -20px">Nama:</span><input type="text" id="in2"
+                            [(ngModel)]="nama" /><br />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" id="w3" [(ngModel)]="w3" /><br />
+                    </div>
+                    <div class="col-md-5"></div>
+                    <div class="col-md-5">
+                        <span style="margin-left: -20px;">Tarikh:</span><input style="border: none;
+                        border-bottom: 1px solid;
+                        color: black;
+                        outline: none;text-align: center" type="date" id="in3" [(ngModel)]="tarikh" />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" id="w4" [(ngModel)]="w4" /><br />
+                    </div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-4"></div>
+                    <!-- <div class="col-md-2">
+                                <input type="text" style="width: 220px;outline:none;"><br>
+                            </div> -->
+                    <div class="col-md-6"></div>
+                    <div class="col-md-4"></div>
+                </div>
+
+                <div class="ml-4 mt-2">
+                    <span>Tuan,</span>
+                </div>
+                <br />
+                <div class="ml-4">
+                    <b>
+                        KEPUTUSAN PEMERIKSAAN PENGAMBILALIHAN PERKHIDMATAN KUTIPAN SISA
+                        PEPEJAL DAN PERKHIDMATAN AWAM
+                    </b>
+                </div>
+                <div class="ml-4">
+                    Dengan homatnya saya merujuk kepada perkara di atas
+                </div>
+                <div class="ml-4 mt-2">
+                    2. Dimakalumkan bahawa,satu lawatan tapak telah diadakan pada
+                    <input id="dotted" style="outline: none; text-align: center;border: none;
+                    border-bottom: 1px solid;
+                    color: black;
+                    outline: none;" type="date" id="in3" [(ngModel)]="lawatan_tapak_tarikh" />bertempat di<input
+                        type="text" id="dotted" [(ngModel)]="bertempat_di"
+                        style="outline: none;text-align: center" />bersama wakil<br /> pihak
+                    tuan<input id="dotted" [(ngModel)]="wakil" style="outline: none; width: 353px; text-align: center"
+                        type="text" />no,
+                    kad pengenalan<input id="dotted" [(ngModel)]="kad_pengenalan"
+                        style="outline: none; width: 200px; text-align: center" type="text" />.Hasil daripada
+                    permeriksaan yang dijalankan,jabatan mendapati terdapat <br /> ketidakpatuhan seperti yang berikut:-
+                </div>
+                <div>
+                    <table class="table table-bordered mx-3" style="width: 97%">
+                        <thead>
+                            <tr>
+                                <th scope="col">Bill.</th>
+                                <th scope="col" style="text-align: center">
+                                    Perkara Ketidakpatuhan
+                                </th>
+                                <th scope="col" style="text-align: center">Catatan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1.</th>
+                                <td>
+                                    Peratusan premis yang telah diduduki adalah kurang daripada 50%
+                                </td>
+                                <td>
+
+                                    <input type="checkbox" #saveUserNameCheckBox1 (change)="
+                          onSaveUsernameChanged1(saveUserNameCheckBox1.checked)
+                        " />
+
+
+
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2.</th>
+                                <td>
+                                    Kawasan didipati kotor dan perlu dibersihkan terlebih dahulu sebelum penyerahan
+                                    dibuat
+                                </td>
+                                <td>
+
+                                    <input type="checkbox" #saveUserNameCheckBox2 (change)="
+                          onSaveUsernameChanged2(saveUserNameCheckBox2.checked)
+                        " />
+
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3.</th>
+                                <td>Tiada kemudahan 'stopper' untuk tayar lori.</td>
+                                <td>
+
+                                    <input type="checkbox" #saveUserNameCheckBox3 (change)="
+                          onSaveUsernameChanged3(saveUserNameCheckBox3.checked)
+                        " />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4.</th>
+                                <td>
+                                    Tiada kemudahan 'ramp/greating'di hadapan pintu rumah sampah.
+                                </td>
+                                <td>
+
+                                    <input type="checkbox" #saveUserNameCheckBox4 (change)="
+                          onSaveUsernameChanged4(saveUserNameCheckBox4.checked)
+                        " />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5.</th>
+                                <td>
+                                    Tiada garisan kuning(cross marking) di hadapan rumah sampah.
+                                </td>
+                                <td>
+
+                                    <input type="checkbox" #saveUserNameCheckBox5 (change)="
+                          onSaveUsernameChanged5(saveUserNameCheckBox5.checked)
+                        " />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6.</th>
+                                <td>
+                                    Tong sampah tidak mencukupi/tidak mengikut spefikasi yang ditetapkan.
+                                </td>
+                                <td>
+
+                                    <input type="checkbox" #saveUserNameCheckBox6 (change)="
+                          onSaveUsernameChanged6(saveUserNameCheckBox6.checked)
+                        " />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7.</th>
+                                <td>
+                                    Terdapat halangan yang menyukarkan laluan lori keluar dan masuk/'turning point'
+                                    tidak mengikut spesifikasi.
+                                </td>
+                                <td>
+
+                                    <input type="checkbox" #saveUserNameCheckBox7 (change)="
+                          onSaveUsernameChanged7(saveUserNameCheckBox7.checked)
+                        " />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">8.</th>
+                                <td>Mesin SWB 24m perlu ditinggikan 6 inci dari lantai</td>
+                                <td>
+
+                                    <input type="checkbox" #saveUserNameCheckBox8 (change)="
+                          onSaveUsernameChanged8(saveUserNameCheckBox8.checked)
+                        " />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">9.</th>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">10.</th>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-left: 20px">
+                    **Tandakan(&#10003;) di ruangan Catatan
+                </div>
+
+                <div style="margin-left: 20px; margin-top: 20px">
+                    3.Justeru itu,pihak tuan dikehendaki untuk mengambil tindakan segera terhadap perkara Ketidakpatuhan
+                    terbabit.Sila kemukakan laporan pembetulan secara bertulis berserta gambar untuk rekod fail dan
+                    rujukan Jabatan semasa lawatan tapak kali kedua dilakukan.
+                </div>
+                <div style="margin-left: 20px; margin-top: 20px">
+                    4.Sila maklum bahawa, Jabatan tidak akan berkompromi dengan sebarang perkara yang boleh menjejaskan
+                    imej Datuk Bandar Kulala Lumpur khasnya.Keprihatinan dan tindakan segera pihak tuan dalam perkara
+                    ini adalah diharapkan bagi memastikan proses penyerahan
+                    kawasan berjalan dengan lancar dan mengelak aduan pada masa akan datang.
+                </div>
+                <div style="margin-top: 20px; margin-left: 20px; margin-bottom: 30px">
+                    Sekian,terima kasih.
+                </div>
+            </div>
+            <div style="margin-left: 22px">
+                Dokumen ini adalah centakan komputer.Tandatangan tidak diperlukan.
+            </div>
+            <div style="margin-bottom: 20px; display: flex;justify-content: flex-end;">
+                <!-- <button class="look_for" (click)="goProducts()" i18n="@@comeback">
+                    Back
+                </button> -->
+                <button class="look_for" (click)="update()" i18n="@@submit">
+                    Submit
+                </button>
+
+            </div>
+            <!-- End Services Section -->
+        </div>
+    </section>
+</main>
+<!-- End #main -->
+<section id="msg">
+    <div class="card" style="color: rgb(225, 65, 65); box-shadow: 0 0 30px rgb(214 215 216 / 60%)">
+        The page you are viewing is not complatible to mobile.<br /> To access the page , please select the 'Desktop
+        Site' in the browser menu or use a desktop/laptop.
+    </div>
+</section>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i class="icofont-scroll-double-up"></i></a>

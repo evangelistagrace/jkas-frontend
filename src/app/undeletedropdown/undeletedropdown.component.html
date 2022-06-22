@@ -1,0 +1,21 @@
+<div *ngFor="let val of data;index as i">
+  <div   *ngIf="val.application_id == keyValue">
+    <div class="row" *ngIf="val.text==''; else files">
+      <!-- <select class="form-control" style="width: 100px; font-size: 14px" (change)="onSelectOption1($event, val.no_siri_permohonan)">
+      <option [selected]="val.active == true" i18n="@@no">No</option>
+      <option [selected]="val.active == false" i18n="@@yes">Yes</option>
+      
+    </select> -->
+      <div class="col-8">
+        <input type="text" class="form-control" style="width: 100px;font-size: 14px" [(ngModel)]="textNote">
+      </div>
+      <div class="col-2" style="margin-left: 7%;margin-top: 3%;">
+        <i (click)="onSelectOption1($event, val.application_id)" class="fa fa-paper-plane" aria-hidden="true"></i>
+      </div>
+      <div class="col-2" ></div>
+    </div>
+    <ng-template #files>
+     <span style="text-align: center;"> {{val.text}}</span>
+    </ng-template>
+  </div>
+</div>

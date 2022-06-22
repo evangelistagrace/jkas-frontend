@@ -1,0 +1,22 @@
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+    color: white;
+    border-radius: 12px!important;
+}
+
+.fa-cloud-upload {
+    font-size: 13px !important;
+}
+
+#trash{
+    margin-left: 10px;
+    cursor: pointer;
+}

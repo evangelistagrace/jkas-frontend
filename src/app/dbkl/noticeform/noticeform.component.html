@@ -1,0 +1,451 @@
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+  <div class="container-fluid" ngStickyNav>
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand ">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+
+
+
+      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
+        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"
+              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+              id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" style="color: #253d84 !important; cursor: pointer" i18n="@@n11">
+              MTB
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item"
+                *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'" i18n="@@n12"
+                routerLink="/dbkl/mapview">Map View</a>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle"
+              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+              style="color: white; cursor: pointer" i18n="@@n15">Field Form</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a routerLink="/dbkl/mtbwork-form"
+                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+                  class="dropdown-item" i18n="@@n13">Work Form</a>
+              </li>
+              <li>
+                <a routerLink="/dbkl/mtbcompoundform" class="dropdown-item"
+                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+                  i18n="@@n14">Compound Form</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle"
+              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+              style="color: white; cursor: pointer" i18n="@@n16">Work Log</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a routerLink="/dbkl/mtbwork-log"
+                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+                  class="dropdown-item" i18n="@@n17">Daily Work / Complaints</a>
+              </li>
+              <li>
+                <a routerLink="/dbkl/mtblistofcompound"
+                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+                  class="dropdown-item" i18n="@@n18">List of Compounds</a>
+              </li>
+            </ul>
+          </li>
+      </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"
+          *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+          id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          style="color: #253d84 !important; cursor: pointer" i18n="@@n19">
+          MTK
+        </a>
+        <div class="dropdown-menu">
+          <a routerLink="/dbkl/mtkworkform"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            class="dropdown-item" (click)="getUser('financial')" i18n="@@n13" style="cursor: pointer;">Work Form</a>
+          <a routerLink="/dbkl/mtkcompoundform"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            class="dropdown-item" i18n="@@n14" style="cursor: pointer;">Compound
+            Form</a>
+          <a routerLink="/dbkl/inspectingofficers"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n21">Work MTB</a>
+          <a routerLink="/dbkl/mtblistofcompound"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n22">Compound MTB</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+          {{ username }}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
+            i18n="@@Profile">Profile</a>
+          <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer" i18n="@@jflogout">Logout</a>
+        </div>
+      </li>
+      </ul>
+  </div>
+  </nav>
+</div>
+</div>
+<!-- End of Header -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+
+</ngx-spinner>
+<section id="completed" class="completed"></section>
+<main>
+  <section class="completed" id="completed">
+    <div class="card mx-auto">
+      <!-- ======= Services Section ======= -->
+      <section id="completed" class="completed">
+        <div class="container">
+          <div class="section-title" style="padding: 0px">
+            <h6 i18n="@@notice5">NOTICE</h6>
+            <h2 i18n="@@notice5">NOTICE</h2>
+          </div>
+          <div class="card-body">
+            <form class="" [formGroup]="imageGroup">
+              <div>
+                <!-- <div [formGroup]="imageGroup"> -->
+                <div class="form-group">
+                  <span style="font-weight:700">No Siri Np &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                    &nbsp;&nbsp;&nbsp;&nbsp;ABCD-00-EFG</span>
+                </div>
+                <div class="form-group">
+                  <label for="guardID" i18n="@@notice6">MTB Guard ID<sup>*</sup>
+                  </label>
+                  <input type="text" class="form-control mb-2" name="guardID" id="guardID" list="data" name="data"
+                    placeholder="Sila masukkan id pengguna" formControlName="id_mtb" [(ngModel)]="id_mtb" [ngClass]="{
+                      'is-invalid': submitted && f.id_mtb.errors
+                    }" />
+                  <datalist id="data">
+                    <option *ngFor="let data of dataShow">{{data.officer_name}}</option>
+                  </datalist>
+                  <div *ngIf="submitted && f.id_mtb.errors" class="invalid-feedback">
+                    <div *ngIf="f.id_mtb.errors.required" i18n="@@notice2">
+                      Please fill this required field.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="meriynuOfficerName" i18n="@@notice7">Name of Inspecting Officer<sup>*</sup></label>
+                  <!--                 
+                  <select *ngFor="
+                  let key of dataShow" class="form-control mb-2"
+                  [(ngModel)]="nama_pegawai_merinyu"
+                  placeholder=""
+                  formControlName="nama_pegawai_merinyu" [ngClass]="{
+                    'is-invalid': submitted && f.nama_pegawai_merinyu.errors
+                  }">
+                    <option>{{key.officer_name}}</option>
+                  </select> -->
+                  <input type="text" class="form-control mb-2" name="meriynuOfficerName" id="meriynuOfficerName"
+                    placeholder="" formControlName="nama_pegawai_merinyu" [(ngModel)]="nama_pegawai_merinyu" [ngClass]="{
+                      'is-invalid': submitted && f.nama_pegawai_merinyu.errors
+                    }" />
+                  <div *ngIf="submitted && f.nama_pegawai_merinyu.errors" class="invalid-feedback">
+                    <div *ngIf="f.nama_pegawai_merinyu.errors.required" i18n="@@notice2">
+                      Please fill this required field.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="meriynuLocation" i18n="@@notice8">Merinyu Location<sup>*</sup>
+                  </label>
+                  <input type="text" class="form-control mb-2" name="meriynuLocation" id="meriynuOfficerName"
+                    placeholder="" formControlName="lokasi_merinyu" [(ngModel)]="lokasi_merinyu" [ngClass]="{
+                      'is-invalid': submitted && f.lokasi_merinyu.errors
+                    }" />
+                  <div *ngIf="submitted && f.lokasi_merinyu.errors" class="invalid-feedback">
+                    <div *ngIf="f.lokasi_merinyu.errors.required" i18n="@@notice2">
+                      Please fill this required field.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group d-flex">
+                  <label class="pl-0 col-4" for="gamberWorkLocation" i18n="@@notice9">Job Location Picture<sup>*</sup>
+                  </label>
+                  <div class="col-8 d-flex mb-4">
+                    <div class="gamberWorkLocation-image row d-flex">
+                      <label for="file" style="
+                          background-color: gray;
+                          height: 100px;
+                          width: 100px;
+                        ">
+                        <!-- width="100" height="100 " -->
+                        <img id="blah" style="
+                            height: 100px;
+                            margin-top: 1px;
+                            max-width: 100%;
+                          " alt="" />
+                        <div *ngIf="
+                            submitted && f.gambar_lokasi_kerja_photo1.errors
+                          " style="
+                            font-size: 12.8px;
+                            color: #253d84;
+                            margin-top: 2px;
+                          ">
+                          <div *ngIf="f.gambar_lokasi_kerja_photo1.errors.required" i18n="@@fir">
+                            File is required.
+                          </div>
+                        </div>
+                      </label><label class="custom-file-upload">
+                        <input type="file" ng2FileSelect accept=".png" id="file-upload" [uploader]="uploader"
+                          name="image" id="file" style="display: none" formControlName="gambar_lokasi_kerja_photo1"
+                          [ngClass]="{
+                            'is-invalid':
+                              submitted && f.gambar_lokasi_kerja_photo1.errors
+                          }" [(ngModel)]="gambar_lokasi_kerja_photo1"
+                          onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" />
+
+                        <i class="fa fa-cloud-upload"></i>
+                      </label>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label for="file1" style="
+                          background-color: gray;
+                          height: 100px;
+                          width: 100px;
+                        ">
+                        <img id="blah1" style="
+                            height: 100px;
+                            margin-top: 1px;
+                            max-width: 100%;
+                          " alt="" />
+
+                        <div *ngIf="
+                            submitted && f.gambar_lokasi_kerja_photo2.errors
+                          " style="
+                            font-size: 12.8px;
+                            color: #253d84;
+                            margin-top: 2px;
+                          ">
+                          <div *ngIf="f.gambar_lokasi_kerja_photo2.errors.required" i18n="@@fir">
+                            File is required.
+                          </div>
+                        </div>
+                      </label><label class="custom-file-upload">
+                        <input type="file" ng2FileSelect accept=".png" id="file-upload" [uploader]="uploader1"
+                          name="image1" id="file1" style="display: none" formControlName="gambar_lokasi_kerja_photo2"
+                          [ngClass]="{
+                            'is-invalid':
+                              submitted && f.gambar_lokasi_kerja_photo2.errors
+                          }" [(ngModel)]="gambar_lokasi_kerja_photo2"
+                          onchange="document.getElementById('blah1').src = window.URL.createObjectURL(this.files[0])" />
+                        <i class="fa fa-cloud-upload"></i>
+                      </label>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label for="file2" style="
+                          background-color: gray;
+                          height: 100px;
+                          width: 100px;
+                        ">
+                        <img id="blah2" style="
+                            height: 100px;
+                            margin-top: 1px;
+                            max-width: 100%;
+                          " alt="" />
+                        <div *ngIf="
+                            submitted && f.gambar_lokasi_kerja_photo3.errors
+                          " style="
+                            font-size: 12.8px;
+                            color: #253d84;
+                            margin-top: 2px;
+                          ">
+                          <div *ngIf="f.gambar_lokasi_kerja_photo3.errors.required" i18n="@@fir">
+                            File is required.
+                          </div>
+                        </div>
+                      </label>
+                      <label class="custom-file-upload">
+                        <input type="file" ng2FileSelect accept=".png" id="file-upload" [uploader]="uploader2"
+                          [ngClass]="{
+                            'is-invalid':
+                              submitted && f.gambar_lokasi_kerja_photo3.errors
+                          }" name="image2" id="file2" style="display: none"
+                          formControlName="gambar_lokasi_kerja_photo3" [(ngModel)]="gambar_lokasi_kerja_photo3"
+                          onchange="document.getElementById('blah2').src = window.URL.createObjectURL(this.files[0])" />
+                        <i class="fa fa-cloud-upload"></i>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="status" i18n="@@notice12">Action Status<sup>*</sup>
+                  </label>
+                  <textarea class="form-control form-status mb-2" name="status" aria-label="With textarea"
+                    placeholder="Sila masukkan status tindakan..." formControlName="status_tindakan"
+                    [(ngModel)]="status_tindakan" [ngClass]="{
+                      'is-invalid': submitted && f.status_tindakan.errors
+                    }"></textarea>
+                  <div *ngIf="submitted && f.status_tindakan.errors" class="invalid-feedback">
+                    <div *ngIf="f.status_tindakan.errors.required" i18n="@@notice2">
+                      Please fill this required field.
+                    </div>
+                  </div>
+                </div>
+                <div class="
+                    button-row
+                    form-group
+                    pt-3
+                    row
+                    d-flex
+                    justify-content-center
+                  ">
+                  <div class="col-12 mx-auto text-center">
+
+                    <button class="look_for" type="button" (click)="uploadSubmit()" i18n="@@notice10">
+                      Send
+                    </button>
+                    <button class="look_for" [routerLink]="['/dbkl/mtbwork-form']" i18n="@@notice11">
+                      Back
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- End Services Section -->
+    </div>
+  </section>
+</main>
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a><a (click)="backtotop()" class="back-to-top"
+  style="cursor: pointer;display:none;"><i class="icofont-scroll-double-up"></i></a>
+
+<!-- Success Modal Start-->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header"></div>
+      <div class="modal-body">
+        <form [formGroup]="emailGroup">
+          <div class="text-center" style="margin-top: 30px">
+            <p i18n="@@notice1">
+              <b>Please enter the contractor's email address</b>
+            </p>
+
+            <input type="text" class="form-control" id="recipient-name" formControlName="email"
+              [(ngModel)]="kontraktor_emel" [ngClass]="{
+                'is-invalid': submitted2 && c.email.errors
+              }" />
+
+            <div *ngIf="submitted2 && c.email.errors" class="invalid-feedback">
+              <div *ngIf="c.email.errors.required" i18n="@@notice2">
+                Please fill this required field.
+              </div>
+              <div *ngIf="c.email.errors.pattern" i18n="@@invalide">
+                Invalid Email
+              </div>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <button type="button" (click)="back()" style="padding-left: inherit" class="look_for_red"
+                i18n="@@notice4">
+                Back</button>
+              <button type="button" (click)="submit()" class="look_for" i18n="@@notice3">Send <i
+                  class="far fa-gem ml-1 text-white"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Modal Start-->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display1 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center">
+          <span class="dialog-msg">{{ meetingupdate }}&nbsp;</span>
+        </h4>
+
+        <div class="d-flex justify-content-center">
+          <button type="button " i18n="@@ok" (click)="onCloseHandled()" data-dismiss="modal " class="btn" style="
+              color: white !important;
+              border-radius: 4px !important;
+             background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+            ">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Success Modal End -->
+<!-- Error Modal Start -->
+<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: errordisplay }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-12">
+          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                class="swal2-x-mark-line-right"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h6 style="text-align: center">
+          <span i18n="@@invoiceinfo3" class="dialog-msg">{{ errmsg }}</span>
+        </h6>
+
+        <div class="d-flex justify-content-center mt-4">
+          <button class="btn" (click)="erroronCloseHandled()" i18n="@@ok" style="
+               background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+              color: white !important;
+              border-radius: 4px !important;
+            ">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Error Modal End -->

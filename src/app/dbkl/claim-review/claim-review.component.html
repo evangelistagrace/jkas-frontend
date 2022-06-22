@@ -1,0 +1,230 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+</ngx-spinner>
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+  <div class="container-fluid" ngStickyNav>
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand ">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+
+
+
+
+
+      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
+        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item" style="list-style-type: none;">
+            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item dropdown" id="user" style="list-style-type: none;">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n23">
+              FINANCIAL
+            </a>
+
+            <div class="dropdown-menu">
+              <a routerLink="/dbkl/claim-review" class="dropdown-item" style="color: white; cursor: pointer"
+                i18n="@@n24">Review of Dataman Financial Claims
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown" style="list-style-type: none;">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+              {{ username }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
+                i18n="@@Profile">Profile</a>
+              <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
+                i18n="@@jflogout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- End of Header -->
+<main>
+  <section class="inspecting" id="inspecting">
+    <div class="card">
+      <div class="text-center">
+        <div class="d-flex justify-content-center">
+          <img class="logo-proses" src="../../../assets/img/logo.png " height="100" alt="" />
+        </div>
+        <div class="section-title">
+          <!-- <span>PROSES PERMOHONAN PPSSPPA</span>
+                    <h2>PROSES PERMOHONAN PPSSPPA</h2> -->
+          <span i18n="@@claims">INTERNAL FINANCIAL CLAIMS</span>
+          <h2 i18n="@@claims">INTERNAL FINANCIAL CLAIMS</h2>
+        </div>
+      </div>
+      <br />
+
+      <div class="container">
+        <button class="addNewRow" (click)="deleteChecked()" style="
+            padding-left: 0.5px;
+            padding-right: 0.5px;
+            background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+            margin-bottom: 0.3rem;
+            width: 2.5em;
+            border-radius: 50% !important;
+            border: none;
+          " class="btn btn-danger">
+          <i class="fa fa-trash" style="font-size: 18px" aria-hidden="true "></i>
+        </button>
+        <div style="margin-top: 10px; margin-bottom: 20px;  overflow-x: scroll;">
+          <div>
+            <ng2-smart-table [settings]="settings" [source]="data" (userRowSelect)="onUserRowSelect($event)">
+            </ng2-smart-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End #main -->
+  <div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+    [ngStyle]="{ display: display2 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered" role="document ">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center" style="
+            border-bottom: 0px solid transparent !important;
+            padding-bottom: 0px !important;
+          ">
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        </div>
+        <div class="modal-body">
+          <h5 class="text-center" i18n="@@delete11">Do you want to Delete !</h5>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="look_for" style="  background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%)
+                        ; color: white; border-radius: 4px" (click)="deleteSelected()" i18n="@@y1">
+              YES
+            </button>
+            <button type="button" class="look_for" style="
+                  background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+                color: white;
+                border-radius: 4px;
+              " (click)="closeModalDelete()" i18n="@@no">
+              NO
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+    [ngStyle]="{ display: display3 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered" role="document ">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center" style="
+            border-bottom: 0px solid transparent !important;
+            padding-bottom: 0px !important;
+          ">
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        </div>
+        <div class="modal-body">
+          <h5 class="text-center" i18n="@@delete1">
+            Please Select Item to Delete.
+          </h5>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn"
+              style="  background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%); color: white; border-radius: 4px"
+              (click)="closemodal3()" i18n="@@okERR">
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Footer ======= -->
+  <app-footer></app-footer>
+  <!-- End Footer -->
+
+  <a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+      class="icofont-scroll-double-up"></i></a>
+</main>
+
+<!-- Success Modal Start-->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display1 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center">
+          <span class="dialog-msg">{{ meetingupdate }}&nbsp;</span>
+        </h4>
+
+        <div class="d-flex justify-content-center">
+          <button type="button " i18n="@@ok" (click)="onCloseHandled()" data-dismiss="modal " class="btn" style="
+              color: white !important;
+              border-radius: 4px !important;
+              
+ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+            ">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Success Modal End -->
+<!-- Error Modal Start -->
+<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: errordisplay }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-12">
+          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                class="swal2-x-mark-line-right"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h6 style="text-align: center">
+          <span i18n="@@invoiceinfo3" class="dialog-msg">{{ errmsg }}</span>
+        </h6>
+
+        <div class="d-flex justify-content-center mt-4">
+          <button class="btn" (click)="erroronCloseHandled()" i18n="@@ok" style="
+                background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+              color: white !important;
+              border-radius: 4px !important;
+            ">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Error Modal End -->

@@ -1,0 +1,552 @@
+<app-rating></app-rating>
+
+<!-- Success Modal -->
+<div class="modal modal-box" tabindex="-1" style="background: #02020259; margin: 4% auto; display: block" role="dialog"
+  [ngStyle]="{ display: display }">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center" i18n="@@application">
+          Application submitted !
+        </h4>
+
+        <div class="d-flex justify-content-center">
+          <button type="button" data-dismiss="modal" class="btn" (click)="closeSuccessModal()" i18n="@@okE">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- errorModal -->
+<div class="modal modal-box" tabindex="-1" style="background: #02020259; margin: 4% auto; display: block" role="dialog"
+  [ngStyle]="{ display: errorDisplay }">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex">
+          <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+              class="swal2-x-mark-line-right"></span></span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center" i18n="@@err">ERROR !</h4>
+        <p class="text-center font-weight-bold">{{ errorMessage }}</p>
+        <div class="d-flex justify-content-center">
+          <button type="button" data-dismiss="modal" class="btn" (click)="closeSuccessModal()">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======= Top Bar ======= -->
+<app-topbar></app-topbar>
+
+<!-- ======= Header ======= -->
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+  <div class="container-fluid" ngStickyNav>
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand ">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+
+
+
+
+
+      <button class="navbar-toggler border-white" type="button" style="
+          background-color: black !important;
+          border: 1px solid white !important;
+        " data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/public" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/publicpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@psppaapplication">PSPPA APPLICATION</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+              {{ username }}
+            </a>
+            <div class="dropdown-menu">
+              <a routerLink="/profileLog" class="dropdown-item" style=" cursor: pointer" i18n="@@Profile">Profile</a>
+              <a class="dropdown-item" style=" cursor: pointer" data-toggle="modal" data-target="#centralModalDanger"
+                class="dropdown-item" i18n="@@jflogout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- End Header -->
+<main id="main">
+  <section class="inner-page" id="printAll">
+    <div class="card">
+      <!-- ======= Services Section ======= -->
+      <section id="Work Payment Claims" class="services">
+        <div class="container">
+          <div class="d-flex justify-content-end">
+            <button printSectionId="printAll" [useExistingCss]="true" ngxPrint type="button"
+              style="border: 1px solid transparent; background: transparent">
+              <i style="
+                  font-size: 30px;
+                  color: #419641;
+                  cursor: pointer;
+                  float: right;
+                " id="print" class="fa fa-print" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="section-title">
+            <span i18n="@@workpayent">AREA SUBMISSION NON-COMPLIANCE FORM</span>
+            <h2 i18n="@@workpayent">AREA SUBMISSION NON-COMPLIANCE FORM</h2>
+          </div>
+
+          <div class="card" style="border: none">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 d-flex">
+                  <img style="width: 40px; height: 50px" src="./assets/img/logo.png" alt="" />
+                  <h6 class="text-dark" i18n="@@non1">
+                    DEPARTMENT OF HEALTH AND ENVIRONMENT<br />
+                    KUALA LUMPUR CITY HALL
+                  </h6>
+                </div>
+
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                  <p class="solid font-weight-bold text-center" i18n="@@non2">
+                    Non-Compliance Form<br />
+                    Submission of area
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-2">
+                <input type="text" id="w1" [(ngModel)]="w1" /><br />
+              </div>
+              <div class="col-md-5"></div>
+              <div class="col-md-5">
+                <span style="margin-left: -20px" i18n="@@non3">Receiving acknowledgment :</span><input type="text"
+                  id="in1" [(ngModel)]="pengesahan_peneriman" /><br />
+              </div>
+              <div class="col-md-2">
+                <input type="text" id="w2" [(ngModel)]="w2" /><br />
+              </div>
+              <div class="col-md-5"></div>
+              <div class="col-md-5">
+                <span style="margin-left: -20px" i18n="@@non4">Name:</span><input type="text" id="in2"
+                  [(ngModel)]="nama" /><br />
+              </div>
+              <div class="col-md-2">
+                <input type="text" id="w3" [(ngModel)]="w3" /><br />
+              </div>
+              <div class="col-md-5"></div>
+              <div class="col-md-5">
+                <span style="margin-left: -20px" i18n="@@non5">Date:</span><input type="date" style="
+                    border: none;
+                    border-bottom: 1px solid;
+                    color: black;
+                    outline: none;
+                    text-align: center;
+                  " id="in3" [(ngModel)]="tarikh" />
+              </div>
+              <div class="col-md-2">
+                <input type="text" id="w4" [(ngModel)]="w4" /><br />
+              </div>
+              <div class="col-md-6"></div>
+              <div class="col-md-4"></div>
+              <!-- <div class="col-md-2">
+                                <input type="text" style="width: 220px;outline:none;"><br>
+                            </div> -->
+              <div class="col-md-6"></div>
+              <div class="col-md-4"></div>
+            </div>
+
+            <div class="ml-4 mt-2">
+              <span i18n="@@non6">Sir,</span>
+            </div>
+            <br />
+            <div class="ml-4">
+              <b i18n="@@non7">
+                RESULTS OF INSPECTION ON ACQUISITION OF SOLID WASTE COLLECTION
+                SERVICES AND PUBLIC CLEANING SERVICES
+              </b>
+            </div>
+            <div class="ml-4" i18n="@@non8">
+              Yours faithfully I refer to the above
+            </div>
+            <div class="ml-4 mt-2">
+              2.
+              <span i18n="@@non9">Please be informed that, a site visit was held on</span><input id="dotted" style="
+                  border: none;
+                  border-bottom: 1px solid;
+                  color: black;
+                  outline: none;
+                  text-align: center;
+                " type="date" id="in3" [(ngModel)]="lawatan_tapak_tarikh" /><span i18n="@@non10">located
+                at</span><input type="text" id="dotted" q [(ngModel)]="bertempat_di" /><span i18n="@@nonn">with a
+                representative</span>
+              <span i18n="@@sir">sir</span><input id="dotted" [(ngModel)]="wakil"
+                style="outline: none; width: 353px; text-align: center" type="text" /><span
+                i18n="@@non11">identification card number</span><input id="dotted" [(ngModel)]="kad_pengenalan"
+                style="outline: none; width: 200px; text-align: center" type="text" readonly /><span i18n="@@non12">. As
+                a result of the inspection carried out, the Department
+                found that there were non-compliance as follows:-</span>
+            </div>
+            <div>
+              <table class="table table-bordered mx-3" style="width: 97%">
+                <thead>
+                  <tr>
+                    <th scope="col">Bill.</th>
+                    <th scope="col" style="text-align: center" i18n="@@non14">
+                      Non -Compliance Matters
+                    </th>
+                    <th scope="col" style="text-align: center" i18n="@@non15">
+                      Notes
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1.</th>
+                    <td i18n="@@non16">
+                      The percentage of premises that have been occupied is less
+                      than 50%
+                    </td>
+                    <td>
+                      <span *ngFor="let key of data">
+                        <span *ngIf="
+                            key.peratusan_permis_adalah_kurang_daripada_50 ==
+                            true
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox1 (change)="
+                              onSaveUsernameChanged1(
+                                saveUserNameCheckBox1.checked
+                              )
+                            " checked readonly />
+                        </span>
+
+                        <span *ngIf="
+                            key.peratusan_permis_adalah_kurang_daripada_50 ==
+                            false
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox1 (change)="
+                              onSaveUsernameChanged1(
+                                saveUserNameCheckBox1.checked
+                              )
+                            " readonly />
+                        </span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2.</th>
+                    <td i18n="@@non17">
+                      The area is found to be dirty and needs to be cleaned
+                      first before handover is made
+                    </td>
+                    <td>
+                      <span *ngFor="let key of data">
+                        <span *ngIf="
+                            key.kawasan_itu_kotor_dan_perlu_dibersihkan == true
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox2 (change)="
+                              onSaveUsernameChanged2(
+                                saveUserNameCheckBox2.checked
+                              )
+                            " checked readonly />
+                        </span>
+
+                        <span *ngIf="
+                            key.kawasan_itu_kotor_dan_perlu_dibersihkan == false
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox2 (change)="
+                              onSaveUsernameChanged2(
+                                saveUserNameCheckBox2.checked
+                              )
+                            " readonly />
+                        </span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3.</th>
+                    <td i18n="@@non18">
+                      There is no 'stopper' facility for truck tires.
+                    </td>
+                    <td>
+                      <span *ngFor="let key of data">
+                        <span *ngIf="
+                            key.tiada_kemudahan_stopper_untuk_tayar_trak == true
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox3 (change)="
+                              onSaveUsernameChanged3(
+                                saveUserNameCheckBox3.checked
+                              )
+                            " checked readonly />
+                        </span>
+
+                        <span *ngIf="
+                            key.tiada_kemudahan_stopper_untuk_tayar_trak ==
+                            false
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox3 (change)="
+                              onSaveUsernameChanged3(
+                                saveUserNameCheckBox3.checked
+                              )
+                            " readonly />
+                        </span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4.</th>
+                    <td i18n="@@non19">
+                      There is no 'ramp/greating' facility in front of the
+                      garbage house door.
+                    </td>
+                    <td>
+                      <span *ngFor="let key of data">
+                        <span *ngIf="
+                            key.tiada_kemudahan_greating_di_hadapan_pintu_rumah_sampah ==
+                            true
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox4 (change)="
+                              onSaveUsernameChanged4(
+                                saveUserNameCheckBox4.checked
+                              )
+                            " checked readonly />
+                        </span>
+
+                        <span *ngIf="
+                            key.tiada_kemudahan_greating_di_hadapan_pintu_rumah_sampah ==
+                            false
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox4 (change)="
+                              onSaveUsernameChanged4(
+                                saveUserNameCheckBox4.checked
+                              )
+                            " readonly />
+                        </span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">5.</th>
+                    <td i18n="@@non20">
+                      There is no yellow line (cross marking) in front of the
+                      garbage house.
+                    </td>
+                    <td>
+                      <span *ngFor="let key of data">
+                        <span *ngIf="
+                            key.tiada_garisan_kuning_di_hadapan_rumah_sampah ==
+                            true
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox5 (change)="
+                              onSaveUsernameChanged5(
+                                saveUserNameCheckBox5.checked
+                              )
+                            " checked readonly />
+                        </span>
+
+                        <span *ngIf="
+                            key.tiada_garisan_kuning_di_hadapan_rumah_sampah ==
+                            false
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox5 (change)="
+                              onSaveUsernameChanged5(
+                                saveUserNameCheckBox5.checked
+                              )
+                            " readonly />
+                        </span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">6.</th>
+                    <td i18n="@@non21">
+                      Insufficient bins / not according to the specified
+                      specifications.
+                    </td>
+                    <td>
+                      <span *ngFor="let key of data">
+                        <span *ngIf="
+                            key.tong_sampah_tidak_mencukupi_mengikut_spesifikasi ==
+                            true
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox6 (change)="
+                              onSaveUsernameChanged6(
+                                saveUserNameCheckBox6.checked
+                              )
+                            " checked readonly />
+                        </span>
+
+                        <span *ngIf="
+                            key.tong_sampah_tidak_mencukupi_mengikut_spesifikasi ==
+                            false
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox6 (change)="
+                              onSaveUsernameChanged6(
+                                saveUserNameCheckBox6.checked
+                              )
+                            " readonly />
+                        </span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">7.</th>
+                    <td i18n="@@non22">
+                      There are obstacles that make it difficult for the truck
+                      to go in and out/ 'turning point' not according to
+                      specifications.
+                    </td>
+                    <td>
+                      <span *ngFor="let key of data">
+                        <span *ngIf="
+                            key.turning_point_tidak_mengikut_spesifikasi == true
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox7 (change)="
+                              onSaveUsernameChanged7(
+                                saveUserNameCheckBox7.checked
+                              )
+                            " checked readonly />
+                        </span>
+
+                        <span *ngIf="
+                            key.turning_point_tidak_mengikut_spesifikasi ==
+                            false
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox7 (change)="
+                              onSaveUsernameChanged7(
+                                saveUserNameCheckBox7.checked
+                              )
+                            " readonly />
+                        </span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">8.</th>
+                    <td i18n="@@non23">
+                      The 24m3 SWB machine needs to be elevated 6 inches from
+                      the floor
+                    </td>
+                    <td>
+                      <span *ngFor="let key of data">
+                        <span *ngIf="
+                            key.mesin_swm_24m_perlu_ditinggikan_6_inci_dari_lantai ==
+                            true
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox8 (change)="
+                              onSaveUsernameChanged8(
+                                saveUserNameCheckBox8.checked
+                              )
+                            " checked readonly />
+                        </span>
+
+                        <span *ngIf="
+                            key.mesin_swm_24m_perlu_ditinggikan_6_inci_dari_lantai ==
+                            false
+                          ">
+                          <input type="checkbox" #saveUserNameCheckBox8 (change)="
+                              onSaveUsernameChanged8(
+                                saveUserNameCheckBox8.checked
+                              )
+                            " readonly />
+                        </span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">9.</th>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">10.</th>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-left: 20px">
+              <span i18n="@@non24">**Tick</span>(&#10003;)<span i18n="@@nonn24">in the Notes room</span>
+            </div>
+
+            <div style="margin-left: 20px; margin-top: 20px" i18n="@@non25">
+              3.Therefore, you are required to take immediate action on the
+              matter of non -compliance. Please submit a correction report in
+              writing with photos for file records and reference of the
+              Department during the second site visit.
+            </div>
+            <div style="margin-left: 20px; margin-top: 20px" i18n="@@non26">
+              4.Please note that the Department will not compromise on anything
+              things that could affect the image of the Mayor of Kuala Lumpur in
+              particular Your concern and prompt action in this matter is
+              expected to ensure the area handover process runs smoothly and
+              avoid complaints in the future.
+            </div>
+            <div style="margin-top: 20px; margin-left: 20px; margin-bottom: 30px" i18n="@@non27">
+              Thank you.
+            </div>
+          </div>
+          <div style="margin-left: 22px" i18n="@@non28">
+            This document is computer -checked. No signature is required.
+          </div>
+          <div style="margin-bottom: 20px; float: right">
+            <!-- <button class="look_for" (click)="update()" i18n="@@comeback">Update</button> -->
+            <button class="look_for_red" (click)="goProducts()" i18n="@@comeback">
+              Back
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- End Services Section -->
+    </div>
+  </section>
+</main>
+<!-- End #main -->
+<section id="msg">
+  <div class="card" style="color: rgb(225, 65, 65); box-shadow: 0 0 30px rgb(214 215 216 / 60%)" i18n="@@non29">
+    The page you are viewing is not complatible to mobile.<br />
+
+    To access the page , please select the 'Desktop Site' in the browser menu or
+    use a desktop/laptop.
+  </div>
+</section>
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->

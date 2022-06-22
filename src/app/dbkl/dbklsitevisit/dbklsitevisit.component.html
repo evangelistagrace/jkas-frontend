@@ -1,0 +1,162 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  
+</ngx-spinner>
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<app-headerc></app-headerc>
+<!-- End of Header -->
+<main id="main">
+  <section class="inner-page">
+    <div class="card">
+      <div class="text-center">
+        <div class="d-flex justify-content-center">
+          <img class="logo-proses" src="./assets/img/logo.png" height="100" alt="" />
+        </div>
+        <div class="section-title" style="padding: 30px 0 0 0">
+          <span i18n="@@maklumatheading">SITE VISIT INFORMATION</span>
+          <h2 i18n="@@maklumatheading">SITE VISIT INFORMATION</h2>
+        </div>
+        <div class="col-12 d-flex justify-content-between">
+          <button class="addNewRow" (click)="deleteChecked()" style="
+              padding-left: 0.5px;
+              padding-right: 0.5px;
+              background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+              margin-bottom: 0.3rem;
+              width: 2.5em;
+              border-radius: 50% !important
+            " class="btn btn-danger">
+            <i class="fa fa-trash" style="font-size: 18px" aria-hidden="true "></i>
+          </button>
+        </div>
+        <div class="col-12" style="overflow-x: scroll">
+          <ng2-smart-table [settings]="settings" [source]="maklumat" (custom)="onCustomEvent($event)"
+            (userRowSelect)="onUserRowSelect($event)">
+          </ng2-smart-table>
+        </div>
+      </div>
+      <div>
+        <button (click)="cancel()"  style="margin-right: 30px;" class="look_for_red" type="button" i18n="@@n74">
+          Back
+        </button>
+        </div>
+    </div>
+  </section>
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i class="icofont-scroll-double-up"></i></a>
+<!-- Success Modal Start-->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center" style="
+          border-bottom: 0px solid transparent !important;
+          padding-bottom: 0px !important;
+        ">
+        <i class="fa fa-exclamation-circle" style="font-size: 4em; color: #253d84" aria-hidden="true"></i>
+      </div>
+      <div class="modal-body">
+        <h5 class="text-center" i18n="@@delete1">
+          Please Select Item to Delete.
+        </h5>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn" style="background-color: #253d84;   background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%); color: white; border-radius: 4px"
+            (click)="closeModal()" i18n="@@ok1">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display2 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center" style="
+          border-bottom: 0px solid transparent !important;
+          padding-bottom: 0px !important;
+        ">
+        <i class="fa fa-exclamation-circle" style="font-size: 4em; color: #253d84" aria-hidden="true"></i>
+      </div>
+      <div class="modal-body">
+        <h5 class="text-center" i18n="@@delete">Do you want to Delete !</h5>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn" style="background-color: #253d84; color: white;margin-right: 10px; background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);border-radius: 4px;width: 25%;" (click)="deleteSelected()"
+            i18n="@@y1">
+            YES
+          </button>
+          <button type="button" class="btn" style="background-color: #253d84; color: white;   background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);border-radius: 4px;width: 25%;" (click)="closeModalDelete()"
+            i18n="@@no">
+            NO
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" data-backdrop="static" style="background: #02020259; display: block"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true" [ngStyle]="{ display: displaysuccess }">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+            <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+            <span class="swal2-success-line-tip"></span>
+            <span class="swal2-success-line-long"></span>
+            <div class="swal2-success-ring"></div>
+            <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+            <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+          </div>
+        </div>
+        <div class="modal-body" style="align-self: center">
+          <h4 class="text-center">
+            {{ sucessMsg }}
+          </h4>
+
+          <div class="d-flex justify-content-center">
+            <button type="button" style="margin-top: 15px !important;" data-dismiss="modal" class="btn"
+              (click)="closeSuccessDelete()" i18n="@@ok1">
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error modal -->
+  <div class="modal" tabindex="-1" style="background: #02020259; display: block" role="dialog"
+    [ngStyle]="{ display: errorDisplay }">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex">
+            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                class="swal2-x-mark-line-right"></span></span>
+          </div>
+        </div>
+        <div class="modal-body" style="align-self: center">
+          <h4 class="text-center">{{ errmsg }}</h4>
+          <!-- <p class="text-center font-weight-bold">{{ errorMessage }}</p> -->
+          <div class="d-flex justify-content-center">
+            <button type="button" data-dismiss="modal" class="btn" (click)="closeErrorDelete()" i18n="@@okERR">
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,5 @@
+<div *ngFor="let val of data">
+    <div *ngIf="val.site_id==keyValue">
+        <input type="date" name="dateValue" [(ngModel)]="val.tarikh_lawatan_tapak" (change)="onSelectOption1($event,val.site_id)">
+    </div>
+</div>

@@ -1,0 +1,254 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  
+</ngx-spinner>
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<app-header></app-header>
+<!-- Success Modal Start-->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center">
+          <span class="dialog-msg" i18n="@@gpas">Gallery photo added successfully!&nbsp;</span>
+        </h4>
+
+        <div class="d-flex justify-content-center">
+          <button type="button " i18n="@@ok" (click)="onCloseHandled()" data-dismiss="modal " class="btn" style="
+              color: white !important;
+              border-radius: 4px !important;
+             background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+            ">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Success Modal End -->
+<!-- Error Modal Start -->
+<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: displayerror }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-12">
+          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                class="swal2-x-mark-line-right"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h6 style="text-align: center">
+          <span i18n="@@invoiceinfo3" class="dialog-msg">{{errssmsg}}</span>
+          <br />
+        </h6>
+
+        <div class="d-flex justify-content-center mt-4">
+          <button class="btn" (click)="onCloseHandled1()" i18n="@@ok" style="
+              background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+              color: white !important;
+              border-radius: 4px !important;
+            ">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Error Modal End -->
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="portfolio" id="portfolio">
+    <div class="card" >
+      <div class="section-title">
+        <span i18n="@@agp">ADD GALLERY PHOTOS </span>
+        <h2 i18n="@@agp">ADD GALLERY PHOTOS</h2>
+      </div>
+
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide *ngFor="let x of imagesArray; index as i">
+          <div class="slide">
+            <div class="col-lg col-md-6 portfolio-item filter-app">
+              <img src="{{ baseUrl }}{{ x.photo_path }}" class="img-fluid" alt="" />
+              <div class="portfolio-info">
+                <p>ORANG</p>
+                <button  style=" background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);border-radius: 4px;" (click)="onDelete(x.photo_id)">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+
+
+
+  <!-- <section>
+    <div align="center" class="fond">
+      <div style="width: 1110px" class="example">
+        <div class="style_prevu_kit container" style="background-color: white" *ngFor="let image of imagesArray">
+          <img style="height: 16rem" src="{{ baseUrl }}{{ image.photo_path }}" />
+          <button class="btn1" (click)="onDelete(image.photo_id)">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <form [formGroup]="imageGroup" (ngSubmit)="galeryphoto()">
+    <div class="row">
+      <div class="col-md-12 text-center mb-4">
+        <label class="custom-file-upload">
+          <input type="file" ng2FileSelect accept=".jpeg" [uploader]="uploader" multiple formControlName="file"
+            [ngClass]="{
+                  'is-invalid': submitted && f.file.errors
+                }" />
+
+          <div *ngIf="submitted && f.file.errors" class="invalid-feedback">
+            <div *ngIf="f.file.errors.required" i18n="@@fir">
+              File is required.
+            </div>
+          </div>
+          <i class="fa fa-cloud-upload"></i>
+        </label><br />
+        <table>
+          <tbody style="font-size: x-small; padding-right: 5px">
+            <tr *ngFor="let item of uploader.queue" style="overflow-x: scroll">
+              <th width="" style="font-size: 15px; font-weight: 700">
+                <span>{{ item.file.name }}({{
+                        item.file.size / 1000000
+                      }}
+                  MB)</span>
+                <span class="text-center">
+                  <i style="
+                          cursor: pointer;
+                          font-size: 15px;
+                          font-weight: 700;
+                        " class="fa fa-trash" (click)="item.remove()" aria-hidden="true"></i></span>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+        <button class="look_for" type="submit" i18n="@@submit">
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+
+</div>
+</section>
+
+
+<app-footer></app-footer>
+  <a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i class="icofont-scroll-double-up"></i></a>
+
+  <!---delete code-->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" [ngStyle]="{ display: display3 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+      <div class="modal-content">
+          <div class="modal-header">
+              <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+                  <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+                  <span class="swal2-success-line-tip"></span>
+                  <span class="swal2-success-line-long"></span>
+                  <div class="swal2-success-ring"></div>
+                  <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+                  <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+              </div>
+          </div>
+          <div class="modal-body">
+              <h4 class="text-center">
+                  <span class="dialog-msg" >{{sucessmsg}}</span
+        >
+      </h4>
+
+      <div class="d-flex justify-content-center">
+        <button
+          type="button "
+          i18n="@@ok"
+          (click)="onCloseSuccessModal()"
+          data-dismiss="modal "
+          class="btn"
+          style="
+            color: white !important;
+            border-radius: 4px !important;
+             background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+          "
+        >
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Success Modal End -->
+<!-- Error Modal Start -->
+<div
+class="modal"
+id="staticBackdrop1"
+data-backdrop="static"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{ display: errorDisplay }"
+aria-labelledby="staticBackdropLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="col-12">
+        <div
+          class="swal2-icon swal2-error swal2-animate-error-icon"
+          style="display: flex; justify-content: center"
+        >
+          <span class="swal2-x-mark"
+            ><span class="swal2-x-mark-line-left"></span
+            ><span class="swal2-x-mark-line-right"></span
+          ></span>
+          </div>
+      </div>
+  </div>
+  <div class="modal-body">
+      <h6 style="text-align: center">
+          <span  class="dialog-msg">{{errsmsg}}</span>
+          <br />
+      </h6>
+
+      <div class="d-flex justify-content-center mt-4">
+        <button
+          class="btn"
+          (click)="closeErrorModal()"
+          i18n="@@ok"
+          style="
+            background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+            color: white !important;
+            border-radius: 4px !important;
+          "
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

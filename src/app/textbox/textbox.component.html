@@ -1,0 +1,6 @@
+<div *ngFor="let val of data">
+    <div *ngIf="val.no_siri_permohonan==keyValue">
+        <input type="textbox" value="{{val.status_semakan_dokumen==true?'Lengkap':'Tidak Lengkap'}}" class="form-control">
+    </div>
+
+</div>

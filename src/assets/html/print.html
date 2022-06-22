@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <title>JKAS Print</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css" />
+  <script src="https://js.arcgis.com/4.21/"></script>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #title {
+      text-align: center;
+      page-break-after: avoid;
+    }
+
+    #map {
+      page-break-inside: avoid;
+    }
+
+    #container {
+      break-inside: avoid-page;
+      margin: 0 auto;
+    }
+
+    @page {
+      margin: 0.74in;
+    }
+
+    .screen {
+      text-align: center;
+      padding: 15px;
+    }
+
+    @media print {
+      .screen {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div class="screen">
+      <button type="button" onclick="window.print()">Cetak</button>
+    </div>
+    <div id='title' contenteditable="true"></div>
+    <div id="map"></div>
+  </div>
+  </div>
+  <script type="text/javascript">
+    require(["esri/widgets/ScaleBar", "esri/symbols/SimpleLineSymbol", "esri/views/MapView", "esri/Map", "esri/layers/MapImageLayer", "esri/layers/FeatureLayer", "esri/symbols/PictureMarkerSymbol", "esri/renderers/SimpleRenderer"],
+      function (ScaleBar, SimpleLineSymbol, MapView, Map, MapImageLayer, FeatureLayer, PictureMarkerSymbol, SimpleRenderer) {
+
+        var settings = JSON.parse(localStorage.getItem('settings'))
+        var mapSettings = JSON.parse(localStorage.getItem('mapSettings'))
+        pageSetup()
+        let map = new Map({ basemap: mapSettings.baseMap || 'topo-vector' })
+        let x = mapSettings.x || 101.7099022
+        let y = mapSettings.y || 3.1574851
+        let zoom = mapSettings.zoom || 12
+        let view = new MapView({
+          map: map,
+          container: "map",
+          center: [x, y], // klcc 3.1574851,101.7099022
+          zoom: zoom
+        });
+        let scaleBar = new ScaleBar({
+          view: view,
+          unit: 'metric'
+        });
+        view.ui.add(scaleBar, {
+          position: "bottom-left"
+        });
+
+        parlimenLayer()
+        initGasset()
+        searchLayer()
+
+        function parlimenLayer() {
+          const featureLayer = new FeatureLayer({
+            url: mapSettings.parlimenURL, outFields: ['*']
+          })
+          let sls = new SimpleLineSymbol({
+            color: "orange",
+            width: "3px",
+            style: "short-dot"
+          })
+          featureLayer.renderer = new SimpleRenderer({
+            symbol: sls
+          })
+          map.add(featureLayer);
+        }
+
+        function searchLayer() {
+          const featureLayer = new FeatureLayer({
+            url: mapSettings.searchLayer.url,
+            definitionExpression: mapSettings.searchLayer.definitionExpression,
+            outFields: ['*']
+          });
+          if (mapSettings.searchLayer.symbolURL) {
+            let s = mapSettings.searchLayer.symbolURL.split('/').pop()
+            if (s) {
+              let mysymbol = new PictureMarkerSymbol({ url: '../icons/' + s, width: '24px', height: '24px' })
+              featureLayer.renderer = new SimpleRenderer({
+                symbol: mysymbol
+              })
+            }
+          }
+          map.add(featureLayer);
+          // setTimeout(() => {
+          //  window.print()
+          // }, 3000);
+        }
+
+        function initGasset() {
+        //  console.log('gasset layer:  ' + mapSettings.gassetLayer.length)
+          //gassetLayer
+          for (var c = 0; c < mapSettings.gassetLayer.length; ++c) {
+            if (mapSettings.gassetLayer[c].type === 'basemap') {
+              map.add(new MapImageLayer({
+                url: mapSettings.gassetLayer[c].url
+              }))
+              //mapSettings.gassetLayer[c].layer = new MapImageLayer({
+              //  url: mapSettings.gassetLayer[c].url
+              //});
+            } else {
+              map.add(new FeatureLayer({
+                url: mapSettings.gassetLayer[c].url
+              }))
+              /*
+                          mapSettings.gassetLayer[c].layer = new FeatureLayer({
+                            url: mapSettings.gassetLayer[c].url,
+                            outFields: ['*']
+                          });
+                          */
+            }
+          }
+        }
+
+
+        function pageSetup() {
+          var printMargin = 19 //25.4 //1 in
+          var title = 'Tajuk Peta'
+          var width = 210 - printMargin * 2
+          var titleHeight = 20
+          var height = 297 - titleHeight - printMargin * 2 //titleheight
+          var titleSize = 10 //font
+          var margin = 0
+          var unit = 'mm'
+          var page = JSON.parse(localStorage.getItem('page'))
+          if (page) {
+            if (page.width) {
+              width = page.width - printMargin * 2
+            }
+            if (page.height) {
+              height = page.height - printMargin * 2
+            }
+            if (page.titleHeight) {
+              titleHeight = page.titleHeight
+            }
+            if (page.margin) {
+              width = width - 2 * page.margin
+              height = height - 2 * page.margin - 5
+              margin = page.margin
+            }
+            if (page.unit) {
+              unit = page.unit
+            }
+
+            // if (page.title && page.title.length > 0) {
+            height = height - titleHeight
+            // title = page.title
+            /*}
+            else {
+              titleHeight = 0
+            }
+            */
+          }
+          var tel = document.getElementById('title')
+          var mel = document.getElementById('map')
+          var con = document.getElementById('container')
+
+          tel.style.height = '' + titleHeight + unit
+          con.style.width = '' + width + unit
+          // tel.style.width = '' + width + unit
+          tel.style.fontSize = '' + titleSize + unit
+          //tel.style.lineHeight = '' + titleHeight + unit
+          tel.innerHTML = title
+          mel.style.height = '' + height + unit
+          // mel.style.width = '' + width + unit
+      //    console.log('Height: ' + height)
+       //   console.log(mel.style)
+          document.body.style.margin = '' + margin + unit
+        }
+
+      })
+
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #253d84;
+    color: white;
+}
+
+.fa-cloud-upload {
+    font-size: 13px !important;
+}

@@ -1,0 +1,635 @@
+<!-- ======= Top Bar ======= -->
+<app-topbar></app-topbar>
+
+<!-- Header  Start-->
+<div class="container-fluid sticky-nav" id="" style="background-color: #F2F2F2 !important">
+  <div class="container-fluid" >
+    <nav class="navbar navbar-expand-lg" >
+      <a routerLink="/public" class="navbar-brand" >
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" 
+          alt="" loading="lazy"  />
+     
+      </a>
+    
+
+      <button class="navbar-toggler border-white" type="button" style="
+          border: 1px solid white !important;
+          background-color: black !important;
+        " data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/public" class="nav-link" style="color: #253d84; cursor: pointer" i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item" id="signInn">
+            <a class="nav-link" style="color: #253d84; cursor: pointer" i18n="@@login">LOGIN</a>
+          </li>
+          <li class="nav-item" id="signUpp">
+            <a class="nav-link" style="color: #253d84; cursor: pointer" i18n="@@signup">SIGNUP</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- Header end -->
+<main id="main">
+  <!-- ======= Services Section ======= -->
+  <section id="cta" class="cta">
+    <div class="container" data-aos="zoom-in">
+      <div class="text-center" id="">
+        <div class="container1" id="container1">
+          <div class="form-container sign-up-container">
+            <form id="signing" class="main-form needs-validation" (ngSubmit)="signup()">
+              <div [formGroup]="publicsignupGroup" class="formGroup1 divs">
+                <!-- <div class="form-group" >
+                  <label>
+                    <input
+                      type="text"
+                      id="form_user"
+                      class="my_form-control"
+                      formControlName="username"
+                      [(ngModel)]="username"
+                      (ngModelChange)="getUsername()"
+                      [ngClass]="{
+                        'is-invalid': submitted3 && f3.username.errors
+                      }"
+                      (ngModelChange)="loginError = false"
+                      style="text-transform: uppercase"
+                    />
+                    <small class="my_place id_card">
+                      <div class="row">
+                        <div class="co" i18n="@@user">Username</div>
+                      </div>
+                    </small>
+                  </label>
+                </div> -->
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icofont-ui-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Nama Pengguna" formControlName="username"
+                      [(ngModel)]="username" (ngModelChange)="getUsername()" [ngClass]="{
+                        'is-invalid': submitted3 && f3.username.errors
+                      }" (ngModelChange)="loginError = false" style="text-transform: uppercase" />
+                  </div>
+                </div>
+                <div class="co signup-error" id="User" *ngIf="submitted3 && f3.username.errors">
+                  <i *ngIf="f3.username.errors.required" i18n="@@usernamerequired">
+                    *Username is required</i>
+                  <!-- <i
+                  *ngIf="f3.username.errors.pattern"
+                  i18n="@@invaliduser"
+                >
+                  *Invalid Username</i
+                > -->
+                </div>
+
+                <!-- <div class="form-group">
+                  <label>
+                    <input
+                      type="text"
+                      id="id_card_no"
+                      class="my_form-control"
+                      formControlName="id_card"
+                      [(ngModel)]="id_card"
+                      (ngModelChange)="getIdCard()"
+                      [ngClass]="{
+                        'is-invalid': submitted3 && f3.username.errors
+                      }"
+                      (ngModelChange)="loginError = false"
+                      style="text-transform: uppercase"
+                    />
+                    <small class="my_place id_card">
+                      <div class="row">
+                        <div class="co" i18n="@@idcard">No ID Kad.</div>
+                      </div>
+                    </small>
+                  </label>
+                </div> -->
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icofont-id"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="NO. KAD PENGENALAN" formControlName="id_card"
+                      [(ngModel)]="id_card" (ngModelChange)="getIdCard()" [ngClass]="{
+                        'is-invalid': submitted3 && f3.id_card.errors
+                      }" (ngModelChange)="loginError = false" style="text-transform: uppercase" />
+                  </div>
+                </div>
+                <div class="co signup-error" id="idC" *ngIf="submitted3 && f3.id_card.errors">
+                  <i *ngIf="f3.id_card.errors.required" i18n="@@idcardrequired">
+                    *No ID Kad is required</i>
+                </div>
+
+                <!-- <div class="form-group">
+                  <label>
+                    <input
+                      type="text"
+                      id="form_email"
+                      class="my_form-control"
+                      formControlName="email"
+                      [(ngModel)]="email"
+                      (ngModelChange)="getEmail()"
+                      [ngClass]="{
+                        'is-invalid': submitted3 && f3.email.errors
+                      }"
+                      (ngModelChange)="loginError = false"
+                    />
+                    <small class="my_place id_card">
+                      <div class="row">
+                        <div class="co" i18n="@@email">Email</div>
+                      </div>
+                    </small>
+                  </label>
+                </div> -->
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icofont-email"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="E-MEL" formControlName="email"
+                      [(ngModel)]="email" (ngModelChange)="getEmail()" [ngClass]="{
+                        'is-invalid': submitted3 && f3.email.errors
+                      }" (ngModelChange)="loginError = false">
+                  </div>
+                </div>
+                <div class="co signup-error" id="email" *ngIf="submitted3 && f3.email.errors">
+                  <i *ngIf="f3.email.errors.required" i18n="@@emailrequired">
+                    *Email is required</i>
+                  <i *ngIf="f3.email.errors.pattern" i18n="@@validemail">
+                    *Please enter a valid mail id</i>
+                </div>
+
+                <!-- <div class="form-group">
+                  <label>
+                    <input
+                      type="password"
+                      id="form_password"
+                      class="my_form-control"
+                      formControlName="passWord"
+                      [(ngModel)]="passWord"
+                      (ngModelChange)="getPassword()"
+                      [ngClass]="{
+                        'is-invalid': submitted3 && f3.passWord.errors
+                      }"
+                      (ngModelChange)="loginError = false"
+                    />
+
+                    <small class="my_place id_card">
+                      <div class="row">
+                        <div class="co" i18n="@@password">Password</div>
+                      </div>
+                    </small>
+                  </label>
+                </div> -->
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icofont-ui-password"></i></span>
+                    </div>
+                    <input name="txtPassowrdPublic" type="password" id="txtPassowrdPublic" class="form-control"
+                      placeholder="KATA LALUAN" formControlName="passWord" [(ngModel)]="passWord"
+                      (ngModelChange)="getPassword()" [ngClass]="{
+                        'is-invalid': submitted3 && f3.passWord.errors
+                      }" (ngModelChange)="loginError = false">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i toggle="#txtPassowrdPublic" class="fa fa-fw fa-eye field-icon toggle-password1"></i></span>
+                    </div>
+                     
+                  </div>
+                </div>
+                <div class="co signup-error" id="err" *ngIf="submitted3 && f3.passWord.errors">
+                  <i *ngIf="f3.passWord.errors.required" i18n="@@passwordrequired">
+                    *Password is required</i>
+                  <i *ngIf="f3.passWord.errors.pattern">
+                    <span style="font-size: 13px !important" i18n="@@passwordlength">
+                      *Min 6 characters One capital letter,</span>
+                    <span style="font-size: 13px !important" i18n="@@passwordlengh">
+                      lowercase,number and special character</span>
+                  </i>
+                </div>
+
+                <!-- <div class="form-group">
+                  <label>
+                    <input
+                      type="password"
+                      id="form_password2"
+                      class="my_form-control"
+                      formControlName="confPass"
+                      [(ngModel)]="confPass"
+                      [ngClass]="{
+                        'is-invalid': submitted3 && f3.confPass.errors
+                      }"
+                      (ngModelChange)="check()"
+                    />
+                    <small class="my_place id_card">
+                      <div class="row">
+                        <div class="co" i18n="@@confirmpassword">
+                          Confirm Password
+                        </div>
+                      </div>
+                    </small>
+                  </label>
+                </div> -->
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icofont-ui-password"></i></span>
+                    </div>
+                    <input name="txtPasswordInternal" type="password" id="txtPasswordInternal" class="form-control"
+                      placeholder="PENGESAHAN KATA LALUAN" formControlName="confPass" [(ngModel)]="confPass" [ngClass]="{
+                        'is-invalid': submitted3 && f3.confPass.errors
+                      }" (ngModelChange)="check()" value=""/>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i toggle="#txtPasswordInternal" class="fa fa-fw fa-eye field-icon toggle-password2"></i></span>
+                    </div>
+                      
+                  </div>
+                </div>
+                <div class="co signup-error" id="err" *ngIf="submitted3 && f3.confPass.errors">
+                  <i *ngIf="f3.confPass.errors.required" i18n="@@passwordrequired">
+                    *Password is required</i>
+                  <i *ngIf="f3.confPass.errors.pattern" i18n="@@invalidpass" style="margin-top: 6px">
+                    *Invalid passWord
+                  </i>
+                </div>
+                <div class="co signup-error">
+                  <i *ngIf="chek" i18n="@@mmg">{{ msg }}</i>
+                </div>
+
+                <div *ngIf="loginError1">
+                  <p class="text-danger" style="
+                      font-weight: bold;
+                      font-size: smaller;
+                      margin-top: 1px;
+                    ">
+                    {{ errorMsg }}
+                  </p>
+                </div>
+
+                <button class="btn btn-danger mx-auto" id="create_account" type="submit"
+                  style="background-image: linear-gradient(to right, #517fa4 0%, #243949  51%, #517fa4  100%); margin-top: 2%;border-color: #253d84;"
+                  i18n="@@createaccount">
+                  REGISTER
+                </button>
+              </div>
+            </form>
+
+            <!-- form for forgot password -->
+
+            <form id="forgot_password" (ngSubmit)="forgotPassword()">
+              <h3 class="text-dark" style="margin-bottom: 1em; font-size: 2.5em" i18n="@@forgotpassword1">
+                FORGOT PASSWORD
+              </h3>
+              <br />
+              <br />
+              <div [formGroup]="forgotGroup" class="formGroup1">
+                <!-- <div class="form-group">
+                  <label>
+                    <input
+                      type="text"
+                      formControlName="forgotId"
+                      [(ngModel)]="forgotId"
+                      class="my_form-control"
+                      [ngClass]="{
+                        'is-invalid': submitted1 && f1.forgotId.errors
+                      }"
+                      (ngModelChange)="loginError = false"
+                    />
+                    <small class="my_place id_card">
+                      <div class="row">
+                        <div class="co" i18n="@@idcard">No ID Kad.</div>
+                      </div>
+                    </small>
+                  </label>
+                </div> -->
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icofont-id"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="NO. KAD PENGENALAN" formControlName="forgotId"
+                      [(ngModel)]="forgotId" [ngClass]="{
+                        'is-invalid': submitted1 && f1.forgotId.errors
+                      }" (ngModelChange)="loginError = false" style="text-transform: uppercase" />
+                  </div>
+                </div>
+                <div class="co signup-error" id="req" *ngIf="submitted1 && f1.forgotId.errors">
+                  <i *ngIf="f1.forgotId.errors.pattern" i18n="@@idlength">*Id card must contain 6 characters</i>
+                </div>
+                <!-- <div id="or">
+                  <small style="
+                      color: #5f2e2e;
+                      font-weight: bold;
+                      transition: 0.2s ease all;
+                    " i18n="@@or">
+                    OR
+                  </small>
+                </div> -->
+                <br />
+                <!-- <div class="form-group">
+                  <label>
+                    <input
+                      type="email"
+                      id=""
+                      class="my_form-control"
+                      formControlName="email"
+                      [(ngModel)]="forgotEmail"
+                      [ngClass]="{
+                        'is-invalid': submitted1 && f1.email.errors
+                      }"
+                      (ngModelChange)="loginError = false"
+                    />
+                    <small class="my_place" style="width: 200px; left: 13px">
+                      <div class="row">
+                        <div class="co" i18n="@@email">Email</div>
+                      </div>
+                    </small>
+                  </label>
+                </div> -->
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icofont-email"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="E-mel" formControlName="email"
+                      [(ngModel)]="forgotEmail" [ngClass]="{
+                        'is-invalid': submitted1 && f1.email.errors
+                      }" (ngModelChange)="loginError = false">
+                  </div>
+                </div>
+                <div class="co signup-error" id="emai" *ngIf="submitted1 && f1.email.errors">
+                  <i *ngIf="f1.email.errors.required" i18n="@@emailrequired">
+                    *Email is required</i>
+                  <i *ngIf="f1.email.errors.pattern" i18n="@@validemail">*Please enter a valid mail</i>
+                </div>
+                <button
+                  style="background-image: linear-gradient(to right, #517fa4 0%, #243949  51%, #517fa4  100%);border-color: #253d84 !important;"
+                  class="btn mx-auto" id="send_mail" type="submit" data-toggle="modal" data-target="#forgotModal"
+                  i18n="@@sendmail">
+                  SEND MAIL
+                </button>
+                <div>
+                  <i i18n="@@gggfff" style="font-size: 13px; color: red; font-weight: 700"
+                    *ngIf="forgotMessage != undefined">{{ forgotMessage }}</i>
+                </div>
+                <div>
+                  <i style="font-size: 13px; color: red; font-weight: 700" *ngIf="status1">{{ errmsgg }}</i>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="form-container sign-in-container">
+            <form id="loginform" class="LOGIN_FORM" role="form" (ngSubmit)="login()">
+              <h3 class="text-dark" style="margin-bottom: 1.2em; font-size: 2.5em" i18n="@@login">
+                LOGIN
+              </h3>
+              <div [formGroup]="publicLoginGroup" class="formGroup1">
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icofont-id"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="NO. KAD PENGENALAN" formControlName="idcardno"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.idcardno.errors
+                      }" [(ngModel)]="idCardNo" (ngModelChange)="loginError = false" style="text-transform: uppercase">
+                  </div>
+                </div>
+                <div class="co signup-error forpass nokad" *ngIf="submitted && f.idcardno.errors">
+                  <i class="forpass" *ngIf="f.idcardno.errors.required" i18n="@@idcardrequired">
+                    *No ID Kad is required</i>
+                </div>
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icofont-ui-password"></i></span>
+                    </div>
+
+                    <input name="txtPasswordLogin" type="password" id="txtPasswordLogin" class="form-control"
+                      placeholder="KATA LALUAN" formControlName="password" [(ngModel)]="password" [ngClass]="{
+                        'is-invalid': submitted && f.password.errors
+                      }" (ngModelChange)="loginError = false" value="">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i  toggle="#txtPasswordLogin" class="fa fa-fw fa-eye field-icon toggle-password"></i></span>
+                    </div>
+    
+                  </div>
+                </div>
+                <div class="co signup-error pws" *ngIf="submitted && f.password.errors">
+                  <i *ngIf="f.password.errors.required" i18n="@@passwordrequired">
+                    *Password is required</i>
+                    <i *ngIf="f.password.errors.pattern">
+                      <span i18n="@@passwordlength">
+                        *Min 6 characters One upercase,</span>
+                      <span i18n="@@passwordlengh">
+                        lowercase,number and special character</span>
+                    </i>
+                </div>
+
+                <div class="form-group text-center">
+                  <button class="btn mt-2 mx-auto" type="submit"
+                    style="background-image: linear-gradient(to right, #517fa4 0%, #243949  51%, #517fa4  100%);"
+                    i18n="@@SIGN">
+                    SIGN IN
+                  </button>
+                </div>
+
+                <div *ngIf="loginError">
+                  <p class="text-danger" style="font-weight: bold; font-size: smaller">
+                    {{ errorMsg }}
+                  </p>
+                </div>
+
+                <div class="form-group mt-2 text-center">
+                  <span class="forgot" id="fpassd" style="font-weight: bolder"><a (click)="hideloginForm()"
+                      i18n="@@forgotpassword" style="color: red !important">Forgot password</a></span>
+                </div>
+              </div>
+            </form>
+
+            <!-- form for OTP validation and completing registration -->
+            <form id="otp_form" (ngSubmit)="validateOTP()">
+              <div [formGroup]="otpGroup">
+                <p *ngIf="regSuccess" style="font-weight: bold; color: rgb(55, 55, 55)">
+                  <i i18n="@@otpmessage">Enter the OTP code sent to your email address</i>
+                </p>
+                <div class="form-group text-center">
+                  <label>
+                    <input type="text" id="" class="my_form-control" formControlName="otp" [(ngModel)]="otpCode"
+                      [ngClass]="{
+                        'is-invalid': submitted2 && f2.otp.errors
+                      }" (ngModelChange)="loginError = false" />
+                    <small class="my_place" style="width: 200px; left: 0px">
+                      <div class="row">
+                        <div class="col-md-4">OTP</div>
+                        <div class="col-md-8 signup-error" *ngIf="submitted2 && f2.otp.errors">
+                          <i *ngIf="f2.otp.errors.required" i18n="@@otprequired">
+                            *OTP is required</i>
+                          <i *ngIf="f2.otp.errors.pattern" i18n="@@validotp">*Please enter a valid OTP</i>
+                        </div>
+                      </div>
+                    </small>
+                  </label>
+                </div>
+                <div class="form-group text-center">
+                  <button type="submit" class="btn btn-danger mx-auto" data-toggle="modal"
+                    style="background-color: #253d84" i18n="@@otpsubmit">
+                    SUBMIT
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+            [fullScreen]="true">
+
+          </ngx-spinner>
+          <div class="overlay-container">
+            <div class="overlay">
+              <div class="overlay-panel overlay-left">
+                <h1 i18n="@@Public" style="color: Black;">PUBLIC</h1>
+                <p style="font-weight: bolder">&nbsp;</p>
+
+                <button class="ghost" id="signIn" (click)="hideform()" i18n="@@SIGN"
+                  style="font-weight: bold;font-size:14x;color: white !important;background-color: rgba(4, 4, 4, 0.7);margin-right: 10px;">
+                  <i class="fa fa-chevron-circle-left" style="font-size: 17px;"></i>
+                  SIGN IN
+                </button>
+              </div>
+              <div class="overlay-panel overlay-right">
+                <h1 i18n="@@Public" style="color: white;">PUBLIC</h1>
+                <p style="font-weight: bolder">&nbsp;</p>
+                <button class="ghost"
+                  style="font-weight: bold;font-size:14px;color: white !important;background-color: rgba(4, 4, 4, 0.7);margin-right: 10px;"
+                  id="signUp" i18n="@@createaccount">
+                  REGISTER
+                  <i class="fa fa-chevron-circle-right" style="font-size: 17px;"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ======= Services Section ======= -->
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+
+<!-- Success Modal -->
+
+<div class="modal modal-box" tabindex="-1" style="background: #02020259; display: block" role="dialog"
+  [ngStyle]="{ display: forgotDisplay }">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center" i18n="@@fgtmsg">
+          {{ sucmsg1 }}
+        </h4>
+
+        <div class="d-flex justify-content-center">
+          <button type="button" data-dismiss="modal" class="btn modbtn" (click)="closeForgotModal()" i18n="@@okk">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal modal-box" tabindex="-1" style="background: #02020259; display: block" role="dialog"
+  [ngStyle]="{ display: display }">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center">
+          {{ sucessmsg }}
+        </h4>
+
+        <div class="d-flex justify-content-center">
+          <button type="button " data-dismiss="modal" class="btn modbtn" (click)="closeSuccessModal()" i18n="@@okk">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Error modal -->
+
+<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: errorDisplay }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-12">
+          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                class="swal2-x-mark-line-right"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h6 style="text-align: center">
+          <span class="dialog-msg">{{ errorMsg }}</span>
+          <br />
+        </h6>
+
+        <div class="d-flex justify-content-center mt-4">
+          <button class="btn modbtn" (click)="closeErrorModal()" i18n="@@ok"
+            style="background-color: #253d84; color: white !important">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a>
+
+<!-- Timer overlay for failed login attempts -->
+<!-- <div id="overlay">
+  <div id="text">
+    <h5 class="text-center">Too many failed attempts!</h5>
+    <h4 class="text-center">Please wait...</h4>
+    <div class="text-center text-white">
+      <countdown #cd [config]="config"></countdown>
+    </div>
+  </div>
+</div> -->

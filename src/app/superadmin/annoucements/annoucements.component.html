@@ -1,0 +1,454 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+
+</ngx-spinner>
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<app-header></app-header>
+<!-- Success Modal Start-->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center">
+          <span class="dialog-msg">{{sucessmsg}}</span>
+        </h4>
+
+        <div class="d-flex justify-content-center">
+          <button type="button " i18n="@@ok" (click)="onCloseHandled()" data-dismiss="modal " class="btn" style="
+              color: white !important;
+              border-radius: 4px !important;
+              margin-left: inherit;
+ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+            ">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Success Modal End -->
+<!-- Error Modal Start -->
+<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: displayerror }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-12">
+          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                class="swal2-x-mark-line-right"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h6 style="text-align: center">
+          <span class="dialog-msg">{{errormsg}}</span>
+          <br />
+        </h6>
+
+        <div class="d-flex justify-content-center mt-4">
+          <button class="btn" (click)="onCloseHandled1()" i18n="@@ok" style="
+                   background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+              color: white !important;
+              margin-left: inherit;
+              border-radius: 4px !important;
+
+            ">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Error Modal End -->
+<main>
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="inspecting" id="inspecting">
+    <div class="card">
+
+      <div class=" text-center">
+        <div class="section-title">
+          <span i18n="@@adf">
+            NEW ANNOUNCEMENT</span>
+          <h2 i18n="@@adf">
+            NEW ANNOUNCEMENT</h2>
+        </div>
+      </div>
+      <form class="model-content" (submit)="announcesubmit()">
+        <div [formGroup]="registrationGroup" class="col-md-12">
+          <div>
+            <label for="exampleInputEmail1" style="text-align: left;" i18n="@@adf1">Announcement
+              heading</label>
+            <input type="text" class="form-control" formControlName="heading" [(ngModel)]="announcement_heading"
+              [ngClass]="{ 'is-invalid': submitted && f.heading.errors }">
+            <div *ngIf="submitted && f.heading.errors" class="invalid-feedback">
+              <div *ngIf="f.heading.errors.required" i18n="@@notice2">
+                Please fill this required field.
+              </div>
+            </div>
+          </div>
+
+          <br>
+          <div>
+            <label for="exampleInputPassword1" style="text-align: left;" i18n="@@adf2">Announcement</label>
+            <textarea style="width: 100%;height: 115px;" formControlName="announce" [(ngModel)]="announcement"
+              [ngClass]="{ 'is-invalid': submitted && f.announce.errors }" i18n="@@emvm"></textarea>
+            <div *ngIf="submitted && f.announce.errors" class="invalid-feedback">
+              <div *ngIf="f.announce.errors.required" i18n="@@notice2">
+                Please fill this required field.
+              </div>
+            </div>
+          </div>
+          <br>
+
+          <div class="col-md-12 text-center mb-4">
+            <div>
+              <label class="custom-file-upload">
+                <input type="file" ng2FileSelect accept=".jpg,.png,.jpeg" [uploader]="uploader" multiple
+                  formControlName="file" [ngClass]="{
+                        'is-invalid': submitted && f.file.errors
+                      }" />
+
+                <div *ngIf="submitted && f.file.errors" class="invalid-feedback">
+                  <div *ngIf="f.file.errors.required" i18n="@@fir">
+                    File is required.
+                  </div>
+                </div>
+
+
+                <i class="fa fa-cloud-upload"></i>
+              </label><br />
+
+
+
+              <tr *ngFor="let item of uploader.queue" style="overflow-x: scroll">
+                <th width="" style="font-size: 15px; font-weight: 700">
+                  <span>{{ item.file.name }}({{
+                    item.file.size / 1000000
+                    }}
+                    MB)</span>
+                  <span class="text-center">
+                    <i style="
+                                        cursor: pointer;
+                                        font-size: 15px;
+                                        font-weight: 700;
+                                      " class="fa fa-trash" (click)="item.remove()" aria-hidden="true"></i></span>
+                </th>
+              </tr>
+
+
+            </div>
+          </div>
+
+
+          <div class="col-md-12 text-center mb-4">
+            <button class="look_for" type="submit" i18n="@@submit"
+              style="margin-bottom: 50px !important;">Submit</button>
+          </div>
+        </div>
+      </form>
+      <div class="container">
+        <div class="section-title">
+          <span i18n="@@loa">List of Announcement</span>
+          <h2 i18n="@@loa">List of Announcement</h2>
+        </div>
+      </div>
+      <div class="col d-flex justify-content-between">
+        <button class="addNewRow" (click)="deleteChecked()" style="
+                    padding-left: 0.5px;
+                    padding-right: 0.5px;
+                    background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+                    margin-bottom: 0rem;
+                    width: 2.5em;
+                    margin-left: 0% !important;
+                    border-radius: 50% !important;
+                  " class="btn btn-danger">
+          <i class="fa fa-trash" style="font-size: 16px" aria-hidden="true "></i>
+        </button>
+      </div>
+
+      <div class="container-fluid row input d-flex justify-content-center" id="tbl">
+
+        <div class="row-10" style="margin-top: 10px; width: 100%">
+          <div style="overflow-x: scroll">
+            <ng2-smart-table [settings]="settings" [source]="list" (userRowSelect)="onUserRowSelect($event)"
+              (custom)="onCustomEvent($event)">
+            </ng2-smart-table>
+          </div>
+        </div>
+      </div>
+      <p></p>
+    </div>
+  </section>
+
+
+  <!-- ======= Footer ======= -->
+  <app-footer></app-footer>
+
+  <a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+      class="icofont-scroll-double-up"></i></a>
+
+
+  <!-- Success Modal Start-->
+  <div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+    [ngStyle]="{ display: display2 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered" role="document ">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center" style="
+      border-bottom: 0px solid transparent !important;
+      padding-bottom: 0px !important;
+    ">
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        </div>
+        <div class="modal-body">
+          <h5 class="text-center" i18n="@@delete">Do you want to Delete !</h5>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="look_for" (click)="deleteSelected()" i18n="@@ok1">
+              YES
+            </button>
+            <button type="button" class="look_for_red" (click)="closeModalDelete()" i18n="@@no1">
+              NO
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+    [ngStyle]="{ display: display3 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered" role="document ">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center" style="
+      border-bottom: 0px solid transparent !important;
+      padding-bottom: 0px !important;
+    ">
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        </div>
+        <div class="modal-body">
+          <h5 class="text-center" i18n="@@delete1">
+            Please Select Item to Delete.
+          </h5>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn"
+              style="  background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);margin: auto; color: white;border-radius:4px"
+              (click)="closemodal3()" i18n="@@ok1">
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal bd-example-modal-md" id="centralModalDanger" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true" [ngStyle]="{ display: display4 }" data-backdrop="static"
+    data-keyboard="false">
+    <div class="modal-dialog modal-md modal-notify modal-danger" role="document">
+      <div class="modal-content" id="dvStats">
+        <div class="modal-header" style="background-color: #253d84; height: 63px">
+          <img src="../../../assets/img/DBKL.png" width="25%" style="margin: 3px 0px 10px 25px" height="40"
+            class="d-inline-block align-top" alt="" loading="lazy" />
+          <p id="txt" i18n="@@up">UPDATE OF ANNOUNCEMENT</p>
+
+          <span><i class="fa fa-times close" aria-hidden="true" data-dismiss="modal" aria-label="Close"
+              (click)="closeUpdateModal()"></i></span>
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                        &times;
+                    </button> -->
+        </div>
+
+        <div class="modal-body">
+          <label for="textInput" i18n="@@upann">Announcement heading</label>
+          <input type="text" style="background-color: white;" id="textInput" class="form-control mb-4"
+            placeholder="Text input" name="headingValue" [(ngModel)]="headingValue">
+
+          <label for="textInput" i18n="@@applicationslno">Announcement</label>
+          <textarea type="text" style="background-color: white;height: 200px;" id="textInput" class="form-control mb-4"
+            placeholder="Text input" name="announcementValue" [(ngModel)]="announcementValue"></textarea>
+
+          <div id="btnn" class="text-center">
+
+            <div class="container">
+              <div class='file file--upload'>
+                <label for='input-file'>
+                  <i class="material-icons">cloud_upload</i>
+                </label>
+                <input id='input-file' ng2FileSelect (click)="hidePreviousFile()" accept=".jpg,.png,.jpeg"
+                  [uploader]="uploader2" multiple type='file' />
+              </div>
+              <span *ngIf="showfile">{{ fileName2 }}</span>
+              <span class="text-center">
+
+                <i *ngIf="showfile" style="
+                                          cursor: pointer;
+                                          font-size: 15px;
+                                          font-weight: 700;
+                                        " class="fa fa-trash" (click)="remove()" aria-hidden="true"></i></span>
+              <ng-template #files>
+                <a style="cursor: pointer;" target="_blank" (click)="getPdf(key)">{{ key }}</a> <i id="trash"
+                  class="fa fa-trash" (click)="deleteData(data[i].site_id)" aria-hidden="true"></i>
+              </ng-template>
+            </div>
+            <table>
+              <tbody style="font-size: x-small; padding-right: 5px">
+                <tr *ngFor="let item of uploader2.queue" style="overflow-x: scroll">
+                  <th width="" style="font-size: 15px; font-weight: 700">
+                    <span>{{ item.file.name }}({{
+                      item.file.size / 1000000
+                      }}
+                      MB)</span>
+                    <span class="text-center">
+
+                      <i style="
+                                        cursor: pointer;
+                                        font-size: 15px;  
+                                        font-weight: 700;
+                                      " class="fa fa-trash" (click)="item.remove()" aria-hidden="true"></i></span>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+
+            <button style="width: 100px;margin: auto;" type="submit" class="look_for" (click)="update(announceid)"
+              i18n="@@gdgd">Update</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+    [ngStyle]="{ display: display5 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered" role="document ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+            <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+            <span class="swal2-success-line-tip"></span>
+            <span class="swal2-success-line-long"></span>
+            <div class="swal2-success-ring"></div>
+            <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+            <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <h4 class="text-center">
+            <span class="dialog-msg">{{upsucessmsg}}</span>
+          </h4>
+
+          <div class="d-flex justify-content-center">
+            <button type="button " i18n="@@ok" (click)="onCloseSuccessModal()" data-dismiss="modal " class="look_for">
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Success Modal End -->
+  <!-- Error Modal Start -->
+  <div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+    [ngStyle]="{ display: errorDisplay }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-12">
+            <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+              <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                  class="swal2-x-mark-line-right"></span></span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <h6 style="text-align: center">
+            <span class="dialog-msg">{{errsmsg}}</span>
+            <br />
+          </h6>
+
+          <div class="d-flex justify-content-center mt-4">
+            <button class="look_for_red" (click)="closeErrorModal()" i18n="@@ok">
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+    [ngStyle]="{ display: display6 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered" role="document ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+            <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+            <span class="swal2-success-line-tip"></span>
+            <span class="swal2-success-line-long"></span>
+            <div class="swal2-success-ring"></div>
+            <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+            <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <h4 class="text-center">
+            <span class="dialog-msg">{{dsucessmsg}}</span>
+          </h4>
+
+          <div class="d-flex justify-content-center">
+            <button type="button " i18n="@@ok" (click)="onCloseSuccessModal1()" data-dismiss="modal " class="look_for">
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Success Modal End -->
+  <!-- Error Modal Start -->
+  <div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+    [ngStyle]="{ display: errorDisplay1 }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-12">
+            <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+              <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                  class="swal2-x-mark-line-right"></span></span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <h6 style="text-align: center">
+            <span class="dialog-msg">{{derrmsg}}</span>
+            <br />
+          </h6>
+
+          <div class="d-flex justify-content-center mt-4">
+            <button class="btn" (click)="closeErrorModal1()" i18n="@@ok" class="look_for_red">
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

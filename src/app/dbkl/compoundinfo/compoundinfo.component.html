@@ -1,0 +1,93 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple" [fullScreen]="true">
+    
+</ngx-spinner>
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<app-headerc></app-headerc>
+<!-- End of Header -->
+<main id="main">
+    <section class="Compound_Info" id="Compound_Info">
+        <div class="card" style="box-shadow: 0 0 30px rgb(214 215 216 / 60%)">
+            <div class="text-center">
+                <div class="d-flex justify-content-center"></div>
+                <div class="section-title" style="margin-top: 20px">
+                    <!-- <span>PROSES PERMOHONAN PPSSPPA</span>
+                    <h2>PROSES PERMOHONAN PPSSPPA</h2> -->
+                    <span>Compound information</span>
+                    <h2>Compound information</h2>
+                </div>
+            </div>
+            <br />
+
+            <div class="d-flex justify-content-end">
+                <button printSectionId="main" [useExistingCss]="true" ngxPrint type="button" style="border: 1px solid transparent; background: transparent">
+          <i
+            style="
+              font-size: 30px;
+              color: #253d84;
+              cursor: pointer;
+              float: right;
+              margin-top: -6em;
+              margin-right: -1em;
+            "
+            id="print"
+            class="fa fa-print"
+            aria-hidden="true"
+          ></i>
+        </button>
+            </div>
+
+            <div class="row justify-content-center" style="margin-left: 10px">
+                <div class="col-md-5">
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-9 col-form-label" style="font-weight: 500">Lower Level Inspection ID : <span>{{ id }}</span>
+            </label>
+                        <!-- <input type="password" style="width: 150px;" class="form-control yearOfApplication"
+                            id="inputPassword" placeholder="{{id}}"> -->
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-9 col-form-label" style="font-weight: 500">
+              Parliament : <span>{{ parliamen }}</span></label
+            >
+            <!-- <input type="password" style="width: 100px;" class="form-control yearOfApplication"
+                            id="inputPassword" placeholder="{{parliamen}}"> -->
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group row">
+            <label
+              for="inputPassword"
+              class="col-sm-9 col-form-label"
+              style="font-weight: 500"
+            >
+              Date : <span>{{ date }}</span></label
+            >
+            <!-- <input type="password" style="width: 100px;" class="form-control yearOfApplication"
+                            id="inputPassword" placeholder="{{date}}"> -->
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="table-responsive col-md-12">
+        <div style="margin-top: 10px; margin-bottom: 30px">
+          <div class="card" style="overflow-x: scroll">
+            <ng2-smart-table [settings]="settings" [source]="data">
+            </ng2-smart-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i class="icofont-scroll-double-up"></i></a>

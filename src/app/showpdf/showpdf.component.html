@@ -1,0 +1,5 @@
+<div *ngFor="let key of data;index as i">
+    <span *ngIf="key.no_siri_permohonan==value">
+        <span (click)="getPdf(key.surat_penyerahan_kawasan)" style="color: #253d84;cursor: pointer;">{{key.surat_penyerahan_kawasan}}</span>
+    </span> 
+</div>

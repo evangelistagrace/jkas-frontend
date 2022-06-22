@@ -1,0 +1,562 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+
+</ngx-spinner>
+<!-- Success Modal Start-->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center">
+          <span class="dialog-msg">{{ msg }}&nbsp;</span>
+          <!-- <b>{{ Fid }}</b> -->
+        </h4>
+
+        <div class="d-flex justify-content-center">
+          <button type="button " i18n="@@ok" (click)="onCloseHandled()" data-dismiss="modal " class="btn" style="
+              color: white !important;
+              border-radius: 4px !important;
+               background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+            ">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Success Modal End -->
+<!-- Error Modal Start -->
+<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display1 }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-12">
+          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                class="swal2-x-mark-line-right"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h6 style="text-align: center">
+          <span i18n="@@invoiceinfo3" class="dialog-msg">Bad request!</span>
+          <br /><span class="dialog-msg"> {{ errormsg }}</span>
+        </h6>
+
+        <div class="d-flex justify-content-center mt-4">
+          <button class="btn" (click)="onCloseHandled1()" i18n="@@ok" style="
+               background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+              color: white !important;
+              border-radius: 4px !important;
+            ">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Error Modal End -->
+
+<app-topbar></app-topbar>
+
+<!-- Header Start -->
+
+<div class="container-fluid sticky-nav" id="" style="background-color: #F2F2F2 !important">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand ">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+
+
+      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
+        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/agency/job-feedback" class="nav-link" style="color:#253d84 !important ; cursor: pointer"
+              i18n="@@home">HOME
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+              {{ npid }}
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" style="color: white; cursor: pointer" (click)="logout()"
+                i18n="@@jflogout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- Header End-->
+<main id="main" class="main">
+  <!-- ======= Breadcrumbs ======= -->
+
+  <section class="inner-page">
+    <div class="card">
+      <!-- ======= Services Section ======= -->
+      <section id="Work Payment Claims" class="services">
+        <div class="container">
+          <div class="section-title">
+            <span i18n="@@jfworkclaim" id="spanhead">WORK PAYMENT CLAIMS</span>
+            <h2 i18n="@@jfworkclaim">WORK PAYMENT CLAIMS</h2>
+          </div>
+
+          <div class="container-fluid mt-3">
+            <form class="p-5" [formGroup]="registrationGroup">
+              <div class="row">
+                <div class="col-sm-3">
+                  <label for="disabledSelect" class="linerr" i18n="@@organisation">Organization/ Department
+                  </label>
+                </div>
+                <div class="col-sm-9">
+                  <select class="browser-default custom-select mb-4" id="disabledSelect1"
+                    (change)="changeWebsite($event)">
+                    <option *ngFor="let item of Organizations" value="{{ item }}" [selected]="item === selected">
+                      {{ item }}
+                    </option>
+                  </select>
+                  <!-- <div
+                *ngIf="submitted && f.dropdown.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.dropdown.errors.required" class="errorMessage">
+                  <span i18n="@@organisation"
+                    >Organization/Department is required
+                  </span>
+                </div>
+              </div> -->
+                </div>
+
+                <!-- <div class="col-md-6"></div> -->
+
+                <div class="col-sm-3">
+                  <label for="disabledTextInput" class="linerr" i18n="@@notice7">
+                    Name of Inspecting Officer</label>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" id="disabledTextInput" class="form-control mb-2" [formControlName]="'officer'"
+                    [(ngModel)]="nama_pegawai_merinyu" [ngClass]="{
+                    'is-invalid': submitted && f.officer.errors
+                  }" />
+                  <div *ngIf="submitted && f.officer.errors" class="invalid-feedback">
+                    <div *ngIf="f.officer.errors.required" class="errorMessage">
+                      <span i18n="@@inspectingOffName">
+                        Name of Inspecting Officer is required</span>
+                    </div>
+                    <div *ngIf="f.officer.errors.pattern" class="errorMessage">
+                      <span i18n="@@invalidname">Invaid Name</span>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <br>
+                <!-- <div class="col-md-6"></div> -->
+
+                <div class="col-sm-3">
+                  <label for="disabledTextInput" class="linerr" i18n="@@feedback">Feedback
+                  </label>
+                </div>
+                <div class="col-sm-9">
+                  <select class="form-control mb-2" placeholder="Huraian kerja yang telah dijalankan"
+                    [(ngModel)]="feedback" name="feedback" (change)="getfeedback($event)">
+                    <!-- <option  i18n="@@selesaai" value="SELESAI">
+                      DONE
+                    </option>
+                    <option i18n="@@tidak" value="TIDAK SELESAI">
+                      NOT COMPLETED
+                    </option> -->
+                    <option *ngFor="let drop of feedbackDrop" [selected]="drop === feedback">
+                      {{drop}}
+
+                    </option>
+
+                  </select>
+                  <!-- <input type="text" id="disabledTextInput" class="form-control mb-2"
+                    placeholder="Huraian kerja yang telah dijalankan" [formControlName]="'feedback'"
+                    [(ngModel)]="feedback" [ngClass]="{
+                    'is-invalid': submitted && f.feedback.errors
+                  }" /> -->
+                  <!-- <div *ngIf="submitted && f.feedback.errors" class="invalid-feedback">
+                    <div *ngIf="f.feedback.errors.required" class="errorMessage">
+                      <span i18n="@@feedback">Feedback is required </span>
+                    </div>
+                    <div *ngIf="f.feedback.errors.pattern" class="errorMessage">
+                      <span i18n="@@invalidname1">Invaid Feedback</span>
+                    </div>
+                  </div> -->
+                </div>
+                <br />
+                <br />
+                <div class="col-sm-3">
+                  <label for="disabledTextInput" class="linerr" i18n="@@Notes">
+                    Notes</label>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" id="disabledTextInput" class="form-control mb-2" [formControlName]="'notes'"
+                    [(ngModel)]="notes" [ngClass]="{
+                    'is-invalid': submitted && f.notes.errors
+                  }" />
+                  <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
+                    <div *ngIf="f.notes.errors.required" class="errorMessage">
+                      <span i18n="@@inspectingOffName">
+                        Status is required</span>
+                    </div>
+                    <div *ngIf="f.notes.errors.pattern" class="errorMessage">
+                      <span i18n="@@invalidname">Invaid Name</span>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <!-- <div class="row d-flex justify-content-around mt-5">
+              <div class="col-2"></div>
+
+              <div class="col-4 d-flex justify-content-center">
+
+                  <span style="cursor: pointer; margin-left: 30%"
+                    ><b i18n="@@picbefore">Picture Before</b>&nbsp;<br />
+                    <p style="margin-left: 27%">
+                      {{
+                        firstlength > 6
+                          ? (beforedt | slice: 0:19) + ""
+                          : beforedt
+                      }}
+                    </p></span
+                  >
+                <div class="div2">
+                  <input
+                    style="cursor: pointer"
+                    type="file"
+                    ng2FileSelect
+                    accept=".png"
+                    id="file-upload"
+                    [uploader]="uploader"
+                    onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
+                  />
+                  <br />
+
+                  <img
+                    src="{{ bimg }}"
+                    style="
+                      max-width: 188%;
+                      height: 184%;
+                      margin-top: -66%;
+                      margin-left: -43%;
+                    "
+                  />
+                  <img
+                    style="
+                      max-width: 188%;
+                      max-height: 189%;
+                      height: 182%;
+                      margin-top: -222%;
+                      margin-left: -44%;
+                    "
+                    id="blah"
+                  />
+                </div>
+
+                <div class="ml-1">
+                  <label class="custom-file-upload">
+                    <input
+                      type="file"
+                      ng2FileSelect
+                      accept=".png"
+                      [uploader]="uploader"
+                      onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
+                    />
+
+                    <i class="fa fa-cloud-upload" style="font-size: 30px"></i>
+                  </label>
+                </div>
+              </div>
+              <div class="col-4 d-flex justify-content-center">
+                <div class="div2">
+                  <input
+                    style="cursor: pointer"
+                    type="file"
+                    ng2FileSelect
+                    accept=".png"
+                    id="file-upload"
+                    [uploader]="uploader1"
+                    onchange="document.getElementById('blah1').src = window.URL.createObjectURL(this.files[0])"
+                  />
+
+                  <br />
+                  <img
+                    src="{{ aimg }}"
+                    style="
+                      max-width: 188%;
+                      height: 183%;
+                      margin-top: -65%;
+                      margin-left: -43%;
+                    "
+                  />
+
+                  <img
+                    style="
+                      max-width: 188%;
+                      max-height: 189%;
+                      height: 182%;
+                      margin-top: -218%;
+                      margin-left: -44%;
+                    "
+                    id="blah1"
+                  />
+                </div>
+
+
+                <div class="ml-1">
+                  <label class="custom-file-upload">
+                    <input
+                      type="file"
+                      ng2FileSelect
+                      accept=".png"
+                      [uploader]="uploader1"
+                      multiple
+                      onchange="document.getElementById('blah1').src = window.URL.createObjectURL(this.files[0])"
+                    />
+
+                    <i class="fa fa-cloud-upload" style="font-size: 30px"></i>
+                  </label>
+                </div>
+              </div>
+              <div class="col-2"></div>
+            </div> -->
+
+                <!-- <table>
+              <tbody>
+                <tr *ngFor="let item of uploader1.queue">
+                  <th width="90%"></th>
+                  <th class="text-center" width="10%">
+                    <i (click)="item.remove()" class="fa fa-trash" style="color: red"></i>
+                  </th>
+                </tr>
+              </tbody>
+            </table> -->
+              </div>
+              <br>
+              <br>
+
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col-4">
+                  <span style="cursor: pointer; margin-left: 30%"><b i18n="@@picbefore">Picture Before</b>&nbsp;<br />
+                    <p style="margin-left: 27%">
+                      {{
+                      firstlength > 6
+                      ? (beforedt | slice: 0:19) + ""
+                      : beforedt
+                      }}
+                    </p>
+                  </span>
+                  <div class="div2 mx-auto">
+                    <label class="custom-file-upload">
+                      <input style="cursor: pointer" type="file" ng2FileSelect accept=".png" id="file-upload"
+                        [uploader]="uploader" (click)="onselect1()"
+                        onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" />
+
+                      <i class="fa fa-cloud-upload"></i>
+                    </label>
+
+                    <img *ngIf="aimghide" src="{{ bimg }}" style="
+                        max-width: 188%;
+                        height: 184%;
+                        margin-top: -45%;
+                        margin-left: -43%;
+                      " />
+
+                    <img style="
+                        max-width: 191%;
+                        height: 187%;
+                        margin-top: -45%;
+                        margin-left: -45%;
+                      " id="blah" />
+
+                    <!-- <img [src]="url" height="200" /> </div> -->
+                  </div>
+                </div>
+                <div class="col-4">
+                  <span style="cursor: pointer; margin-left: 30%">
+                    <b> <span i18n="@@picafter"> Picture After</span></b>&nbsp;
+
+                    <p style="margin-left: 27%">
+                      {{
+                      secondlength > 6
+                      ? (afterdt | slice: 0:19) + ""
+                      : afterdt
+                      }}
+                    </p>
+                  </span>
+                  <div class="div2 mx-auto">
+                    <label class="custom-file-upload">
+                      <input type="file" ng2FileSelect accept=".png" [uploader]="uploader1" multiple
+                        (click)="onselect()"
+                        onchange="document.getElementById('blah1').src = window.URL.createObjectURL(this.files[0])" />
+
+                      <i class="fa fa-cloud-upload"></i>
+                    </label>
+
+                    <img *ngIf="bimghide" src="{{ aimg }}" style="
+                        max-width: 188%;
+                        height: 183%;
+                        margin-top: -44%;
+                        margin-left: -43%;
+                      " />
+                    <img style="
+                        max-width: 188%;
+                        max-height: 189%;
+                        height: 182%;
+                        margin-top: -45%;
+                        margin-left: -44%;
+                      " id="blah1" />
+                  </div>
+                </div>
+                <div class="col-2"></div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-12 col-md-12 d-flex justify-content-center margin">
+                  <!-- <button
+                    (click)="reset()"
+                    id="fileInputId"
+                    mat-raised-button
+                    color="accent"
+                    class="btn mr-3"
+                    i18n="@@reset"
+                  >
+                    Reset
+                  </button> -->
+
+                  <button (click)="cancel()" style="margin-right: 30px;" class="look_for_red" type="button"
+                    i18n="@@n74">
+                    Back
+                  </button>
+
+                  <button style="margin-left: 10px;" (click)="createfeedback()" id="fileInputId" mat-raised-button
+                    color="accent" class="look_for_red" i18n="@@update">
+                    Update
+                  </button>
+                </div>
+                <div class="col-12 d-flex justify-content-end mb-3"></div>
+              </div>
+              <p *ngIf="clicked" class="">
+                <!-- <button
+                    class="btn arrow-down pushme mb-3"
+                    onclick="this.classList.toggle('active')"
+                    data-toggle="collapse"
+                    href="#collapseExample"
+                    role="button"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                    *ngIf="clicked"
+                    style="float: right"
+                  >
+                    Show Approvals
+                  </button> -->
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- End Services Section -->
+    </div>
+  </section>
+  <!-- <section *ngIf="clicked">
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body" *ngIf="clicked">
+        <p *ngIf="clicked" class="text-center">
+          <b style="margin-left: 6.5em">Report date time</b>
+        </p>
+        <span class="align">{{ reportdt }}</span>
+        <br />
+        <div class="d-flex justify-content-start drop">
+          <div class="col-3"></div>
+          <div class="col-6 d-flex justify-content-center">
+            <div
+              *ngIf="clicked"
+              class="align-middle d-flex justify-content-center mt-5"
+            >
+              <input
+                class="form-check-input checklab"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+                [checked]="status == true && status != null"
+              />
+
+              <label class="form-check-label lab" for="flexCheckDefault">
+                Kerja Selesail
+              </label>
+            </div> -->
+  <!--
+            <div class="div3" *ngIf="clicked">
+              <input
+                style="cursor: pointer"
+                type="file"
+                ng2FileSelect
+                accept=".png"
+                id="file-upload"
+                [uploader]="uploader"
+                onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
+              />
+              <br /> -->
+  <!-- <table>
+        <tbody>
+          <tr *ngFor="let item of uploader.queue">
+            <th></th>
+            <th class="text-center">
+              <i (click)="item.remove()" class="fas fa-times" style="color: red"></i>
+            </th>
+          </tr>
+        </tbody>
+      </table> -->
+  <!-- <img
+                *ngIf="clicked"
+                src="{{ report_image }}"
+                style="
+                  max-width: 188%;
+                  height: 184%;
+                  margin-top: -66%;
+                  margin-left: -43%;
+                "
+              />
+            </div>
+          </div>
+          <div class="col-3"></div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a>

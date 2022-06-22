@@ -1,0 +1,11 @@
+<div *ngFor="let key of data;index as i">
+    <span *ngIf="key.no_siri_permohonan==value">
+        <span (click)="getPdf(key.surat_penyerahan_kawasan)" style="color: #253d84;cursor: pointer;">{{key.surat_penyerahan_kawasan}}</span>
+    </span> 
+</div>
+<div class="col-2" style="padding-left: 61px;">
+    <i style="font-size: 17px;
+    color: #b61f1f;
+    cursor: pointer;" class="fa fa-cloud-upload"></i>
+  </div>
+  <div class="col-2" ></div>

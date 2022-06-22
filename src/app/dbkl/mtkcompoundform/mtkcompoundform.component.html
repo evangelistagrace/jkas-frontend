@@ -1,0 +1,620 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+
+</ngx-spinner>
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- ======= Header ======= -->
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+  <div class="container-fluid" ngStickyNav>
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+
+
+
+
+
+      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
+        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important;; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"
+              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+              id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" style="color: #253d84 !important;; cursor: pointer" i18n="@@n11">
+              MTB
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item"
+                *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'" i18n="@@n12"
+                routerLink="/dbkl/mapview">Map View</a>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle"
+              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+              style="color: white; cursor: pointer" i18n="@@n15">Field Form</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a routerLink="/dbkl/mtbwork-form"
+                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+                  class="dropdown-item" i18n="@@n13">Work Form</a>
+              </li>
+              <li>
+                <a routerLink="/dbkl/mtbcompoundform" class="dropdown-item"
+                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+                  i18n="@@n14">Compound Form</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle"
+              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+              style="color: white; cursor: pointer" i18n="@@n16">Work Log</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a routerLink="/dbkl/mtbwork-log"
+                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+                  class="dropdown-item" i18n="@@n17">Daily Work / Complaints</a>
+              </li>
+              <li>
+                <a routerLink="/dbkl/mtblistofcompound"
+                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+                  class="dropdown-item" i18n="@@n18">List of Compounds</a>
+              </li>
+            </ul>
+          </li>
+      </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"
+          *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+          id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          style="color: #253d84 !important;; cursor: pointer" i18n="@@n19">
+          MTK
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            style="color: white; cursor: pointer" routerLink="/dbkl/mtkmapview" i18n="@@n20">Monitoring
+            MTK</a>
+          <a routerLink="/dbkl/mtkworkform"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            class="dropdown-item" (click)="getUser('financial')" i18n="@@n13" style="cursor: pointer;">Work Form</a>
+          <a routerLink="/dbkl/mtkcompoundform"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            class="dropdown-item" i18n="@@n14" style="cursor: pointer;">Compound
+            Form</a>
+          <a routerLink="/dbkl/inspectingofficers"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n21">Work MTB</a>
+          <a routerLink="/dbkl/mtblistofcompound"
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n22">Compound MTB</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important;; cursor: pointer">
+          {{ username }}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
+            i18n="@@Profile">Profile</a>
+          <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer" i18n="@@jflogout">Logout</a>
+        </div>
+      </li>
+      </ul>
+  </div>
+  </nav>
+</div>
+</div><!-- End Header -->
+<!-- Success Modal Start-->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center">
+          <span class="dialog-msg">{{sucessmsg}}</span>
+        </h4>
+
+        <div class="d-flex justify-content-center">
+          <button type="button " i18n="@@ok" (click)="onCloseHandled()" data-dismiss="modal " class="btn" style="
+              color: white !important;
+              border-radius: 4px !important;
+             background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+            ">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Success Modal End -->
+<!-- Error Modal Start -->
+<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display1 }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-12">
+          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                class="swal2-x-mark-line-right"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h6 style="text-align: center">
+          <span class="dialog-msg">{{errssmsg}}</span>
+          <br />
+        </h6>
+
+        <div class="d-flex justify-content-center mt-4">
+          <button class="btn" (click)="onCloseHandled1()" i18n="@@ok" style="
+               background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+              color: white !important;
+              border-radius: 4px !important;
+            ">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Error Modal End -->
+<main>
+  <section class="Borang" id="Borang">
+    <div class="card">
+      <!-- ======= Services Section ======= -->
+
+      <form class="p-3 modal-content" (ngSubmit)="compoundsubmit()">
+        <div [formGroup]="checkboxGroup">
+
+          <div class="section-title">
+            <span i18n="@@n31">Compound form</span>
+            <h2 i18n="@@n31">Compound form</h2>
+          </div>
+          <div class="text-center">
+            <div>
+              <img src="../../../assets/img/DBKL LOGO (Lorry).png" height="70" alt="" />
+
+              <h6 style="font-weight: 1000" i18n="@@omp1">
+                DEPARTMENT OF HEALTH AND ENVIRONMENT
+              </h6>
+              <h6 style="font-weight: 1000" i18n="@@omp2">KUALA LUMPUR CITY HALL</h6>
+              <h6 style="font-weight: 1000" i18n="@@cf1">
+                ERROR NOTICE AND COMPOUND OFFER
+              </h6>
+            </div>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="textInput" i18n="@@n33">No. Compound Notice</label><sup>*</sup>
+            <input type="text" id="textInput" class="form-control mb-2" formControlName="no_notis_bas"
+              placeholder=" Sila masukkan No. Notis Kompaun" [(ngModel)]="no_notis_bas" [ngClass]="{
+                  'is-invalid': submitted && f.no_notis_bas.errors
+                }" />
+
+            <div *ngIf="submitted && f.no_notis_bas.errors" class="invalid-feedback">
+              <div *ngIf="f.no_notis_bas.errors.required" i18n="@@Valtrans1">
+                Please fill this required field.
+              </div>
+              <div *ngIf="f.no_notis_bas.errors.pattern" i18n="@@checkvalid">
+                Contains only Numeric value and length must be more than 4
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <h5 style="background-color: #253d84" class="card-header info-color text-center white-text py-6">
+              <strong style="color: white" i18n="@@n42">COMPOUND PRODUCING OFFICER INFORMATION</strong>
+            </h5>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="select" i18n="@@n43">Officer ID</label><sup>*</sup>
+            <!-- <select class="browser-default custom-select" formControlName="id_mtb" id="select" [(ngModel)]="id_mtb"
+              [ngClass]="{
+                'is-invalid': submitted && f.id_mtb.errors
+              }">
+              <option value="" disabled selected>Select a officerid</option>
+              <option *ngFor="let item of IdPegawai">
+                {{ item }}
+              </option>
+            </select> -->
+            <input class="form-control" list="item" [(ngModel)]="id_mtb" name="item" formControlName="id_mtb" [ngClass]="{
+              'is-invalid': submitted && f.id_mtb.errors
+            }" />
+            <datalist id="item">
+              <option *ngFor="let item of IdPegawai" [value]="item"></option>
+            </datalist>
+            <div *ngIf="submitted && f.id_mtb.errors" class="invalid-feedback">
+              <div *ngIf="f.id_mtb.errors.required" i18n="@@Valtrans1">
+                Please fill this required field.
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="select" i18n="@@n45">Parliament</label><sup>*</sup>
+            <select class="browser-default custom-select" id="select" formControlName="parlimen" [(ngModel)]="parlimen"
+              [ngClass]="{
+              'is-invalid': submitted && f.parlimen.errors
+            }">
+              <option value="" disabled="" selected="" i18n="@@stp">Select the Parliamen</option>
+              <option *ngFor="let parli of parildata">{{parli}}</option>
+            </select>
+            <div *ngIf="submitted && f.parlimen.errors" class="invalid-feedback">
+              <div *ngIf="f.parlimen.errors.required" i18n="@@Valtrans1">
+                Please fill this required field.
+              </div>
+            </div>
+          </div>
+          <!-- <div class="form-group col-md-12">
+            <label for="select" i18n="@@n58">Location</label><sup>*</sup>
+            <select class="browser-default custom-select" formControlName="lokasi_kompaun" id="select"
+              [(ngModel)]="lokasi_kompaun" [ngClass]="{
+                'is-invalid': submitted && f.lokasi_kompaun.errors
+              }">
+              <option *ngFor="let data of locations">
+                {{ data }}
+              </option>
+            </select>
+            <input
+            class="form-control"
+            list="data"
+            [(ngModel)]="lokasi_kompaun"
+            name="data"
+            formControlName="lokasi_kompaun"
+            [ngClass]="{
+              'is-invalid': submitted && f.lokasi_kompaun.errors
+            }"
+          />
+          <datalist id="data">
+            <option *ngFor="let data of locations" [value]="data"></option>
+          </datalist>
+            <div *ngIf="submitted && f.lokasi_kompaun.errors" class="invalid-feedback">
+              <div *ngIf="f.lokasi_kompaun.errors.required" i18n="@@Valtrans1">
+                Please fill this required field.
+              </div>
+            </div>
+          </div> -->
+
+          <div class="form-group col-md-12">
+            <h5 style="background-color: #253d84" class="card-header info-color text-center white-text py-6">
+              <strong style="color: white" i18n="@@n35">NOTICE RECIPIENT INFORMATION</strong>
+            </h5>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="textInput" i18n="@@n36">To</label><sup>*</sup>
+
+            <input type="text" id="textInput" class="form-control mb-2" formControlName="kepada" [(ngModel)]="kepada"
+              [ngClass]="{
+                  'is-invalid': submitted && f.kepada.errors
+                }" />
+
+            <div *ngIf="submitted && f.kepada.errors" class="invalid-feedback">
+              <div *ngIf="f.kepada.errors.required" i18n="@@Valtrans1">
+                Please fill this required field.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="textInput" i18n="@@n38">No.KP/Company</label><sup>*</sup>
+            <input type="text" id="textInput" class="form-control mb-2" formControlName="company_no"
+              [(ngModel)]="company_no" [ngClass]="{
+                'is-invalid': submitted && f.company_no.errors
+              }" />
+
+            <div *ngIf="submitted && f.company_no.errors" class="invalid-feedback">
+              <div *ngIf="f.company_no.errors.required" i18n="@@Valtrans1">
+                Please fill this required field.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="textInput" i18n="@@n40">Address</label><sup>*</sup>
+            <textarea type="text" id="textInput1" class="form-control mb-2" formControlName="alamat"
+              [(ngModel)]="address1" [ngClass]="{
+                'is-invalid': submitted && f.alamat.errors
+              }"></textarea>
+
+
+            <div *ngIf="submitted && f.alamat.errors" class="invalid-feedback">
+              <div *ngIf="f.alamat.errors.required" i18n="@@Valtrans1">
+                Please fill this required field.
+              </div>
+            </div>
+          </div>
+
+
+          <!-- <div class="form-group col-md-12">
+            <h6 class="">
+              <p i18n="@@n60">
+                This is informed that you have been found to have committed the following offenses:
+              </p>
+            </h6>
+          </div> -->
+
+          <!-- <div class="form-group row custom-control ml-4 custom-checkbox mb-4">
+            <button class="addbutton newbutton" (click)="addbutton()" type="button">
+              +
+            </button>
+            <label i18n="@@addSeksyen" style="margin-left: 10px !important;">ADD SECTION/UUK (CLICK HERE)</label>
+          </div>
+          <div *ngIf="this.is1st">
+            <input type="text" id="textInput" class="form-control mb-2"
+              [(ngModel)]="addSeksyen" />
+          </div> -->
+
+
+          <div class="form-group col-md-12">
+            <h5 style="background-color: #253d84" class="card-header info-color text-center white-text py-6">
+              <strong style="color: white" i18n="@@n67">ERROR DETAILS</strong>
+            </h5>
+          </div>
+          <div class="form-group col-md-12">
+            <textarea type="text" id="inputbox" class="form-control mt-2 mb-2" formControlName="butir_butir_kesalahan"
+              [(ngModel)]="Error1" [ngClass]="{
+                'is-invalid': submitted && f.butir_butir_kesalahan.errors
+              }"></textarea>
+
+
+            <div *ngIf="submitted && f.butir_butir_kesalahan.errors" class="invalid-feedback">
+              <div *ngIf="f.butir_butir_kesalahan.errors.required" i18n="@@Valtrans1">
+                Please fill this required field.
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="textInput" i18n="@@n69">Date</label><sup>*</sup>
+            <input type="date" id="textInput" class="form-control mb-2" name="tarikh" formControlName="tarikh"
+              [(ngModel)]="tarikh" [ngClass]="{
+                'is-invalid': submitted && f.tarikh.errors
+              }" />
+
+            <div *ngIf="submitted && f.tarikh.errors" class="invalid-feedback">
+              <div *ngIf="f.tarikh.errors.required" i18n="@@Valtrans1">
+                Please fill this required field.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="textInput" i18n="@@n70"> Time</label><sup>*</sup>
+            <input type="time" id="textInput" class="form-control mb-2" formControlName="waktu" name="waktu"
+              [(ngModel)]="waktu" [ngClass]="{
+                'is-invalid': submitted && f.waktu.errors
+              }" />
+
+            <div *ngIf="submitted && f.waktu.errors" class="invalid-feedback">
+              <div *ngIf="f.waktu.errors.required" i18n="@@Valtrans1">
+                Please fill this required field.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="textInput" i18n="@@n72"> Place</label><sup>*</sup>
+            <input type="text" id="textInput" class="form-control mb-2" formControlName="tempat"
+              placeholder="Teks Input" [(ngModel)]="tempat" [ngClass]="{
+                'is-invalid': submitted && f.tempat.errors
+              }" />
+
+            <div *ngIf="submitted && f.tempat.errors" class="invalid-feedback">
+              <div *ngIf="f.tempat.errors.required" i18n="@@Valtrans1">
+                Please fill this required field.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <h6 class=" " style="font-weight: 700;">
+              <b i18n="@@n61">SECTION/UUK:-Legal Provisions :-- </b>
+            </h6>
+          </div>
+          <div class="form-group col-md-12">
+            <h6 class=" ">
+              <strong i18n="@@rdb">Roads, Drains and Buildings Act 1974</strong>
+            </h6>
+          </div>
+          <div class="custom-control form-group col-md-12 ml-4 custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="checkbox1" #saveUserNameCheckBox1
+              (change)="onSaveUsernameChanged1(saveUserNameCheckBox1.checked)" />
+
+            <label class="custom-control-label" for="checkbox1">&nbsp;- &nbsp; &nbsp;SEK. 47(1)(a)</label>
+          </div>
+          <div class="custom-control form-group col-md-12 ml-4 custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="checkbox2" #saveUserNameCheckBox2
+              (change)="onSaveUsernameChanged2(saveUserNameCheckBox2.checked)" />
+
+            <label class="custom-control-label" for="checkbox2">&nbsp;- &nbsp; &nbsp;SEK. 47(1)(c)</label>
+          </div>
+          <div class="custom-control form-group col-md-12 ml-4 custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="checkbox3" #saveUserNameCheckBox3
+              (change)="onSaveUsernameChanged3(saveUserNameCheckBox3.checked)" />
+
+            <label class="custom-control-label" for="checkbox3">&nbsp;- &nbsp; &nbsp;SEK. 47(1)(d)</label>
+          </div>
+          <div class="custom-control form-group col-md-12 ml-4 custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="checkbox4" #saveUserNameCheckBox4
+              (change)="onSaveUsernameChanged4(saveUserNameCheckBox4.checked)" />
+
+            <label class="custom-control-label" for="checkbox4">&nbsp;- &nbsp; &nbsp;SEK. 47(1)(e)</label>
+          </div>
+          <div class="custom-control form-group col-md-12 ml-4 custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="checkbox5" #saveUserNameCheckBox5
+              (change)="onSaveUsernameChanged5(saveUserNameCheckBox5.checked)" />
+
+            <label class="custom-control-label" for="checkbox5">&nbsp;- &nbsp; &nbsp;SEK. 47(1)(g)</label>
+          </div>
+          <div class="custom-control form-group col-md-12 ml-4 custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="checkbox6" #saveUserNameCheckBox6
+              (change)="onSaveUsernameChanged6(saveUserNameCheckBox6.checked)" />
+
+            <label class="custom-control-label" for="checkbox6">&nbsp;- &nbsp; &nbsp;SEK. 47(2)(a)</label>
+          </div>
+          <div class="custom-control form-group col-md-12 ml-4 custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="checkbox7" #saveUserNameCheckBox7
+              (change)="onSaveUsernameChanged7(saveUserNameCheckBox7.checked)" />
+
+            <label class="custom-control-label" for="checkbox7">&nbsp;- &nbsp; &nbsp;SEK. 47(2)(b)</label>
+          </div>
+
+
+
+
+          <div class="form-group col-md-12">
+            <h6 class=" ">
+              <strong i18n="@@tbai">TRADE, BUSINESS AND INDUSTRY LICENSING (WPKL) BY-LAWS 1986</strong>
+            </h6>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="checkbox8" #saveUserNameCheckBox8
+              (change)="onSaveUsernameChanged8(saveUserNameCheckBox8.checked)" />
+            <label class="custom-control-label" for="checkbox8">&nbsp;- &nbsp; &nbsp;UUK 8</label>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox9" #saveUserNameCheckBox9
+              (change)="onSaveUsernameChanged9(saveUserNameCheckBox9.checked)" />
+
+            <label class="custom-control-label" for="checkbox9">&nbsp;- &nbsp; &nbsp;UUK 9</label>
+          </div>
+
+
+          <div class="form-group col-md-12">
+            <h6 class=" ">
+              <strong i18n="@@posb">PROHIBITION OF SPITTING BY-LAWS (WPKL) 1991</strong>
+            </h6>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox10" #saveUserNameCheckBox10
+              (change)="onSaveUsernameChanged10(saveUserNameCheckBox10.checked)" />
+            <label class="custom-control-label" for="checkbox10">&nbsp;- &nbsp; &nbsp;UUK 3</label>
+          </div>
+
+
+
+          <div class="form-group col-md-12">
+            <h6 class=" ">
+              <strong i18n="@@rdab">ROADS, DRAINAGE AND BUILDINGS ACT 1974 - (OBSTACLES)</strong>
+            </h6>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox11" #saveUserNameCheckBox11
+              (change)="onSaveUsernameChanged11(saveUserNameCheckBox11.checked)" />
+            <label class="custom-control-label" for="checkbox11">&nbsp;- &nbsp; &nbsp;SEK. 46(1)(b)</label>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox12" #saveUserNameCheckBox12
+              (change)="onSaveUsernameChanged12(saveUserNameCheckBox12.checked)" />
+            <label class="custom-control-label" for="checkbox12">&nbsp;- &nbsp; &nbsp;SEK. 46(1)(c)</label>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox13" #saveUserNameCheckBox13
+              (change)="onSaveUsernameChanged13(saveUserNameCheckBox13.checked)" />
+            <label class="custom-control-label" for="checkbox13">&nbsp;- &nbsp; &nbsp;SEK. 46(1)(d)</label>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox14" #saveUserNameCheckBox14
+              (change)="onSaveUsernameChanged14(saveUserNameCheckBox14.checked)" />
+            <label class="custom-control-label" for="checkbox14">&nbsp;- &nbsp; &nbsp;SEK. 46(1)(e)</label>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox15" #saveUserNameCheckBox15
+              (change)="onSaveUsernameChanged15(saveUserNameCheckBox15.checked)" />
+            <label class="custom-control-label" for="checkbox15">&nbsp;- &nbsp; &nbsp;SEK. 46(1)(f)</label>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox16" #saveUserNameCheckBox16
+              (change)="onSaveUsernameChanged16(saveUserNameCheckBox16.checked)" />
+            <label class="custom-control-label" for="checkbox16">&nbsp;- &nbsp; &nbsp;SEK. 46(1)(g)</label>
+          </div>
+
+
+          <div class="form-group col-md-12">
+            <h6 class=" ">
+              <strong i18n="@@felb">FOOD ESTABLISHMENT LICENSING (WPKL) BY -LAWS 1985</strong>
+            </h6>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox17" #saveUserNameCheckBox17
+              (change)="onSaveUsernameChanged17(saveUserNameCheckBox17.checked)" />
+            <label class="custom-control-label" for="checkbox17">&nbsp;- &nbsp; &nbsp;UUK 5(a)</label>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox18" #saveUserNameCheckBox18
+              (change)="onSaveUsernameChanged18(saveUserNameCheckBox18.checked)" />
+            <label class="custom-control-label" for="checkbox18">&nbsp;- &nbsp; &nbsp;UUK 5(b)</label>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox19" #saveUserNameCheckBox19
+              (change)="onSaveUsernameChanged19(saveUserNameCheckBox19.checked)" />
+            <label class="custom-control-label" for="checkbox19">&nbsp;- &nbsp; &nbsp;UUK 5(c)</label>
+          </div>
+
+
+
+          <div class="form-group col-md-12">
+            <h6 class=" ">
+              <strong i18n="@@tasl">TRADERS AND STALL LICENSING (WPKL) BY -LAWS 1989</strong>
+            </h6>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox20" #saveUserNameCheckBox20
+              (change)="onSaveUsernameChanged20(saveUserNameCheckBox20.checked)" />
+            <label class="custom-control-label" for="checkbox20">&nbsp;- &nbsp; &nbsp;UUK 33</label>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox21" #saveUserNameCheckBox21
+              (change)="onSaveUsernameChanged21(saveUserNameCheckBox21.checked)" />
+            <label class="custom-control-label" for="checkbox21">&nbsp;- &nbsp; &nbsp;UUK 34</label>
+          </div>
+          <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="checkbox22" #saveUserNameCheckBox22
+              (change)="onSaveUsernameChanged22(saveUserNameCheckBox22.checked)" />
+            <label class="custom-control-label" for="checkbox22">&nbsp;- &nbsp; &nbsp;UUK 35</label>
+          </div>
+
+          <div class="text-center form-group col-md-12">
+            <button class="look_for" style="margin-right: 8px" type="submit" i18n="@@n75">Submit</button>
+            <button class="look_for_red" type="button" i18n="@@n74" routerLink="/dbkl/dbklmainpage">
+              Back
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a>

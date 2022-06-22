@@ -1,0 +1,60 @@
+<!-- ======= Top Bar ======= -->
+<div id="topbar" class="align-items-center" style="background-color:#F2F2F2; opacity: 0.9">
+  <div class="container-fluid d-flex sticky-nav">
+    <!-- <div class="contact-info mr-auto">
+      <i style="color: #000000
+        !important" class="icofont-envelope"></i>
+      <span class="topbar-item" style="color: #000000
+        !important">jkas@dbkl.gov.my</span>
+      <i style="color: #000000
+  !important" class="icofont-phone"></i>
+      <span class="topbar-item contact" style="color: #000000
+  !important">03-2027 5300</span>
+    </div> -->
+
+
+    <div class="social-links ml-auto" id="myDIV">
+      <a style="margin-right: 35px !important;font-weight: 600; color: #000000
+        !important" class="date">{{ todaysDate | date }}
+      </a>
+      <a href="https://twitter.com/dbkl2u?lang=en" class="topbar-item" target="_blank" style="color: #000000
+        !important"><i class="icofont-twitter"></i></a>
+      <a href="https://www.facebook.com/dbkl2u/" class="topbar-item" target="_blank" style="color: #000000
+        !important"><i class="icofont-facebook"></i></a>
+
+      <a href="https://sg.linkedin.com/company/dbkl" class="topbar-item" target="_blank" style="color: #000000
+        !important"><i class="icofont-linkedin"></i></a>
+      &nbsp;
+      <span class="lang">
+        <a href="/en/{{ pathToAppend }} " (click)="englishSelected()">
+          <u class="tbar" id="ck1" style="
+                 border: 1px solid #253d84;
+                 margin-left: -15px !important;
+              font-style: normal;
+              text-decoration: none !important;
+       
+              padding: 4px 5px 1px 4px;
+              /* background-color:  #253d84; */
+              color: black
+ !important;
+            ">EN</u> </a>
+        <!-- <span style="color: #000000
+        !important"> &nbsp;|</span> -->
+
+        <a href="/ms/{{ pathToAppend }}" (click)="malaySelected()">
+          <u class="tbar active" id="ck2" style="
+                 border: 1px solid #253d84;
+                 margin-left: -15px !important;
+              font-style: normal;
+              text-decoration: none !important;
+       
+              padding: 4px 5px 1px 4px;
+              /* background-color:  #253d84; */
+              color: black
+ !important;
+            ">MY</u>
+        </a>
+      </span>
+    </div>
+  </div>
+</div>

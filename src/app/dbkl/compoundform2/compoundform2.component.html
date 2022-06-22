@@ -1,0 +1,233 @@
+<!-- ======= Top Bar ======= -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple" [fullScreen]="true">
+    
+</ngx-spinner>
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<app-headerc></app-headerc>
+<!-- End of Header -->
+<main>
+    <section class="Kompaun" id="Kompaun">
+        <div class="card" style="box-shadow: 0 0 30px rgb(214 215 216 / 60%)">
+            <!-- ======= Services Section ======= -->
+
+            <div class="container card modal-dialog-centerd mt-5" style="box-shadow: none">
+                <form class="p-3">
+                    <div class="section-title">
+                        <span>compound form</span>
+                        <h2>compound form</h2>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="textInput">No.NOTIS.BAS</label>
+                            <input type="text" id="textInput" class="form-control mb-2" placeholder="Text input" [(ngModel)]="no_notis_bas" name="no_notis_bas" />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <h5 class="card-header info-color text-center white-text py-6">
+                                <strong>OFFENDER INFORMATION</strong>
+                            </h5>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="textInput">To</label>
+                            <input type="text" id="textInput" class="form-control mb-2" name="kepada" [(ngModel)]="kepada" />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="textInput">No.KP/Syarikat</label>
+                            <input type="text" id="textInput" class="form-control mb-2" name="company_no" [(ngModel)]="company_no" />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="textInput">Address</label>
+                            <input type="text" id="textInput" class="form-control mb-2" name="address" [(ngModel)]="alamat" />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <h5 class="card-header info-color text-center white-text py-6">
+                                <strong>OFFICER INFORMATION</strong>
+                            </h5>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="select">Officer ID</label>
+                            <input type="text" id="textInput" class="form-control mb-2" name="id_mtb" [(ngModel)]="id_mtb" />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="select">Parliament</label>
+                            <input type="text" id="textInput" class="form-control mb-2" name="parlimen" [(ngModel)]="parlimen" />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="select">Location</label>
+                            <input type="text" id="textInput" class="form-control mb-2" name="lokasi_kompaun" [(ngModel)]="lokasi_kompaun" />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <h6 class="">
+                                <p>
+                                    Denggan is informed that you have been found to have committed the following offenses:
+                                </p>
+                            </h6>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <h6 class=" ">
+                                <strong>SECTION/UUK:-Legal Provisions:-</strong>
+                            </h6>
+                        </div>
+                        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+                            <span *ngFor="let val of compounddata">
+                <span class="align-items-center" *ngIf="val.akta_jalan == true"
+                  ><input type="checkbox" checked
+                /></span>
+
+                            <span class="align-items-center" *ngIf="val.akta_jalan == false || val.akta_jalan == null"><input type="checkbox"
+                /></span>
+                            </span>
+                            <label>&nbsp;- &nbsp; &nbsp;Roads, Drains and Buildings Act
+                1974</label
+              >
+            </div>
+
+            <div
+              class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+            >
+              <span *ngFor="let val of compounddata">
+                <span
+                  class="align-items-center"
+                  *ngIf="val.undang_kecil_permungutan == true"
+                  ><input type="checkbox" checked
+                /></span>
+
+                <span
+                  class="align-items-center"
+                  *ngIf="
+                    val.undang_kecil_permungutan == false ||
+                    val.undang_kecil_permungutan == null
+                  "
+                  ><input type="checkbox"
+                /></span>
+              </span>
+              <label
+                >&nbsp;- &nbsp; &nbsp;Garbage Collection, Disposal and Disposal
+                (WP) By-Laws 1981</label
+              >
+            </div>
+
+            <div
+              class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+            >
+              <span *ngFor="let val of compounddata">
+                <span
+                  class="align-items-center"
+                  *ngIf="val.undang_kecil_pelesenan == true"
+                  ><input type="checkbox" checked
+                /></span>
+
+                <span
+                  class="align-items-center"
+                  *ngIf="
+                    val.undang_kecil_pelesenan == false ||
+                    val.undang_kecil_pelesenan == null
+                  "
+                  ><input type="checkbox"
+                /></span>
+              </span>
+              <label
+                >&nbsp;- &nbsp; &nbsp;Food Establishment Licensing By-Laws
+                (WPKL) 1981</label
+              >
+            </div>
+
+            <div
+              class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+            >
+              <span *ngFor="let val of compounddata">
+                <span
+                  class="align-items-center"
+                  *ngIf="val.undang_pelesenan_penjaja == true"
+                  ><input type="checkbox" checked
+                /></span>
+
+                <span
+                  class="align-items-center"
+                  *ngIf="
+                    val.undang_pelesenan_penjaja == false ||
+                    val.undang_pelesenan_penjaja == null
+                  "
+                  ><input type="checkbox"
+                /></span>
+              </span>
+              <label
+                >&nbsp;- &nbsp; &nbsp;Hawker and Stall Licensing By-Laws (WPKL)
+                1989</label
+              >
+            </div>
+
+            <div
+              class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+            >
+              <span *ngFor="let val of compounddata">
+                <span
+                  class="align-items-center"
+                  *ngIf="val.undang_kecil_larangan_meludah == true"
+                  ><input type="checkbox" checked
+                /></span>
+
+                <span
+                  class="align-items-center"
+                  *ngIf="
+                    val.undang_kecil_larangan_meludah == false ||
+                    val.undang_kecil_larangan_meludah == null
+                  "
+                  ><input type="checkbox"
+                /></span>
+              </span>
+              <label
+                >&nbsp;- &nbsp; &nbsp;Prohibition of Spitting By-Laws (WPKL)
+                1991</label
+              >
+            </div>
+
+            <div class="form-group col-md-12">
+              <h5 class="card-header info-color text-center white-text py-6">
+                <strong>Error Details</strong>
+              </h5>
+            </div>
+            <div class="form-group col-md-12">
+              <input
+                type="text"
+                id="inputbox"
+                class="form-control mt-2 mb-2"
+                placeholder=""
+                name="error"
+                [(ngModel)]="butir_butir_kesalahan"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="textInput">Date</label>
+                            <input type="text" id="textInput" class="form-control mb-2" name="tarikh" [(ngModel)]="tarikh" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="textInput"> Time</label>
+                            <input type="text" id="textInput" class="form-control mb-2" name="waktu" [(ngModel)]="waktu" />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="textInput"> The place</label>
+                            <input type="text" id="textInput" class="form-control mb-2" placeholder="Text input" name="place" [(ngModel)]="tempat" />
+                        </div>
+                        <div class="text-center form-group col-md-12">
+                            <a [routerLink]="['/dbkl/compoundinfo']" [queryParams]="{
+                  value: date,
+                  value2: id_mtb1,
+                  value3: parlimen1
+                }"><button id="tutup" type="submit">Close</button></a
+              >
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i class="icofont-scroll-double-up"></i></a>

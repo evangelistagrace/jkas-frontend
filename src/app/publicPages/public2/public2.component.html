@@ -1,0 +1,747 @@
+<!-- ======= Top Bar ======= -->
+<app-topbar></app-topbar>
+
+<!-- ======= Header ======= -->
+<div class="container-fluid sticky-nav" id="myHeader" style=" background-color: #F2F2F2">
+  <div class="container-fluid" ngStickyNav style="background-color: #F2F2F2">
+    <nav class="navbar navbar-expand-lg" style="background-color: #F2F2F2">
+      <a class="navbar-brand " [routerLink]="['/public']">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+        <!-- Integrated Waste Kuala Lumpur -->
+
+      </a>
+      <!-- <div class="test" i18n="@@msg2">Department of Environmental Health</div> -->
+      <button class="navbar-toggler border-danger" type="button" data-toggle="collapse"
+        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fa fa-bars text-danger"></i>
+      </button>
+
+      <div class="collapse nav-menu navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item" id="home">
+            <a class="nav-link" style=" cursor: pointer;font-weight: 700;" i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item dropdown" id="user">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="cursor: pointer;font-weight: 700;" i18n="@@Users">USER
+
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" style="font-weight: 700;" (click)="menu()"
+                style="color: #2c4964; cursor: pointer;font-weight: 700;" i18n="@@Public">PUBLIC</a>
+              <a class="dropdown-item" style="font-weight: 700;" [routerLink]="['/agency']"
+                style="color: #2c4964; cursor: pointer;font-weight: 700;" i18n="@@Agency">AGENCY</a>
+              <a class="dropdown-item" style="font-weight: 700;" [routerLink]="['/dbkl/adminregister']"
+                style="color: #2c4964; cursor: pointer;font-weight: 700;" i18n="@@DBKL">JKAS DBKL</a>
+            </div>
+          </li>
+          <li class="nav-item" (click)="announcement()" style="cursor: pointer" id="announce">
+            <a class="nav-link" style="font-weight: 700;" aria-haspopup="true" aria-expanded="false"
+              i18n="@@Announcements">ANNOUNCEMENTS</a>
+          </li>
+          <li class="nav-item" (click)="manual()" style="cursor: pointer" id="manuals">
+            <a class="nav-link" style="font-weight: 700;" i18n="@@Manuals">MANUALS</a>
+          </li>
+          <li class="nav-item" (click)="gallery()" style="cursor: pointer" id="gallery">
+            <a class="nav-link" style="font-weight: 700;" i18n="@@Gallery">GALLERY</a>
+          </li>
+          <!-- <li class="nav-item" (click)="profile()" style="cursor: pointer" id="profile">
+            <a class="nav-link" style="font-weight: 700;" i18n="@@Profile">Profile</a>
+          </li> -->
+          <li class="nav-item" (click)="contact()" style="cursor: pointer" id="contactus">
+            <a class="nav-link" style="font-weight: 700;" i18n="@@m3">CONTACT</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<!-- <section id="hero" class="d-flex align-items-center">
+  <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
+    <h1 i18n="@@msg1" style="color:#1111A3">SOLID WASTE MANAGEMENT SYSTEM AND PUBLIC CLEANING</h1>
+
+    <h2 i18n="@@msg2" style="color:#1111A3">Department of Environmental Health</h2>
+  
+  </div>
+</section> -->
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../../../assets/img/Page 01 Big Size.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="../../../assets/img/Page 02 Big Size.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="../../../assets/img/Page 03 Big Size.png" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+<!-- End Hero -->
+
+<main id="main">
+  <!-- ======= About Section ======= -->
+
+  <!-- End About Section -->
+
+  <!-- ======= Pricing Section ======= -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <div class="section-title">
+        <span i18n="@@menu" style="margin-top: 40px !important;">Menu</span>
+        <h2 i18n="@@menu" style="margin-top: 40px !important;">Menu</h2>
+        <!-- <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p> -->
+      </div>
+
+      <div class="row">
+        <!-- <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="zoom-in">
+          <div class="box featured" routerLink="/public/servicelist" style="cursor: pointer;background: #FFC800 !important">
+            &nbsp;
+            <h3></h3>
+            <h3 i18n="@@msg4">LIST OF SERVICES</h3>
+          </div>
+        </div> -->
+        <div class="col-md-6 col-lg-3 col-xs-12 " data-aos="zoom-in">
+          <div class="icon-box" (click)="gotoServiceLogin()">
+            <div class="icon"><i class="icofont-license"></i></div>
+            <h4 i18n="@@msg4" class="title ">Service Area
+              For Solid Waste Collection and Public Cleansing</h4>
+            <!-- <div class="d-flex justify-content-center">
+              <a target="_blank"
+                href="https://datastudio.google.com/u/0/reporting/1b32bfbe-32b0-417e-92bc-63146f09455e/page/5cWgB?s=rwK2SCeuG0g"
+                class="btn-get-started admincounter scrollto" i18n="@@swc">Solid Waste Collection</a>
+            </div>
+            <br>
+            <div class="d-flex justify-content-center">
+              <a routerLink="/public/serviceLogin" class="btn-get-started admincounter scrollto" i18n="@@servicearea">LIST OF
+                SERVICE AREAS</a>
+            </div> -->
+            <div class="tooltiptext" i18n="@@skpbad" style="bottom: 84%;">List of areas
+              served under the supervision of DBKL
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="zoom-in">
+          <div class="box featured" style="background: #33CC33 !important">
+            <a id="ancor" target="_blank"
+              href="https://floracare.alamflora.com.my/customer/jadual_pembersihan.cfm?view=KL" style="cursor:
+              pointer;">
+              <h3 i18n="@@msg5" style="margin-top: 21%">
+                SCHEDULE OF CLEANING & COLLECTION ACTIVITIES
+              </h3>
+            </a>
+          </div>
+        </div> -->
+        <div class="col-md-6 col-lg-3 col-xs-12 " data-aos="zoom-in">
+          <div class="icon-box">
+            <a id="ancor" class="ancor" target="_blank"
+              href="https://floracare.alamflora.com.my/customer/jadual_pembersihan.cfm?view=KL" style="cursor:
+              pointer;">
+              <div class="icon"><i class="icofont-search-document"></i></div>
+              <h4 i18n="@@msg5" class="title">Solid Waste Collection & Public Cleansing Service Schedule </h4>
+            </a>
+            <div class="tooltiptext" i18n="@@ywbc" style="bottom: 84%;">You will be
+              connected to
+              the official website of Alam Flora Sdn
+              Bhd
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-3 col-md-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="150">
+          <div class="box featured" (click)="gotoLogin()" style="cursor: pointer;background: #F01414 !important">
+          
+            &nbsp;
+            <h3 i18n="@@msg6">Application and Review of PSPPA APPLICATION</h3>
+          </div>
+        </div> -->
+        <div class="col-md-6 col-lg-3 col-xs-12 " data-aos="zoom-in">
+          <div class="icon-box" (click)="gotoLogin()">
+            <div class="icon"><i class="icofont-computer"></i></div>
+            <h4 i18n="@@msg6" class="title">Application and ReviewSubmission of New Areas for Solid Waste Collection and
+              Public Cleansing Services</h4>
+            <div class="tooltiptext" i18n="@@bi2as">Starting in 2011,
+              all waste collection services
+              solids and public cleansing were handed over to SWCorp
+              based on the solid waste management and public cleansing act
+              2007 (Act 672)
+            </div>
+          </div>
+
+        </div>
+
+        <!-- <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="150">
+          <div class="box featured" style="background: #0064F0 !important">
+            <a target="_blank" href="http://ispaaadbkl.dbkl.gov.my/eApps/system/index.do"
+              style="cursor: pointer">
+              <h3></h3>
+              &nbsp; &nbsp;
+              <h3 i18n="@@msg7">Public complaint</h3>
+            </a>
+          </div>
+        </div> -->
+        <div class="col-md-6 col-lg-3 col-xs-12 " data-aos="zoom-in">
+          <div class="icon-box">
+            <div class="icon"><i class="icofont-sub-listing"></i></div>
+            <h4 i18n="@@msg7" class="title "> Public Complaint</h4>
+            <br>
+            <br>
+            <div class="btn1">
+              <div class="d-flex justify-content-center ">
+                <a target="_blank" href="https://swcorp.spab.gov.my/eApps/system/index.do" style="cursor:
+              pointer;" class="btn-get-started admincounter scrollto">SISPAA</a>
+              </div>
+              <div class="tooltiptext1" i18n="@@itccswcap">If the
+                complaint concerns
+                solid waste collection and public cleansing, please click here
+              </div>
+            </div>
+            <br>
+            <div class="btn2">
+              <div class="d-flex justify-content-center ">
+                <a target="_blank" href="http://adukl.dbkl.gov.my/eApps/system/index.do" style="cursor:
+              pointer;" class="btn-get-started admincounter scrollto">ADU@KL</a>
+              </div>
+
+              <div class="tooltiptext2" i18n="@@llaskds">Other
+                complaints, please click
+                here
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Pricing Section -->
+
+
+  <section id="annoucements" class="why-us">
+    <div class="container ">
+      <div class="section-title">
+        <span i18n="@@msg8">Announcement</span>
+        <h2 i18n="@@msg8">Announcement</h2>
+      </div>
+
+      <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row">
+              <div class="slide col-md-4 d-flex align-items-stretch col" *ngFor="let x of data; index as i">
+                <div class="box">
+                  <div class="announcement-img">
+                    <div class="announcement-icon"><i class="icofont-megaphone"></i>
+                    </div>
+                  </div>
+
+
+                  <h3> <i class="bx bxs-quote-alt-left quote-icon-left"></i>{{ x.announcement_heading }}<i
+                      class="bx bxs-quote-alt-right quote-icon-right"></i></h3>
+                  <span style="cursor: pointer; font-size: 12px;margin-left: 60px;" (click)="showDiv(i,x.announcement_path)"
+                    id="closebutton" i18n="@@msg9">[NEXT..]</span>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div style="text-align: center;font-size: 16px;"><strong i18n="@@eprog">ENVIRONMENTAL PROGRAM</strong>
+            </div>
+            <div class="row">
+              <div class="slide col-md-6  d-flex align-items-stretch col">
+                <div class="box">
+                  <div class="announcement-img">
+                    <div class="announcement-icon"><i class="icofont-megaphone"></i>
+                    </div>
+                  </div>
+
+
+                  <h3 style="font-size: 18px !important;" i18n="@@pkks"> <i
+                      class="bx bxs-quote-alt-left quote-icon-left"></i> PROGRAM 1
+                    COMMUNITY 1 RECYCLING (1C1R)
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </h3><br>
+                  <span style="cursor: pointer;border: none;font-size: 12px;margin-left: 56px;" id="somebutton"
+                    i18n="@@msg9">[NEXT..]</span>
+                  <button class="look_for" style="margin-top: 30px;justify-content: center;" (click)="dbklurl()"
+                    i18n="@@tekan">Click here</button>
+
+                </div>
+              </div>
+              <div class="slide col-md-6  d-flex align-items-stretch col">
+                <div class="box">
+                  <div class="announcement-img">
+                    <div class="announcement-icon"><i class="icofont-megaphone"></i>
+                    </div>
+                  </div>
+
+
+                  <h3 style="font-size: 18px !important;" i18n="@@kkksl"> <i
+                      class="bx bxs-quote-alt-left quote-icon-left"></i>OPERATING HOURS FOR KIOSK 1 COMMUNITY 1
+                    RECYCLING (1C1R)
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </h3>
+                  <div>
+                    <table style="width:100%;text-align: center;  border:1px solid black;font-size: 12px;">
+                      <tr style="border:1px solid black;">
+                        <th>BIL</th>
+                        <th i18n="@@location">LOCATION</th>
+                        <th i18n="@@hari">DAY</th>
+                        <th i18n="@@time">TIME</th>
+                      </tr>
+                      <tr style="border:1px solid black;">
+                        <td rowspan="3">1</td>
+                        <td rowspan="3">Kios 1 Komuniti 1 Kitar Semula (1C1R) di PPR Seri Alam, Cheras
+                        </td>
+                        <td i18n="@@w2" style="border:1px solid black;">Tuesday</td>
+                        <td i18n="@@pagipetang" rowspan="3">9.00 am - 3.00 pm</td>
+                      </tr>
+                      <tr style="border:1px solid black;" i18n="@@w4">
+                        <td>Thursday</td>
+                      </tr>
+                      <tr style="border:1px solid black;" i18n="@@w6">
+                        <td>Saturday</td>
+                      </tr>
+                      <tr style="border:1px solid black;">
+                        <td rowspan="3">2</td>
+                        <td i18n="@@lokasi" rowspan="3">Kios 1 Komuniti 1 Kitar Semula (1C1R) di PPR Beringin, Jinjang,
+                          Kepong
+                        </td>
+                        <td i18n="@@w1" style="border:1px solid black;">Monday</td>
+                        <td i18n="@@pagipetang" rowspan="3">9.00 am - 3.00 pm</td>
+                      </tr>
+                      <tr style="border:1px solid black;" i18n="@@w3">
+                        <td>Wednesday</td>
+                      </tr>
+                      <tr style="border:1px solid black;" i18n="@@w6">
+                        <td>Saturday</td>
+                      </tr>
+                      <tr style="border:1px solid black;">
+                        <td rowspan="3">3</td>
+                        <td rowspan="3">Kios 1 Komuniti 1 Kitar Semula (1C1R) di PPR Wangsa Maju
+                        </td>
+                        <td i18n="@@w6">Saturday</td>
+                        <td i18n="@@pagipetang" rowspan="3">9.00 am - 3.00 pm</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Left and right controls -->
+
+      </div>
+
+
+      <!-- <div class="row">
+        <div class="slide col-md-4 d-flex align-items-stretch col"  *ngFor="let x of data; index as i">
+          <div class="box">
+            <div class="announcement-img">
+              <div class="announcement-icon"><i class="icofont-megaphone"></i>
+              </div>
+            </div>
+
+
+            <h3> <i class="bx bxs-quote-alt-left quote-icon-left"></i>{{ x.announcement_heading }}<i
+                class="bx bxs-quote-alt-right quote-icon-right"></i></h3>
+            <span style="cursor: pointer; font-size: 12px" (click)="showDiv(i)" i18n="@@msg9">[NEXT..]</span>
+
+          </div>
+        </div>
+      </div> -->
+      <!-- </ng-template> -->
+      <!-- <ng-template carouselSlide>
+            <div class="slide col-md-6 col-lg-6 d-flex align-items-stretch ">
+              <div class="box">
+                <div class="announcement-img">
+                  <div class="announcement-icon"><i class="icofont-megaphone"></i>
+                  </div>
+                </div>
+               
+
+                <h3 style="font-size: 16px !important;"> <i class="bx bxs-quote-alt-left quote-icon-left"></i>PROGRAM 1
+                  KOMUNITI 1 KITAR SEMULA (1C1R)
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </h3><br>
+                <span style="cursor: pointer; font-size: 12px" id="somebutton"  i18n="@@msg9">[NEXT..]</span>
+                <button class="look_for" style="margin-top: 30px;" (click)="dbklurl()">Tekan di sini</button>
+
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="slide col-md-6 col-lg-6 d-flex align-items-stretch ">
+              <div class="box">
+                <div class="announcement-img">
+                  <div class="announcement-icon"><i class="icofont-megaphone"></i>
+                  </div>
+                </div>
+            
+
+                <h3 style="font-size: 14px !important;"> <i class="bx bxs-quote-alt-left quote-icon-left"></i>KIOS 1
+                  KOMUNITI 1 KITAR SEMULA (1C1R)
+                  Lokasi Kios 1C1R : PPR Seri Alam, Kuala Lumpur
+
+                  Waktu operasi bagi Kios 1 Komuniti 1 Kitar Semula (1C1R) :
+
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </h3>
+                <div>
+                  <table style="width:100%;text-align: center;">
+                    <tr>
+                      <td>HARI</td>
+                      <td>MASA</td>
+                    </tr>
+                    <tr>
+                      <td>Selasa</td>
+                      <th rowspan="3">9.00 pagi - 3.00 petang
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>Khamis</td>
+                    </tr>
+                    <tr>
+                      <td>Sabtu</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </ng-template> -->
+      <!-- </owl-carousel-o> -->
+    </div>
+  </section>
+
+  <!-- ======= Cta Section ======= -->
+  <section id="cta" class="cta">
+    <div class="container" data-aos="zoom-in">
+      <div class="scroll closeannounce">
+        <div *ngFor="let res of data; index as i">
+          <div *ngIf="i == selectedIndex && isAnnouncement">
+            <div class="text-center" id="ann1">
+              <h3>{{ res.announcement_heading }}</h3>
+            </div>
+
+            <div class="text-center">
+              <p class="test-space" style="font-size: larger;">{{ res["announcement"] }}</p>
+            </div>
+            <div class="text-center">
+              <img style="width: 376px;" [src]="imagelink"/>
+            </div>
+            <div class="text-center">
+            <a class="btn bg-transparent btn-large" (click)="closeAnnouncement()"
+              style="cursor: pointer; background-color:none;border: 2px solid #fff; font-weight: 500;  font-size: 18px; letter-spacing: 1px;display: inline-block;transition: 0.5s;  margin-top: 51px; "
+              i18n="@@close">Close</a>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Cta Section -->
+
+  <!-- ======= Services Section ======= -->
+  <!-- <section id="services" class="services">
+    <div class="container">
+      <div class="section-title">
+        <span i18n="@@userm" style="margin-top: 40px !important;">User Manual</span>
+        <h2 i18n="@@userm" style="margin-top: 40px !important;">User Manual</h2>
+      </div>
+
+      <div class="wrapper">
+        <owl-carousel-o [options]="customOptions">
+          <ng-template carouselSlide>
+            <div class="slide" data-interval="false" data-ride="carousel">
+
+              <div class="icon-box" (click)="appendpath(x.manual_path)" style="cursor: pointer !important;">
+                <div class="icon"><i class="bx bx-file"></i></div>
+                <h4>
+                  <a target="_blank">{{ x.manual_heading }}</a>
+                </h4>
+                <div>
+                  <a href="" style="color: black;">{{ x.manual_body }}</a>
+                </div>
+              </div>
+
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </section> -->
+  <!-- End Services Section -->
+  <div id="myModal" class="modal1">
+    <!-- Modal content -->
+    <div class="modal1-content row">
+      <div class="col-5">
+        <button class="look_for_box" (click)="firstmanual()" i18n="@@fowchart">
+          Flow chart of the application process for solid waste collection and public
+          cleaning services
+        </button>
+      </div>
+      <div class="col-5">
+        <button class="look_for_box1" (click)="secondmanual()" i18n="@@docu">
+          Document Checklist
+        </button>
+      </div>
+      <div class="col-2">
+        <h3><span class="close" style="font-size: 2rem; cursor: pointer;" (click)="close()">&times;</span></h3>
+      </div>
+    </div>
+  </div>
+
+
+  <section id="services" class="why-us1">
+    <div class="container ">
+      <div class="section-title">
+        <span i18n="@@userm" style="margin-top: 40px !important;">User Manual</span>
+        <h2 i18n="@@userm" style="margin-top: 40px !important;">User Manual</h2>
+      </div>
+      <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row">
+
+              <div class="slide col-md-6  d-flex align-items-stretch col">
+                <div class="box col-md-6 col-xs-12 col-md-12">
+                  <div class="announcement-img">
+                    <div class="announcement-icon1"><i class="bx bx-file" style="font-size: 30px;"></i>
+                    </div>
+                  </div>
+
+
+                  <button
+                    style="font-size: 18px !important;text-align: center;font-family: Arial, Helvetica, sans-serif;margin-top: 25%;border-style: none;background-color: white;"
+                    i18n="@@guidetoapp" (click)="manualurl()"><b>GUIDE TO APPLICATION FOR SOLID WASTE COLLECTION AND
+                      PUBLIC CLEANING
+                      SERVICES</b></button>
+
+
+                </div>
+              </div>
+              <div class="slide col-md-6   d-flex align-items-stretch col">
+                <div class="box col-md-6 col-xs-12 col-md-12">
+                  <div class="announcement-img">
+                    <div class="announcement-icon1"><i class="bx bx-file" style="font-size: 30px;"></i>
+                    </div>
+                  </div>
+
+                  <div style="text-align: center;">
+                    <button
+                      style="font-size: 18px !important;text-align: center;font-family: Arial, Helvetica, sans-serif;margin-top: 25%;border-style: none;background-color: white;"
+                      i18n="@@servare" (click)="manualurl2()"><b>SERVICE AREA
+                        SOLID WASTE COLLECTION AND PUBLIC CLEANING</b></button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Dbkl data -->
+  <section id="pricing1" class="pricing1">
+    <div class="container">
+      <div class="section-title">
+        <span i18n="@@statistik">Service Statistics</span>
+        <h2 i18n="@@statistik">Service Statistics</h2>
+        <!-- <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p> -->
+      </div>
+      <div class="row d-flex justify-content-center" style="row-gap: 15px;">
+        <div class="col-md-12 col-lg-3 col-md-3 col-xs-12 " data-aos="zoom-in">
+          <div class="box featured" style="background-color: #FFC800;">
+            <div class="row">
+              <div class="down col-7">
+                <h3 style="font-size: 24px">{{ dataget }} km<sup>2</sup></h3>
+                <br />
+                <h3 i18n="@@dd1">Total Service Area</h3>
+              </div>
+              <div class="down col-5">
+                <img class="logo-proses" src="assets/img/locations.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-lg-3 col-md-3 col-xs-12 " data-aos="zoom-in">
+          <div class="box featured" style="background-color: #0064F0;">
+            <div class="row">
+              <div class="down col-7">
+                <h3 style="font-size: 24px">{{ dataget1 }}</h3>
+                <br />
+                <h3 i18n="@@dd2">Number of Permits</h3>
+              </div>
+              <div class="down col-5">
+                <img class="logo-proses" src="assets/img/home.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-lg-3 col-md-3 col-xs-12 " data-aos="zoom-in" data-aos-delay="150">
+          <div class="box featured" style="background-color: #F01414;">
+            <!-- <h3></h3> -->
+            <div class="row">
+              <div class="down col-7">
+                <h3 style="font-size: 24px">{{ data2 }}</h3>
+                <br />
+                <h3 i18n="@@dd3">Total Public Cleansing</h3>
+              </div>
+              <div class="down col-5" style="margin-left: -5%">
+                <img class="logo-proses" src="assets/img/sweeper.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-lg-3 col-md-3 col-xs-12 " data-aos="zoom-in" data-aos-delay="150">
+          <div class="box featured" style="background-color: #33CC33;">
+            <div class="row">
+              <div class="down col-7">
+                <h3 style="font-size: 24px">{{ data3 }}</h3>
+                <br />
+                <h3 i18n="@@dd4">Total Garbage Collection</h3>
+              </div>
+              <div class="down col-5" style="margin-left: -5%">
+                <img class="logo-proses" src="assets/img/truck.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- End Services Section -->
+
+
+
+
+
+
+
+  <section id="portfolio" class="portfolio">
+    <div class="container">
+      <div class="section-title">
+        <span i18n="@@m1">Gallery</span>
+        <h2 i18n="@@m1">Gallery</h2>
+        <!-- <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p> -->
+      </div>
+      <owl-carousel-o [options]="customOptions1">
+        <ng-template carouselSlide *ngFor="let x of imagesArray; index as i">
+          <div class="slide">
+            <div class="col-lg col-md-6 portfolio-item filter-app">
+              <img  src="{{ baseUrl }}{{ x.photo_path }}" class="img-fluid" alt="" />
+              <!-- <div class="portfolio-info">
+
+                <a href="{{ baseUrl }}{{ x.photo_path }}" data-gall="portfolioGallery" class="venobox preview-link"
+                  title="App 1"><i class="bx bx-plus"></i></a>
+              </div> -->
+            </div>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+  </section>
+
+  <!-- ======= Team Section ======= -->
+  <!-- <section id="team" class="team">
+    <div class="container">
+      <div class="section-title">
+        <span i18n="@@m2">Profiles</span>
+        <h2 i18n="@@m2">Profiles</h2>
+      </div>
+
+      <div class="row">
+        <div class="col-lg col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
+          <div class="member">
+            <p i18n="@@v2">
+              Supervise and control the sanitation and hygiene of food premises
+              and public places.
+            </p>
+            <div class="social">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
+          <div class="member">
+            <p i18n="@@v4">
+              Monitor and control the quality of food and beverages through food
+              inspections, Example: Water and law enforcement.
+            </p>
+            <div class="social">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
+          <div class="member">
+            <p i18n="@@v6">Controlling infectious diseases.</p>
+            <div class="social">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
+          <div class="member">
+            <p i18n="@@v7">
+              Monitor and control vector -borne diseases and pests through
+              dengue and malaria control as well as pest control activities.
+            </p>
+            <div class="social">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
+          <div class="member">
+          
+            <p i18n="@@v8">
+              Supervise and control industries, trades and domestic activities
+              that have an impact on the environment.
+            </p>
+            <div class="social">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!-- End Team Section -->
+</main>
+<!-- End #main -->
+
+<app-footer></app-footer>
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a>

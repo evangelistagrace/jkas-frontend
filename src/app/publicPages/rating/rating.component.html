@@ -1,0 +1,110 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#253d84"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+>
+  
+</ngx-spinner>
+
+<div
+  class="modal fade bd-example-modal-md"
+  id="centralModalDanger"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-md modal-notify modal-danger" role="document">
+    <div class="modal-content" id="dvStats">
+      <div class="modal-header" style="height: 64px">
+        <h3 class="modal-title text-white">
+          <img
+            id="im"
+            src="../../../assets/img/DBKL LOGO.png"
+            width="42"
+            height="45"
+            class="d-inline-block align-top img"
+            alt=""
+            loading="lazy"
+          /><span class="tittle span" i18n="@@FEEDBACKFORM">Feedback form</span>
+        </h3>
+        <button
+          type="button"
+          class="close text-white"
+          (click)="logout()"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <a aria-hidden="true">&times;</a>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="text-center">
+          <section
+            class="inspecting"
+            id="inspecting"
+            
+          >
+            <div class="text-center">
+              <!-- <div class="section-title">
+                <h2 i18n="@@FEEDBACKFORM">Feedback form</h2>
+              </div> -->
+              <!-- <span style="color:#1111A3 ;font-weight: 600;">{{message}}</span> -->
+            </div>
+            <div class="text-center">
+              <div>
+                <textarea
+                  rows="3"
+                  placeholder="Sangat Baik!"
+                  [(ngModel)]="feedback"
+                ></textarea>
+              </div>
+              <div
+                [style.color]="
+                  index == 0
+                    ? '#be1100'
+                    : index == 1
+                    ? 'red'
+                    : index == 2
+                    ? '#f48771'
+                    : index == 3
+                    ? '#b89500'
+                    : 'green'
+                "
+              >
+                <ul style="padding-left: 0px !important">
+                  <li
+                    style="width: 60px !important"
+                    *ngFor="let i of arr; let in = index"
+                    [style.color]="in > index ? 'gray' : 'inherit'"
+                    (click)="onClickItem(in)"
+                  >
+                    <span style="font-size: 45px !important">&#9733;</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="text-center">
+              <div class="mt-1">
+                <button
+                  data-dismiss="modal"
+                  
+                  type="submit"
+                  class="look_for_red"
+                  (click)="sendratings()"
+                  i18n="@@sendfeedback"
+                >
+                  Send
+                </button>
+              </div>
+              <p class="mt-3"></p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

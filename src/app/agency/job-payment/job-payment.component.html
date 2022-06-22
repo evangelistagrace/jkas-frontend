@@ -1,0 +1,462 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+
+</ngx-spinner>
+<!-- Success Modal -->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" [ngStyle]="{ display: display }"
+  role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center">
+          <span class="dialog-msg" i18n="@@invsucc">{{ successmsg }}</span>
+        </h4>
+        <h6 class="text-center font-weight-bold">
+          <span i18n="@@inbois" style="font-weight: 500 !important">Invoice :&nbsp;</span><b>{{ npid1 }}</b><span
+            class="ml-2" i18n="@@kontractor" style="font-weight: 500 !important">Contractor :&nbsp;</span><b>{{
+            kontraktor1 }}</b>
+        </h6>
+        <div class="d-flex justify-content-center">
+          <button type="button" (click)="onCloseHandled1()" class="btn" style="
+background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+              color: white !important;
+              border-radius: 4px !important;
+            ">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Success Modal End -->
+<!-- Error Modal Start -->
+<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display1 }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-12">
+          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                class="swal2-x-mark-line-right"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h6 style="text-align: center">
+          <span class="h4" i18n="@@invoiceinfo3">{{ errormsg }}</span>
+          <!-- <br /><span class="h4" i18n="@@invoiceinfo4"> Please try again.</span> -->
+        </h6>
+
+        <div class="d-flex justify-content-center mt-4">
+          <button class="btn" (click)="onCloseHandled()" i18n="@@ok"
+            style="background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);border-radius:4px; color: white !important">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Error Modal End -->
+
+<app-topbar></app-topbar>
+
+<!-- Header Start -->
+<div class="container-fluid sticky-nav" id="" style="background-color: #F2F2F2 !important">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+
+
+      <button class="navbar-toggler border-white" type="button" style="
+          border: 1px solid white !important;
+          background-color: black !important;
+        " data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/agency" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color: #253d84 !important; cursor: pointer" routerLink="/agency/createinvoice"
+              i18n="@@jbpayclaim">
+              Job Payment Claim</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- Header End -->
+<main id="main">
+  <!-- ======= Services Section ======= -->
+  <section id="Work Payment Claims">
+    <div class="card">
+      <div class="section-title">
+        <span i18n="@@jbpayclaim">JOB PAYMENT CLAIMS</span>
+        <h2 i18n="@@jbpayclaim">JOB PAYMENT CLAIMS</h2>
+      </div>
+      <div class="container modal-dialog-centerd mt-5">
+        <div class="card-body">
+          <form>
+            <div [formGroup]="imageGroup">
+              <div class="card-title d-flex">
+                <img src="../../assets/img/logo.png" height="50" alt="" />
+                <h5 class="ml-2 mt-1" i18n="@@jpheading">
+                  SOLID WASTE MANAGEMENT SERVICES CLAIM FORM AND PUBLIC
+                  MANAGEMENT
+                </h5>
+              </div>
+              <div class="">
+                <p class="text-danger" i18n="@@forminfo">
+                  *Please fill in and make sure the information provided in the
+                  relevant field is correct
+                </p>
+              </div>
+              <div class="row">
+                <div class="col-sm-2 col-xs-2 ">
+                  <label for="namaPemohan" class="linerr" i18n="@@noinbois">No Invoices </label><span
+                    style="color: #253d84; width: 100%; font-size: large; padding-top: 1em"></span>
+                </div>
+                <div class="col-sm-9 col-xs-9 ">
+                  <input type="text" id="namaPemohan" style="width: 100%;" readonly name="no_inbois"
+                    class="form-control mb-2" placeholder="" formControlName="noinvoicee" [(ngModel)]="no_inbois" />
+                </div>
+                <!-- <div *ngIf="submitted && f.noinvoice.errors" class="invalid-feedback">
+                  <div *ngIf="f.noinvoice.errors.required" class="errorMessage" i18n="@@jobfvm1">
+                    No Invoices is required
+                  </div>
+                </div> -->
+                <div class="col-sm-2">
+                  <label for="namaPemohan" class="linerr" i18n="@@kontractor"> Contractor </label><span
+                    style="color: #253d84; font-size: large;width: 100%; padding-top: 1em"></span>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" id="namaPemohan" style="width: 100%;" readonly name="kontraktor"
+                    class="form-control mb-2" placeholder="" formControlName="kontraktorr" [(ngModel)]="kontraktor" />
+                </div>
+                <!-- <div *ngIf="submitted && f.kontraktor.errors" class="invalid-feedback">
+                  <div *ngIf="f.kontraktor.errors.required" class="errorMessage" i18n="@@jobfvm2">
+                    Contractor is required
+                  </div>
+                  <div *ngIf="f.kontraktor.errors.pattern" class="errorMessage">
+                    <span i18n="@@invalidname2">Invaid Contractor Name</span>
+                  </div>
+                </div> -->
+
+                <div class="col-sm-2">
+                  <label for="namaPemohan" class="linerr" i18n="@@applicantname">Applicant Name </label>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" id="namaPemohan" style="width: 100%;" name="namaPemohan" class="form-control mb-2"
+                    placeholder="" formControlName="namaPemohan" [ngClass]="{
+                  'is-invalid': submitted && f.namaPemohan.errors
+                }" [(ngModel)]="nama_pemohon" />
+                  <!-- <div
+                  *ngFor="let validation of validation_messages.namaPemohan"
+                >
+                  <div
+                    class="error-msg text-danger"
+                    *ngIf="
+                      imageGroup
+                        .get('namaPemohan')
+                        .hasError(validation.type) &&
+                      (imageGroup.get('namaPemohan').dirty ||
+                        imageGroup.get('namaPemohan').touched)
+                    "
+                  >
+                    {{ validation.message }}
+                  </div>
+                </div> -->
+                  <div *ngIf="submitted && f.namaPemohan.errors" class="invalid-feedback">
+                    <div *ngIf="f.namaPemohan.errors.required" class="errorMessage" i18n="@@jobfvm3">
+                      Application Name is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-2">
+                  <label for="eMel" class="linerr" i18n="@@email"> Email </label>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" id="eMel" name="eMel" style="width: 100%;" class="form-control mb-2" placeholder=""
+                    formControlName="eMel" [(ngModel)]="emal" [ngClass]="{
+                  'is-invalid': submitted && f.eMel.errors
+                }" />
+                </div>
+                <!-- <div *ngFor="let validation of validation_messages.eMel">
+                  <div
+                    class="error-msg text-danger"
+                    *ngIf="
+                      imageGroup.get('eMel').hasError(validation.type) &&
+                      (imageGroup.get('eMel').dirty ||
+                        imageGroup.get('eMel').touched)
+                    "
+                  >
+                    {{ validation.message }}
+                  </div>
+                </div> -->
+                <div *ngIf="submitted && f.eMel.errors" class="invalid-feedback">
+                  <div *ngIf="f.eMel.errors.required" class="errorMessage" i18n="@@jobfvm5">
+                    Email is required
+                  </div>
+                  <div *ngIf="f.eMel.errors.pattern" i18n="@@jobfvm6" class="errorMessage">
+                    Email must be like this :- example@abc.com
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <label for="jumlahTuntutan" class="active linerr" i18n="@@totalclaims">Total Claims </label>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" id="jumlahTuntutan" style="width: 100%;" name="jumlahTuntutan"
+                    class="form-control mb-2" placeholder="" formControlName="jumlahTuntutan"
+                    [(ngModel)]="jumlah_tuntutan" [ngClass]="{
+                  'is-invalid': submitted && f.jumlahTuntutan.errors
+                }" />
+                </div>
+                <!-- <div
+                  *ngFor="
+                    let validation of validation_messages.jumlahTuntutan
+                  "
+                >
+                  <div
+                    class="error-msg text-danger"
+                    *ngIf="
+                      imageGroup
+                        .get('jumlahTuntutan')
+                        .hasError(validation.type) &&
+                      (imageGroup.get('jumlahTuntutan').dirty ||
+                        imageGroup.get('jumlahTuntutan').touched)
+                    "
+                  >
+                    {{ validation.message }}
+                  </div>
+                </div> -->
+                <div *ngIf="submitted && f.jumlahTuntutan.errors" class="invalid-feedback">
+                  <div *ngIf="f.jumlahTuntutan.errors.required" class="errorMessage" i18n="@@jobfvm7">
+                    Total Claims is required
+                  </div>
+                  <div *ngIf="f.jumlahTuntutan.errors.pattern" class="errorMessage" i18n="@@jobpay">
+                    Must Contain Numeric Value
+                  </div>
+                </div>
+              </div>
+              <table class="mt-3 table border border-light">
+                <th class="h6 bgcolorhead" i18n="@@uploadinfo">
+                  Please upload documents as follows
+                </th>
+                <th class="bgcolorhead"> </th>
+                <tbody class="">
+                  <tr>
+                    <td style="font-weight: normal">
+                      <span i18n="@@inbois">Invoice</span><span style="
+                          color: #253d84;
+                          font-size: large;
+                          padding-top: 1em;
+                        ">*</span>
+                    </td>
+
+                    <td>
+                      <label class="custom-file-upload">
+                        <input type="file" ng2FileSelect accept=".pdf" [uploader]="uploader" multiple
+                          formControlName="file" [ngClass]="{
+                            'is-invalid': submitted && f.file.errors
+                          }" />
+                        <div *ngIf="submitted && f.file.errors" class="invalid-feedback">
+                          <div style="color: red !important;" *ngIf="f.file.errors.required"
+                            class="text-white font-italic font-weight-bold" i18n="@@jobfvm8">
+                            File is required
+                          </div>
+                        </div>
+
+                        <i class="fa fa-cloud-upload"></i>
+                      </label><br />
+                      <span *ngFor="let data of FileArray; index as i">
+                        <a class="filename" style="color: black" target="_blank" *ngIf="showfiles"
+                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}">{{ data }}<br /></a>
+                      </span>
+                      <!-- <input
+                        type="button"
+                        class="btn btn-outline-dark"
+                        value="Maut Naik Dokumen"
+                      /> -->
+                      <br />
+
+                      <table>
+                        <tbody style="font-size: x-small; padding-right: 5px">
+                          <tr *ngFor="let item of uploader.queue" style="overflow-x: scroll">
+                            <th width="" style="font-size: 15px; font-weight: 700">
+                              <span>{{ item.file.name }}({{
+                                item.file.size / 1000000
+                                }}
+                                MB)</span>
+                              <span class="text-center">
+                                <i style="
+                                    cursor: pointer;
+                                    font-size: 15px;
+                                    font-weight: 700;
+                                  " class="fa fa-trash" (click)="item.remove()" aria-hidden="true"></i></span>
+                            </th>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: normal">
+                      <span i18n="@@summaryreport"> Summary Report</span>
+                      <span style="
+                          color: #253d84;
+                          font-size: large;
+                          padding-top: 1em;
+                        ">*</span>
+
+                      <br />(<span i18n="@@serviceandareacost">Please specify area, service and cost service</span>)
+                    </td>
+
+                    <td>
+                      <label class="custom-file-upload">
+                        <input type="file" ng2FileSelect accept=".pdf" [uploader]="uploader1" multiple
+                          formControlName="file1" [ngClass]="{
+                            'is-invalid': submitted && f.file1.errors
+                          }" />
+                        <div *ngIf="submitted && f.file1.errors" class="invalid-feedback">
+                          <div style="color: red !important;" *ngIf="f.file1.errors.required"
+                            class="text-white font-italic font-weight-bold" i18n="@@jobfvm8">
+                            File is required
+                          </div>
+                        </div>
+                        <i class="fa fa-cloud-upload"></i>
+                      </label>
+
+                      <br />
+                      <span *ngFor="let data of FileArray1">
+                        <a class="filename" style="color: black" target="_blank" *ngIf="showfiles"
+                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}">{{ data }}<br /></a>
+                      </span>
+                      <!-- <input
+                            type="button"
+                            class="btn btn-outline-dark"
+                            value="Maut Naik Dokumen"
+                          /> -->
+                      <br />
+
+                      <table>
+                        <tbody style="font-size: x-small; padding-right: 5px">
+                          <tr *ngFor="let item of uploader1.queue">
+                            <th width="" style="font-size: 15px; font-weight: 700">
+                              <span>{{ item.file.name }}({{
+                                item.file.size / 1000000
+                                }}
+                                MB)</span>
+                              <span class="text-center">
+                                <i style="
+                                    cursor: pointer;
+                                    font-size: 15px;
+                                    font-weight: 700;
+                                  " class="fa fa-trash" (click)="item.remove()" aria-hidden="true"></i></span>
+                            </th>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: normal">
+                      <span i18n="@@attachment"> Attachment</span>
+                      <span style="
+                          color: #253d84;
+                          font-size: large;
+                          padding-top: 1em;
+                        ">*</span>
+                    </td>
+
+                    <td>
+                      <label class="custom-file-upload">
+                        <input type="file" ng2FileSelect accept=".pdf" [uploader]="uploader2" multiple
+                          formControlName="file2" [ngClass]="{
+                            'is-invalid': submitted && f.file2.errors
+                          }" />
+                        <div *ngIf="submitted && f.file2.errors" class="invalid-feedback">
+                          <div style="color: red !important;" *ngIf="f.file2.errors.required"
+                            class="text-white font-italic font-weight-bold" i18n="@@jobfvm8">
+                            File is required
+                          </div>
+                        </div>
+                        <i class="fa fa-cloud-upload"></i>
+                      </label>
+                      <br />
+                      <span *ngFor="let data of FileArray2">
+                        <a class="filename" style="color: black" *ngIf="showfiles" target="_blank"
+                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}">{{ data }}<br /></a>
+                      </span>
+                      <!-- <input
+                            type="button"
+                            class="btn btn-outline-dark"
+                            value="Maut Naik Dokumen"
+                          /> -->
+                      <br />
+
+                      <table>
+                        <tbody style="font-size: x-small; padding-right: 5px">
+                          <tr *ngFor="let item of uploader2.queue">
+                            <th width="" style="font-size: 15px; font-weight: 700">
+                              <span>{{ item.file.name }}({{
+                                item.file.size / 1000000
+                                }}
+                                MB)</span>
+                              <span class="text-center">
+                                <i style="
+                                    cursor: pointer;
+                                    font-size: 15px;
+                                    font-weight: 700;
+                                  " class="fa fa-trash" (click)="item.remove()" aria-hidden="true"></i></span>
+                            </th>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="btn-row d-flex justify-content-center">
+                <button type="button" class="look_for_red" (click)="comeback()" i18n="@@comeback">
+                  Comeback
+                </button>
+                <button type="button" class="look_for" (click)="CreateInvoice()" style="margin-left: 2em" i18n="@@done">
+                  Done
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+</main>
+<app-footer></app-footer>
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a>

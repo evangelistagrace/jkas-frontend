@@ -1,0 +1,26 @@
+<!-- <span hidden>{{data[0].maklum_balas_ketidakpatuhan}}</span> -->
+
+<div *ngFor="let key of dataArray; index as i">
+  <div *ngIf="data[i].site_id == v">
+    <div *ngIf="key == ''; else files">
+      <label class="custom-file-upload" >
+        <input
+          type="file"
+          ng2FileSelect
+          accept=".pdf"
+          [uploader]="uploader"
+          multiple
+          (change)="uploadSubmit(data[i].site_id)"
+        />
+       <Span i18n="@@ud">Upload Document</Span>
+      </label>
+    </div>
+    <ng-template #files>
+      <a style="cursor: pointer;"
+        target="_blank"
+        (click)="getPdf(key)"
+        >{{ key }}</a
+      > <i id="trash" class="fa fa-trash" (click)="deleteData(data[i].site_id)" aria-hidden="true"></i>
+    </ng-template>
+  </div>
+</div>

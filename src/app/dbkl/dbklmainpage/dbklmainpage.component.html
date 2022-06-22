@@ -1,0 +1,282 @@
+<app-topbar></app-topbar>
+<app-header></app-header>
+<main class="page1">
+  <section id="Pentadbir" class="why-us" *ngIf="userrole == 'Superadmin'||userrole =='Admin'">
+    <div class="row justify-content-center">
+      <div class="col-lg-2 col-xs-12" data-aos="fade-up" routerLink="/dbkl/dbkldata" (click)="getUser('admincounter')">
+        <div class="box">
+          <div class="d-flex justify-content-center">
+            <img class="img2" src="./assets/img/ICON(PENTADBIR).png" alt="" />
+          </div>
+          <h4 class="text-center" style="cursor: pointer;" i18n="@@main29">ADMIN-COUNTER</h4>
+          <!-- <div class="d-flex justify-content-center">
+              <a routerLink="/dbkl/dbkldata" class="btn-get-started admincounter scrollto"
+                (click)="getUser('admincounter')" i18n="@@main30">Get Started</a>
+            </div> -->
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-xs-12" data-aos="fade-up" data-aos-delay="150" routerLink="/dbkl/inventorymap"
+        (click)="getUser('financial')">
+        <div class="box">
+          <div class="d-flex justify-content-center">
+            <img class="img2" src="./assets/img/ICON(INVENTORI DATA).png" alt="" />
+          </div>
+          <h4 class="text-center" style="cursor: pointer;" i18n="@@main31">INVENTORY DATA</h4>
+          <!-- <div class="d-flex justify-content-center">
+              <a
+                routerLink="/dbkl/mapview"
+                class="btn-get-started inventorydata scrollto"
+                (click)="getUser('financial')"
+                i18n="@@main30"
+                >Get Started</a
+              >
+            </div> -->
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-xs-12" data-aos="fade-up" data-aos-delay="150" routerLink="/dbkl/mapview"
+        (click)="getUser('financial')">
+        <div class="box">
+          <div class="d-flex justify-content-center">
+            <img class="img2" src="./assets/img/ICON(PERMANTAUAN LAPANGAN).png" alt="" />
+          </div>
+          <h4 class="text-center" style="cursor: pointer;" i18n="@@main32">FIELD MONITOR</h4>
+          <!-- <div class="d-flex justify-content-center">
+              <a routerLink="/dbkl/mapview" class="btn-get-started fieldmonitor scrollto" (click)="getUser('financial')"
+                i18n="@@main30">Get Started</a>
+            </div> -->
+        </div>
+      </div>
+      <div class="col-lg-2 col-xs-12" data-aos="fade-up" data-aos-delay="300" routerLink="/dbkl/claim-review"
+        (click)="getUser('financial')">
+        <div class="box">
+          <div class="d-flex justify-content-center">
+            <img class="img2" src="./assets/img/ICON(KEWANGAN).png" alt="" />
+          </div>
+          <h4 class="text-center" style="cursor: pointer;" i18n="@@main33">FINANCIAL</h4>
+          <!-- <div class="d-flex justify-content-center">
+              <a routerLink="/dbkl/claim-review" class="btn-get-started financial scrollto"
+                (click)="getUser('financial')" i18n="@@main30">Get Started</a>
+            </div> -->
+        </div>
+      </div>
+      <div class="col-lg-2 col-xs-12" data-aos="fade-up" data-aos-delay="300" routerLink="/dbkl/barchart"
+        (click)="getUser('financial')">
+        <div class="box">
+          <div class="d-flex justify-content-center">
+            <img class="img2" src="./assets/img/ICON (ANALISIS & LAPORAN).png" alt="" />
+          </div>
+
+          <h4 class="text-center" style="cursor: pointer;" i18n="@@n25">ANALYSIS & REPORT</h4>
+          <!-- <div class="d-flex justify-content-center">
+              <a routerLink="/dbkl/barchart" class="btn-get-started analysis scrollto" (click)="getUser('financial')"
+                i18n="@@main30">Get Started</a>
+            </div> -->
+        </div>
+      </div>
+    </div>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+      [fullScreen]="true">
+
+    </ngx-spinner>
+
+  </section>
+
+  <section id="Pentadbir" class="why-us" *ngIf="userrole == 'Kewangan'">
+    <div class="row justify-content-center">
+      <div class="col-lg-2 col-xs-12" data-aos="fade-up" data-aos-delay="150" routerLink="/dbkl/inventorymap"
+        (click)="getUser('financial')">
+        <div class="box">
+          <div class="d-flex justify-content-center">
+            <img class="img2" src="./assets/img/ICON(INVENTORI DATA).png" alt="" />
+          </div>
+          <h4 class="text-center" style="cursor: pointer;" i18n="@@main31">INVENTORY DATA</h4>
+          <!-- <div class="d-flex justify-content-center">
+              <a
+                routerLink="/dbkl/mapview"
+                class="btn-get-started inventorydata scrollto"
+                (click)="getUser('financial')"
+                i18n="@@main30"
+                >Get Started</a
+              >
+            </div> -->
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-xs-12" data-aos="fade-up" data-aos-delay="150" routerLink="/dbkl/mapview"
+        (click)="getUser('financial')">
+        <div class="box">
+          <div class="d-flex justify-content-center">
+            <img class="img2" src="./assets/img/ICON(PERMANTAUAN LAPANGAN).png" alt="" />
+          </div>
+          <h4 class="text-center" style="cursor: pointer;" i18n="@@main32">FIELD MONITOR</h4>
+          <!-- <div class="d-flex justify-content-center">
+              <a routerLink="/dbkl/mapview" class="btn-get-started fieldmonitor scrollto" (click)="getUser('financial')"
+                i18n="@@main30">Get Started</a>
+            </div> -->
+        </div>
+      </div>
+      <div class="col-lg-2 col-xs-12" data-aos="fade-up" data-aos-delay="300" routerLink="/dbkl/claim-review"
+        (click)="getUser('financial')">
+        <div class="box">
+          <div class="d-flex justify-content-center">
+            <img class="img2" src="./assets/img/ICON(KEWANGAN).png" alt="" />
+          </div>
+          <h4 class="text-center" style="cursor: pointer;" i18n="@@main33">FINANCIAL</h4>
+          <!-- <div class="d-flex justify-content-center">
+              <a routerLink="/dbkl/claim-review" class="btn-get-started financial scrollto"
+                (click)="getUser('financial')" i18n="@@main30">Get Started</a>
+            </div> -->
+        </div>
+      </div>
+      <div class="col-lg-2 col-xs-12" data-aos="fade-up" data-aos-delay="300" routerLink="/dbkl/barchart"
+        (click)="getUser('financial')">
+        <div class="box">
+          <div class="d-flex justify-content-center">
+            <img class="img2" src="./assets/img/ICON (ANALISIS & LAPORAN).png" alt="" />
+          </div>
+
+          <h4 class="text-center" style="cursor: pointer;" i18n="@@n25">ANALYSIS & REPORT</h4>
+          <!-- <div class="d-flex justify-content-center">
+              <a routerLink="/dbkl/barchart" class="btn-get-started analysis scrollto" (click)="getUser('financial')"
+                i18n="@@main30">Get Started</a>
+            </div> -->
+        </div>
+      </div>
+    </div>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+      [fullScreen]="true">
+
+    </ngx-spinner>
+
+  </section>
+
+  <section id="Pentadbir" class="why-us">
+    <div class="row justify-content-center">
+      <div class="col-lg-2 col-xs-12" style="cursor: pointer;" *ngIf="userrole == 'Pentadbir'" data-aos="fade-up"
+        routerLink="/dbkl/dbkldata" (click)="getUser('admincounter')">
+        <div class="box">
+          <div class="d-flex justify-content-center">
+            <img class="img2" src="./assets/img/ICON(PENTADBIR).png" alt="" />
+          </div>
+          <h4 class="text-center" style="cursor: pointer;" i18n="@@main29">ADMIN-COUNTER</h4>
+          <!-- <div class="d-flex justify-content-center">
+              <a routerLink="/dbkl/dbkldata" class="btn-get-started admincounter scrollto"
+                (click)="getUser('admincounter')" i18n="@@main30">Get Started</a>
+            </div> -->
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-xs-12" style="cursor: pointer;" *ngIf="userrole == 'Inventori'" data-aos="fade-up"
+        data-aos-delay="150" routerLink="/dbkl/inventorymap" (click)="getUser('financial')">
+        <div class="box">
+          <div class="d-flex justify-content-center">
+            <img class="img2" src="./assets/img/ICON(INVENTORI DATA).png" alt="" />
+          </div>
+          <h4 class="text-center" style="cursor: pointer;" i18n="@@main31">INVENTORY DATA</h4>
+          <!-- <div class="d-flex justify-content-center">
+              <a
+                routerLink="/dbkl/mapview"
+                class="btn-get-started inventorydata scrollto"
+                (click)="getUser('financial')"
+                i18n="@@main30"
+                >Get Started</a
+              >
+            </div> -->
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-xs-12" style="cursor: pointer;" data-aos="fade-up" data-aos-delay="150"
+        routerLink="/dbkl/mapview" (click)="getUser('financial')">
+        <div class="box"
+          *ngIf=" userrole == 'Analisis,MerinyuMTB,MerinyuMTK' || userrole== 'MerinyuMTB'|| userrole== 'MerinyuMTK' ">
+          <div class="d-flex justify-content-center">
+            <img class="img2" src="./assets/img/ICON(PERMANTAUAN LAPANGAN).png" alt="" />
+          </div>
+          <h4 class="text-center" style="cursor: pointer;" i18n="@@main32">FIELD MONITOR</h4>
+          <!-- <div class="d-flex justify-content-center">
+              <a routerLink="/dbkl/mapview" class="btn-get-started fieldmonitor scrollto" (click)="getUser('financial')"
+                i18n="@@main30">Get Started</a>
+            </div> -->
+        </div>
+      </div>
+
+
+      <div class="col-lg-2 col-xs-12" style="cursor: pointer;" data-aos="fade-up" data-aos-delay="300"
+        routerLink="/dbkl/barchart" (click)="getUser('financial')">
+        <div class="box" *ngIf=" userrole == 'Analisis,MerinyuMTB,MerinyuMTK' || userrole == 'Analisis'">
+          <div class="d-flex justify-content-center">
+            <img class="img2" src="./assets/img/ICON (ANALISIS & LAPORAN).png" alt="" />
+          </div>
+
+          <h4 class="text-center" style="cursor: pointer;" i18n="@@n25">ANALYSIS & REPORT</h4>
+          <!-- <divisibleby class="d-flex justify-content-center">
+              <a routerLink="/dbkl/barchart" class="btn-get-started analysis scrollto" (click)="getUser('financial')"
+                i18n="@@main30">Get Started</a>
+            </div> -->
+        </div>
+      </div>
+    </div>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+      [fullScreen]="true">
+
+    </ngx-spinner>
+
+  </section>
+
+
+
+  <section id="home" class="inner-page">
+
+    <!-- <div class="page1"></div> -->
+    <!-- <div class="page2wrapper"> -->
+    <!-- <div class="page2">
+      <div class="content">
+        <h1 i18n="@@deptofhe">DEPARTMENT OF HEALTH AND ENVIRONMENT</h1>
+        <h4 i18n="@@main28">
+          Towards making the city of Kuala Lumpur healthy and prosperous.
+        </h4>
+        <h5 i18n="@@infomain" style="display: inline-block !important">
+          Currently you have access to above DBKL modules. To gain access to other modules please send an email to
+        </h5>
+        <a style="
+                color: white;
+                margin-left: 5px;
+                display: inline-block;
+                font-weight: 500;
+              " href="mailto:{{ email }}"><u>{{ email }}</u></a>
+      </div>
+    </div> -->
+
+    <!-- </div> -->
+    <!-- <div class="page2wrapper page2wrapper2">
+        <div class="page2 mm">
+          <div class="content">
+            <h5 i18n="@@infomain" style="display: inline-block !important">
+              Currently you have access to above DBKL modules. To gain access to other modules please send an email to
+            </h5>
+            <a style="
+                color: white;
+                margin-left: 5px;
+                display: inline-block;
+                font-weight: 500;
+              " href="mailto:{{ email }}"><u>{{ email }}</u></a>
+          </div>
+        </div>
+      </div> -->
+
+
+  </section>
+  <!-- End -->
+
+
+  <!-- End Why Us Section -->
+</main>
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a>

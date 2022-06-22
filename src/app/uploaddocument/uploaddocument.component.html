@@ -1,0 +1,15 @@
+
+<div *ngFor="let key of dataArray; index as i">
+    <div *ngIf="data[i].no_siri_permohonan == v">
+        <div *ngIf="key == ''||key==null; else files">
+            <label class="custom-file-upload">
+                <input type="file" ng2FileSelect accept=".pdf" [uploader]="uploader" multiple
+                    (change)="uploadSubmit(data[i].no_siri_permohonan)" />
+                <i class="fa fa-cloud-upload"></i>
+            </label>
+        </div>
+        <ng-template #files>
+            <a target="_blank" href="{{ url }}/jkas_resourses/public/pdfs/{{ key }}">{{ key }}</a>
+        </ng-template>
+    </div>
+</div>

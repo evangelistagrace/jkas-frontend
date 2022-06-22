@@ -1,0 +1,24 @@
+<div *ngFor="let key of dataArray; index as i">
+  <div *ngIf="data[i].site_id == keyValue">
+    <div *ngIf="key == ''; else files">
+      <label class="custom-file-upload">
+        <!-- <input   type="file" ng2FileSelect accept=".pdf" [uploader]="uploader" multiple 
+          (change)="uploadSubmit(data[i].site_id)" />
+        <i  class="fa fa-cloud-upload"></i> -->
+        <button type="button" style="
+            background-color: #253d84;
+            border: none;
+            outline: none;
+            
+          ">
+          <a style="color: white; text-decoration: none"
+            href="/{{ lang }}/dbkl/addnoncompliance?id={{ data[i].site_id }}"> <i class="fa fa-cloud-upload"></i> </a>
+
+        </button>
+      </label>
+    </div>
+    <ng-template #files>
+      <a target="_blank" href="/{{ lang }}/dbkl/dbklnoncompliance?id={{ data[i].site_id }}">{{ key }}</a>
+    </ng-template>
+  </div>
+</div>

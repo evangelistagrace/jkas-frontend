@@ -1,0 +1,123 @@
+<!-- ======= Top Bar ======= -->
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  
+</ngx-spinner>
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<app-headerc></app-headerc>
+<!-- End of Header -->
+<main>
+
+
+  <section class="inspecting" id="inspecting">
+    <div class="card" style="box-shadow: 0 0 30px rgb(214 215 216 / 60%);">
+
+      <div class=" text-center">
+        <div class="d-flex justify-content-center">
+          <img class="logo-proses" src="../../../assets/img/logo.png " height="100" alt="" />
+        </div>
+        <div class="section-title">
+          <span i18n="@@n76">List of lower level inspecting officers</span>
+          <h2 i18n="@@n76">List of lower level inspecting officers</h2>
+        </div>
+      </div>
+      <br />
+
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <label for="select" i18n="@@parliamen">
+                  Parliament :
+                </label>
+                <select class=" form-control mb-4" style="width: 200px;">
+                  <option value="Batu" i18n="@@n46">Stone</option>
+                  <option value="Batu">Kepong</option>
+                </select>
+
+                <!-- <input type="text" id="txt_searchall" placeholder="Enter search text" />&nbsp; -->
+              </div>
+              <div class="col">
+                <label for="text">
+                  ID MTB :
+                </label>
+                <input type="text" id="txt_searchall" placeholder="Enter search text" class=" form-control"
+                  style="width: 200px;" />&nbsp;
+                <!-- <select id="yearOfApplication" class=" form-control" style="width: 200px;">
+                                    <option>Batu</option>
+                                    <option>Kepong</option>
+                                </select> -->
+              </div>
+
+            </div>
+
+            <div class="row-10" style="margin-top: 10px;width: 93%;">
+
+
+              <table class="table table-bordered table-striped table-hover table-condensed " id="table-id">
+                <thead>
+                  <tr style="background-color: #253d84;color: white;font-weight: normal !important;">
+                    <th class="text-center" id="rowhead">Bill.</th>
+                    <th class="text-center" id="rowhead">ID MTB</th>
+                    <th class="text-center" id="rowhead" i18n="@@parliamen">Parliament</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody">
+                  <tr *ngFor="let key of data | paginate: { itemsPerPage: 5, currentPage: p }">
+                    <td style="text-align: center;">{{key.officer_id}}</td>
+                    <td style="text-align: center;"><a (click)="date(key.id_mtb)" style="color: blue;cursor: pointer;">
+                        {{key.id_mtb}}
+                      </a></td>
+                    <td style="text-align: center;">{{key.parlimen}}</td>
+
+                  </tr>
+
+                </tbody>
+              </table>
+              <div class="pagination">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <label for="select">
+
+                  MTB :
+                </label>
+                <input type="text" [(ngModel)]="mtb" class=" form-control mb-4" style="width: 250px;" readonly>
+                   </div>
+              <div class="col">
+                <label for="text" i18n="@@n77">
+                  Date And Month:
+                </label>
+                <input type="datetime-local" id="datem" class=" form-control mb-4" style="width: 250px;"
+                  [(ngModel)]="datevalue" (change)="chang()">
+              </div>
+            </div>
+            <div class="row-10" style="margin-top: 10px;width: 93%;" *ngIf="show==true">
+              <div class="card" style="overflow-x: scroll">
+                <ng2-smart-table [settings]="settings1" [source]="value4">
+                </ng2-smart-table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <app-footer></app-footer>
+  <!-- End Footer -->
+
+  <a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i class="icofont-scroll-double-up"></i></a>

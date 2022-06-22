@@ -1,0 +1,302 @@
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2;">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand text-white">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+      </a>
+
+      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
+        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul *ngIf="isAdminType == 'admincounter'" class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item dropdown" id="user">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n29">
+              ADMIN-COUNTER
+            </a>
+
+            <div class="dropdown-menu">
+              <a class="dropdown-item" routerLink="/dbkl/dbkldata" (click)="getUser('admincounter')"
+                style="color: white ; cursor: pointer" i18n="@@n1">Main Page</a>
+              <a routerLink="/dbkl/usermanagement" class="dropdown-item" (click)="getUser('admincounter')"
+                style="color: white ; cursor: pointer" i18n="@@n2">User Management</a>
+              <a routerLink="/dbkl/applicationprocess" class="dropdown-item" (click)="getUser('admincounter')"
+                style="color: white ; cursor: pointer" i18n="@@mainppss">Review of PPSPPA APPLICATION</a>
+              <a routerLink="/dbkl/inventorymanage" class="dropdown-item" (click)="getUser('admincounter')"
+                style="color: white ; cursor: pointer" i18n="@@n4">Inventory Management</a>
+              <a routerLink="/dbkl/emeeting" class="dropdown-item" (click)="getUser('admincounter')"
+                style="color: white ; cursor: pointer" i18n="@@n5">E-Meeting</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+              {{ username }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a routerLink="/profileLog" class="dropdown-item" style="color: white ; cursor: pointer"
+                i18n="@@dbklhderprofile">Profile</a>
+              <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
+                i18n="@@jflogout">Logout</a>
+            </div>
+          </li>
+          <!-- <li class="nav-item">
+                        <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: white; cursor: pointer" i18n="@@home">Home</a
+            >
+          </li>
+
+          <li class="nav-item" style="cursor: pointer">
+            <a
+              class="nav-link"
+              routerLink="/dbkl/mapview"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: white"
+              i18n="@@n1"
+              >Main Page</a
+            >
+          </li>
+          <li class="nav-item dropdown" style="cursor: pointer">
+            <a
+              routerLink="/dbkl/usermanagement"
+              class="nav-link"
+              style="color: white"
+              i18n="@@n2"
+              >User Management</a
+            >
+          </li>
+          <li class="nav-item dropdown" style="cursor: pointer">
+            <a
+              routerLink="/dbkl/applicationprocess"
+              class="nav-link"
+              style="color: white"
+              i18n="@@main3"
+              >Review of PPSPPA APPLICATION</a
+            >
+          </li>
+          <li class="nav-item dropdown" style="cursor: pointer">
+            <a
+              routerLink="/dbkl/inventorymanage"
+              class="nav-link"
+              style="color: white"
+              i18n="@@n4"
+              >Inventory Management</a
+            >
+          </li>
+          <li class="nav-item dropdown" style="cursor: pointer">
+            <a
+              routerLink="/dbkl/emeeting"
+              class="nav-link"
+              style="color: white"
+              i18n="@@n5"
+              >E-Meeting</a
+            >
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: white; cursor: pointer"
+            >
+              {{ username }}
+            </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer" i18n="@@dbklhderprofile">Profile</a
+              >
+              <a
+                class="dropdown-item"
+                (click)="logout()"
+                style="color: white; cursor: pointer"
+                i18n="@@jflogout"
+                >Logout</a
+              >
+            </div>
+          </li> -->
+        </ul>
+        <!-- For Inventory Data  -->
+        <ul *ngIf="isAdminType == 'financial'" class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li>
+
+          <li class="nav-item dropdown" id="user">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer" i18n="@@n6">
+              INVENTORY DATA
+            </a>
+
+            <div class="dropdown-menu">
+              <a class="dropdown-item" routerLink="/dbkl/mapview" (click)="getUser('financial')"
+                style="color: white; cursor: pointer" i18n="@@n1">Main Page</a>
+              <a routerLink="/dbkl/omplama" class="dropdown-item" (click)="getUser('financial')"
+                style="color: white; cursor: pointer" i18n="@@n8">OMP Lama</a>
+              <a routerLink="/dbkl/ompbaru" class="dropdown-item" (click)="getUser('financial')"
+                style="color: white; cursor: pointer" i18n="@@n9">New OMP</a>
+              <a routerLink="/dbkl/inactivearea" class="dropdown-item" (click)="getUser('financial')"
+                style="color: white; cursor: pointer" i18n="@@insmall">Inactive Areas</a>
+            </div>
+          </li>
+
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: white; cursor: pointer">
+              {{ username }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
+                i18n="@@Profile">Profile</a>
+              <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
+                i18n="@@jflogout">Logout</a>
+            </div>
+          </li> -->
+        </ul>
+        <!-- For Field Monitor -->
+        <ul *ngIf="isAdminType == 'financial'" class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <!-- <li class="nav-item">
+            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: white; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n11">
+              MTB
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" i18n="@@n12" routerLink="/dbkl/mapview">Map View</a>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle" style="color: white; cursor: pointer" i18n="@@n15">Field Form</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a routerLink="/dbkl/mtbwork-form" class="dropdown-item" i18n="@@n13">Work Form</a>
+              </li>
+              <li>
+                <a routerLink="/dbkl/mtbcompoundform" class="dropdown-item" i18n="@@n14">Compound Form</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle" style="color: white; cursor: pointer" i18n="@@n16">Work Log</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a routerLink="/dbkl/mtbwork-log" class="dropdown-item" i18n="@@n17">Daily Work / Complaints</a>
+              </li>
+              <li>
+                <a routerLink="/dbkl/mtblistofcompound" class="dropdown-item" i18n="@@n18">List of Compounds</a>
+              </li>
+            </ul>
+          </li>
+      </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer" i18n="@@n19">
+          MTK
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" style="color: white; cursor: pointer" routerLink="/dbkl/mapview"
+            i18n="@@n20">Monitoring MTK</a>
+          <a routerLink="/dbkl/mtbcompoundform" class="dropdown-item" i18n="@@n14" style="cursor: pointer;">Compound
+            Form</a>
+          <a routerLink="/dbkl/inspectingofficers" class="dropdown-item" style="color: white; cursor: pointer"
+            i18n="@@n21">Work MTB</a>
+          <a routerLink="/dbkl/mtblistofcompound" class="dropdown-item" style="color: white; cursor: pointer"
+            i18n="@@n22">Compound MTB</a>
+        </div>
+      </li>
+
+      <!-- <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style="color: white; cursor: pointer">
+          {{ username }}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
+            i18n="@@Profile">Profile</a>
+          <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer" i18n="@@jflogout">Logout</a>
+        </div>
+      </li> -->
+      </ul>
+      <!-- For Financial  -->
+      <ul *ngIf="isAdminType == 'financial'" class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <!-- <li class="nav-item">
+          <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: white; cursor: pointer"
+            i18n="@@home">Home</a>
+        </li> -->
+        <li class="nav-item dropdown" id="user">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer" i18n="@@n23">
+            FINANCIAL
+          </a>
+
+          <div class="dropdown-menu">
+            <a routerLink="/dbkl/claim-review" class="dropdown-item" (click)="getUser('financial')"
+              style="color: white; cursor: pointer" i18n="@@n24">Review of Dataman Financial Claims
+            </a>
+          </div>
+        </li>
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="color: white; cursor: pointer">
+            {{ username }}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
+              i18n="@@Profile">Profile</a>
+            <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
+              i18n="@@jflogout">Logout</a>
+          </div>
+        </li> -->
+      </ul>
+      <!-- For Analysis and Reporting  -->
+      <ul *ngIf="isAdminType == 'financial'" class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <!-- <li class="nav-item">
+          <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: white; cursor: pointer"
+            i18n="@@home">HOME</a>
+        </li> -->
+        <li class="nav-item dropdown" id="user">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer" i18n="@@n25">
+            ANALYSIS & REPORTING
+          </a>
+          <div class="dropdown-menu">
+            <a routerLink="/dbkl/barchart" class="dropdown-item" (click)="getUser('financial')"
+              style="color: white; cursor: pointer" i18n="@@n26">Inventory Analysis</a>
+
+            <a class="dropdown-item" routerLink="/dbkl/merinyuanalysis" (click)="getUser('financial')"
+              style="color: white; cursor: pointer" i18n="@@n27">Merinyu Analysis</a>
+            <a class="dropdown-item" routerLink="/dbkl/compoundanalysis" (click)="getUser('financial')"
+              style="color: white; cursor: pointer" i18n="@@ana">Compound Analysis</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+            {{ username }}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
+              i18n="@@Profile">Profile</a>
+            <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
+              i18n="@@jflogout">Logout</a>
+          </div>
+        </li>
+      </ul>
+  </div>
+  </nav>
+</div>
+</div>

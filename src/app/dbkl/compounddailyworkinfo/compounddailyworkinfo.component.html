@@ -1,0 +1,221 @@
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<app-headerc></app-headerc>
+<!-- End of Header -->
+
+<main id="main">
+    <section class="inspecting" id="inspecting">
+        <div class="card" style="box-shadow: 0 0 30px rgb(214 215 216 / 60%)">
+            <div class="text-center">
+                <div class="d-flex justify-content-center" style="margin-top: 40px"></div>
+                <div class="section-title">
+                    <!-- <span>PROSES PERMOHONAN PPSSPPA</span>
+                    <h2>PROSES PERMOHONAN PPSSPPA</h2> -->
+                    <span>Daily work information of the complaint</span>
+                    <h2>Daily work information of the complaint</h2>
+                </div>
+            </div>
+            <br />
+            <div class="container-fluid row input d-flex justify-content-center">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                    <label class="form-check-label" for="inlineRadio1">Map View</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                    <label class="form-check-label" for="inlineRadio1">Table View</label>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button printSectionId="main" [useExistingCss]="true" ngxPrint type="button" style="border: 1px solid transparent; background: transparent">
+          <i
+            style="
+              font-size: 30px;
+              color: #253d84;
+              cursor: pointer;
+              float: right;
+              margin-top: -6em;
+              margin-right: -1em;
+            "
+            id="print"
+            class="fa fa-print"
+            aria-hidden="true"
+          ></i>
+        </button>
+            </div>
+
+            <div class="container-fluid row input d-flex justify-content-center">
+                <div class="col-md-5">
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-4 col-form-label">Lower Level Inspection ID :
+            </label>
+                        <input type="password" style="
+                width: 150px;
+                background: transparent;
+                outline: none;
+                border: none;
+                font-size: 10px;
+                font-weight: 700;
+              " class="form-control yearOfApplication" id="inputPassword" placeholder="{{ id }}" readonly />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">
+              Parliament:</label
+            >
+            <input
+              type="password"
+              style="
+                width: 100px;
+                background: none;
+                outline: none;
+                border: none;
+                font-size: 10px;
+                font-weight: 700;
+              "
+              class="form-control yearOfApplication"
+              id="inputPassword"
+              placeholder="{{ parliamen }}"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-3 col-form-label">
+              Date :</label
+            >
+            <input
+              type="password"
+              style="
+                width: 100px;
+                background: none;
+                outline: none;
+                border: none;
+                font-size: 10px;
+                font-weight: 700;
+              "
+              class="form-control yearOfApplication"
+              id="inputPassword"
+              placeholder="{{ date }}"
+              readonly
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="container row" style="margin-top: 20px">
+        <div class="col-md-3">
+          <label> Parliament </label>
+                        <select class="browser-default custom-select" id="select">
+            <option value="" disabled="" selected=""></option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+
+                        <label> Bulk Garbage </label>
+                        <select class="browser-default custom-select" id="select">
+            <option value="" disabled="" selected=""></option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label> Sweep</label><br />
+                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" /> The road<br />
+
+                        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" /> TPKK
+                        <br />
+
+                        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" /> Area/Parking
+                        <br />
+
+                        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" /> Bridges
+                    </div>
+                    <div class="col-md-3">
+                        <label> Location</label><br />
+
+                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" /> Bridges
+                        <br />
+
+                        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" /> Broadcast legs<br />
+
+                        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" /> Post Covered Legs<br />
+
+                        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" /> Bus/Taxi Station<br />
+
+                        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" /> Drain
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center form-group col-md-12">
+                            <button class="look_for" style="width: 148px !important; background-color: #253d84" type="submit">
+              Search
+            </button>
+                            <button class="look_for" style="
+                width: 148px !important;
+                margin-top: 20px;
+                background-color: #253d84;
+              " type="reset">
+              Reset
+            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12" style="margin-top: 30px">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127482.6881405034!2d101.6169488902334!3d3.138503559663121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc49c701efeae7%3A0xf4d98e5b2f1c287d!2sKuala%20Lumpur%2C%20Federal%20Territory%20of%20Kuala%20Lumpur%2C%20Malaysia!5e0!3m2!1sen!2sin!4v1616233167969!5m2!1sen!2sin"
+                        width="100%" height="450" style="border: 0" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <input type="text" id="txt_searchall" placeholder="Enter search text" style="width: 200px; margin: 1% auto" />&nbsp;
+                <div class="table-responsive col-md-12" style="margin-top: 30px">
+                    <table class="table table-bordered table-striped table-hover table-condensed" id="DyanmicTable">
+                        <thead>
+                            <tr style="
+                background-color: #253d84;
+                color: white;
+                font-weight: normal !important;
+              ">
+                                <th class="text-center" id="rowhead">Time</th>
+                                <th class="text-center" id="rowhead">location of complaint</th>
+                                <th class="text-center" id="rowhead">Investigation location</th>
+
+                                <th class="text-center" id="rowhead">Inquiry form</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <tr *ngFor="
+                let key of data | paginate: { itemsPerPage: 5, currentPage: p }
+              ">
+                                <td>{{ key.masa }}</td>
+                                <td>{{ key.lokasi_aduan }}</td>
+                                <td>{{ key.lokasi_siasatan }}</td>
+                                <td>
+                                    <a [routerLink]="['/dbkl/complaintinvestigation']" style="color: blue">{{ key.borang_siasatan }}</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+
+    <br />
+  </section>
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i class="icofont-scroll-double-up"></i></a>

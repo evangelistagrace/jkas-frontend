@@ -1,0 +1,195 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple" [fullScreen]="true">
+    
+</ngx-spinner>
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<app-headerc></app-headerc>
+<!-- End of Header -->
+<main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+
+    <!-- End Breadcrumbs -->
+
+    <section class="inspecting" id="inspecting">
+        <div class="card">
+            <div class="d-flex justify-content-end">
+                <button printSectionId="main" [useExistingCss]="true" ngxPrint type="button" style="border: 1px solid transparent; background: transparent">
+          <i
+            style="
+              font-size: 30px;
+              color: #253d84;
+              cursor: pointer;
+              float: right;
+            "
+            id="print"
+            class="fa fa-print"
+            aria-hidden="true"
+          ></i>
+        </button>
+            </div>
+            <div class="text-center">
+                <div class="d-flex justify-content-center" style="margin-top: 40px"></div>
+
+                <div class="section-title">
+                    <!-- <span>PROSES PERMOHONAN PPSSPPA</span>
+                  <h2>PROSES PERMOHONAN PPSSPPA</h2> -->
+                    <span i18n="@@dwi1">Complaint Daily Work Information</span>
+                    <h2 i18n="@@dwi1">Complaint Daily Work Information</h2>
+                </div>
+            </div>
+            <br />
+            <div class="container-fluid row input d-flex justify-content-center">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="2" />
+                    <label class="form-check-label" for="inlineRadio1" i18n="@@dwi2">Map View</label
+          >
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio1"
+            value="3"
+          />
+          <label class="form-check-label" for="inlineRadio1" i18n="@@dwi3"
+            >Table View</label
+          >
+        </div>
+      </div>
+      <div class="justify-content-center">
+        <div
+          class="container-fluid row input d-flex justify-content-center"
+          id="form1"
+        >
+          <div class="col-md-7">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-9 col-form-label"
+                ><span style="font-weight: 700" i18n="@@dwi4"
+                  >Lower Level (MTB) Inspection ID : </span
+                ><span
+                  style="font-size: 15px !important; font-weight: normal"
+                  >{{ id }}</span
+                >
+              </label>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-7 col-form-label">
+                <span style="font-weight: 700" i18n="@@parlim"
+                  >Parliament : </span
+                ><span
+                  style="font-size: 15px !important; font-weight: normal"
+                  >{{ parliamen }}</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-9 col-form-label">
+                <span style="font-weight: 700" i18n="@@date">Date : </span
+                ><span
+                  style="font-size: 15px !important; font-weight: normal"
+                  >{{ date }}</span
+                ></label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="desc" id="jkas2">
+          <div class="container row" style="margin-top: 20px" id="form1">
+            <div class="col-md-3">
+              <label i18n="@@dwi5"> Parliament </label>
+                    <select class="browser-default custom-select" (change)="selectChangeHandler($event)" id="select">
+                <option>Select the Parliament</option>
+                <option>Batu</option>
+                <option>Kepong</option>
+                <option>Segambut</option>
+                <option>Titiwangsa</option>
+                <option>Wangsa Maju</option>
+                <option>Setiawangsa</option>
+                <option>Bukit Bintang</option>
+                <option>Lembah Pantai</option>
+                <option>Cheras</option>
+                <option>Bandar Tun Razak</option>
+                <option>Seputeh</option>
+              </select>
+
+                    <label i18n="@@dwi8"> Location </label>
+                    <select class="browser-default custom-select" id="select">
+                <option value="" disabled="" selected=""></option>
+                <option *ngFor="let data1 of parliament">
+                  {{ data1 }}
+                </option>
+              </select>
+                </div>
+                <div class="col-md-3">
+                    <label i18n="@@dwi9"> Sweep</label><br />
+                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" i18n="@@dwi10" /> The road<br />
+
+                    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" /> TPKK
+                    <br />
+
+                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" i18n="@@dwi12" /> Field/Parking Area
+                    <br />
+
+                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" i18n="@@dwi13" /> Bridges
+                </div>
+                <div class="col-md-3">
+                    <label i18n="@@dwi8"> Location</label><br />
+
+                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" i18n="@@dwi13" /> Bridges
+                    <br />
+
+                    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" i18n="@@dwi16" /> Broadcast legs<br />
+
+                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" i18n="@@dwi17" /> Post Covered Legs<br />
+
+                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" i18n="@@dwi18" /> Bus/Taxi Station<br />
+
+                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" i18n="@@dwi19" /> Drain
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center form-group col-md-12">
+                        <button class="look_for" type="submit" i18n="@@dwi20">
+                  Search
+                </button>
+                        <button class="look_for" style="width: 88px" type="reset">
+                  Reset
+                </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12" style="margin-top: 30px">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127482.6881405034!2d101.6169488902334!3d3.138503559663121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc49c701efeae7%3A0xf4d98e5b2f1c287d!2sKuala%20Lumpur%2C%20Federal%20Territory%20of%20Kuala%20Lumpur%2C%20Malaysia!5e0!3m2!1sen!2sin!4v1616233167969!5m2!1sen!2sin"
+                    width="100%" height="450" style="border: 0" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+        <div class="desc" id="jkas3">
+            <div class="table-responsive col-md-12" style="margin-top: 30px">
+                <div style="margin-top: 10px">
+                    <div class="card" style="overflow-x: scroll">
+                        <ng2-smart-table [settings]="settings" [source]="data">
+                        </ng2-smart-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <br />
+    </section>
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer"><i class="icofont-simple-up"></i
+></a>

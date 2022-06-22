@@ -1,0 +1,388 @@
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- Header -->
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+    <div class="container-fluid" ngStickyNav>
+        <nav class="navbar navbar-expand-lg">
+            <a routerLink="/public" class="navbar-brand ">
+                <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+            </a>
+
+            <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
+                data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fa fa-bars text-white"></i>
+            </button>
+
+            <ul *ngIf="isAdminType == 'financial'" class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a routerLink="/dbkl/dbklmainpage" class="nav-link"
+                        style="color: #253d84 !important; cursor: pointer" i18n="@@home">HOME</a>
+                </li>
+
+                <li class="nav-item dropdown" id="user">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer"
+                        i18n="@@n6">
+                        INVENTORY DATA
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" routerLink="/dbkl/mapview" (click)="getUser('financial')"
+                            style="color: white; cursor: pointer" i18n="@@n1">Main Page</a>
+                        <a routerLink="/dbkl/omplama" class="dropdown-item" (click)="getUser('financial')"
+                            style="color: white; cursor: pointer" i18n="@@n8">OMP Lama</a>
+                        <a routerLink="/dbkl/ompbaru" class="dropdown-item" (click)="getUser('financial')"
+                            style="color: white; cursor: pointer" i18n="@@n9">New OMP</a>
+                        <a routerLink="/dbkl/inactivearea" class="dropdown-item" (click)="getUser('financial')"
+                            style="color: white; cursor: pointer" i18n="@@insmall">Inactive Areas</a>
+
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important ; cursor: pointer">
+                        {{ username }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
+                            i18n="@@Profile">Profile</a>
+                        <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
+                            i18n="@@jflogout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!-- End of Header -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+    [fullScreen]="true">
+
+</ngx-spinner>
+<!-- End Breadcrumbs -->
+<main>
+    <section class="ompbaru" id="ompbaru">
+        <div class="card">
+            <div class="text-center">
+                <div class="section-title">
+                    <h6 style="font-weight: 900; font-size: 20px;" i18n="@@op1">
+                        
+DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
+                    </h6>
+                    <!-- <span>PROSES PERMOHONAN PPSSPPA</span>
+                <h2>PROSES PERMOHONAN PPSSPPA</h2> -->
+                    <!-- <span>New OMP</span>
+                <h2>New OMP</h2> -->
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
+                    <label for="select" class="text-center" style="font-weight: 500" i18n="@@omp6">
+                        <!-- Tahun Permohonan -->
+                        OMP Search By Parliament :
+                    </label>
+                    <select id="yearOfApplication" [(ngModel)]="parlim" name="parlim"
+                        (change)="selectChangeHandler($event)" class="form-control"
+                        aria-placeholder="Select the Parliament">
+                        <option value="" disabled selected i18n="@@cap">Choose a Parliament</option>
+                        <option>Batu</option>
+                        <option>Kepong</option>
+                        <option>Segambut</option>
+                        <option>Titiwangsa</option>
+                        <option>Wangsa Maju</option>
+                        <option>Setiawangsa</option>
+                        <option>Bukit Bintang</option>
+                        <option>Lembah Pantai</option>
+                        <option>Cheras</option>
+                        <option>Bandar Tun Razak</option>
+                        <option>Seputeh</option>
+                    </select>
+
+
+                </div>
+                <!-- <input type="number" class=" form-control mb-4" min="1990" placeholder="Tahun" max="2050"
+                id="yearOfApplication"> -->
+                <div class="col-lg-4 col-md-4 col-xs-10 col-sm-4">
+                    <div>
+                        <label for="select" class="text-center" style="font-weight: 500" i18n="@@subArea">
+                            <!-- Tahun Permohonan -->
+                            SubArea :
+                        </label>
+                        <div>
+                            <input class="custom-select" list="dataly" name="dataly" (change)="activityly($event)" />
+                            <datalist id="dataly">
+                                <option *ngFor="let dataly of subArea" [value]="dataly">{{ dataly }}
+                                </option>
+                            </datalist>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-2 col-sm-4">
+                    <button class="sbtn" (click)="search()">
+                        <i class="icofont-search-2"></i>
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- <div class="container-fluid row input d-flex justify-content-center">
+                <label for="select" class="text-center d-flex align-items-center"
+                    style="font-weight: 500; margin-bottom: 0px !important" i18n="@@op2">
+                    
+                    OMP Search By Parliament :
+                </label>
+
+                
+                &nbsp;
+                <div class="d-inline-block">
+                    <select id="yearOfApplication" [(ngModel)]="parlim" name="parlim"
+                        (change)="selectChangeHandler($event)" class="form-control" style="width: 200px">
+                        <option value="" selected i18n="@@selectparli">Select the Parliament</option>
+                        <option>Batu</option>
+                        <option>Kepong</option>
+                        <option>Segambut</option>
+                        <option>Titiwangsa</option>
+                        <option>Wangsa Maju</option>
+                        <option>Setiawangsa</option>
+                        <option>Bukit Bintang</option>
+                        <option>Lembah Pantai</option>
+                        <option>Cheras</option>
+                        <option>Bandar Tun Razak</option>
+                        <option>Seputeh</option>
+                    </select>
+                </div>
+                <div *ngIf="checked" style="position: absolute; top: 9.3em; left: 42.8em; color: red"
+                    i18n="@@Valtrans1">
+                    *Please fill this required field.
+                </div>
+                <div></div>
+
+                <button class="btn ml-2" (click)="search()" style="
+            width: fit-content;
+            background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+            border-radius: 0px !important;
+          ">
+                    <i class="icofont-search-2"></i>
+                </button>
+            </div> -->
+            <br>
+            <br>
+            <div class="search col d-flex justify-content-between mb-2">
+                <div class="d-flex">
+                    <label for="lokasi" style="margin-bottom: 0px; margin-top: 0.2em; font-weight: 500"
+                        i18n="@@ompsrch">Search Location
+                    </label>
+                    <input type="text" class="ml-2 form-control search" style="width: 38%" name="lokasi"
+                        id="txt_searchall" />
+
+                </div>
+                <div class="mb-2">
+                    <button class="look_for_red" routerLink="/dbkl/dbklmainpage" id="middlebtn" i18n="@@comeback">
+                        Back
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive col-md-12">
+                <table class="table table-bordered table-striped table-hover table-condensed" id="DyanmicTable">
+                    <thead>
+                        <tr style="
+                background-color: #253d84;
+                color: white;
+               
+              ">
+                            <th class="text-center" rowspan="3" i18n="@@op4">Area code</th>
+                            <th class="text-center" rowspan="3" i18n="@@op5">Location</th>
+
+                            <th class="text-center" rowspan="3" i18n="@@op6">Parliament</th>
+                            <th class="text-center" rowspan="3" i18n="@@op7">Coordinates</th>
+                            <th class="text-center" rowspan="3" i18n="@@op8">
+                                Number of Premises Units
+                            </th>
+                            <th class="text-center" colspan="3" i18n="@@op9">
+                                Quotation Frequency
+                            </th>
+                            <th class="text-center" colspan="11" i18n="@@op10">
+                                Measurement of Length / Frequency of Cleaning
+                            </th>
+                            <th class="text-center" rowspan="3" i18n="@@op11">Notes</th>
+                            <th class="text-center" rowspan="3" i18n="@@op12">
+                                Reference / Delivery Date
+                            </th>
+                            <th class="text-center" colspan="2" i18n="@@op13">
+                                Field Review Date / Current Condition
+                            </th>
+                            <th class="text-center" rowspan="3" i18n="@@update">Edit</th>
+                        </tr>
+                        <tr style="
+                background-color: #253d84;
+                color: white;
+                
+              ">
+                            <th class="text-center" rowspan="2" i18n="@@op14">
+                                Domestic waste
+                            </th>
+                            <th class="text-center" rowspan="2" i18n="@@op15">
+                                Bulk Garbage
+                            </th>
+                            <th class="text-center" rowspan="2" i18n="@@op16">
+                                Illegal Garbage
+                            </th>
+                            <th class="text-center" colspan="3" i18n="@@op17">Sweep</th>
+                            <th class="text-center" colspan="2" i18n="@@op18">Bridges</th>
+                            <th class="text-center" colspan="3" i18n="@@op19">Laundry</th>
+                            <th class="text-center" rowspan="2" i18n="@@op20">
+                                Gutter Wash (m)
+                            </th>
+                            <th  rowspan="2">
+                                <span class="text-center"  i18n="@@op21"> Cut the grass </span> (m<sup>2</sup>)
+                            </th>
+                            <th class="text-center" rowspan="2" i18n="@@op22">
+                                Garden Waste
+                            </th>
+                            <th class="text-center" rowspan="2" i18n="@@op23">
+                                There are [√]
+                            </th>
+
+                            <th class="text-center" rowspan="2" i18n="@@op24">None [X]</th>
+
+                        </tr>
+                        <tr style="
+                background-color: #253d84;
+                color: white;
+               
+              ">
+                            <th class="text-center" i18n="@@op25">Road [m]</th>
+                            <th class="text-center">TPKK [m<sup>2</sup>]</th>
+                            <th  >
+                               <span class="text-center" i18n="@@op26">Kaw Lapang Parking</span>  [m<sup>2</sup>]
+                            </th>
+                            <th class="text-center" i18n="@@op27">Sweep[m]</th>
+                            <th class="text-center" i18n="@@op28">Laundry[m]</th>
+                            <th class="text-center" i18n="@@op29">Post Footer [m]</th>
+                            <th class="text-center" i18n="@@op30">Post Covered Legs [m]</th>
+                            <th class="text-center" i18n="@@op31">Bus /Taxi Station</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr *ngFor="let key of data  | paginate: { itemsPerPage: 10, currentPage: p } ">
+                            <td>{{ key.kodarea }}</td>
+                            <td>{{ key.lokasi }}</td>
+                            <td>
+                                {{ key.parlimen }}
+                            </td>
+                            <td>{{ key.kordinat }}</td>
+                            <!-- <td>
+                                                TARIKH:-<br />
+                                                Masa:-<br />
+                                                Tempat:-<br />
+                                            </td> -->
+                            <td>{{ key.jumlah_unit_premis }}</td>
+                            <td>
+                                {{key.kekerapan_kutipan_sisa_domestik}}
+                            </td>
+                            <td>
+                                {{ key.kekerapan_kutipan_sampah_pukal }}
+                            </td>
+                            <td>
+                                {{ key.kekerapan_kutipan_sampah_haram }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_sapuan_jalan }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_sapuan_TPKK }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_sapuan_kewlapangparkir }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_jejantas_sapuan }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_jejantas_cucian }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_cucian_siarkaki }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_cucian_siarkaki_berbumbung }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_cucian_slesenbaslteksi }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_cucian_longkang }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_potongrumput }}
+                            </td>
+                            <td>
+                                {{ key.ukuran_panjang_sampahkebun }}
+                            </td>
+
+                            <td>
+                                {{ key.catatan }}
+                            </td>
+                            <td>
+                                {{ key.rujuken_tarikh_serahan }}
+                            </td>
+                            <td>
+                                {{ key.tarikh_semakandi_lapangant_keadeansemata_ada }}
+                            </td>
+                            <td>
+                                {{ key.tarikh_semakandi_lapangant_keadeansemata_tiada }}
+                            </td>
+                            <td>
+                                <a href="dbkl/updateinventory?id={{key.omp_id}}"><i
+                                        style="color: black; font-size: 20px;" class="fa fa-edit"></i></a>
+                                &nbsp;&nbsp;
+                                <i style=" font-size: 20px;cursor: pointer;" class="fa fa-trash"
+                                    (click)="selectEvent(key.omp_id)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer"><i class="icofont-simple-up"></i></a>
+
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+    [ngStyle]="{ display: display2 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered" role="document ">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center" style="
+          border-bottom: 0px solid transparent !important;
+          padding-bottom: 0px !important;
+        ">
+                <i style="font-size: 4em !important;" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-center" i18n="@@delete">This account will be deleted. Are you sure?</h5>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="look_for_blue" (click)="deleteSelected()" i18n="@@y1">
+                        YES
+                    </button>
+                    <button type="button" class="look_for_red"
+                        style="background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%); color: white;border-radius:4px"
+                        (click)="closeModalDelete()" i18n="@@no">
+                        NO
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

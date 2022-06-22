@@ -1,0 +1,142 @@
+<app-rating></app-rating>
+<app-topbar></app-topbar>
+
+<!-- ======= Header ======= -->
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+  <div class="container-fluid" ngStickyNav>
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand ">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+
+
+
+      <button class="navbar-toggler border-white" type="button" style="
+          background-color: black !important;
+          border: 1px solid white !important;
+        " data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/public" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/public/sevices" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@listofser">LIST OF SERVICES</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+              {{ username }}
+            </a>
+            <div class="dropdown-menu">
+              <a routerLink="/profileLog" class="dropdown-item" style=" cursor: pointer" i18n="@@Profile">Profile</a>
+              <a class="dropdown-item" style=" cursor: pointer" data-toggle="modal" data-target="#centralModalDanger"
+                class="dropdown-item" i18n="@@jflogout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- End Header -->
+
+<main id="main">
+  <section class="inner-page">
+    <div class="card">
+      <div class="text-center">
+        <div class="section-title">
+          <!-- <span i18n="@@rea">Review of Existing Applications</span> -->
+          <h2 i18n="@@rea">Review of Existing Applications</h2>
+        </div>
+      </div>
+      <div class="col text-danger">
+        <p class="font-weight-bold" i18n="@@publicattention">ATTENTION :</p>
+      </div>
+      <div class="col-md-12 mb-3 text-dark" i18n="@@tcaapwt">
+        The completed area application process will take a maximum of 6 months from the date of application.
+
+      </div>
+      <div class="col-md-12 mb-3 text-dark" i18n="@@ocawbp">
+        Only complete applications will be processed.
+      </div>
+
+      <div class="col-12" style="overflow-x: scroll">
+        <ng2-smart-table [settings]="settings" [source]="characters" (custom)="onCustomEvent($event)"
+          (userRowSelect)="onUserRowSelect($event)">
+        </ng2-smart-table>
+      </div>
+
+      <div><button (click)="cancel()"  style="margin-right: 30px;" class="look_for_red" type="button" i18n="@@n74">
+          Back</button></div>
+
+
+    </div>
+  </section>
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a>
+<!--adding modal-->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center" style="
+          border-bottom: 0px solid transparent !important;
+          padding-bottom: 0px !important;
+        ">
+        <i class="fa fa-exclamation-circle" style="font-size: 4em; color: #253d84" aria-hidden="true"></i>
+      </div>
+      <div class="modal-body">
+        <h5 class="text-center" i18n="@@delete1">
+          Please Select Item to Delete.
+        </h5>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn" style="background-color: #253d84; color: white; border-radius: 0%"
+            (click)="closeModal()" i18n="@@ok1">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display2 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center" style="
+          border-bottom: 0px solid transparent !important;
+          padding-bottom: 0px !important;
+        ">
+        <i class="fa fa-exclamation-circle" style="font-size: 4em; color: #253d84" aria-hidden="true"></i>
+      </div>
+      <div class="modal-body">
+        <h5 class="text-center" i18n="@@delete">Do you want to Delete !</h5>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn" style="background-color: #253d84; color: white; margin-right: 10px"
+            (click)="deleteSelected()" i18n="@@yes">
+            YES
+          </button>
+          <button type="button" class="btn" style="background-color: #253d84; color: white" (click)="closeModalDelete()"
+            i18n="@@no">
+            NO
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

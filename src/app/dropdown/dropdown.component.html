@@ -1,0 +1,77 @@
+<!-- <span hidden>{{data[0].no_siri_permohonan}}</span> -->
+
+<div *ngFor="let val of data">
+    <div *ngIf="val.no_siri_permohonan==keyValue">
+
+        <select class="form-control" style="width: 150px;font-size: 14px;"
+            (change)="onSelectOption1($event,val.no_siri_permohonan)">
+            <option [selected]="val.status_semakan_dokumen==true">
+                Lengkap
+            </option>
+            <option [selected]=" val.status_semakan_dokumen==false">
+                Tidak Lengkap
+            </option>
+        </select>
+    </div>
+
+</div>
+
+
+
+
+
+<div class="modal" tabindex="-1" role="dialog" data-backdrop="static" style="background: #02020259; display: block"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true" [ngStyle]="{ display: displaysuccess1 }">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+                    <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)">
+                    </div>
+                    <span class="swal2-success-line-tip"></span>
+                    <span class="swal2-success-line-long"></span>
+                    <div class="swal2-success-ring"></div>
+                    <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+                    <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" style="align-self: center">
+                <h4 class="text-center">
+                    {{ sucessMsg }}
+                </h4>
+
+                <div class="d-flex justify-content-center">
+                    <button type="button" style="margin-top: 15px !important;" data-dismiss="modal" class="btn"
+                        (click)="closeSuccess()" i18n="@@ok1">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Error modal -->
+<div class="modal" tabindex="-1" style="background: #02020259; display: block" role="dialog"
+    [ngStyle]="{ display: errorDisplay2 }">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex">
+                    <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                            class="swal2-x-mark-line-right"></span></span>
+                </div>
+            </div>
+            <div class="modal-body" style="align-self: center">
+                <h4 class="text-center">{{ errmsg }}</h4>
+                <!-- <p class="text-center font-weight-bold">{{ errorMessage }}</p> -->
+                <div class="d-flex justify-content-center">
+                    <button type="button" data-dismiss="modal" class="btn" (click)="closeError()" i18n="@@okERR">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

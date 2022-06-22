@@ -1,0 +1,177 @@
+<app-rating></app-rating>
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<app-headerc></app-headerc>
+<!-- End of Header -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  
+</ngx-spinner>
+
+<main>
+  <section class="Kompaun" id="Kompaun">
+    <div class="card">
+      <!-- ======= Services Section ======= -->
+      <div class="section-title">
+        <span i18n="@@em1">E-MEETINGS </span>
+        <h2 i18n="@@em1">E-MEETINGS</h2>
+      </div>
+      <form class="form-sizing" [formGroup]="newGroup">
+        <div class="modal-body" >
+          <label for="select" i18n="@@em2"> Bil. Meeting</label>
+          <input type="text" class="form-control" id="inputEmail4" [(ngModel)]="bill_mesyuarat" name="bill_mesyuarat"
+            formControlName="bill_mesyuarat" [ngClass]="{ 'is-invalid': submitted && f.bill_mesyuarat.errors }" />
+          <div *ngIf="submitted && f.bill_mesyuarat.errors" class="invalid-feedback">
+            <div *ngIf="f.bill_mesyuarat.errors.required" i18n="@@emvm">
+              Please fill this required field.
+            </div>
+          </div>
+
+          <label for="select" i18n="@@em3">Meeting Type</label>
+          <select class="browser-default custom-select form-control mb-2" id="select" [(ngModel)]="jenis_mesyuarat"
+            name="jenis_mesyuarat" formControlName="jenis_mesyuarat"
+            [ngClass]="{ 'is-invalid': submitted && f.jenis_mesyuarat.errors }">
+            <option value="" selected="" disabled="">
+              Select the Meeting Type
+            </option>
+            <option>Umum</option>
+            <option>Berkala</option>
+          </select>
+          <div *ngIf="submitted && f.jenis_mesyuarat.errors" class="invalid-feedback">
+            <div *ngIf="f.jenis_mesyuarat.errors.required" i18n="@@emvm">
+              Please fill this required field.
+            </div>
+          </div>
+
+          <div *ngIf="check">
+            <div style="color: red;" i18n="@@emvm">
+              Please fill this required field.
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <label for="select" i18n="@@em4">Type of Committee</label>
+            </div>
+            <div class="col-11">
+              <!-- <select (change)="selectChangeHandler($event)"  class="browser-default custom-select form-control committee" id="select"
+                formControlName="jenis_jawatankuasa" name="jenis_jawatankuasa"
+                [ngClass]="{
+                  'is-invalid': submitted && f.jenis_jawatankuasa.errors
+                }">
+                <option value="" disabled="" selected=""></option>
+                <option *ngFor="let data of Committee">
+                  {{ data }}
+                </option>
+              </select> -->
+              <input
+              class="form-control"
+              list="data"
+              [(ngModel)]="jenis_jawatankuasa"
+              name="data"
+              formControlName="jenis_jawatankuasa"
+              [ngClass]="{
+                'is-invalid': submitted && f.jenis_jawatankuasa.errors
+              }"
+            />
+            <datalist id="data">
+              <option *ngFor="let data of Committee" [value]="data"></option>
+            </datalist>
+              <div *ngIf="submitted && f.jenis_jawatankuasa.errors" class="invalid-feedback">
+                <div *ngIf="f.jenis_jawatankuasa.errors.required" i18n="@@emvm">
+                  Please fill this required field.
+                </div>
+              </div>
+              <div *ngIf="check">
+                <div style="color: red;" i18n="@@emvm">
+                  Please fill this required field.
+                </div>
+
+              </div>
+            </div>
+            <div class="col-1">
+              <button class="addbutton newbutton" (click)="addbutton()" type="submit">
+                +
+              </button>
+            </div>
+          </div>
+          <br />
+          <div *ngIf="is1st">
+            <input type="text" class="form-control" name="jenis_jawatankuasa" id="inputEmail4"
+              [(ngModel)]="jenis_jawatankuasa" />
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <label for="textInput" class="inline-label" i18n="@@em5">Date of Meeting</label>
+              <input type="date" class="form-control" name="tarikh_mesyuarat" id="inputEmail4"
+                [(ngModel)]="tarikh_mesyuarat" formControlName="tarikh_mesyuarat" [ngClass]="{
+                  'is-invalid': submitted && f.tarikh_mesyuarat.errors
+                }" />
+              <div *ngIf="submitted && f.tarikh_mesyuarat.errors" class="invalid-feedback">
+                <div *ngIf="f.tarikh_mesyuarat.errors.required" i18n="@@emvm">
+                  Please fill this required field.
+                </div>
+              </div>
+            </div>
+            <div class="col-6"></div>
+            <div class="col-6">
+              <label for="textInput" class="inline-label" i18n="@@e7">Meeting Time</label>
+              <input type="time" class="form-control" name="masa_mesyuarat" id="inputEmail4"
+                [(ngModel)]="masa_mesyuarat" formControlName="masa_mesyuarat" [ngClass]="{
+                  'is-invalid': submitted && f.masa_mesyuarat.errors
+                }" />
+              <div *ngIf="submitted && f.masa_mesyuarat.errors" class="invalid-feedback">
+                <div *ngIf="f.masa_mesyuarat.errors.required" i18n="@@emvm">
+                  Please fill this required field.
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="textInput" class="inline-label" i18n="@@em6">Until</label>
+              <input type="time" formControlName="hingga" class="form-control until" id="inputEmail4"
+                [(ngModel)]="hingga" name="hingga" [ngClass]="{
+                  'is-invalid': submitted && f.bill_mesyuarat.errors
+                }" />
+              <div *ngIf="submitted && f.hingga.errors" class="invalid-feedback">
+                <div *ngIf="f.hingga.errors.required" i18n="@@emvm">
+                  Please fill this required field.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>&nbsp;</div>
+
+          <div class="text-center">
+            <button class="look_for" type="submit" (click)="new()" i18n="@@em7">
+              New
+            </button>
+            <button class="look_for" type="button" (click)="search()" i18n="@@em8">
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+      <!-- <section id="meeting" class="Kompaun">
+            </section> -->
+
+      <div class="container-fluid row input d-flex justify-content-center" id="tabl"
+        style="margin-top: 20px; margin-left: 1px">
+        <div class="col-12" style="overflow-x: scroll">
+          <ng2-smart-table [settings]="settings" [source]="data" (custom)="onCustomEvent($event)">
+          </ng2-smart-table>
+        </div>
+      </div>
+      <div>
+        <button (click)="cancel()"  style="margin-right: 30px;" class="look_for_red" type="button" i18n="@@n74">
+          Back
+        </button>
+        </div>
+    </div>
+  </section>
+</main>
+
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i class="icofont-scroll-double-up"></i></a>

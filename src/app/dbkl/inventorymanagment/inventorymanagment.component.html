@@ -1,0 +1,327 @@
+<!-- Success Modal Start-->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+
+</ngx-spinner>
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center">
+          <span class="dialog-msg">{{ sucessmsg }}</span>
+        </h4>
+        <div class="d-flex justify-content-center">
+          <button type="button " i18n="@@ok" (click)="closeSuccessModal()" data-dismiss="modal " class="btn" style="
+              color: white !important;
+              border-radius: 4px !important;
+               background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+
+            ">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Success Modal End -->
+<!-- Error Modal Start -->
+<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: errorDisplay }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-12">
+          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                class="swal2-x-mark-line-right"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h6 style="text-align: center">
+          <span class="dialog-msg">{{ errmsg }}</span>
+          <br />
+        </h6>
+        <div class="d-flex justify-content-center mt-4">
+          <button class="btn" (click)="closeErrorModal()" i18n="@@ok" style="
+                 background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+              color: white !important;
+              border-radius: 4px !important;
+            ">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Error Modal End -->
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+  <div class="container-fluid" ngStickyNav>
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand ">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+
+
+
+
+
+      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
+        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <ul *ngIf="isAdminType == 'financial'" class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+            i18n="@@home">HOME</a>
+        </li>
+
+        <li class="nav-item dropdown" id="user">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer" i18n="@@n6">
+            INVENTORY DATA
+          </a>
+
+          <div class="dropdown-menu">
+            <a class="dropdown-item" routerLink="/dbkl/mapview" (click)="getUser('financial')"
+              style="color: white; cursor: pointer" i18n="@@n1">Main Page</a>
+            <a routerLink="/dbkl/omplama" class="dropdown-item" (click)="getUser('financial')"
+              style="color: white; cursor: pointer" i18n="@@n8">OMP Lama</a>
+            <a routerLink="/dbkl/ompbaru" class="dropdown-item" (click)="getUser('financial')"
+              style="color: white; cursor: pointer" i18n="@@n9">New OMP</a>
+            <a routerLink="/dbkl/inactivearea" class="dropdown-item" (click)="getUser('financial')"
+              style="color: white; cursor: pointer" i18n="@@insmall">Inactive Areas</a>
+
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+            {{ username }}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
+              i18n="@@Profile">Profile</a>
+            <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
+              i18n="@@jflogout">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<!-- End of Header -->
+<main>
+  <section class="Borang" id="Borang">
+    <div class="card">
+      <!-- ======= Services Section ======= -->
+      <form class="p-3" (ngSubmit)="saveInventory()">
+        <div>
+          <div class="section-title">
+            <span i18n="@@kemas1">Update Data Registration Form</span>
+            <h2 i18n="@@kemas1">Update Data Registration Form</h2>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 ">
+              <div class="col-12">
+                <label for="textInput" i18n="@@Inven3">Parliament</label><sup>*</sup>
+              </div>
+              <input class="form-control" name="parlimenAbc" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="parlimen" />
+            </div>
+
+            <div class="form-group col-md-6 ">
+              <div class="col-12">
+                <label for="textInput" i18n="@@Inven5">Location</label><sup>*</sup>
+              </div>
+              <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="lokasi" name="key" />
+            </div>
+            <div class="form-group col-md-12">
+              <div class="col-12">
+                <label for="textInput" i18n="@@op8">Number of Premises Units </label>
+              </div>
+              <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="jumlah_unit_premis" />
+            </div>
+            <div class="form-group col-md-12 mt-top">
+              <h5 style="background-color: #253d84" class="card-header info-color text-center white-text py-6">
+                <strong style="color: white;font-size: 13px;" i18n="@@Inven7">
+                  Quotation Frequency</strong>
+              </h5>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="textInput" i18n="@@Inven8">Domestic waste</label>
+              <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="kekerapan_kutipan_sisa_domestik" />
+            </div>
+            <div class="form-group col-md-12">
+              <label for="textInput" i18n="@@Inven10">Bulk Trash</label>
+              <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="kekerapan_kutipan_sampah_pukal" />
+            </div>
+            <div class="form-group col-md-12">
+              <div class="col-12">
+                <label for="textInput" i18n="@@op16">Illegal Garbage</label>
+              </div>
+              <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="kekerapan_kutipan_sampah_haram" />
+            </div>
+            <div class="form-group col-md-12 mt-top">
+              <h5 style="background-color: #253d84" class="card-header info-color text-center white-text py-6">
+                <strong style="color: white;" i18n="@@Inven12">
+                  Cleaning Frequency</strong>
+              </h5>
+            </div>
+            <div class="form-group col-md-6">
+              <div class="col-12">
+                <label class="d-block" for="textInput"><b i18n="@@Inven13">Sweep</b></label>
+              </div>
+              <div class="form-group col-md-12">
+                <label for="textInput" i18n="@@Inven15">Road[m]</label>
+                <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="ukuran_panjang_sapuan_jalan" />
+              </div>
+              <div class="form-group col-md-12">
+                <label for="textInput">TPKK [m<sup style="color: black;">2</sup>]</label>
+                <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="ukuran_panjang_sapuan_TPKK" />
+
+              </div>
+              <div class="form-group col-md-12">
+                <label for="textInput" i18n="@@Inven21">Open Space/Parking Area [m<sup style="color: black;">2</sup>]</label>
+                <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="ukuran_panjang_sapuan_kaw_lapang_parkir" />
+              </div>
+              <div class="form-group col-md-12">
+                <label for="textInput" i18n="@@Inven24">Sweep[m]</label>
+                <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="ukuran_panjang_sapuan_jejantas" />
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <div class="col-12">
+                <label for="textInput"><b i18n="@@Inven14">Laundry</b></label>
+              </div>
+              <div class="form-group col-md-12">
+                <label for="textInput" i18n="@@op29">Laundry[m]</label>
+                <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="ukuran_panjang_cucian_jejantas" />
+              </div>
+              <div class="form-group col-md-12">
+                <label for="textInput" i18n="@@Inven20">Post Footer[m]</label>
+                <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="ukuran_panjang_cucian_siarkaki" />
+              </div>
+              <div class="form-group col-md-12">
+                <label for="textInput" i18n="@@Inven22">Covered Leg Post</label>
+                <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="ukuran_panjang_cucian_siarkaki_berbumbung" />
+              </div>
+              <div class="form-group col-md-12">
+                <label for="textInput" i18n="@@Inven24">Bus/Taxi Station</label>
+                <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="ukuran_panjang_cucian_stesenbas_teksi" />
+              </div>
+              <div class="form-group col-md-12">
+                <label for="textInput" i18n="@@Inven25">Drain[m]</label>
+                <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="ukuran_panjang_cucian_longkang" />
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="col-12">
+                <label for="textInput" class="d-block"><b i18n="@@Inven26">Others</b></label>
+              </div>
+              <div class="form-group col-md-12">
+                <div class="col-12">
+                  <label for="textInput" i18n="@@Inven27"> Cut grass [m<sup style="color: black;">2</sup>] </label>
+                </div>
+                <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="ukuran_panjang_potongrumput" />
+              </div>
+              <div class="form-group col-md-12">
+                <div class="col-12">
+                  <label for="textInput" i18n="@@Inven28">Garden Trash</label>
+                </div>
+                <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="ukuran_panjang_sampahkebun" />
+              </div>
+            </div>
+            <div class="form-group col-md-12 mt-top">
+              <h5 style="background-color: #253d84" class="card-header info-color text-center white-text py-6">
+                <strong style="color: white" i18n="@@Inven29"> Notes</strong>
+              </h5>
+              <textarea type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="catatan"></textarea>
+            </div>
+            <div class="form-group col-md-12 mt-top">
+              <h5 style="background-color: #253d84" class="card-header info-color text-center white-text py-6">
+                <strong style="color: white" i18n="@@Inven30">
+                  Reference / Delivery Date</strong>
+              </h5>
+              <textarea type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                name="rujuken_tarikh_serahan" [(ngModel)]="rujuken_tarikh_serahan"></textarea>
+            </div>
+            <div class="form-group col-md-12 mt-top">
+              <h5 style="background-color: #253d84" class="card-header info-color text-center white-text py-6">
+                <strong style="color: white" i18n="@@Inven31">
+                  Field Review Date (if any)</strong>
+              </h5>
+              <div class="form-group col-md-12">
+                <div class="col-12">
+                  <label for="textInput" i18n="@@there">There are</label>
+                </div>
+                <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="tarikh_semakandi_lapangant_keadeansemata_ada" />
+              </div>
+              <div class="form-group col-md-12">
+                <div class="col-12">
+                  <label for="textInput" i18n="@@none">None</label>
+                </div>
+                <input type="text" id="textInput" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="tarikh_semakandi_lapangant_keadeansemata_tiada" />
+              </div>
+              <!-- <div *ngIf="check">
+                <div style="color: red;text-align: center;" i18n="@@emvm">
+                  Please fill all the required fields.
+                </div>
+
+              </div> -->
+              <div class="text-center form-group col-md-12">
+                <button class="look_for" type="submit" i18n="@@sub1">Submit</button>
+                <button routerLink="/dbkl/ompbaru" class="look_for_red" type="button" i18n="@@bc1">
+                  Back
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<!-- End Footer -->
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a>

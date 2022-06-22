@@ -1,0 +1,472 @@
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <img src="{{ beforeimage1 }}" />
+      <div class="modal-body mb-0 p-0"></div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: Name-->
+
+<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <img src="{{ afterimage1 }}" />
+      <div class="modal-body mb-0 p-0"></div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+<!-- Report image modal -->
+<div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <img src="{{ reportimage1 }}" />
+      <div class="modal-body mb-0 p-0"></div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: Name-->
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+
+</ngx-spinner>
+<!-- Success Modal Start-->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center">
+          <span class="dialog-msg">{{ msg }}</span>
+        </h4>
+
+        <div class="d-flex justify-content-center">
+          <button type="button " i18n="@@ok" (click)="onCloseHandled()" data-dismiss="modal " class="btn" style="
+               background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+              color: white !important;
+              border-radius: 4px !important;
+            ">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Success Modal End -->
+
+<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: errorDisplay }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-12">
+          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
+            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
+                class="swal2-x-mark-line-right"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h6 style="text-align: center">
+          <span i18n="@@invoiceinfo3">Bad request!</span>
+          <br /><span> {{ errormsg }}</span>
+        </h6>
+
+        <div class="d-flex justify-content-center mt-4">
+          <button class="btn" (click)="closeErrorModal()" i18n="@@ok" style="
+               background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+              color: white !important;
+              border-radius: 4px !important;
+            ">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Error Modal End -->
+
+<app-topbar></app-topbar>
+
+<!-- Header Start -->
+
+<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand">
+        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+
+      </a>
+
+
+      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
+        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fa fa-bars text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a routerLink="/agency/job-feedback" class="nav-link" style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home">HOME
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+              {{ npid }}
+            </a>
+            <div class="dropdown-menu">
+             
+              <a class="dropdown-item" style="color: white; cursor: pointer" (click)="logout()"
+                i18n="@@jflogout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- Header End-->
+<main id="main">
+  <!-- ======= Breadcrumbs ======= -->
+
+  <!-- End Breadcrumbs -->
+  <section class="inner-page">
+    <div class="card">
+      <!-- ======= Services Section ======= -->
+      <section id="Work Payment Claims" class="services">
+        <div class="container">
+          <div class="section-title">
+            <span i18n="@@jfdetails">JOB FEEDBACK DETAILS</span>
+            <h2 i18n="@@jfdetails">JOB FEEDBACK DETAILS</h2>
+          </div>
+          <div class="card">
+            <div class="container-fluid">
+              <form class="border border-light p-5 modal-content" [formGroup]="registrationGroup">
+                <div>
+                  <fieldset>
+                    <legend>
+                      <div class="card-header">
+                        <span><img src="assets/img/logo.png" height="30" />&nbsp;<span i18n="@@naturalflorawf">Natural
+                            Flora Work Feedback</span></span>
+                      </div>
+                    </legend>
+                    <div class="col-md-12">
+                      <label for="disabledSelect" class="form-label" i18n="@@organisation">Organization/Position</label>
+                      <!-- <select
+                        class="browser-default custom-select mb-4"
+                        id="disabledSelect"
+                      >
+                        <option selected>
+                          {{ selectedValue }}
+                        </option>
+                      </select> -->
+                      <select class="browser-default custom-select mb-4" id="disabledSelect1"
+                        (change)="changeWebsite($event)">
+                        <option *ngFor="let item of Organizations" value="{{ item }}"
+                          [selected]="item === selectedValue">
+                          {{ item }}
+                        </option>
+                      </select>
+
+                      <div *ngFor="let validation of validation_messages.dropdown">
+                        <div class="error-msg" *ngIf="
+                            registrationGroup
+                              .get('dropdown')
+                              .hasError(validation.type) &&
+                            (registrationGroup.get('dropdown').dirty ||
+                              registrationGroup.get('dropdown').touched)
+                          ">
+                          {{ validation.message }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-12">
+                      <label for="disabledTextInput" class="form-label" i18n="@@inspectingOffName">Name of Inspecting
+                        Officer</label>
+                      <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input"
+                        [formControlName]="'officer'" [(ngModel)]="nama_pegawai_merinyu" />
+                      <br />
+                      <div *ngFor="let validation of validation_messages.officer">
+                        <div class="error-msg" *ngIf="
+                            registrationGroup
+                              .get('officer')
+                              .hasError(validation.type) &&
+                            (registrationGroup.get('officer').dirty ||
+                              registrationGroup.get('officer').touched)
+                          ">
+                          {{ validation.message }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-12">
+                      <label for="disabledTextInput" class="form-label" i18n="@@feedback">Feedback</label>
+                      <input type="text" id="disabledTextInput" class="form-control"
+                        placeholder="Huraian kerja yang tela telah di jalankan" [formControlName]="'feedback'"
+                        [(ngModel)]="maklum_balas" />
+                      <div *ngFor="let validation of validation_messages.feedback">
+                        <div class="error-msg" *ngIf="
+                            registrationGroup
+                              .get('feedback')
+                              .hasError(validation.type) &&
+                            (registrationGroup.get('feedback').dirty ||
+                              registrationGroup.get('feedback').touched)
+                          ">
+                          {{ validation.message }}
+                        </div>
+                      </div>
+                    </div>
+                    &nbsp;
+                  </fieldset>
+                  <br />
+                </div>
+
+                <div class="row">
+                  <div class="col-2"></div>
+                  <div class="col-4">
+                    <span style="cursor: pointer; margin-left: 30%"><b i18n="@@picbefore">Picture Before</b>&nbsp;<br />
+                      <p style="margin-left: 27%">
+                        {{
+                          firstlength > 6
+                            ? (beforedate | slice: 0:19) + ""
+                            : beforedate
+                        }}
+                      </p>
+                    </span>
+                    <div class="div2 mx-auto">
+                      <label class="custom-file-upload">
+                        <input type="file" class="type-file" ng2FileSelect [formControlName]="'image'" accept=".png"
+                          id="file-upload" [uploader]="uploader" (click)="hideimage()" (change)="onFileChanged($event)"
+                          onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" />
+
+                        <i class="fa fa-cloud-upload"></i>
+                      </label>
+
+                      <div *ngFor="let validation of validation_messages.image">
+                        <div class="error-msg" *ngIf="
+                            registrationGroup
+                              .get('image')
+                              .hasError(validation.type) &&
+                            (registrationGroup.get('image').dirty ||
+                              registrationGroup.get('image').touched)
+                          ">
+                          {{ validation.message }}
+                        </div>
+                      </div>
+                      <img *ngIf="isimage" data-toggle="modal" data-target="#modal1" src="{{ beforeimage1 }}" style="
+                          max-width: 188%;
+                          height: 187%;
+                          margin-top: -46%;
+                          margin-left: -43%;
+                        " />
+
+                      <img style="
+                          max-width: 191%;
+                          height: 187%;
+                          margin-top: -47%;
+                          margin-left: -45%;
+                        " id="blah" />
+
+                      <!-- <img [src]="url" height="200" /> </div> -->
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <span style="cursor: pointer; margin-left: 30%">
+                      <b> After Before</b>&nbsp;
+                      <p style="margin-left: 27%">
+                        {{
+                          secondlength > 6
+                            ? (afterdate | slice: 0:19) + ""
+                            : afterdate
+                        }}
+                      </p>
+                    </span>
+                    <div class="div2 mx-auto">
+                      <label class="custom-file-upload">
+                        <input type="file" class="type-file" ng2FileSelect [formControlName]="'image'" accept=".png"
+                          id="file-upload" [uploader]="uploader1" (click)="hideimage1()"
+                          (change)="onFileChanged($event)"
+                          onchange="document.getElementById('blah2').src = window.URL.createObjectURL(this.files[0])" />
+
+                        <i class="fa fa-cloud-upload"></i>
+                      </label>
+                      <div *ngFor="let validation of validation_messages.image">
+                        <div class="error-msg" *ngIf="
+                            registrationGroup
+                              .get('image')
+                              .hasError(validation.type) &&
+                            (registrationGroup.get('image').dirty ||
+                              registrationGroup.get('image').touched)
+                          ">
+                          {{ validation.message }}
+                        </div>
+                      </div>
+                      <img *ngIf="isimage1" src="{{ afterimage1 }}" data-toggle="modal" data-target="#modal2" style="
+                          max-width: 188%;
+                          height: 187%;
+                          margin-top: -46%;
+                          margin-left: -43%;
+                        " />
+                      <img style="
+                          max-width: 191%;
+                          height: 187%;
+                          margin-top: -47%;
+                          margin-left: -45%;
+                        " id="blah2" />
+                    </div>
+                  </div>
+                  <div class="col-2"></div>
+                </div>
+
+                <div class="col-md-12 text-center" style="margin-top: 25px">
+                  <div class="row">
+                    <div class="col-12 d-flex justify-content-center mt-4">
+                      <button class="look_for btn mb-2" routerLink="/agency/job-feedback" i18n="@@update">
+                        Update
+                      </button>
+                      <button class="look_for btn mb-2 ml-4" (click)="uploadSubmit()" id="fileInputId" mat-raised-button
+                        color="accent" i18n="@@savedata">
+                        Save it
+                      </button>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end mb-3">
+                      <h6 class="look_for mb-2 font-weight-bold" style="
+                          color: #000000;
+                          margin-top: 0.5em;
+                          cursor: pointer;
+                        " id="SeeMore2" (click)="showreview()" data-toggle="collapse" data-target=".multi-collapse"
+                        aria-expanded="false" aria-controls="multiCollapseExample1 ">
+                        Mengkaji Semula&nbsp;<i class="fa fa-arrow-down" style="color: #253d84" aria-hidden="true"
+                          (click)="showreview()" data-toggle="collapse" data-target=".multi-collapse"
+                          aria-expanded="false" aria-controls="multiCollapseExample1"></i>
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-4">
+          <div class="container">
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+              <div class="card card-body mx-auto">
+                <label class="switch">
+                  <input type="checkbox" />
+                  <span class="slider round"></span>
+                </label>
+
+                <div class="row">
+                  <div class="col-6">
+                    <div class="d-flex justify-content-center">
+                      <p style="
+                          cursor: pointer;
+                          text-align: center;
+                          margin-left: 35% !important;
+                          margin-top: -38px;
+                        ">
+                        <b> Gambar Laporan</b>&nbsp;<br />
+                        {{
+                          secondlength > 6
+                            ? (afterdate | slice: 0:19) + "..."
+                            : afterdate
+                        }}
+                      </p>
+                    </div>
+                    <div class="div2 d-flex justify-content-end" style="margin-left: 47% !important">
+                      <div *ngFor="let validation of validation_messages.image">
+                        <div class="error-msg" *ngIf="
+                            registrationGroup
+                              .get('image')
+                              .hasError(validation.type) &&
+                            (registrationGroup.get('image').dirty ||
+                              registrationGroup.get('image').touched)
+                          ">
+                          {{ validation.message }}
+                        </div>
+                      </div>
+                      <img data-toggle="modal" data-target="#modal3" *ngIf="isimage2" src="{{ reportimage1 }}" style="
+                          max-width: 188%;
+                          height: 187%;
+                          margin-top: -46%;
+                          margin-left: -43%;
+                        " />
+                      <img style="
+                          max-width: 182%;
+                          height: 187%;
+                          margin-top: -46%;
+                          margin-right: -41%;
+                        " id="blah3" />
+                    </div>
+                  </div>
+                  <div class="col-4 d-flex justify-content-start">
+                    <div class="align-middle form-check ml-4 mt-5" style="margin-top: 9em !important">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                        [checked]="status == true && status != null" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Kerja Selesail
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Services Section -->
+    </div>
+  </section>
+</main>
+<!-- End #main -->
+<!-- ======= Footer ======= -->
+<app-footer></app-footer>
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
+    class="icofont-scroll-double-up"></i></a>

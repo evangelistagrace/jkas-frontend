@@ -1,0 +1,15 @@
+
+<div *ngFor="let val of data">
+    <div *ngIf="val.site_id==keyValue">
+        
+        <select class="form-control" style="width: 150px;font-size: 14px;" (change)="onSelectOption1($event,val.site_id)">
+            <option [selected]="val.keputusan_lawatan_tapak=='Patuh'">
+                Patuh
+            </option>
+            <option [selected]=" val.keputusan_lawatan_tapak=='Tidak Patuh'">
+                Tidak Patuh
+            </option>
+        </select>
+    </div>
+
+</div>

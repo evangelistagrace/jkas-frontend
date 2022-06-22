@@ -1,0 +1,422 @@
+<!-- Topbar -->
+<app-topbar></app-topbar>
+<!-- End of Topbar -->
+<!-- Header -->
+<div class="container-fluid" ngStickyNav>
+  <nav
+    class="navbar navbar-expand-lg"
+    style="background-color: #f2f2f2 !important"
+  >
+    <a routerLink="/public" class="navbar-brand">
+      <img
+        src="../../../assets/img/DBKL LOGO (Lorry).png"
+        alt=""
+        loading="lazy"
+      />
+    </a>
+
+    <button
+      class="navbar-toggler border-white"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fa fa-bars text-white"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul
+        *ngIf="isAdminType == 'financial'"
+        class="navbar-nav ml-auto mt-2 mt-lg-0"
+      >
+        <li class="nav-item">
+          <a
+            routerLink="/dbkl/dbklmainpage"
+            class="nav-link"
+            style="color: #253d84 !important; cursor: pointer"
+            i18n="@@home"
+            >HOME</a
+          >
+        </li>
+
+        <li class="nav-item dropdown" id="user">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style="color: #253d84 !important; cursor: pointer"
+            i18n="@@n6"
+          >
+            INVENTORY DATA
+          </a>
+
+          <div class="dropdown-menu">
+            <a
+              class="dropdown-item"
+              routerLink="/dbkl/mapview"
+              (click)="getUser('financial')"
+              style="color: white; cursor: pointer"
+              i18n="@@n1"
+              >Main Page</a
+            >
+            <a
+              routerLink="/dbkl/omplama"
+              class="dropdown-item"
+              (click)="getUser('financial')"
+              style="color: white; cursor: pointer"
+              i18n="@@n8"
+              >OMP Lama</a
+            >
+            <a
+              routerLink="/dbkl/ompbaru"
+              class="dropdown-item"
+              (click)="getUser('financial')"
+              style="color: white; cursor: pointer"
+              i18n="@@n9"
+              >New OMP</a
+            >
+            <a
+              routerLink="/dbkl/inactivearea"
+              class="dropdown-item"
+              (click)="getUser('financial')"
+              style="color: white; cursor: pointer"
+              i18n="@@insmall"
+              >Inactive Areas</a
+            >
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style="color: #253d84 !important; cursor: pointer"
+          >
+            {{ username }}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a
+              routerLink="/profileLog"
+              class="dropdown-item"
+              style="color: white; cursor: pointer"
+              i18n="@@Profile"
+              >Profile</a
+            >
+            <a
+              class="dropdown-item"
+              (click)="logout()"
+              style="color: white; cursor: pointer"
+              i18n="@@jflogout"
+              >Logout</a
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<!-- End of Header -->
+
+<main id="main">
+  <section class="OMPLAMA" id="OMPLAMA">
+    <div class="card">
+      <div class="text-center">
+        <div class="d-flex justify-content-center">
+          <img
+            class="logo-proses"
+            src="assets/img/logo.png"
+            height="100"
+            alt=""
+            style="margin-top: 10px"
+          />
+        </div>
+        <div class="section-title">
+          <!-- <img class="logo-proses" src="img/logo.png " height="100" alt="" /> -->
+          <h6 style="font-weight: 900" i18n="@@omp1">
+            DEPARTMENT OF HEALTH AND ENVIRONMENT
+          </h6>
+          <h6 style="font-weight: 900" i18n="@@omp2">KUALA LUMPUR CITY HALL</h6>
+          <br />
+
+          <h6 style="font-weight: 900" i18n="@@omp3">
+            DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
+          </h6>
+          <h6 style="font-weight: 900" i18n="@@omp4">
+            KUALA LUMPUR SERVICE AREA
+          </h6>
+          <br />
+          <h6 style="font-weight: 900" i18n="@@omp5">SUMMARY INDEX</h6>
+          <!-- <span>PROSES PERMOHONAN PPSSPPA</span>
+                    <h2>PROSES PERMOHONAN PPSSPPA</h2> -->
+          <!-- <span>Index Summary</span>
+                    <h2>Index Summary</h2> -->
+        </div>
+      </div>
+      <br />
+      <div class="col text-danger">
+        <!-- <p class="font-weight-bold">PERHATAIAN! :</p> -->
+      </div>
+
+      <div class="text-center"></div>
+      <form [formGroup]="checkboxGroup">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
+              <label
+                for="select"
+                class="text-center"
+                style="font-weight: 500"
+                i18n="@@omp6"
+              >
+                <!-- Tahun Permohonan -->
+                OMP Search By Parliament :
+              </label>
+              <select
+                id="yearOfApplication"
+                formControlName="parliament"
+                (change)="selectChangeHandler($event)"
+                class="form-control"
+                style="width: 200px"
+                [ngClass]="{
+                  'is-invalid': submitted && f.parliament.errors
+                }"
+                aria-placeholder="Select the Parliament"
+              >
+                <option value="" disabled selected i18n="@@cap">
+                  Choose a Parliament
+                </option>
+                <option>Batu</option>
+                <option>Kepong</option>
+                <option>Segambut</option>
+                <option>Titiwangsa</option>
+                <option>Wangsa Maju</option>
+                <option>Setiawangsa</option>
+                <option>Bukit Bintang</option>
+                <option>Lembah Pantai</option>
+                <option>Cheras</option>
+                <option>Bandar Tun Razak</option>
+                <option>Seputeh</option>
+              </select>
+              <div
+                *ngIf="submitted && f.parliament.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.parliament.errors.required" i18n="@@Valtrans1">
+                  Please fill this required field.
+                </div>
+              </div>
+            </div>
+            <!-- <input type="number" class=" form-control mb-4" min="1990" placeholder="Tahun" max="2050"
+                        id="yearOfApplication"> -->
+            <div class="col-lg-4 col-md-4 col-xs-10 col-sm-4">
+              <div>
+                <label
+                  for="select"
+                  class="text-center"
+                  style="font-weight: 500"
+                  i18n="@@subArea"
+                >
+                  <!-- Tahun Permohonan -->
+                  SubArea :
+                </label>
+                <div>
+                  <select
+                    id="dataly"
+                    formControlName="subarea"
+                    class="form-control"
+                    style="width: 200px"
+                    [(ngModel)]="selectedsubarea"
+                    (change)="activityly($event)"
+                    [ngClass]="{
+                      'is-invalid': submitted && f.subarea.errors
+                    }"
+                  >
+                    <option *ngFor="let dataly of subArea" [value]="dataly">
+                      {{ dataly }}
+                    </option>
+                  </select>
+                  <!-- <datalist id="dataly">
+                                    <option *ngFor="let dataly of subArea" [value]="dataly">{{ dataly }}
+                                    </option>
+                                </datalist> -->
+                  <div
+                    *ngIf="submitted && f.subarea.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.subarea.errors.required" i18n="@@Valtrans1">
+                      Please fill this required field.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+
+
+            <div class="col-lg-4 col-md-4 col-xs-2 col-sm-4">
+                <button
+                  style="
+                    background-image: -webkit-linear-gradient(
+                      top,
+                      #d9534f 0,
+                      #c12e2a 100%
+                    );
+  
+                    border-radius: 0px;
+                    width: fit-content;
+                    margin-left: -7em;
+                    margin-top: 7%;
+                    padding: 0.375rem 0.75rem;
+                  "
+                  type="button"
+                >
+                  <i class="fa fa-trash" style="font-size: 1rem"></i>
+                </button>
+              <button
+                (click)="searchButton()"
+                style="
+                  background-image: -webkit-linear-gradient(
+                    top,
+                    #d9534f 0,
+                    #c12e2a 100%
+                  );
+
+                  border-radius: 0px;
+                  width: fit-content;
+                  margin-left: -2.5em;
+                  margin-top: -12%;
+                  padding: 0.375rem 0.75rem;
+                "
+                type="button"
+              >
+                <i class="icofont-search-2" style="font-size: 1rem"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <br />
+
+      <!-- <input type="text" id="txt_searchall"   placeholder="Enter search text" style="width: 200px;margin: 1% auto;"/>&nbsp; -->
+
+      <div class="col d-flex justify-content-center">
+        <table
+          class="table table-bordered table-striped table-hover table-condensed"
+          id="DyanmicTable"
+        >
+          <thead>
+            <tr
+              style="
+                background-color: #253d84;
+                color: white;
+                font-weight: normal !important;
+              "
+            >
+              <th class="text-center" colspan="2" id="rowhead" i18n="@@omp8">
+                Collection & Cleaning Frequency Code
+              </th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr>
+              <td style="text-align: center" i18n="@@1m">1 x a month</td>
+              <td style="text-align: center">1S</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@2m">2 x a month</td>
+              <td style="text-align: center">2S</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@1w">3 x a week</td>
+              <td style="text-align: center">IRJ</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@1w">3 x a week</td>
+              <td style="text-align: center">SKS</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@2w">6 x a week</td>
+              <td style="text-align: center">6M</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@3w">7 x a week</td>
+              <td style="text-align: center">7M</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@1d">2 x a day</td>
+              <td style="text-align: center">2H</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@em">Every Monday</td>
+              <td style="text-align: center" i18n="@@w1">Monday</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@et">Every Tuesday</td>
+              <td style="text-align: center" i18n="@@w2">Tuesday</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@ew">Every Wednesday</td>
+              <td style="text-align: center" i18n="@@w3">Wednesday</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@eth">Every Thursday</td>
+              <td style="text-align: center" i18n="@@w4">Thursday</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@ef">Every Friday</td>
+              <td style="text-align: center" i18n="@@w5">Friday</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@es">Every Saturday</td>
+              <td style="text-align: center" i18n="@@w6">Saturday</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@esu">Every Sunday</td>
+              <td style="text-align: center" i18n="@@w7">Sunday</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@taf">
+                Tuesday and Friday
+              </td>
+              <td style="text-align: center">S/J</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@was">
+                Wednesday and Saturday
+              </td>
+              <td style="text-align: center">R/S</td>
+            </tr>
+            <tr>
+              <td style="text-align: center" i18n="@@mat">
+                Monday and Thursday
+              </td>
+              <td style="text-align: center">I/K</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+
+<app-footer></app-footer>
+<!-- End Footer -->
+
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>
