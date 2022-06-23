@@ -36,17 +36,6 @@ export class DbklppsppaComponent implements OnInit {
     this.data = this.met.getData;
     // console.log(this.data);
   }
-  // getPdf(e) {
-  //   this.downloadPdf(e).then((blob) => {
-  //     //    console.log(blob)
-  //     saveAs(blob, e);
-  //     var fileURL = window.URL.createObjectURL(blob);
-  //     //  console.log(fileURL);
-
-  //     let tab = window.open();
-  //     tab.location.href = fileURL;
-  //   });
-  // },
 
   uploadFile(data: FormData): Observable<any> {
     // debugger

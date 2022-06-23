@@ -2853,7 +2853,7 @@ For Solid Waste Collection and Public Cleansing
 					error!
 				</source>
 				<target>
-					kesilapan!
+					Ralat!
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -4725,7 +4725,7 @@ For Solid Waste Collection and Public Cleansing
 					Open Space/Parking Area
 				</source>
 				<target>
-					Kawasan Lapang / Parkir [m]
+					Kawasan Lapang / Parkir [m2]
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -4805,7 +4805,7 @@ For Solid Waste Collection and Public Cleansing
 					Cut grass
 				</source>
 				<target>
-					Potong Rumput [m]
+					Potong Rumput [m2]
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
