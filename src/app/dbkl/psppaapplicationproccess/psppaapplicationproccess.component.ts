@@ -13,6 +13,7 @@ import { DbklppsppaComponent } from "src/app/pdfs/dbklppsppa/dbklppsppa.componen
 import { FiltercustombuttonComponent } from "src/app/filtercustombutton/filtercustombutton.component";
 import { FilterdoublecustombuttonComponent } from "src/app/filterdoublecustombutton/filterdoublecustombutton.component";
 import { TextboxComponent } from "src/app/textbox/textbox.component";
+import { DbkluploadbuttonComponent } from "src/app/dbkluploadbutton/dbkluploadbutton.component";
 import { Observable } from "rxjs";
 
 @Component({
@@ -50,13 +51,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
     private tservice: TableService,
     private router: Router,
     private met: MeetingService
-  ) {
-
-
-
-
-
-  }
+  ) {}
 
   ngOnInit() {
     this.AccessToken = localStorage.getItem("AccessToken");
@@ -79,7 +74,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
         (res) => {
           this.meetingData = res;
           this.getData();
-     //    console.log("ollaslaldsa",this.meetingData);
+          //    console.log("ollaslaldsa",this.meetingData);
         },
         (error) => {
           this.loginError = true;
@@ -97,8 +92,6 @@ export class PsppaapplicationproccessComponent implements OnInit {
       });
     });
   }
-
-
 
   getData() {
     let key = localStorage.getItem("AccessToken");
@@ -124,10 +117,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
           this.errorMsg = error["error"]["message"];
         }
       );
-
   }
-
-
 
   settings = {
     selectMode: "multi",
@@ -146,12 +136,13 @@ export class PsppaapplicationproccessComponent implements OnInit {
           name: "routeToUpdateApplicationForm",
           type: "html",
           title: '<i class="fa fa-edit custom-font"></i>',
-        }
+        },
       ],
     },
     search: {
-      searchButtonContent: '<img src="assets/images/icons/outline/settings-2-outline.svg" width="20" height="20" >',
-  },
+      searchButtonContent:
+        '<img src="assets/images/icons/outline/settings-2-outline.svg" width="20" height="20" >',
+    },
     columns: {
       no_siri_permohonan: {
         title: "1.NO SIRI PERMOHONAN",
@@ -159,7 +150,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
           type: "custom",
           component: FiltercustombuttonComponent,
           config: { placeholder: "Carian" },
-        }
+        },
       },
       tarikh_permohonan: {
         title: "2.TARIKH PERMOHONAN",
@@ -167,7 +158,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
           type: "custom",
           component: FiltercustombuttonComponent,
           config: { placeholder: "Carian" },
-        }
+        },
       },
 
       status_semakan_dokumen: {
@@ -195,9 +186,9 @@ export class PsppaapplicationproccessComponent implements OnInit {
         renderComponent: MeetingmodalComponent,
         valuePrepareFunction: (cell, row) => {
           this.met.value = row.no_siri_permohonan;
-        //  console.log(this.met.value);
+          //  console.log(this.met.value);
           this.met.getMeetingData = this.meetingData;
-         // console.log( this.met.getMeetingData);
+          // console.log( this.met.getMeetingData);
         },
       },
       maklumat_lawatan_tapak_id: {
@@ -229,8 +220,8 @@ export class PsppaapplicationproccessComponent implements OnInit {
         valuePrepareFunction: (cell, row) => {
           this.met.value = row.no_siri_permohonan;
           this.met.getData = this.data;
-          }
         },
+      },
       text: {
         title: "7.CATATAN",
         type: "custom",
@@ -251,7 +242,6 @@ export class PsppaapplicationproccessComponent implements OnInit {
   onCustomEvent(event) {
     switch (event.action) {
       case "routeToUpdateApplicationForm":
-
         this.keyValue = event.data;
         localStorage.setItem("date", this.keyValue.tarikh_permohonan);
         this.spinner.hide();
@@ -267,7 +257,6 @@ export class PsppaapplicationproccessComponent implements OnInit {
   }
 
   onUserRowSelect(event) {
-
     var i = 0;
     var j = 0;
     this.IdsArray = [];
@@ -276,16 +265,13 @@ export class PsppaapplicationproccessComponent implements OnInit {
       this.IdsArray.push(this.selectedRows[i].application_id);
     this.selectedRows = "";
     this.listOfIds = JSON.stringify(this.IdsArray);
-   // console.log(this.listOfIds);
+    // console.log(this.listOfIds);
     //console.log(this.IdsArray.length);
-
 
     // console.log(this.listOfIds);
     // console.log(this.listOfIds.length);
     // console.log(this.listOfIds.substring(1, this.listOfIds.length - 1));
   }
-
- 
 
   deleteSelected() {
     this.closeModalDelete();
@@ -304,27 +290,27 @@ export class PsppaapplicationproccessComponent implements OnInit {
         ),
       },
     };
-   // console.log(options);
+    // console.log(options);
 
     this.http
       .delete(
         environment.basePublicUrl + "/dbkl/deletePublicApplicationList",
         options
       )
-      .subscribe((s) => {
-        this.spinner.hide();
+      .subscribe(
+        (s) => {
+          this.spinner.hide();
 
-        if (s['message'] == "application_list_deleted") {
-          if (this.lang == 'en') {
-            this.sucessMsg = "Application List deleted Successfully!";
+          if (s["message"] == "application_list_deleted") {
+            if (this.lang == "en") {
+              this.sucessMsg = "Application List deleted Successfully!";
+            } else {
+              this.sucessMsg = "Senarai Aplikasi berjaya dipadam!";
+            }
           }
-          else {
-            this.sucessMsg = "Senarai Aplikasi berjaya dipadam!"
-          }
-        }
 
-        this.openSuccess();
-      },
+          this.openSuccess();
+        },
         (error) => {
           this.spinner.hide();
           this.loginError = true;
@@ -332,29 +318,27 @@ export class PsppaapplicationproccessComponent implements OnInit {
           //console.log(this.errorMsg);
 
           if (this.errorMsg == "application_list_not_undeleted") {
-            if (this.lang == 'en') {
-              this.errmsg = "Application List  could not be undeleted! Please refer console logs for further details.";
-            }
-            else {
-              this.errmsg = "Senarai Aplikasi tidak dapat dihapus! Sila rujuk log konsol untuk keterangan lebih lanjut."
+            if (this.lang == "en") {
+              this.errmsg =
+                "Application List  could not be undeleted! Please refer console logs for further details.";
+            } else {
+              this.errmsg =
+                "Senarai Aplikasi tidak dapat dihapus! Sila rujuk log konsol untuk keterangan lebih lanjut.";
             }
           }
 
           this.openError();
-        });
+        }
+      );
   }
 
   deleteChecked() {
     if (this.IdsArray == undefined) {
       this.display = "block";
-
-    }
-    else if (this.IdsArray.length == 0) {
+    } else if (this.IdsArray.length == 0) {
       this.display = "block";
-    }
-    else {
+    } else {
       this.opendeletemodal();
-
     }
   }
 
@@ -369,11 +353,11 @@ export class PsppaapplicationproccessComponent implements OnInit {
   }
 
   openSuccess() {
-    this.displaysuccess = "block"
+    this.displaysuccess = "block";
   }
 
   closeSuccess() {
-    this.displaysuccess = "none"
+    this.displaysuccess = "none";
     window.location.reload();
   }
 
@@ -398,7 +382,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
           this.router.navigateByUrl("/dbkl/adminregister");
           localStorage.removeItem("AccessToken");
           localStorage.removeItem("user_type");
-          localStorage.setItem("isdbkl","false");
+          localStorage.setItem("isdbkl", "false");
           this.spinner.hide();
         },
         (error) => {

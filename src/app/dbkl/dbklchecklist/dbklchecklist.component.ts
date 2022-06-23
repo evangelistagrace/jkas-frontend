@@ -6,7 +6,7 @@ import { FileUploader } from "ng2-file-upload";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { saveAs } from 'file-saver';
+import { saveAs } from "file-saver";
 
 @Component({
   selector: "app-dbklchecklist",
@@ -156,7 +156,7 @@ export class DbklchecklistComponent implements OnInit {
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     window.scroll(0, 0);
@@ -188,7 +188,6 @@ export class DbklchecklistComponent implements OnInit {
           // this.buildingName2 = this.datearray[1];
 
           this.kutipan = this.data[0].kutipan_sampah;
-          
 
           // Assign value to varianles
           this.kutipan_sampah = this.data[0].kutipan_sampah;
@@ -237,7 +236,8 @@ export class DbklchecklistComponent implements OnInit {
             this.notice2 = this.data[0].surat_salinan_CF_catatan.split("@*");
           }
           if (this.data[0].salinan_status_pembanginan_catatan) {
-            this.notice3 = this.data[0].salinan_status_pembanginan_catatan.split("@*");
+            this.notice3 =
+              this.data[0].salinan_status_pembanginan_catatan.split("@*");
           }
           if (this.data[0].bagi_status_pembangunan_catatan) {
             this.notice4 =
@@ -281,7 +281,6 @@ export class DbklchecklistComponent implements OnInit {
             this.pdffiles4.push(this.temp3[this.temp3.length - 1]);
           }
 
-
           // fiveth file
           if (this.data[0].dinyatakan_jenis_sistem) {
             this.sp5 = this.data[0].dinyatakan_jenis_sistem.split(",");
@@ -316,7 +315,7 @@ export class DbklchecklistComponent implements OnInit {
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + j);
 
-      this.uploadFile(data).subscribe((data) => { });
+      this.uploadFile(data).subscribe((data) => {});
     }
     this.uploader.clearQueue();
 
@@ -336,7 +335,7 @@ export class DbklchecklistComponent implements OnInit {
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + j);
 
-      this.uploadFile(data).subscribe((data) => { });
+      this.uploadFile(data).subscribe((data) => {});
     }
     this.uploader1.clearQueue();
 
@@ -354,7 +353,7 @@ export class DbklchecklistComponent implements OnInit {
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + j);
 
-      this.uploadFile(data).subscribe((data) => { });
+      this.uploadFile(data).subscribe((data) => {});
     }
     this.uploader2.clearQueue();
 
@@ -372,7 +371,7 @@ export class DbklchecklistComponent implements OnInit {
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + j);
 
-      this.uploadFile(data).subscribe((data) => { });
+      this.uploadFile(data).subscribe((data) => {});
     }
     this.uploader3.clearQueue();
     this.updatedata();
@@ -429,7 +428,6 @@ export class DbklchecklistComponent implements OnInit {
       this.fivethnewfile = this.fivethnewfile + "," + this.pdffiles5[i];
     }
 
-
     let key = localStorage.getItem("AccessToken");
     let headers = {
       "Content-Type": "application/json",
@@ -457,7 +455,7 @@ export class DbklchecklistComponent implements OnInit {
         }
       }
     } else {
-      if(this.firstMessage) {
+      if (this.firstMessage) {
         for (let i = 0; i < this.firstMessage.length; i++) {
           if (i == 0) {
             firstNotice = this.firstMessage[i];
@@ -485,8 +483,7 @@ export class DbklchecklistComponent implements OnInit {
           secondNotice = secondNotice + "@*" + this.secondMessage[i];
         }
       }
-    }
-    else {
+    } else {
       if (this.secondMessage) {
         for (let i = 0; i < this.secondMessage.length; i++) {
           if (i == 0) {
@@ -515,8 +512,7 @@ export class DbklchecklistComponent implements OnInit {
           thirdNotice = thirdNotice + "@*" + this.thirdMessage[i];
         }
       }
-    }
-    else {
+    } else {
       if (this.thirdMessage) {
         for (let i = 0; i < this.thirdMessage.length; i++) {
           if (i == 0) {
@@ -526,7 +522,6 @@ export class DbklchecklistComponent implements OnInit {
           thirdNotice = thirdNotice + "@*" + this.thirdMessage[i];
         }
       }
-
     }
 
     // fourth Notice
@@ -547,7 +542,6 @@ export class DbklchecklistComponent implements OnInit {
           fourthNotice = fourthNotice + "@*" + this.fourthMessage[i];
         }
       }
-
     } else {
       if (this.fourthMessage) {
         for (let i = 0; i < this.fourthMessage.length; i++) {
@@ -603,15 +597,14 @@ export class DbklchecklistComponent implements OnInit {
         next: (data) => {
           // console.log(data);
           this.spinner.hide();
-         // console.log(data["message"]);
+          // console.log(data["message"]);
 
           // this.resp = data["status"] == "success";
           if (data["message"] == "application_updated") {
             if (this.lang == "en") {
               this.sucessMsg = "The list of applications has been updated!";
             } else {
-              this.sucessMsg =
-                "Senarai permohonan telah dikemas kini!";
+              this.sucessMsg = "Senarai permohonan telah dikemas kini!";
             }
           }
           this.openSuccessModal();
@@ -641,7 +634,7 @@ export class DbklchecklistComponent implements OnInit {
     window.scroll(0, 0);
   }
 
-  garbageData(event) { }
+  garbageData(event) {}
   public onSaveUsernameChanged(value: boolean) {
     this.kutipan_sampah = value;
   }
@@ -730,11 +723,11 @@ export class DbklchecklistComponent implements OnInit {
           this.router.navigateByUrl("/dbkl/adminregister");
           localStorage.removeItem("AccessToken");
           localStorage.removeItem("user_type");
-          localStorage.setItem("isdbkl","false");
- 	  this.spinner.hide();
+          localStorage.setItem("isdbkl", "false");
+          this.spinner.hide();
         },
         (error) => {
- this.spinner.hide();
+          this.spinner.hide();
           // console.log("error is", error["error"]);
         }
       );
@@ -769,10 +762,16 @@ export class DbklchecklistComponent implements OnInit {
     }
   }
   onSelectOption5(event) {
-    if (event.target.value == "Lengkap") {
+    console.log("initial----" + this.status_dokumen_keseluruhan);
+
+    if (event.target.value === "Lengkap") {
+      console.log("lengkap=====initial" + this.status_dokumen_keseluruhan);
       this.status_dokumen_keseluruhan = 1;
-    } else if (event.target.value == "Tidak Lengkap") {
+      console.log("lengkap=====final" + this.status_dokumen_keseluruhan);
+    } else if (event.target.value === "Tidak Lengkap") {
+      console.log("tidak=====initial" + this.status_dokumen_keseluruhan);
       this.status_dokumen_keseluruhan = 0;
+      console.log("tidak=====final" + this.status_dokumen_keseluruhan);
     }
   }
 
@@ -942,28 +941,28 @@ export class DbklchecklistComponent implements OnInit {
 
   getPdf(e) {
     //console.log(e)
-    this.downloadPdf(e)
-      .then(blob => {
-        //console.log(blob)
-        saveAs(blob, e);
-        var fileURL = window.URL.createObjectURL(blob);
-        //console.log(fileURL);
+    this.downloadPdf(e).then((blob) => {
+      //console.log(blob)
+      saveAs(blob, e);
+      var fileURL = window.URL.createObjectURL(blob);
+      //console.log(fileURL);
 
-        let tab = window.open();
-        tab.location.href = fileURL
-      });
+      let tab = window.open();
+      tab.location.href = fileURL;
+    });
   }
   downloadPdf(id: number) {
     let key = localStorage.getItem("AccessToken");
     let headers = {
       "Content-Type": "application/json",
-      "Authorization": key,
-
+      Authorization: key,
     };
 
-
     return this.http
-      .get(this.basePublicUrl+"/jkas_resourses/public/pdfs/" + id, { headers, responseType: 'blob' })
+      .get(this.basePublicUrl + "/jkas_resourses/public/pdfs/" + id, {
+        headers,
+        responseType: "blob",
+      })
       .toPromise();
   }
 
@@ -1005,24 +1004,38 @@ export class DbklchecklistComponent implements OnInit {
         }
       );
   }
- opendocument() {
+  opendocument() {
     // window.location.href = "{{basePublicUrl}}/jkas_resourses/free/pdfs/CONTOH SURAT PERMOHONAN.pdf";
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/CONTOH SURAT PERMOHONAN.pdf");
+    window.open(
+      this.basePublicUrl +
+        "/jkas_resourses/free/pdfs/CONTOH SURAT PERMOHONAN.pdf"
+    );
   }
   open2nddocument() {
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/CONTOH BORANG F.pdf");
+    window.open(
+      this.basePublicUrl + "/jkas_resourses/free/pdfs/CONTOH BORANG F.pdf"
+    );
   }
   open3rddocument() {
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/JALAN AWAM.pdf");
+    window.open(
+      this.basePublicUrl + "/jkas_resourses/free/pdfs/JALAN AWAM.pdf"
+    );
   }
   open4rthdocument() {
-
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/PELAN JALAN AWAM.pdf");
+    window.open(
+      this.basePublicUrl + "/jkas_resourses/free/pdfs/PELAN JALAN AWAM.pdf"
+    );
   }
   open5thdocument() {
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH SWCorp.pdf");
+    window.open(
+      this.basePublicUrl +
+        "/jkas_resourses/free/pdfs/CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH SWCorp.pdf"
+    );
   }
   open6thdocument() {
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/PELAN INVENTORI KAWASAN PERKHIDMATAN PEMBERSIHAN.pdf");
+    window.open(
+      this.basePublicUrl +
+        "/jkas_resourses/free/pdfs/PELAN INVENTORI KAWASAN PERKHIDMATAN PEMBERSIHAN.pdf"
+    );
   }
 }
