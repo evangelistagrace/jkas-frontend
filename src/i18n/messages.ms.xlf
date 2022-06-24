@@ -4722,10 +4722,10 @@ For Solid Waste Collection and Public Cleansing
 			</trans-unit>
 			<trans-unit id="Inven21" datatype="html">
 				<source>
-					Open Space/Parking Area
+					Open Space/Parking Area [m²]
 				</source>
 				<target>
-					Kawasan Lapang / Parkir [m2]
+					Kawasan Lapang / Parkir [m²]
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -4802,10 +4802,10 @@ For Solid Waste Collection and Public Cleansing
 			</trans-unit>
 			<trans-unit id="Inven27" datatype="html">
 				<source>
-					Cut grass
+					Cut grass [m²]
 				</source>
 				<target>
-					Potong Rumput [m2]
+					Potong Rumput [m²]
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -7618,10 +7618,10 @@ For Solid Waste Collection and Public Cleansing
 			</trans-unit>
 			<trans-unit id="op21" datatype="html">
 				<source>
-					Cut the grass
+					Cut the grass [m²]
 				</source>
 				<target>
-					Potong Rumput
+					Potong Rumput [m²]
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
