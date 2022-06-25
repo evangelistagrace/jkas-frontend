@@ -219,7 +219,7 @@
                   {{ data }}
                 </option>
               </select>
-              <input
+              <!-- <input
                 class="form-control"
                 list="data"
                 [(ngModel)]="jenis_jawatankuasa"
@@ -228,7 +228,7 @@
                 [ngClass]="{
                   'is-invalid': submitted && f.jenis_jawatankuasa.errors
                 }"
-              />
+              /> -->
               <datalist id="data">
                 <option *ngFor="let data of Committee" [value]="data"></option>
               </datalist>
@@ -246,7 +246,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-1">
+            <!-- <div class="col-1">
               <button
                 class="addbutton newbutton"
                 (click)="addbutton()"
@@ -254,7 +254,7 @@
               >
                 +
               </button>
-            </div>
+            </div> -->
           </div>
           <br />
           <div *ngIf="this.is1st" style="width: 625px">

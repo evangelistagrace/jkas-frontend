@@ -10,9 +10,9 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { FileUploader } from "ng2-file-upload";
 
 @Component({
-  selector: 'app-mtkworkform',
-  templateUrl: './mtkworkform.component.html',
-  styleUrls: ['./mtkworkform.component.css']
+  selector: "app-mtkworkform",
+  templateUrl: "./mtkworkform.component.html",
+  styleUrls: ["./mtkworkform.component.css"],
 })
 export class MtkworkformComponent implements OnInit {
   SERVER_URL = environment.basePublicUrl + "/public/uploadFile";
@@ -156,7 +156,7 @@ export class MtkworkformComponent implements OnInit {
   susulan2A: any;
   susulan3A: any;
   data: any = [];
-  dataShow: any=[];
+  dataShow: any = [];
   laporan_siasatanA: any;
   report1A: any;
   report3A: any;
@@ -216,22 +216,22 @@ export class MtkworkformComponent implements OnInit {
   ulasanpenyelia: any;
   parlimenA: any;
   ulasanKetua_unitf1: any;
-  ulasan_timbalan:any;
+  ulasan_timbalan: any;
   ulasan_timbalanA: any;
   url: any = environment.basePublicUrl;
   basePublicUrl: any = environment.basePublicUrl;
   ulasan_timbalanB: any;
   filename: string;
   filename1: string;
-  UploaderData1: any=[];
-  UploaderData2: any=[];
-  UploaderData3: any=[];
-  UploaderData4: any=[];
+  UploaderData1: any = [];
+  UploaderData2: any = [];
+  UploaderData3: any = [];
+  UploaderData4: any = [];
   firstFile1: string;
   myfiles1: string;
   myfiles: string;
   firstFile: string;
-  ulasan11:any;
+  ulasan11: any;
   firstFile2: string;
   firstFile3: string;
   myfiles2: string;
@@ -246,8 +246,8 @@ export class MtkworkformComponent implements OnInit {
   nama_pegawai1: any;
   userrole: string;
   loginError: boolean;
-  zonedata: any=[];
-  parildata: any=[];
+  zonedata: any = [];
+  parildata: any = [];
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -259,12 +259,12 @@ export class MtkworkformComponent implements OnInit {
     this.userrole = localStorage.getItem("roleforuser");
     this.isAdminType = localStorage.getItem("isAdmin");
     this.username = localStorage.getItem("nama_pengguna");
-    this.parlimenA =localStorage.getItem("parlimen");
-    this.zonA=localStorage.getItem("zon");
-    this.nama_pegawai1=localStorage.getItem("user");
-     // console.log( this.nama_pegawai1);
-this.nama_pegawai=localStorage.getItem("user");
-    
+    this.parlimenA = localStorage.getItem("parlimen");
+    this.zonA = localStorage.getItem("zon");
+    this.nama_pegawai1 = localStorage.getItem("user");
+    // console.log( this.nama_pegawai1);
+    this.nama_pegawai = localStorage.getItem("user");
+
     this.dbkl_access_token = localStorage.getItem("dbkl_access_token");
     let headers1 = {
       "Content-Type": "application/json",
@@ -286,7 +286,7 @@ this.nama_pegawai=localStorage.getItem("user");
           this.errorMsg = error["error"]["message"];
         }
       );
-      this.http
+    this.http
       .get(this.basePublicUrl + "/dbkl/getBorangParlimen", {
         headers: headers1,
       })
@@ -294,7 +294,6 @@ this.nama_pegawai=localStorage.getItem("user");
         (res) => {
           this.spinner.hide();
           this.parildata = res;
-       
         },
         (error) => {
           this.loginError = true;
@@ -358,15 +357,15 @@ this.nama_pegawai=localStorage.getItem("user");
         this.filename3 = fileItem3.name;
       }
     };
-    if(this.lang=="en"){
+    if (this.lang == "en") {
       this.message = "Drag the marker to your location";
-    }else{
+    } else {
       this.message = "Sila bawa petanda ke lokasi anda";
     }
-   
+
     this.lang = localStorage.getItem("lang");
     localStorage.setItem("path", "/dbkl/mtbwork-form");
-    
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.setGeoLocation.bind(this));
     }
@@ -383,20 +382,19 @@ this.nama_pegawai=localStorage.getItem("user");
         (res) => {
           this.spinner.hide();
           this.data = res;
-         // console.log("yooo",res);
-          
-          for(let key of this.data){
+          // console.log("yooo",res);
+
+          for (let key of this.data) {
             this.dataShow.push(key);
           }
-          
         },
         (error) => {
           this.loginError = true;
           this.errorMsg = error["error"]["message"];
         }
       );
-  this.spinner.hide();
-   }
+    this.spinner.hide();
+  }
   logout() {
     this.spinner.show();
     let header = {
@@ -477,12 +475,11 @@ this.nama_pegawai=localStorage.getItem("user");
       tindakan: new FormControl("", [Validators.required]),
 
       susulan: new FormControl("", [Validators.required]),
-      ulasanKetua_unitf1:new FormControl("", [Validators.required]),
+      ulasanKetua_unitf1: new FormControl("", [Validators.required]),
       ulasan: new FormControl("", [Validators.required]),
       ulasan1: new FormControl("", [Validators.required]),
     });
     this.registrationGroup1 = new FormGroup({
-      
       zon1: new FormControl("", [Validators.required]),
       tarikhsiasatan1: new FormControl("", [Validators.required]),
       idpegawai1: new FormControl("", [Validators.required]),
@@ -492,38 +489,39 @@ this.nama_pegawai=localStorage.getItem("user");
       tindakan1: new FormControl("", [Validators.required]),
 
       susulan1: new FormControl("", [Validators.required]),
-      ulasanpenyelia:new FormControl("", [Validators.required]),
+      ulasanpenyelia: new FormControl("", [Validators.required]),
       ulasan1: new FormControl("", [Validators.required]),
       ulasan11: new FormControl("", [Validators.required]),
-    
-    //  ulasan_timbalan1:new FormControl("", [Validators.required]),
+
+      //  ulasan_timbalan1:new FormControl("", [Validators.required]),
     });
     this.registrationGroup2 = new FormGroup({
       nama2: new FormControl("", [Validators.required]),
       alamat2: new FormControl("", [Validators.required]),
       norukujan2: new FormControl("", [Validators.required]),
-     
+
       email2: new FormControl("", [
         Validators.required,
-        Validators.pattern("^[A-za-z]{3,}[A-za-z0-9.]{1,}@[A-Za-z]{3,}[.][A-Za-z.]{2,6}$"),
+        Validators.pattern(
+          "^[A-za-z]{3,}[A-za-z0-9.]{1,}@[A-Za-z]{3,}[.][A-Za-z.]{2,6}$"
+        ),
       ]),
       notelefon2: new FormControl("", [
         Validators.required,
         Validators.pattern("^[0-9]{11}$"),
       ]),
       nofaksimili2: new FormControl("", [Validators.required]),
-      
+
       samberaduan2: new FormControl("", [Validators.required]),
       lain_lain2: new FormControl("", [Validators.required]),
       tarikhaduan2: new FormControl("", [Validators.required]),
       tarikhterima2: new FormControl("", [Validators.required]),
       lokasiaduan2: new FormControl("", [Validators.required]),
-      cause1:new FormControl("", [Validators.required]),
+      cause1: new FormControl("", [Validators.required]),
       keteranganaduan2: new FormControl("", [Validators.required]),
       ulasan2: new FormControl("", [Validators.required]),
       ulasan12: new FormControl("", [Validators.required]),
       ulasanKetua_unit: new FormControl("", [Validators.required]),
-    
     });
   }
   onMapReady(map: L.Map) {
@@ -611,19 +609,19 @@ this.nama_pegawai=localStorage.getItem("user");
       tarikh_terima: this.tarikh_terima,
       lokasi_aduan: this.lokasi_aduan,
       keterangan_aduan: this.keterangan_aduan,
-      ulasanKetua_unitf1:this.ulasanKetua_unitf1,
+      ulasanKetua_unitf1: this.ulasanKetua_unitf1,
       zon: this.zon,
       parlimen: this.parlimen,
       tarikh_siasatan: this.tarikh_siasatan,
       nama_pegawai: this.nama_pegawai,
       lokasi_siasatan: loc,
-      gambar:this.firstFile2,
+      gambar: this.firstFile2,
       laporan_siasatan: this.laporan_siasatan,
-      cause :this.cause,
+      cause: this.cause,
       tindakan: this.tindakan,
       susulan: this.susulan,
       ullasan_penyelia: this.ullasan_penyelia,
-      ullasan_ketua_seksyen: this.ullasan_ketua_seksyen
+      ullasan_ketua_seksyen: this.ullasan_ketua_seksyen,
       // ulasan_timbalan:this.ulasan_timbalan
     };
     let key = localStorage.getItem("AccessToken");
@@ -633,7 +631,7 @@ this.nama_pegawai=localStorage.getItem("user");
       Authorization: key,
     };
 
-   // console.log(body);
+    // console.log(body);
     this.http
       .post(this.baseUrl + "/dbkl/addComplaintInvestigation", body, {
         headers: headers,
@@ -642,26 +640,25 @@ this.nama_pegawai=localStorage.getItem("user");
         (res) => {
           // console.log("response is", res);
           this.spinner.hide();
-          if (res['message'] == "complaint_investigation_added") {
-            if (this.lang == 'en') {
+          if (res["message"] == "complaint_investigation_added") {
+            if (this.lang == "en") {
               this.sucessMsg = "Inquiry Information successfully added!";
-            }
-            else {
-              this.sucessMsg = "Maklumat Siasatan berjaya ditambah!"
+            } else {
+              this.sucessMsg = "Maklumat Siasatan berjaya ditambah!";
             }
           }
           this.openSuccess();
-          
         },
         (error) => {
           this.spinner.hide();
           this.errorMsg = error["error"]["message"];
           if (this.errorMsg == "complaint_investigation_not_added") {
-            if (this.lang == 'en') {
-              this.errmsg = "Complaint Investigation could not be added! Please refer console logs for further details.";
-            }
-            else {
-              this.errmsg = "Siasatan Aduan tidak dapat ditambahkan! Sila rujuk log konsol untuk keterangan lebih lanjut."
+            if (this.lang == "en") {
+              this.errmsg =
+                "Complaint Investigation could not be added! Please refer console logs for further details.";
+            } else {
+              this.errmsg =
+                "Siasatan Aduan tidak dapat ditambahkan! Sila rujuk log konsol untuk keterangan lebih lanjut.";
             }
           }
           this.openError();
@@ -673,14 +670,15 @@ this.nama_pegawai=localStorage.getItem("user");
   get f1() {
     return this.registrationGroup1.controls;
   }
+
   submit1() {
     this.uploadSubmit();
     this.submitted1 = true;
-   // console.log("my response");
-    // if (this.registrationGroup1.invalid) {
-    //   console.log("2nd");
-    //   return;
-    // }
+    console.log("my response");
+    if (this.registrationGroup1.invalid) {
+      console.log("2nd");
+      return;
+    }
 
     let loc = localStorage.getItem("area");
     localStorage.removeItem("area");
@@ -700,20 +698,20 @@ this.nama_pegawai=localStorage.getItem("user");
     this.laporan_siasatanA = this.report1A;
 
     let body = {
-      nama_pegawai:this.nama_pegawai1,
+      nama_pegawai: this.nama_pegawai1,
       zon: this.zonA,
-      parlimenA:this.parlimenA,
+      parlimenA: this.parlimenA,
       tarikh_siasatan: this.tarikh_siasatanA,
-     // nama_pegawai: this.nama_pegawaiA,
+      // nama_pegawai: this.nama_pegawaiA,
       lokasi_siasatan: loc,
       laporan_siasatan: this.report1A,
       tindakan: this.tindakan1A,
       // susulan: this.susulan1A,
       ullasan_penyelia: this.ullasan_penyelia1A,
       ullasan_ketua_seksyen: this.ullasan_ketua_seksyen1A,
-      ullasan_ketua_unit:this.ulasanpenyelia,
+      ullasan_ketua_unit: this.ulasanpenyelia,
       //ulasan_timbalan:this.ulasan_timbalanA,
-      sebelum_siasatan: this.firstFile
+      sebelum_siasatan: this.firstFile,
       // selepas_siasatan: this.firstFile1
     };
     let key = localStorage.getItem("AccessToken");
@@ -732,26 +730,26 @@ this.nama_pegawai=localStorage.getItem("user");
         (res) => {
           // console.log("response is", res);
           this.spinner.hide();
-          if (res['message'] == "complaint_investigation_added") {
-            if (this.lang == 'en') {
+          if (res["message"] == "complaint_investigation_added") {
+            if (this.lang == "en") {
               this.sucessMsg = "Complaint Investigation added successfully!";
-            }
-            else {
-              this.sucessMsg = "Penyiasatan Aduan berjaya ditambahkan!"
+            } else {
+              this.sucessMsg = "Penyiasatan Aduan berjaya ditambahkan!";
             }
           }
           this.openSuccess();
-          // this.openSuccessModal();
+          this.openSuccessModal();
         },
         (error) => {
           this.spinner.hide();
           this.errorMsg = error["error"]["message"];
           if (this.errorMsg == "complaint_investigation_not_added") {
-            if (this.lang == 'en') {
-              this.errmsg = "Complaint Investigation could not be added! Please refer console logs for further details.";
-            }
-            else {
-              this.errmsg = "Siasatan Aduan tidak dapat ditambahkan! Sila rujuk log konsol untuk keterangan lebih lanjut."
+            if (this.lang == "en") {
+              this.errmsg =
+                "Complaint Investigation could not be added! Please refer console logs for further details.";
+            } else {
+              this.errmsg =
+                "Siasatan Aduan tidak dapat ditambahkan! Sila rujuk log konsol untuk keterangan lebih lanjut.";
             }
           }
           this.openError();
@@ -787,17 +785,17 @@ this.nama_pegawai=localStorage.getItem("user");
       no_telefon: this.no_telefonB,
       emel: this.emelB,
       no_faksimili: this.no_faksimiliB,
-      gambar:this.firstFile3,
+      gambar: this.firstFile3,
       sumber_aduan: this.sumber_aduanB,
       lain_lain: this.lain_lainB,
       tarikh_aduan: this.tarikh_aduanB,
       tarikh_terima: this.tarikh_terimaB,
       lokasi_aduan: this.lokasi_aduanB,
-      cause:this.causeA,
+      cause: this.causeA,
       keterangan_aduan: this.keterangan_aduanB,
       ullasan_penyelia: this.ullasan_penyeliaB,
       ullasan_ketua_seksyen: this.ullasan_ketua_seksyenB,
-      ulasanKetua_unit:this.ulasanKetua_unit,
+      ulasanKetua_unit: this.ulasanKetua_unit,
     };
     let key = localStorage.getItem("AccessToken");
     let headers = {
@@ -806,7 +804,7 @@ this.nama_pegawai=localStorage.getItem("user");
       Authorization: key,
     };
 
-   // console.log(body);
+    // console.log(body);
     this.http
       .post(this.baseUrl + "/dbkl/add3rdComplaintInvestigation", body, {
         headers: headers,
@@ -815,12 +813,11 @@ this.nama_pegawai=localStorage.getItem("user");
         (res) => {
           // console.log("response is", res);
           this.spinner.hide();
-          if (res['message'] == "complaint_investigation_added") {
-            if (this.lang == 'en') {
+          if (res["message"] == "complaint_investigation_added") {
+            if (this.lang == "en") {
               this.sucessMsg = "Complaint Investigation added successfully!";
-            }
-            else {
-              this.sucessMsg = "Penyiasatan Aduan berjaya ditambahkan!"
+            } else {
+              this.sucessMsg = "Penyiasatan Aduan berjaya ditambahkan!";
             }
           }
           this.openSuccess();
@@ -830,11 +827,12 @@ this.nama_pegawai=localStorage.getItem("user");
           this.spinner.hide();
           this.errorMsg = error["error"]["message"];
           if (this.errorMsg == "complaint_investigation_not_added") {
-            if (this.lang == 'en') {
-              this.errmsg = "Complaint Investigation could not be added! Please refer console logs for further details.";
-            }
-            else {
-              this.errmsg = "Siasatan Aduan tidak dapat ditambahkan! Sila rujuk log konsol untuk keterangan lebih lanjut."
+            if (this.lang == "en") {
+              this.errmsg =
+                "Complaint Investigation could not be added! Please refer console logs for further details.";
+            } else {
+              this.errmsg =
+                "Siasatan Aduan tidak dapat ditambahkan! Sila rujuk log konsol untuk keterangan lebih lanjut.";
             }
           }
           this.openError();
@@ -882,23 +880,21 @@ this.nama_pegawai=localStorage.getItem("user");
     this.errorDisplay = "none";
   }
 
-
-
-  openSuccess(){
-    this.displaysuccess="block"
+  openSuccess() {
+    this.displaysuccess = "block";
   }
 
-  closeSuccess(){
-    this.displaysuccess="none"
+  closeSuccess() {
+    this.displaysuccess = "none";
     this.openSuccessModal();
   }
 
-  openError(){
-    this.errorDisplay1="block";
+  openError() {
+    this.errorDisplay1 = "block";
   }
 
-  closeError(){
-    this.errorDisplay1="none";
+  closeError() {
+    this.errorDisplay1 = "none";
   }
   uploadSubmit() {
     // for (var i = 0; i < this.uploader.queue.length; i++) {
@@ -930,7 +926,6 @@ this.nama_pegawai=localStorage.getItem("user");
     }
     this.uploader.clearQueue();
 
-
     // for (var j = 0; j < this.uploader1.queue.length; j++) {
     //   let data1 = new FormData();
     //   let fileItem = this.uploader1.queue[j]._file;
@@ -941,12 +936,11 @@ this.nama_pegawai=localStorage.getItem("user");
     //   data1.append("file", fileItem);
     //   data1.append("fileSeq", "seq" + j);
 
-     
     // }
     // this.uploader1.clearQueue();
   }
 
-  uploadSubmit1(){
+  uploadSubmit1() {
     for (var j = 0; j < this.uploader2.queue.length; j++) {
       let data2 = new FormData();
       let fileItem = this.uploader2.queue[j]._file;
@@ -957,8 +951,8 @@ this.nama_pegawai=localStorage.getItem("user");
       this.myfiles2 = JSON.stringify(this.UploaderData3);
 
       this.firstFile2 = fileItem.name;
-     // console.log(this.firstFile2);
-      
+      // console.log(this.firstFile2);
+
       // console.log(
       //   "my string length........." +
       //     this.myfiles.substring(1, this.myfiles.length - 1)
@@ -971,7 +965,7 @@ this.nama_pegawai=localStorage.getItem("user");
     }
     this.uploader2.clearQueue();
   }
-  uploadSubmit2(){
+  uploadSubmit2() {
     for (var j = 0; j < this.uploader3.queue.length; j++) {
       let data3 = new FormData();
       let fileItem = this.uploader3.queue[j]._file;
@@ -998,5 +992,4 @@ this.nama_pegawai=localStorage.getItem("user");
   uploadFile(data: FormData): Observable<any> {
     return this.http.post<any>(this.basePublicUrl, data);
   }
-
 }

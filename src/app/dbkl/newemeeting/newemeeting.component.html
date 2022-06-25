@@ -4,36 +4,71 @@
 <!-- Header -->
 <app-headerc></app-headerc>
 <!-- End of Header -->
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
-  [fullScreen]="true">
-
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#253d84"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+>
 </ngx-spinner>
 <!-- Success Modal Start-->
-<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+<div
+  class="modal"
+  id="staticBackdrop"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display }"
+  aria-labelledby=" staticBackdropLabel "
+  aria-hidden="true "
+>
   <div class="modal-dialog modal-dialog-centered" role="document ">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
-          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+        <div
+          class="swal2-icon swal2-success swal2-animate-success-icon"
+          style="display: flex"
+        >
+          <div
+            class="swal2-success-circular-line-left"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
           <span class="swal2-success-line-tip"></span>
           <span class="swal2-success-line-long"></span>
           <div class="swal2-success-ring"></div>
-          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
-          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+          <div
+            class="swal2-success-fix"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+          <div
+            class="swal2-success-circular-line-right"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
         </div>
       </div>
       <div class="modal-body">
         <h4 class="text-center">
-          <span class="dialog-msg">{{meetingupdate}}&nbsp;</span>
+          <span class="dialog-msg">{{ meetingupdate }}&nbsp;</span>
         </h4>
 
         <div class="d-flex justify-content-center">
-          <button type="button " i18n="@@ok" (click)="onCloseHandled()" data-dismiss="modal " class="btn" style="
+          <button
+            type="button "
+            i18n="@@ok"
+            (click)="onCloseHandled()"
+            data-dismiss="modal "
+            class="btn"
+            style="
               color: white !important;
               border-radius: 4px !important;
-             background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
-            ">
+              background-image: linear-gradient(
+                to bottom,
+                #337ab7 0,
+                #265a88 100%
+              );
+            "
+          >
             OK
           </button>
         </div>
@@ -43,30 +78,52 @@
 </div>
 <!-- Success Modal End -->
 <!-- Error Modal Start -->
-<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display1 }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div
+  class="modal"
+  id="staticBackdrop1"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display1 }"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <div class="col-12">
-          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
-            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
-                class="swal2-x-mark-line-right"></span></span>
+          <div
+            class="swal2-icon swal2-error swal2-animate-error-icon"
+            style="display: flex; justify-content: center"
+          >
+            <span class="swal2-x-mark"
+              ><span class="swal2-x-mark-line-left"></span
+              ><span class="swal2-x-mark-line-right"></span
+            ></span>
           </div>
         </div>
       </div>
       <div class="modal-body">
         <h6 style="text-align: center">
-          <span class="dialog-msg">{{errmsg}}</span>
+          <span class="dialog-msg">{{ errmsg }}</span>
           <br />
         </h6>
 
         <div class="d-flex justify-content-center mt-4">
-          <button class="btn" (click)="onCloseHandled1()" i18n="@@ok" style="
-              background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+          <button
+            class="btn"
+            (click)="onCloseHandled1()"
+            i18n="@@ok"
+            style="
+              background-image: -webkit-linear-gradient(
+                top,
+                #d9534f 0,
+                #c12e2a 100%
+              );
               color: white !important;
               border-radius: 4px !important;
-            ">
+            "
+          >
             Ok
           </button>
         </div>
@@ -80,11 +137,16 @@
     <!-- ======= Services Section ======= -->
     <section id="meeting" class="meeting">
       <div class="container" style="margin-top: 2%; margin-bottom: 2%">
-       
         <div class="text-center">
           <div>
-            <img src="../../../assets/img/DBKL LOGO (Lorry).png" height="70" alt="" />
-            <h6 style="font-weight: 1000" i18n="@@omp2">KUALA LUMPUR CITY HALL</h6>
+            <img
+              src="../../../assets/img/DBKL LOGO (Lorry).png"
+              height="70"
+              alt=""
+            />
+            <h6 style="font-weight: 1000" i18n="@@omp2">
+              KUALA LUMPUR CITY HALL
+            </h6>
             <h6 style="font-weight: 1000" i18n="@@omp1">
               DEPARTMENT OF HEALTH AND ENVIRONMENT
             </h6>
@@ -113,13 +175,19 @@
           </button>
         </div>
         <div class="section-title">
-          <h2  i18n="@@lem1">{{mettingtitle}}</h2>
+          <h2 i18n="@@lem1">{{ mettingtitle }}</h2>
         </div>
 
-        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <form
+          name="form"
+          (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate
+        >
           <div class="form-group row">
             <div class="form-group col-md-12">
-              <label for="textInput" i18n="@@lem2">Type of Committee</label><sup>*</sup>
+              <label for="textInput" i18n="@@lem2">Type of Committee</label
+              ><sup>*</sup>
               <!-- <input type="text" id="textInput" class="form-control" name="jenis_jawatankuasa" placeholder="Input teks"
                 [(ngModel)]="model.jenis_jawatankuasa" #jenis_jawatankuasa="ngModel" [ngClass]="{
                     'is-invalid': f.submitted && jenis_jawatankuasa.invalid
@@ -130,16 +198,26 @@
                 </div>
               </div> -->
 
-              <select class="form-control" >
-                <option >
-                  
+              <select
+                class="browser-default custom-select form-control mb-2"
+                id="select"
+                [(ngModel)]="jenis_mesyuarat"
+                name="jenis_mesyuarat"
+                formControlName="jenis_mesyuarat"
+                [ngClass]="{
+                  'is-invalid': submitted && f.jenis_mesyuarat.errors
+                }"
+              >
+                <option i18n="@@general" value="Umum">
+                  Jenis JawatanKuasa
                 </option>
+                <option i18n="@@period" value="Berkala">Jenis Mesyuarat</option>
               </select>
-
             </div>
 
             <div class="form-group col-md-12">
-              <label for="textInput" i18n="@@lem4">Meeting Type</label><sup>*</sup>
+              <label for="textInput" i18n="@@lem4">Meeting Type</label
+              ><sup>*</sup>
               <!-- <input type="text" id="textInput" class="form-control" placeholder="Input teks"
                 [(ngModel)]="model.jenis_mesyuarat" #jenis_mesyuarat="ngModel" name="jenis_mesyuarat" [ngClass]="{
                     'is-invalid': f.submitted && jenis_mesyuarat.invalid
@@ -149,15 +227,34 @@
                   Please fill this required field.
                 </div>
               </div> -->
-              <select class="form-control" >
+
+              <!-- <select class="form-control" >
                 <option>
                   
                 </option>
+              </select> -->
+
+              <select
+                class="browser-default custom-select form-control mb-2"
+                id="select"
+                [(ngModel)]="jenis_mesyuarat"
+                name="jenis_mesyuarat"
+                formControlName="jenis_mesyuarat"
+                [ngClass]="{
+                  'is-invalid': submitted && f.jenis_mesyuarat.errors
+                }"
+              >
+                <option value="" selected="" disabled="" i18n="@@stmt">
+                  Select the Meeting Type
+                </option>
+                <option i18n="@@general" value="Umum">General</option>
+                <option i18n="@@period" value="Berkala">Periodicall</option>
               </select>
             </div>
 
             <div class="form-group col-md-12 depart">
-              <label for="select" i18n="@@lem5">Department Involved</label><sup>*</sup>
+              <label for="select" i18n="@@lem5">Department Involved</label
+              ><sup>*</sup>
             </div>
             <div class="form-group col-md-11">
               <!-- <select
@@ -171,14 +268,24 @@
                     {{ data }}
                   </option>
                 </select> -->
-              <input class=" custom-select" list="data" name="data" [(ngModel)]="jabatan_terlibat" />
+              <input
+                class="custom-select"
+                list="data"
+                name="data"
+                [(ngModel)]="jabatan_terlibat"
+              />
               <datalist id="data">
-                <option *ngFor="let data of department" [value]="data">{{ data }}
+                <option *ngFor="let data of department" [value]="data">
+                  {{ data }}
                 </option>
               </datalist>
             </div>
             <div class="form-group col-md-1">
-              <button class="addbutton newbutton" (click)="addFieldValue()" type="button">
+              <button
+                class="addbutton newbutton"
+                (click)="addFieldValue()"
+                type="button"
+              >
                 +
               </button>
             </div>
@@ -193,37 +300,66 @@
                   <tr *ngFor="let field of fieldArray; let i = index">
                     <td>
                       <div class="input-group">
-                        <input [(ngModel)]="field.name" style="width: 880px;" class="form-control" type="text" name="{{field.name}}">
+                        <input
+                          [(ngModel)]="field.name"
+                          style="width: 880px"
+                          class="form-control"
+                          type="text"
+                          name="{{ field.name }}"
+                        />
                       </div>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
-           
 
             <div class="form-group col-md-6">
-              <label for="textInput" i18n="@@lem6">Date of Meeting</label><sup>*</sup>
-              <input type="date" id="textInput" class="form-control" placeholder="Input teks"
-                [(ngModel)]="model.tarikh_mesyuarat" name="tarikh_mesyuarat" #tarikh_mesyuarat="ngModel" [ngClass]="{
-                    'is-invalid': f.submitted && tarikh_mesyuarat.invalid
-                  }" required />
-              <div *ngIf="f.submitted && tarikh_mesyuarat.invalid" class="invalid-feedback">
+              <label for="textInput" i18n="@@lem6">Date of Meeting</label
+              ><sup>*</sup>
+              <input
+                type="date"
+                id="textInput"
+                class="form-control"
+                placeholder="Input teks"
+                [(ngModel)]="model.tarikh_mesyuarat"
+                name="tarikh_mesyuarat"
+                #tarikh_mesyuarat="ngModel"
+                [ngClass]="{
+                  'is-invalid': f.submitted && tarikh_mesyuarat.invalid
+                }"
+                required
+              />
+              <div
+                *ngIf="f.submitted && tarikh_mesyuarat.invalid"
+                class="invalid-feedback"
+              >
                 <div *ngIf="tarikh_mesyuarat.errors.required" i18n="@@lem3">
                   Please fill this required field.
                 </div>
               </div>
             </div>
+            <div class="form-group col-md-6"></div>
             <div class="form-group col-md-6">
-
-            </div>
-            <div class="form-group col-md-6">
-              <label for="textInput" i18n="@@lem8"> Meeting Time</label><sup>*</sup>
-              <input type="time" id="textInput" class="form-control" placeholder="Input teks" 
-                [(ngModel)]="model.masa_mesyuarat" name="masa_mesyuarat" #masa_mesyuarat="ngModel" [ngClass]="{
-                    'is-invalid': f.submitted && masa_mesyuarat.invalid
-                  }" required />
-              <div *ngIf="f.submitted && masa_mesyuarat.invalid" class="invalid-feedback">
+              <label for="textInput" i18n="@@lem8"> Meeting Time</label
+              ><sup>*</sup>
+              <input
+                type="time"
+                id="textInput"
+                class="form-control"
+                placeholder="Input teks"
+                [(ngModel)]="model.masa_mesyuarat"
+                name="masa_mesyuarat"
+                #masa_mesyuarat="ngModel"
+                [ngClass]="{
+                  'is-invalid': f.submitted && masa_mesyuarat.invalid
+                }"
+                required
+              />
+              <div
+                *ngIf="f.submitted && masa_mesyuarat.invalid"
+                class="invalid-feedback"
+              >
                 <div *ngIf="masa_mesyuarat.errors.required" i18n="@@lem3">
                   Please fill this required field.
                 </div>
@@ -231,9 +367,21 @@
             </div>
             <div class="form-group col-md-6">
               <label for="textInput" i18n="@@lem7"> Until</label><sup>*</sup>
-              <input type="time" id="textInput" class="form-control" placeholder="Input teks" [(ngModel)]="model.hingga"
-                name="hingga" #hingga="ngModel" [ngClass]="{ 'is-invalid': f.submitted && hingga.invalid }" required />
-              <div *ngIf="f.submitted && hingga.invalid" class="invalid-feedback">
+              <input
+                type="time"
+                id="textInput"
+                class="form-control"
+                placeholder="Input teks"
+                [(ngModel)]="model.hingga"
+                name="hingga"
+                #hingga="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && hingga.invalid }"
+                required
+              />
+              <div
+                *ngIf="f.submitted && hingga.invalid"
+                class="invalid-feedback"
+              >
                 <div *ngIf="hingga.errors.required" i18n="@@lem3">
                   Please fill this required field.
                 </div>
@@ -242,10 +390,21 @@
 
             <div class="form-group col-md-12">
               <label for="textInput" i18n="@@lem9">Chairman</label><sup>*</sup>
-              <input type="text" id="textInput" class="form-control" placeholder="Input teks"
-                [(ngModel)]="model.pengerusi" name="pengerusi" #pengerusi="ngModel"
-                [ngClass]="{ 'is-invalid': f.submitted && pengerusi.invalid }" required />
-              <div *ngIf="f.submitted && pengerusi.invalid" class="invalid-feedback">
+              <input
+                type="text"
+                id="textInput"
+                class="form-control"
+                placeholder="Input teks"
+                [(ngModel)]="model.pengerusi"
+                name="pengerusi"
+                #pengerusi="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && pengerusi.invalid }"
+                required
+              />
+              <div
+                *ngIf="f.submitted && pengerusi.invalid"
+                class="invalid-feedback"
+              >
                 <div *ngIf="pengerusi.errors.required" i18n="@@lem3">
                   Please fill this required field.
                 </div>
@@ -253,12 +412,25 @@
             </div>
 
             <div class="form-group col-md-12">
-              <label for="textInput" i18n="@@lem10">Meeting Bill</label><sup>*</sup>
-              <input type="text" id="textInput" class="form-control" placeholder="Input teks"
-                [(ngModel)]="model.bill_mesyuarat" name="bill_mesyuarat" #bill_mesyuarat="ngModel" [ngClass]="{
-                    'is-invalid': f.submitted && bill_mesyuarat.invalid
-                  }" required />
-              <div *ngIf="f.submitted && bill_mesyuarat.invalid" class="invalid-feedback">
+              <label for="textInput" i18n="@@lem10">Meeting Bill</label
+              ><sup>*</sup>
+              <input
+                type="text"
+                id="textInput"
+                class="form-control"
+                placeholder="Input teks"
+                [(ngModel)]="model.bill_mesyuarat"
+                name="bill_mesyuarat"
+                #bill_mesyuarat="ngModel"
+                [ngClass]="{
+                  'is-invalid': f.submitted && bill_mesyuarat.invalid
+                }"
+                required
+              />
+              <div
+                *ngIf="f.submitted && bill_mesyuarat.invalid"
+                class="invalid-feedback"
+              >
                 <div *ngIf="bill_mesyuarat.errors.required" i18n="@@lem3">
                   Please fill this required field.
                 </div>
@@ -266,25 +438,51 @@
             </div>
 
             <div class="form-group col-md-12">
-              <label for="textarea" i18n="@@lem11">Title of Meeting</label><sup>*</sup>
-              <textarea id="textarea" class="form-control" placeholder="Kawasan teks" (keyup)="gettexts($event)"
-                [(ngModel)]="model.tajuk_mesyuarat" name="tajuk_mesyuarat" #tajuk_mesyuarat="ngModel" [ngClass]="{
-                    'is-invalid': f.submitted && tajuk_mesyuarat.invalid
-                  }" required></textarea>
+              <label for="textarea" i18n="@@lem11">Title of Meeting</label
+              ><sup>*</sup>
+              <textarea
+                id="textarea"
+                class="form-control"
+                placeholder="Kawasan teks"
+                (keyup)="gettexts($event)"
+                [(ngModel)]="model.tajuk_mesyuarat"
+                name="tajuk_mesyuarat"
+                #tajuk_mesyuarat="ngModel"
+                [ngClass]="{
+                  'is-invalid': f.submitted && tajuk_mesyuarat.invalid
+                }"
+                required
+              ></textarea>
 
-              <div *ngIf="f.submitted && tajuk_mesyuarat.invalid" class="invalid-feedback">
+              <div
+                *ngIf="f.submitted && tajuk_mesyuarat.invalid"
+                class="invalid-feedback"
+              >
                 <div *ngIf="tajuk_mesyuarat.errors.required" i18n="@@lem3">
                   Please fill this required field.
                 </div>
               </div>
             </div>
             <div class="form-group col-md-12">
-              <label for="textInput" i18n="@@lem12">Secretary</label><sup>*</sup>
-              <input type="text" id="textInput" class="form-control" placeholder="Input teks"
-                [(ngModel)]="model.setiausaha" name="setiausaha" #setiausaha="ngModel" [ngClass]="{
-                    'is-invalid': f.submitted && setiausaha.invalid
-                  }" required />
-              <div *ngIf="f.submitted && setiausaha.invalid" class="invalid-feedback">
+              <label for="textInput" i18n="@@lem12">Secretary</label
+              ><sup>*</sup>
+              <input
+                type="text"
+                id="textInput"
+                class="form-control"
+                placeholder="Input teks"
+                [(ngModel)]="model.setiausaha"
+                name="setiausaha"
+                #setiausaha="ngModel"
+                [ngClass]="{
+                  'is-invalid': f.submitted && setiausaha.invalid
+                }"
+                required
+              />
+              <div
+                *ngIf="f.submitted && setiausaha.invalid"
+                class="invalid-feedback"
+              >
                 <div *ngIf="setiausaha.errors.required" i18n="@@lem3">
                   Please fill this required field.
                 </div>
@@ -292,24 +490,50 @@
             </div>
 
             <div class="form-group col-md-12">
-              <label for="textInput" i18n="@@lem13">Meeting Place</label><sup>*</sup>
-              <input type="text" id="textInput" class="form-control" placeholder="Input teks"
-                [(ngModel)]="model.tempat_mesyuarat" name="tempat_mesyuarat" #tempat_mesyuarat="ngModel" [ngClass]="{
-                    'is-invalid': f.submitted && tempat_mesyuarat.invalid
-                  }" required />
-              <div *ngIf="f.submitted && tempat_mesyuarat.invalid" class="invalid-feedback">
+              <label for="textInput" i18n="@@lem13">Meeting Place</label
+              ><sup>*</sup>
+              <input
+                type="text"
+                id="textInput"
+                class="form-control"
+                placeholder="Input teks"
+                [(ngModel)]="model.tempat_mesyuarat"
+                name="tempat_mesyuarat"
+                #tempat_mesyuarat="ngModel"
+                [ngClass]="{
+                  'is-invalid': f.submitted && tempat_mesyuarat.invalid
+                }"
+                required
+              />
+              <div
+                *ngIf="f.submitted && tempat_mesyuarat.invalid"
+                class="invalid-feedback"
+              >
                 <div *ngIf="tempat_mesyuarat.errors.required" i18n="@@lem3">
                   Please fill this required field.
                 </div>
               </div>
             </div>
             <div class="form-group col-md-12">
-              <label for="textarea" i18n="@@lem14">Agenda And Minutes</label><sup>*</sup>
-              <textarea style="display: inline-block" id="textarea" class="form-control" placeholder="Kawasan teks"
-                [(ngModel)]="model.agenda_dan_minit" #agenda_dan_minit="ngModel" name="agenda_dan_minit" [ngClass]="{
-                    'is-invalid': f.submitted && agenda_dan_minit.invalid
-                  }" required></textarea>
-              <div *ngIf="f.submitted && agenda_dan_minit.invalid" class="invalid-feedback">
+              <label for="textarea" i18n="@@lem14">Agenda And Minutes</label
+              ><sup>*</sup>
+              <textarea
+                style="display: inline-block"
+                id="textarea"
+                class="form-control"
+                placeholder="Kawasan teks"
+                [(ngModel)]="model.agenda_dan_minit"
+                #agenda_dan_minit="ngModel"
+                name="agenda_dan_minit"
+                [ngClass]="{
+                  'is-invalid': f.submitted && agenda_dan_minit.invalid
+                }"
+                required
+              ></textarea>
+              <div
+                *ngIf="f.submitted && agenda_dan_minit.invalid"
+                class="invalid-feedback"
+              >
                 <div *ngIf="agenda_dan_minit.errors.required" i18n="@@lem3">
                   Please fill this required field.
                 </div>
@@ -317,10 +541,22 @@
             </div>
             <div class="form-group col-md-12">
               <label class="custom-file-upload uploade">
-                <input type="file" ng2FileSelect accept=".pdf" [uploader]="uploader" name="file" (change)="uploadSubmit()"
-                  [(ngModel)]="model.file" #file="ngModel" [ngClass]="{ 'is-invalid': f.submitted && file.invalid }"
-                  required />
-                <div *ngIf="f.submitted && file.invalid" class="invalid-feedback">
+                <input
+                  type="file"
+                  ng2FileSelect
+                  accept=".pdf"
+                  [uploader]="uploader"
+                  name="file"
+                  (change)="uploadSubmit()"
+                  [(ngModel)]="model.file"
+                  #file="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && file.invalid }"
+                  required
+                />
+                <div
+                  *ngIf="f.submitted && file.invalid"
+                  class="invalid-feedback"
+                >
                   <div *ngIf="file.errors.required" i18n="@@lem15">
                     Fill is required
                   </div>
@@ -331,26 +567,35 @@
             </div>
           </div>
           <div id="btnn" class="text-center">
-            <button style=" margin-right: 10px" class="look_for" i18n="@@lem16">
+            <button style="margin-right: 10px" class="look_for" i18n="@@lem16">
               Save
             </button>
 
-            <a href="dbkl/emeeting"><button style="width: 112px" class="look_for_red" type="button" i18n="@@lem17">
-                 Back
-              </button></a>
-
+            <a href="dbkl/emeeting"
+              ><button
+                style="width: 112px"
+                class="look_for_red"
+                type="button"
+                i18n="@@lem17"
+              >
+                Back
+              </button></a
+            >
           </div>
         </form>
       </div>
     </section>
     <!-- End Services Section -->
   </div>
-
 </main>
 
 <!-- ======= Footer ======= -->
 <app-footer></app-footer>
 <!-- End Footer -->
 
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
-    class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>

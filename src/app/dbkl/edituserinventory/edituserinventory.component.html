@@ -1,33 +1,68 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
-  [fullScreen]="true">
-  
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#253d84"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+>
 </ngx-spinner>
 <!-- Success Modal Start-->
-<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+<div
+  class="modal"
+  id="staticBackdrop"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display }"
+  aria-labelledby=" staticBackdropLabel "
+  aria-hidden="true "
+>
   <div class="modal-dialog modal-dialog-centered" role="document ">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
-          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+        <div
+          class="swal2-icon swal2-success swal2-animate-success-icon"
+          style="display: flex"
+        >
+          <div
+            class="swal2-success-circular-line-left"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
           <span class="swal2-success-line-tip"></span>
           <span class="swal2-success-line-long"></span>
           <div class="swal2-success-ring"></div>
-          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
-          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+          <div
+            class="swal2-success-fix"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+          <div
+            class="swal2-success-circular-line-right"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
         </div>
       </div>
       <div class="modal-body">
         <h4 class="text-center">
-          <span class="dialog-msg">{{updateinven}}&nbsp;</span>
+          <span class="dialog-msg">{{ updateinven }}&nbsp;</span>
         </h4>
 
         <div class="d-flex justify-content-center">
-          <button type="button " i18n="@@ok" (click)="onCloseSuccessModal()" data-dismiss="modal " class="btn" style="
+          <button
+            type="button "
+            i18n="@@ok"
+            (click)="onCloseSuccessModal()"
+            data-dismiss="modal "
+            class="btn"
+            style="
               color: white !important;
               border-radius: 4px !important;
-             background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
-            ">
+              background-image: linear-gradient(
+                to bottom,
+                #337ab7 0,
+                #265a88 100%
+              );
+            "
+          >
             OK
           </button>
         </div>
@@ -37,29 +72,51 @@
 </div>
 <!-- Success Modal End -->
 <!-- Error Modal Start -->
-<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: errorDisplay }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div
+  class="modal"
+  id="staticBackdrop1"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: errorDisplay }"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <div class="col-12">
-          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
-            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
-                class="swal2-x-mark-line-right"></span></span>
+          <div
+            class="swal2-icon swal2-error swal2-animate-error-icon"
+            style="display: flex; justify-content: center"
+          >
+            <span class="swal2-x-mark"
+              ><span class="swal2-x-mark-line-left"></span
+              ><span class="swal2-x-mark-line-right"></span
+            ></span>
           </div>
         </div>
       </div>
       <div class="modal-body">
         <h6 style="text-align: center">
-          <span class="dialog-msg">{{errmsg}}</span>
+          <span class="dialog-msg">{{ errmsg }}</span>
         </h6>
 
         <div class="d-flex justify-content-center mt-4">
-          <button class="btn" (click)="closeErrorModal()" i18n="@@ok" style="
-              background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+          <button
+            class="btn"
+            (click)="closeErrorModal()"
+            i18n="@@ok"
+            style="
+              background-image: -webkit-linear-gradient(
+                top,
+                #d9534f 0,
+                #c12e2a 100%
+              );
               color: white !important;
               border-radius: 4px !important;
-            ">
+            "
+          >
             Ok
           </button>
         </div>
@@ -75,8 +132,8 @@
 <app-headerc></app-headerc>
 <!-- End of Header -->
 <main>
-  <section class="meeting" id="meeting" >
-    <div class="card" >
+  <section class="meeting" id="meeting">
+    <div class="card">
       <!-- ======= Services Section ======= -->
       <div class="section-title">
         <span i18n="@@u1">User Management</span>
@@ -85,36 +142,85 @@
 
       <form (ngSubmit)="updateSubmit()">
         <div class="row">
-          <div class="form-group  col-sm-3">
-            <label class="linerr" for="textInput" i18n="@@userid">User id</label>
+          <div class="form-group col-sm-3">
+            <label class="linerr" for="textInput" i18n="@@userid"
+              >User id</label
+            >
           </div>
           <div class="col-sm-9">
-            <input type="text" style="width: 350px;" id="textInput" class="form-control mb-4" name="id_pengguna"
-              [(ngModel)]="id_pengguna" readonly />
+            <input
+              type="text"
+              style="width: 350px"
+              id="textInput"
+              class="form-control mb-4"
+              name="id_pengguna"
+              [(ngModel)]="id_pengguna"
+              readonly
+            />
           </div>
 
-          <div class="form-group line  col-sm-3">
-            <label class="linerr" for="textInput" i18n="@@urole">User role</label>
+          <div class="form-group line col-sm-3">
+            <label class="linerr" for="textInput" i18n="@@urole"
+              >User role</label
+            >
           </div>
           <div class="col-sm-9">
-            <select style="width: 350px;" type="text" name="peranan" [(ngModel)]="peranan" class="form-control mb-4">
+            <select
+              style="width: 350px"
+              type="text"
+              name="peranan"
+              [(ngModel)]="peranan"
+              class="form-control mb-4"
+            >
               <option disabled></option>
               <option>Superadmin</option>
               <option>Admin</option>
-              <option>MerinyuMTB</option>
-              <option>MerinyuMTK</option>
+              <option [(ngModel)]="MerinyuMTB">MerinyuMTB</option>
+              <option [(ngModel)]="MerinyuMTK">MerinyuMTK</option>
               <option>Orang Awam</option>
               <option>Agensi</option>
             </select>
           </div>
+          <div class="form-group line col-sm-3">
+            <label class="linerr" for="textInput" i18n="@@urole"
+              >Parlimen</label
+            >
+          </div>
+          <div class="col-sm-9" ng-show="">
+            <select
+              style="width: 350px"
+              type="text"
+              name="peranan"
+              [(ngModel)]="peranan"
+              class="form-control mb-4"
+              ng-if="MerinyuMTB"
+            >
+              <option disabled></option>
+              <option>Lembah Pantai</option>
+              <option>Segambut</option>
+              <option>Seputeh</option>
+              <option>Batu</option>
+              <option>Bukit Bintang</option>
+              <option>Kepong</option>
+              <option>Bandar Tun Razak</option>
+              <option>Cheras</option>
+              <option>Wangsa Maju</option>
+              <option>Setiawangsa</option>
+              <option>Titiwangsa</option>
+            </select>
+          </div>
         </div>
         <div id="btnn" class="text-center mb-3">
-          <button routerLink="/dbkl/usermanagement"  style="margin-right: 30px;" class="look_for_red" type="button" i18n="@@n74">
+          <button
+            routerLink="/dbkl/usermanagement"
+            style="margin-right: 30px"
+            class="look_for_red"
+            type="button"
+            i18n="@@n74"
+          >
             Back
           </button>
-          <button class="look_for"  i18n="@@lem16">
-            Update
-          </button>
+          <button class="look_for" i18n="@@lem16">Update</button>
         </div>
       </form>
     </div>
@@ -124,4 +230,9 @@
 <app-footer></app-footer>
 <!-- End Footer -->
 
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>

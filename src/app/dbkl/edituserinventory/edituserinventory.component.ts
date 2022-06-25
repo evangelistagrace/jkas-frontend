@@ -110,31 +110,29 @@ export class EdituserinventoryComponent implements OnInit {
           this.peranan = this.data.peranan;
           this.spinner.hide();
           this.openSuccessModal();
-          this.updateinventory=res["message"] ;
-          if(this.updateinventory=="inventori_pengguna_updated"){
+          this.updateinventory = res["message"];
+          if (this.updateinventory == "inventori_pengguna_updated") {
             if (this.lang == "en") {
-              this.updateinven = "Inventroi Pengguna updated Successfully!";
-            }
-            else {
-              this.updateinven ="Inventroi Pengguna berjaya dikemas kini!";
+              this.updateinven = "Inventori Pengguna updated Successfully!";
+            } else {
+              this.updateinven = "Inventori Pengguna berjaya dikemas kini!";
             }
           }
-         
-        
-          },
-          (error) => {
-            this.loginError = true;
-            this.spinner.hide();
+        },
+        (error) => {
+          this.loginError = true;
+          this.spinner.hide();
 
-            this.errorMsg = error["error"]["message"];
-             this.openErrorModal();
-            if(this.errorMsg=="inventori_pengguna_not_updated"){
-              if (this.lang == "en") {
-                this.errmsg = "Inventroi Pengguna  could not be updated! Please refer console logs for further details.";
-              }
-              else {
-                this.errmsg = "Inventroi Pengguna tidak dapat dikemas kini! Sila rujuk log konsol untuk keterangan lebih lanjut.";
-              }
+          this.errorMsg = error["error"]["message"];
+          this.openErrorModal();
+          if (this.errorMsg == "inventori_pengguna_not_updated") {
+            if (this.lang == "en") {
+              this.errmsg =
+                "Inventori Pengguna  could not be updated! Please refer console logs for further details.";
+            } else {
+              this.errmsg =
+                "Inventori Pengguna tidak dapat dikemas kini! Sila rujuk log konsol untuk keterangan lebih lanjut.";
+            }
           }
         }
       );
@@ -176,11 +174,11 @@ export class EdituserinventoryComponent implements OnInit {
           this.router.navigateByUrl("/dbkl/adminregister");
           localStorage.removeItem("AccessToken");
           localStorage.removeItem("user_type");
-          localStorage.setItem("isdbkl","false");
- 	  this.spinner.hide();
+          localStorage.setItem("isdbkl", "false");
+          this.spinner.hide();
         },
         (error) => {
- this.spinner.hide();
+          this.spinner.hide();
           // console.log("error is", error["error"]);
         }
       );

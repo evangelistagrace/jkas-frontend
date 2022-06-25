@@ -3,46 +3,85 @@
 <app-topbar></app-topbar>
 
 <!-- ======= Header ======= -->
-<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+<div
+  class="container-fluid sticky-nav"
+  id=""
+  style="background-color: #f2f2f2 !important"
+>
   <div class="container-fluid" ngStickyNav>
     <nav class="navbar navbar-expand-lg">
-      <a routerLink="/public" class="navbar-brand ">
-        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
-
+      <a routerLink="/public" class="navbar-brand">
+        <img
+          src="../../../assets/img/DBKL LOGO (Lorry).png"
+          alt=""
+          loading="lazy"
+        />
       </a>
 
-
-
-
-
-      <button class="navbar-toggler border-white" type="button" style="
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        style="
           background-color: black !important;
           border: 1px solid white !important;
-        " data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
-        aria-expanded="false" aria-label="Toggle navigation">
+        "
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <i class="fa fa-bars text-white"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a routerLink="/public" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@home">HOME</a>
+            <a
+              routerLink="/public"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home"
+              >HOME</a
+            >
           </li>
           <li class="nav-item">
-            <a routerLink="/publicpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@main3">PSPPA
-              APPLICATION</a>
+            <a
+              routerLink="/publicpage"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@main3"
+              >PSPPA APPLICATION</a
+            >
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+            >
               {{ username }}
             </a>
             <div class="dropdown-menu">
-              <a routerLink="/profileLog" class="dropdown-item" style=" cursor: pointer" i18n="@@Profile">Profile</a>
-              <a class="dropdown-item" style="cursor: pointer" (click)="logout()" i18n="@@jflogout">Logout</a>
+              <a
+                routerLink="/profileLog"
+                class="dropdown-item"
+                style="cursor: pointer"
+                i18n="@@Profile"
+                >Profile</a
+              >
+              <a
+                class="dropdown-item"
+                style="cursor: pointer"
+                (click)="logout()"
+                i18n="@@jflogout"
+                >Logout</a
+              >
             </div>
           </li>
         </ul>
@@ -55,17 +94,30 @@
 <main id="main">
   <!-- ======= Services Section ======= -->
   <section id="checklistForm" class="services">
-    <div class="container" style="border: 1px solid rgb(224, 217, 217);border-radius: 4px;">
+    <div
+      class="container"
+      style="border: 1px solid rgb(224, 217, 217); border-radius: 4px"
+    >
       <div class="d-flex justify-content-end">
-        <button printSectionId="main" [useExistingCss]="true" ngxPrint type="button"
-          style="border: 1px solid transparent; background: transparent">
-          <i style="
+        <button
+          printSectionId="main"
+          [useExistingCss]="true"
+          ngxPrint
+          type="button"
+          style="border: 1px solid transparent; background: transparent"
+        >
+          <i
+            style="
               font-size: 30px;
               color: #419641;
               cursor: pointer;
               float: right;
               margin-top: 12px;
-            " id="print" class="fa fa-print" aria-hidden="true"></i>
+            "
+            id="print"
+            class="fa fa-print"
+            aria-hidden="true"
+          ></i>
         </button>
       </div>
       <div class="section-title">
@@ -73,19 +125,27 @@
         <h2 i18n="@@appldocu">APPLICATION DOCUMENTS</h2>
       </div>
       <div style="margin-left: 17px; margin-right: 17px">
-        <h5 class="text-center" i18n="@@checklistdescription" id="heading2" style="font-size: 18px">
+        <h5
+          class="text-center"
+          i18n="@@checklistdescription"
+          id="heading2"
+          style="font-size: 18px"
+        >
           APPLICATION SOLID WASTE COLLECTION SERVICES AND PUBLIC CLEANING
         </h5>
         <div class="table-responsive">
-          <table class="
-              table table-bordered table-striped table-hover table-condensed
-            " id="DyanmicTable">
+          <table
+            class="table table-bordered table-striped table-hover table-condensed"
+            id="DyanmicTable"
+          >
             <thead>
-              <tr style="
-                 background-color: #253d84 ;
+              <tr
+                style="
+                  background-color: #253d84;
                   color: white;
                   font-weight: normal !important;
-                ">
+                "
+              >
                 <th class="text-center" i18n="@@Bill">Bil</th>
                 <th class="text-center" i18n="@@Details">Butrian</th>
                 <th class="text-center" i18n="@@DocumentReview">
@@ -101,51 +161,84 @@
                 <!-- <td i18n="@@cleaningservice">Cleaning service application letter for:</td> -->
                 <td>1.</td>
                 <td>
-                  <span i18n="@@cleaningservice">Cleaning service application letter for:</span><sup>*</sup>
+                  <span i18n="@@cleaningservice"
+                    >Cleaning service application letter for:</span
+                  ><sup>*</sup>
                   <ul style="list-style-type: lower-roman">
                     <li>
                       <span class="d-flex justify-content-between">
-                        <span i18n="@@Garbage">Garbage Collection (Please complete Bills 1,2,3,4,5)</span><span
-                          class="d-flex align-items-center"><input type="checkbox"
-                            [(ngModel)]="garbageCollection" /></span></span>
+                        <span i18n="@@Garbage"
+                          >Garbage Collection (Please complete Bills
+                          1,2,3,4,5)</span
+                        ><span class="d-flex align-items-center"
+                          ><input
+                            type="checkbox"
+                            [(ngModel)]="garbageCollection" /></span
+                      ></span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Street">Street Sweep (Please complete
-                          Bills 1,2,6)</span>
-                        <span class="d-flex align-items-center"><input [(ngModel)]="supuanJalan"
-                            type="checkbox" /></span></span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Street"
+                          >Street Sweep (Please complete Bills 1,2,6)</span
+                        >
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="supuanJalan"
+                            type="checkbox" /></span
+                      ></span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Drain">Drain Cleaning (Please complete
-                          Bills 1,2,6)</span>
-                        <span class="d-flex align-items-center"><input [(ngModel)]="drainCelaning"
-                            type="checkbox" /></span></span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Drain"
+                          >Drain Cleaning (Please complete Bills 1,2,6)</span
+                        >
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="drainCelaning"
+                            type="checkbox" /></span
+                      ></span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Grass">Grass Cutting (Please complete
-                          Bills 1,2,6)</span>
-                        <span class="d-flex align-items-center"><input [(ngModel)]="grassCutting"
-                            type="checkbox" /></span></span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Grass"
+                          >Grass Cutting (Please complete Bills 1,2,6)</span
+                        >
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="grassCutting"
+                            type="checkbox" /></span
+                      ></span>
                     </li>
                   </ul>
                 </td>
                 <td style="text-align: center">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" multiple />
+                    <input
+                      type="file"
+                      ng2FileSelect
+                      accept=".pdf"
+                      id="file-upload"
+                      [uploader]="uploader"
+                      multiple
+                    />
 
-                    <i class="fa fa-cloud-upload"></i>
-                  </label><br>
+                    <i class="fa fa-cloud-upload"></i> </label
+                  ><br />
                   <span i18n="@@udmb"> Please upload your document here.</span>
                   <table>
                     <tbody>
                       <tr *ngFor="let item of uploader.queue">
                         <th width="90%">
-                          {{ item.file.name }}({{ item.file.size}}
+                          {{ item.file.name }}({{ item.file.size }}
                           MB)
                         </th>
                         <th class="text-center" width="10%">
                           <!-- <mat-icon (click)="item.remove()">delete</mat-icon> -->
-                          <i (click)="item.remove()" class="fa fa-trash" style="cursor: pointer"></i>
+                          <i
+                            (click)="item.remove()"
+                            class="fa fa-trash"
+                            style="cursor: pointer"
+                          ></i>
                         </th>
                       </tr>
                     </tbody>
@@ -155,32 +248,56 @@
                 <td></td>
                 <td>
                   <div class="module_item">
-                    <a style="color: red !important;cursor: pointer;text-align: center;" (click)="opendocument()"
-                      target="_blank" i18n="@@contoh">CONTOH SURAT PERMOHONAN.pdf</a>
+                    <a
+                      style="
+                        color: red !important;
+                        cursor: pointer;
+                        text-align: center;
+                      "
+                      (click)="opendocument()"
+                      target="_blank"
+                      i18n="@@contoh"
+                      >CONTOH SURAT PERMOHONAN.pdf</a
+                    >
                   </div>
                 </td>
               </tr>
               <tr>
                 <td>2.</td>
-                <td><span i18n="@@Copyletter">Copy of CF / CCC / Form F / Confirmation Letter from JPIF (Infrastructure
-                    Planning Department)</span></td>
+                <td>
+                  <span i18n="@@Copyletter"
+                    >Copy of CF / CCC / Form F / Confirmation Letter from JPIF
+                    (Infrastructure Planning Department)</span
+                  >
+                </td>
                 <td style="text-align: center">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader1" multiple />
+                    <input
+                      type="file"
+                      ng2FileSelect
+                      accept=".pdf"
+                      id="file-upload"
+                      [uploader]="uploader1"
+                      multiple
+                    />
 
-                    <i class="fa fa-cloud-upload"></i>
-                  </label><br>
+                    <i class="fa fa-cloud-upload"></i> </label
+                  ><br />
                   <span i18n="@@udmb"> Please upload your document here.</span>
                   <table>
                     <tbody>
                       <tr *ngFor="let item of uploader1.queue">
                         <th width="90%">
-                          {{ item.file.name }}({{ item.file.size  }}
+                          {{ item.file.name }}({{ item.file.size }}
                           MB)
                         </th>
                         <th class="text-center" width="10%">
                           <!-- <mat-icon (click)="item.remove()">delete</mat-icon> -->
-                          <i (click)="item.remove()" class="fa fa-trash" style="cursor: pointer"></i>
+                          <i
+                            (click)="item.remove()"
+                            class="fa fa-trash"
+                            style="cursor: pointer"
+                          ></i>
                         </th>
                       </tr>
                     </tbody>
@@ -189,18 +306,42 @@
                 <td></td>
                 <td>
                   <div class="module_item">
-                    <a style="color: red !important;cursor: pointer;text-align: center;" (click)="open2nddocument()"
-                      target="_blank">CONTOH BORANG F.pdf</a>
+                    <a
+                      style="
+                        color: red !important;
+                        cursor: pointer;
+                        text-align: center;
+                      "
+                      (click)="open2nddocument()"
+                      target="_blank"
+                      >CONTOH BORANG F.pdf</a
+                    >
                   </div>
-                  <br>
+                  <br />
                   <div class="module_item">
-                    <a style="color: red !important;cursor: pointer;text-align: center;" (click)="open3rddocument()"
-                      target="_blank">JALAN AWAM.pdf</a>
+                    <a
+                      style="
+                        color: red !important;
+                        cursor: pointer;
+                        text-align: center;
+                      "
+                      (click)="open3rddocument()"
+                      target="_blank"
+                      >JALAN AWAM.pdf</a
+                    >
                   </div>
-                  <br>
+                  <br />
                   <div class="module_item">
-                    <a style="color: red !important;cursor: pointer;text-align: center;" (click)="open4rthdocument()"
-                      target="_blank">PELAN JALAN AWAM.pdf</a>
+                    <a
+                      style="
+                        color: red !important;
+                        cursor: pointer;
+                        text-align: center;
+                      "
+                      (click)="open4rthdocument()"
+                      target="_blank"
+                      >PELAN JALAN AWAM.pdf</a
+                    >
                   </div>
                 </td>
               </tr>
@@ -208,11 +349,17 @@
               <tr>
                 <td>3.</td>
                 <td i18n="@@State">
-                  <span>State the name of the building/park to be serviced</span>
+                  <span
+                    >State the name of the building/park to be serviced</span
+                  >
                 </td>
                 <td>
                   <!-- <input id="inputBtm1" [(ngModel)]="buildingName1" /> -->
-                  <textarea id="inputBtm1"   maxlength="100" [(ngModel)]="buildingName1"></textarea>
+                  <textarea
+                    id="inputBtm1"
+                    maxlength="100"
+                    [(ngModel)]="buildingName1"
+                  ></textarea>
                   <!-- <button> Upload</button> -->
                 </td>
                 <td></td>
@@ -230,18 +377,26 @@
                                         <td></td>
                                     </tr> -->
               <tr>
-                <td>
-                  4.
-                </td>
+                <td>4.</td>
                 <td i18n="@@sttowds">
-                  <span>State the type of waste disposal system used and the number of bins.</span>
+                  <span
+                    >State the type of waste disposal system used and the number
+                    of bins.</span
+                  >
                 </td>
                 <td style="text-align: center">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader4" multiple />
+                    <input
+                      type="file"
+                      ng2FileSelect
+                      accept=".pdf"
+                      id="file-upload"
+                      [uploader]="uploader4"
+                      multiple
+                    />
 
-                    <i class="fa fa-cloud-upload"></i>
-                  </label><br>
+                    <i class="fa fa-cloud-upload"></i> </label
+                  ><br />
                   <span i18n="@@udmb"> Please upload your document here.</span>
                   <table>
                     <tbody>
@@ -252,15 +407,18 @@
                         </th>
                         <th class="text-center" width="10%">
                           <!-- <mat-icon (click)="item.remove()">delete</mat-icon> -->
-                          <i (click)="item.remove()" class="fa fa-trash" style="cursor: pointer"></i>
+                          <i
+                            (click)="item.remove()"
+                            class="fa fa-trash"
+                            style="cursor: pointer"
+                          ></i>
                         </th>
                       </tr>
                     </tbody>
                   </table>
                 </td>
                 <td></td>
-                <td>
-                </td>
+                <td></td>
               </tr>
               <tr>
                 <td>5.</td>
@@ -268,97 +426,147 @@
                   <span i18n="@@Copy">Copy of Development Status</span>
                   <ul style="list-style-type: lower-roman">
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Strata">Strata "Title"</span>
-                        <span class="d-flex align-items-center"><input [(ngModel)]="strataTitle"
-                            type="checkbox" /></span></span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Strata">Strata "Title"</span>
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="strataTitle"
+                            type="checkbox" /></span
+                      ></span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Freehold"> Freehold</span>
-                        <span class="d-flex align-items-center"><input [(ngModel)]="freeHold"
-                            type="checkbox" /></span></span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Freehold"> Freehold</span>
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="freeHold"
+                            type="checkbox" /></span
+                      ></span>
                     </li>
                   </ul>
                 </td>
                 <td style="text-align: center">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader2" multiple />
+                    <input
+                      type="file"
+                      ng2FileSelect
+                      accept=".pdf"
+                      id="file-upload"
+                      [uploader]="uploader2"
+                      multiple
+                    />
 
-                    <i class="fa fa-cloud-upload"></i>
-                  </label><br>
+                    <i class="fa fa-cloud-upload"></i> </label
+                  ><br />
                   <span i18n="@@udmb"> Please upload your document here.</span>
                   <table>
                     <tbody>
                       <tr *ngFor="let item of uploader2.queue">
                         <th width="90%">
-                          {{ item.file.name }}({{ item.file.size  }}
+                          {{ item.file.name }}({{ item.file.size }}
                           MB)
                         </th>
                         <th class="text-center" width="10%">
                           <!-- <mat-icon (click)="item.remove()">delete</mat-icon> -->
-                          <i (click)="item.remove()" class="fa fa-trash" style="cursor: pointer"></i>
+                          <i
+                            (click)="item.remove()"
+                            class="fa fa-trash"
+                            style="cursor: pointer"
+                          ></i>
                         </th>
                       </tr>
                     </tbody>
                   </table>
                 </td>
                 <td></td>
-                <td>
-
-                </td>
+                <td></td>
               </tr>
               <tr>
                 <td>6.</td>
                 <td>
                   <span i18n="@@Fordevelopment1">
-                    Share development status other than "title" strata
-                  </span><br>
+                    Share development status other than "title" strata </span
+                  ><br />
                   <span id="Fordevelopment" i18n="@@Fordevelopment">
-                    Enclosed is an inventory (area) for applications for road sweeping, drain cleaning and grass cutting
-                    services such as:
+                    Enclosed is an inventory (area) for applications for road
+                    sweeping, drain cleaning and grass cutting services such as:
                   </span>
                   <ul style="list-style-type: lower-roman">
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@StreetName">Street Name</span>
-                        <span class="d-flex align-items-center"><input [(ngModel)]="streetName"
-                            type="checkbox" /></span></span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@StreetName">Street Name</span>
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="streetName"
+                            type="checkbox" /></span
+                      ></span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Roadlength">Road length by street
-                          name</span>
-                        <span class="d-flex align-items-center"><input [(ngModel)]="roadLength"
-                            type="checkbox" /></span></span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Roadlength"
+                          >Road length by street name</span
+                        >
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="roadLength"
+                            type="checkbox" /></span
+                      ></span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Thelength">The length of the drain
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Thelength"
+                          >The length of the drain
                         </span>
-                        <span class="d-flex align-items-center"><input [(ngModel)]="lengthDrain"
-                            type="checkbox" /></span></span>
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="lengthDrain"
+                            type="checkbox" /></span
+                      ></span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Grassyarea">Grassy area</span>
-                        <span class="d-flex align-items-center"><input [(ngModel)]="grassyArea"
-                            type="checkbox" /></span></span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Grassyarea">Grassy area</span>
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="grassyArea"
+                            type="checkbox" /></span
+                      ></span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@TPKKarea1">TPKK area</span>
-                        <span class="d-flex align-items-center"><input [(ngModel)]="tpkkArea"
-                            type="checkbox" /></span></span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@TPKKarea1">TPKK area</span>
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="tpkkArea"
+                            type="checkbox" /></span
+                      ></span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Largespace">Large space (parking area)
-                          if applicable</span>
-                        <span class="d-flex align-items-center"><input [(ngModel)]="largeSpace"
-                            type="checkbox" /></span></span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Largespace"
+                          >Large space (parking area) if applicable</span
+                        >
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="largeSpace"
+                            type="checkbox" /></span
+                      ></span>
                     </li>
                   </ul>
-
                 </td>
                 <td style="text-align: center">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader3" multiple />
+                    <input
+                      type="file"
+                      ng2FileSelect
+                      accept=".pdf"
+                      id="file-upload"
+                      [uploader]="uploader3"
+                      multiple
+                    />
 
-                    <i class="fa fa-cloud-upload"></i>
-                  </label><br>
+                    <i class="fa fa-cloud-upload"></i> </label
+                  ><br />
                   <span i18n="@@udmb"> Please upload your document here.</span>
                   <table>
                     <tbody>
@@ -369,7 +577,11 @@
                         </th>
                         <th class="text-center" width="10%">
                           <!-- <mat-icon (click)="item.remove()">delete</mat-icon> -->
-                          <i (click)="item.remove()" class="fa fa-trash" style="cursor: pointer"></i>
+                          <i
+                            (click)="item.remove()"
+                            class="fa fa-trash"
+                            style="cursor: pointer"
+                          ></i>
                         </th>
                       </tr>
                     </tbody>
@@ -378,13 +590,30 @@
                 <td></td>
                 <td>
                   <div class="module_item">
-                    <a style="color: red !important;cursor: pointer;text-align: center;" (click)="open5thdocument()"
-                      target="_blank">CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH SWCorp.pdf</a>
+                    <a
+                      style="
+                        color: red !important;
+                        cursor: pointer;
+                        text-align: center;
+                      "
+                      (click)="open5thdocument()"
+                      target="_blank"
+                      >CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH
+                      SWCorp.pdf</a
+                    >
                   </div>
-                  <br>
+                  <br />
                   <div class="module_item">
-                    <a style="color: red !important;cursor: pointer;text-align: center;" (click)="open6thdocument()"
-                      target="_blank">PELAN INVENTORI KAWASAN PERKHIDMATAN PEMBERSIHAN.pdf</a>
+                    <a
+                      style="
+                        color: red !important;
+                        cursor: pointer;
+                        text-align: center;
+                      "
+                      (click)="open6thdocument()"
+                      target="_blank"
+                      >PELAN INVENTORI KAWASAN PERKHIDMATAN PEMBERSIHAN.pdf</a
+                    >
                   </div>
                 </td>
               </tr>
@@ -393,38 +622,68 @@
         </div>
       </div>
 
-      <div class="d-flex mt-3" style="margin-left: 20px;">
-        <input style="margin-top: 6px;" type="checkbox" [(ngModel)]="confirm" />
-        <span i18n="@@icgai">&nbsp; I certify that all information provided is true and accurate.</span>
+      <div class="d-flex mt-3" style="margin-left: 20px">
+        <input style="margin-top: 6px" type="checkbox" [(ngModel)]="confirm" />
+        <span i18n="@@icgai"
+          >&nbsp; I certify that all information provided is true and
+          accurate.</span
+        >
       </div>
       <div class="d-flex justify-content-center mt-3">
-        <button class="look_for_red" (click)="submit()" style="margin-bottom: 10px" i18n="@@savedata">
+        <button
+          class="look_for_red"
+          (click)="submit()"
+          style="margin-bottom: 10px"
+          i18n="@@savedata"
+        >
           Save
         </button>
-        <button class="look_for" style="margin-bottom: 10px; margin-right: 20px" routerLink="/publicpage"
-          i18n="@@cancel">
+        <button
+          class="look_for"
+          style="margin-bottom: 10px; margin-right: 10px"
+          routerLink="/publicpage"
+          i18n="@@cancel"
+        >
           Cancel
         </button>
-        <button class="look_for_red" (click)="submit()" style="margin-bottom: 10px" i18n="@@done">
+        <button
+          class="look_for_red"
+          (click)="submit()"
+          style="margin-bottom: 10px"
+          i18n="@@done"
+        >
           Submit
         </button>
       </div>
     </div>
-
 
     <!-- <button id="submitBtn" (click)="submit()">Submit</button> -->
   </section>
   <!-- End Services Section -->
 
   <!-- Success Modal -->
-  <div class="modal" tabindex="-1" role="dialog" data-backdrop="static" style="background: #02020259; display: block"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true" [ngStyle]="{ display: display }">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    data-backdrop="static"
+    style="background: #02020259; display: block"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+    [ngStyle]="{ display: display }"
+  >
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-header" style="margin-top: 12px; margin-bottom: 17px">
-          <img src="../../../assets/img/DBKL LOGO (Lorry).png" width="35"
-            style="width: 50px; height: 56px; margin: auto" height="40" class="d-inline-block align-top" alt=""
-            loading="lazy" />
+          <img
+            src="../../../assets/img/DBKL LOGO (Lorry).png"
+            width="35"
+            style="width: 50px; height: 56px; margin: auto"
+            height="40"
+            class="d-inline-block align-top"
+            alt=""
+            loading="lazy"
+          />
           <!-- <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
             <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
             <span class="swal2-success-line-tip"></span>
@@ -448,8 +707,14 @@
           </h5>
 
           <div class="d-flex justify-content-center">
-            <button type="button" style="margin-top: 15px !important ; width: 104px" data-dismiss="modal"
-              class="look_for" (click)="closeSuccessModal()" i18n="@@ok1">
+            <button
+              type="button"
+              style="margin-top: 15px !important ; width: 104px"
+              data-dismiss="modal"
+              class="look_for"
+              (click)="closeSuccessModal()"
+              i18n="@@ok1"
+            >
               Done
             </button>
           </div>
@@ -459,21 +724,37 @@
   </div>
 
   <!-- Error modal -->
-  <div class="modal" tabindex="-1" style="background: #02020259; display: block" role="dialog"
-    [ngStyle]="{ display: errorDisplay }">
+  <div
+    class="modal"
+    tabindex="-1"
+    style="background: #02020259; display: block"
+    role="dialog"
+    [ngStyle]="{ display: errorDisplay }"
+  >
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex">
-            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
-                class="swal2-x-mark-line-right"></span></span>
+          <div
+            class="swal2-icon swal2-error swal2-animate-error-icon"
+            style="display: flex"
+          >
+            <span class="swal2-x-mark"
+              ><span class="swal2-x-mark-line-left"></span
+              ><span class="swal2-x-mark-line-right"></span
+            ></span>
           </div>
         </div>
         <div class="modal-body" style="align-self: center">
           <h4 class="text-center" i18n="@@error">ERROR !</h4>
           <p class="text-center font-weight-bold">{{ errormsg }}</p>
           <div class="d-flex justify-content-center">
-            <button type="button" data-dismiss="modal" class="btn" (click)="closeSuccessModal()" i18n="@@okERR">
+            <button
+              type="button"
+              data-dismiss="modal"
+              class="btn"
+              (click)="closeSuccessModal()"
+              i18n="@@okERR"
+            >
               OK
             </button>
           </div>
@@ -485,5 +766,9 @@
 <!-- ======= Footer ======= -->
 <app-footer></app-footer>
 
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
-    class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>

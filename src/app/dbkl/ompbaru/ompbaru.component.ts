@@ -59,13 +59,13 @@ export class OmpbaruComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService
-  ) { }
+  ) {}
 
   ngOnInit() {
     window.scroll(0, 0);
     this.isAdminType = localStorage.getItem("isAdmin");
     this.username = localStorage.getItem("nama_pengguna");
-    
+
     /*
      */
     $(document).ready(function () {
@@ -105,8 +105,8 @@ export class OmpbaruComponent implements OnInit {
         // Count total search result
         var len = $(
           'table tbody tr:not(.notfound) td:nth-child(2):contains("' +
-          search +
-          '")'
+            search +
+            '")'
         ).length;
 
         if (len > 0) {
@@ -174,7 +174,6 @@ export class OmpbaruComponent implements OnInit {
     this.parliament_subarea = event.target.value;
     //console.log(this.parliament_subarea);
     localStorage.setItem("subArea", this.parliament_subarea);
-
   }
   backtotop() {
     window.scroll(0, 0);
@@ -192,15 +191,13 @@ export class OmpbaruComponent implements OnInit {
 
     this.http
       .get(
-        this.basePublicUrl +
-        "/dbkl/getOmpSubArea/" +
-        this.selectedParlimen,
+        this.basePublicUrl + "/dbkl/getOmpSubArea/" + this.selectedParlimen,
         { headers: headers }
       )
       .subscribe(
         (res) => {
           this.spinner.hide();
-          alert(JSON.stringify(res));
+          // alert(JSON.stringify(res));
           this.subArea = res;
           console.log(res);
         },
@@ -232,7 +229,7 @@ export class OmpbaruComponent implements OnInit {
     let body = {
       parliament_name: this.selectedParlimen,
       parliament_subarea: localStorage.getItem("subArea"),
-    }
+    };
     //  console.log(body);
 
     this.http
@@ -301,7 +298,6 @@ export class OmpbaruComponent implements OnInit {
 
     let body = {};
 
-
     this.http
       .post(this.basePublicUrl + "/dbkl/logout", body, { headers: header })
       .subscribe(
@@ -309,9 +305,8 @@ export class OmpbaruComponent implements OnInit {
           this.router.navigateByUrl("/dbkl/adminregister");
           localStorage.removeItem("AccessToken");
           localStorage.removeItem("user_type");
-          localStorage.setItem("isdbkl","false");
- 	         this.spinner.hide();
-  
+          localStorage.setItem("isdbkl", "false");
+          this.spinner.hide();
         },
         (error) => {
           this.spinner.hide();
@@ -323,10 +318,10 @@ export class OmpbaruComponent implements OnInit {
   selectEvent(event) {
     this.display2 = "block";
     console.log(event);
-   localStorage.setItem("ompid",event)
+    localStorage.setItem("ompid", event);
   }
   deleteSelected() {
-   this.ompid=localStorage.getItem("ompid");
+    this.ompid = localStorage.getItem("ompid");
     let authorization = localStorage.getItem("AccessToken");
     const options = {
       headers: new HttpHeaders({
@@ -341,17 +336,17 @@ export class OmpbaruComponent implements OnInit {
         environment.basePublicUrl + "/dbkl/deleteOmpBaru/" + this.ompid,
         options
       )
-      .subscribe((s) => {
-        this.spinner.hide();
-        window.location.reload();
-      },
+      .subscribe(
+        (s) => {
+          this.spinner.hide();
+          window.location.reload();
+        },
         (error) => {
           this.spinner.hide();
-        });
-
+        }
+      );
   }
   closeModalDelete() {
     this.display2 = "none";
   }
-
 }
