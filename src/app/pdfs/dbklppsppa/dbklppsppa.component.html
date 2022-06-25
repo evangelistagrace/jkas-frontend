@@ -39,22 +39,10 @@
 
     <i class="fa fa-cloud-upload"></i> </label
   ><br /><span i18n="@@puydh"> Please upload your document here.</span>
-  <span
-    style="display: block; cursor: pointer"
-    *ngFor="let val of pdffiles1; index as i"
-  >
+  <span style="display: block; cursor: pointer">
     <span>
-      <a (click)="getPdf(val)" target="_blank">{{ pdffiles1[i] }}</a>
-      <span
-        id="cl{{ i }}"
-        *ngIf="surat_permohonan_perkhidmatan_pembersihan_dokumen != ''"
-      >
-        <i
-          (click)="removevalue1($event)"
-          id="{{ i }}"
-          class="fa fa-trash"
-          style="cursor: pointer; margin-left: 8px"
-        ></i>
+      <span>
+        <i class="fa fa-trash" style="cursor: pointer; margin-left: 8px"></i>
       </span>
     </span>
     <br />
