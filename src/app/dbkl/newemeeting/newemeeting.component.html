@@ -186,7 +186,7 @@
         >
           <div class="form-group row">
             <div class="form-group col-md-12">
-              <label for="textInput" i18n="@@lem2">Type of Committee</label
+              <label for="textInput" i18n="@@em4">Type of Committee</label
               ><sup>*</sup>
               <!-- <input type="text" id="textInput" class="form-control" name="jenis_jawatankuasa" placeholder="Input teks"
                 [(ngModel)]="model.jenis_jawatankuasa" #jenis_jawatankuasa="ngModel" [ngClass]="{
@@ -208,10 +208,10 @@
                   'is-invalid': submitted && f.jenis_mesyuarat.errors
                 }"
               >
-                <option i18n="@@general" value="Umum">
-                  Jenis JawatanKuasa
+                <option i18n="@@em4" value="Umum">
+                  Ahli Jawatankuasa(Jabatan/Agensi)
                 </option>
-                <option i18n="@@period" value="Berkala">Jenis Mesyuarat</option>
+                <option i18n="@@em3" value="Berkala">Jenis Mesyuarat</option>
               </select>
             </div>
 
@@ -247,8 +247,8 @@
                 <option value="" selected="" disabled="" i18n="@@stmt">
                   Select the Meeting Type
                 </option>
-                <option i18n="@@general" value="Umum">General</option>
-                <option i18n="@@period" value="Berkala">Periodicall</option>
+                <option i18n="@@general" value="Handover Committee Meeting Collection Service Area And Public Cleansing">Handover Committee Meeting Collection Service Area And Public Cleansing</option>
+                <option i18n="@@period" value="Performance Committee Meeting Payment For Collection Services And Public Cleansing">Performance Committee Meeting Payment For Collection Services And Public Cleansing</option>
               </select>
             </div>
 
@@ -302,7 +302,7 @@
                       <div class="input-group">
                         <input
                           [(ngModel)]="field.name"
-                          style="width: 880px"
+                          style="width: 590px"
                           class="form-control"
                           type="text"
                           name="{{ field.name }}"

@@ -2789,7 +2789,7 @@ For Solid Waste Collection and Public Cleansing
 					error!
 				</source>
 				<target>
-					kesilapan!
+					Ralat!
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -5015,7 +5015,7 @@ For Solid Waste Collection and Public Cleansing
 					Type of Committee
 				</source>
 				<target>
-					Jenis Jawatankuasa
+				  Ahli Jawatankuasa(Jabatan/Agensi)
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -7701,7 +7701,7 @@ For Solid Waste Collection and Public Cleansing
 					Kaw Lapang Parking
 				</source>
 				<target>
-					Kaw Lapang/Parkir
+					Kaw Lapang/Parkir 
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -14279,6 +14279,22 @@ berdasarkan Akta Pengurusan Sisa Pepejal dan Pembersihan Awam
 						58
 					</context>
 				</context-group>
+			</trans-unit>
+			<trans-unit id="prole" datatype="html">
+				<source>
+				Parliament
+				</source>
+				<target>
+				PARLIMEN
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/publicPages/public/public.component.html
+					</context>
+					<context context-type="linenumber">
+						58
+					</context>
+				</context-group>
 			</trans-unit>	
 			<trans-unit id="insmall" datatype="html">
 				<source>
@@ -14362,10 +14378,11 @@ berdasarkan Akta Pengurusan Sisa Pepejal dan Pembersihan Awam
 			</trans-unit>	
 			<trans-unit id="general" datatype="html">
 				<source>
-					General
+					Handover Committee Meeting Collection Service Area And Public Cleansing
 				</source>
 				<target>
-					Umum 
+					Mesyuarat Jawatankuasa Serahan Kawasan Perkhidmatan Kutipan Dan Pembersihan Awam
+ 
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -14378,10 +14395,11 @@ berdasarkan Akta Pengurusan Sisa Pepejal dan Pembersihan Awam
 			</trans-unit>	
 			<trans-unit id="period" datatype="html">
 				<source>
-					Periodicall
+					Performance Committee Meeting Payment For Collection Services And Public Cleansing
 				</source>
 				<target>
-					Berkala  
+					Mesyuarat Jawatankuasa Prestasi Pembayaran Bagi Perkhidmatan Kutipan Dan Pembersihan Awam
+  
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">

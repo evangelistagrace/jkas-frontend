@@ -20,6 +20,7 @@ export class EdituserinventoryComponent implements OnInit {
   basePublicUrl = environment.basePublicUrl;
   data: any;
   peranan: any;
+  parlimen:any;
   nama_pengguna: any;
   id_pengguna: any;
   loginError: boolean;
@@ -70,6 +71,7 @@ export class EdituserinventoryComponent implements OnInit {
           this.nama_pengguna = this.data.nama_pengguna;
           this.id_pengguna = this.data.id_pengguna;
           this.peranan = this.data.peranan;
+          this.parlimen = this.data.parlimen;
           this.kata_laluan = this.data.kata_laluan;
         },
         (error) => {
@@ -85,6 +87,7 @@ export class EdituserinventoryComponent implements OnInit {
     let body = {
       nama_pengguna: this.nama_pengguna,
       peranan: this.peranan,
+      parlimen:this.parlimen,
     };
 
     let headers = {
@@ -108,6 +111,7 @@ export class EdituserinventoryComponent implements OnInit {
           this.data = res;
           this.nama_pengguna = this.data.nama_pengguna;
           this.peranan = this.data.peranan;
+          this.parlimen=this.data.parlimen;
           this.spinner.hide();
           this.openSuccessModal();
           this.updateinventory = res["message"];

@@ -11,10 +11,13 @@ import { DropdownComponent } from "src/app/dropdown/dropdown.component";
 import { UndeletedropdownComponent } from "src/app/undeletedropdown/undeletedropdown.component";
 import { DbklppsppaComponent } from "src/app/pdfs/dbklppsppa/dbklppsppa.component";
 import { FiltercustombuttonComponent } from "src/app/filtercustombutton/filtercustombutton.component";
-import { FilterdoublecustombuttonComponent } from "src/app/filterdoublecustombutton/filterdoublecustombutton.component";
+// import { FilterdoublecustombuttonComponent } from "src/app/filterdoublecustombutton/filterdoublecustombutton.component";
 import { TextboxComponent } from "src/app/textbox/textbox.component";
 import { DbkluploadbuttonComponent } from "src/app/dbkluploadbutton/dbkluploadbutton.component";
 import { Observable } from "rxjs";
+import { Ng2SmartTableComponent } from "ng2-smart-table";
+import { DbklchecklistComponent } from "../dbklchecklist/dbklchecklist.component";
+
 
 @Component({
   selector: "app-psppaapplicationproccess",
@@ -50,7 +53,9 @@ export class PsppaapplicationproccessComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private tservice: TableService,
     private router: Router,
-    private met: MeetingService
+    private met: MeetingService,
+    private table: Ng2SmartTableComponent
+
   ) {}
 
   ngOnInit() {
@@ -140,34 +145,35 @@ export class PsppaapplicationproccessComponent implements OnInit {
       ],
     },
     search: {
-      searchButtonContent:
-        '<img src="assets/images/icons/outline/settings-2-outline.svg" width="20" height="20" >',
+     searchButtonContent:
+       '<img src="assets/images/icons/outline/settings-2-outline.svg" width="20" height="20" >',
     },
     columns: {
       no_siri_permohonan: {
-        title: "1.NO SIRI PERMOHONAN",
-        filter: {
-          type: "custom",
-          component: FiltercustombuttonComponent,
-          config: { placeholder: "Carian" },
-        },
+       title: "1.NO SIRI PERMOHONAN",    
+        // filter: {
+        //   type: "custom",
+        //   component: FiltercustombuttonComponent,
+        //    config: { placeholder: "Carian" },
+        // },
       },
       tarikh_permohonan: {
+    
         title: "2.TARIKH PERMOHONAN",
-        filter: {
-          type: "custom",
-          component: FiltercustombuttonComponent,
-          config: { placeholder: "Carian" },
-        },
+        // filter: {
+        //   type: "custom",
+        //   component: FiltercustombuttonComponent,
+        //   config: { placeholder: "Carian" },
+        // },
       },
 
       status_semakan_dokumen: {
         title: "3.STATUS SEMAKAN DOKUMEN",
-        filter: {
-          type: "custom",
-          component: FiltercustombuttonComponent,
-          config: { placeholder: "Carian" },
-        },
+        // filter: {
+        //   type: "custom",
+        //   component: FiltercustombuttonComponent,
+        //   config: { placeholder: "Carian" },
+        // },
         type: "custom",
         renderComponent: TextboxComponent,
         valuePrepareFunction: (cell, row) => {
@@ -177,11 +183,11 @@ export class PsppaapplicationproccessComponent implements OnInit {
       },
       mesyuarat_permohanan_serahan_kawasan: {
         title: "4.MESYUARAT PERMOHONAN SERAHAN KAWASAN",
-        filter: {
-          type: "custom",
-          component: FiltercustombuttonComponent,
-          config: { placeholder: "Carian" },
-        },
+        // filter: {
+        //   type: "custom",
+        //   component: FiltercustombuttonComponent,
+        //   config: { placeholder: "Carian" },
+        // },
         type: "custom",
         renderComponent: MeetingmodalComponent,
         valuePrepareFunction: (cell, row) => {
@@ -193,11 +199,11 @@ export class PsppaapplicationproccessComponent implements OnInit {
       },
       maklumat_lawatan_tapak_id: {
         title: "5.TETAPAN LAWATAN TAPAK",
-        filter: {
-          type: "custom",
-          component: FiltercustombuttonComponent,
-          config: { placeholder: "Carian" },
-        },
+        // filter: {
+        //   type: "custom",
+        //   component: FiltercustombuttonComponent,
+        //   config: { placeholder: "Carian" },
+        // },
         type: "html",
         valuePrepareFunction: (cell, row) => {
           return (
@@ -211,11 +217,11 @@ export class PsppaapplicationproccessComponent implements OnInit {
       surat_penyerahan_kawasan: {
         title: "6.SURAT PENYERAHAN KAWASAN ",
         type: "custom",
-        filter: {
-          type: "custom",
-          component: FiltercustombuttonComponent,
-          config: { placeholder: "Carian" },
-        },
+        // filter: {
+        //   type: "custom",
+        //   component: FiltercustombuttonComponent,
+        //   config: { placeholder: "Carian" },
+        // },
         renderComponent: DbklppsppaComponent,
         valuePrepareFunction: (cell, row) => {
           this.met.value = row.no_siri_permohonan;
@@ -225,16 +231,16 @@ export class PsppaapplicationproccessComponent implements OnInit {
       text: {
         title: "7.CATATAN",
         type: "custom",
-        filter: {
-          type: "custom",
-          component: FiltercustombuttonComponent,
-          config: { placeholder: "Carian" },
-        },
-        renderComponent: UndeletedropdownComponent,
-        valuePrepareFunction: (cell, row) => {
-          this.met.value = row.application_id;
-          this.met.getData = this.data;
-        },
+        // filter: {
+        //   type: "custom",
+        //   component: FiltercustombuttonComponent,
+        //   config: { placeholder: "Carian" },
+        // },
+        // renderComponent: UndeletedropdownComponent,        
+        // valuePrepareFunction: (cell, row) => {
+        //   this.met.value = row.application_id;
+        //   this.met.getData = this.data;
+        // },
       },
     },
   };
