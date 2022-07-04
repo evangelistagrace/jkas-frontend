@@ -14080,6 +14080,22 @@ based on the solid waste management and public cleansing act
 					</context>
 				</context-group>
 			</trans-unit>	
+			<trans-unit id="prole" datatype="html">
+				<source>
+				Parliament
+				</source>
+				<target>
+				Parliament
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/publicPages/public/public.component.html
+					</context>
+					<context context-type="linenumber">
+						58
+					</context>
+				</context-group>
+			</trans-unit>	
 			<trans-unit id="insmall" datatype="html">
 				<source>
 				Inactive Areas
