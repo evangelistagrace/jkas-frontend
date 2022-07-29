@@ -111,7 +111,7 @@ export class UsermanagmentComponent implements OnInit {
     this.username = localStorage.getItem("nama_pengguna");
     this.user_role = localStorage.getItem("ROLE");
     this.user_role = this.user_role.toLowerCase();
-    if (this.username == "NUR AZYAN FATHIAH BINTI AZMAN") {
+    if (this.user_role === "superadmin") {
       this.is1st = true;
       this.is2nd = false;
       this.display1 = "block";

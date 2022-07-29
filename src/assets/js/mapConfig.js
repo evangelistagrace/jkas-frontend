@@ -118,7 +118,7 @@ var cleaningServiceInfo = [
   }
 ]
 
-var collectionServiceInfo = [{ service: 'Kutipan Isi Rumah', layer: 2 }, { service: 'Kutipan Pusat Tong', layer: 3 }]
+var collectionServiceInfo = [{ service: 'Kutipan Isi Rumah / Komersial', layer: 2 }, { service: 'Kutipan Pusat Tong', layer: 3 }]
 
 var assetDir = "/assets/"
 // var assetDir = "./assets/"

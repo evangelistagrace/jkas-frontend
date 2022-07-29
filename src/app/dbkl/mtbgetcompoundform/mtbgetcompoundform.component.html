@@ -206,7 +206,18 @@
             </h6>
           </div>
         </div>
-
+        <div class="d-flex justify-content-end">
+          <button printSectionId="Borang" [useExistingCss]="true" ngxPrint type="button"
+            style="border: 1px solid transparent; background: transparent">
+            <i style="
+                font-size: 30px;
+                color: #419641;
+                cursor: pointer;
+                float: right;
+                margin-top: 12px;
+              " id="print" class="fa fa-print" aria-hidden="true"></i>
+          </button>
+        </div>
         <div class="form-group col-md-12">
           <label for="textInput" i18n="@@nonotis">No Notis BAS</label>
           <input type="text" id="textInput" class="form-control mb-2" placeholder="Text input" name="no_notis_bas"

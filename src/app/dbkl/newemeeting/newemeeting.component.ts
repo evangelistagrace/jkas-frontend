@@ -61,8 +61,6 @@ export class NewemeetingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
-    $('print').
     this.lang = localStorage.getItem("lang");
     window.scroll(0, 0);
 

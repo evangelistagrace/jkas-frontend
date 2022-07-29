@@ -53,6 +53,7 @@
           },
           "configurations": {
             "production": {
+              "localize": ["en","ms"],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

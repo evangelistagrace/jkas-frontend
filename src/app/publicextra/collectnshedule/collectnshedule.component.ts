@@ -211,6 +211,12 @@ export class CollectnsheduleComponent implements OnInit {
     let scaleBar = new ScaleBar({
       view: view
     });
+    let search = new Search({
+      view: view
+    });
+    view.ui.add(search, {
+      position: "top-right"
+    });
     // Add widget to the bottom left corner of the view
     view.ui.add(scaleBar, {
       position: "bottom-left"
