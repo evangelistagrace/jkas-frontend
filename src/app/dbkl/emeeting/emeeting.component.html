@@ -215,7 +215,7 @@
                 }"
               >
                 <option value="" disabled="" selected=""></option>
-                <option *ngFor="let data of Committee">
+                <option *ngFor="let data of Committee" [value]="data">
                   {{ data }}
                 </option>
               </select>

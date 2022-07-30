@@ -5,6 +5,8 @@ import { Router } from "@angular/router";
 import { environment } from "../../../environments/environment";
 import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
+import "esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css";
+import * as ELG from "esri-leaflet-geocoder";
 import { Observable } from "rxjs";
 import { NgxSpinnerService } from "ngx-spinner";
 import { FileUploader } from "ng2-file-upload";
@@ -109,14 +111,15 @@ export class MtbworkFormComponent implements OnInit {
   mainform: boolean;
   markers: L.Layer[] = [];
   map: any;
+  searchControl: any;
   greenIcon = L.icon({
     iconUrl: "../../../assets/img/location1.png",
     shadowUrl: "https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png",
     iconSize: [50, 50],
     shadowSize: [20, 30],
   });
-  latitude: any;
-  longitude: any;
+  latitude: any = 3.183356;
+  longitude: any = 101.747636;
   options: { layers: L.TileLayer[]; zoom: number; center: L.LatLng };
   display: string;
   submitted: boolean;
@@ -222,6 +225,7 @@ export class MtbworkFormComponent implements OnInit {
   ulasan_timbalanB: any;
   filename: string;
   filename1: string;
+  imgBase64: string;
   UploaderData1: any=[];
   UploaderData2: any=[];
   UploaderData3: any=[];
@@ -392,10 +396,13 @@ this.nama_pegawai=localStorage.getItem("user");
       alert("File should be maximum of size 10mb.");
     };
     this.uploader.onAfterAddingFile = (file) => {
-      for (var i = 0; i < this.uploader.queue.length; i++) {
-        let fileItem = this.uploader.queue[i]._file;
-        this.filename = fileItem.name;
-      }
+      let reader = new FileReader();
+      reader.onloadend = (e) => {
+        this.imgBase64 = e.target.result as string;
+        console.log(this.imgBase64);
+      };
+      reader.readAsDataURL(file._file);
+      this.filename = file._file.name;
     };
     this.uploader1.onWhenAddingFileFailed = (
       item: any,
@@ -527,6 +534,16 @@ this.nama_pegawai=localStorage.getItem("user");
   }
   onMapReady(map: L.Map) {
     this.map = map;
+    this.searchControl = ELG.geosearch({
+      providers: [
+        ELG.arcgisOnlineProvider({
+          apikey: "AAPK84e96f4c08c449b3bbd50cd31f590027NJ-vkD2mOotBtzSVgNfBH267JjtCPI8IPiZczqaLARYyCKNx5cMqtr76efeyapde"
+        }),
+      ],
+      position: 'topright',
+      placeholder: 'Carian lokasi'
+    });
+    this.searchControl.addTo(this.map);
     // console.log("hello");
     this.settomap(this.latitude, this.longitude);
   }
@@ -535,9 +552,20 @@ this.nama_pegawai=localStorage.getItem("user");
       draggable: true,
       icon: this.greenIcon,
     }).addTo(this.map);
-    marker.bindPopup("Di Sini").addTo(this.map).openPopup();
+    //marker.bindPopup("Di Sini").addTo(this.map).openPopup();
     marker.on("dragend", function (e) {
       marker.openPopup();
+    });
+
+    this.searchControl.on("results", function(data) {
+      console.log('move marker...');
+      if (data.results.length > 0) {
+        marker.setLatLng(data.results[0].latlng);
+        this.lati = marker.getLatLng().lat;
+        this.lngi = marker.getLatLng().lng;
+        this.loct = this.lati + "," + this.lngi;
+        localStorage.setItem("area", this.loct);
+      }
     });
 
     marker.on("dragend", function (event) {
