@@ -86,18 +86,11 @@
         <h2><span class="inv1" i18n="@@datainfo">Data Information</span></h2>
         <div class="col-sm-4 col-md-4 col-lg-4">
           <p>
-            <input class="form-control" list="data1" name="data1" [(ngModel)]="selectedGuest1"
-              (change)="selectfeatureLayer()" />
-            <datalist id="data1" #searchInput>
-              <option *ngFor="let data of featureLayers" [value]="data"></option>
-            </datalist>
+            <select (change)="selectfeatureLayer()" class="form-control" [(ngModel)]="selectedGuest1">
+              <option disabled selected>-please select-</option>
+              <option *ngFor="let data of featureLayers" [value]="data">{{data}}</option>
+            </select>
           </p>
-        </div>
-        <div class="col-sm-1 col-md-1 col-lg-1">
-
-          <button class=" btn-danger btn-sm" class="look_forR" (click)="reset()">
-            <i style="font-size: 18px;" class="fa fa-refresh" aria-hidden="true"></i>
-          </button>
         </div>
       </div>
       <div class="section-title">
@@ -114,18 +107,6 @@
               style="width: 100% !important">
             </canvas>
           </div>
-        </div>
-        <!-- <div class="col-2"></div> -->
-        <div class="col-10  parliament">
-          <span class="spaceRight">LEMBAH PANTAI</span>
-          <span class="spaceRight">SEGAMBUT </span><span class="spaceRight"> BATU</span>
-          <span class="spaceRight"> KEPONG </span>
-          <span class="spaceRight"> SEPUTEH</span>
-          <span class="spaceRight">BUKIT BINTANG</span>
-          <span class="spaceRight">BANDAR TUN RAZAK </span>
-          <span class="spaceRight">WANGSA MAJU </span><span class="spaceRight"> CHERAS</span>
-          <span class="spaceRight"> TITIWANGSA </span>
-          <span class="spaceRight">SETIAWANGSA</span>
         </div>
       </div>
 

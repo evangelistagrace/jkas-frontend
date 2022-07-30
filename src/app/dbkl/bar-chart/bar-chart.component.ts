@@ -15,6 +15,7 @@ import * as $ from "jquery";
 import { HttpClient } from "@angular/common/http";
 import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from "src/environments/environment";
+import { forkJoin } from "rxjs";
 
 @Component({
   selector: "app-bar-chart",
@@ -53,7 +54,6 @@ export class BarChartComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    // We use these empty structures as placeholders for dynamic theming.
     scales: {
       xAxes: [{}],
       yAxes: [
@@ -153,6 +153,8 @@ export class BarChartComponent implements OnInit {
   thirdcata1: string;
   notfound: boolean;
   isAdminType: string;
+  topLayers: any = [];
+  parliment: any = {};
   username: string;
 
   constructor(private http: HttpClient, private spinner: NgxSpinnerService, private router: Router,) { }
@@ -178,9 +180,34 @@ export class BarChartComponent implements OnInit {
       .post(this.baseURL + "/dbkl/getLapisanFitur", { headers: headers })
       .subscribe((data) => {
         this.show = false;
-        this.featureLayers = data;
-
-        this.spinner.hide();
+        // this.featureLayers = data;
+        this.http
+          .get("https://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/JKAS_GASET/MapServer?f=json")
+          .subscribe((data) => {
+            this.topLayers = data['layers'];
+            for (let i=0; i<data['layers'].length; i++) {
+              if (data['layers'][i]['parentLayerId'] === -1) {
+                console.log('adding ' + data['layers'][i]['name']);
+                this.parliment[data['layers'][i]['name']] = data['layers'][i]['subLayerIds'];
+              } else {
+                let name = data['layers'][i]['name'].replaceAll('_', ' ');
+                let exists = false;
+                for (let k=0; k<this.featureLayers.length; k++) {
+                  if (this.featureLayers[k] === name) {
+                    exists = true;
+                    break;
+                  }
+                }
+                if (!exists) {
+                  this.featureLayers.push(name);
+                }
+              }
+            }
+            let random = Math.floor(Math.random() * this.featureLayers.length - 1);
+            this.selectedGuest1 = this.featureLayers[random];
+            this.selectfeatureLayer();
+            this.spinner.hide();
+          });
         // console.log(this.featureLayers);
         // this.launch_toast();
       }),
@@ -209,41 +236,76 @@ export class BarChartComponent implements OnInit {
   }
 
   selectfeatureLayer() {
+    let selected = this.selectedGuest1.replaceAll(' ', '_');
+    let defaultSelected = 'PUSAT_TONG';
+    let observableBatch = [];
+    let observableBatch2 = [];
+    for (let i=0; i<this.topLayers.length; i++) {
+      if (this.topLayers[i]['name'] === selected) {
+        let url = "https://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/JKAS_GASET/MapServer/" + this.topLayers[i]['id'] + "/query?where=1%3D1&outFields=PARLIMEN&returnGeometry=false&returnTrueCurves=false&f=json";
+        observableBatch.push(this.http.get(url));
+      }
+    }
+
     this.spinner.show();
-
-    let headers11 = {
-      accept: "application/json",
-      "Content-Type": "application/json",
-    };
-
-    let body1 = {
-      lapisan_fitur: this.selectedGuest1,
-    };
-
-    this.http
-      .post(this.baseURL + "/dbkl/getKategori", body1, { headers: headers11 })
-      .subscribe((res) => {
-
-        this.catagoriList = res;
-        this.catagorylength = this.catagoriList.length;
-        //console.log(this.catagoriList);
-        this.executeFunc();
-        this.firstCata1 = this.catagoriList[0] + "_YA";
-        this.firstCata = this.catagoriList[0] + "_TIDAK";
-        this.secondCata = this.catagoriList[1] + "_YA";
-        this.secondCata1 = this.catagoriList[1] + "_TIDAK";
-        this.thirdcata = this.catagoriList[2] + "_YA";
-        this.thirdcata1 = this.catagoriList[2] + "_TIDAK";
-        // this.secondcata = (this.catagoriList[1] + "_YA");
-        // this.thirdcata = (this.catagoriList[2] + "_YA");
-        // console.log("1st" + this.firstCata + "2nd" + this.secondcata + "3rd" + this.thirdcata);
-        // console.log("my response" + this.catagoriList);
+    forkJoin(observableBatch)
+    .subscribe((value) => {
+      console.log('finish...');
+      this.barChartLabels = [];
+      this.barChartData = [];
+      let data = [];
+      for (let i=0; i<value.length; i++) {
+        let val = value[i];
+        try {
+          let size = val['features'].length;
+          let parliment = val['features'][0]['attributes']['PARLIMEN'];
+          console.log(parliment + ' = ' + size);
+          this.barChartLabels.push(parliment);
+          data.push(size);
+        } catch(e) {
+          console.error('skipping due to error.');
+          console.log(val);
+        }
+      }
+      this.barChartData.push({
+        data: data,
+        label: selected
       });
+      this.spinner.hide();
+    });
+    // let headers11 = {
+    //   accept: "application/json",
+    //   "Content-Type": "application/json",
+    // };
 
-    this.notfound = false;
+    // let body1 = {
+    //   lapisan_fitur: this.selectedGuest1,
+    // };
 
-    this.show1 = false;
-    this.show = true;
+    // this.http
+    //   .post(this.baseURL + "/dbkl/getKategori", body1, { headers: headers11 })
+    //   .subscribe((res) => {
+
+    //     this.catagoriList = res;
+    //     this.catagorylength = this.catagoriList.length;
+    //     //console.log(this.catagoriList);
+    //     this.executeFunc();
+    //     this.firstCata1 = this.catagoriList[0] + "_YA";
+    //     this.firstCata = this.catagoriList[0] + "_TIDAK";
+    //     this.secondCata = this.catagoriList[1] + "_YA";
+    //     this.secondCata1 = this.catagoriList[1] + "_TIDAK";
+    //     this.thirdcata = this.catagoriList[2] + "_YA";
+    //     this.thirdcata1 = this.catagoriList[2] + "_TIDAK";
+    //     // this.secondcata = (this.catagoriList[1] + "_YA");
+    //     // this.thirdcata = (this.catagoriList[2] + "_YA");
+    //     // console.log("1st" + this.firstCata + "2nd" + this.secondcata + "3rd" + this.thirdcata);
+    //     // console.log("my response" + this.catagoriList);
+    //   });
+
+    // this.notfound = false;
+
+    // this.show1 = false;
+    // this.show = true;
 
   }
 
@@ -435,8 +497,8 @@ export class BarChartComponent implements OnInit {
           this.router.navigateByUrl("/dbkl/adminregister");
           localStorage.removeItem("AccessToken");
           localStorage.removeItem("user_type");
-          localStorage.setItem("isdbkl","false");
- 	  this.spinner.hide();
+          localStorage.setItem("isdbkl", "false");
+          this.spinner.hide();
         },
         (error) => {
           // console.log("error is", error["error"]);
