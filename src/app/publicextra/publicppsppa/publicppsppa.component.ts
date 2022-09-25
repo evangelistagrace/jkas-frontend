@@ -171,11 +171,7 @@ export class PublicppsppaComponent implements OnInit {
         title: "3.STATUS SEMAKAN DOKUMEN",
         type: "html",
         valuePrepareFunction: (cell, row) => {
-          if (row.status_semakan_dokumen == true) {
-            return "<div class='customformat'><i class='fa fa-check text-success ' aria-hidden='true'></i></div>";
-          } else {
-            return "<div class='customformat'><i class='fa fa-times text-danger' aria-hidden='true'></i></div>";
-          }
+          return row.status_semakan_dokumen ? 'Lengkap' : 'Tidak Lengkap';
         },
       },
       mesyuarat_permohanan_serahan_kawasan: {
@@ -211,8 +207,6 @@ export class PublicppsppaComponent implements OnInit {
         valuePrepareFunction: (cell, row) => {
           this.met.value = row.no_siri_permohonan;
           this.met.getData = this.characters;
-          
-        
       },
       // surat_penyerahan_kawasan: {
       //   title: "Surat Penyerahan Kawasan",

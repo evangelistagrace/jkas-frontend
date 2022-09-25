@@ -7,6 +7,7 @@ import { FileUploader } from "ng2-file-upload";
 import { Observable } from "rxjs";
 import { NgxSpinnerService } from "ngx-spinner";
 import * as $ from "jquery";
+import { saveAs } from "file-saver";
 
 @Component({
   selector: 'app-new-inventory',
@@ -32,22 +33,28 @@ export class NewInventoryComponent implements OnInit {
   submitted: boolean;
   parlimen: any;
   lokasi: any;
-  sisa_domestik: any="";
-  sampah_pukal: any="";
-  sapuan_TPKK: any="";
-  sapuan_jalan: any="";
-  sapuan_parkir: any="";
-  cucian_jejantas: any="";
-  cucian_longkang: any="";
-  cucian_siarkaki_berbumbung: any="";
-  cucian_slesenbaslteksi: any="";
-  cucian_siarkaki: any="";
-  sapuan_jejantas: any="";
-  catatan: any="";
-  rujuken_tarikh_serahan: any="";
-  tarikh_semakandi_lapangant_keadeansemata_ada: any="";
-  potong_rumput: any="";
-  sampah_kebun: any="";
+  SERVER_URL: any = environment.basePublicUrl + "/public/uploadFile";
+  tarikhSiasatan: any;
+  sisa_domestik: any = "";
+  sampah_pukal: any = "";
+  sapuan_TPKK: any = "";
+  sapuan_jalan: any = "";
+  sapuan_parkir: any = "";
+  cucian_jejantas: any = "";
+  cucian_longkang: any = "";
+  cucian_siarkaki_berbumbung: any = "";
+  cucian_slesenbaslteksi: any = "";
+  cucian_siarkaki: any = "";
+  sapuan_jejantas: any = "";
+  catatan: any = "";
+  rujuken_tarikh_serahan: any = "";
+  tarikh_semakandi_lapangant_keadeansemata_ada: any = "";
+  potong_rumput: any = "";
+  sampah_kebun: any = "";
+  uploader: FileUploader = new FileUploader({
+    isHTML5: true,
+  });
+  fileName: string = "";
   display: string;
   errorDisplay: string;
   lang: string;
@@ -58,11 +65,11 @@ export class NewInventoryComponent implements OnInit {
   selectedGuest: any;
   subarray: any;
   location: any = [];
-  sampah_haram: any="";
-  jumlah_unit_premis: any="";
+  sampah_haram: any = "";
+  jumlah_unit_premis: any = "";
   kordinat: any;
   long: any;
-  tarikh_semakandi_lapangant_keadeansemata_tiada: any="";
+  tarikh_semakandi_lapangant_keadeansemata_tiada: any = "";
   loginError: boolean;
   errorMsg: any;
   data: any;
@@ -83,7 +90,7 @@ export class NewInventoryComponent implements OnInit {
   selectedParlimen: any;
   Parliament: any;
   kodarea: any;
-  p:any;
+  p: any;
   parlimenAbc: any;
   latlong: any;
   locat: any;
@@ -102,20 +109,19 @@ export class NewInventoryComponent implements OnInit {
     $("input[name='key']").on('input', function (e) {
       var $input = $(this),
         val = $input.val();
-      var locData=localStorage.getItem('locationArray');
-      var data =JSON.parse(locData);
+      var locData = localStorage.getItem('locationArray');
+      var data = JSON.parse(locData);
       for (let key of data) {
         if (key.includes(val)) {
           // console.log(key);
           let loc = key.split("|");
           this.long = loc[1];
           // console.log(this.long);
-           localStorage.setItem("location",key);
-           localStorage.setItem("longlati",this.long);
+          localStorage.setItem("location", key);
+          localStorage.setItem("longlati", this.long);
         }
       }
     });
-
     $("table.paginated").each(function () {
       var currentPage = 0;
       var numPerPage = 10;
@@ -153,49 +159,60 @@ export class NewInventoryComponent implements OnInit {
         .find("span.page-number:first")
         .addClass("active");
     });
-
-
-
     this.lang = localStorage.getItem("lang");
     localStorage.setItem('path', '/dbkl/inventorymanage');
-  //   this.registrationGroup = new FormGroup({
-  //     //  parlimen: new FormControl("", [Validators.required]),
-  //     // lokasi: new FormControl("", [Validators.required]),
-  //     jumlah_unit_premis: new FormControl("", [Validators.required]),
-  //     sisa_domestik: new FormControl("", [Validators.required]),
-  //     sampah_pukal: new FormControl("", [Validators.required]),
-  //     sampah_haram: new FormControl("", [Validators.required]),
-  //     sapuan_jalan: new FormControl("", [Validators.required]),
-  //     sapuan_TPKK: new FormControl("", [Validators.required]),
-  //     sapuan_parkir: new FormControl("", [Validators.required]),
-  //     sapuan_jejantas: new FormControl("", [Validators.required]),
-  //     cucian_jejantas: new FormControl("", [Validators.required]),
-  //     cucian_siarkaki: new FormControl("", [Validators.required]),
-  //     cucian_siarkaki_berbumbung: new FormControl("", [Validators.required]),
-  //     cucian_slesenbaslteksi: new FormControl("", [Validators.required]),
-  //     cucian_longkang: new FormControl("", [Validators.required]),
-  //     catatan: new FormControl("", [Validators.required]),
-  //     rujuken_tarikh_serahan: new FormControl("", [Validators.required]),
-  //     tarikh_semakandi_lapangant_keadeansemata_ada: new FormControl("", [
-  //       Validators.required,
-  //     ]),
-  //     tarikh_semakandi_lapangant_keadeansemata_tiada: new FormControl("", [
-  //       Validators.required,
-  //     ]),
-  //     potong_rumput: new FormControl("", [Validators.required]),
-  //     sampah_kebun: new FormControl("", [Validators.required]),
-  //   });
-   }
-  
- 
+  }
+  doUpload() {
+    this.spinner.show();
+    for (var i = 0; i < this.uploader.queue.length; i++) {
+      let fileItem = this.uploader.queue[i]._file;
+      if (fileItem.size > 10000000) {
+        alert("Each File should be less than 10 MB of size.");
+        return;
+      }
+    }
+    for (var j = 0; j < this.uploader.queue.length; j++) {
+      let data = new FormData();
+      let fileItem = this.uploader.queue[j]._file;
+      this.fileName = fileItem.name;
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + j);
+      this.http.post<any>(this.SERVER_URL, data).subscribe((data) => {
+        this.spinner.hide();
+      });
+    }
+    console.log('filename: ', this.fileName);
+    this.spinner.hide();
+  }
+  getPdf(e) {
+    this.downloadPdf(e).then((blob) => {
+      saveAs(blob, e);
+      var fileURL = window.URL.createObjectURL(blob);
+      let tab = window.open();
+      tab.location.href = fileURL;
+    });
+  }
+  downloadPdf(id: number) {
+    let key = localStorage.getItem("AccessToken");
+    let headers = {
+      "Content-Type": "application/json",
+      Authorization: key,
+    };
 
+    return this.http
+      .get(this.basePublicUrl + "/jkas_resourses/public/pdfs/" + id, {
+        headers,
+        responseType: "blob",
+      })
+      .toPromise();
+  }
   selectEvent(event) {
     this.selectedGuest = event.target.value;
     // console.log("selected guest value" + this.selectedGuest);
     this.getParliament();
   }
-  getParliament() {
 
+  getParliament() {
     this.spinner.show();
     this.subarray1 = [];
     let body = {
@@ -222,19 +239,19 @@ export class NewInventoryComponent implements OnInit {
             status1 = this.subarray[j].lokasi[k].status;
             this.location.push(values);
             this.subarray1.push(values + "," + "|" + lati + "," + long);
-            localStorage.setItem('locationArray',JSON.stringify(this.subarray1))
+            localStorage.setItem('locationArray', JSON.stringify(this.subarray1))
             count++;
             //console.log(values);
             //console.log(this.location);
-            
+
           }
           j++;
         }
       });
   }
- 
+
   getValue(e) {
-  //  console.log(e);
+    //  console.log(e);
     let v = event;
     for (let key of this.subarray1) {
       if (key.includes(v)) {
@@ -246,52 +263,30 @@ export class NewInventoryComponent implements OnInit {
     }
   }
   selectlocation(event) {
-    //console.log(event);
-
     let v = event;
-    //console.log(v);
-
     for (let key of this.subarray1) {
-
       if (key.includes(v)) {
-      //  console.log(key);
-        let loc=key.split("|");
-        this.long=loc[1];
-      //  console.log(this.long);
-        
-
+        let loc = key.split("|");
+        this.long = loc[1];
       }
     }
   }
 
-  // get f() {
-  //   return this.registrationGroup.controls;
-  // }
   saveInventory() {
-   // console.log(this.sisa_domestik);
-   // console.log(this.jumlah_unit_premis);
     if (
       this.parlimenAbc == undefined ||
       this.lokasi == undefined
     ) {
       this.check = true;
-      // console.log(this.check);
       return;
     }
-    
-    // this.submitted = true;
-    // if (this.registrationGroup.invalid) {
-    // console.log("bye");
-    
-      
-    //   return;
-    // }
+
     this.spinner.show();
     let body = {
       parlimen: this.parlimenAbc,
       lokasi: this.lokasi,
-      kordinat:"",
-      jumlah_unit_premis:this.jumlah_unit_premis,
+      kordinat: "",
+      jumlah_unit_premis: this.jumlah_unit_premis,
       sisa_domestik: this.sisa_domestik,
       sampah_pukal: this.sampah_pukal,
       sampah_haram: this.sampah_haram,
@@ -312,6 +307,7 @@ export class NewInventoryComponent implements OnInit {
         .tarikh_semakandi_lapangant_keadeansemata_ada,
       tarikh_semakandi_lapangant_keadeansemata_tiada: this
         .tarikh_semakandi_lapangant_keadeansemata_tiada,
+      surat_serahan: this.fileName
     };
 
     let headers = {
@@ -319,7 +315,7 @@ export class NewInventoryComponent implements OnInit {
       accept: "application/json",
       Authorization: localStorage.getItem("AccessToken"),
     };
- console.log(body);
+    console.log(body);
 
     this.http
       .post(environment.basePublicUrl + "/dbkl/createOmpBaru", body, {
@@ -329,8 +325,8 @@ export class NewInventoryComponent implements OnInit {
         (data) => {
           this.spinner.hide();
 
-         console.log(body);
-          
+          console.log(body);
+
           this.anncdata = data["message"];
           if (this.anncdata == "omp_baru_added") {
 
@@ -374,15 +370,15 @@ export class NewInventoryComponent implements OnInit {
     this.http
       .get(
         this.basePublicUrl +
-          "/dbkl/getOmpSubArea/" +
-          this.selectedParlimen,
+        "/dbkl/getOmpSubArea/" +
+        this.selectedParlimen,
         { headers: headers }
       )
       .subscribe(
         (res) => {
           this.spinner.hide();
           this.subArea = res;
-        //console.log(res);
+          //console.log(res);
         },
         (error) => {
           this.loginError = true;
@@ -390,12 +386,12 @@ export class NewInventoryComponent implements OnInit {
         }
       );
   }
-  activityly(event: any){
-    this.parliament_subarea=event.target.value;
-  //  console.log(this.parliament_subarea);
-    localStorage.setItem("subArea",this.parliament_subarea);
-    
-   }
+  activityly(event: any) {
+    this.parliament_subarea = event.target.value;
+    //  console.log(this.parliament_subarea);
+    localStorage.setItem("subArea", this.parliament_subarea);
+
+  }
   searchButton() {
     this.spinner.show();
     this.Parliament = this.selectedParlimen;
@@ -404,14 +400,14 @@ export class NewInventoryComponent implements OnInit {
       "Content-Type": "application/json",
       Authorization: key,
     };
-      let body={
-        parliament_name:this.selectedParlimen,
-        parliament_subarea:localStorage.getItem("subArea"),
+    let body = {
+      parliament_name: this.selectedParlimen,
+      parliament_subarea: localStorage.getItem("subArea"),
     }
     this.http
-    .post(this.basePublicUrl + "/dbkl/getOmpBaru" , body, {
-      headers: headers,
-    })
+      .post(this.basePublicUrl + "/dbkl/getOmpBaru", body, {
+        headers: headers,
+      })
       .subscribe(
         (res) => {
           this.spinner.hide();
@@ -501,11 +497,11 @@ export class NewInventoryComponent implements OnInit {
           this.router.navigateByUrl("/dbkl/adminregister");
           localStorage.removeItem("AccessToken");
           localStorage.removeItem("user_type");
-          localStorage.setItem("isdbkl","false");
- 	  this.spinner.hide();
+          localStorage.setItem("isdbkl", "false");
+          this.spinner.hide();
         },
         (error) => {
- this.spinner.hide();
+          this.spinner.hide();
           // console.log("error is", error["error"]);
         }
       );

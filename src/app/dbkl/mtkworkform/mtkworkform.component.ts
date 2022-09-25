@@ -5,6 +5,8 @@ import { Router } from "@angular/router";
 import { environment } from "../../../environments/environment";
 import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
+import "esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css";
+import * as ELG from "esri-leaflet-geocoder";
 import { Observable } from "rxjs";
 import { NgxSpinnerService } from "ngx-spinner";
 import { FileUploader } from "ng2-file-upload";
@@ -70,6 +72,7 @@ export class MtkworkformComponent implements OnInit {
   description3: any;
   address1: any;
   address2: any;
+  imgBase64: string;
   registrationGroup: any;
   pengadu_alamat: any;
   pengadu_nama: any;
@@ -248,6 +251,7 @@ export class MtkworkformComponent implements OnInit {
   loginError: boolean;
   zonedata: any = [];
   parildata: any = [];
+  searchControl: any;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -310,10 +314,13 @@ export class MtkworkformComponent implements OnInit {
       alert("File should be maximum of size 10mb.");
     };
     this.uploader.onAfterAddingFile = (file) => {
-      for (var i = 0; i < this.uploader.queue.length; i++) {
-        let fileItem = this.uploader.queue[i]._file;
-        this.filename = fileItem.name;
-      }
+      let reader = new FileReader();
+      reader.onloadend = (e) => {
+        this.imgBase64 = e.target.result as string;
+        console.log(this.imgBase64);
+      };
+      reader.readAsDataURL(file._file);
+      this.filename = file._file.name;
     };
     this.uploader1.onWhenAddingFileFailed = (
       item: any,
@@ -526,7 +533,16 @@ export class MtkworkformComponent implements OnInit {
   }
   onMapReady(map: L.Map) {
     this.map = map;
-    // console.log("hello");
+    this.searchControl = ELG.geosearch({
+      providers: [
+        ELG.arcgisOnlineProvider({
+          apikey: "AAPK84e96f4c08c449b3bbd50cd31f590027NJ-vkD2mOotBtzSVgNfBH267JjtCPI8IPiZczqaLARYyCKNx5cMqtr76efeyapde"
+        }),
+      ],
+      position: 'topright',
+      placeholder: 'Carian lokasi'
+    });
+    this.searchControl.addTo(this.map);
     this.settomap(this.latitude, this.longitude);
   }
   settomap(la, lo) {
@@ -534,7 +550,6 @@ export class MtkworkformComponent implements OnInit {
       draggable: true,
       icon: this.greenIcon,
     }).addTo(this.map);
-    marker.bindPopup("Di Sini").addTo(this.map).openPopup();
     marker.on("dragend", function (e) {
       marker.openPopup();
     });
@@ -551,6 +566,17 @@ export class MtkworkformComponent implements OnInit {
       // this.loct=result.toString(
       localStorage.setItem("area", this.loct);
     });
+    this.searchControl.on("results", function(data) {
+      console.log('move marker...');
+      if (data.results.length > 0) {
+        marker.setLatLng(data.results[0].latlng);
+        this.lati = marker.getLatLng().lat;
+        this.lngi = marker.getLatLng().lng;
+        this.loct = this.lati + "," + this.lngi;
+        localStorage.setItem("area", this.loct);
+      }
+    });
+
     this.map.setView([la, lo], 15);
     var popup = L.popup({
       offset: [0, -30],

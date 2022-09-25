@@ -1988,6 +1988,13 @@ angular-highcharts@^11.3.1:
   dependencies:
     tslib "^2.0.0"
 
+angular-ng-autocomplete@^2.0.12:
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/angular-ng-autocomplete/-/angular-ng-autocomplete-2.0.12.tgz#a8bd75f1d0057dddfd09d5ee397c616c259adf1e"
+  integrity sha512-EVv0x5REi96bQ7gXqGls+xUNiWLZxpbOLqQDg667jzV1swuBxVy/1oLvskTwsiLpgtxiDMgqq9M7fOEur6a/9A==
+  dependencies:
+    tslib "^2.3.0"
+
 ansi-colors@4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
@@ -2668,6 +2675,11 @@ chartjs-color@^2.1.0:
   dependencies:
     chartjs-color-string "^0.6.0"
     color-convert "^1.9.3"
+
+chartjs-plugin-datalabels@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/chartjs-plugin-datalabels/-/chartjs-plugin-datalabels-1.0.0.tgz#5a3d21dde1ed12602dd48c634985a39f431165f1"
+  integrity sha512-rqaAFrZT++7OoCJgRCPjugTR4kYpdmrTeX7qHTAZoNQaOaMdx4g6o0Eo9J7n3qLRQrhWjh9l731JsrbkJxL7Vg==
 
 "chokidar@>=3.0.0 <4.0.0", chokidar@^3.0.0, chokidar@^3.5.1:
   version "3.5.3"
@@ -6079,12 +6091,12 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-ng-multiselect-dropdown@^1.0.0-beta.19:
-  version "1.0.0-beta.19"
-  resolved "https://registry.yarnpkg.com/ng-multiselect-dropdown/-/ng-multiselect-dropdown-1.0.0-beta.19.tgz#c95908061606da1e5234a410f88a401fe7daf770"
-  integrity sha512-bfA5nUif9YnF0AI24tjI34MvV9Sjx3kmoYhTUpaO2VP3ftMlDlFvizBOoLM0rkBe+x2fAEU+pz+Vk/QRUA5RIQ==
+ng-multiselect-dropdown@^0.3.8:
+  version "0.3.8"
+  resolved "https://registry.yarnpkg.com/ng-multiselect-dropdown/-/ng-multiselect-dropdown-0.3.8.tgz#17b63ea33d95cfe1650b8df1afc89e3b371d5ad8"
+  integrity sha512-b6WohT+ouGQfBqo+OpYPClJI25Qmj/nNWcyGUIMh2JCAHEpWEQRUVzHJB7pPVW+n5a/P26I/sLyOQekxfkW9aQ==
   dependencies:
-    tslib "^2.0.0"
+    tslib "^1.9.0"
 
 ng-sidebar@^9.4.2:
   version "9.4.3"

@@ -5,6 +5,17 @@
   cursor: pointer;
   background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
   color: white;
+  border-radius: 32px!important;
+}
+
+.upload-btn {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+  color: white;
+  font-size: 13px !important;
 }
 
 input[type="file"] {

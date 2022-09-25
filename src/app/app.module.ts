@@ -139,9 +139,11 @@ import { ChartModule } from "angular-highcharts";
 import { FiltercustombuttonComponent } from './filtercustombutton/filtercustombutton.component';
 import { FilterdoublecustombuttonComponent } from './filterdoublecustombutton/filterdoublecustombutton.component';
 import { TextboxComponent } from './textbox/textbox.component';
-
-
-
+import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { DbklppsppacatatanComponent } from './dbklppsppacatatan/dbklppsppacatatan.component';
 
 
 registerLocaleData(enLocale, "en");
@@ -257,12 +259,16 @@ registerLocaleData(msLocale, "ms");
     MtkcompoundformComponent,
     FiltercustombuttonComponent,
     FilterdoublecustombuttonComponent,
-    TextboxComponent
+    TextboxComponent,
+    DbklppsppacatatanComponent
 
 
 
   ],
   imports: [
+    MatTableModule,
+    MatPaginatorModule,
+    AutocompleteLibModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -285,7 +291,7 @@ registerLocaleData(msLocale, "ms");
     MatButtonModule,
     MatSelectModule,
     ChartModule,
-
+    NgMultiSelectDropDownModule.forRoot(),
 
     TranslateModule.forRoot({
       loader: {
@@ -295,7 +301,7 @@ registerLocaleData(msLocale, "ms");
       },
     }),
 
-    BsDatepickerModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ],
   exports: [ReplaceSubstring],
   providers: [

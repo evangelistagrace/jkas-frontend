@@ -181,12 +181,12 @@
               <option>Agensi</option>
             </select>
           </div>
-          <div class="form-group line col-sm-3">
+          <div class="form-group line col-sm-3" [style.display]="peranan === 'MerinyuMTB' ? 'block' : 'none'">
             <label class="linerr" for="textInput" i18n="@@prole"
               >Parlimen</label
             >
           </div>
-          <div class="col-sm-9" ng-show="">
+          <div class="col-sm-9" ng-show="" [style.display]="peranan === 'MerinyuMTB' ? 'block' : 'none'">
             <select
               style="width: 350px"
               type="text"

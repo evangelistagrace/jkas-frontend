@@ -243,6 +243,10 @@ section {
  */
 }
 
+td.mat-cell {
+  font-size: 11px;
+}
+
 #addNewRow:hover {
     background: #253d84;
 }

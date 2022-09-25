@@ -410,16 +410,116 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                         <a class="filename" style="color: black" *ngIf="showfiles" target="_blank"
                           href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}">{{ data }}<br /></a>
                       </span>
-                      <!-- <input
-                            type="button"
-                            class="btn btn-outline-dark"
-                            value="Maut Naik Dokumen"
-                          /> -->
+                      <br />
+                      <table>
+                        <tbody style="font-size: x-small; padding-right: 5px">
+                          <tr *ngFor="let item of uploader2.queue">
+                            <th width="" style="font-size: 15px; font-weight: 700">
+                              <span>{{ item.file.name }}({{
+                                item.file.size / 1000000
+                                }}
+                                MB)</span>
+                              <span class="text-center">
+                                <i style="
+                                    cursor: pointer;
+                                    font-size: 15px;
+                                    font-weight: 700;
+                                  " class="fa fa-trash" (click)="item.remove()" aria-hidden="true"></i></span>
+                            </th>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: normal">
+                      <span>Lampiran</span>
+                      <span style="
+                          color: #253d84;
+                          font-size: large;
+                          padding-top: 1em;
+                        ">*</span>
+
+                      <br />(<span>Borang BD44/45 atau bilangan logistik dan pekerja bagi setiap kawasan serahan baru</span>)
+                    </td>
+
+                    <td>
+                      <label class="custom-file-upload">
+                        <input type="file" ng2FileSelect accept=".pdf" [uploader]="bd44Uploader" multiple
+                          formControlName="file1" [ngClass]="{
+                            'is-invalid': submitted && f.file1.errors
+                          }" />
+                        <div *ngIf="submitted && f.file1.errors" class="invalid-feedback">
+                          <div style="color: red !important;" *ngIf="f.file1.errors.required"
+                            class="text-white font-italic font-weight-bold" i18n="@@jobfvm8">
+                            File is required
+                          </div>
+                        </div>
+                        <i class="fa fa-cloud-upload"></i>
+                      </label>
+                      <br />
+                      <span *ngFor="let data of FileArray1">
+                        <a class="filename" style="color: black" target="_blank" *ngIf="showfiles"
+                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}">{{ data }}<br /></a>
+                      </span>
+                      <br />
+                      <table>
+                        <tbody style="font-size: x-small; padding-right: 5px">
+                          <tr *ngFor="let item of bd44Uploader.queue">
+                            <th width="" style="font-size: 15px; font-weight: 700">
+                              <span>{{ item.file.name }}({{
+                                item.file.size / 1000000
+                                }}
+                                MB)</span>
+                              <span class="text-center">
+                                <i style="
+                                    cursor: pointer;
+                                    font-size: 15px;
+                                    font-weight: 700;
+                                  " class="fa fa-trash" (click)="item.remove()" aria-hidden="true"></i></span>
+                            </th>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: normal">
+                      <span i18n="@@summaryreport"> Summary Report</span>
+                      <span style="
+                          color: #253d84;
+                          font-size: large;
+                          padding-top: 1em;
+                        ">*</span>
+
+                      <br />(<span>Laporan tuntutan KWPSPPA bagi kawasan baru</span>)
+                    </td>
+
+                    <td>
+                      <label class="custom-file-upload">
+                        <input type="file" ng2FileSelect accept=".pdf" [uploader]="laporanTuntutanUploader" multiple
+                          formControlName="file1" [ngClass]="{
+                            'is-invalid': submitted && f.file1.errors
+                          }" />
+                        <div *ngIf="submitted && f.file1.errors" class="invalid-feedback">
+                          <div style="color: red !important;" *ngIf="f.file1.errors.required"
+                            class="text-white font-italic font-weight-bold" i18n="@@jobfvm8">
+                            File is required
+                          </div>
+                        </div>
+                        <i class="fa fa-cloud-upload"></i>
+                      </label>
+
+                      <br />
+                      <span *ngFor="let data of FileArray1">
+                        <a class="filename" style="color: black" target="_blank" *ngIf="showfiles"
+                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}">{{ data }}<br /></a>
+                      </span>
                       <br />
 
                       <table>
                         <tbody style="font-size: x-small; padding-right: 5px">
-                          <tr *ngFor="let item of uploader2.queue">
+                          <tr *ngFor="let item of laporanTuntutanUploader.queue">
                             <th width="" style="font-size: 15px; font-weight: 700">
                               <span>{{ item.file.name }}({{
                                 item.file.size / 1000000

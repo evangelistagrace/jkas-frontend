@@ -88,7 +88,7 @@ export class ClaimReviewComponent implements OnInit {
       kontraktor: {
         title: "Kontraktor",
       },
-      
+
       no_inbois: {
         title: "No. Inbois",
         type: "html",
@@ -136,7 +136,6 @@ export class ClaimReviewComponent implements OnInit {
         agensi_id_list: this.listOfIds.substring(1, this.listOfIds.length - 1),
       },
     };
-    // console.log(options);
     this.http
       .delete(
         environment.basePublicUrl + "/dbkl/deleteAgencyJobPaymentClaim",
@@ -144,7 +143,6 @@ export class ClaimReviewComponent implements OnInit {
       )
       .subscribe(
         (s) => {
-          // console.log("my response" + JSON.stringify(s));
           this.openModal();
           this.spinner.hide();
           this.detailedmeeting = s["message"];
@@ -156,7 +154,6 @@ export class ClaimReviewComponent implements OnInit {
               this.meetingupdate = "Tuntutan Kewangan berjaya dipadamkan!";
             }
           }
-          //console.log("slamn" + this.meetingupdate);
         },
         (error) => {
           this.loginError = true;
@@ -179,14 +176,12 @@ export class ClaimReviewComponent implements OnInit {
   deleteChecked() {
     if (this.IdsArray == undefined) {
       this.display3 = "block";
- 
     }
     else if (this.IdsArray.length == 0) {
       this.display3 = "block";
     }
     else {
       this.openModalDelete();
-
     }
   }
 
@@ -238,8 +233,8 @@ export class ClaimReviewComponent implements OnInit {
           this.router.navigateByUrl("/dbkl/adminregister");
           localStorage.removeItem("AccessToken");
           localStorage.removeItem("user_type");
-          localStorage.setItem("isdbkl","false");
- 	  this.spinner.hide();
+          localStorage.setItem("isdbkl", "false");
+          this.spinner.hide();
         },
         (error) => {
           // console.log("error is", error["error"]);

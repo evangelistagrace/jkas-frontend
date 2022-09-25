@@ -352,8 +352,10 @@ export class FinacialClaimReviewComponent implements OnInit {
   get f() { return this.selectGroup.controls; }
 
   updateInvoice() {
+    console.log('status: ', this.updatestatus, ', ulasan: ', this.ulasan_pegawai);
     this.submitted = true;
     if (this.selectGroup.invalid) {
+      alert('Sila semak kembali input anda.');
       return;
     }
     this.spinner.show();
@@ -375,7 +377,6 @@ export class FinacialClaimReviewComponent implements OnInit {
       status: this.updatestatus,
       ulasan_pegawai: this.ulasan_pegawai,
     };
-   //  console.log(body)
 
     this.http
       .put(
@@ -449,14 +450,10 @@ export class FinacialClaimReviewComponent implements OnInit {
     this.router.navigateByUrl("dbkl/dbklmainpage");
   }
   getPdf(e){
-    //console.log(e)
     this.downloadPdf(e)
     .then(blob => {
-      //console.log(blob)
       saveAs(blob, e);
       var fileURL = window.URL.createObjectURL(blob);
-     // console.log(fileURL);
-      
       let tab = window.open();
       tab.location.href = fileURL
     });
@@ -468,10 +465,8 @@ export class FinacialClaimReviewComponent implements OnInit {
       "Authorization": key,
 
     };
-
-
     return this.http
-      .get("{{SERVER_URL}}/jkas_resourses/public/pdfs/" + id, { headers, responseType: 'blob' })
+      .get(environment.basePublicUrl + "/jkas_resourses/public/pdfs/" + id, { headers, responseType: 'blob' })
       .toPromise();
   }
   logout() {

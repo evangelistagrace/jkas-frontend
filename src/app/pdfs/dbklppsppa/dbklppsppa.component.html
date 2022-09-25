@@ -1,69 +1,14 @@
 <div *ngFor="let key of data; index as i">
   <span *ngIf="key.no_siri_permohonan == value">
-    <span
-      (click)="getPdf(key.surat_penyerahan_kawasan)"
-      style="color: #253d84; cursor: pointer"
-      >{{ key.surat_penyerahan_kawasan }}</span
-    >
+    <div *ngIf="key.surat_penyerahan_kawasan;else files">
+      <span (click)="getPdf(key.surat_penyerahan_kawasan)" style="color: #253d84; cursor: pointer">{{
+        key.surat_penyerahan_kawasan }}</span>
+    </div>
+    <ng-template #files>
+      <label class="custom-file-upload">
+        <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" multiple (change)="uploadSubmit(key.no_siri_permohonan)" />
+        <i class="fa fa-cloud-upload"></i>
+      </label>
+    </ng-template>
   </span>
 </div>
-<!-- <div class="col-2" style="padding-left: 61px">
-  <i
-    style="font-size: 17px; color: #b61f1f; cursor: pointer"
-    class="fa fa-cloud-upload"
-  ></i>
-</div> -->
-<!-- <label class="custom-file-upload">
-  <input
-    type="file"
-    ng2FileSelect
-    accept=".pdf"
-    id="file-upload"
-    [uploader]="uploader"
-    multiple
-  />
-
-  <i class="fa fa-cloud-upload"></i>
-</label> -->
-
-<td style="text-align: center" class="anc">
-  <label class="custom-file-upload">
-    <input
-      type="file"
-      ng2FileSelect
-      accept=".pdf"
-      id="file-upload"
-      [uploader]="uploader"
-      multiple
-    />
-
-    <i class="fa fa-cloud-upload"></i> </label
-  ><br /><span i18n="@@puydh"> Please upload your document here.</span>
-  <span style="display: block; cursor: pointer">
-    <span>
-      <span>
-        <i class="fa fa-trash" style="cursor: pointer; margin-left: 8px"></i>
-      </span>
-    </span>
-    <br />
-  </span>
-  <table>
-    <tbody>
-      <tr *ngFor="let item of uploader.queue">
-        <th width="90%">
-          {{ item.file.name }}({{ item.file.size / 1000000 }}
-          MB)
-        </th>
-        <th class="text-center" width="10%">
-          <i
-            (click)="item.remove()"
-            class="fa fa-trash"
-            style="cursor: pointer"
-          ></i>
-        </th>
-      </tr>
-    </tbody>
-  </table>
-</td>
-
-<div class="col-2"></div>

@@ -44,6 +44,18 @@ export class JobPaymentComponent implements OnInit {
     url: this.SERVER_URL,
     maxFileSize: 1024 * 1024 * 10,
   });
+
+  bd44Uploader: FileUploader = new FileUploader({
+    isHTML5: true,
+    url: this.SERVER_URL,
+    maxFileSize: 1024 * 1024 * 10,
+  });
+
+  laporanTuntutanUploader: FileUploader = new FileUploader({
+    isHTML5: true,
+    url: this.SERVER_URL,
+    maxFileSize: 1024 * 1024 * 10,
+  });
   validation_messages = {
     npId: [{ type: "required", message: "namaPemohan is required" }],
     eMel: [{ type: "required", message: "eMel is required" }],
@@ -85,6 +97,8 @@ export class JobPaymentComponent implements OnInit {
   myfiles: string;
   myfiles1: string;
   myfiles2: string;
+  bd44Files: string;
+  laporanTuntutanFiles: string;
   spiltedData1: string = "";
   f1: any = [];
   file: any;
@@ -108,7 +122,7 @@ export class JobPaymentComponent implements OnInit {
 
   ngOnInit() {
     this.agency_token = localStorage.getItem('egency_token');
-   
+
     window.scroll(0, 0);
     this.lang = localStorage.getItem("lang");
     localStorage.setItem("path", "agency/createinvoice");
@@ -175,38 +189,17 @@ export class JobPaymentComponent implements OnInit {
   }
 
   uploadSubmit() {
-    // for (var i = 0; i < this.uploader.queue.length; i++) {
-    //   let fileItem = this.uploader.queue[i]._file;
-    //   if (fileItem.size > 10000000) {
-    //     alert("Each File should be less than 10 MB of size.");
-    //     return;
-    //   }
-    // }
     for (var j = 0; j < this.uploader.queue.length; j++) {
       let data = new FormData();
       let fileItem = this.uploader.queue[j]._file;
-      // console.log(fileItem.name);
       this.UploaderData1.push(fileItem.name);
-      // console.log("my files array"
-      //   + this.UploaderData1);
       this.myfiles = JSON.stringify(this.UploaderData1);
       this.firstFile = fileItem.name;
-      // window.alert(this.firstFile)
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + j);
-
-      // this.uploadFile(data).subscribe(data => alert(data.message));
+      this.uploadFile(data).subscribe((data) => {});
     }
-    this.uploader.clearQueue();
-    // 2nd file.............................
 
-    // for (var i = 0; i < this.uploader1.queue.length; i++) {
-    //   let fileItem = this.uploader1.queue[i]._file;
-    //   if (fileItem.size > 10000000) {
-    //     alert("Each File should be less than 10 MB of size.");
-    //     return;
-    //   }
-    // }
     for (var j = 0; j < this.uploader1.queue.length; j++) {
       let data1 = new FormData();
       let fileItem = this.uploader1.queue[j]._file;
@@ -215,19 +208,10 @@ export class JobPaymentComponent implements OnInit {
       this.secondFIle = fileItem.name;
       data1.append("file", fileItem);
       data1.append("fileSeq", "seq" + j);
-
-      // this.uploadFile(data1).subscribe(data => alert(data.message));
+      this.uploadFile(data1).subscribe((data) => {});
     }
     this.uploader1.clearQueue();
 
-    // 3rd File[Symbol]..........................
-    // for (var i = 0; i < this.uploader2.queue.length; i++) {
-    //   let fileItem = this.uploader2.queue[i]._file;
-    //   if (fileItem.size > 10000000) {
-    //     alert("Each File should be less than 10 MB of size.");
-    //     return;
-    //   }
-    // }
     for (var j = 0; j < this.uploader2.queue.length; j++) {
       let data2 = new FormData();
       let fileItem = this.uploader2.queue[j]._file;
@@ -236,27 +220,29 @@ export class JobPaymentComponent implements OnInit {
       this.ThirdFile = fileItem.name;
       data2.append("file", fileItem);
       data2.append("fileSeq", "seq" + j);
-
-      // this.uploadFile(data2).subscribe(data => alert(data.message));
+      this.uploadFile(data2).subscribe((data) => {});
     }
     this.uploader2.clearQueue();
 
-    // 3th file ...................
-    // for (var i = 0; i < this.uploader3.queue.length; i++) {
-    //   let fileItem = this.uploader3.queue[i]._file;
-    //   if (fileItem.size > 10000000) {
-    //     alert("Each File should be less than 10 MB of size.");
-    //     return;
-    //   }
-    // }
-    for (var j = 0; j < this.uploader3.queue.length; j++) {
-      let data3 = new FormData();
-      let fileItem = this.uploader3.queue[j]._file;
-      // console.log(fileItem.name);
-      data3.append("file", fileItem);
-      data3.append("fileSeq", "seq" + j);
+    for (var j = 0; j < this.bd44Uploader.queue.length; j++) {
+      let data = new FormData();
+      let fileItem = this.bd44Uploader.queue[j]._file;
+      this.bd44Files = JSON.stringify([fileItem.name])
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + j);
+      this.uploadFile(data).subscribe((data) => {});
     }
-    this.uploader3.clearQueue();
+    this.bd44Uploader.clearQueue();
+
+    for (var j = 0; j < this.laporanTuntutanUploader.queue.length; j++) {
+      let data = new FormData();
+      let fileItem = this.laporanTuntutanUploader.queue[j]._file;
+      this.laporanTuntutanFiles = JSON.stringify([fileItem.name])
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + j);
+      this.uploadFile(data).subscribe((data) => {});
+    }
+    this.laporanTuntutanUploader.clearQueue();
   }
 
   uploadFile(data: FormData): Observable<any> {
@@ -293,6 +279,8 @@ export class JobPaymentComponent implements OnInit {
       invoice_document: this.myfiles.substring(2, this.myfiles.length - 2),
       summary_document: this.myfiles1.substring(2, this.myfiles1.length - 2),
       attachment: this.myfiles2.substring(2, this.myfiles2.length - 2),
+      bd44: this.bd44Files.substring(2, this.bd44Files.length - 2),
+      laporan_tuntutan: this.laporanTuntutanFiles.substring(2, this.laporanTuntutanFiles.length - 2)
     };
     // console.log(
     //   "my body" + JSON.stringify(body))
@@ -337,7 +325,7 @@ export class JobPaymentComponent implements OnInit {
               this.errormsg = "Tuntutan Pembayaran tidak dapat ditambahkan! Sila rujuk log konsol untuk keterangan lebih lanjut.";
             }
           }
-          else if(this.isError2=="invoice_exists"){
+          else if (this.isError2 == "invoice_exists") {
             if (this.lang == "en") {
               this.errormsg = "Invoice id already exists!";
             }
@@ -437,6 +425,6 @@ export class JobPaymentComponent implements OnInit {
 
   backtotop() {
     window.scroll(0, 0);
-   
+
   }
 }

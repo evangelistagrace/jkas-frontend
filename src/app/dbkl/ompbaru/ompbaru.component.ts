@@ -1,9 +1,38 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatTableDataSource } from "@angular/material/table";
 import { ActivatedRoute, Router } from "@angular/router";
 import * as $ from "jquery";
 import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from "src/environments/environment";
+import { saveAs } from "file-saver";
+export interface OmpData {
+  ompId: number,
+  areaCode?: string;
+  location?: string;
+  parlimen?: string;
+  coordinate?: string;
+  totalPremise?: string;
+  domesticWaste?: string;
+  bulkWaste?: string;
+  illegalWaste?:string;
+  road?:string;
+  tpkk?:string;
+  kawasanLapang?:string;
+  jejantasSapuan?:string;
+  jejantasCucian?:string;
+  cucianSiarkaki?:string;
+  cucianSiarkakiBumbung?:string;
+  cucianStesenBas?:string;
+  cucianLongkang?:string;
+  potongRumput?:string;
+  sampahKebun?:string;
+  catatan?:string;
+  tarikh?:string;
+  available?:string;
+  notAvailable?:string;
+}
 
 @Component({
   selector: "app-ompbaru",
@@ -53,7 +82,18 @@ export class OmpbaruComponent implements OnInit {
   display2: string;
   display3: string;
   ompid: string;
-
+  ompData: OmpData[] = [];
+  dataSource = new MatTableDataSource<OmpData>();
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  displayedColumns: string[] = ['areaCode', 'location', 'parlimen', 'coordinate', 'totalPremise',
+                                'domesticWaste', 'bulkWaste', 'illegalWaste','road','tpkk','kawasanLapang',
+                                'jejantasSapuan','jejantasCucian','cucianSiarKaki','cucianSiarKakiBerbumbung','cucianStesenBas','cucianLongkang',
+                                'potongRumput','sampahKebun','catatan','tarikhSerahan','checkAda','checkTiada','kemaskini'];
+  headers: string[] = ['header-areaCode','header-location','header-parlimen','header-coordinate','header-totalUnitPremise','header-frequency',
+                        'header-measurement','header-notes','header-reference','header-review','header-edit'];
+  headers2: string[] = ['header-domesticWaste','header-bulkGarbage','header-illegalGarbage','header-sweep','header-bridges','header-laundry','header-gutterWash',
+                        'header-cutTheGrass','header-gardenWaste','header-available','header-none'];
+  headers3: string[] = ['header-road','header-tpkk','header-parking','header-sweep2','header-laundry2','header-postFooter','header-postCoveredLegs','header-busTaxi'];
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -61,114 +101,15 @@ export class OmpbaruComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) {}
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
   ngOnInit() {
     window.scroll(0, 0);
     this.isAdminType = localStorage.getItem("isAdmin");
     this.username = localStorage.getItem("nama_pengguna");
-
-    /*
-     */
-    $(document).ready(function () {
-      // Search all columns
-      $("#txt_searchall").keyup(function () {
-        // Search Text
-        var search = $(this).val();
-
-        // Hide all table tbody rows
-        $("table tbody tr").hide();
-
-        // Count total search result
-        var len = $(
-          'table tbody tr:not(.notfound) td:contains("' + search + '")'
-        ).length;
-
-        if (len > 0) {
-          // Searching text in columns and show match row
-          $('table tbody tr:not(.notfound) td:contains("' + search + '")').each(
-            function () {
-              $(this).closest("tr").show();
-            }
-          );
-        } else {
-          $(".notfound").show();
-        }
-      });
-
-      // Search on name column only
-      $("#txt_name").keyup(function () {
-        // Search Text
-        var search = $(this).val();
-
-        // Hide all table tbody rows
-        $("table tbody tr").hide();
-
-        // Count total search result
-        var len = $(
-          'table tbody tr:not(.notfound) td:nth-child(2):contains("' +
-            search +
-            '")'
-        ).length;
-
-        if (len > 0) {
-          // Searching text in columns and show match row
-          $('table tbody tr:not(.notfound) td:contains("' + search + '")').each(
-            function () {
-              $(this).closest("tr").show();
-            }
-          );
-        } else {
-          $(".notfound").show();
-        }
-      });
-    });
-
-    // Case-insensitive searching (Note - remove the below script for Case sensitive search )
-    $.expr[":"].contains = $.expr.createPseudo(function (arg) {
-      return function (elem) {
-        return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
-      };
-    });
-    /*
-     */
     localStorage.setItem("path", "/dbkl/ompbaru");
-
-    $("table.paginated").each(function () {
-      var currentPage = 0;
-      var numPerPage = 10;
-      var $table = $(this);
-      $table.bind("repaginate", function () {
-        $table
-          .find("tbody tr")
-          .hide()
-          .slice(currentPage * numPerPage, (currentPage + 1) * numPerPage)
-          .show();
-      });
-      $table.trigger("repaginate");
-      var numRows = $table.find("tbody tr").length;
-      var numPages = Math.ceil(numRows / numPerPage);
-      var $pager = $('<div class="pager"></div>');
-      for (var page = 0; page < numPages; page++) {
-        $('<span class="page-number"></span>')
-          .text(page + 1)
-          .bind(
-            "click",
-            {
-              newPage: page,
-            },
-            function (event) {
-              currentPage = event.data["newPage"];
-              $table.trigger("repaginate");
-              $(this).addClass("active").siblings().removeClass("active");
-            }
-          )
-          .appendTo($pager)
-          .addClass("clickable");
-      }
-      $pager
-        .insertBefore($table)
-        .find("span.page-number:first")
-        .addClass("active");
-    });
   }
   activityly(event: any) {
     this.parliament_subarea = event.target.value;
@@ -230,7 +171,6 @@ export class OmpbaruComponent implements OnInit {
       parliament_name: this.selectedParlimen,
       parliament_subarea: localStorage.getItem("subArea"),
     };
-    //  console.log(body);
 
     this.http
       .post(this.basePublicUrl + "/dbkl/getOmpBaru", body, {
@@ -240,53 +180,47 @@ export class OmpbaruComponent implements OnInit {
         (res) => {
           this.spinner.hide();
           this.data = res;
-          // console.log(this.data);
-
-          (this.kodarea = this.data.kodarea),
-            (this.lokasi = this.data.lokasi),
-            (this.parlimen = this.data.parlimen),
-            (this.kordinat = this.data.kordinat),
-            (this.jumlah_unit_premis = this.data.jumlah_unit_premis),
-            (this.kekerapan_kutipan_sisa_domestik =
-              this.data.kekerapan_kutipan_sisa_domestik),
-            (this.kekerapan_kutipan_sampah_pukal =
-              this.data.kekerapan_kutipan_sampah_pukal),
-            (this.kekerapan_kutipan_sampah_haram =
-              this.data.kekerapan_kutipan_sampah_haram),
-            (this.ukuran_panjang_sapuan_jalan =
-              this.data.ukuran_panjang_sapuan_jalan),
-            (this.ukuran_panjang_sapuan_TPKK =
-              this.data.ukuran_panjang_sapuan_TPKK),
-            (this.ukuran_panjang_sapuan_kewlapangparkir =
-              this.data.ukuran_panjang_sapuan_kewlapangparkir),
-            (this.ukuran_panjang_jejantas_sapuan =
-              this.data.ukuran_panjang_jejantas_sapuan),
-            (this.ukuran_panjang_jejantas_cucian =
-              this.data.ukuran_panjang_jejantas_cucian),
-            (this.ukuran_panjang_cucian_siarkaki =
-              this.data.ukuran_panjang_cucian_siarkaki),
-            (this.ukuran_panjang_cucian_siarkaki_berbumbung =
-              this.data.ukuran_panjang_cucian_siarkaki_berbumbung),
-            (this.ukuran_panjang_cucian_slesenbaslteksi =
-              this.data.ukuran_panjang_cucian_slesenbaslteksi),
-            (this.ukuran_panjang_cucian_longkang =
-              this.data.ukuran_panjang_cucian_longkang),
-            (this.ukuran_panjang_potongrumput =
-              this.data.ukuran_panjang_potongrumput),
-            (this.ukuran_panjang_sampahkebun =
-              this.data.ukuran_panjang_sampahkebun),
-            (this.catatan = this.data.catatan),
-            (this.rujuken_tarikh_serahan = this.data.rujuken_tarikh_serahan),
-            (this.tarikh_semakandi_lapangant_keadeansemata_ada =
-              this.data.tarikh_semakandi_lapangant_keadeansemata_ada),
-            (this.tarikh_semakandi_lapangant_keadeansemata_tiada =
-              this.data.tarikh_semakandi_lapangant_keadeansemata_tiada);
+          this.ompData = [];
+          for (let i=0; i<this.data.length; i++) {
+            let result = this.data[i];
+            let newOmpData = {
+              location: result.lokasi,
+              parlimen: result.parlimen,
+              areaCode: result.kodarea,
+              bulkWaste: result.kekerapan_kutipan_sampah_pukal,
+              coordinate: result.kordinat,
+              domesticWaste: result.kekerapan_kutipan_sisa_domestik,
+              illegalWaste: result.kekerapan_kutipan_sisa_domestik,
+              jejantasCucian: result.ukuran_panjang_cucian_jejantas,
+              jejantasSapuan: result.ukuran_panjang_sapuan_jalan,
+              kawasanLapang: result.ukuran_panjang_sapuan_kaw_lapang_parkir,
+              road: result.ukuran_panjang_sapuan_jalan,
+              totalPremise: result.jumlah_unit_premis,
+              tpkk: result.ukuran_panjang_sapuan_TPKK,
+              catatan: result.catatan,
+              ompId: result.omp_id,
+              tarikh: result.rujuken_tarikh_serahan,
+              cucianSiarkaki: result.ukuran_panjang_cucian_siarkaki,
+              cucianSiarkakiBumbung: result.ukuran_panjang_cucian_siarkaki_berbumbung,
+              cucianStesenBas: result.ukuran_panjang_cucian_stesenbas_teksi,
+              cucianLongkang: result.ukuran_panjang_cucian_longkang,
+              potongRumput: result.ukuran_panjang_potongrumput,
+              sampahKebun: result.ukuran_panjang_sampahkebun,
+              available: result.tarikh_semakandi_lapangant_keadeansemata_ada,
+              notAvailable: result.tarikh_semakandi_lapangant_keadeansemata_tiada,
+              suratSerahan: result.surat_serahan
+            };
+            this.ompData.push(newOmpData);
+          }
+          console.log('data source: ', this.ompData);
+          this.dataSource.data = this.ompData;
         },
         (error) => {
           this.loginError = true;
           this.errorMsg = error["error"]["message"];
         }
       );
+    this.spinner.hide();
   }
   logout() {
     this.AccessToken = localStorage.getItem("AccessToken");
@@ -348,5 +282,32 @@ export class OmpbaruComponent implements OnInit {
   }
   closeModalDelete() {
     this.display2 = "none";
+  }
+
+  lookup(filterValue) {
+    this.dataSource.filter = filterValue.target.value;
+  }
+
+  getPdf(e) {
+    this.downloadPdf(e).then((blob) => {
+      saveAs(blob, e);
+      var fileURL = window.URL.createObjectURL(blob);
+      let tab = window.open();
+      tab.location.href = fileURL;
+    });
+  }
+  downloadPdf(id: number) {
+    let key = localStorage.getItem("AccessToken");
+    let headers = {
+      "Content-Type": "application/json",
+      Authorization: key,
+    };
+
+    return this.http
+      .get(this.basePublicUrl + "/jkas_resourses/public/pdfs/" + id, {
+        headers,
+        responseType: "blob",
+      })
+      .toPromise();
   }
 }

@@ -11,6 +11,7 @@ import { environment } from "src/environments/environment";
   styleUrls: ['./showpdf.component.css']
 })
 export class ShowpdfComponent implements OnInit {
+  basePublicUrl = environment.basePublicUrl;
   value: any;
   data: any;
   baseUrl = environment.basePublicUrl;
@@ -43,7 +44,7 @@ export class ShowpdfComponent implements OnInit {
 
 
     return this.http
-      .get("{{baseUrl}}/jkas_resourses/public/pdfs/" + id, { headers, responseType: 'blob' })
+      .get(this.basePublicUrl + "/jkas_resourses/public/pdfs/" + id, { headers, responseType: 'blob' })
       .toPromise();
   }
 }

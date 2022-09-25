@@ -175,7 +175,7 @@ DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
                     <label for="lokasi" style="margin-bottom: 0px; margin-top: 0.2em; font-weight: 500"
                         i18n="@@ompsrch">Search Location
                     </label>
-                    <input type="text" class="ml-2 form-control search" style="width: 38%" name="lokasi"
+                    <input (keyup)="lookup($event)" type="text" class="ml-2 form-control search" style="width: 38%" name="lokasi"
                         id="txt_searchall" />
 
                 </div>
@@ -186,168 +186,207 @@ DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
                 </div>
             </div>
             <div class="table-responsive col-md-12">
-                <table class="table table-bordered table-striped table-hover table-condensed" id="DyanmicTable">
-                    <thead>
-                        <tr style="
-                background-color: #253d84;
-                color: white;
-               
-              ">
-                            <th class="text-center" rowspan="3" i18n="@@op4">Area code</th>
-                            <th class="text-center" rowspan="3" i18n="@@op5">Location</th>
-
-                            <th class="text-center" rowspan="3" i18n="@@op6">Parliament</th>
-                            <th class="text-center" rowspan="3" i18n="@@op7">Coordinates</th>
-                            <th class="text-center" rowspan="3" i18n="@@op8">
-                                Number of Premises Units
-                            </th>
-                            <th class="text-center" colspan="3" i18n="@@op9">
-                                Quotation Frequency
-                            </th>
-                            <th class="text-center" colspan="11" i18n="@@op10">
-                                Measurement of Length / Frequency of Cleaning
-                            </th>
-                            <th class="text-center" rowspan="3" i18n="@@op11">Notes</th>
-                            <th class="text-center" rowspan="3" i18n="@@op12">
-                                Reference / Delivery Date
-                            </th>
-                            <th class="text-center" colspan="2" i18n="@@op13">
-                                Field Review Date / Current Condition
-                            </th>
-                            <th class="text-center" rowspan="3" i18n="@@update">Edit</th>
-                        </tr>
-                        <tr style="
-                background-color: #253d84;
-                color: white;
-                
-              ">
-                            <th class="text-center" rowspan="2" i18n="@@op14">
-                                Domestic waste
-                            </th>
-                            <th class="text-center" rowspan="2" i18n="@@op15">
-                                Bulk Garbage
-                            </th>
-                            <th class="text-center" rowspan="2" i18n="@@op16">
-                                Illegal Garbage
-                            </th>
-                            <th class="text-center" colspan="3" i18n="@@op17">Sweep</th>
-                            <th class="text-center" colspan="2" i18n="@@op18">Bridges</th>
-                            <th class="text-center" colspan="3" i18n="@@op19">Laundry</th>
-                            <th class="text-center" rowspan="2" i18n="@@op20">
-                                Gutter Wash (m)
-                            </th>
-                            <th  rowspan="2">
-                                <span class="text-center"  i18n="@@op21"> Cut the grass </span> (m<sup>2</sup>)
-                            </th>
-                            <th class="text-center" rowspan="2" i18n="@@op22">
-                                Garden Waste
-                            </th>
-                            <th class="text-center" rowspan="2" i18n="@@op23">
-                                There are [√]
-                            </th>
-
-                            <th class="text-center" rowspan="2" i18n="@@op24">None [X]</th>
-
-                        </tr>
-                        <tr style="
-                background-color: #253d84;
-                color: white;
-               
-              ">
-                            <th class="text-center" i18n="@@op25">Road [m]</th>
-                            <th class="text-center">TPKK [m<sup>2</sup>]</th>
-                            <th  >
-                               <span class="text-center" i18n="@@op26">Kaw Lapang Parking</span>  [m<sup>2</sup>]
-                            </th>
-                            <th class="text-center" i18n="@@op27">Sweep[m]</th>
-                            <th class="text-center" i18n="@@op28">Laundry[m]</th>
-                            <th class="text-center" i18n="@@op29">Post Footer [m]</th>
-                            <th class="text-center" i18n="@@op30">Post Covered Legs [m]</th>
-                            <th class="text-center" i18n="@@op31">Bus /Taxi Station</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        <tr *ngFor="let key of data  | paginate: { itemsPerPage: 10, currentPage: p } ">
-                            <td>{{ key.kodarea }}</td>
-                            <td>{{ key.lokasi }}</td>
-                            <td>
-                                {{ key.parlimen }}
-                            </td>
-                            <td>{{ key.kordinat }}</td>
-                            <!-- <td>
-                                                TARIKH:-<br />
-                                                Masa:-<br />
-                                                Tempat:-<br />
-                                            </td> -->
-                            <td>{{ key.jumlah_unit_premis }}</td>
-                            <td>
-                                {{key.kekerapan_kutipan_sisa_domestik}}
-                            </td>
-                            <td>
-                                {{ key.kekerapan_kutipan_sampah_pukal }}
-                            </td>
-                            <td>
-                                {{ key.kekerapan_kutipan_sampah_haram }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_sapuan_jalan }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_sapuan_TPKK }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_sapuan_kewlapangparkir }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_jejantas_sapuan }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_jejantas_cucian }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_cucian_siarkaki }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_cucian_siarkaki_berbumbung }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_cucian_slesenbaslteksi }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_cucian_longkang }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_potongrumput }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_sampahkebun }}
-                            </td>
-
-                            <td>
-                                {{ key.catatan }}
-                            </td>
-                            <td>
-                                {{ key.rujuken_tarikh_serahan }}
-                            </td>
-                            <td>
-                                {{ key.tarikh_semakandi_lapangant_keadeansemata_ada }}
-                            </td>
-                            <td>
-                                {{ key.tarikh_semakandi_lapangant_keadeansemata_tiada }}
-                            </td>
-                            <td>
-                                <a href="dbkl/updateinventory?id={{key.omp_id}}"><i
-                                        style="color: black; font-size: 20px;" class="fa fa-edit"></i></a>
-                                &nbsp;&nbsp;
-                                <i style=" font-size: 20px;cursor: pointer;" class="fa fa-trash"
-                                    (click)="selectEvent(key.omp_id)"></i>
-                            </td>
-                        </tr>
-                    </tbody>
+                <table mat-table [dataSource]="dataSource" class="table table-bordered table-striped table-hover table-condensed">
+                    <ng-container matColumnDef="header-areaCode">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="3" i18n="@@op4">Area Code</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-location">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="3" i18n="@@op5">Location</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-parlimen">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="3" i18n="@@op6">Parliment</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-coordinate">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="3" i18n="@@op7">Coordinate</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-totalUnitPremise">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="3" i18n="@@op8">Total Unit Premise</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-frequency">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.colspan]="3" i18n="@@op9">Collection Frequency</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-measurement">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="11" i18n="@@op10">
+                            Measurement of Length / Frequency of Cleaning
+                        </th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-notes">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3" i18n="@@op11">Notes</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-reference">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3" i18n="@@op12">
+                            Reference / Delivery Date
+                        </th>
+                    </ng-container>     
+                    <ng-container matColumnDef="header-review">       
+                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="2" i18n="@@op13">
+                            Field Review Date / Current Condition
+                        </th>       
+                    </ng-container> 
+                    <ng-container matColumnDef="header-edit">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3" i18n="@@update">Edit</th>
+                    </ng-container>    
+                    <ng-container matColumnDef="header-domesticWaste">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="2" i18n="@@op14">
+                            Domestic waste
+                        </th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-bulkGarbage">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="2" i18n="@@op15">
+                            Bulk Garbage
+                        </th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-illegalGarbage">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="2" i18n="@@op16">
+                            Illegal Garbage
+                        </th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-sweep">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="3" i18n="@@op17">Sweep</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-bridges">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="2" i18n="@@op18">Bridges</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-laundry">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="3" i18n="@@op19">Laundry</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-gutterWash">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="2" i18n="@@op20">
+                            Gutter Wash (m)
+                        </th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cutTheGrass">
+                        <th class="text-center" rowspan="2" mat-header-cell *matHeaderCellDef>
+                            <span class="text-center" i18n="@@op21"> Cut the grass </span> (m<sup>2</sup>)
+                        </th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-gardenWaste">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="2" i18n="@@op22">
+                            Garden Waste
+                        </th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-available">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="2" i18n="@@op23">
+                            Available [√]
+                        </th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-none">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="2" i18n="@@op24">None [X]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-road">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef i18n="@@op25">Road [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-tpkk">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">TPKK [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-parking">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">
+                            <span class="text-center" i18n="@@op26">Kaw Lapang Parking</span>  [m<sup>2</sup>]
+                         </th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-sweep2">
+                        <th mat-header-cell *matHeaderCellDef class="text-center" i18n="@@op27">Sweep[m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-laundry2">
+                        <th mat-header-cell *matHeaderCellDef class="text-center" i18n="@@op28">Laundry[m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-postFooter">
+                        <th mat-header-cell *matHeaderCellDef class="text-center" i18n="@@op29">Post Footer [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-postCoveredLegs">
+                        <th mat-header-cell *matHeaderCellDef class="text-center" i18n="@@op30">Post Covered Legs [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-busTaxi">
+                        <th mat-header-cell *matHeaderCellDef class="text-center" i18n="@@op31">Bus /Taxi Station</th>
+                    </ng-container>
+                    <ng-container matColumnDef="areaCode">
+                        <td mat-cell *matCellDef="let element">{{ element.areaCode }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="location">
+                        <td style="font-size: 11px;" mat-cell *matCellDef="let element">{{ element.location }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="parlimen">
+                        <td mat-cell *matCellDef="let element">{{ element.parlimen }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="coordinate">
+                        <td mat-cell *matCellDef="let element">{{ element.coordinate }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="totalPremise">
+                        <td mat-cell *matCellDef="let element">{{ element.totalPremise }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="domesticWaste">
+                        <td mat-cell *matCellDef="let element">{{ element.domesticWaste }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bulkWaste">
+                        <td mat-cell *matCellDef="let element">{{ element.bulkWaste }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="illegalWaste">
+                        <td mat-cell *matCellDef="let element">{{ element.illegalWaste }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="road">
+                        <td mat-cell *matCellDef="let element">{{ element.road }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="tpkk">
+                        <td mat-cell *matCellDef="let element">{{ element.tpkk }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="kawasanLapang">
+                        <td mat-cell *matCellDef="let element">{{ element.kawasanLapang }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="jejantasSapuan">
+                        <td mat-cell *matCellDef="let element">{{ element.jejantasSapuan }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="jejantasCucian">
+                        <td mat-cell *matCellDef="let element">{{ element.jejantasCucian }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianSiarKaki">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianSiarkaki }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianSiarKakiBerbumbung">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianSiarkakiBumbung }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianStesenBas">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianStesenBas }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianLongkang">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianLongkang }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="potongRumput">
+                        <td mat-cell *matCellDef="let element">{{ element.potongRumput }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="sampahKebun">
+                        <td mat-cell *matCellDef="let element">{{ element.sampahKebun }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="catatan">
+                        <td mat-cell *matCellDef="let element">{{ element.catatan }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="tarikhSerahan">
+                        <td mat-cell *matCellDef="let element">
+                            <span *ngIf="element.suratSerahan;else tarikh" (click)="getPdf(element.suratSerahan)" style="color: #253d84; cursor: pointer">{{element.suratSerahan}}</span>
+                            <ng-template #tarikh>{{element.tarikh}}</ng-template>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="checkAda">
+                        <td mat-cell *matCellDef="let element">{{ element.available }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="checkTiada">
+                        <td mat-cell *matCellDef="let element">{{ element.notAvailable }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="kemaskini">
+                        <td mat-cell *matCellDef="let element">
+                            <a href="dbkl/updateinventory?id={{element.ompId}}"><i
+                                style="color: black; font-size: 20px;" class="fa fa-edit"></i></a>&nbsp;&nbsp;
+                        <i style=" font-size: 20px;cursor: pointer;" class="fa fa-trash"
+                            (click)="selectEvent(element.ompId)"></i>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="headers"></tr>
+                    <tr mat-header-row *matHeaderRowDef="headers2"></tr>
+                    <tr mat-header-row *matHeaderRowDef="headers3"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
                 </table>
-                <div class="pagination">
-                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                </div>
+            </div>
+            <div class="col-md-12">
+                <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5,10,20]"></mat-paginator>
             </div>
         </div>
     </section>

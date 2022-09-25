@@ -14,7 +14,7 @@ import { saveAs } from 'file-saver';
   styleUrls: ["./create-innvoice.component.css"],
 })
 export class CreateInnvoiceComponent implements OnInit {
-
+  baseUrl = environment.basePublicUrl;
   url: any = environment.basePublicUrl;
   SERVER_URL: any = this.url + "/public/uploadFile";
   imageGroup: any;
@@ -99,6 +99,9 @@ export class CreateInnvoiceComponent implements OnInit {
   successmsg2: string;
   islogin: string;
   agency_token: string;
+  lampiran: string;
+  ringkasanDokumen: string;
+  invoice: string;
 
   constructor(
     private http: HttpClient,
@@ -107,14 +110,11 @@ export class CreateInnvoiceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-   
-
     window.scroll(0, 0);
     this.islogin = localStorage.getItem('islogin');
     if (this.islogin != "true" && this.islogin != "") {
       this.router.navigateByUrl("agency");
     }
-
     this.lang = localStorage.getItem("lang");
     localStorage.setItem("path", "agency/updateinvoice");
     window.scroll(0, 0);
@@ -157,7 +157,7 @@ export class CreateInnvoiceComponent implements OnInit {
 
     this.invoicedata = localStorage.getItem("invoicedata");
     this.dataobject = JSON.parse(this.invoicedata);
-     //console.log(JSON.stringify(this.dataobject));
+    //console.log(JSON.stringify(this.dataobject));
     this.splited.push(this.dataobject[0].inbois_dokumen.split(".pdf"));
     this.invoisDoc = this.dataobject[0].inbois_dokumen;
     this.invoisid = this.dataobject[0].no_inbois;
@@ -167,6 +167,9 @@ export class CreateInnvoiceComponent implements OnInit {
     this.permonan = this.dataobject[0].nama_pemohon;
     this.jumlahtun = this.dataobject[0].jumlah_tuntutan;
     this.add1stDoc = this.dataobject[0].inbois_dokumen;
+    this.lampiran = this.dataobject[0].lampiran;
+    this.ringkasanDokumen = this.dataobject[0].ringkasan_dokumen;
+    this.invoice = this.dataobject[0].inbois_dokumen;
     this.f1 = this.add1stDoc.split(",");
     // console.log(this.f1 + " " + this.f1.length);
     for (let i = 0; i < this.f1.length; i++) {
@@ -258,7 +261,7 @@ export class CreateInnvoiceComponent implements OnInit {
       this.uploadFile(data).subscribe((data) => console.log(data.message));
     }
     //console.log(this.FileArray1);
-    
+
     this.uploader1.clearQueue();
 
     // for (var i = 0; i < this.uploader2.queue.length; i++) {
@@ -281,7 +284,7 @@ export class CreateInnvoiceComponent implements OnInit {
       this.uploadFile(data).subscribe((data) => console.log(data.message));
     }
     //console.log(this.FileArray2);
-    
+
     this.uploader2.clearQueue();
   }
   uploadFile(data: FormData): Observable<any> {
@@ -380,7 +383,7 @@ export class CreateInnvoiceComponent implements OnInit {
     this.http
       .post(environment.basePublicUrl + "/agensi/getInvoice", body)
       .subscribe((data) => {
-         //console.log(data);
+        //console.log(data);
         this.clicked = true;
         this.spinner.hide();
         this.invoicedata = JSON.stringify(data);
@@ -418,35 +421,35 @@ export class CreateInnvoiceComponent implements OnInit {
   remove2(index) {
     this.FileArray2.splice(index, 1);
   }
-  getPdf(e){
+  getPdf(e) {
     this.downloadPdf(e)
-    .then(blob => {
-      //console.log(blob)
-      saveAs(blob, e);
-      var fileURL = window.URL.createObjectURL(blob);
-      //console.log(fileURL);
-      
-      let tab = window.open();
-      tab.location.href = fileURL
-    });
+      .then(blob => {
+        console.log(blob)
+        saveAs(blob, e);
+        var fileURL = window.URL.createObjectURL(blob);
+        //console.log(fileURL);
+
+        let tab = window.open();
+        tab.location.href = fileURL
+      }).catch(error => {
+        console.log('error: ', error);
+      });
   }
-  downloadPdf(id: number) {
-    let key=localStorage.getItem("AccessToken");
+  downloadPdf(id: string) {
+    console.log('downloading: ' + id);
+    let key = localStorage.getItem("AccessToken");
     let headers = {
-      "Content-Type": "application/json",
-      "Authorization": key,
-
+      "Content-Type": "application/json"
     };
-
-
+    console.log('downloading ' + this.baseUrl + '/jkas_resourses/public/pdfs/' + id + ', headers: ', headers);
     return this.http
-      .get("{{url}}/jkas_resourses/public/pdfs/" + id, { headers, responseType: 'blob' })
+      .get(this.baseUrl + "/jkas_resourses/public/pdfs/" + id, { headers, responseType: 'blob' })
       .toPromise();
   }
 
   backtotop() {
     window.scroll(0, 0);
-   
+
   }
 
 }

@@ -1767,7 +1767,7 @@ For Solid Waste Collection and Public Cleansing
 					Job Payment Claim
 				</source>
 				<target>
-					TUNTUTAN BAYARAN KERJA
+					TUNTUTAN SUMBANGAN BAYARAN KUMPULAN WANG PENGURUSAN SISA PEPEJAL DAN PEMBERSIHAN AWAM (KWPSPPA)
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -2103,10 +2103,10 @@ For Solid Waste Collection and Public Cleansing
 			</trans-unit>
 			<trans-unit id="totalclaims" datatype="html">
 				<source>
-					Total Claims
+					Total Claims (RM)
 				</source>
 				<target>
-					Jumlah Tuntutan
+					Jumlah Tuntutan (RM)
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -4517,7 +4517,7 @@ For Solid Waste Collection and Public Cleansing
 					New Data Registration Form
 				</source>
 				<target>
-					Borang Pendaftaran Data Baru
+					BORANG PENDAFTARAN DATA KAWASAN SERAHAN BARU
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">

@@ -51,7 +51,7 @@ export class ShowchecklistformComponent implements OnInit {
   largeSpace: boolean = false;
   buildingName1: any;
   buildingName2: any;
-  confirm:any;
+  confirm: any;
   buildingName: string;
   baseUrl = environment.basePublicUrl;
   firstfile: string = "";
@@ -107,7 +107,7 @@ export class ShowchecklistformComponent implements OnInit {
   pdffiles2: any = [];
   pdffiles3: any = [];
   pdffiles4: any = [];
-  pdffiles5:any=[];
+  pdffiles5: any = [];
   temp1: any;
   sp3: any;
   temp2: any;
@@ -126,21 +126,21 @@ export class ShowchecklistformComponent implements OnInit {
   notice2: any;
   notice3: any;
   notice4: any;
-  words1: any=[];
+  words1: any = [];
   first: any;
-  firstMessage: any=[];
+  firstMessage: any = [];
   text: string;
-  words2: any=[];
+  words2: any = [];
   second: any;
-  secondMessage: any=[];
+  secondMessage: any = [];
   text2: string;
-  words3: any=[];
+  words3: any = [];
   third: any;
-  thirdMessage: any=[];
+  thirdMessage: any = [];
   text3: string;
-  words4: any=[];
+  words4: any = [];
   four: any;
-  fourthMessage: any=[];
+  fourthMessage: any = [];
   text4: string;
   createDate: string;
   fivethnewfile: string;
@@ -158,19 +158,19 @@ export class ShowchecklistformComponent implements OnInit {
 
   ngOnInit() {
     this.accessToken = localStorage.getItem("public_access_token");
-    
+
     if (!this.accessToken) {
       this.router.navigateByUrl("/publicLogin");
     }
 
     window.scroll(0, 0);
-    this.createDate=localStorage.getItem("date");
+    this.createDate = localStorage.getItem("date");
     this.username = localStorage.getItem("username");
     this.isUser = localStorage.getItem("isUser");
-    
+
     this.spinner.show();
     this.c = this.route.snapshot.queryParamMap.get("id");
-    localStorage.setItem("path", "public/showchecklist?id="+this.c);
+    localStorage.setItem("path", "public/showchecklist?id=" + this.c);
     this.apiKey = localStorage.getItem("AccessToken");
 
     // console.log(this.c);
@@ -179,13 +179,13 @@ export class ShowchecklistformComponent implements OnInit {
       Authorization: this.apiKey,
     };
     this.http
-      .get(this.baseUrl + "/dbkl/fetchPublicApplicationDetails/"+this.c, {
+      .get(this.baseUrl + "/dbkl/fetchPublicApplicationDetails/" + this.c, {
         headers: headers,
       })
       .subscribe(
         (res) => {
           this.value = res;
-          this.data=res;
+          this.data = res;
           this.spinner.hide();
 
           for (var index of this.value) {
@@ -196,17 +196,8 @@ export class ShowchecklistformComponent implements OnInit {
               this.buildingName2 = this.data[0].dinyatakan_nama_bangunan;
             }
           }
-
-          // console.log(this.data);
-
-          // this.buildingName1 = this.datearray[0];
-          // this.buildingName2 = this.datearray[1];
-
           this.kutipan = this.data[0].kutipan_sampah;
-
           this.buildingName1 = this.data[0].dinyatakan_nama_bangunan;
-
-          // Assign value to variables
           this.kutipan_sampah = this.data[0].kutipan_sampah;
           this.sapuan_jalan = this.data[0].sapuan_jalan;
           this.cucian_longkang = this.data[0].cucian_longkang;
@@ -239,7 +230,7 @@ export class ShowchecklistformComponent implements OnInit {
             this.data[0].salinan_status_pembanginan_dokumen;
           this.bagi_status_pembangunan_dokumen =
             this.data[0].bagi_status_pembangunan_dokumen;
-this.dinyatakan_jenis_sistem=this.data[0].dinyatakan_jenis_sistem;
+          this.dinyatakan_jenis_sistem = this.data[0].dinyatakan_jenis_sistem;
 
           // Notice
           this.surat_permohonan_perkhidmatan_pembersihan_catatan =
@@ -299,13 +290,13 @@ this.dinyatakan_jenis_sistem=this.data[0].dinyatakan_jenis_sistem;
           }
           // console.log(this.pdffiles4);
 
-           // fiveth file
-           this.sp5 = this.data[0].dinyatakan_jenis_sistem.split(",");
+          // fiveth file
+          this.sp5 = this.data[0].dinyatakan_jenis_sistem.split(",");
 
-           for (let i = 0; i < this.sp5.length; i++) {
-             this.temp4 = this.sp5[i].split("/");
-             this.pdffiles5.push(this.temp4[this.temp4.length - 1]);
-           }
+          for (let i = 0; i < this.sp5.length; i++) {
+            this.temp4 = this.sp5[i].split("/");
+            this.pdffiles5.push(this.temp4[this.temp4.length - 1]);
+          }
         },
         (error) => {
           this.loginError = true;
@@ -420,7 +411,7 @@ this.dinyatakan_jenis_sistem=this.data[0].dinyatakan_jenis_sistem;
     }
     this.uploader3.clearQueue();
     this.updatedata();
-    
+
 
     for (var i = 0; i < this.uploader4.queue.length; i++) {
       let fileItem = this.uploader4.queue[i]._file;
@@ -437,14 +428,14 @@ this.dinyatakan_jenis_sistem=this.data[0].dinyatakan_jenis_sistem;
         data.append("file", fileItem);
         data.append("fileSeq", "seq" + j);
 
-        this.uploadFile(data).subscribe((data) => {});
+        this.uploadFile(data).subscribe((data) => { });
         continue;
       }
       this.fivethnewfile = this.fivethnewfile + "," + fileItem.name;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + j);
 
-      this.uploadFile(data).subscribe((data) => {});
+      this.uploadFile(data).subscribe((data) => { });
     }
     this.uploader4.clearQueue();
 
@@ -539,100 +530,100 @@ this.dinyatakan_jenis_sistem=this.data[0].dinyatakan_jenis_sistem;
     }
 
 
-      // first Notice
-      let firstNotice = "";
+    // first Notice
+    let firstNotice = "";
 
-      if (this.surat_permohonan_perkhidmatan_pembersihan_catatan != "") {
-        for (let i = 0; i < this.notice1.length; i++) {
-          if (i == 0) {
-            firstNotice = this.notice1[i];
-            continue;
-          }
-          firstNotice = firstNotice + "@*" +this.notice1[i];
+    if (this.surat_permohonan_perkhidmatan_pembersihan_catatan != "") {
+      for (let i = 0; i < this.notice1.length; i++) {
+        if (i == 0) {
+          firstNotice = this.notice1[i];
+          continue;
         }
-        for (let i = 0; i < this.firstMessage.length; i++) {
-          firstNotice = firstNotice + "@*" + this.firstMessage[i];
-        }
-      } else {
-        for (let i = 0; i < this.firstMessage.length; i++) {
-          if (i == 0) {
-            firstNotice = this.firstMessage[i];
-            continue;
-          }
-          firstNotice = firstNotice + "@*"+ this.firstMessage[i];
-        }
+        firstNotice = firstNotice + "@*" + this.notice1[i];
       }
-  
-      // second Notice
-      let secondNotice = "";
-      if (this.surat_salinan_CF_catatan != "") {
-        for (let i = 0; i < this.notice2.length; i++) {
-          if (i == 0) {
-            secondNotice = this.notice2[i];
-            continue;
-          }
-          secondNotice = secondNotice + "@*" + this.notice2[i];
-        }
-        for (let i = 0; i < this.secondMessage.length; i++) {
-          secondNotice = secondNotice + "@*" + this.secondMessage[i];
-        }
-      } else {
-        for (let i = 0; i < this.secondMessage.length; i++) {
-          if (i == 0) {
-            secondNotice = this.secondMessage[i];
-            continue;
-          }
-          secondNotice = secondNotice + "@*" + this.secondMessage[i];
-        }
+      for (let i = 0; i < this.firstMessage.length; i++) {
+        firstNotice = firstNotice + "@*" + this.firstMessage[i];
       }
-  
-      // third Notice
-      let thirdNotice = "";
-  
-      if (this.salinan_status_pembanginan_catatan != "") {
-        for (let i = 0; i < this.notice3.length; i++) {
-          if (i == 0) {
-            thirdNotice = this.notice3[i];
-            continue;
-          }
-          thirdNotice = thirdNotice + "@*" + this.notice3[i];
+    } else {
+      for (let i = 0; i < this.firstMessage.length; i++) {
+        if (i == 0) {
+          firstNotice = this.firstMessage[i];
+          continue;
         }
-        for (let i = 0; i < this.thirdMessage.length; i++) {
-          thirdNotice = thirdNotice + "@*" + this.thirdMessage[i];
-        }
-      } else {
-        for (let i = 0; i < this.thirdMessage.length; i++) {
-          if (i == 0) {
-            thirdNotice = this.thirdMessage[i];
-            continue;
-          }
-          thirdNotice = thirdNotice + "@*" + this.thirdMessage[i];
-        }
+        firstNotice = firstNotice + "@*" + this.firstMessage[i];
       }
-  
-      // fourth Notice
-      let fourthNotice = "";
-  
-      if (this.bagi_status_pembangunan_catatan != "") {
-        for (let i = 0; i < this.notice4.length; i++) {
-          if (i == 0) {
-            fourthNotice = this.notice4[i];
-            continue;
-          }
-          fourthNotice = fourthNotice + "@*" + this.notice4[i];
+    }
+
+    // second Notice
+    let secondNotice = "";
+    if (this.surat_salinan_CF_catatan != "") {
+      for (let i = 0; i < this.notice2.length; i++) {
+        if (i == 0) {
+          secondNotice = this.notice2[i];
+          continue;
         }
-        for (let i = 0; i < this.fourthMessage.length; i++) {
-          fourthNotice = fourthNotice + "@*" + this.fourthMessage[i];
-        }
-      } else {
-        for (let i = 0; i < this.fourthMessage.length; i++) {
-          if (i == 0) {
-            fourthNotice = this.fourthMessage[i];
-            continue;
-          }
-          fourthNotice = fourthNotice + "@*" + this.thirdMessage[i];
-        }
+        secondNotice = secondNotice + "@*" + this.notice2[i];
       }
+      for (let i = 0; i < this.secondMessage.length; i++) {
+        secondNotice = secondNotice + "@*" + this.secondMessage[i];
+      }
+    } else {
+      for (let i = 0; i < this.secondMessage.length; i++) {
+        if (i == 0) {
+          secondNotice = this.secondMessage[i];
+          continue;
+        }
+        secondNotice = secondNotice + "@*" + this.secondMessage[i];
+      }
+    }
+
+    // third Notice
+    let thirdNotice = "";
+
+    if (this.salinan_status_pembanginan_catatan != "") {
+      for (let i = 0; i < this.notice3.length; i++) {
+        if (i == 0) {
+          thirdNotice = this.notice3[i];
+          continue;
+        }
+        thirdNotice = thirdNotice + "@*" + this.notice3[i];
+      }
+      for (let i = 0; i < this.thirdMessage.length; i++) {
+        thirdNotice = thirdNotice + "@*" + this.thirdMessage[i];
+      }
+    } else {
+      for (let i = 0; i < this.thirdMessage.length; i++) {
+        if (i == 0) {
+          thirdNotice = this.thirdMessage[i];
+          continue;
+        }
+        thirdNotice = thirdNotice + "@*" + this.thirdMessage[i];
+      }
+    }
+
+    // fourth Notice
+    let fourthNotice = "";
+
+    if (this.bagi_status_pembangunan_catatan != "") {
+      for (let i = 0; i < this.notice4.length; i++) {
+        if (i == 0) {
+          fourthNotice = this.notice4[i];
+          continue;
+        }
+        fourthNotice = fourthNotice + "@*" + this.notice4[i];
+      }
+      for (let i = 0; i < this.fourthMessage.length; i++) {
+        fourthNotice = fourthNotice + "@*" + this.fourthMessage[i];
+      }
+    } else {
+      for (let i = 0; i < this.fourthMessage.length; i++) {
+        if (i == 0) {
+          fourthNotice = this.fourthMessage[i];
+          continue;
+        }
+        fourthNotice = fourthNotice + "@*" + this.thirdMessage[i];
+      }
+    }
 
     let key = localStorage.getItem("AccessToken");
     let headers = {
@@ -659,7 +650,7 @@ this.dinyatakan_jenis_sistem=this.data[0].dinyatakan_jenis_sistem;
       surat_salinan_CF_dokumen: this.secondfile,
       salinan_status_pembanginan_dokumen: this.thirdfile,
       bagi_status_pembangunan_dokumen: this.fourthfile,
-      dinyatakan_jenis_sistem:this.fivethnewfile,
+      dinyatakan_jenis_sistem: this.fivethnewfile,
       surat_permohonan_perkhidmatan_pembersihan_status: 0,
       surat_salinan_CF_status: 0,
       salinan_status_pembanginan_status: 0,
@@ -873,16 +864,14 @@ this.dinyatakan_jenis_sistem=this.data[0].dinyatakan_jenis_sistem;
 
   add1() {
     this.words1.push({ value: "" });
-
     if (this.first == undefined) {
       document.getElementById("tex1").style.border = "1px solid #1111A3";
       return;
     } else if (this.first.trim().length == 0) {
       this.first = undefined;
     }
-
     if (this.first != undefined) {
-      this.firstMessage.push("PUBLIC: "+this.first);
+      this.firstMessage.push("PUBLIC: " + this.first);
       this.text = "";
       this.first = "";
       document.getElementById("tex1").style.border = "1px solid black";
@@ -902,7 +891,7 @@ this.dinyatakan_jenis_sistem=this.data[0].dinyatakan_jenis_sistem;
     }
 
     if (this.second != undefined) {
-      this.secondMessage.push("PUBLIC: "+this.second);
+      this.secondMessage.push("PUBLIC: " + this.second);
       this.text2 = "";
       this.second = "";
       document.getElementById("tex2").style.border = "1px solid black";
@@ -920,7 +909,7 @@ this.dinyatakan_jenis_sistem=this.data[0].dinyatakan_jenis_sistem;
       this.third = undefined;
     }
     if (this.third != undefined) {
-      this.thirdMessage.push("PUBLIC: "+this.third);
+      this.thirdMessage.push("PUBLIC: " + this.third);
       this.text3 = "";
       this.third = "";
       document.getElementById("tex3").style.border = "1px solid black";
@@ -938,7 +927,7 @@ this.dinyatakan_jenis_sistem=this.data[0].dinyatakan_jenis_sistem;
       this.four = undefined;
     }
     if (this.four != undefined) {
-      this.fourthMessage.push("PUBLIC: "+this.four);
+      this.fourthMessage.push("PUBLIC: " + this.four);
       this.text4 = "";
       this.four = "";
       document.getElementById("tex4").style.border = "1px solid black";
@@ -966,7 +955,7 @@ this.dinyatakan_jenis_sistem=this.data[0].dinyatakan_jenis_sistem;
 
 
   removevalue11(event) {
-    
+
     if (event.target.id.includes("id")) {
       for (let i = 0; i < this.firstMessage.length; i++) {
         if (i == event.target.id.charAt(event.target.id.length - 1)) {
@@ -1038,21 +1027,21 @@ this.dinyatakan_jenis_sistem=this.data[0].dinyatakan_jenis_sistem;
     }
   }
 
-  getPdf(e){
-  //  console.log(e)
+  getPdf(e) {
+    //  console.log(e)
     this.downloadPdf(e)
-    .then(blob => {
-    //  console.log(blob)
-      saveAs(blob, e);
-      var fileURL = window.URL.createObjectURL(blob);
-    //  console.log(fileURL);
-      
-      let tab = window.open();
-      tab.location.href = fileURL
-    });
+      .then(blob => {
+        //  console.log(blob)
+        saveAs(blob, e);
+        var fileURL = window.URL.createObjectURL(blob);
+        //  console.log(fileURL);
+
+        let tab = window.open();
+        tab.location.href = fileURL
+      });
   }
   downloadPdf(id: number) {
-    let key=localStorage.getItem("AccessToken");
+    let key = localStorage.getItem("AccessToken");
     let headers = {
       "Content-Type": "application/json",
       "Authorization": key,
@@ -1061,28 +1050,28 @@ this.dinyatakan_jenis_sistem=this.data[0].dinyatakan_jenis_sistem;
 
 
     return this.http
-      .get(this.basePublicUrl+"/jkas_resourses/public/pdfs/" + id, { headers, responseType: 'blob' })
+      .get(this.basePublicUrl + "/jkas_resourses/public/pdfs/" + id, { headers, responseType: 'blob' })
       .toPromise();
   }
-  opendocument(){
+  opendocument() {
     // window.location.href = this.basePublicUrl+"/jkas_resourses/free/pdfs/CONTOH SURAT PERMOHONAN.pdf";
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/CONTOH SURAT PERMOHONAN.pdf");
+    window.open(this.basePublicUrl + "/jkas_resourses/free/pdfs/CONTOH SURAT PERMOHONAN.pdf");
   }
-  open2nddocument(){
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/CONTOH BORANG F.pdf");
+  open2nddocument() {
+    window.open(this.basePublicUrl + "/jkas_resourses/free/pdfs/CONTOH BORANG F.pdf");
   }
-  open3rddocument(){
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/JALAN AWAM.pdf");
+  open3rddocument() {
+    window.open(this.basePublicUrl + "/jkas_resourses/free/pdfs/JALAN AWAM.pdf");
   }
-  open4rthdocument(){
+  open4rthdocument() {
 
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/PELAN JALAN AWAM.pdf");
+    window.open(this.basePublicUrl + "/jkas_resourses/free/pdfs/PELAN JALAN AWAM.pdf");
   }
-  open5thdocument(){
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH SWCorp.pdf");
+  open5thdocument() {
+    window.open(this.basePublicUrl + "/jkas_resourses/free/pdfs/CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH SWCorp.pdf");
   }
-  open6thdocument(){
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/PELAN INVENTORI KAWASAN PERKHIDMATAN PEMBERSIHAN.pdf");
+  open6thdocument() {
+    window.open(this.basePublicUrl + "/jkas_resourses/free/pdfs/PELAN INVENTORI KAWASAN PERKHIDMATAN PEMBERSIHAN.pdf");
   }
 
 }

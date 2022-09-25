@@ -189,11 +189,9 @@
                 <input type="text" readonly id="passwdInput" style="width: 350px;" [(ngModel)]="e_mei"
                   [ngModelOptions]="{ standalone: true }" class="form-control mb-4" />
               </div>
-
               <div class="col-sm-3">
                 <label class="linerr" for="passwdInput" i18n="@@finalclmrA4">Name of applicant :</label>
               </div>
-
               <div class="col-sm-9">
                 <input type="text" readonly style="width: 350px;" id="passwdInput" [(ngModel)]="nama_pemohon"
                   [ngModelOptions]="{ standalone: true }" class="form-control mb-4" />
@@ -206,7 +204,6 @@
                   [ngModelOptions]="{ standalone: true }" class="form-control mb-4" />
               </div>
             </div>
-
             <div class="scrollit">
               <table class="table table-bordered">
                 <thead>
@@ -223,24 +220,8 @@
                     <th scope="row">Inbois</th>
                     <td>
                       <label for="file" class="btn-2 d-inline"><span *ngFor="let key of pdf3; index as i">
-                          <a style="cursor: pointer; color: red !important" (click)="getPdf(pdf3)" target="_blank"
+                          <a style="cursor: pointer; color: red !important" (click)="getPdf(key)" target="_blank"
                             i18n="@@finalclmr10">{{ key }}</a><br /> </span><br /></label>
-                      <!-- <div class="form-group col-md-12">
-                        <label class="custom-file-upload uploade">
-                          <input
-                            type="file"
-                            ng2FileSelect
-                            accept=".pdf"
-                            [uploader]="uploader"
-                            [ngModelOptions]="{ standalone: true }"
-                            name="file"
-                           [(ngModel)]="model" 
-                            #file="ngModel"
-                          />
-                          <i class="fa fa-cloud-upload"></i> Muat Naik Dokumen<br />
-                          <span class="text-dark">{{ filename }}</span>
-                        </label>
-                    </div> -->
                       <span class="d-block"></span>
                     </td>
                     <td rowspan="3">
@@ -287,26 +268,11 @@
                     </th>
                     <td>
                       <label for="file" class="btn-2 d-inline"><span *ngFor="let key of pdf1; index as i">
-                          <a style="cursor: pointer; color: red !important" (click)="getPdf(pdf1)" target="_blank"
+                          <a style="cursor: pointer; color: red !important" (click)="getPdf(key)" target="_blank"
                             i18n="@@finalclmr10">{{ key }}</a>
                         </span>
-                        <br /></label>
-                      <!-- <div class="form-group col-md-12">
-                        <label class="custom-file-upload uploade">
-                          <input
-                            type="file"
-                            ng2FileSelect
-                            accept=".pdf"
-                            [uploader]="uploader1"
-                            [ngModelOptions]="{ standalone: true }"
-                            name="file1"
-                           [(ngModel)]="model1" 
-                            #file="ngModel"
-                          />
-                          <i class="fa fa-cloud-upload"></i> Muat Naik Dokumen<br />
-                          <span class="text-dark">{{ filename1 }}</span>
-                        </label>
-                    </div> -->
+                        <br />
+                      </label>
                       <span class="d-block"></span>
                     </td>
                   </tr>
@@ -314,24 +280,9 @@
                     <th scope="row" i18n="@@finalclmr11">Attachment</th>
                     <td>
                       <label for="file" class="btn-2 d-inline"><span *ngFor="let key of pdf2; index as i">
-                          <a style="cursor: pointer; color: red !important" (click)="getPdf(pdf2)" target="_blank"
-                            i18n="@@finalclmr10">{{ key }}</a><br /> </span><br /></label>
-                      <!-- <div class="form-group col-md-12">
-                        <label class="custom-file-upload uploade">
-                          <input
-                            type="file"
-                            ng2FileSelect
-                            accept=".pdf"
-                            [uploader]="uploader2"
-                            [ngModelOptions]="{ standalone: true }"
-                            name="file2"
-                           [(ngModel)]="model2" 
-                            #file="ngModel"
-                          />
-                          <i class="fa fa-cloud-upload"></i> Muat Naik Dokumen<br />
-                          <span class="text-dark">{{ filename2 }}</span>
-                        </label>
-                    </div>  -->
+                          <a style="cursor: pointer; color: red !important" (click)="getPdf(key)" target="_blank"
+                            i18n="@@finalclmr10">{{ key }}</a><br /> </span><br />
+                      </label>
                       <span class="d-block"></span>
                     </td>
                   </tr>

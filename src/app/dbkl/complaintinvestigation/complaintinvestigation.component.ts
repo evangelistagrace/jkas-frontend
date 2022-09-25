@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from "src/environments/environment";
 import { saveAs } from 'file-saver';
+import { FormGroup, Validators, FormControl } from "@angular/forms";
+import { FileUploader } from "ng2-file-upload";
 
 @Component({
   selector: "app-complaintinvestigation",
@@ -11,6 +13,14 @@ import { saveAs } from 'file-saver';
   styleUrls: ["./complaintinvestigation.component.css"],
 })
 export class ComplaintinvestigationComponent implements OnInit {
+  SERVER_URL = environment.basePublicUrl + "/public/uploadFile";
+  uploader: FileUploader = new FileUploader({
+    isHTML5: true,
+    url: this.SERVER_URL,
+    maxFileSize: 1024 * 1024 * 10,
+  });
+  filename: string;
+  imgBase64: string;
   date: string;
   id: string;
   parliamen: string;
@@ -56,6 +66,7 @@ export class ComplaintinvestigationComponent implements OnInit {
   ullasan_penyelia1A: any;
   ullasan_ketua_seksyen1A: any;
   ulasanpenyelia: any;
+  formGroup: FormGroup;
 
   constructor(
     private http: HttpClient,
@@ -77,6 +88,19 @@ export class ComplaintinvestigationComponent implements OnInit {
     this.parliamen = this.route.snapshot.queryParamMap.get("value5");
     // console.log(this.date + " " + this.id + " " + this.masa);
 
+    this.formGroup = new FormGroup({
+      formId: new FormControl(""),
+      zon: new FormControl(""),
+      tarikhSiasatan: new FormControl(""),
+      namaPegawai: new FormControl(""),
+      parlimen: new FormControl(""),
+      laporanSiasatan: new FormControl(""),
+      tindakan: new FormControl(""),
+      ulasanPenyelia: new FormControl("", [Validators.required]),
+      ulasanKetuaSeksyen: new FormControl(""),
+      ulasanKetuaUnit: new FormControl(""),
+    });
+
     let key = localStorage.getItem("AccessToken");
     this.spinner.show();
     let headers = {
@@ -96,25 +120,46 @@ export class ComplaintinvestigationComponent implements OnInit {
         headers: headers,
       })
       .subscribe(
-        (res) => {
+        (res : any) => {
            //console.log(res);
           this.spinner.hide();
           this.data = res;
-          this.nama_pegawai=this.data[0].nama_pegawai,
-          this.zon= this.data[0].zon,
-          this.parlimenA=this.data[0].parlimen,
-          this.tarikh_siasatanA= this.data[0].tarikh_siasatan,
-          this.lokasi_siasatan= this.data[0].loc,
-          this.report1A= this.data[0].laporan_siasatan,
-          this.tindakan1A= this.data[0].tindakan,
-          this.ullasan_penyelia1A= this.data[0].ullasan_penyelia,
-          this.ullasan_ketua_seksyen1A= this.data[0].ullasan_ketua_seksyen,
-          //console.log(this.ullasan_ketua_seksyen1A);
+
+          if (res.length == 0) {
+            alert('No result found.');
+            return;
+          }
+
+          let aduan = res[0];
+          this.formGroup = new FormGroup({
+            formId: new FormControl(aduan.form_id),
+            zon: new FormControl(aduan.zon, [Validators.required]),
+            tarikhSiasatan: new FormControl(aduan.tarikh_siasatan, [Validators.required]),
+            namaPegawai: new FormControl(aduan.nama_pegawai, [Validators.required]),
+            parlimen: new FormControl(aduan.parlimen, [Validators.required]),
+            laporanSiasatan: new FormControl(aduan.laporan_siasatan, [Validators.required]),
+            tindakan: new FormControl(aduan.tindakan, [Validators.required]),
+            ulasanPenyelia: new FormControl(aduan.ullasan_penyelia, [Validators.required]),
+            ulasanKetuaSeksyen: new FormControl(aduan.ullasan_ketua_seksyen),
+            ulasanKetuaUnit: new FormControl(aduan.ullasan_ketua_unit),
+          });
+          console.log(this.formGroup);
+
+          // this.nama_pegawai=this.data[0].nama_pegawai,
+          // this.zon= this.data[0].zon,
+          // this.parlimenA=this.data[0].parlimen,
+          // this.tarikh_siasatanA= this.data[0].tarikh_siasatan,
+          // this.lokasi_siasatan= this.data[0].loc,
+          // this.report1A= this.data[0].laporan_siasatan,
+          // this.tindakan1A= this.data[0].tindakan,
+          // this.ullasan_penyelia1A= this.data[0].ullasan_penyelia,
+          // this.ullasan_ketua_seksyen1A= this.data[0].ullasan_ketua_seksyen,
+          // //console.log(this.ullasan_ketua_seksyen1A);
           
-          this.ulasanpenyelia=this.data[0].ullasan_ketua_unit,
+          // this.ulasanpenyelia=this.data[0].ullasan_ketua_unit,
          // console.log( this.ulasanpenyelia);
           
-          this.sebelum_siasatan= this.data[0].sebelum_siasatan
+          this.sebelum_siasatan= this.basePublicUrl + "/jkas_resourses/public/images/" + aduan.sebelum_siasatan
           this.spinner.hide();
         },
         (error) => {
@@ -183,5 +228,31 @@ export class ComplaintinvestigationComponent implements OnInit {
   }
   cancel () {
     window.history.back();// <-- go back to previous location on cancel
+  }
+
+  displayModal: string = "none";
+  modalMessage: string = "";
+  closeModal = () => this.displayModal = "none";
+  onSubmit() {
+    this.spinner.show();
+    let key = localStorage.getItem("AccessToken");
+    let headers = {
+      "Content-Type": "application/json",
+      Authorization: key,
+    };
+    let body = this.formGroup.value;
+    this.http
+      .put(this.basePublicUrl + '/dbkl/updateComplaintComments', body, {
+        headers,
+      })
+      .subscribe((res) => {
+        this.displayModal = "block";
+        this.modalMessage = "Successfully update complaint.";
+        this.spinner.hide();
+      }, (error) => {
+        this.displayModal = "block";
+        this.modalMessage = "Failed to update complaint";
+        this.spinner.hide();
+      });
   }
 }

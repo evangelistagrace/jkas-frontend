@@ -710,7 +710,7 @@ export class MerinyuanalysisComponent implements OnInit {
   //   zoom: 12,
   //   center: L.latLng(3.139, 101.6869),
   // };
-  // onMapReady(map: L.Map) {
+  // onMapReady(map: L.Map) {getMTknames
   //   this.map = map;
   // }
   backtotop() {

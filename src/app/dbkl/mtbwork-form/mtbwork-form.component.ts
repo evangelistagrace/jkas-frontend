@@ -18,7 +18,7 @@ import { FileUploader } from "ng2-file-upload";
 export class MtbworkFormComponent implements OnInit {
   SERVER_URL = environment.basePublicUrl + "/public/uploadFile";
   uploader: FileUploader = new FileUploader({
-    isHTML5: true,
+    //isHTML5: true,
     url: this.SERVER_URL,
     maxFileSize: 1024 * 1024 * 10,
   });
@@ -292,9 +292,9 @@ export class MtbworkFormComponent implements OnInit {
       tindakan: new FormControl("", [Validators.required]),
 
       susulan: new FormControl("", [Validators.required]),
-      ulasanKetua_unitf1:new FormControl("", [Validators.required]),
-      ulasan: new FormControl("", [Validators.required]),
-      ulasan1: new FormControl("", [Validators.required]),
+      ulasanKetua_unitf1:new FormControl({value: "", disabled: true}),
+      ulasan: new FormControl({value: "", disabled: true}),
+      ulasan1: new FormControl({value: "", disabled: true}),
     });
     this.registrationGroup1 = new FormGroup({
       
@@ -307,9 +307,9 @@ export class MtbworkFormComponent implements OnInit {
       tindakan1: new FormControl("", [Validators.required]),
 
       susulan1: new FormControl("", [Validators.required]),
-      ulasanpenyelia:new FormControl("", [Validators.required]),
-      ulasan1: new FormControl("", [Validators.required]),
-      ulasan11: new FormControl("", [Validators.required]),
+      ulasanpenyelia:new FormControl(""),
+      ulasan1: new FormControl(""),
+      ulasan11: new FormControl(""),
     
     //  ulasan_timbalan1:new FormControl("", [Validators.required]),
     });
@@ -335,10 +335,9 @@ export class MtbworkFormComponent implements OnInit {
       lokasiaduan2: new FormControl("", [Validators.required]),
       cause1:new FormControl("", [Validators.required]),
       keteranganaduan2: new FormControl("", [Validators.required]),
-      ulasan2: new FormControl("", [Validators.required]),
-      ulasan12: new FormControl("", [Validators.required]),
-      ulasanKetua_unit: new FormControl("", [Validators.required]),
-    
+      ulasan2: new FormControl({value:"", disabled: true}),
+      ulasan12: new FormControl({value:"", disabled: true}),
+      ulasanKetua_unit: new FormControl({value:"", disabled: true}),
     });
     this.spinner.show();
     this.userrole = localStorage.getItem("roleforuser");
@@ -594,13 +593,11 @@ this.nama_pegawai=localStorage.getItem("user");
   }
 
   submit() {
-    debugger;
-    alert('save');
     this.uploadSubmit1();
     this.submitted = true;
 
     if (this.registrationGroup.invalid) {
-      // console.log("assfsa" + this.tarikh_terima_aduan);
+      alert('Invalid form, please check again.');
       return;
     }
 
@@ -705,12 +702,7 @@ this.nama_pegawai=localStorage.getItem("user");
   submit1() {
     this.uploadSubmit();
     this.submitted1 = true;
-   // console.log("my response");
-    // if (this.registrationGroup1.invalid) {
-    //   console.log("2nd");
-    //   return;
-    // }
-
+    /*
     let loc = localStorage.getItem("area");
     localStorage.removeItem("area");
 
@@ -719,6 +711,7 @@ this.nama_pegawai=localStorage.getItem("user");
       this.messageValue = "Required Field";
       return;
     }
+    */
     this.spinner.show();
     this.tindakanA = this.tindakan1A;
 
@@ -734,7 +727,7 @@ this.nama_pegawai=localStorage.getItem("user");
       parlimenA:this.parlimenA,
       tarikh_siasatan: this.tarikh_siasatanA,
      // nama_pegawai: this.nama_pegawaiA,
-      lokasi_siasatan: loc,
+      lokasi_siasatan: "0,0",
       laporan_siasatan: this.report1A,
       tindakan: this.tindakan1A,
       // susulan: this.susulan1A,
@@ -796,9 +789,8 @@ this.nama_pegawai=localStorage.getItem("user");
   submit2() {
     this.uploadSubmit2();
     this.submitted2 = true;
-    // console.log("my response");
     if (this.registrationGroup2.invalid) {
-      // console.log("3rd");
+      alert('Invalid input. Please check the form.');
       return;
     }
 
@@ -930,73 +922,29 @@ this.nama_pegawai=localStorage.getItem("user");
     this.errorDisplay1="none";
   }
   uploadSubmit() {
-    // for (var i = 0; i < this.uploader.queue.length; i++) {
-    //   let fileItem = this.uploader.queue[i]._file;
-    //   if (fileItem.size > 10000000) {
-    //     alert("Each File should be less than 10 MB of size.");
-    //     return;
-    //   }
-    // }
     for (var j = 0; j < this.uploader.queue.length; j++) {
       let data = new FormData();
       let fileItem = this.uploader.queue[j]._file;
-      // console.log(fileItem.name);
       this.UploaderData1.push(fileItem.name);
-      // console.log("my files array"
-      //   + this.UploaderData1);
       this.myfiles = JSON.stringify(this.UploaderData1);
-
       this.firstFile = fileItem.name;
-      // console.log(
-      //   "my string length........." +
-      //     this.myfiles.substring(1, this.myfiles.length - 1)
-      // );
-      // window.alert(this.firstFile)
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + j);
-
-      // this.uploadFile(data).subscribe(data => alert(data.message));
+      this.uploadFile(data).subscribe((data) => {});
     }
     this.uploader.clearQueue();
-
-
-    // for (var j = 0; j < this.uploader1.queue.length; j++) {
-    //   let data1 = new FormData();
-    //   let fileItem = this.uploader1.queue[j]._file;
-    //   this.UploaderData2.push(fileItem.name);
-    //   this.myfiles1 = JSON.stringify(this.UploaderData2);
-
-    //   this.firstFile1 = fileItem.name;
-    //   data1.append("file", fileItem);
-    //   data1.append("fileSeq", "seq" + j);
-
-     
-    // }
-    // this.uploader1.clearQueue();
   }
 
   uploadSubmit1(){
     for (var j = 0; j < this.uploader2.queue.length; j++) {
       let data2 = new FormData();
       let fileItem = this.uploader2.queue[j]._file;
-      // console.log(fileItem.name);
       this.UploaderData3.push(fileItem.name);
-      // console.log("my files array"
-      //   + this.UploaderData1);
       this.myfiles2 = JSON.stringify(this.UploaderData3);
-
       this.firstFile2 = fileItem.name;
-      //console.log(this.firstFile2);
-      
-      // console.log(
-      //   "my string length........." +
-      //     this.myfiles.substring(1, this.myfiles.length - 1)
-      // );
-      // window.alert(this.firstFile)
       data2.append("file", fileItem);
       data2.append("fileSeq", "seq" + j);
-
-      // this.uploadFile(data).subscribe(data => alert(data.message));
+      this.uploadFile(data2).subscribe((data) => {});
     }
     this.uploader2.clearQueue();
   }
@@ -1019,13 +967,13 @@ this.nama_pegawai=localStorage.getItem("user");
       // window.alert(this.firstFile)
       data3.append("file", fileItem);
       data3.append("fileSeq", "seq" + j);
-
+      this.uploadFile(data3).subscribe((data) => {});
       // this.uploadFile(data).subscribe(data => alert(data.message));
     }
     this.uploader3.clearQueue();
   }
   uploadFile(data: FormData): Observable<any> {
-    return this.http.post<any>(this.basePublicUrl, data);
+    return this.http.post<any>(this.SERVER_URL, data);
   }
 
 }

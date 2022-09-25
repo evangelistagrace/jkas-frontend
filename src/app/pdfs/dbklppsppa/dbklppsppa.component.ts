@@ -27,32 +27,21 @@ export class DbklppsppaComponent implements OnInit {
     private met: MeetingService,
     private http: HttpClient,
     private spinner: NgxSpinnerService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.value = this.met.value;
-    //  console.log(this.value);
-
     this.data = this.met.getData;
-    // console.log(this.data);
   }
 
   uploadFile(data: FormData): Observable<any> {
-    // debugger
     return this.http.post<any>(this.SERVER_URL, data);
   }
-  getMaklumatDetails() {}
-
-  bind(e) {
-    // console.log(e);
-  }
+  getMaklumatDetails() { }
   getPdf(e) {
     this.downloadPdf(e).then((blob) => {
-      // console.log(blob)
       saveAs(blob, e);
       var fileURL = window.URL.createObjectURL(blob);
-      // console.log(fileURL);
-
       let tab = window.open();
       tab.location.href = fileURL;
     });
@@ -73,6 +62,7 @@ export class DbklppsppaComponent implements OnInit {
   }
 
   uploadSubmit(event) {
+    console.log('uploading...', event);
     this.spinner.show();
     for (var i = 0; i < this.uploader.queue.length; i++) {
       let fileItem = this.uploader.queue[i]._file;
@@ -85,24 +75,46 @@ export class DbklppsppaComponent implements OnInit {
       let data = new FormData();
       let fileItem = this.uploader.queue[j]._file;
       this.fileName = fileItem.name;
-      // console.log(this.fileName);
-
-      // console.log("filenan",this.fileName);
-
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + j);
 
-      this.uploadFile(data).subscribe((data) => console.log(data.message));
+      this.uploadFile(data).subscribe((data) => {
+        console.log(data.message);
+        this.spinner.hide();
+      });
     }
     this.uploader.clearQueue();
-    // console.log("hii"+this.fileName+"hello");
-    // console.log(event);
-
     let ev = event;
     for (let index of this.data) {
       if (index.site_id == ev) {
         this.restData = index;
       }
     }
+
+    let token = localStorage.getItem("AccessToken");
+    let headers = {
+      "Content-Type": "application/json",
+      Authorization: token,
+    };
+    let body = {
+      surat_penyerahan_kawasan: this.fileName
+    };
+
+    this.http
+      .put(
+        this.basePublicUrl + "/public/updateApplicationList/" + ev,
+        body,
+        { headers: headers }
+      )
+      .subscribe(
+        (res) => {
+         //  console.log(res);
+         window.location.reload();
+          this.spinner.hide();
+        },
+        (error) => {
+          this.spinner.hide();
+        }
+      );
   }
 }

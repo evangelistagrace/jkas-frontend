@@ -19,7 +19,7 @@ export class NewemeetingComponent implements OnInit {
   kategori_mesyuarat: any;
   kekerapan_mesyuarat: any;
   jenis_mesyuarat: any;
-  jabatan_terlibat: any;
+  jabatan_terlibat: any = [];
   tarikh_mesyuarat: any;
   masa_mesyuarat: any;
   hingga: any;
@@ -53,6 +53,7 @@ export class NewemeetingComponent implements OnInit {
   meetingupdate: string;
   mettingtitle="E-MEETINGS-NEW"
   lang: string;
+  dropdownSettings: any = {};
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -137,7 +138,7 @@ this.mettingtitle=e.target.value;
     let body = {
       jenis_jawatankuasa: this.model.jenis_jawatankuasa,
       jenis_mesyuarat: this.model.jenis_mesyuarat,
-      jabatan_terlibat: this.jabatan_terlibat,
+      jabatan_terlibat: this.jabatan_terlibat.join(','),
       tarikh_mesyuarat: this.model.tarikh_mesyuarat,
       masa_mesyuarat: this.model.masa_mesyuarat,
       hingga: this.model.hingga,
@@ -209,14 +210,6 @@ this.mettingtitle=e.target.value;
   }
 
   uploadSubmit() {
-    debugger;
-    // for (var i = 0; i < this.uploader.queue.length; i++) {
-    //   let fileItem = this.uploader.queue[i]._file;
-    //   if (fileItem.size > 10000000) {
-    //     alert("Each File should be less than 10 MB of size.");
-    //     return;
-    //   }
-    // }
     for (var j = 0; j < this.uploader.queue.length; j++) {
       let data = new FormData();
       let fileItem = this.uploader.queue[j]._file;
@@ -257,5 +250,15 @@ this.mettingtitle=e.target.value;
   onCloseHandled1() {
     this.display1 = "none";
     this.router.navigateByUrl("dbkl/dbklmainpage");
+  }
+  onItemSelect(item: any) {
+    this.jabatan_terlibat.push(item);
+  }
+  onItemDeselect(item: any) {
+    for (let i=0; i<this.jabatan_terlibat.length; i++) {
+      if (this.jabatan_terlibat[i] === item) {
+        this.jabatan_terlibat.splice(i, 1);
+      }
+    }
   }
 }

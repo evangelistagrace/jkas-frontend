@@ -200,15 +200,12 @@ export class CleansheduleComponent implements OnInit {
     view.ui.add(scaleBar, {
       position: "bottom-left"
     });
-
-    /*
     let search = new Search({
       view: view
     });
-    view.ui.add(search,
-      { position: "top-right" }
-    );
-    */
+    view.ui.add(search, {
+      position: "top-right"
+    });
     let basemapGallery = new BasemapGallery({
       view: view
     });

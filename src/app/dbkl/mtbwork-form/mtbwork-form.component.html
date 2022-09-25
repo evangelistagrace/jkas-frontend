@@ -33,8 +33,8 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
               <a class="dropdown-item"
-                *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'" i18n="@@n12"
-                routerLink="/dbkl/mapview">Map View</a>
+                *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+                i18n="@@n12" routerLink="/dbkl/mapview">Map View</a>
           <li class="dropdown-submenu">
             <a class="dropdown-item dropdown-toggle"
               *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
@@ -80,9 +80,9 @@
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item"
-          *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-          style="color: white; cursor: pointer" routerLink="/dbkl/mtkmapview" i18n="@@n20">Monitoring
-          MTK</a>
+            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
+            style="color: white; cursor: pointer" routerLink="/dbkl/mtkmapview" i18n="@@n20">Monitoring
+            MTK</a>
           <a routerLink="/dbkl/mtkworkform"
             *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
             class="dropdown-item" (click)="getUser('financial')" i18n="@@n13" style="cursor: pointer;">Work Form</a>
@@ -117,12 +117,9 @@
 </div><!-- End Header -->
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
   [fullScreen]="true">
-
 </ngx-spinner>
 <main>
   <section class="completed" id="completed">
-    <!-- Central Modal Medium Danger -->
-
     <div class="card1">
       <div class="section-title">
         <span i18n="@@mtbwrkfrm2">WORKS FORM IN THE FIELD
@@ -197,30 +194,12 @@
                 [ngClass]="{
                   'is-invalid': submitted && f.nama.errors
                 }" />
-
-
-
               <div *ngIf="submitted && f.nama.errors" class="invalid-feedback">
                 <div *ngIf="f.nama.errors.required" i18n="@@Valtrans1">
                   Please fill this required field.
                 </div>
               </div>
             </div>
-
-            <!-- <div class="form-group col-md-6" style="margin-top: 10px;">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm9">Date of Receipt of Complaint</label><sup>*</sup>
-              <input type="date" class="form-control" formControlName="tarikhterimaaduan" name="tarikh_terima_aduan"
-                [(ngModel)]="tarikh_terima_aduan" [ngClass]="{
-                  'is-invalid': submitted && f.tarikhterimaaduan.errors
-                }" />
-
-              <div *ngIf="submitted && f.tarikhterimaaduan.errors" class="invalid-feedback">
-                <div *ngIf="f.tarikhterimaaduan.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div> -->
-
             <div class="form-group col-md-12">
               <label for="inputEmail4" i18n="@@mtbwrkfrm10">Address</label><sup>*</sup>
               <textarea type="text" class="form-control" formControlName="alamat" id="inputEmail4" placeholder=""
@@ -487,12 +466,6 @@
                   {{ key.officer_name }}
                 </option>
               </select>
-              <!-- <input type="text" class="form-control" name="nama_pegawai1" 
-              placeholder="" [(ngModel)]="nama_pegawai" formControlName="idpegawai"
-              [ngClass]="{
-                'is-invalid': submitted && f.idpegawai.errors
-              }" /> -->
-
               <div *ngIf="submitted && f.idpegawai.errors" class="invalid-feedback">
                 <div *ngIf="f.idpegawai.errors.required" i18n="@@Valtrans1">
                   Please fill this required field.
@@ -509,10 +482,9 @@
               </div>
             </div>
           </div>
-
           <div class="col-md-4">
             <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
-              <strong  i18n="@@picture">PICTURE</strong>
+              <strong i18n="@@picture">PICTURE</strong>
             </h5>
             <div>
               <label class="custom-file-upload uploade">
@@ -523,8 +495,6 @@
               </label>
             </div>
           </div>
-
-
           <div class="row">
             <div class="form-group col-md-12">
               <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
@@ -544,7 +514,6 @@
               </div>
             </div>
           </div>
-
           <div class="row">
             <div class="form-group col-md-12">
               <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
@@ -617,14 +586,10 @@
                 ">
                 <strong i18n="@@mtbwrkfrm29">SUPERVISOR'S REVIEW (MTK)</strong>
               </h5>
-
               <textarea type="text" class="form-control" formControlName="ulasan" id="inputEmail4" placeholder=""
                 [(ngModel)]="ullasan_penyelia1" [ngClass]="{
                   'is-invalid': submitted && f.ulasan.errors
                 }"></textarea>
-
-
-
               <div *ngIf="submitted && f.ulasan.errors" class="invalid-feedback">
                 <div *ngIf="f.ulasan.errors.required" i18n="@@Valtrans1">
                   Please fill this required field.
@@ -705,7 +670,6 @@
         </div>
       </form>
 
-
       <form class="modal-content sizing" [formGroup]="registrationGroup1" (ngSubmit)="submit1()" style="border: none"
         id="form1" *ngIf="this.mainform1">
         <div class="d-flex justify-content-end">
@@ -729,17 +693,11 @@
             </div>
             <div class="form-group col-md-6">
               <label for="select" i18n="@@mtbwrkfrm24">Name of officer</label><sup>*</sup>
-              <!-- <input type="text" class="form-control" name="nama_pegawai1" placeholder="" [(ngModel)]="nama_pegawai1"
-                formControlName="idpegawai1" [ngClass]="{
-                  'is-invalid': submitted1 && f1.idpegawai1.errors
-                }" /> -->
-
               <select class="browser-default custom-select" id="select" formControlName="idpegawai1"
                 [(ngModel)]="nama_pegawai1" [ngClass]="{
                   'is-invalid': submitted && f.idpegawai1.errors
                 }">
                 <option value="" disabled="" selected="">
-
                 </option>
                 <option *ngFor="
                 let key of dataShow">
@@ -755,10 +713,6 @@
             <div class="form-group col-md-6"></div>
             <div class="form-group col-md-6">
               <label for="select" i18n="@@mtbwrkfrm33">Zone</label><sup>*</sup>
-              <!-- <input type="text" formControlName="zon1" class="form-control" name="zonA" placeholder=""
-                [(ngModel)]="zonA" [ngClass]="{
-                  'is-invalid': submitted1 && f1.zon1.errors
-                }" /> -->
               <select class="browser-default custom-select" id="select" formControlName="zon1" [(ngModel)]="zonA"
                 [ngClass]="{
                   'is-invalid': submitted1 && f1.zon1.errors
@@ -766,9 +720,6 @@
                 <option value="" disabled="" selected=""></option>
                 <option *ngFor="let zone of zonedata">{{zone}}</option>
               </select>
-
-
-
               <div *ngIf="submitted1 && f1.zon1.errors" class="invalid-feedback">
                 <div *ngIf="f1.zon1.errors.required" i18n="@@Valtrans1">
                   Please fill this required field.
@@ -778,10 +729,6 @@
             <div class="form-group col-md-6"></div>
             <div class="form-group col-md-6">
               <label for="select" i18n="@@parliamen">Parliament</label><sup>*</sup>
-              <!-- <input type="text" formControlName="parlimenB" class="form-control" name="parlimenA" placeholder=""
-                [(ngModel)]="parlimenA" [ngClass]="{
-                'is-invalid': submitted1 && f1.parlimenB.errors
-              }" /> -->
               <select class="browser-default custom-select" id="select" formControlName="parlimenB"
                 [(ngModel)]="parlimenA" [ngClass]="{
                   'is-invalid': submitted && f.parlimenB.errors
@@ -789,9 +736,6 @@
                 <option value="" disabled="" selected="" i18n="@@stp">Select the Parliamen</option>
                 <option *ngFor="let parli of parildata">{{parli}}</option>
               </select>
-
-
-
               <div *ngIf="submitted1 && f1.parlimenB.errors" class="invalid-feedback">
                 <div *ngIf="f1.parlimenB.errors.required" i18n="@@Valtrans1">
                   Please fill this required field.
@@ -799,7 +743,6 @@
               </div>
             </div>
             <div class="form-group col-md-6">
-
             </div>
             <div class="form-group col-md-6">
               <label for="select" i18n="@@mtbwrkfrm34">Monitoring Date</label><sup>*</sup>
@@ -807,8 +750,6 @@
                 placeholder="" [(ngModel)]="tarikh_siasatanA" [ngClass]="{
                   'is-invalid': submitted1 && f1.tarikhsiasatan1.errors
                 }" />
-
-
               <div *ngIf="submitted1 && f1.tarikhsiasatan1.errors" class="invalid-feedback">
                 <div *ngIf="f1.tarikhsiasatan1.errors.required" i18n="@@Valtrans1">
                   Please fill this required field.
@@ -816,47 +757,12 @@
               </div>
             </div>
             <div class="form-group col-md-6"></div>
-
-            <!-- <div class="form-group col-md-6">
-              <label for="select" i18n="@@mtbwrkfrm24">Name of officer</label><sup>*</sup>
-              <select class="browser-default custom-select" id="select" formControlName="idpegawai1"
-                [(ngModel)]="nama_pegawaiA" [ngClass]="{
-                  'is-invalid': submitted1 && f1.idpegawai1.errors
-                }">
-                <option value="" disabled="" selected="">
-
-                </option>
-                <option>MTB Azizi Bin Mohd Badri</option>
-                <option>MTB Devadas A/l Muniyendy</option>
-                <option>MTB Abdul Rahman Bin Koya Kutty</option>
-                <option>MTB Shamsuzlynn Bin Suliman</option>
-                <option>
-                  MTB Mohd Kamaruzani Bin Mohamad Nowawi
-                </option>
-              </select>
-
-
-              <div *ngIf="submitted1 && f1.idpegawai1.errors" class="invalid-feedback">
-                <div *ngIf="f1.idpegawai1.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div> -->
-            <!-- <div class="form-group col-md-8">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm25">Monitoring Location : </label>
-              <div class="col-md-12">
-                <div id="map" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"></div>
-              </div>
-              <div>
-                <i *ngIf="check1" i18n="@@msg">{{messageValue}}</i>
-              </div>
-            </div> -->
             <div class="form-group col-md-4"></div>
             <div class="form-group col-md-8" style="margin-left: 4px;">
               <div class="row">
                 <div class="col-md-6">
                   <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
-                    <strong  i18n="@@picture">PICTURE</strong>
+                    <strong i18n="@@picture">PICTURE</strong>
                   </h5>
                   <div>
                     <label class="custom-file-upload uploade">
@@ -870,23 +776,9 @@
                 <div class="col-md-6" *ngIf="imgBase64 !== undefined">
                   <img [src]="imgBase64" width="400px" />
                 </div>
-                <!-- <div class="col-md-6">
-                  <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
-                    <strong style="font-size: 19px;" i18n="@@selepas">AFTER INVESTIGATION</strong>
-                  </h5>
-                  <div>
-                    <label class="custom-file-upload uploade">
-                      <input type="file" ng2FileSelect accept=".png" [uploader]="uploader1"
-                        [ngModelOptions]="{ standalone: true }" name="file1" [(ngModel)]="model1" #file="ngModel" />
-                      <i class="fa fa-cloud-upload"></i> Muat Naik Gambar<br />
-                      <span class="text-dark">{{ filename1 }}</span>
-                    </label>
-                  </div>
-                </div> -->
               </div>
             </div>
           </div>
-
           <div class="row">
             <div class="form-group col-md-12">
               <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
@@ -898,8 +790,6 @@
                 placeholder="" [(ngModel)]="report1A" [ngClass]="{
                   'is-invalid': submitted1 && f1.laporansiasatan1.errors
                 }"></textarea>
-
-
               <div *ngIf="submitted1 && f1.laporansiasatan1.errors" class="invalid-feedback">
                 <div *ngIf="f1.laporansiasatan1.errors.required" i18n="@@Valtrans1">
                   Please fill this required field.
@@ -913,7 +803,6 @@
                 <strong i18n="@@NO1">NO</strong>
               </h5>
             </div>
-
             <div class="form-group col-md-12">
               <textarea type="text" class="form-control" formControlName="tindakan1" id="inputEmail4" placeholder=""
                 [(ngModel)]="tindakan1A" [ngClass]="{
@@ -927,29 +816,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="row">
-            <div class="form-group col-md-12">
-              <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
-                <strong i18n="@@SUSULAN">SUSULAN</strong>
-              </h5>
-            </div>
-            <div id="fn" class="form-group col-md-12">
-              <textarea type="text" class="form-control" formControlName="susulan1" id="inputEmail4" placeholder=""
-                [(ngModel)]="susulan1A" [ngClass]="{
-                  'is-invalid': submitted1 && f1.susulan1.errors
-                }"></textarea>
-
-
-
-
-              <div *ngIf="submitted1 && f1.susulan1.errors" class="invalid-feedback">
-                <div *ngIf="f1.susulan1.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-          </div> -->
-
           <div class="row">
             <div class="col-md-6">
               <h5 class="card-header info-color white-text py-6" style="
@@ -960,8 +826,8 @@
                 <strong i18n="@@SUPERVISOR1">SUPERVISOR'S REVIEW (MTK)</strong>
               </h5>
 
-              <textarea type="text" class="form-control" formControlName="ulasan1" id="inputEmail4" placeholder=""
-                [(ngModel)]="ullasan_penyelia1A" [ngClass]="{
+              <textarea disabled type="text" class="form-control" formControlName="ulasan1" id="inputEmail4"
+                placeholder="" [(ngModel)]="ullasan_penyelia1A" [ngClass]="{
                   'is-invalid': submitted1 && f1.ulasan1.errors
                 }"></textarea>
 
@@ -980,8 +846,8 @@
                 ">
                 <strong i18n="@@mtbwrkfrm30">SECTION HEAD'S COMMENT</strong>
               </h5>
-              <textarea type="text" class="form-control" formControlName="ulasan11" id="inputEmail4" placeholder=""
-                [(ngModel)]="ullasan_ketua_seksyen1A" [ngClass]="{
+              <textarea disabled type="text" class="form-control" formControlName="ulasan11" id="inputEmail4"
+                placeholder="" [(ngModel)]="ullasan_ketua_seksyen1A" [ngClass]="{
                   'is-invalid': submitted1 && f1.ulasan11.errors
                 }"></textarea>
               <div *ngIf="submitted1 && f1.ulasan11.errors" class="invalid-feedback">
@@ -999,7 +865,7 @@
                 ">
                 <strong i18n="@@super">SUPERVISOR'S REVIEW</strong>
               </h5>
-              <textarea type="text" class="form-control" formControlName="ulasanpenyelia" id="inputEmail4"
+              <textarea disabled type="text" class="form-control" formControlName="ulasanpenyelia" id="inputEmail4"
                 placeholder="" [(ngModel)]="ulasanpenyelia" [ngClass]="{
                   'is-invalid': submitted1 && f1.ulasanpenyelia.errors
                 }"></textarea>
@@ -1010,34 +876,7 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="col-md-6">
-              <h5 class="card-header info-color white-text py-6" style="
-                  margin-bottom: 21px;
-                  background-color: #253d84;
-                  color: white;
-                  margin-top: 14px;
-                 
-                ">
-                <strong i18n="@@ddsc">DEPUTY DIRECTOR'S COMMENT</strong>
-              </h5>
-              <textarea type="text" class="form-control" formControlName="ulasan_timbalan1" id="inputEmail4"
-                placeholder="" [(ngModel)]="ulasan_timbalanA" [ngClass]="{
-                  'is-invalid': submitted1 && f1.ulasan_timbalan1.errors
-                }"></textarea>
-
-
-              <div *ngIf="submitted1 && f1.ulasan_timbalan1.errors" class="invalid-feedback">
-                <div *ngIf="f1.ulasan_timbalan1.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div> -->
-
-
-
             <div class="col-md-12 text-center mb-4">
-
-
               <button class="look_for" ml-6 type="button" type="submit" i18n="@@mtbwrkfrm32">
                 Save
               </button>
@@ -1046,9 +885,6 @@
           </div>
         </div>
       </form>
-
-
-
 
       <form class="modal-content sizing" [formGroup]="registrationGroup2" (ngSubmit)="submit2()" style="border: none"
         id="form2" *ngIf="this.mainform2">
@@ -1085,37 +921,18 @@
                 </div>
               </div>
             </div>
-
-            <!-- <div class="form-group col-md-6" style="margin-top: 10px;">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm9">Date of Receipt of Complaint</label><sup>*</sup>
-              <input type="date" class="form-control" formControlName="tarikhterimaaduan2" name="tarikh_terima_aduanB"
-                [(ngModel)]="tarikh_terima_aduanB" [ngClass]="{
-                'is-invalid': submitted2 && f2.tarikhterimaaduan2.errors
-              }" />
-
-              <div *ngIf="submitted2 && f2.tarikhterimaaduan2.errors" class="invalid-feedback">
-                <div *ngIf="f2.tarikhterimaaduan2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div> -->
-
             <div class="form-group col-md-12">
               <label for="inputEmail4" i18n="@@mtbwrkfrm10">Address</label><sup>*</sup>
               <textarea type="text" class="form-control" formControlName="alamat2" id="inputEmail4" placeholder=""
                 [(ngModel)]="address1B" [ngClass]="{
                 'is-invalid': submitted2 && f2.alamat2.errors
               }"></textarea>
-
-
               <div *ngIf="submitted2 && f2.alamat2.errors" class="invalid-feedback">
                 <div *ngIf="f2.alamat2.errors.required" i18n="@@Valtrans1">
                   Please fill this required field.
                 </div>
               </div>
-
             </div>
-
             <div class="form-group col-md-6">
               <label for="inputEmail4" i18n="@@mtbwrkfrm11">No reference</label><sup>*</sup>
               <input type="text" class="form-control" formControlName="norukujan2" id="inputEmail4" placeholder=""
@@ -1127,8 +944,6 @@
                   Please fill this required field.
                 </div>
               </div>
-
-
             </div>
             <div class="form-group col-md-6">
               <label for="inputEmail4" i18n="@@mtbwrkfrm12">E-mail</label><sup>*</sup>
@@ -1281,7 +1096,7 @@
           </div>
           <div class="col-md-4">
             <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
-              <strong  i18n="@@picture">PICTURE</strong>
+              <strong i18n="@@picture">PICTURE</strong>
             </h5>
             <div>
               <label class="custom-file-upload uploade">

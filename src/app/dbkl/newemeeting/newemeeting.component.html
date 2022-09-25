@@ -188,7 +188,7 @@
             <div class="form-group col-md-12">
               <label for="textInput" i18n="@@em4">Type of Committee</label
               ><sup>*</sup>
-              <!-- <input type="text" id="textInput" class="form-control" name="jenis_jawatankuasa" placeholder="Input teks"
+              <input type="text" id="textInput" class="form-control" name="jenis_jawatankuasa"
                 [(ngModel)]="model.jenis_jawatankuasa" #jenis_jawatankuasa="ngModel" [ngClass]="{
                     'is-invalid': f.submitted && jenis_jawatankuasa.invalid
                   }" required />
@@ -196,44 +196,11 @@
                 <div *ngIf="jenis_jawatankuasa.errors.required" i18n="@@lem3">
                   Please fill this required field.
                 </div>
-              </div> -->
-
-              <select
-                class="browser-default custom-select form-control mb-2"
-                id="select"
-                [(ngModel)]="jenis_mesyuarat"
-                name="jenis_mesyuarat"
-                formControlName="jenis_mesyuarat"
-                [ngClass]="{
-                  'is-invalid': submitted && f.jenis_mesyuarat.errors
-                }"
-              >
-                <option i18n="@@em4" value="Umum">
-                  Ahli Jawatankuasa(Jabatan/Agensi)
-                </option>
-                <option i18n="@@em3" value="Berkala">Jenis Mesyuarat</option>
-              </select>
+              </div>
             </div>
-
             <div class="form-group col-md-12">
               <label for="textInput" i18n="@@lem4">Meeting Type</label
               ><sup>*</sup>
-              <!-- <input type="text" id="textInput" class="form-control" placeholder="Input teks"
-                [(ngModel)]="model.jenis_mesyuarat" #jenis_mesyuarat="ngModel" name="jenis_mesyuarat" [ngClass]="{
-                    'is-invalid': f.submitted && jenis_mesyuarat.invalid
-                  }" required />
-              <div *ngIf="f.submitted && jenis_mesyuarat.invalid" class="invalid-feedback">
-                <div *ngIf="jenis_mesyuarat.errors.required" i18n="@@lem3">
-                  Please fill this required field.
-                </div>
-              </div> -->
-
-              <!-- <select class="form-control" >
-                <option>
-                  
-                </option>
-              </select> -->
-
               <select
                 class="browser-default custom-select form-control mb-2"
                 id="select"
@@ -251,49 +218,20 @@
                 <option i18n="@@period" value="Performance Committee Meeting Payment For Collection Services And Public Cleansing">Performance Committee Meeting Payment For Collection Services And Public Cleansing</option>
               </select>
             </div>
-
             <div class="form-group col-md-12 depart">
               <label for="select" i18n="@@lem5">Department Involved</label
               ><sup>*</sup>
             </div>
             <div class="form-group col-md-11">
-              <!-- <select
-                  class="browser-default custom-select form-control"
-                  id="select"
-                  [(ngModel)]="jabatan_terlibat"
-                  name="jabatan_terlibat"
-                >
-                  <option value="" disabled="" selected=""></option>
-                  <option *ngFor="let data of department">
-                    {{ data }}
-                  </option>
-                </select> -->
-              <input
-                class="custom-select"
-                list="data"
-                name="data"
+              <ng-multiselect-dropdown
+                [settings]="dropdownSettings"
+                [data]="department"
                 [(ngModel)]="jabatan_terlibat"
-              />
-              <datalist id="data">
-                <option *ngFor="let data of department" [value]="data">
-                  {{ data }}
-                </option>
-              </datalist>
-            </div>
-            <div class="form-group col-md-1">
-              <button
-                class="addbutton newbutton"
-                (click)="addFieldValue()"
-                type="button"
+                (onSelect)="onItemSelect($event)"
+                (onDeSelect)="onItemDeselect($event)"
               >
-                +
-              </button>
+              </ng-multiselect-dropdown>
             </div>
-            <br />
-            <!-- <div class="form-group col-md-12" style="margin-bottom: 0.5em" *ngIf="this.is1st">
-              <input type="text" class="form-control" id="inputEmail4" name="jabatan_terlibat"
-                [(ngModel)]="jabatan_terlibat1" />
-            </div> -->
             <div class="form-group col-md-12" *ngIf="isShowFieldTable">
               <table>
                 <tbody>
@@ -321,7 +259,6 @@
                 type="date"
                 id="textInput"
                 class="form-control"
-                placeholder="Input teks"
                 [(ngModel)]="model.tarikh_mesyuarat"
                 name="tarikh_mesyuarat"
                 #tarikh_mesyuarat="ngModel"
@@ -347,7 +284,6 @@
                 type="time"
                 id="textInput"
                 class="form-control"
-                placeholder="Input teks"
                 [(ngModel)]="model.masa_mesyuarat"
                 name="masa_mesyuarat"
                 #masa_mesyuarat="ngModel"
@@ -371,7 +307,6 @@
                 type="time"
                 id="textInput"
                 class="form-control"
-                placeholder="Input teks"
                 [(ngModel)]="model.hingga"
                 name="hingga"
                 #hingga="ngModel"
@@ -394,7 +329,6 @@
                 type="text"
                 id="textInput"
                 class="form-control"
-                placeholder="Input teks"
                 [(ngModel)]="model.pengerusi"
                 name="pengerusi"
                 #pengerusi="ngModel"
@@ -418,7 +352,6 @@
                 type="text"
                 id="textInput"
                 class="form-control"
-                placeholder="Input teks"
                 [(ngModel)]="model.bill_mesyuarat"
                 name="bill_mesyuarat"
                 #bill_mesyuarat="ngModel"
@@ -443,7 +376,6 @@
               <textarea
                 id="textarea"
                 class="form-control"
-                placeholder="Kawasan teks"
                 (keyup)="gettexts($event)"
                 [(ngModel)]="model.tajuk_mesyuarat"
                 name="tajuk_mesyuarat"
@@ -470,7 +402,6 @@
                 type="text"
                 id="textInput"
                 class="form-control"
-                placeholder="Input teks"
                 [(ngModel)]="model.setiausaha"
                 name="setiausaha"
                 #setiausaha="ngModel"
@@ -496,7 +427,6 @@
                 type="text"
                 id="textInput"
                 class="form-control"
-                placeholder="Input teks"
                 [(ngModel)]="model.tempat_mesyuarat"
                 name="tempat_mesyuarat"
                 #tempat_mesyuarat="ngModel"
@@ -521,7 +451,6 @@
                 style="display: inline-block"
                 id="textarea"
                 class="form-control"
-                placeholder="Kawasan teks"
                 [(ngModel)]="model.agenda_dan_minit"
                 #agenda_dan_minit="ngModel"
                 name="agenda_dan_minit"

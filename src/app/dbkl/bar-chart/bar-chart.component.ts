@@ -9,6 +9,7 @@ import {
 import { ChartDataSets } from "chart.js";
 
 import { ChartOptions, ChartType } from "chart.js";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Color, Label } from "ng2-charts";
 import { ActivatedRoute, Router } from "@angular/router";
 import * as $ from "jquery";
@@ -101,7 +102,7 @@ export class BarChartComponent implements OnInit {
   ];
   public barChartType: ChartType = "bar";
   public barChartLegend = false;
-  public barChartPlugins = [];
+  public barChartPlugins = [ChartDataLabels];
 
   public barChartColors: Color[] = [
     { backgroundColor: "hsl(214deg 65% 62%)" },
@@ -247,6 +248,24 @@ export class BarChartComponent implements OnInit {
       }
     }
 
+    const colorList = [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ];
+    const borderColorList = [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ]
     this.spinner.show();
     forkJoin(observableBatch)
     .subscribe((value) => {
@@ -254,6 +273,8 @@ export class BarChartComponent implements OnInit {
       this.barChartLabels = [];
       this.barChartData = [];
       let data = [];
+      let color = [];
+      let borderColor = [];
       for (let i=0; i<value.length; i++) {
         let val = value[i];
         try {
@@ -262,6 +283,9 @@ export class BarChartComponent implements OnInit {
           console.log(parliment + ' = ' + size);
           this.barChartLabels.push(parliment);
           data.push(size);
+          let index = Math.floor(Math.random() * colorList.length - 1);
+          color.push(colorList[index]);
+          borderColor.push(borderColorList[index]);
         } catch(e) {
           console.error('skipping due to error.');
           console.log(val);
@@ -269,7 +293,11 @@ export class BarChartComponent implements OnInit {
       }
       this.barChartData.push({
         data: data,
-        label: selected
+        label: selected,
+        backgroundColor: color,
+        borderColor: borderColor,
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(0, 0, 0, 0.1)'
       });
       this.spinner.hide();
     });
