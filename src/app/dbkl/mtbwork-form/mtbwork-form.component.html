@@ -182,7 +182,6 @@
         <div>
           <div class="form-row">
             <div class="col-md-4"></div>
-
             <div class="col-md-12">
               <h5 class="card-header info-color white-text" style="background-color: #253d84; color: white">
                 <strong i18n="@@mtbwrkfrm7">COMPLAINANT'S INFORMATION</strong>
@@ -244,9 +243,7 @@
                   Invalid Email
                 </div>
               </div>
-
             </div>
-
             <div class="form-group col-md-6">
               <label for="inputEmail4" i18n="@@mtbwrkfrm13">Telephone No</label><sup>*</sup>
               <input type="text" class="form-control" formControlName="notelefon" id="inputEmail4" placeholder=""
@@ -262,10 +259,7 @@
                   Phone Number must contain 11 Numeric letter
                 </div>
               </div>
-
             </div>
-
-
             <div class="form-group col-md-6">
               <label for="inputEmail4" i18n="@@mtbwrkfrm14">No facsimile</label>
               <input type="text" class="form-control" formControlName="nofaksimili" id="inputEmail4" placeholder=""
@@ -278,10 +272,8 @@
                   Please fill this required field.
                 </div>
               </div>
-
             </div>
           </div>
-
           <div class="row">
             <div class="form-group col-md-12">
               <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
@@ -356,14 +348,12 @@
                 [(ngModel)]="lokasi_aduan" [ngClass]="{
                   'is-invalid': submitted && f.lokasiaduan.errors
                 }" />
-
               <div *ngIf="submitted && f.lokasiaduan.errors" class="invalid-feedback">
                 <div *ngIf="f.lokasiaduan.errors.required" i18n="@@Valtrans1">
                   Please fill this required field.
                 </div>
               </div>
             </div>
-
             <div class="form-group col-md-12">
               <label for="inputEmail4" i18n="@@mtbwrkfrm21">Description of Complaint</label><sup>*</sup>
               <textarea type="text" class="form-control" formControlName="keteranganaduan" id="inputEmail4"
@@ -377,7 +367,6 @@
                   Please fill this required field.
                 </div>
               </div>
-
             </div>
           </div>
           <div class="row">
@@ -397,8 +386,6 @@
                 <option>Zon Tengah</option>
                 <option>Zon Selatan</option>
               </select>
-
-
               <div *ngIf="submitted && f.zon.errors" class="invalid-feedback">
                 <div *ngIf="f.zon.errors.required" i18n="@@Valtrans1">
                   Please fill this required field.
@@ -425,8 +412,6 @@
                 <option>Bandar Tun Razak</option>
                 <option>Seputeh</option>
               </select>
-
-
               <div *ngIf="submitted && f.parlimen.errors" class="invalid-feedback">
                 <div *ngIf="f.parlimen.errors.required" i18n="@@Valtrans1">
                   Please fill this required field.
@@ -451,7 +436,26 @@
               </div>
             </div>
             <div class="form-group col-md-6"></div>
-
+            <div class="form-group col-md-6">
+              <label for="select" i18n="@@mtbwrkfrm24mtk">Name of officer</label>
+              <select class="browser-default custom-select" id="select" formControlName="namaPegawaiMtk"
+                [(ngModel)]="namaPegawaiMtk" [ngClass]="{
+                  'is-invalid': submitted && f.namaPegawaiMtk.errors
+                }">
+                <option value="" disabled="" selected="">
+                </option>
+                <option *ngFor="
+                let key of mtkList" value="{{ key.no_kad_pengenalan }}">
+                  {{ key.officer_name }}
+                </option>
+              </select>
+              <div *ngIf="submitted1 && f1.idpegawai1.errors" class="invalid-feedback">
+                <div *ngIf="f1.idpegawai1.errors.required" i18n="@@Valtrans1">
+                  Please fill this required field.
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6"></div>
             <div class="form-group col-md-6">
               <label for="select" i18n="@@mtbwrkfrm24">Name of officer</label><sup>*</sup>
               <select class="browser-default custom-select" id="select" formControlName="idpegawai"
@@ -691,6 +695,26 @@
                 <strong i18n="@@INVESTIGATION2">MONITORING INFORMATION </strong>
               </h5>
             </div>
+            <div class="form-group col-md-6">
+              <label for="select" i18n="@@mtbwrkfrm24mtk">Name of officer</label>
+              <select class="browser-default custom-select" id="select" formControlName="namaPegawaiMtk"
+                [(ngModel)]="namaPegawaiMtk" [ngClass]="{
+                  'is-invalid': submitted && f.namaPegawaiMtk.errors
+                }">
+                <option value="" disabled="" selected="">
+                </option>
+                <option *ngFor="
+                let key of mtkList" value="{{ key.no_kad_pengenalan }}">
+                  {{ key.officer_name }}
+                </option>
+              </select>
+              <div *ngIf="submitted1 && f1.idpegawai1.errors" class="invalid-feedback">
+                <div *ngIf="f1.idpegawai1.errors.required" i18n="@@Valtrans1">
+                  Please fill this required field.
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6"></div>
             <div class="form-group col-md-6">
               <label for="select" i18n="@@mtbwrkfrm24">Name of officer</label><sup>*</sup>
               <select class="browser-default custom-select" id="select" formControlName="idpegawai1"

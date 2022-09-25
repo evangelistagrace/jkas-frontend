@@ -228,6 +228,24 @@
                                 name="sampah_kebun" [ngModelOptions]="{standalone: true}" />
                         </div>
                     </div>
+                    <div class="row" style="width: 100%">
+                        <div class="form-group col-md-3">
+                            <label for="kadar">Kadar Setiap Kekerapan</label>
+                            <input [(ngModel)]="kadar" id="kadar" name="kadar" type="text" class="form-control mb-2" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="col-12">
+                                <label for="frequency">Frekuensi</label>
+                            </div>
+                            <input id="frequency" name="frekuensi" [(ngModel)]="frekuensi" type="text" class="form-control mb-2" />
+                        </div>
+                        <div class="form-group">
+                            <div class="col-12">
+                                <label for="totalCost">Jumlah Keseluruhan Kos Bayaran</label>
+                            </div>
+                            <input value="{{ frekuensi * kadar | currency:'RM' }}" disabled id="totalCost" type="text" class="form-control mb-2" />
+                        </div>
+                    </div>
                     <div class="form-group col-md-12 mt-top">
                         <h5 style="background-color: #253d84"
                             class="card-header info-color text-center white-text py-6">
@@ -249,8 +267,6 @@
                         <ng-template #file>
                             <span (click)="getPdf(fileName)" style="color: #253d84; cursor: pointer">{{fileName}}</span>
                         </ng-template>
-                        <!-- <textarea type="text" id="textInput" class="form-control mb-2" name="rujuken_tarikh_serahan"
-                            [(ngModel)]="rujuken_tarikh_serahan" [ngModelOptions]="{standalone: true}"></textarea> -->
                     </div>
                     <div class="form-group col-md-12 mt-top">
                         <h5 style="background-color: #253d84"

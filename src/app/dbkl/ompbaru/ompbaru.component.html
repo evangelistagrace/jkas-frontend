@@ -210,6 +210,15 @@ DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
                             Measurement of Length / Frequency of Cleaning
                         </th>
                     </ng-container>
+                    <ng-container matColumnDef="header-kadar">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3">Kadar</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-frekuensi">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-jumlah">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3">Jumlah Keseluruhan</th>
+                    </ng-container>
                     <ng-container matColumnDef="header-notes">
                         <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3" i18n="@@op11">Notes</th>
                     </ng-container>
@@ -355,6 +364,15 @@ DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
                     </ng-container>
                     <ng-container matColumnDef="sampahKebun">
                         <td mat-cell *matCellDef="let element">{{ element.sampahKebun }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="kadar">
+                        <td mat-cell *matCellDef="let element">{{ (+element.kadar) | currency: 'RM ' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="frekuensi">
+                        <td mat-cell *matCellDef="let element">{{ element.frekuensi }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="jumlah">
+                        <td mat-cell *matCellDef="let element">{{ ((+element.kadar) * (+element.frekuensi)) | currency: 'RM' }}</td>
                     </ng-container>
                     <ng-container matColumnDef="catatan">
                         <td mat-cell *matCellDef="let element">{{ element.catatan }}</td>

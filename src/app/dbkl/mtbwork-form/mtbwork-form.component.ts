@@ -158,7 +158,8 @@ export class MtbworkFormComponent implements OnInit {
   susulan2A: any;
   susulan3A: any;
   data: any = [];
-  dataShow: any=[];
+  dataShow: any = [];
+  mtkList: any = [];
   laporan_siasatanA: any;
   report1A: any;
   report3A: any;
@@ -218,7 +219,7 @@ export class MtbworkFormComponent implements OnInit {
   ulasanpenyelia: any;
   parlimenA: any;
   ulasanKetua_unitf1: any;
-  ulasan_timbalan:any;
+  ulasan_timbalan: any;
   ulasan_timbalanA: any;
   url: any = environment.basePublicUrl;
   basePublicUrl: any = environment.basePublicUrl;
@@ -226,15 +227,15 @@ export class MtbworkFormComponent implements OnInit {
   filename: string;
   filename1: string;
   imgBase64: string;
-  UploaderData1: any=[];
-  UploaderData2: any=[];
-  UploaderData3: any=[];
-  UploaderData4: any=[];
+  UploaderData1: any = [];
+  UploaderData2: any = [];
+  UploaderData3: any = [];
+  UploaderData4: any = [];
   firstFile1: string;
   myfiles1: string;
   myfiles: string;
   firstFile: string;
-  ulasan11:any;
+  ulasan11: any;
   firstFile2: string;
   firstFile3: string;
   myfiles2: string;
@@ -247,24 +248,23 @@ export class MtbworkFormComponent implements OnInit {
   cause: any;
   causeA: any;
   nama_pegawai1: any;
+  namaPegawaiMtk: string;
   userrole: string;
   loginError: boolean;
-  zonedata: any=[];
-  parildata: any=[];
+  zonedata: any = [];
+  parildata: any = [];
   constructor(
     private http: HttpClient,
     private router: Router,
     private spinner: NgxSpinnerService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.registrationGroup = new FormGroup({
       nama: new FormControl("", [Validators.required]),
       alamat: new FormControl("", [Validators.required]),
       norukujan: new FormControl("", [Validators.required]),
-      // parlimenA:new FormControl("", [Validators.required]),
       email: new FormControl("", [
-        Validators.required,
         Validators.pattern(
           "^[A-za-z]{3,}[A-za-z0-9.]{1,}@[A-Za-z]{3,}[.][A-Za-z.]{2,6}$"
         ),
@@ -273,7 +273,7 @@ export class MtbworkFormComponent implements OnInit {
         Validators.required,
         Validators.pattern("^[0-9]{11}$"),
       ]),
-      nofaksimili: new FormControl("", [Validators.required]),
+      nofaksimili: new FormControl(""),
 
       samberaduan: new FormControl("", [Validators.required]),
       lain_lain: new FormControl("", [Validators.required]),
@@ -287,17 +287,17 @@ export class MtbworkFormComponent implements OnInit {
       tarikhsiasatan: new FormControl("", [Validators.required]),
       idpegawai: new FormControl("", [Validators.required]),
 
-      laporansiasatan: new FormControl("", [Validators.required]),
-      cause: new FormControl("", [Validators.required]),
-      tindakan: new FormControl("", [Validators.required]),
+      laporansiasatan: new FormControl(""),
+      cause: new FormControl(""),
+      tindakan: new FormControl(""),
 
-      susulan: new FormControl("", [Validators.required]),
-      ulasanKetua_unitf1:new FormControl({value: "", disabled: true}),
-      ulasan: new FormControl({value: "", disabled: true}),
-      ulasan1: new FormControl({value: "", disabled: true}),
+      susulan: new FormControl(""),
+      ulasanKetua_unitf1: new FormControl({ value: "", disabled: true }),
+      ulasan: new FormControl({ value: "", disabled: true }),
+      ulasan1: new FormControl({ value: "", disabled: true }),
     });
     this.registrationGroup1 = new FormGroup({
-      
+
       zon1: new FormControl("", [Validators.required]),
       tarikhsiasatan1: new FormControl("", [Validators.required]),
       idpegawai1: new FormControl("", [Validators.required]),
@@ -307,17 +307,17 @@ export class MtbworkFormComponent implements OnInit {
       tindakan1: new FormControl("", [Validators.required]),
 
       susulan1: new FormControl("", [Validators.required]),
-      ulasanpenyelia:new FormControl(""),
+      ulasanpenyelia: new FormControl(""),
       ulasan1: new FormControl(""),
       ulasan11: new FormControl(""),
-    
-    //  ulasan_timbalan1:new FormControl("", [Validators.required]),
+      namaPegawaiMtk: new FormControl("")
+      //  ulasan_timbalan1:new FormControl("", [Validators.required]),
     });
     this.registrationGroup2 = new FormGroup({
       nama2: new FormControl("", [Validators.required]),
       alamat2: new FormControl("", [Validators.required]),
       norukujan2: new FormControl("", [Validators.required]),
-     
+
       email2: new FormControl("", [
         Validators.required,
         Validators.pattern("^[A-za-z]{3,}[A-za-z0-9.]{1,}@[A-Za-z]{3,}[.][A-Za-z.]{2,6}$"),
@@ -327,28 +327,28 @@ export class MtbworkFormComponent implements OnInit {
         Validators.pattern("^[0-9]{11}$"),
       ]),
       nofaksimili2: new FormControl("", [Validators.required]),
-      
+
       samberaduan2: new FormControl("", [Validators.required]),
       lain_lain2: new FormControl("", [Validators.required]),
       tarikhaduan2: new FormControl("", [Validators.required]),
       tarikhterima2: new FormControl("", [Validators.required]),
       lokasiaduan2: new FormControl("", [Validators.required]),
-      cause1:new FormControl("", [Validators.required]),
+      cause1: new FormControl("", [Validators.required]),
       keteranganaduan2: new FormControl("", [Validators.required]),
-      ulasan2: new FormControl({value:"", disabled: true}),
-      ulasan12: new FormControl({value:"", disabled: true}),
-      ulasanKetua_unit: new FormControl({value:"", disabled: true}),
+      ulasan2: new FormControl({ value: "", disabled: true }),
+      ulasan12: new FormControl({ value: "", disabled: true }),
+      ulasanKetua_unit: new FormControl({ value: "", disabled: true }),
     });
     this.spinner.show();
     this.userrole = localStorage.getItem("roleforuser");
     this.isAdminType = localStorage.getItem("isAdmin");
     this.username = localStorage.getItem("nama_pengguna");
-    this.parlimenA =localStorage.getItem("parlimen");
-    this.zonA=localStorage.getItem("zon");
-    this.nama_pegawai1=localStorage.getItem("user");
+    this.parlimenA = localStorage.getItem("parlimen");
+    this.zonA = localStorage.getItem("zon");
+    this.nama_pegawai1 = localStorage.getItem("user");
     //  console.log( this.nama_pegawai1);
-this.nama_pegawai=localStorage.getItem("user");
-    
+    this.nama_pegawai = localStorage.getItem("user");
+
     this.dbkl_access_token = localStorage.getItem("dbkl_access_token");
     let headers1 = {
       "Content-Type": "application/json",
@@ -363,14 +363,14 @@ this.nama_pegawai=localStorage.getItem("user");
         (res) => {
           this.spinner.hide();
           this.zonedata = res;
-        //  console.log("ressdd",res);
+          //  console.log("ressdd",res);
         },
         (error) => {
           this.loginError = true;
           this.errorMsg = error["error"]["message"];
         }
       );
-      this.http
+    this.http
       .get(this.basePublicUrl + "/dbkl/getBorangParlimen", {
         headers: headers1,
       })
@@ -378,7 +378,7 @@ this.nama_pegawai=localStorage.getItem("user");
         (res) => {
           this.spinner.hide();
           this.parildata = res;
-       
+
         },
         (error) => {
           this.loginError = true;
@@ -445,15 +445,15 @@ this.nama_pegawai=localStorage.getItem("user");
         this.filename3 = fileItem3.name;
       }
     };
-    if(this.lang=="en"){
+    if (this.lang == "en") {
       this.message = "Drag the marker to your location";
-    }else{
+    } else {
       this.message = "Sila bawa petanda ke lokasi anda";
     }
-   
+
     this.lang = localStorage.getItem("lang");
     localStorage.setItem("path", "/dbkl/mtbwork-form");
-    
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.setGeoLocation.bind(this));
     }
@@ -470,20 +470,32 @@ this.nama_pegawai=localStorage.getItem("user");
         (res) => {
           this.spinner.hide();
           this.data = res;
-         // console.log("yooo",res);
-          
-          for(let key of this.data){
+          // console.log("yooo",res);
+
+          for (let key of this.data) {
             this.dataShow.push(key);
           }
-          
+
         },
         (error) => {
           this.loginError = true;
           this.errorMsg = error["error"]["message"];
         }
       );
-  this.spinner.hide();
-   }
+    this.http
+        .get(this.basePublicUrl + '/dbkl/listMtk', {
+          headers: headers,
+        })
+        .subscribe((res:any) => {
+          this.spinner.hide();
+          for (let key of res) {  
+            this.mtkList.push(key);
+          }
+        }, (error) => {
+          alert('Failed to get mtk list: ' + JSON.stringify(error))
+        });
+    this.spinner.hide();
+  }
   logout() {
     this.spinner.show();
     let header = {
@@ -529,7 +541,7 @@ this.nama_pegawai=localStorage.getItem("user");
     this.mainform1 = false;
     this.mainform2 = false;
 
-    
+
   }
   onMapReady(map: L.Map) {
     this.map = map;
@@ -545,6 +557,7 @@ this.nama_pegawai=localStorage.getItem("user");
     this.searchControl.addTo(this.map);
     // console.log("hello");
     this.settomap(this.latitude, this.longitude);
+    localStorage.setItem("area", this.latitude + ',' + this.longitude);
   }
   settomap(la, lo) {
     var marker = L.marker([la, lo], {
@@ -556,7 +569,7 @@ this.nama_pegawai=localStorage.getItem("user");
       marker.openPopup();
     });
 
-    this.searchControl.on("results", function(data) {
+    this.searchControl.on("results", function (data) {
       console.log('move marker...');
       if (data.results.length > 0) {
         marker.setLatLng(data.results[0].latlng);
@@ -637,19 +650,20 @@ this.nama_pegawai=localStorage.getItem("user");
       tarikh_terima: this.tarikh_terima,
       lokasi_aduan: this.lokasi_aduan,
       keterangan_aduan: this.keterangan_aduan,
-      ulasanKetua_unitf1:this.ulasanKetua_unitf1,
+      ulasanKetua_unitf1: this.ulasanKetua_unitf1,
       zon: this.zon,
       parlimen: this.parlimen,
       tarikh_siasatan: this.tarikh_siasatan,
       nama_pegawai: this.nama_pegawai,
       lokasi_siasatan: loc,
-      gambar:this.firstFile2,
+      gambar: this.firstFile2,
       laporan_siasatan: this.laporan_siasatan,
-      cause :this.cause,
+      cause: this.cause,
       tindakan: this.tindakan,
       susulan: this.susulan,
       ullasan_penyelia: this.ullasan_penyelia,
-      ullasan_ketua_seksyen: this.ullasan_ketua_seksyen
+      ullasan_ketua_seksyen: this.ullasan_ketua_seksyen,
+      no_ic_pegawai_mtk: this.namaPegawaiMtk
       // ulasan_timbalan:this.ulasan_timbalan
     };
     let key = localStorage.getItem("AccessToken");
@@ -659,7 +673,7 @@ this.nama_pegawai=localStorage.getItem("user");
       Authorization: key,
     };
 
-   // console.log(body);
+    // console.log(body);
     this.http
       .post(this.baseUrl + "/dbkl/addComplaintInvestigation", body, {
         headers: headers,
@@ -677,7 +691,7 @@ this.nama_pegawai=localStorage.getItem("user");
             }
           }
           this.openSuccess();
-          
+
         },
         (error) => {
           this.spinner.hide();
@@ -702,16 +716,6 @@ this.nama_pegawai=localStorage.getItem("user");
   submit1() {
     this.uploadSubmit();
     this.submitted1 = true;
-    /*
-    let loc = localStorage.getItem("area");
-    localStorage.removeItem("area");
-
-    if (loc == null) {
-      this.check1 = true;
-      this.messageValue = "Required Field";
-      return;
-    }
-    */
     this.spinner.show();
     this.tindakanA = this.tindakan1A;
 
@@ -722,18 +726,19 @@ this.nama_pegawai=localStorage.getItem("user");
     this.laporan_siasatanA = this.report1A;
 
     let body = {
-      nama_pegawai:this.nama_pegawai1,
+      nama_pegawai: this.nama_pegawai1,
       zon: this.zonA,
-      parlimenA:this.parlimenA,
+      parlimenA: this.parlimenA,
       tarikh_siasatan: this.tarikh_siasatanA,
-     // nama_pegawai: this.nama_pegawaiA,
+      // nama_pegawai: this.nama_pegawaiA,
       lokasi_siasatan: "0,0",
       laporan_siasatan: this.report1A,
       tindakan: this.tindakan1A,
       // susulan: this.susulan1A,
       ullasan_penyelia: this.ullasan_penyelia1A,
       ullasan_ketua_seksyen: this.ullasan_ketua_seksyen1A,
-      ullasan_ketua_unit:this.ulasanpenyelia,
+      ullasan_ketua_unit: this.ulasanpenyelia,
+      no_ic_pegawai_mtk: this.namaPegawaiMtk,
       //ulasan_timbalan:this.ulasan_timbalanA,
       sebelum_siasatan: this.firstFile
       // selepas_siasatan: this.firstFile1
@@ -808,17 +813,17 @@ this.nama_pegawai=localStorage.getItem("user");
       no_telefon: this.no_telefonB,
       emel: this.emelB,
       no_faksimili: this.no_faksimiliB,
-      gambar:this.firstFile3,
+      gambar: this.firstFile3,
       sumber_aduan: this.sumber_aduanB,
       lain_lain: this.lain_lainB,
       tarikh_aduan: this.tarikh_aduanB,
       tarikh_terima: this.tarikh_terimaB,
       lokasi_aduan: this.lokasi_aduanB,
-      cause:this.causeA,
+      cause: this.causeA,
       keterangan_aduan: this.keterangan_aduanB,
       ullasan_penyelia: this.ullasan_penyeliaB,
       ullasan_ketua_seksyen: this.ullasan_ketua_seksyenB,
-      ulasanKetua_unit:this.ulasanKetua_unit,
+      ulasanKetua_unit: this.ulasanKetua_unit,
     };
     let key = localStorage.getItem("AccessToken");
     let headers = {
@@ -905,21 +910,21 @@ this.nama_pegawai=localStorage.getItem("user");
 
 
 
-  openSuccess(){
-    this.displaysuccess="block"
+  openSuccess() {
+    this.displaysuccess = "block"
   }
 
-  closeSuccess(){
-    this.displaysuccess="none"
+  closeSuccess() {
+    this.displaysuccess = "none"
     this.openSuccessModal();
   }
 
-  openError(){
-    this.errorDisplay1="block";
+  openError() {
+    this.errorDisplay1 = "block";
   }
 
-  closeError(){
-    this.errorDisplay1="none";
+  closeError() {
+    this.errorDisplay1 = "none";
   }
   uploadSubmit() {
     for (var j = 0; j < this.uploader.queue.length; j++) {
@@ -930,12 +935,12 @@ this.nama_pegawai=localStorage.getItem("user");
       this.firstFile = fileItem.name;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + j);
-      this.uploadFile(data).subscribe((data) => {});
+      this.uploadFile(data).subscribe((data) => { });
     }
     this.uploader.clearQueue();
   }
 
-  uploadSubmit1(){
+  uploadSubmit1() {
     for (var j = 0; j < this.uploader2.queue.length; j++) {
       let data2 = new FormData();
       let fileItem = this.uploader2.queue[j]._file;
@@ -944,11 +949,11 @@ this.nama_pegawai=localStorage.getItem("user");
       this.firstFile2 = fileItem.name;
       data2.append("file", fileItem);
       data2.append("fileSeq", "seq" + j);
-      this.uploadFile(data2).subscribe((data) => {});
+      this.uploadFile(data2).subscribe((data) => { });
     }
     this.uploader2.clearQueue();
   }
-  uploadSubmit2(){
+  uploadSubmit2() {
     for (var j = 0; j < this.uploader3.queue.length; j++) {
       let data3 = new FormData();
       let fileItem = this.uploader3.queue[j]._file;
@@ -959,7 +964,7 @@ this.nama_pegawai=localStorage.getItem("user");
       this.myfiles3 = JSON.stringify(this.UploaderData4);
 
       this.firstFile3 = fileItem.name;
-     // console.log(this.firstFile3);
+      // console.log(this.firstFile3);
       // console.log(
       //   "my string length........." +
       //     this.myfiles.substring(1, this.myfiles.length - 1)
@@ -967,7 +972,7 @@ this.nama_pegawai=localStorage.getItem("user");
       // window.alert(this.firstFile)
       data3.append("file", fileItem);
       data3.append("fileSeq", "seq" + j);
-      this.uploadFile(data3).subscribe((data) => {});
+      this.uploadFile(data3).subscribe((data) => { });
       // this.uploadFile(data).subscribe(data => alert(data.message));
     }
     this.uploader3.clearQueue();

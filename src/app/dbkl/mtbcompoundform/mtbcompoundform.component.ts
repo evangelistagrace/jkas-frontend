@@ -11,7 +11,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class MtbcompoundformComponent implements OnInit {
   basePublicUrl = environment.basePublicUrl;
-
+  namaPegawaiMtk: string;
+  mtkList: any = [];
   no_notis_bas: any;
   lokasi_kompaun: any;
   parlimen: any;
@@ -56,7 +57,7 @@ export class MtbcompoundformComponent implements OnInit {
   uuk33: boolean = false;
   sek47_1a: boolean = false;
   sek47_1c: boolean = false;
-  sek47_1d:boolean = false;
+  sek47_1d: boolean = false;
   sek47_1e: boolean = false;
   sek47_1g: boolean = false;
   sek47_2b: boolean = false;
@@ -66,7 +67,7 @@ export class MtbcompoundformComponent implements OnInit {
   uuk3: boolean = false;
   uuk5_c: boolean = false;
   uuk5_b: boolean = false;
-  uuk5_a:boolean = false;
+  uuk5_a: boolean = false;
   sek46_1g: boolean = false;
   sek46_1f: boolean = false;
   sek46_1e: boolean = false;
@@ -77,7 +78,7 @@ export class MtbcompoundformComponent implements OnInit {
   username: string;
   userrole: string;
 
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService) {}
+  constructor(private http: HttpClient, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.userrole = localStorage.getItem("roleforuser");
@@ -87,7 +88,7 @@ export class MtbcompoundformComponent implements OnInit {
     this.lang = localStorage.getItem("lang");
     let key = localStorage.getItem("dbkl_access_token");
     localStorage.setItem("path", "/dbkl/mtbcompoundform");
-    
+
     let headers = {
       "Content-Type": "application/json",
       Authorization: key,
@@ -121,6 +122,19 @@ export class MtbcompoundformComponent implements OnInit {
       tempat: new FormControl("", [Validators.required]),
     });
     this.is1st = false;
+
+    this.http
+    .get(this.basePublicUrl + '/dbkl/listMtk', {
+      headers: headers,
+    })
+    .subscribe((res:any) => {
+      this.spinner.hide();
+      for (let key of res) {  
+        this.mtkList.push(key);
+      }
+    }, (error) => {
+      alert('Failed to get mtk list: ' + JSON.stringify(error))
+    });
   }
 
   public onSaveUsernameChanged1(value: boolean) {
@@ -191,7 +205,7 @@ export class MtbcompoundformComponent implements OnInit {
   }
 
 
-  addbutton(){
+  addbutton() {
     this.is1st = true;
   }
 
@@ -236,14 +250,14 @@ export class MtbcompoundformComponent implements OnInit {
       uuk5_a: this.uuk5_a,
       uuk5_b: this.uuk5_b,
       uuk5_c: this.uuk5_c,
-      uuk33:this.uuk33,
-      uuk34:this.uuk34,
+      uuk33: this.uuk33,
+      uuk34: this.uuk34,
       uuk35: this.uuk35,
       butir_butir_kesalahan: this.butir_butir_kesalahan,
       tarikh: this.tarikh,
       waktu: this.waktu,
       tempat: this.tempat,
-      addSeksyen:'',
+      addSeksyen: '',
     };
     // console.log("body", body);
 
@@ -260,36 +274,36 @@ export class MtbcompoundformComponent implements OnInit {
       .subscribe(
         (data) => {
           this.spinner.hide();
-          this.anncdata=data["message"] ;
-         // console.log(this.anncdata);
+          this.anncdata = data["message"];
+          // console.log(this.anncdata);
           if (this.anncdata == "compound_form_added") {
-    
+
             if (this.lang == "en") {
-  
+
               this.sucessmsg = "Compound Form added successfully!";
             }
             else {
               this.sucessmsg = "Borang Kompaun berjaya ditambahkan!";
             }
-          this.openModal();
-            }  // console.log(data);
+            this.openModal();
+          }  // console.log(data);
         },
         (error) => {
           this.spinner.hide();
-          this.anncdata=error["message"] ;
-          
+          this.anncdata = error["message"];
+
           if (this.anncdata == "compound_form_not_added") {
-    
+
             if (this.lang == "en") {
-  
+
               this.errssmsg = "Compound Form could not be added! Please refer console logs for further details.";
             }
             else {
               this.errssmsg = "Borang Kompaun tidak dapat ditambahkan! Sila rujuk log konsol untuk keterangan lebih lanjut.";
             }
-          this.openModal1();
+            this.openModal1();
+          }
         }
-      }
       );
   }
 
@@ -308,7 +322,7 @@ export class MtbcompoundformComponent implements OnInit {
   }
   onCloseHandled1() {
     this.display1 = "none";
-    
+
   }
   selectChangeHandler(event: any) {
     this.selectedParlimen = event.target.value;
@@ -356,8 +370,8 @@ export class MtbcompoundformComponent implements OnInit {
           this.router.navigateByUrl("/dbkl/adminregister");
           localStorage.removeItem("AccessToken");
           localStorage.removeItem("user_type");
-          localStorage.setItem("isdbkl","false");
- 	  this.spinner.hide();
+          localStorage.setItem("isdbkl", "false");
+          this.spinner.hide();
         },
         (error) => {
           // console.log("error is", error["error"]);

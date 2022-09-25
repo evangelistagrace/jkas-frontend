@@ -97,6 +97,8 @@ export class NewInventoryComponent implements OnInit {
   subArea: Object;
   parliament_subarea: any;
   check: boolean;
+  kadar: any;
+  frekuensi: any;
 
   constructor(
     private http: HttpClient,
@@ -307,7 +309,9 @@ export class NewInventoryComponent implements OnInit {
         .tarikh_semakandi_lapangant_keadeansemata_ada,
       tarikh_semakandi_lapangant_keadeansemata_tiada: this
         .tarikh_semakandi_lapangant_keadeansemata_tiada,
-      surat_serahan: this.fileName
+      surat_serahan: this.fileName,
+      kadar: this.kadar,
+      frekuensi: this.frekuensi
     };
 
     let headers = {

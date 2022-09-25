@@ -21,14 +21,14 @@ export class InspectingofficersComponent implements OnInit {
   value4: any = [];
   mtb: any;
   p;
-  dataVALUE:any;
+  dataVALUE: any;
   datevalue: any;
   Role: string;
-  dataShow: any=[];
+  dataShow: any = [];
   isAdminType: string;
   username: string;
   userrole: string;
-  getDate: any=[];
+  getDate: any = [];
   parli: string;
   mtbUser: string;
   parlime: string;
@@ -60,11 +60,11 @@ export class InspectingofficersComponent implements OnInit {
           this.spinner.hide();
           this.data = res;
           //console.log(this.data);
-          
-          for(let key of this.data){
+
+          for (let key of this.data) {
             this.dataShow.push(key);
           }
-          
+
         },
         (error) => {
           this.loginError = true;
@@ -140,7 +140,7 @@ export class InspectingofficersComponent implements OnInit {
       "Content-Type": "application/json",
       Authorization: key,
     };
-   
+
 
     $("table.paginated").each(function () {
       var currentPage = 0;
@@ -201,14 +201,14 @@ export class InspectingofficersComponent implements OnInit {
     });
   }
 
-  date(id: string,parlimen:string) {
+  date(id: string, parlimen: string) {
     this.show = true;
-    this.parli=parlimen;
+    this.parli = parlimen;
     this.mtb = id;
-    localStorage.setItem("mtbId",this.mtb);
-    localStorage.setItem("parlime",this.parli);
-   // console.log(this.parli);
-    
+    localStorage.setItem("mtbId", this.mtb);
+    localStorage.setItem("parlime", this.parli);
+    // console.log(this.parli);
+
     //console.log("mtb",this.mtb);
     let key = localStorage.getItem("AccessToken");
     let headers = {
@@ -216,18 +216,18 @@ export class InspectingofficersComponent implements OnInit {
       Authorization: key,
     };
     let body = {
-      officer_name:this.mtb,
+      officer_name: this.mtb,
     };
     this.http
-      .post(this.basePublicUrl + "/dbkl/getMTBOfficersTarikh",body, {
+      .post(this.basePublicUrl + "/dbkl/getMTBOfficersTarikh", body, {
         headers: headers,
       })
       .subscribe(
         (res) => {
           this.spinner.hide();
-          this.getDate = res;  
+          this.getDate = res;
           //console.log(this.getDate);
-          
+
         },
         (error) => {
           this.loginError = true;
@@ -240,25 +240,25 @@ export class InspectingofficersComponent implements OnInit {
         this.value.push(v);
         this.value4 = this.value;
         //console.log("asa",this.value4);
-        
+
       }
     }
     let body1 = {
       officer_name: this.mtb,
 
     };
-   // console.log(",,,,,",body);
-    
+    // console.log(",,,,,",body);
+
     this.http
-      .post(this.basePublicUrl + "/dbkl/getMTB" ,body1, {
+      .post(this.basePublicUrl + "/dbkl/getMTB", body1, {
         headers: headers,
       })
       .subscribe(
         (res) => {
           this.spinner.hide();
-          this.getMtb=res[0];
-        //  console.log(this.getMtb);
-        localStorage.setItem("mtbids",this.getMtb)
+          this.getMtb = res[0];
+          //  console.log(this.getMtb);
+          localStorage.setItem("mtbids", this.getMtb)
         },
         (error) => {
           this.loginError = true;
@@ -272,11 +272,11 @@ export class InspectingofficersComponent implements OnInit {
   backtotop() {
     window.scroll(0, 0);
   }
-  redir(id:string){
-    this.datee=id;
-    this.mtbUser=localStorage.getItem("mtbId");
-    this.parlime=localStorage.getItem("parlime");
-    this.router.navigate(['/dbkl/mtbmap'], { queryParams: { value:  this.datee,value2: this.mtbUser,value3: this.parlime} });
+  redir(id: string) {
+    this.datee = id;
+    this.mtbUser = localStorage.getItem("mtbId");
+    this.parlime = localStorage.getItem("parlime");
+    this.router.navigate(['/dbkl/mtbmap'], { queryParams: { value: this.datee, value2: this.mtbUser, value3: this.parlime } });
   }
 
   chang() {
@@ -288,27 +288,27 @@ export class InspectingofficersComponent implements OnInit {
         this.value4 = [];
         $("#myTable").append(
           "<tr><td [routerLink]='['/dbkl/dailyworkinfo']' [queryParams]='{ value: v.date,value2:v.id_mtb,value3:v.parlimen}' style='color:blue;text-align:center;cursor: pointer;' >" +
-            v.date +
-            "</td></tr>"
+          v.date +
+          "</td></tr>"
         );
       }
     }
   }
 
-  searchMtb(e){
-   // console.log(e);
-    this.dataShow=[];
-    for(let i=0;i<this.data.length;i++){
+  searchMtb(e) {
+    // console.log(e);
+    this.dataShow = [];
+    for (let i = 0; i < this.data.length; i++) {
       //console.log(this.data[i].id_mtb);
-      
-      if(this.data[i].officer_name.includes(e)){
-        
+
+      if (this.data[i].officer_name.includes(e)) {
+
         this.dataShow.push(this.data[i]);
-      //  console.log(this.dataShow);
-        
+        //  console.log(this.dataShow);
+
       }
     }
-    
+
   }
   logout() {
     this.spinner.show();
@@ -330,8 +330,8 @@ export class InspectingofficersComponent implements OnInit {
           this.router.navigateByUrl("/dbkl/adminregister");
           localStorage.removeItem("AccessToken");
           localStorage.removeItem("user_type");
-          localStorage.setItem("isdbkl","false");
- 	  this.spinner.hide();
+          localStorage.setItem("isdbkl", "false");
+          this.spinner.hide();
           this.spinner.hide();
         },
         (error) => {
@@ -339,20 +339,20 @@ export class InspectingofficersComponent implements OnInit {
         }
       );
   }
-   searchdate(e){
+  searchdate(e) {
     console.log(e);
-  this.value4=[];
-   for(let i=0;i<this.getDate.length;i++){     
-     if(this.getDate[i].includes(e)){
-       this.value4.push(this.getDate[i]);
-      console.log(this.value4);
-      
-     }
-    //  else{
-    //    this.noDataFound="NO data found";
-    //    this.value4.push(this.noDataFound);
-    //   console.log(this.value4);
-    //  }
-   }
- }
+    this.value4 = [];
+    for (let i = 0; i < this.getDate.length; i++) {
+      if (this.getDate[i].includes(e)) {
+        this.value4.push(this.getDate[i]);
+        console.log(this.value4);
+
+      }
+      //  else{
+      //    this.noDataFound="NO data found";
+      //    this.value4.push(this.noDataFound);
+      //   console.log(this.value4);
+      //  }
+    }
+  }
 }

@@ -225,23 +225,27 @@
               </div>
             </div>
           </div>
-
           <div class="form-group col-md-12 col-xs-12">
             <h5 style="background-color: #253d84" class="card-header info-color text-center white-text py-6">
               <strong style="color: white" i18n="@@n42">COMPOUND PRODUCING OFFICER INFORMATION</strong>
             </h5>
           </div>
-          <div class="form-group col-md-12 col-xs-12">
-            <label for="select" i18n="@@n43">Officer ID</label><sup>*</sup>
-            <!-- <select class="browser-default custom-select" formControlName="id_mtb" id="select" [(ngModel)]="id_mtb"
-              [ngClass]="{
-                'is-invalid': submitted && f.id_mtb.errors
+          <div class="form-group col-md-12">
+            <label for="select" i18n="@@mtbwrkfrm24mtk">Name of officer</label>
+            <select class="browser-default custom-select" id="select" formControlName="namaPegawaiMtk"
+              [(ngModel)]="namaPegawaiMtk" [ngClass]="{
+                'is-invalid': submitted && f.namaPegawaiMtk.errors
               }">
-              <option value="" disabled selected>Select a officerid</option>
-              <option *ngFor="let item of IdPegawai">
-                {{ item }}
+              <option value="" disabled="" selected="">
               </option>
-            </select> -->
+              <option *ngFor="
+              let key of mtkList" value="{{ key.no_kad_pengenalan }}">
+                {{ key.officer_name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group col-md-12 col-xs-12">
+            <label for="select" i18n="@@mtbwrkfrm24">Officer ID</label><sup>*</sup>
             <input class="form-control" list="item" [(ngModel)]="id_mtb" name="item" formControlName="id_mtb" [ngClass]="{
               'is-invalid': submitted && f.id_mtb.errors
             }" />

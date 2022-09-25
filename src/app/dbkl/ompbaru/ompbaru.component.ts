@@ -88,9 +88,9 @@ export class OmpbaruComponent implements OnInit {
   displayedColumns: string[] = ['areaCode', 'location', 'parlimen', 'coordinate', 'totalPremise',
                                 'domesticWaste', 'bulkWaste', 'illegalWaste','road','tpkk','kawasanLapang',
                                 'jejantasSapuan','jejantasCucian','cucianSiarKaki','cucianSiarKakiBerbumbung','cucianStesenBas','cucianLongkang',
-                                'potongRumput','sampahKebun','catatan','tarikhSerahan','checkAda','checkTiada','kemaskini'];
+                                'potongRumput','sampahKebun','kadar','frekuensi','jumlah','catatan','tarikhSerahan','checkAda','checkTiada','kemaskini'];
   headers: string[] = ['header-areaCode','header-location','header-parlimen','header-coordinate','header-totalUnitPremise','header-frequency',
-                        'header-measurement','header-notes','header-reference','header-review','header-edit'];
+                        'header-measurement','header-kadar','header-frekuensi','header-jumlah','header-notes','header-reference','header-review','header-edit'];
   headers2: string[] = ['header-domesticWaste','header-bulkGarbage','header-illegalGarbage','header-sweep','header-bridges','header-laundry','header-gutterWash',
                         'header-cutTheGrass','header-gardenWaste','header-available','header-none'];
   headers3: string[] = ['header-road','header-tpkk','header-parking','header-sweep2','header-laundry2','header-postFooter','header-postCoveredLegs','header-busTaxi'];
@@ -197,6 +197,8 @@ export class OmpbaruComponent implements OnInit {
               road: result.ukuran_panjang_sapuan_jalan,
               totalPremise: result.jumlah_unit_premis,
               tpkk: result.ukuran_panjang_sapuan_TPKK,
+              kadar: result.kadar,
+              frekuensi: result.frekuensi,
               catatan: result.catatan,
               ompId: result.omp_id,
               tarikh: result.rujuken_tarikh_serahan,

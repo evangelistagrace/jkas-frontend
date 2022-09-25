@@ -180,9 +180,9 @@ export class FinacialClaimReviewComponent implements OnInit {
       
     };
 
-    this.selectGroup = new FormGroup({
+    this.selectGroup = new FormGroup({  
       status: new FormControl("", [Validators.required]),
-      comment:new FormControl("", [Validators.required]),
+      comment:new FormControl(""),
     });
     window.scroll(0, 0);
 
@@ -354,10 +354,10 @@ export class FinacialClaimReviewComponent implements OnInit {
   updateInvoice() {
     console.log('status: ', this.updatestatus, ', ulasan: ', this.ulasan_pegawai);
     this.submitted = true;
-    if (this.selectGroup.invalid) {
-      alert('Sila semak kembali input anda.');
-      return;
-    }
+    // if (this.selectGroup.invalid) {
+    //   alert('Sila semak kembali input anda.');
+    //   return;
+    // }
     this.spinner.show();
     this.uploadSubmit();
 
