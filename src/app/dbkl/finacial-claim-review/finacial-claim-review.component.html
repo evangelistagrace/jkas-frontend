@@ -200,8 +200,7 @@
                 <label class="linerr" for="textInput" i18n="@@finalclmrA5">Claim Amount :</label>
               </div>
               <div class="col-sm-9">
-                <input type="text" style="width: 350px;" readonly id="textInput" [(ngModel)]="jumlah_tuntutan"
-                  [ngModelOptions]="{ standalone: true }" class="form-control mb-4" />
+                <input type="text" style="width: 350px;" readonly id="textInput" value="{{ jumlah_tuntutan | currency: 'RM ' }}" class="form-control mb-4" />
               </div>
             </div>
             <div class="scrollit">
@@ -219,12 +218,21 @@
                   <tr>
                     <th scope="row">Inbois</th>
                     <td>
-                      <label for="file" class="btn-2 d-inline"><span *ngFor="let key of pdf3; index as i">
-                          <a style="cursor: pointer; color: red !important" (click)="getPdf(key)" target="_blank"
-                            i18n="@@finalclmr10">{{ key }}</a><br /> </span><br /></label>
-                      <span class="d-block"></span>
+                      <div *ngIf="pdf3.length != 0;else nofile">
+                        <label for="file" class="btn-2 d-inline">
+                          <span *ngFor="let key of pdf3; index as i">
+                            <a style="cursor: pointer; color: red !important" (click)="getPdf(key)" target="_blank"
+                              i18n="@@finalclmr10">{{ key }}
+                            </a>
+                            <br />
+                          </span>
+                          <br />
+                        </label>
+                        <span class="d-block"></span>
+                      </div>
+                      <ng-template #nofile>Tiada Dokumen Disediakan</ng-template>
                     </td>
-                    <td rowspan="3">
+                    <td rowspan="5">
                       <select class="browser-default custom-select mb-4" id="select" (change)="getSelected($event)"
                         [ngClass]="{
                           'is-invalid': submitted && f.status.errors
@@ -248,7 +256,7 @@
                         </div>
                       </div>
                     </td>
-                    <td rowspan="3">
+                    <td rowspan="5">
                       <textarea type="text" style="height: 33vh; width: 150px;" minlength="50" id="textInput"
                         class="form-control mb-4" name="ulasan_pegawai" formControlName="comment"
                         [(ngModel)]="ulasan_pegawai" [ngClass]="{
@@ -267,29 +275,71 @@
                       service)
                     </th>
                     <td>
-                      <label for="file" class="btn-2 d-inline"><span *ngFor="let key of pdf1; index as i">
-                          <a style="cursor: pointer; color: red !important" (click)="getPdf(key)" target="_blank"
-                            i18n="@@finalclmr10">{{ key }}</a>
-                        </span>
-                        <br />
-                      </label>
-                      <span class="d-block"></span>
+                      <div *ngIf="pdf1.length != 0;else noringkasan">
+                        <label for="file" class="btn-2 d-inline">
+                          <span *ngFor="let key of pdf1; index as i">
+                            <a style="cursor: pointer; color: red !important" (click)="getPdf(key)" target="_blank"
+                              i18n="@@finalclmr10">{{ key }}</a>
+                          </span>
+                          <br />
+                        </label>
+                        <span class="d-block"></span>
+                      </div>
+                      <ng-template #noringkasan>Tiada Dokumen Disediakan</ng-template>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row" i18n="@@finalclmr11">Attachment</th>
                     <td>
-                      <label for="file" class="btn-2 d-inline"><span *ngFor="let key of pdf2; index as i">
+                      <div *ngIf="pdf2.length != 0; else noattachment">
+                        <label for="file" class="btn-2 d-inline"><span *ngFor="let key of pdf2; index as i">
                           <a style="cursor: pointer; color: red !important" (click)="getPdf(key)" target="_blank"
                             i18n="@@finalclmr10">{{ key }}</a><br /> </span><br />
-                      </label>
-                      <span class="d-block"></span>
+                        </label>
+                        <span class="d-block"></span>
+                      </div>
+                      <ng-template #noattachment>Tiada Dokumen Disediakan</ng-template>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Borang BD44/45 atau bilangan logistik dan pekerja bagi setiap kawasan serahan baru</th>
+                    <td>
+                      <div *ngIf="bd44;else noBd44">
+                        <label for="file" class="btn-2 d-inline">
+                          <a 
+                            style="cursor: pointer; color: red !important" 
+                            (click)="getPdf(bd44)" 
+                            target="_blank"
+                            i18n="@@finalclmr10">{{ bd44 }}</a>
+                          <br />
+                          <br />
+                        </label>
+                        <span class="d-block"></span> 
+                      </div>
+                      <ng-template #noBd44>Tiada Dokumen Disediakan</ng-template>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Laporan tuntutan KWPSPPA bagi kawasan baru</th>
+                    <td>
+                      <div *ngIf="laporanTuntutan;else noLaporanTuntutan">
+                        <label for="file" class="btn-2 d-inline">
+                          <a 
+                            style="cursor: pointer; color: red !important" 
+                            (click)="getPdf(laporanTuntutan)" 
+                            target="_blank"
+                            i18n="@@finalclmr10">{{ laporanTuntutan }}</a>
+                          <br />
+                          <br />
+                        </label>
+                        <span class="d-block"></span> 
+                      </div>
+                      <ng-template #noLaporanTuntutan>Tiada Dokumen Disediakan</ng-template>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
-
             <div class="btn-row d-flex justify-content-center">
               <button class="look_for" (click)="updateInvoice()" i18n="@@submit">
                 Submit

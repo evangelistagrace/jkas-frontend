@@ -142,11 +142,6 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                   <input type="text" id="namaPemohan" style="width: 100%;" readonly name="no_inbois"
                     class="form-control mb-2" placeholder="" formControlName="noinvoicee" [(ngModel)]="no_inbois" />
                 </div>
-                <!-- <div *ngIf="submitted && f.noinvoice.errors" class="invalid-feedback">
-                  <div *ngIf="f.noinvoice.errors.required" class="errorMessage" i18n="@@jobfvm1">
-                    No Invoices is required
-                  </div>
-                </div> -->
                 <div class="col-sm-2">
                   <label for="namaPemohan" class="linerr" i18n="@@kontractor"> Contractor </label><span
                     style="color: #253d84; font-size: large;width: 100%; padding-top: 1em"></span>
@@ -155,15 +150,6 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                   <input type="text" id="namaPemohan" style="width: 100%;" readonly name="kontraktor"
                     class="form-control mb-2" placeholder="" formControlName="kontraktorr" [(ngModel)]="kontraktor" />
                 </div>
-                <!-- <div *ngIf="submitted && f.kontraktor.errors" class="invalid-feedback">
-                  <div *ngIf="f.kontraktor.errors.required" class="errorMessage" i18n="@@jobfvm2">
-                    Contractor is required
-                  </div>
-                  <div *ngIf="f.kontraktor.errors.pattern" class="errorMessage">
-                    <span i18n="@@invalidname2">Invaid Contractor Name</span>
-                  </div>
-                </div> -->
-
                 <div class="col-sm-2">
                   <label for="namaPemohan" class="linerr" i18n="@@applicantname">Applicant Name </label>
                 </div>
@@ -172,29 +158,12 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                     placeholder="" formControlName="namaPemohan" [ngClass]="{
                   'is-invalid': submitted && f.namaPemohan.errors
                 }" [(ngModel)]="nama_pemohon" />
-                  <!-- <div
-                  *ngFor="let validation of validation_messages.namaPemohan"
-                >
-                  <div
-                    class="error-msg text-danger"
-                    *ngIf="
-                      imageGroup
-                        .get('namaPemohan')
-                        .hasError(validation.type) &&
-                      (imageGroup.get('namaPemohan').dirty ||
-                        imageGroup.get('namaPemohan').touched)
-                    "
-                  >
-                    {{ validation.message }}
-                  </div>
-                </div> -->
                   <div *ngIf="submitted && f.namaPemohan.errors" class="invalid-feedback">
                     <div *ngIf="f.namaPemohan.errors.required" class="errorMessage" i18n="@@jobfvm3">
                       Application Name is required
                     </div>
                   </div>
                 </div>
-
                 <div class="col-sm-2">
                   <label for="eMel" class="linerr" i18n="@@email"> Email </label>
                 </div>
@@ -204,18 +173,6 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                   'is-invalid': submitted && f.eMel.errors
                 }" />
                 </div>
-                <!-- <div *ngFor="let validation of validation_messages.eMel">
-                  <div
-                    class="error-msg text-danger"
-                    *ngIf="
-                      imageGroup.get('eMel').hasError(validation.type) &&
-                      (imageGroup.get('eMel').dirty ||
-                        imageGroup.get('eMel').touched)
-                    "
-                  >
-                    {{ validation.message }}
-                  </div>
-                </div> -->
                 <div *ngIf="submitted && f.eMel.errors" class="invalid-feedback">
                   <div *ngIf="f.eMel.errors.required" class="errorMessage" i18n="@@jobfvm5">
                     Email is required
@@ -234,24 +191,6 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                   'is-invalid': submitted && f.jumlahTuntutan.errors
                 }" />
                 </div>
-                <!-- <div
-                  *ngFor="
-                    let validation of validation_messages.jumlahTuntutan
-                  "
-                >
-                  <div
-                    class="error-msg text-danger"
-                    *ngIf="
-                      imageGroup
-                        .get('jumlahTuntutan')
-                        .hasError(validation.type) &&
-                      (imageGroup.get('jumlahTuntutan').dirty ||
-                        imageGroup.get('jumlahTuntutan').touched)
-                    "
-                  >
-                    {{ validation.message }}
-                  </div>
-                </div> -->
                 <div *ngIf="submitted && f.jumlahTuntutan.errors" class="invalid-feedback">
                   <div *ngIf="f.jumlahTuntutan.errors.required" class="errorMessage" i18n="@@jobfvm7">
                     Total Claims is required
@@ -354,13 +293,7 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                         <a class="filename" style="color: black" target="_blank" *ngIf="showfiles"
                           href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}">{{ data }}<br /></a>
                       </span>
-                      <!-- <input
-                            type="button"
-                            class="btn btn-outline-dark"
-                            value="Maut Naik Dokumen"
-                          /> -->
                       <br />
-
                       <table>
                         <tbody style="font-size: x-small; padding-right: 5px">
                           <tr *ngFor="let item of uploader1.queue">
@@ -390,7 +323,6 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                           padding-top: 1em;
                         ">*</span>
                     </td>
-
                     <td>
                       <label class="custom-file-upload">
                         <input type="file" ng2FileSelect accept=".pdf" [uploader]="uploader2" multiple
@@ -442,7 +374,6 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
 
                       <br />(<span>Borang BD44/45 atau bilangan logistik dan pekerja bagi setiap kawasan serahan baru</span>)
                     </td>
-
                     <td>
                       <label class="custom-file-upload">
                         <input type="file" ng2FileSelect accept=".pdf" [uploader]="bd44Uploader" multiple

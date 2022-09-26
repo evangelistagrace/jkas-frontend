@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
 import { MeetingService } from '../services/meeting.service';
-import { TableService } from '../table/table.service';
 import * as $ from "jquery";
 import { BsDatepickerConfig, BsDatepickerViewMode } from 'ngx-bootstrap/datepicker';
 
@@ -55,42 +54,25 @@ export class MeetingmodalComponent implements OnInit {
   errorMessage: string;
   errmsg: string;
   meetingupdate: string;
-  masa: any=[];
-
-
+  masa: any = [];
 
   constructor(
     private http: HttpClient,
     private spinner: NgxSpinnerService,
-    private tservice: TableService,
     private router: Router,
     private met: MeetingService
   ) {
-    // this.bsConfig = Object.assign({}, {
-    //   containerClass : '#1111A3'
-    // });
-
     this.minDate = new Date();
     this.maxDate = new Date();
     this.minDate.setDate(this.minDate.getDate());
     this.maxDate.setDate(this.maxDate.getDate() + 7);
-
   }
 
   ngOnInit() {
     this.lang = localStorage.getItem("lang");
-
-
-
-
-    this.data = this.met.getData;
+    this.data = this.met.getMeetingData;
     this.meetingValue = this.met.getMeetingData;
     this.keyValue = this.met.value;
-    
-  
-
-
-
     $(document).ready(function () {
       var dtToday = new Date();
       var month = dtToday.getMonth() + 1;
@@ -119,13 +101,10 @@ export class MeetingmodalComponent implements OnInit {
     // this.no_siri_permohonan=e;
     for (let i = 0; i < this.meetingValue.length; i++) {
       if (this.meetingValue[i].no_siri_permohonan == e) {
-       
-        if(this.meetingValue[i].tarikh_mesyuarat==null){
-          this.meetingValue[i].tarikh_mesyuarat="";
+        if (this.meetingValue[i].tarikh_mesyuarat == null) {
+          this.meetingValue[i].tarikh_mesyuarat = "";
         }
-        
         this.datePickerValue = new Date(this.meetingValue[i].tarikh_mesyuarat);
-     
         this.detailed_meeting_id = this.meetingValue[i].detailed_meeting_id;
         this.no_siri_permohonan = this.meetingValue[i].no_siri_permohonan;
         this.jawatankuasa_mesurat = this.meetingValue[i].jawatankuasa_mesurat;
@@ -140,38 +119,26 @@ export class MeetingmodalComponent implements OnInit {
         this.tempat_mesyuarat = this.meetingValue[i].tempat_mesyuarat;
         this.agenda_dan_minit = this.meetingValue[i].agenda_dan_minit;
         this.meeting_dokumen = this.meetingValue[i].meeting_dokumen;
-       
-    
-        
       }
     }
-
-
   }
   closeModal() {
     this.ck = false;
     this.display = "none";
   }
-
   update(id) {
-   
     let dat = "" + this.datePickerValue;
-
-
     if (dat == 'null') {
       this.check = true;
       return;
     }
-
     if (dat == 'Invalid Date') {
       this.check = true;
       return;
     }
     this.meetingDate = new Date(dat);
-
     let date = this.meetingDate.getDate();
     let month = this.meetingDate.getMonth() + 1;
-
 
     if (date < 10) {
       this.dateValue = '0' + date;
@@ -185,9 +152,7 @@ export class MeetingmodalComponent implements OnInit {
       this.monthValue = month;
     }
 
-
     let meet = this.meetingDate.getFullYear() + "-" + this.monthValue + "-" + this.dateValue;
-
     this.spinner.show();
     let key = localStorage.getItem("dbkl_access_token");
 
@@ -211,11 +176,6 @@ export class MeetingmodalComponent implements OnInit {
       "agenda_dan_minit": this.agenda_dan_minit,
       "meeting_dokumen": this.meeting_dokumen
     }
-
-    //console.log(body);
-    
-
-
     this.http
       .put(environment.basePublicUrl + "/dbkl/updateDetailedMeeting/" + id, body, {
         headers: headers,
@@ -241,8 +201,6 @@ export class MeetingmodalComponent implements OnInit {
           this.loginError = true;
           this.spinner.hide();
           this.errorMsg = error["error"]["message"];
-
-
           if (this.errorMsg == "meeting_not_updated") {
             if (this.lang == "en") {
               this.errmsg = "Meeting could not be added! Please refer console logs for further details.";
@@ -250,17 +208,14 @@ export class MeetingmodalComponent implements OnInit {
             else {
               this.errmsg = "Mesyuarat tidak dapat ditambahkan! Sila rujuk log konsol untuk keterangan lebih lanjut.";
             }
-
           }
-          // this.openErrorModal();
         });
-
   }
 
-  reset(id){
+  reset(id) {
     this.datePickerValue = new Date("");
     this.masa_mesyuarat = null;
-    this.tempat_mesyuarat=null;
+    this.tempat_mesyuarat = null;
 
     this.spinner.show();
     let key = localStorage.getItem("dbkl_access_token");
@@ -295,10 +250,10 @@ export class MeetingmodalComponent implements OnInit {
       .subscribe(
         (res) => {
 
-         
-        //  window.location.reload();
-        this.router.navigateByUrl("/dbkl/applicationprocess");
-         this.spinner.hide();
+
+          //  window.location.reload();
+          this.router.navigateByUrl("/dbkl/applicationprocess");
+          this.spinner.hide();
           this.meetingupdate = res["message"];
           if (this.meetingupdate == "meeting_updated") {
             if (this.lang == "en") {
@@ -325,7 +280,7 @@ export class MeetingmodalComponent implements OnInit {
             }
 
           }
-        //  this.openErrorModal();
+          //  this.openErrorModal();
         });
 
   }

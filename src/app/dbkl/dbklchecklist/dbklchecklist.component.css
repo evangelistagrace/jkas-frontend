@@ -1,4 +1,40 @@
+.message-dbkl {
+  background: #bfd0c5;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  padding: 5px;
+}
 
+.message-dbkl span {
+  font-weight: 500;
+  width: 400px;
+  right: 0%;
+  font-size: 14px !important;
+}
+
+.message-dbkl-draft {
+  background: #c4c991;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  padding: 5px;
+}
+
+.message-public {
+  background: #2979a9;
+  width: 72%;
+  padding: 2px;
+  color: white;
+  font-weight: normal;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  margin-top: 4px;
+  padding: 5px;
+}
+
+.message-public span {
+  width: 400px; 
+  font-size: 14px !important;
+}
 
 a {
   color: #253d84 !important;

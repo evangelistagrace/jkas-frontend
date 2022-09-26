@@ -193,15 +193,15 @@ export class PsppaapplicationproccessComponent implements OnInit {
           this.met.getData = this.data;
         },
       },
-      text: {
-        title: "7.CATATAN",
-        type: "custom",
-        renderComponent: DbklppsppacatatanComponent,
-        valuePrepareFunction: (cell, row) => {
-          this.met.value = row.no_siri_permohonan;
-          this.met.getData = row.text;
-        }
-      },
+      // text: {
+      //   title: "7.CATATAN",
+      //   type: "custom",
+      //   renderComponent: DbklppsppacatatanComponent,
+      //   valuePrepareFunction: (cell, row) => {
+      //     this.met.value = row.no_siri_permohonan;
+      //     this.met.getData = row.text;
+      //   }
+      // },
     },
   };
 

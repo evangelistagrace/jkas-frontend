@@ -54,9 +54,9 @@ export class FinacialClaimReviewComponent implements OnInit {
   display: string;
   display1: string;
   array1: any = [];
-  model:any;
-  model1:any;
-  model2:any;
+  model: any;
+  model1: any;
+  model2: any;
 
   splited: any = [];
   invoice: string;
@@ -88,14 +88,16 @@ export class FinacialClaimReviewComponent implements OnInit {
   pdf2: any = [];
   pd3: any = [];
   pdf3: any = [];
-  UploaderData1: any=[];
+  bd44: string;
+  laporanTuntutan: string;
+  UploaderData1: any = [];
 
   myfiles: string;
   firstFile: string;
-  UploaderData2: any=[];
+  UploaderData2: any = [];
   secondFIle: string;
   myfiles1: string;
-  UploaderData3: any=[];
+  UploaderData3: any = [];
   ThirdFile: string;
   myfiles2: string;
   filename: string;
@@ -131,7 +133,7 @@ export class FinacialClaimReviewComponent implements OnInit {
         this.filename = fileItem.name;
       }
       //console.log(this.filename);
-      
+
     };
     this.uploader1.onWhenAddingFileFailed = (
       item: any,
@@ -146,7 +148,7 @@ export class FinacialClaimReviewComponent implements OnInit {
         let fileItem1 = this.uploader1.queue[i]._file;
         this.filename1 = fileItem1.name;
       }
-     // console.log(this.filename1);
+      // console.log(this.filename1);
     };
     this.uploader2.onWhenAddingFileFailed = (
       item: any,
@@ -177,12 +179,12 @@ export class FinacialClaimReviewComponent implements OnInit {
         this.filename3 = fileItem3.name;
       }
       //console.log(this.filename3);
-      
+
     };
 
-    this.selectGroup = new FormGroup({  
+    this.selectGroup = new FormGroup({
       status: new FormControl("", [Validators.required]),
-      comment:new FormControl(""),
+      comment: new FormControl(""),
     });
     window.scroll(0, 0);
 
@@ -205,10 +207,17 @@ export class FinacialClaimReviewComponent implements OnInit {
         this.no_nbois,
         { headers: headers }
       )
-      .subscribe((res) => {
+      .subscribe((res: any) => {
+        console.log('result: ', res);
+        this.bd44 = res.bd44;
+        this.laporanTuntutan = res.laporan_tuntutan;
+        this.kontraktor = res.kontraktor;
+        this.e_mei = res.e_mei;
+        this.nama_pemohon = res.nama_pemohon;
+        this.jumlah_tuntutan = res.jumlah_tuntutan;
+
         this.spinner.hide();
         this.data = res;
-       // console.log(res);
         this.pd1 = this.data.ringkasan_dokumen.split(',');
         for (let i = 0; i < this.pd1.length; i++) {
           let p1 = this.pd1[i].split('/');
@@ -226,7 +235,7 @@ export class FinacialClaimReviewComponent implements OnInit {
           let p3 = this.pd3[i].split('/');
           this.pdf3.push(p3[p3.length - 1]);
         }
-        
+
 
         (this.inbois_dokumen = this.basePublicUrl + this.data.inbois_dokumen),
           (this.jumlah_tuntutan = this.data.jumlah_tuntutan),
@@ -249,7 +258,6 @@ export class FinacialClaimReviewComponent implements OnInit {
         localStorage.setItem("ringkasan_dokumen", this.data.ringkasan_dokumen);
         localStorage.setItem("no_nbois", this.data.no_nbois);
         localStorage.setItem("ulasan_pegawai", this.data.ulasan_pegawai);
-
         //console.log( this.lampiran);
       });
   }
@@ -314,7 +322,7 @@ export class FinacialClaimReviewComponent implements OnInit {
     }
     this.uploader1.clearQueue();
 
-    
+
     for (var j = 0; j < this.uploader2.queue.length; j++) {
       let data2 = new FormData();
       let fileItem = this.uploader2.queue[j]._file;
@@ -373,7 +381,7 @@ export class FinacialClaimReviewComponent implements OnInit {
       jumlah_tuntutan: localStorage.getItem("jumlah_tuntutan"),
       inbois_dokumen: localStorage.getItem("inbois_dokumen"),
       ringkasan_dokumen: localStorage.getItem("ringkasan_dokumen"),
-      lampiran:  localStorage.getItem("lampiran"),
+      lampiran: localStorage.getItem("lampiran"),
       status: this.updatestatus,
       ulasan_pegawai: this.ulasan_pegawai,
     };
@@ -449,17 +457,17 @@ export class FinacialClaimReviewComponent implements OnInit {
     this.display1 = "none";
     this.router.navigateByUrl("dbkl/dbklmainpage");
   }
-  getPdf(e){
+  getPdf(e) {
     this.downloadPdf(e)
-    .then(blob => {
-      saveAs(blob, e);
-      var fileURL = window.URL.createObjectURL(blob);
-      let tab = window.open();
-      tab.location.href = fileURL
-    });
+      .then(blob => {
+        saveAs(blob, e);
+        var fileURL = window.URL.createObjectURL(blob);
+        let tab = window.open();
+        tab.location.href = fileURL
+      });
   }
   downloadPdf(id: number) {
-    let key=localStorage.getItem("AccessToken");
+    let key = localStorage.getItem("AccessToken");
     let headers = {
       "Content-Type": "application/json",
       "Authorization": key,
@@ -489,8 +497,8 @@ export class FinacialClaimReviewComponent implements OnInit {
           this.router.navigateByUrl("/dbkl/adminregister");
           localStorage.removeItem("AccessToken");
           localStorage.removeItem("user_type");
-          localStorage.setItem("isdbkl","false");
- 	  this.spinner.hide();
+          localStorage.setItem("isdbkl", "false");
+          this.spinner.hide();
         },
         (error) => {
           // console.log("error is", error["error"]);

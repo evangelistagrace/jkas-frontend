@@ -136,8 +136,7 @@
           <div>
             <p style="margin-top: 2%;display: inline-block;" i18n="@@dateofapp">
               Date of Application :</p>
-            <span style="font-weight: 700">{{ createDate}}</span>
-
+            <span style="font-weight: 700">{{ createDate }}</span>
           </div>
         </div>
         <div class="table-responsive">
@@ -305,59 +304,34 @@
                     ">
                     <div *ngFor="let x of notice1; index as i" style="width: 241px; text-align: left !important;">
                       <div class="d-flex justify-content-start">
-                        <div *ngIf="x.includes('DBKL:')" style="background: #2979a9;
-                      width: 72%;
-                      padding: 2px;
-                      color: white;
-                      font-weight: normal;border-radius: 4px;  margin-bottom: 4px;
-                            margin-top: 4px;padding: 5px;">
-                          <span style="
-                            width: 400px;
-                            font-size: 14px !important;
-                          ">{{ x.substring(5) }}</span>
+                        <div *ngIf="x.includes('DBKL:')" class="message-dbkl">
+                          <span>{{ x.substring(5) }}</span>
                         </div>
-                        <!--div *ngIf="x.includes('DBKL:')">
-                          <i id="{{ i }}" (click)="removevalue11($event)" class="fa fa-trash chat"></i>
-                        </div-->
                       </div>
                       <div class="d-flex justify-content-end">
-                        <div *ngIf="x.includes('PUBLIC:')" style="background: #bfd0c5;
-                        margin-left: 50px;
-                        border-radius: 4px;margin-bottom: 4px;padding: 5px;">
-                          <span style="
-                              font-weight: 500;
-                              width: 400px;
-                              right: 0%;
-                              font-size: 14px !important;
-                            ">{{ x.substring(7) }}</span>
-                        </div>
-                        <div *ngIf="x.includes('PUBLIC:')">
-                          <i id="{{ i }}" (click)="removevalue11($event)" class="fa fa-trash chat"></i>
+                        <div *ngIf="x.includes('PUBLIC:')" class="message-public">
+                          <span>{{ x.substring(7) }}</span>
                         </div>
                       </div>
-
                     </div>
                   </div>
                   <div style="margin-bottom: 2px">
-                    <div *ngFor="let x of firstMessage; index as i" style="width: 200px; text-align: left !important">
-                      <li>
-                        <span style="
-                            font-weight: 500;
-                            width: 400px;
-                            font-size: 14px !important;
-                          ">{{ x.substring(7) }} </span><i id="id{{ i }}" (click)="removevalue11($event)"
-                          class="fa fa-trash chat"></i>
-                      </li>
+                    <div
+                      *ngFor="let x of firstMessage; index as i"
+                    >
+                      <div class="message-public-draft">
+                        <span>{{ x.substring(7) }}</span>
+                      </div>
                     </div>
                   </div>
                   <div class="row" style="margin-top: 20px;">
                     <div class="col-8">
-                      <textarea [(ngModel)]="text" style="margin-left: 20px;width: 131%" (ngModelChange)="getData(text)"
+                      <textarea [(ngModel)]="text" (ngModelChange)="getData(text)"
                         id="tex1">
                       </textarea>
                     </div>
                     <div class="col-2">
-                      <i (click)="add1()" class="fa fa-paper-plane chat" aria-hidden="true"></i>
+                      <i (click)="add1()" class="fa fa-paper-plane" aria-hidden="true"></i>
                     </div>
                   </div>
                 </td>
@@ -405,7 +379,6 @@
                     </tbody>
                   </table>
                 </td>
-
                 <td>
                   <span *ngFor="let val of data">
                     <span *ngIf="val.surat_salinan_CF_status == true">
@@ -420,68 +393,35 @@
                   <div style="margin-bottom: 4px" *ngIf="surat_salinan_CF_catatan != ''">
                     <div *ngFor="let x of notice2; index as i" style="width: 241px; text-align: left !important;">
                       <div class="d-flex justify-content-start">
-                        <div *ngIf="x.includes('DBKL:')" style="background: #2979a9;
-                      width: 72%;
-                      padding: 2px;
-                      color: white;
-                      font-weight: normal;border-radius: 4px;  margin-bottom: 4px;
-                            margin-top: 4px;padding: 5px;">
-                          <span style="
-                            width: 400px;
-                            font-size: 14px !important;
-
-
-
-                          ">{{ x.substring(5) }}</span>
-
-                        </div>
-                        <div *ngIf="x.includes('DBKL:')">
-                          <i id="{{ i }}" (click)="removevalue12($event)" class="fa fa-trash chat"></i>
+                        <div *ngIf="x.includes('DBKL:')" class="message-dbkl">
+                          <span>{{ x.substring(5) }}</span>
                         </div>
                       </div>
                       <div class="d-flex justify-content-end">
-                        <div *ngIf="x.includes('PUBLIC:')" style="background: #bfd0c5;
-                      margin-left: 50px;
-                      border-radius: 4px;margin-bottom: 4px;padding: 5px;">
-                          <span style="
-                            font-weight: 500;
-                            width: 400px;
-                            right: 0%;
-                            font-size: 14px !important;
-
-
-
-                          ">{{ x.substring(7) }}</span>
-
-                        </div>
-                        <div *ngIf="x.includes('PUBLIC:')">
-                          <i id="{{ i }}" (click)="removevalue12($event)" class="fa fa-trash chat"></i>
+                        <div *ngIf="x.includes('PUBLIC:')" class="message-public">
+                          <span>{{ x.substring(7) }}</span>
                         </div>
                       </div>
-
                     </div>
                   </div>
                   <div style="margin-bottom: 2px">
-                    <div *ngFor="let x of secondMessage; index as i" style="width: 200px; text-align: left !important">
-                      <li>
-                        <span style="
-                            font-weight: 500;
-                            width: 400px;
-                            font-size: 14px !important;
-                          ">{{ x.substring(7) }}</span>
-                        <i id="id{{ i }}" (click)="removevalue12($event)" class="fa fa-trash chat"></i>
-                      </li>
+                    <div
+                      *ngFor="let x of secondMessage; index as i"
+                    >
+                      <div class="message-public-draft">
+                        <span>{{ x.substring(7) }}</span>
+                      </div>
                     </div>
                   </div>
-
                   <div class="row" style="margin-top: 20px;">
                     <div class="col-8">
-                      <textarea [(ngModel)]="text2" style="margin-left: 20px;width: 131%"
-                        (ngModelChange)="getData2(text2)" id="tex2" readonly></textarea>
+                      <textarea [(ngModel)]="text2" (ngModelChange)="getData2(text2)"
+                        id="tex1">
+                      </textarea>
                     </div>
-                    <!-- <div class="col-2">
-                      <i (click)="add2()" class="fa fa-paper-plane chat" aria-hidden="true"></i>
-                    </div> -->
+                    <div class="col-2">
+                      <i (click)="add2()" class="fa fa-paper-plane" aria-hidden="true"></i>
+                    </div>
                   </div>
                 </td>
                 <td>
@@ -625,7 +565,6 @@
                     </tbody>
                   </table>
                 </td>
-
                 <td>
                   <span *ngFor="let val of data">
                     <span *ngIf="val.salinan_status_pembanginan_status == true">
@@ -640,64 +579,35 @@
                   <div style="margin-bottom: 4px" *ngIf="salinan_status_pembanginan_catatan != ''">
                     <div *ngFor="let x of notice3; index as i" style="width: 241px; text-align: left !important;">
                       <div class="d-flex justify-content-start">
-                        <div *ngIf="x.includes('DBKL:')" style="background: #2979a9;
-                      width: 72%;
-                      padding: 2px;
-                      color: white;
-                      font-weight: normal;border-radius: 4px;  margin-bottom: 4px;
-                            margin-top: 4px;padding: 5px;">
-                          <span style="
-                            width: 400px;
-                            font-size: 14px !important;
-
-                          ">{{ x.substring(5) }}</span>
-
-                        </div>
-                        <div *ngIf="x.includes('DBKL:')">
-                          <i id="{{ i }}" (click)="removevalue13($event)" class="fa fa-trash chat"></i>
+                        <div *ngIf="x.includes('DBKL:')" class="message-dbkl">
+                          <span>{{ x.substring(5) }}</span>
                         </div>
                       </div>
                       <div class="d-flex justify-content-end">
-                        <div *ngIf="x.includes('PUBLIC:')" style="background: #bfd0c5;
-                      margin-left: 50px;
-                      border-radius: 4px;margin-bottom: 4px;padding: 5px;">
-                          <span style="
-                            font-weight: 500;
-                            width: 400px;
-                            right: 0%;
-                            font-size: 14px !important;
-
-                          ">{{ x.substring(7) }}</span>
-
-                        </div>
-                        <div *ngIf="x.includes('PUBLIC:')">
-                          <i id="{{ i }}" (click)="removevalue13($event)" class="fa fa-trash chat"></i>
+                        <div *ngIf="x.includes('PUBLIC:')" class="message-public">
+                          <span>{{ x.substring(7) }}</span>
                         </div>
                       </div>
-
                     </div>
                   </div>
-                  <div *ngFor="let x of thirdMessage; index as i" style="margin-bottom: 3px">
-                    <div style="width: 200px; text-align: left !important">
-                      <li>
-                        <span style="
-                            font-weight: 500;
-                            width: 400px;
-                            font-size: 14px !important;
-                          ">{{ x.substring(7) }}</span>
-                        <i id="id{{ i }}" (click)="removevalue13($event)" class="fa fa-trash chat"></i>
-                      </li>
+                  <div style="margin-bottom: 2px">
+                    <div
+                      *ngFor="let x of thirdMessage; index as i"
+                    >
+                      <div class="message-public-draft">
+                        <span>{{ x.substring(7) }}</span>
+                      </div>
                     </div>
                   </div>
-
                   <div class="row" style="margin-top: 20px;">
                     <div class="col-8">
-                      <textarea [(ngModel)]="text3" style="margin-left: 20px;width: 131%"
-                        (ngModelChange)="getData3(text3)" id="tex3" readonly></textarea>
+                      <textarea [(ngModel)]="text3" (ngModelChange)="getData3(text3)"
+                        id="tex3">
+                      </textarea>
                     </div>
-                    <!-- <div class="col-2">
-                      <i (click)="add3()" class="fa fa-paper-plane chat" aria-hidden="true"></i>
-                    </div> -->
+                    <div class="col-2">
+                      <i (click)="add3()" class="fa fa-paper-plane" aria-hidden="true"></i>
+                    </div>
                   </div>
                 </td>
                 <td></td>
@@ -876,65 +786,40 @@
                   </span>
                 </td>
                 <td class="add">
-                  <div style="margin-bottom: 4px" *ngIf="bagi_status_pembangunan_catatan != ''">
+                  <div style="margin-bottom: 4px" *ngIf="
+                  bagi_status_pembangunan_catatan != ''
+                    ">
                     <div *ngFor="let x of notice4; index as i" style="width: 241px; text-align: left !important;">
                       <div class="d-flex justify-content-start">
-                        <div *ngIf="x.includes('DBKL:')" style="background: #2979a9;
-                      width: 72%;
-                      padding: 2px;
-                      color: white;
-                      font-weight: normal;border-radius: 4px;  margin-bottom: 4px;
-                            margin-top: 4px;padding: 5px;">
-                          <span style="
-                            width: 400px;
-                            font-size: 14px !important;
-                          ">{{ x.substring(5) }}</span>
-
-                        </div>
-                        <div *ngIf="x.includes('DBKL:')">
-                          <i id="{{ i }}" (click)="removevalue14($event)" class="fa fa-trash chat"></i>
+                        <div *ngIf="x.includes('DBKL:')" class="message-dbkl">
+                          <span>{{ x.substring(5) }}</span>
                         </div>
                       </div>
                       <div class="d-flex justify-content-end">
-                        <div *ngIf="x.includes('PUBLIC:')" style="background: #bfd0c5;
-                      margin-left: 50px;
-                      border-radius: 4px;margin-bottom: 4px;padding: 5px;">
-                          <span style="
-                            font-weight: 500;
-                            width: 400px;
-                            right: 0%;
-                            font-size: 14px !important;
-                          ">{{ x.substring(7) }}</span>
-
-                        </div>
-                        <div *ngIf="x.includes('PUBLIC:')">
-                          <i id="{{ i }}" (click)="removevalue14($event)" class="fa fa-trash chat"></i>
+                        <div *ngIf="x.includes('PUBLIC:')" class="message-public">
+                          <span>{{ x.substring(7) }}</span>
                         </div>
                       </div>
-
                     </div>
                   </div>
-                  <div *ngFor="let x of fourthMessage; index as i" style="margin-bottom: 3px">
-                    <div style="width: 200px; text-align: left !important">
-                      <li>
-                        <span style="
-                            font-weight: 500;
-                            width: 400px;
-                            font-size: 14px !important;
-                          ">{{ x.substring(7) }}</span>
-                        <i id="id{{ i }}" (click)="removevalue14($event)" class="fa fa-trash chat"></i>
-                      </li>
+                  <div style="margin-bottom: 2px">
+                    <div
+                      *ngFor="let x of fourthMessage; index as i"
+                    >
+                      <div class="message-public-draft">
+                        <span>{{ x.substring(7) }}</span>
+                      </div>
                     </div>
                   </div>
-
                   <div class="row" style="margin-top: 20px;">
                     <div class="col-8">
-                      <textarea [(ngModel)]="text4" style="margin-left: 20px;width: 131%"
-                        (ngModelChange)="getData4(text4)" id="tex4" readonly></textarea>
+                      <textarea [(ngModel)]="text4" (ngModelChange)="getData4(text4)"
+                        id="text4">
+                      </textarea>
                     </div>
-                    <!-- <div class="col-2">
-                      <i (click)="add4()" class="fa fa-paper-plane chat" aria-hidden="true"></i>
-                    </div> -->
+                    <div class="col-2">
+                      <i (click)="add4()" class="fa fa-paper-plane" aria-hidden="true"></i>
+                    </div>
                   </div>
                 </td>
                 <td>

@@ -256,14 +256,6 @@
                   </ul>
                 </td>
                 <td>
-                  <!-- <input
-                        type="file"
-                        ng2FileSelect
-                        accept=".pdf"
-                        id="file-upload"
-                        [uploader]="uploader"
-                        multiple
-                      /> -->
                   <span
                     style="display: block; cursor: pointer; color: #3232c8"
                     *ngFor="let val of pdffiles1; index as i"
@@ -283,8 +275,6 @@
                           MB)
                         </th>
                         <th class="text-center" width="10%">
-                          <!-- <mat-icon (click)="item.remove()">delete</mat-icon> -->
-
                           <i
                             (click)="item.remove()"
                             class="fa fa-trash"
@@ -338,58 +328,19 @@
                       <div class="d-flex justify-content-start">
                         <div
                           *ngIf="x.includes('DBKL:')"
-                          style="
-                            background: #bfd0c5;
-                            margin-left: 50px;
-                            border-radius: 4px;
-                            margin-bottom: 4px;
-                            padding: 5px;
-                          "
-                        >
-                          <span
-                            style="
-                              font-weight: 500;
-                              width: 400px;
-                              right: 0%;
-                              font-size: 14px !important;
-                            "
-                            >{{ x.substring(5) }}</span
+                          class="message-dbkl"
                           >
-                        </div>
-                        <div *ngIf="x.includes('DBKL:')">
-                          <i
-                            id="{{ i }}"
-                            (click)="removevalue1($event)"
-                            class="fa fa-trash"
-                          ></i>
+                          <span>{{ x.substring(5) }}</span
+                          >
                         </div>
                       </div>
-                      <div class="d-flex justify-content-start">
+                      <div class="d-flex justify-content-end">
                         <div
                           *ngIf="x.includes('PUBLIC:')"
-                          style="
-                            background: #2979a9;
-                            width: 72%;
-                            padding: 2px;
-                            color: white;
-                            font-weight: normal;
-                            border-radius: 4px;
-                            margin-bottom: 4px;
-                            margin-top: 4px;
-                            padding: 5px;
-                          "
+                          class="message-public"
                         >
-                          <span
-                            style="width: 400px; font-size: 14px !important"
-                            >{{ x.substring(7) }}</span
+                          <span>{{ x.substring(7) }}</span
                           >
-                        </div>
-                        <div *ngIf="x.includes('PUBLIC:')">
-                          <i
-                            id="{{ i }}"
-                            (click)="removevalue1($event)"
-                            class="fa fa-trash"
-                          ></i>
                         </div>
                       </div>
                     </div>
@@ -397,22 +348,10 @@
                   <div style="margin-bottom: 2px">
                     <div
                       *ngFor="let x of firstMessage; index as i"
-                      style="width: 200px; text-align: left !important"
                     >
-                      <li>
-                        <span
-                          style="
-                            font-weight: 500;
-                            width: 400px;
-                            font-size: 14px !important;
-                          "
-                          >{{ x.substring(5) }} </span
-                        ><i
-                          id="id{{ i }}"
-                          (click)="removevalue1($event)"
-                          class="fa fa-trash"
-                        ></i>
-                      </li>
+                      <div class="message-dbkl-draft">
+                        <span>{{ x.substring(5) }}</span>
+                      </div>
                     </div>
                   </div>
                   <div class="row">
@@ -455,14 +394,6 @@
                   (Infrastructure Planning Department)
                 </td>
                 <td>
-                  <!-- <input
-                        type="file"
-                        ng2FileSelect
-                        accept=".pdf"
-                        id="file-upload"
-                        [uploader]="uploader1"
-                        multiple
-                      /> -->
                   <span
                     style="display: block; cursor: pointer; color: #3232c8"
                     *ngFor="let val of pdffiles2; index as i"
@@ -522,58 +453,19 @@
                       <div class="d-flex justify-content-start">
                         <div
                           *ngIf="x.includes('DBKL:')"
-                          style="
-                            background: #bfd0c5;
-                            margin-left: 50px;
-                            border-radius: 4px;
-                            margin-bottom: 4px;
-                            padding: 5px;
-                          "
-                        >
-                          <span
-                            style="
-                              font-weight: 500;
-                              width: 400px;
-                              right: 0%;
-                              font-size: 14px !important;
-                            "
-                            >{{ x.substring(5) }}</span
+                          class="message-dbkl"
                           >
-                        </div>
-                        <div *ngIf="x.includes('DBKL:')">
-                          <i
-                            id="{{ i }}"
-                            (click)="removevalue2($event)"
-                            class="fa fa-trash"
-                          ></i>
+                          <span>{{ x.substring(5) }}</span
+                          >
                         </div>
                       </div>
-                      <div class="d-flex justify-content-start">
+                      <div class="d-flex justify-content-end">
                         <div
                           *ngIf="x.includes('PUBLIC:')"
-                          style="
-                            background: #2979a9;
-                            width: 72%;
-                            padding: 2px;
-                            color: white;
-                            font-weight: normal;
-                            border-radius: 4px;
-                            margin-bottom: 4px;
-                            margin-top: 4px;
-                            padding: 5px;
-                          "
+                          class="message-public"
                         >
-                          <span
-                            style="width: 400px; font-size: 14px !important"
-                            >{{ x.substring(7) }}</span
+                          <span>{{ x.substring(7) }}</span
                           >
-                        </div>
-                        <div *ngIf="x.includes('PUBLIC:')">
-                          <i
-                            id="{{ i }}"
-                            (click)="removevalue2($event)"
-                            class="fa fa-trash"
-                          ></i>
                         </div>
                       </div>
                     </div>
@@ -581,26 +473,12 @@
                   <div style="margin-bottom: 2px">
                     <div
                       *ngFor="let x of secondMessage; index as i"
-                      style="width: 200px; text-align: left !important"
                     >
-                      <li>
-                        <span
-                          style="
-                            font-weight: 500;
-                            width: 400px;
-                            font-size: 14px !important;
-                          "
-                          >{{ x.substring(5) }}</span
-                        >
-                        <i
-                          id="id{{ i }}"
-                          (click)="removevalue2($event)"
-                          class="fa fa-trash"
-                        ></i>
-                      </li>
+                      <div class="message-dbkl-draft">
+                        <span>{{ x.substring(5) }}</span>
+                      </div>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="col-8">
                       <textarea
@@ -722,7 +600,6 @@
                   </div>
                 </td>
               </tr>
-
               <tr>
                 <td>5.</td>
                 <td>
@@ -856,7 +733,9 @@
                 <td class="add">
                   <div
                     style="margin-bottom: 4px"
-                    *ngIf="salinan_status_pembanginan_catatan != ''"
+                    *ngIf="
+                    salinan_status_pembanginan_catatan != ''
+                    "
                   >
                     <div
                       *ngFor="let x of notice3; index as i"
@@ -865,85 +744,32 @@
                       <div class="d-flex justify-content-start">
                         <div
                           *ngIf="x.includes('DBKL:')"
-                          style="
-                            background: #bfd0c5;
-                            margin-left: 50px;
-                            border-radius: 4px;
-                            margin-bottom: 4px;
-                            padding: 5px;
-                          "
-                        >
-                          <span
-                            style="
-                              font-weight: 500;
-                              width: 400px;
-                              right: 0%;
-                              font-size: 14px !important;
-                            "
-                            >{{ x.substring(5) }}</span
+                          class="message-dbkl"
+                          >
+                          <span>{{ x.substring(5) }}</span
                           >
                         </div>
-                        <div *ngIf="x.includes('DBKL:')">
-                          <i
-                            id="{{ i }}"
-                            (click)="removevalue3($event)"
-                            class="fa fa-trash"
-                          ></i>
-                        </div>
                       </div>
-                      <div class="d-flex justify-content-start">
+                      <div class="d-flex justify-content-end">
                         <div
                           *ngIf="x.includes('PUBLIC:')"
-                          style="
-                            background: #2979a9;
-                            width: 72%;
-                            padding: 2px;
-                            color: white;
-                            font-weight: normal;
-                            border-radius: 4px;
-                            margin-bottom: 4px;
-                            margin-top: 4px;
-                            padding: 5px;
-                          "
+                          class="message-public"
                         >
-                          <span
-                            style="width: 400px; font-size: 14px !important"
-                            >{{ x.substring(7) }}</span
+                          <span>{{ x.substring(7) }}</span
                           >
-                        </div>
-                        <div *ngIf="x.includes('PUBLIC:')">
-                          <i
-                            id="{{ i }}"
-                            (click)="removevalue3($event)"
-                            class="fa fa-trash"
-                          ></i>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div
-                    *ngFor="let x of thirdMessage; index as i"
-                    style="margin-bottom: 3px"
-                  >
-                    <div style="width: 200px; text-align: left !important">
-                      <li>
-                        <span
-                          style="
-                            font-weight: 500;
-                            width: 400px;
-                            font-size: 14px !important;
-                          "
-                          >{{ x.substring(5) }}</span
-                        >
-                        <i
-                          id="id{{ i }}"
-                          (click)="removevalue3($event)"
-                          class="fa fa-trash"
-                        ></i>
-                      </li>
+                  <div style="margin-bottom: 2px">
+                    <div
+                      *ngFor="let x of thirdMessage; index as i"
+                    >
+                      <div class="message-dbkl-draft">
+                        <span>{{ x.substring(5) }}</span>
+                      </div>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="col-8">
                       <textarea
@@ -964,7 +790,6 @@
                 </td>
                 <td></td>
               </tr>
-
               <tr>
                 <td>6.</td>
                 <td>
@@ -1252,7 +1077,9 @@
                 <td class="add">
                   <div
                     style="margin-bottom: 4px"
-                    *ngIf="bagi_status_pembangunan_catatan != ''"
+                    *ngIf="
+                    bagi_status_pembangunan_catatan != ''
+                    "
                   >
                     <div
                       *ngFor="let x of notice4; index as i"
@@ -1261,91 +1088,38 @@
                       <div class="d-flex justify-content-start">
                         <div
                           *ngIf="x.includes('DBKL:')"
-                          style="
-                            background: #bfd0c5;
-                            margin-left: 50px;
-                            border-radius: 4px;
-                            margin-bottom: 4px;
-                            padding: 5px;
-                          "
-                        >
-                          <span
-                            style="
-                              font-weight: 500;
-                              width: 400px;
-                              right: 0%;
-                              font-size: 14px !important;
-                            "
-                            >{{ x.substring(5) }}</span
+                          class="message-dbkl"
+                          >
+                          <span>{{ x.substring(5) }}</span
                           >
                         </div>
-                        <div *ngIf="x.includes('DBKL:')">
-                          <i
-                            id="{{ i }}"
-                            (click)="removevalue4($event)"
-                            class="fa fa-trash"
-                          ></i>
-                        </div>
                       </div>
-                      <div class="d-flex justify-content-start">
+                      <div class="d-flex justify-content-end">
                         <div
                           *ngIf="x.includes('PUBLIC:')"
-                          style="
-                            background: #2979a9;
-                            width: 72%;
-                            padding: 2px;
-                            color: white;
-                            font-weight: normal;
-                            border-radius: 4px;
-                            margin-bottom: 4px;
-                            margin-top: 4px;
-                            padding: 5px;
-                          "
+                          class="message-public"
                         >
-                          <span
-                            style="width: 400px; font-size: 14px !important"
-                            >{{ x.substring(7) }}</span
+                          <span>{{ x.substring(7) }}</span
                           >
-                        </div>
-                        <div *ngIf="x.includes('PUBLIC:')">
-                          <i
-                            id="{{ i }}"
-                            (click)="removevalue4($event)"
-                            class="fa fa-trash"
-                          ></i>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div
-                    *ngFor="let x of fourthMessage; index as i"
-                    style="margin-bottom: 3px"
-                  >
-                    <div style="width: 200px; text-align: left !important">
-                      <li>
-                        <span
-                          style="
-                            font-weight: 500;
-                            width: 400px;
-                            font-size: 14px !important;
-                          "
-                          >{{ x.substring(5) }}</span
-                        >
-                        <i
-                          id="id{{ i }}"
-                          (click)="removevalue4($event)"
-                          class="fa fa-trash"
-                        ></i>
-                      </li>
+                  <div style="margin-bottom: 2px">
+                    <div
+                      *ngFor="let x of fourthMessage; index as i"
+                    >
+                      <div class="message-dbkl-draft">
+                        <span>{{ x.substring(5) }}</span>
+                      </div>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="col-8">
                       <textarea
                         [(ngModel)]="text4"
                         (ngModelChange)="getData4(text4)"
-                        id="tex4"
+                        id="text4"
                         maxlength="50"
                       ></textarea>
                     </div>

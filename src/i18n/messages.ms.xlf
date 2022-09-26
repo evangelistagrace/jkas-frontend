@@ -4156,10 +4156,10 @@ For Solid Waste Collection and Public Cleansing
 			</trans-unit>
 			<trans-unit id="messs" datatype="html">
 				<source>
-					Please check the status of your application after 3 working days from the day of application. Thank you.
+					Please check the status of your application after 7 working days from the day of application. Thank you.
 				</source>
 				<target>
-					*Sila semak status permohonan anda selepas 3 hari waktu bekerja daripada hari permohonan. Terima Kasih.
+					*Sila semak status permohonan anda selepas 7 hari waktu bekerja daripada hari permohonan. Terima Kasih.
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -4172,10 +4172,10 @@ For Solid Waste Collection and Public Cleansing
 			</trans-unit>
 			<trans-unit id="appid1" datatype="html">
 				<source>
-					Please check the status of your application after 3 working days from the day of application. Thank you.
+					Please check the status of your application after 7 working days from the day of application. Thank you.
 				</source>
 				<target>
-					Sila periksa status permohonan anda setelah 3 hari bekerja dari hari permohonan. Terima kasih.
+					Sila periksa status permohonan anda setelah 7 hari bekerja dari hari permohonan. Terima kasih.
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -10729,10 +10729,10 @@ For Solid Waste Collection and Public Cleansing
 			</trans-unit>
 			<trans-unit id="finalclmrA5" datatype="html">
 				<source>
-					Claim Amount:
+					Claim Amount (RM):
 				</source>
 				<target>
-					Jumlah Tuntutan :
+					Jumlah Tuntutan (RM) :
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
