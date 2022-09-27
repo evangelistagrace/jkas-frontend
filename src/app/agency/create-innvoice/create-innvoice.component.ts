@@ -47,6 +47,14 @@ export class CreateInnvoiceComponent implements OnInit {
     url: this.SERVER_URL,
     maxFileSize: 1024 * 1024 * 10,
   });
+
+  public bd44Uploader: FileUploader = new FileUploader({
+    isHTML5: true,
+    url: this.SERVER_URL,
+    maxFileSize: 1024 * 1024 * 10,
+  });
+  bd44File: any;
+
   invoicedata: string;
   dataobject: any;
   secondfile: string;
@@ -157,6 +165,7 @@ export class CreateInnvoiceComponent implements OnInit {
 
     this.invoicedata = localStorage.getItem("invoicedata");
     this.dataobject = JSON.parse(this.invoicedata);
+    this.bd44File = this.dataobject[0].bd44;
     //console.log(JSON.stringify(this.dataobject));
     this.splited.push(this.dataobject[0].inbois_dokumen.split(".pdf"));
     this.invoisDoc = this.dataobject[0].inbois_dokumen;
@@ -382,8 +391,9 @@ export class CreateInnvoiceComponent implements OnInit {
 
     this.http
       .post(environment.basePublicUrl + "/agensi/getInvoice", body)
-      .subscribe((data) => {
+      .subscribe((data:any) => {
         //console.log(data);
+        this.bd44File = data[0].bd44;
         this.clicked = true;
         this.spinner.hide();
         this.invoicedata = JSON.stringify(data);
@@ -420,6 +430,9 @@ export class CreateInnvoiceComponent implements OnInit {
   }
   remove2(index) {
     this.FileArray2.splice(index, 1);
+  }
+  removeBd44() {
+    this.bd44File = undefined;
   }
   getPdf(e) {
     this.downloadPdf(e)

@@ -85,6 +85,8 @@ export class InventorymanagmentComponent implements OnInit {
   ukuran_panjang_sapuan_jejantas: any="";
   ukuran_panjang_sapuan_kaw_lapang_parkir: any="";
   ukuran_panjang_cucian_longkang: any="";
+  kadar: any;
+  frekuensi: any;
 
   constructor(
     private http: HttpClient,
@@ -139,6 +141,8 @@ export class InventorymanagmentComponent implements OnInit {
           this.rujuken_tarikh_serahan=this.data.rujuken_tarikh_serahan ;
           this.tarikh_semakandi_lapangant_keadeansemata_ada=this.data.tarikh_semakandi_lapangant_keadeansemata_ada ;
           this.tarikh_semakandi_lapangant_keadeansemata_tiada=this.data.tarikh_semakandi_lapangant_keadeansemata_tiada ;
+          this.kadar = this.data.kadar;
+          this.frekuensi = this.data.frekuensi;
           this.spinner.hide();
         },
         (error) => {
@@ -187,6 +191,8 @@ export class InventorymanagmentComponent implements OnInit {
         .tarikh_semakandi_lapangant_keadeansemata_ada,
       tarikh_semakandi_lapangant_keadeansemata_tiada: this
         .tarikh_semakandi_lapangant_keadeansemata_tiada,
+      frekuensi: this.frekuensi,
+      kadar: this.kadar
     };
 
     let headers = {

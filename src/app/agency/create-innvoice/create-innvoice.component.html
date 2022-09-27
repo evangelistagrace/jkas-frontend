@@ -102,7 +102,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" style="color: #253d84 !important; cursor: pointer" routerLink="/agency"
-              i18n="@@jbpayclaim" (click)="makefalse()">
+              i18n="@@servicesclaim" (click)="makefalse()">
               JOB PAYMENT CLAIM</a>
           </li>
         </ul>
@@ -236,14 +236,6 @@
                             cursor: pointer;"
                             class="filename" (click)="getPdf(invoice)" target="_blank">{{invoice}}</a>
                         </span>
-                        <!-- <span class="d-block" *ngFor="let data of FileArray; index as i">
-                          <a *ngIf="FileArray != ''" style="
-                            color: black;
-                            text-decoration: none !important;
-                            cursor: pointer;
-                          " class="filename" (click)="getPdf(data)" target="_blank">{{ data }}&nbsp;</a><i
-                            (click)="remove(i)" class="fa fa-trash" style="cursor: pointer"
-                            aria-hidden="true"></i><br /></span> -->
                       </td>
                       <td rowspan="3">
                         <p style="text-align: center; margin-bottom: 0px">
@@ -336,6 +328,40 @@
                       <th scope="row">Borang BD44/45 atau bilangan logistik dan pekerja bagi setiap kawasan serahan baru</th>
                       <td>
                         <label class="custom-file-upload">
+                          <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="bd44Uploader"/>
+                          <i class="fa fa-cloud-upload"></i>
+                        </label>
+                        <table>
+                          <tbody class="text-center">
+                            <tr *ngFor="let item of bd44Uploader.queue" style="text-align: center">
+                              <th width="90%" style="text-align: center">
+                                {{ item.file.name }}({{
+                                item.file.size / 1000000
+                                }}
+                                MB)
+                              </th>
+                              <th class="text-center" width="10%" style="text-align: center">
+                                <i class="errorMessage" (click)="item.remove()" class="fa fa-trash" aria-hidden="true"
+                                  style="cursor: pointer"></i>
+                              </th>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <span class="d-block" *ngIf="bd44File">
+                          <a style="
+                            color: black;
+                            text-decoration: none !important;
+                            cursor: pointer;
+                          " class="filename" (click)="getPdf(bd44File)" target="_blank">{{ bd44File }} </a>
+                          <i
+                            *ngIf="bd44" (click)="removeBd44()" class="fa fa-trash" style="cursor: pointer"
+                            aria-hidden="true"></i><br /></span>
+                      </td>
+                    </tr>                    
+                    <tr>
+                      <th scope="row">Laporan tuntutan KWPSPPA bagi kawasan baru</th>
+                      <td>
+                        <label class="custom-file-upload">
                           <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader2"
                             (change)="onchange3($event)" multiple />
 
@@ -366,7 +392,7 @@
                             *ngIf="FileArray2 != ''" (click)="remove2(i)" class="fa fa-trash" style="cursor: pointer"
                             aria-hidden="true"></i><br /></span>
                       </td>
-                    </tr>                    
+                    </tr>   
                   </tbody>
                 </table>
               </div>

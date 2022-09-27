@@ -67,6 +67,7 @@ export class ComplaintinvestigationComponent implements OnInit {
   ullasan_ketua_seksyen1A: any;
   ulasanpenyelia: any;
   formGroup: FormGroup;
+  lang: any = 'ms';
 
   constructor(
     private http: HttpClient,
@@ -79,6 +80,8 @@ export class ComplaintinvestigationComponent implements OnInit {
     this.isAdminType = localStorage.getItem("isAdmin");
     this.username = localStorage.getItem("nama_pengguna");
     this.userrole = localStorage.getItem("roleforuser");
+    this.lang = localStorage.getItem('lang');
+    console.log('role: ', this.userrole);
     window.scroll(0, 0);
     localStorage.setItem("path", "/dbkl/complaintinvestigation");
     this.spinner.show();
@@ -131,34 +134,37 @@ export class ComplaintinvestigationComponent implements OnInit {
           }
 
           let aduan = res[0];
-          this.formGroup = new FormGroup({
-            formId: new FormControl(aduan.form_id),
-            zon: new FormControl(aduan.zon, [Validators.required]),
-            tarikhSiasatan: new FormControl(aduan.tarikh_siasatan, [Validators.required]),
-            namaPegawai: new FormControl(aduan.nama_pegawai, [Validators.required]),
-            parlimen: new FormControl(aduan.parlimen, [Validators.required]),
-            laporanSiasatan: new FormControl(aduan.laporan_siasatan, [Validators.required]),
-            tindakan: new FormControl(aduan.tindakan, [Validators.required]),
-            ulasanPenyelia: new FormControl(aduan.ullasan_penyelia, [Validators.required]),
-            ulasanKetuaSeksyen: new FormControl(aduan.ullasan_ketua_seksyen),
-            ulasanKetuaUnit: new FormControl(aduan.ullasan_ketua_unit),
-          });
-          console.log(this.formGroup);
+          this.formGroup.controls['formId'].setValue(aduan.form_id);
+          this.formGroup.controls['zon'].setValue(aduan.zon);
+          this.formGroup.controls['zon'].disable();
+          this.formGroup.controls['tarikhSiasatan'].setValue(aduan.tarikh_siasatan);
+          this.formGroup.controls['tarikhSiasatan'].disable();
+          this.formGroup.controls['namaPegawai'].setValue(aduan.nama_pegawai);
+          this.formGroup.controls['namaPegawai'].disable();
+          this.formGroup.controls['parlimen'].setValue(aduan.parlimen);
+          this.formGroup.controls['parlimen'].disable();
+          this.formGroup.controls['laporanSiasatan'].setValue(aduan.laporan_siasatan);
+          this.formGroup.controls['laporanSiasatan'].enable();
+          this.formGroup.controls['tindakan'].setValue(aduan.tindakan);
+          this.formGroup.controls['tindakan'].enable();
+          this.formGroup.controls['ulasanPenyelia'].setValue(aduan.ullasan_penyelia);
+          this.formGroup.controls['ulasanPenyelia'].disable();
+          this.formGroup.controls['ulasanKetuaSeksyen'].setValue(aduan.ullasan_ketua_seksyen);
+          this.formGroup.controls['ulasanKetuaSeksyen'].disable();
+          this.formGroup.controls['ulasanKetuaUnit'].setValue(aduan.ullasan_ketua_unit);
+          this.formGroup.controls['ulasanKetuaUnit'].disable();
 
-          // this.nama_pegawai=this.data[0].nama_pegawai,
-          // this.zon= this.data[0].zon,
-          // this.parlimenA=this.data[0].parlimen,
-          // this.tarikh_siasatanA= this.data[0].tarikh_siasatan,
-          // this.lokasi_siasatan= this.data[0].loc,
-          // this.report1A= this.data[0].laporan_siasatan,
-          // this.tindakan1A= this.data[0].tindakan,
-          // this.ullasan_penyelia1A= this.data[0].ullasan_penyelia,
-          // this.ullasan_ketua_seksyen1A= this.data[0].ullasan_ketua_seksyen,
-          // //console.log(this.ullasan_ketua_seksyen1A);
-          
-          // this.ulasanpenyelia=this.data[0].ullasan_ketua_unit,
-         // console.log( this.ulasanpenyelia);
-          
+          if (this.userrole === 'Superadmin') {
+            this.formGroup.controls['ulasanPenyelia'].enable();
+            this.formGroup.controls['ulasanKetuaSeksyen'].enable();
+            this.formGroup.controls['ulasanKetuaUnit'].enable();
+          } else if (this.userrole === 'Admin') {
+            this.formGroup.controls['ulasanPenyelia'].enable();
+            this.formGroup.controls['ulasanKetuaSeksyen'].enable();
+          } else if (this.userrole === 'MerinyuMTK') {
+            this.formGroup.controls['ulasanPenyelia'].enable();
+          }
+          console.log(this.formGroup.controls);
           this.sebelum_siasatan= this.basePublicUrl + "/jkas_resourses/public/images/" + aduan.sebelum_siasatan
           this.spinner.hide();
         },
@@ -247,11 +253,11 @@ export class ComplaintinvestigationComponent implements OnInit {
       })
       .subscribe((res) => {
         this.displayModal = "block";
-        this.modalMessage = "Successfully update complaint.";
+        this.modalMessage = "Aduan berjaya dikemaskini.";
         this.spinner.hide();
       }, (error) => {
         this.displayModal = "block";
-        this.modalMessage = "Failed to update complaint";
+        this.modalMessage = "Gagal mengemaskini aduan.";
         this.spinner.hide();
       });
   }

@@ -227,7 +227,7 @@ export class JobPaymentComponent implements OnInit {
     for (var j = 0; j < this.bd44Uploader.queue.length; j++) {
       let data = new FormData();
       let fileItem = this.bd44Uploader.queue[j]._file;
-      this.bd44Files = JSON.stringify([fileItem.name])
+      this.bd44Files = fileItem.name;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + j);
       this.uploadFile(data).subscribe((data) => {});
@@ -237,7 +237,7 @@ export class JobPaymentComponent implements OnInit {
     for (var j = 0; j < this.laporanTuntutanUploader.queue.length; j++) {
       let data = new FormData();
       let fileItem = this.laporanTuntutanUploader.queue[j]._file;
-      this.laporanTuntutanFiles = JSON.stringify([fileItem.name])
+      this.laporanTuntutanFiles = fileItem.name;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + j);
       this.uploadFile(data).subscribe((data) => {});
@@ -279,8 +279,8 @@ export class JobPaymentComponent implements OnInit {
       invoice_document: this.myfiles.substring(2, this.myfiles.length - 2),
       summary_document: this.myfiles1.substring(2, this.myfiles1.length - 2),
       attachment: this.myfiles2.substring(2, this.myfiles2.length - 2),
-      bd44: this.bd44Files.substring(2, this.bd44Files.length - 2),
-      laporan_tuntutan: this.laporanTuntutanFiles.substring(2, this.laporanTuntutanFiles.length - 2)
+      bd44: this.bd44Files,
+      laporan_tuntutan: this.laporanTuntutanFiles
     };
     // console.log(
     //   "my body" + JSON.stringify(body))

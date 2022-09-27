@@ -137,7 +137,7 @@
 
           <!--Footer-->
           <div class="modal-footer justify-content-center">
-            <a type="button" href="dbkl/noticeform" class="btn" style="background-color: #253d84; color: #fff"
+            <a type="button" href="{{ lang }}/dbkl/noticeform" class="btn" style="background-color: #253d84; color: #fff"
               i18n="@@yes">Yes <i class="far fa-gem ml-1 text-white"></i></a>
             <a type="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal" i18n="@@no">No</a>
           </div>
@@ -176,24 +176,24 @@
             </div>
             <div class="form-group col-md-6">
               <label for="select" i18n="@@mtbwrkfrm24">Name of officer</label>
-              <input type="text" class="form-control" formControlName="namaPegawai" disabled="" />
+              <input type="text" class="form-control" formControlName="namaPegawai" />
 
             </div>
             <div class="form-group col-md-6"></div>
             <div class="form-group col-md-6">
               <label for="select" i18n="@@mtbwrkfrm33">Zone</label>
-              <input type="text" class="form-control" formControlName="zon" disabled="" />
+              <input type="text" class="form-control" formControlName="zon" />
             </div>
             <div class="form-group col-md-6"></div>
             <div class="form-group col-md-6">
               <label for="select" i18n="@@parliamen">Parliament</label>
-              <input type="text" class="form-control" formControlName="parlimen" disabled="" />
+              <input type="text" class="form-control" formControlName="parlimen" />
             </div>
             <div class="form-group col-md-6">
             </div>
             <div class="form-group col-md-6">
               <label for="select" i18n="@@mtbwrkfrm34">Monitoring Date</label>
-              <input type="text" class="form-control" formControlName="tarikhSiasatan" disabled="" />
+              <input type="text" class="form-control" formControlName="tarikhSiasatan" />
             </div>
             <div class="form-group col-md-6"></div>
             <div class="form-group col-md-8">
@@ -240,7 +240,7 @@
                 <strong i18n="@@SUPERVISOR1">SUPERVISOR'S REVIEW (MTK)</strong>
               </h5>
 
-              <textarea disabled="" type="text" class="form-control" formControlName="ulasanPenyelia"></textarea>
+              <textarea type="text" class="form-control" formControlName="ulasanPenyelia"></textarea>
             </div>
             <div class="col-md-6">
               <h5 class="card-header info-color white-text py-6" style="
@@ -250,7 +250,7 @@
                 ">
                 <strong i18n="@@mtbwrkfrm30">SECTION HEAD'S COMMENT</strong>
               </h5>
-              <textarea disabled="" type="text" class="form-control" formControlName="ulasanKetuaSeksyen"></textarea>
+              <textarea type="text" class="form-control" formControlName="ulasanKetuaSeksyen"></textarea>
             </div>
             <div class="col-md-6">
               <h5 class="card-header info-color white-text py-6" style="
@@ -261,7 +261,7 @@
                 ">
                 <strong i18n="@@super">SUPERVISOR'S REVIEW</strong>
               </h5>
-              <textarea disabled type="text" class="form-control" formControlName="ulasanKetuaUnit"></textarea>
+              <textarea type="text" class="form-control" formControlName="ulasanKetuaUnit"></textarea>
             </div>
             <div class="col-md-12 text-center mb-4">
               <button class="look_for" ml-6 type="button" type="submit" i18n="@@mtbwrkfrm32">

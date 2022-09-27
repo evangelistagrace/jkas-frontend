@@ -1,14 +1,12 @@
 <div *ngFor="let key of data; index as i">
   <span *ngIf="key.no_siri_permohonan == value">
-    <div *ngIf="key.surat_penyerahan_kawasan;else files">
+    <label class="custom-file-upload">
+      <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" multiple (change)="uploadSubmit(key.no_siri_permohonan)" />
+      <i class="fa fa-cloud-upload"></i>
+    </label>
+    <div *ngIf="key.surat_penyerahan_kawasan">
       <span (click)="getPdf(key.surat_penyerahan_kawasan)" style="color: #253d84; cursor: pointer">{{
         key.surat_penyerahan_kawasan }}</span>
     </div>
-    <ng-template #files>
-      <label class="custom-file-upload">
-        <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" multiple (change)="uploadSubmit(key.no_siri_permohonan)" />
-        <i class="fa fa-cloud-upload"></i>
-      </label>
-    </ng-template>
   </span>
 </div>
