@@ -28,6 +28,33 @@ export class NewInventoryComponent implements OnInit {
     "SEPUTEH",
     "BANDAR TUN RAZAK",
   ];
+  categories = [
+    {
+      id: 1,
+      caption: "Kediaman Teres (Landed)",
+      rate: 7.8
+    },
+    {
+      id: 2,
+      caption: "Kediaman Bertingkat (Non-Landed)",
+      rate: 5.45
+    },
+    {
+      id: 3,
+      caption: "Kawasan Komersial",
+      rate: 12.50
+    },
+    {
+      id: 4,
+      caption: "MGB 660L",
+      rate: 83.60
+    },
+    {
+      id: 5,
+      caption: "Mobile Compactor",
+      rate: 80
+    }
+  ];
   basePublicUrl = environment.basePublicUrl;
   registrationGroup: FormGroup;
   submitted: boolean;
@@ -87,6 +114,97 @@ export class NewInventoryComponent implements OnInit {
   kekerapan_kutipan_sisa_domestik: any;
   kekerapan_kutipan_sampah_haram: any;
   kekerapan_kutipan_sampah_pukal: any;
+
+  // sisa domestik
+  domesticCategory: any;
+  domesticTotal: any;
+  domesticRate: any;
+  domesticFreq: any;
+  selectCategoryDomestic(id:any) {
+    this.categories.forEach((val) => {
+      if (val.id == id) {
+        this.domesticRate = val.rate;
+      }
+    });
+  }
+
+  // pukal
+  pukalCategory: any;
+  pukalTotal: any;
+  pukalRate: any;
+  pukalFreq: any;
+  selectCategoryPukal(id:any) {
+    this.categories.forEach((val) => {
+      if (val.id == id) {
+        this.pukalRate = val.rate;
+      }
+    });
+  }
+
+  // sapuan
+  sapuanRate: any = 0.27870;
+  sapuanFreq: any = 0;
+  sapuanPanjang: any = 0;
+  sapuanKomersialRate: any = 0.55740;
+  sapuanKomersialFreq: any = 0;
+  sapuanKomersialPanjang: any = 0;
+
+  // cucian
+  cucianDomesticRate: any = 0.34838;
+  cucianDomesticFreq: any = 0;
+  cucianDomesticPanjang: any = 0;
+  cucianKomersialRate: any = 0.69676;
+  cucianKomersialFreq: any = 0;
+  cucianKomersialPanjang: any = 0;
+  cucianDrainDomesticRate: any = 0.09290;
+  cucianDrainDomesticFreq: any = 0;
+  cucianDrainDomesticPanjang: any = 0;
+  cucianDrainKomersialRate: any = 0.04645;
+  cucianDrainKomersialFreq: any = 0;
+  cucianDrainKomersialPanjang: any = 0;
+  cucianJejantasDalamRate: any = 4.5;
+  cucianJejantasDalamFreq: any = 0;
+  cucianJejantasDalamPanjang: any = 0;
+  cucianJejantasAtasRate: any = 9.0;
+  cucianJejantasAtasFreq: any = 0;
+  cucianJejantasAtasPanjang: any = 0;
+  cucianSiarRoofRate: any = 1.80;
+  cucianSiarRoofFreq: any = 0;
+  cucianSiarRoofPanjang: any = 0;
+  cucianSiarGulam1Rate: any = 2.50;
+  cucianSiarGulam1Freq: any = 0;
+  cucianSiarGulam1Panjang: any = 0;
+  cucianSiarGulam2Rate: any = 3.50;
+  cucianSiarGulam2Freq: any = 0;
+  cucianSiarGulam2Panjang: any = 0;
+  cucianTandasRate: any = 1.00;
+  cucianTandasFreq: any = 0;
+  cucianTandasPanjang: any = 0;
+  cucianTeksiRate: any = 1.00;
+  cucianTeksiFreq: any = 0;
+
+  // pembersihan
+  bersihLapangRate: any = 0.00333;
+  bersihLapangFreq: any = 0;
+  bersihLapangPanjang: any = 0;
+  bersihTpkkRate: any = 0.00333;
+  bersihTpkkFreq: any = 0;
+  bersihTpkkPanjang: any = 0;
+  bersihPenjajaRate: any = 0.05;
+  bersihPenjajaFreq: any = 0;
+  bersihPenjajaPanjang: any = 0;
+  bersihPasarRate: any = 0.05;
+  bersihPasarFreq: any = 0;
+  bersihPasarPanjang: any = 0;
+  bersihPasarMlmRate: any = 0.12;
+  bersihPasarMlmFreq: any = 0;
+  bersihPasarMlmPanjang: any = 0;
+
+  // lain lain
+  rumputRate: any = 0.15;
+  rumputFreq: any = 0;
+  rumputPanjang: any = 0;
+
   selectedParlimen: any;
   Parliament: any;
   kodarea: any;
@@ -291,6 +409,75 @@ export class NewInventoryComponent implements OnInit {
       jumlah_unit_premis: this.jumlah_unit_premis,
       sisa_domestik: this.sisa_domestik,
       sampah_pukal: this.sampah_pukal,
+
+      domestic_total: this.domesticTotal,
+      domestic_rate: this.domesticRate,
+      domestic_freq: this.domesticFreq,
+
+      pukal_total: this.pukalTotal,
+      pukal_rate: this.pukalRate,
+      pukal_freq: this.pukalFreq,
+
+      sapuan_domestic_unit: this.sapuanPanjang,
+      sapuan_domestic_rate: this.sapuanRate,
+      sapuan_domestic_freq: this.sapuanFreq,
+      sapuan_komersial_unit: this.sapuanPanjang,
+      sapuan_komersial_rate: this.sapuanRate,
+      sapuan_komersial_freq: this.sapuanFreq,
+
+      cucian_domestic_unit: this.cucianDomesticPanjang,
+      cucian_domestic_rate: this.cucianDomesticRate,
+      cucian_domestic_freq: this.cucianDomesticFreq,
+      cucian_komersial_unit: this.cucianKomersialPanjang,
+      cucian_komersial_rate: this.cucianKomersialRate,
+      cucian_komersial_freq: this.cucianKomersialFreq,
+      cucian_drain_domestic_unit: this.cucianDrainDomesticPanjang,
+      cucian_drain_domestic_rate: this.cucianDrainDomesticRate,
+      cucian_drain_domestic_freq: this.cucianDrainDomesticFreq,
+      cucian_drain_komersial_unit: this.cucianDrainKomersialPanjang,
+      cucian_drain_komersial_rate: this.cucianDrainKomersialRate,
+      cucian_drain_komersial_freq: this.cucianDrainKomersialFreq,
+      cucian_jejantas_dalam_unit: this.cucianJejantasDalamPanjang,
+      cucian_jejantas_dalam_rate: this.cucianJejantasDalamRate,
+      cucian_jejantas_dalam_freq: this.cucianJejantasDalamFreq,
+      cucian_jejantas_atas_unit: this.cucianJejantasAtasPanjang,
+      cucian_jejantas_atas_rate: this.cucianJejantasAtasRate,
+      cucian_jejantas_atas_freq: this.cucianJejantasAtasFreq,
+      cucian_siar_roof_unit: this.cucianSiarRoofPanjang,
+      cucian_siar_roof_rate: this.cucianSiarRoofRate,
+      cucian_siar_roof_freq: this.cucianSiarRoofFreq,
+      cucian_siar_gulam1_unit: this.cucianSiarGulam1Panjang,
+      cucian_siar_gulam1_rate: this.cucianSiarGulam1Rate,
+      cucian_siar_gulam1_freq: this.cucianSiarGulam1Freq,
+      cucian_siar_gulam2_unit: this.cucianSiarGulam2Panjang,
+      cucian_siar_gulam2_rate: this.cucianSiarGulam2Rate,
+      cucian_siar_gulam2_freq: this.cucianSiarGulam2Freq,
+      cucian_tandas_unit: this.cucianTandasPanjang,
+      cucian_tandas_rate: this.cucianTandasRate,
+      cucian_tandas_freq: this.cucianTandasFreq,
+      cucian_teksi_rate: this.cucianTeksiRate,
+      cucian_teksi_freq: this.cucianTeksiFreq,
+
+      bersih_lapang_unit: this.bersihLapangPanjang,
+      bersih_lapang_rate: this.bersihLapangRate,
+      bersih_lapang_freq: this.bersihLapangFreq,
+      bersih_tpkk_unit: this.bersihTpkkPanjang,
+      bersih_tpkk_rate: this.bersihTpkkRate,
+      bersih_tpkk_freq: this.bersihTpkkFreq,
+      bersih_penjaja_unit: this.bersihPenjajaPanjang,
+      bersih_penjaja_rate: this.bersihPenjajaRate,
+      bersih_penjaja_freq: this.bersihPenjajaFreq,
+      bersih_pasar_unit: this.bersihPasarPanjang,
+      bersih_pasar_rate: this.bersihPasarRate,
+      bersih_pasar_freq: this.bersihPasarFreq,
+      bersih_pasar_mlm_unit: this.bersihPasarMlmPanjang,
+      bersih_pasar_mlm_rate: this.bersihPasarMlmRate,
+      bersih_pasar_mlm_freq: this.bersihPasarMlmFreq,
+
+      rumput_unit: this.rumputPanjang,
+      rumput_rate: this.rumputRate,
+      rumput_freq: this.rumputFreq,
+
       sampah_haram: this.sampah_haram,
       sapuan_jalan: this.sapuan_jalan,
       sapuan_TPKK: this.sapuan_TPKK,

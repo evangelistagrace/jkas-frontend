@@ -1131,7 +1131,7 @@ For Solid Waste Collection and Public Cleansing
 					Review of Dataman Financial Claims
 				</source>
 				<target>
-                    Semakan Tuntutan Kewangan Dalaman
+          Semakan Tuntutan Sumbangan Bayaran Kumpulan Wang Pengurusan Sisa Pepejal Dan Pembersihan Awam (KWPSPPA)
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -2218,7 +2218,7 @@ For Solid Waste Collection and Public Cleansing
 					WORK PAYMENT CLAIMS
 				</source>
 				<target>
-					TUNTUTAN KEWANGAN DALAMAN
+					TUNTUTAN SUMBANGAN BAYARAN KUMPULAN WANG PENGURUSAN SISA PEPEJAL DAN PEMBERSIHAN AWAM (KWPSPPA)
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -2250,7 +2250,7 @@ For Solid Waste Collection and Public Cleansing
 					Please upload the following documents:
 				</source>
 				<target>
-					Sila muat naik dokumen seperti yang berikut :
+					Dokumen yang telah dimuat naik:
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -2282,7 +2282,7 @@ For Solid Waste Collection and Public Cleansing
 					Guard Comments
 				</source>
 				<target>
-					Ulasan Pegawai
+					Pengesahan Unit Pembangunan Alam Sekitar, UPAS
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -4517,7 +4517,7 @@ For Solid Waste Collection and Public Cleansing
 					New Data Registration Form
 				</source>
 				<target>
-					BORANG PENDAFTARAN DATA KAWASAN SERAHAN BARU
+					BORANG PENDAFTARAN KAWASAN SERAHAN BARU
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -4581,7 +4581,7 @@ For Solid Waste Collection and Public Cleansing
 					Quotation Frequency
 				</source>
 				<target>
-					Kekerapan Kutipan
+					Perkhidmatan Kutipan Sisa Pepejal
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -4629,7 +4629,7 @@ For Solid Waste Collection and Public Cleansing
 					Cleaning Frequency
 				</source>
 				<target>
-					Kekerapan Pembersihan
+					Perkhidmatan Pembersihan
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -5821,7 +5821,7 @@ For Solid Waste Collection and Public Cleansing
 					INTERNAL FINANCIAL CLAIMS
 				</source>
 				<target>
-					TUNTUTAN KEWANGAN DALAMAN
+					SEMAKAN TUNTUTAN SUMBANGAN BAYARAN KUMPULAN WANG PENGURUSAN SISA PEPEJAL DAN PEMBERSIHAN AWAM (KWPSPPA)
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -6305,7 +6305,7 @@ For Solid Waste Collection and Public Cleansing
 					Review of Dataman Financial Claims
 				</source>
 				<target>
-					Semakan Tuntutan Kewangan Dalaman
+					SEMAKAN TUNTUTAN SUMBANGAN BAYARAN KUMPULAN WANG PENGURUSAN SISA PEPEJAL DAN PEMBERSIHAN AWAM (KWPSPPA)
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -7833,7 +7833,7 @@ For Solid Waste Collection and Public Cleansing
 					WORKS FORM IN THE FIELD
 				</source>
 				<target>
-					BORANG KERJA-KERJA DI LAPANGAN
+					LAPORAN KERJA SEKSYEN KAWAL SELIA
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -8153,7 +8153,7 @@ For Solid Waste Collection and Public Cleansing
 					INVESTIGATION INFORMATION
 				</source>
 				<target>
-					MAKLUMAT SIASATAN
+					PEMANTAUAN
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -8251,7 +8251,7 @@ For Solid Waste Collection and Public Cleansing
 					Action
 				</source>
 				<target>
-					TINDAKAN
+					TINDAKAN YANG DIAMBIL
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -8267,7 +8267,7 @@ For Solid Waste Collection and Public Cleansing
 					Follow-up
 				</source>
 				<target>
-					SUSULAN
+					TINDAKAN SUSULAN
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -9461,7 +9461,7 @@ For Solid Waste Collection and Public Cleansing
 					List of Lower Form Inspection Officers (MTB)
 				</source>
 				<target>
-					Senarai Pegawai Merinyu Tingkatan Biasa(MTB)
+					SENARAI LAPORAN KERJA MTK/MTB
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -9895,7 +9895,7 @@ For Solid Waste Collection and Public Cleansing
 					CLAIMS FOR SERVICES
 				</source>
 				<target>
-					TUNTUTAN KEWANGAN DALAMAN
+					TUNTUTAN SUMBANGAN BAYARAN KUMPULAN WANG PENGURUSAN SISA PEPEJAL DAN PEMBERSIHAN AWAM (KWPSPPA)
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -9943,7 +9943,7 @@ For Solid Waste Collection and Public Cleansing
 					Guard Comments
 				</source>
 				<target>
-					Ulasan Pegawai
+					Pengesahan Unit Pembangunan Alam Sekitar, UPAS
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -9975,7 +9975,7 @@ For Solid Waste Collection and Public Cleansing
 					The document has been sent to the payment unit
 				</source>
 				<target>
-					Dokumen tersebut telah dihantar ke unit pembayaran
+					Dokumen telah dihantar ke Unit Pembayaran, JKEW
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -9991,7 +9991,7 @@ For Solid Waste Collection and Public Cleansing
 					The document is being reviewed
 				</source>
 				<target>
-					Dokumen tersebut sedang dikaji
+					Dokumen sedang disemak
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -10652,7 +10652,7 @@ For Solid Waste Collection and Public Cleansing
 					Please upload documents as follows :
 				</source>
 				<target>
-					Sila muat naik dokumen seperti yang berikut :
+					Dokumen yang telah dimuat naik :
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -11150,7 +11150,7 @@ For Solid Waste Collection and Public Cleansing
 					INVESTIGATION REPORT
 				</source>
 				<target>
-					LAPORAN SIASATAN
+					LAPORAN PEMANTAUAN
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -11166,7 +11166,7 @@ For Solid Waste Collection and Public Cleansing
 					MONITORING INFORMATION
 				</source>
 				<target>
-					SIASATAN PEMANTAUAN
+					PEMANTAUAN
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -12563,7 +12563,7 @@ For Solid Waste Collection and Public Cleansing
 					Status
 				</source>
 				<target>
-					Kemaskini Status
+					Status
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -14719,7 +14719,7 @@ berdasarkan Akta Pengurusan Sisa Pepejal dan Pembersihan Awam
 				CAUSE
 				</source>
 				<target>
-					 PUNCA 
+					 PUNCA MASALAH
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">

@@ -649,11 +649,11 @@ export class MtbcomplaintDailyJobInfo1Component implements OnInit {
     //   custom: [{ name: 'routeToUpdateFeedback', title: `Edit ` }],
     // },
     columns: {
-      masa: {
-        title: "Masa",
+      id: {
+        title: "NO RUJUKAN/ADUAN",
       },
       lokasi_aduan: {
-        title: "Lokasi Aduan",
+        title: "LOKASI KERJA HARIAN/ADUAN",
       },
       lokasi_siasatan: {
         title: "Lokasi Penyiasatan",

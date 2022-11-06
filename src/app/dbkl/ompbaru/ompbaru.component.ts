@@ -86,12 +86,12 @@ export class OmpbaruComponent implements OnInit {
   dataSource = new MatTableDataSource<OmpData>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns: string[] = ['areaCode', 'location', 'parlimen', 'coordinate', 'totalPremise',
-                                'domesticWaste', 'bulkWaste', 'illegalWaste','road','tpkk','kawasanLapang',
+                                'domesticWaste', 'bulkWaste','road','tpkk','kawasanLapang',
                                 'jejantasSapuan','jejantasCucian','cucianSiarKaki','cucianSiarKakiBerbumbung','cucianStesenBas','cucianLongkang',
                                 'potongRumput','sampahKebun','kadar','frekuensi','jumlah','catatan','tarikhSerahan','checkAda','checkTiada','kemaskini'];
   headers: string[] = ['header-areaCode','header-location','header-parlimen','header-coordinate','header-totalUnitPremise','header-frequency',
-                        'header-measurement','header-kadar','header-frekuensi','header-jumlah','header-notes','header-reference','header-review','header-edit'];
-  headers2: string[] = ['header-domesticWaste','header-bulkGarbage','header-illegalGarbage','header-sweep','header-bridges','header-laundry','header-gutterWash',
+                        'header-measurement','header-kadar','header-frekuensi','header-jumlah','header-reference','header-review','header-notes','header-edit'];
+  headers2: string[] = ['header-domesticWaste','header-bulkGarbage','header-sweep','header-bridges','header-laundry','header-gutterWash',
                         'header-cutTheGrass','header-gardenWaste','header-available','header-none'];
   headers3: string[] = ['header-road','header-tpkk','header-parking','header-sweep2','header-laundry2','header-postFooter','header-postCoveredLegs','header-busTaxi'];
   constructor(

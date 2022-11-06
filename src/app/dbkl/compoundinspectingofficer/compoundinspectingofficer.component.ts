@@ -164,7 +164,7 @@ export class CompoundinspectingofficerComponent implements OnInit {
         title: "Bill. No.",
       },
       id_mtb: {
-        title: "ID MTB",
+        title: "ID MTK/MTB",
         type: "html",
         valuePrepareFunction: (cell, row) => {
           // return "<a  (click)='onUserRowSelect($event)' style='color: blue;cursor: pointer;'>"+row.id_mtb+"</a>";

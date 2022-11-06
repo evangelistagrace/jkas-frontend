@@ -108,13 +108,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-12">
+                    <!-- <div class="form-group col-md-12">
                         <div class="col-12">
                             <label for="textInput" i18n="@@op8">Number of Premises Units </label>
                         </div>
                         <input type="text" [ngModelOptions]="{standalone: true}" id="textInput1"
                             name="jumlah_unit_premis" class="form-control mb-2" [(ngModel)]="jumlah_unit_premis" />
-                    </div>
+                    </div> -->
                     <div class="form-group col-md-12 mt-top">
                         <h5 style="background-color: #253d84"
                             class="card-header info-color text-center white-text py-6">
@@ -122,23 +122,71 @@
                                 Quotation Frequency</strong>
                         </h5>
                     </div>
-                    <div class="form-group col-md-12">
+                    <!-- <div class="form-group col-md-12">
                         <label for="textInput" i18n="@@Inven8">Domestic waste</label>
                         <input type="text" id="textInput2" [ngModelOptions]="{standalone: true}" name="sisa_domestik"
                             class="form-control mb-2" [(ngModel)]="sisa_domestik" />
+                    </div> -->
+                    <div class="col-md-12">
+                        <h4 style="font-weight: 800;">Sisa Domestik</h4>
                     </div>
-                    <div class="form-group col-md-12">
-                        <label for="textInput" i18n="@@Inven10">Bulk Trash</label>
-                        <input type="text" id="textInput3" class="form-control mb-2"
-                            [ngModelOptions]="{standalone: true}" name="sampah_pukal" [(ngModel)]="sampah_pukal" />
+                    <div class="form-group col-md-2">
+                        <label for="sisaCategory">Kategori Premise</label>
+                        <select name="sisaCategory" [(ngModel)]="domesticCategory" (change)="selectCategoryDomestic($event.target.value)" class="browser-default custom-select form-control">
+                            <option value="-1" disabled selected>Kategory Premis</option>
+                            <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.caption }}</option>
+                        </select>
+                        <!-- <input type="text" name="domesticCategory" class="form-control" placeholder="Kategory" /> -->
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-2">
+                        <label for="sisaJumlah">Jumlah Unit Premis</label>
+                        <input type="text" name="sisaJumlah" [(ngModel)]="domesticTotal" name="domesticTotal" class="form-control" placeholder="Jumlah Unit Premis" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="sisaKadar">Kadar (RM)</label>
+                        <input type="text" name="sisaKadar" name="domesticRate" value="{{ domesticRate | currency: 'RM' }}" disabled class="form-control" placeholder="Kadar (RM)" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="sisaFreq">Frekuensi</label>
+                        <input type="text" name="sisaFreq" [(ngModel)]="domesticFreq" name="domesticFreq" class="form-control" placeholder="Frekuensi" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="sisaJumlahHarga">Jumlah Harga (RM)</label>
+                        <input type="text" name="sisaJumlahHarga" name="domesticTotal" class="form-control" value="{{ (domesticRate * domesticFreq * domesticTotal) | currency: 'RM' }}" disabled placeholder="Jumlah (RM)" />
+                    </div>
+                    <div class="col-md-12">
+                        <h4 style="font-weight: 800;" i18n="@@Inven10">Bulk Trash</h4>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="bulkCategory">Kategori Premis</label>
+                        <select name="bulkCategory" [(ngModel)]="pukalCategory" (change)="selectCategoryPukal($event.target.value)" class="browser-default custom-select form-control">
+                            <option value="-1" disabled selected>Kategory Premis</option>
+                            <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.caption }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="bulkTotal">Jumlah Unit Premis</label>
+                        <input type="text" name="bulkTotal" [(ngModel)]="pukalTotal" name="bulkTotal" class="form-control" placeholder="Jumlah Unit Premis" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="bulkRate">Kadar (RM)</label>
+                        <input type="text" name="bulkRate" [(ngModel)]="pukalRate" value="{{ pukalRate | currency: 'RM' }}" name="bulkRate" disabled class="form-control" placeholder="Kadar (RM)" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="bulkFreq">Frekuensi</label>
+                        <input type="text" name="bulkFreq" [(ngModel)]="pukalFreq" name="bulkFreq" class="form-control" placeholder="Frekuensi" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="bulkJumlah">Jumlah Harga (RM)</label>
+                        <input type="text" name="bulkJumlah" name="bulkTotal" class="form-control" value="{{ (pukalFreq * pukalTotal * pukalRate) | currency: 'RM' }}" disabled placeholder="Jumlah (RM)" />
+                    </div>
+                    <!-- <div class="form-group col-md-12">
                         <div class="col-12">
                             <label for="textInput" i18n="@@op16">Illegal Garbage</label>
                         </div>
                         <input type="text" id="textInput" class="form-control mb-2"
                             [ngModelOptions]="{standalone: true}" name="sampah_haram" [(ngModel)]="sampah_haram" />
-                    </div>
+                    </div> -->
                     <div class="form-group col-md-12 mt-top">
                         <h5 style="background-color: #253d84"
                             class="card-header info-color text-center white-text py-6">
@@ -146,113 +194,442 @@
                                 Cleaning Frequency</strong>
                         </h5>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <div class="col-12">
-                            <label class="d-block" for="textInput"><b i18n="@@Inven13">Sweep</b></label>
+                            <h3 style="font-weight: 800;" i18n="@@Inven13">Sweep</h3>
                         </div>
-                        <div class="form-group col-md-12">
-                            <label for="textInput" i18n="@@Inven15">Road[m]</label>
-                            <input type="text" id="textInput" class="form-control mb-2"
-                                [ngModelOptions]="{standalone: true}" name="sapuan_jalan" [(ngModel)]="sapuan_jalan" />
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Sapuan Kawasan Perumahan [m]</h4>
                         </div>
-                        <div class="form-group col-md-12">
-                            <label for="textInput">TPKK [m<sup style="color: black;">2</sup>]</label>
-                            <input type="text" id="textInput" class="form-control mb-2"
-                                [ngModelOptions]="{standalone: true}" name="sapuan_TPKK" [(ngModel)]="sapuan_TPKK" />
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ sapuanRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="sapuanFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Panjang (m)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="sapuanPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (sapuanRate * sapuanFreq * sapuanPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
                         </div>
-                        <div class="form-group col-md-12">
-                            <label for="textInput" i18n="@@Inven21">Open Space/Parking Area [m<sup
-                                    style="color: black;">2</sup>]</label>
-                            <input type="text" id="textInput" class="form-control mb-2"
-                                [ngModelOptions]="{standalone: true}" name="sapuan_parkir"
-                                [(ngModel)]="sapuan_parkir" />
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Sapuan Kawasan Komersial [m]</h4>
                         </div>
-                        <div class="form-group col-md-12">
-                            <label for="textInput" i18n="@@Inven24">Sweep[m]</label>
-                            <input type="text" id="textInput" class="form-control mb-2"
-                                [ngModelOptions]="{standalone: true}" name="cucian_jejantas"
-                                [(ngModel)]="cucian_jejantas" />
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ sapuanKomersialRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="sapuanKomersialFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Panjang (m)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="sapuanKomersialPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (sapuanKomersialRate * sapuanKomersialFreq * sapuanKomersialPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="col-12">
-                            <label for="textInput"><b i18n="@@Inven14">Laundry</b></label>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="textInput" i18n="@@op29">Laundry[m]</label>
-                            <input type="text" id="textInput" class="form-control mb-2"
-                                [ngModelOptions]="{standalone: true}" name="sapuan_jejantas"
-                                [(ngModel)]="sapuan_jejantas" />
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="textInput" i18n="@@Inven20">Post Footer[m]</label>
-                            <input type="text" id="textInput" class="form-control mb-2"
-                                [ngModelOptions]="{standalone: true}" name="cucian_siarkaki"
-                                [(ngModel)]="cucian_siarkaki" />
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="textInput" i18n="@@Inven22">Covered Leg Post</label>
-                            <input type="text" id="textInput" class="form-control mb-2"
-                                [(ngModel)]="cucian_siarkaki_berbumbung" name="cucian_siarkaki_berbumbung"
-                                [ngModelOptions]="{standalone: true}" />
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="textInput">Jejantas [m]</label>
-                            <input type="text" id="textInput" class="form-control mb-2"
-                                [(ngModel)]="cucian_slesenbaslteksi" name="cucian_slesenbaslteksi"
-                                [ngModelOptions]="{standalone: true}" />
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="textInput" i18n="@@Inven25">Drain[m]</label>
-                            <input type="text" id="textInput" class="form-control mb-2" [(ngModel)]="cucian_longkang"
-                                name="cucian_longkang" [ngModelOptions]="{standalone: true}" />
+                        <div class="col-md-4">
+                            <label for="kadarSapuan">Jumlah Harga Keseluruhan Sapuan (RM)</label>
+                            <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ (sapuanRate * sapuanFreq * sapuanPanjang) + (sapuanKomersialRate * sapuanKomersialFreq * sapuanKomersialPanjang) | currency: 'RM' }}" placeholder="Kadar (RM)" />
                         </div>
                     </div>
                     <div class="form-group col-md-12">
                         <div class="col-12">
-                            <label for="textInput" class="d-block"><b i18n="@@Inven26">Others</b></label>
+                            <h3 style="font-weight: 800;" i18n="@@Inven14">Cucian</h3>
                         </div>
-                        <div class="form-group col-md-12">
-                            <div class="col-12">
-                                <label for="textInput" i18n="@@Inven27"> Cut grass [m<sup style="color: black;">2</sup>]
-                                </label>
-                            </div>
-                            <input type="text" id="textInput" class="form-control mb-2" [(ngModel)]="potong_rumput"
-                                name="potong_rumput" [ngModelOptions]="{standalone: true}" />
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Cucian Longkang Kawasan Perumahan [m]</h4>
                         </div>
-                        <div class="form-group col-md-12">
-                            <div class="col-12">
-                                <label for="textInput" i18n="@@Inven28">Garden Trash</label>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianDomesticRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
                             </div>
-                            <input type="text" id="textInput" class="form-control mb-2" [(ngModel)]="sampah_kebun"
-                                name="sampah_kebun" [ngModelOptions]="{standalone: true}" />
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="cucianDomesticFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Panjang (m)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="cucianDomesticPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (cucianDomesticRate * cucianDomesticFreq * cucianDomesticPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Cucian Longkang Kawasan Komersial [m]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianKomersialRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="cucianKomersialFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Panjang (m)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="cucianKomersialPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (cucianKomersialRate * cucianKomersialFreq * cucianKomersialPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Cucian Monsoon Drain Kawasan Perumahan [m]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianDrainDomesticRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="cucianDrainDomesticFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Panjang (m)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="cucianDrainDomesticPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (cucianDrainDomesticRate * cucianDrainDomesticFreq * cucianDrainDomesticPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Cucian Monsoon Drain Kawasan Komersial [m]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianDrainKomersialRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="cucianDrainKomersialFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Panjang (m)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="cucianDrainKomersialPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (cucianDrainKomersialRate * cucianDrainKomersialFreq * cucianDrainKomersialPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Cucian Jejantas Bahagian Dalam [m<sup style="color: black;">2</sup>]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianJejantasDalamRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="cucianJejantasDalamFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="cucianJejantasDalamPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (cucianJejantasDalamRate * cucianJejantasDalamFreq * cucianJejantasDalamPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Cucian Jejantas Bahagian Atas Menggunakan Skylift [m<sup style="color: black;">2</sup>]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianJejantasAtasRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="cucianJejantasAtasFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="cucianJejantasAtasPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (cucianJejantasAtasRate * cucianJejantasAtasFreq * cucianJejantasAtasPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Cucian Siar Kaki Berbumbung [m<sup style="color: black;">2</sup>]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianSiarRoofRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="cucianSiarRoofFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="cucianSiarRoofPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (cucianSiarRoofRate * cucianSiarRoofFreq * cucianSiarRoofPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Cucian Siar Kaki di Bawah Gulam [RM2.50/m<sup style="color: black;">2</sup>]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianSiarGulam1Rate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="cucianSiarGulam1Freq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="cucianSiarGulam1Panjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (cucianSiarGulam1Rate * cucianSiarGulam1Freq * cucianSiarGulam1Panjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Cucian Siar Kaki di Bawah Gulam [RM3.50/m<sup style="color: black;">2</sup>]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianSiarGulam2Rate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="cucianSiarGulam2Freq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="cucianSiarGulam2Panjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (cucianSiarGulam2Rate * cucianSiarGulam2Freq * cucianSiarGulam2Panjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Cucian Tandas Awam [m<sup style="color: black;">2</sup>]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianTandasRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="cucianTandasFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="cucianTandasPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (cucianTandasRate * cucianTandasFreq * cucianTandasPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Cucian Hentian Bas/Teksi [unit]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianTeksiRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="cucianTeksiFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (cucianTeksiRate * cucianTeksiFreq) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="kadarSapuan">Jumlah Harga Keseluruhan Cucian (RM)</label>
+                            <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ (cucianDomesticRate * cucianDomesticFreq * cucianDomesticPanjang) + (cucianKomersialRate * cucianKomersialFreq * cucianKomersialPanjang) + (cucianDrainDomesticRate * cucianDrainDomesticFreq * cucianDrainDomesticPanjang) + (cucianDrainKomersialRate * cucianDrainKomersialFreq * cucianDrainKomersialPanjang) + (cucianJejantasDalamRate * cucianJejantasDalamFreq * cucianJejantasDalamPanjang) + (cucianJejantasAtasRate * cucianJejantasAtasFreq * cucianJejantasAtasPanjang) + (cucianSiarRoofRate * cucianSiarRoofFreq * cucianSiarRoofPanjang) + (cucianSiarGulam1Rate * cucianSiarGulam1Freq * cucianSiarGulam1Panjang) + (cucianSiarGulam2Rate * cucianSiarGulam2Freq * cucianSiarGulam2Panjang) + (cucianTandasRate * cucianTandasFreq * cucianTandasPanjang) + (cucianTeksiRate * cucianTeksiFreq)  | currency: 'RM' }}" placeholder="Kadar (RM)" />
                         </div>
                     </div>
-                    <div class="row" style="width: 100%">
-                        <div class="form-group col-md-3">
-                            <label for="kadar">Kadar Setiap Kekerapan</label>
-                            <input [(ngModel)]="kadar" id="kadar" name="kadar" type="text" class="form-control mb-2" />
+                    <div class="form-group col-md-12">
+                        <div class="col-12">
+                            <h3 style="font-weight: 800;">Pembersihan</h3>
                         </div>
-                        <div class="form-group col-md-3">
-                            <div class="col-12">
-                                <label for="frequency">Frekuensi</label>
-                            </div>
-                            <input id="frequency" name="frekuensi" [(ngModel)]="frekuensi" type="text" class="form-control mb-2" />
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Pembersihan Kawasan Lapang/Kawasan Parkir/Kawasan Awam [m<sup style="color: black;">2</sup>]</h4>
                         </div>
-                        <div class="form-group">
-                            <div class="col-12">
-                                <label for="totalCost">Jumlah Keseluruhan Kos Bayaran</label>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ bersihLapangRate | currency: 'RM' :'symbol': '1.2-5' }}" placeholder="Kadar (RM)" />
                             </div>
-                            <input value="{{ frekuensi * kadar | currency:'RM' }}" disabled id="totalCost" type="text" class="form-control mb-2" />
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="bersihLapangFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="bersihLapangPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (bersihLapangRate * bersihLapangFreq * bersihLapangPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Pembersihan TPKK [m<sup style="color: black;">2</sup>]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ bersihTpkkRate | currency: 'RM' :'symbol': '1.2-5' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="bersihTpkkFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="bersihTpkkPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (bersihTpkkRate * bersihTpkkFreq * bersihTpkkPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Pembersihan Pusat Penjaja [m<sup style="color: black;">2</sup>]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ bersihPenjajaRate | currency: 'RM' :'symbol': '1.2-2' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="bersihPenjajaFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="bersihPenjajaPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (bersihPenjajaRate * bersihPenjajaFreq * bersihPenjajaPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Pembersihan Pasar [m<sup style="color: black;">2</sup>]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ bersihPasarRate | currency: 'RM' :'symbol': '1.2-2' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="bersihPasarFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="bersihPasarPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (bersihPasarRate * bersihPasarFreq * bersihPasarPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Pembersihan Pasar Malam/Pasar Tani [m<sup style="color: black;">2</sup>]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ bersihPasarMlmRate | currency: 'RM' :'symbol': '1.2-2' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="bersihPasarMlmFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="bersihPasarMlmPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (bersihPasarMlmRate * bersihPasarMlmFreq * bersihPasarMlmPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="kadarSapuan">Jumlah Harga Keseluruhan Pembersihan (RM)</label>
+                            <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ (bersihLapangRate * bersihLapangFreq * bersihLapangPanjang) + (bersihTpkkRate * bersihTpkkFreq * bersihTpkkPanjang) + (bersihPenjajaRate * bersihPenjajaFreq * bersihPenjajaPanjang) + (bersihPasarRate * bersihPasarFreq * bersihPasarPanjang) + (bersihPasarMlmRate * bersihPasarMlmFreq * bersihPasarMlmPanjang) | currency: 'RM' }}" placeholder="Kadar (RM)" />
                         </div>
                     </div>
-                    <div class="form-group col-md-12 mt-top">
-                        <h5 style="background-color: #253d84"
-                            class="card-header info-color text-center white-text py-6">
-                            <strong style="color: white;font-size: 16px;" i18n="@@Inven29"> Notes</strong>
-                        </h5>
-                        <textarea type="text" id="textInput" class="form-control mb-2" [(ngModel)]="catatan"
-                            name="catatan" [ngModelOptions]="{standalone: true}"></textarea>
+                    <div class="form-group col-md-12">
+                        <div class="col-12">
+                            <h3 style="font-weight: 800;" i18n="@@Inven26">Others</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 style="font-weight: 500;">Potong Rumput [m<sup style="color: black;">2</sup>]</h4>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label for="kadarSapuan">Kadar (RM)</label>
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ rumputRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="freqSapuan">Frekuensi</label>
+                                <input type="text" name="freqSapuan" [(ngModel)]="rumputFreq" class="form-control" placeholder="Frekuensi" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
+                                <input type="text" name="panjangSapuan" [(ngModel)]="rumputPanjang" class="form-control" placeholder="Panjang (M)" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="totalSapuan">Jumlah (RM)</label>
+                                <input type="text" class="form-control" disabled value="{{ (rumputRate * rumputFreq * rumputPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div class="col-12">
+                            <h2 style="font-weight: 1000;">Jumlah Harga Keseluruhan Perkhidmatan (RM)</h2>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ (rumputRate * rumputFreq * rumputPanjang) + (bersihLapangRate * bersihLapangFreq * bersihLapangPanjang) + (bersihTpkkRate * bersihTpkkFreq * bersihTpkkPanjang) + (bersihPenjajaRate * bersihPenjajaFreq * bersihPenjajaPanjang) + (bersihPasarRate * bersihPasarFreq * bersihPasarPanjang) + (bersihPasarMlmRate * bersihPasarMlmFreq * bersihPasarMlmPanjang) + (cucianDomesticRate * cucianDomesticFreq * cucianDomesticPanjang) + (cucianKomersialRate * cucianKomersialFreq * cucianKomersialPanjang) + (cucianDrainDomesticRate * cucianDrainDomesticFreq * cucianDrainDomesticPanjang) + (cucianDrainKomersialRate * cucianDrainKomersialFreq * cucianDrainKomersialPanjang) + (cucianJejantasDalamRate * cucianJejantasDalamFreq * cucianJejantasDalamPanjang) + (cucianJejantasAtasRate * cucianJejantasAtasFreq * cucianJejantasAtasPanjang) + (cucianSiarRoofRate * cucianSiarRoofFreq * cucianSiarRoofPanjang) + (cucianSiarGulam1Rate * cucianSiarGulam1Freq * cucianSiarGulam1Panjang) + (cucianSiarGulam2Rate * cucianSiarGulam2Freq * cucianSiarGulam2Panjang) + (cucianTandasRate * cucianTandasFreq * cucianTandasPanjang) + (cucianTeksiRate * cucianTeksiFreq) + (sapuanRate * sapuanFreq * sapuanPanjang) + (sapuanKomersialRate * sapuanKomersialFreq * sapuanKomersialPanjang)  | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group col-md-12 mt-top">
                         <h5 style="background-color: #253d84"
@@ -290,6 +667,14 @@
                                 name="tarikh_semakandi_lapangant_keadeansemata_tiada"
                                 [(ngModel)]="tarikh_semakandi_lapangant_keadeansemata_tiada"
                                 [ngModelOptions]="{standalone: true}" />
+                        </div>
+                        <div class="form-group col-md-12 mt-top">
+                            <h5 style="background-color: #253d84"
+                                class="card-header info-color text-center white-text py-6">
+                                <strong style="color: white;font-size: 16px;" i18n="@@Inven29"> Notes</strong>
+                            </h5>
+                            <textarea type="text" id="textInput" class="form-control mb-2" [(ngModel)]="catatan"
+                                name="catatan" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
                         <div class="text-center form-group col-md-12">
                             <button class="look_for" type="submit" i18n="@@sub1">Submit</button>

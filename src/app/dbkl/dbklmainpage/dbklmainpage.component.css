@@ -41,7 +41,7 @@
 
 .page1 {
     /* margin-top: -10%; */
-    background: url("../../../assets/img/GAMBAR 2.jpg") no-repeat top center;
+    background: url("../../../assets/img/gambar_bg.jpg") no-repeat top center;
     /*responsive bckgrnd img */
     background-size: cover;
     background-attachment: fixed;
