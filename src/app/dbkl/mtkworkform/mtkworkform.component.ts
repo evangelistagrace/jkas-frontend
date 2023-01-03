@@ -252,11 +252,53 @@ export class MtkworkformComponent implements OnInit {
   zonedata: any = [];
   parildata: any = [];
   searchControl: any;
+
+  kerjaHarianPictures: any = ['','',''];
+  kerjaHarianLocation: any;
+
+  aduanPictures: any = ['','',''];
+  aduanLocation: any;
+  jenisKawasan: string = 'serviceArea';
+
+  mtkList: any = [];
+
   constructor(
     private http: HttpClient,
     private router: Router,
     private spinner: NgxSpinnerService
   ) {}
+
+  doUpload(index) {
+    this.spinner.show();
+    for (var i=0; i<this.uploader.queue.length; i++) {
+      let data = new FormData();
+      let fileItem = this.uploader.queue[i]._file;
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + i);
+      this.http.post<any>(this.SERVER_URL, data).subscribe((response) => {
+        this.kerjaHarianPictures[index] = response.filename;
+        this.spinner.hide();
+      });
+    }
+    this.uploader.clearQueue();
+    this.spinner.hide();
+  }
+
+  doAduanUpload(index) {
+    this.spinner.show();
+    for (var i=0; i<this.uploader.queue.length; i++) {
+      let data = new FormData();
+      let fileItem = this.uploader.queue[i]._file;
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + i);
+      this.http.post<any>(this.SERVER_URL, data).subscribe((response) => {
+        this.aduanPictures[index] = response.filename;
+        this.spinner.hide();
+      });
+    }
+    this.uploader.clearQueue();
+    this.spinner.hide();
+  }
 
   ngOnInit() {
     this.spinner.show();
@@ -283,6 +325,9 @@ export class MtkworkformComponent implements OnInit {
         (res) => {
           this.spinner.hide();
           this.zonedata = res;
+          if (this.zonedata && this.zonedata.length > 0) {
+            this.zon = this.zonedata[0];
+          }
           //console.log("ressdd",res);
         },
         (error) => {
@@ -298,6 +343,9 @@ export class MtkworkformComponent implements OnInit {
         (res) => {
           this.spinner.hide();
           this.parildata = res;
+          if (this.parildata && this.parildata.length > 0) {
+            this.parlimen = this.parildata[0];
+          }
         },
         (error) => {
           this.loginError = true;
@@ -400,6 +448,19 @@ export class MtkworkformComponent implements OnInit {
           this.errorMsg = error["error"]["message"];
         }
       );
+
+      this.http
+      .get(this.basePublicUrl + '/dbkl/listMtk', {
+        headers: headers,
+      })
+      .subscribe((res:any) => {
+        this.spinner.hide();
+        for (let key of res) {  
+          this.mtkList.push(key);
+        }
+      }, (error) => {
+        alert('Failed to get mtk list: ' + JSON.stringify(error))
+      });
     this.spinner.hide();
   }
   logout() {
@@ -451,29 +512,26 @@ export class MtkworkformComponent implements OnInit {
     this.registrationGroup = new FormGroup({
       nama: new FormControl("", [Validators.required]),
       alamat: new FormControl("", [Validators.required]),
-      norukujan: new FormControl("", [Validators.required]),
-      // parlimenA:new FormControl("", [Validators.required]),
+      norukujan: new FormControl("", []),
       email: new FormControl("", [
-        Validators.required,
         Validators.pattern(
           "^[A-za-z]{3,}[A-za-z0-9.]{1,}@[A-Za-z]{3,}[.][A-Za-z.]{2,6}$"
         ),
       ]),
       notelefon: new FormControl("", [
-        Validators.required,
         Validators.pattern("^[0-9]{11}$"),
       ]),
-      nofaksimili: new FormControl("", [Validators.required]),
+      nofaksimili: new FormControl("", []),
 
       samberaduan: new FormControl("", [Validators.required]),
-      lain_lain: new FormControl("", [Validators.required]),
+      lain_lain: new FormControl("", []),
       tarikhaduan: new FormControl("", [Validators.required]),
       tarikhterima: new FormControl("", [Validators.required]),
       lokasiaduan: new FormControl("", [Validators.required]),
       keteranganaduan: new FormControl("", [Validators.required]),
 
-      zon: new FormControl("", [Validators.required]),
-      parlimen: new FormControl("", [Validators.required]),
+      zon: new FormControl("", []),
+      parlimen: new FormControl("", []),
       tarikhsiasatan: new FormControl("", [Validators.required]),
       idpegawai: new FormControl("", [Validators.required]),
 
@@ -482,9 +540,9 @@ export class MtkworkformComponent implements OnInit {
       tindakan: new FormControl("", [Validators.required]),
 
       susulan: new FormControl("", [Validators.required]),
-      ulasanKetua_unitf1: new FormControl("", [Validators.required]),
-      ulasan: new FormControl("", [Validators.required]),
-      ulasan1: new FormControl("", [Validators.required]),
+      ulasanKetua_unitf1: new FormControl("", []),
+      ulasan: new FormControl("", []),
+      ulasan1: new FormControl("", []),
     });
     this.registrationGroup1 = new FormGroup({
       zon1: new FormControl("", [Validators.required]),
@@ -492,14 +550,10 @@ export class MtkworkformComponent implements OnInit {
       idpegawai1: new FormControl("", [Validators.required]),
       parlimenB: new FormControl("", [Validators.required]),
       laporansiasatan1: new FormControl("", [Validators.required]),
-
       tindakan1: new FormControl("", [Validators.required]),
-
-      susulan1: new FormControl("", [Validators.required]),
-      ulasanpenyelia: new FormControl("", [Validators.required]),
-      ulasan1: new FormControl("", [Validators.required]),
-      ulasan11: new FormControl("", [Validators.required]),
-
+      ulasanpenyelia: new FormControl("", []),
+      ulasan1: new FormControl("", []),
+      ulasan11: new FormControl("", []),
       //  ulasan_timbalan1:new FormControl("", [Validators.required]),
     });
     this.registrationGroup2 = new FormGroup({
@@ -531,9 +585,10 @@ export class MtkworkformComponent implements OnInit {
       ulasanKetua_unit: new FormControl("", [Validators.required]),
     });
   }
-  onMapReady(map: L.Map) {
-    this.map = map;
-    this.searchControl = ELG.geosearch({
+
+  onAduanMapReady(map: L.Map) {
+    this.aduanLocation = this.latitude + ',' + this.longitude;
+    var search = ELG.geosearch({
       providers: [
         ELG.arcgisOnlineProvider({
           apikey: "AAPK84e96f4c08c449b3bbd50cd31f590027NJ-vkD2mOotBtzSVgNfBH267JjtCPI8IPiZczqaLARYyCKNx5cMqtr76efeyapde"
@@ -542,48 +597,55 @@ export class MtkworkformComponent implements OnInit {
       position: 'topright',
       placeholder: 'Carian lokasi'
     });
-    this.searchControl.addTo(this.map);
-    this.settomap(this.latitude, this.longitude);
-  }
-  settomap(la, lo) {
-    var marker = L.marker([la, lo], {
-      draggable: true,
-      icon: this.greenIcon,
-    }).addTo(this.map);
-    marker.on("dragend", function (e) {
-      marker.openPopup();
-    });
-
-    marker.on("dragend", function (event) {
-      var marker = event.target; // you could also simply access the marker through the closure
-      var result = marker.getLatLng();
-      this.message = "Ok";
-      // but using the passed event is cleaner
-      // console.log(result);
-      this.lati = result.lat;
-      this.lngi = result.lng;
-      this.loct = this.lati + "," + this.lngi;
-      // this.loct=result.toString(
-      localStorage.setItem("area", this.loct);
-    });
-    this.searchControl.on("results", function(data) {
-      console.log('move marker...');
+    search.addTo(map);
+    search.on("results", (data:any) => {
       if (data.results.length > 0) {
         marker.setLatLng(data.results[0].latlng);
-        this.lati = marker.getLatLng().lat;
-        this.lngi = marker.getLatLng().lng;
-        this.loct = this.lati + "," + this.lngi;
-        localStorage.setItem("area", this.loct);
+        this.aduanLocation = marker.getLatLng().lat + ',' + marker.getLatLng().lng;
       }
     });
-
-    this.map.setView([la, lo], 15);
-    var popup = L.popup({
-      offset: [0, -30],
+    
+    var marker = L.marker([this.latitude, this.longitude], {
+      draggable: true,
+      icon: this.greenIcon
+    });
+    marker.addTo(map);
+    marker.on('dragend', (event:any) => {
+      var marker = event.target;
+      var result = marker.getLatLng();
+      this.aduanLocation = result.lat + ',' + result.lng;
     })
-      .setLatLng([la, lo])
-      .setContent(this.message)
-      .openOn(this.map);
+  }
+
+  onMapReady(map: L.Map) {
+    var searchControl = ELG.geosearch({
+      providers: [
+        ELG.arcgisOnlineProvider({
+          apikey: "AAPK84e96f4c08c449b3bbd50cd31f590027NJ-vkD2mOotBtzSVgNfBH267JjtCPI8IPiZczqaLARYyCKNx5cMqtr76efeyapde"
+        }),
+      ],
+      position: 'topright',
+      placeholder: 'Carian lokasi'
+    });
+    searchControl.addTo(map);
+
+    var marker = L.marker([this.latitude, this.longitude], {
+      draggable: true,
+      icon: this.greenIcon,
+    }).addTo(map);
+    marker.on("dragend", function (event) {
+      var marker = event.target;
+      var result = marker.getLatLng();
+      this.kerjaHarianLocation = result.lat + "," + result.lng;
+    });
+    searchControl.on("results", function(data) {
+      if (data.results.length > 0) {
+        marker.setLatLng(data.results[0].latlng);
+        this.kerjaHarianLocation = marker.getLatLng().lat + ',' + marker.getLatLng().lng;
+      }
+    });
+    map.setView([this.latitude, this.longitude], 15);
+    this.kerjaHarianLocation = this.latitude + ',' + this.longitude;
   }
 
   get f() {
@@ -595,19 +657,9 @@ export class MtkworkformComponent implements OnInit {
     this.submitted = true;
 
     if (this.registrationGroup.invalid) {
-      // console.log("assfsa" + this.tarikh_terima_aduan);
+      alert('Ralat! Sila semak input anda.')
       return;
     }
-
-    let loc = localStorage.getItem("area");
-    localStorage.removeItem("area");
-
-    if (loc == null) {
-      this.check = true;
-      this.messageValue = "Required Field";
-      return;
-    }
-
     this.spinner.show();
 
     this.tindakan = this.tindakan1;
@@ -639,16 +691,18 @@ export class MtkworkformComponent implements OnInit {
       zon: this.zon,
       parlimen: this.parlimen,
       tarikh_siasatan: this.tarikh_siasatan,
-      nama_pegawai: this.nama_pegawai,
-      lokasi_siasatan: loc,
-      gambar: this.firstFile2,
+      id_pegawai: this.registrationGroup.controls['idpegawai'].value,
+      lokasi_siasatan: this.aduanLocation,
+      picture1: this.aduanPictures[0],
+      picture2: this.aduanPictures[1],
+      picture3: this.aduanPictures[2],
       laporan_siasatan: this.laporan_siasatan,
       cause: this.cause,
       tindakan: this.tindakan,
       susulan: this.susulan,
       ullasan_penyelia: this.ullasan_penyelia,
       ullasan_ketua_seksyen: this.ullasan_ketua_seksyen,
-      // ulasan_timbalan:this.ulasan_timbalan
+      jenis_kawasan: this.jenisKawasan,
     };
     let key = localStorage.getItem("AccessToken");
     let headers = {
@@ -698,27 +752,15 @@ export class MtkworkformComponent implements OnInit {
   }
 
   submit1() {
-    this.uploadSubmit();
     this.submitted1 = true;
-    console.log("my response");
     if (this.registrationGroup1.invalid) {
-      console.log("2nd");
-      return;
-    }
-
-    let loc = localStorage.getItem("area");
-    localStorage.removeItem("area");
-
-    if (loc == null) {
-      this.check1 = true;
-      this.messageValue = "Required Field";
+      alert('Ralat! Sila semak input.');
+      console.log(this.registrationGroup1);
       return;
     }
     this.spinner.show();
     this.tindakanA = this.tindakan1A;
-
     this.ullasan_ketua_seksyenA = this.ullasan_ketua_seksyen1A;
-
     this.ullasan_penyeliaA = this.ullasan_penyelia1A;
     this.susulanA = this.susulan1A;
     this.laporan_siasatanA = this.report1A;
@@ -728,17 +770,17 @@ export class MtkworkformComponent implements OnInit {
       zon: this.zonA,
       parlimenA: this.parlimenA,
       tarikh_siasatan: this.tarikh_siasatanA,
-      // nama_pegawai: this.nama_pegawaiA,
-      lokasi_siasatan: loc,
+      lokasi_siasatan: this.kerjaHarianLocation,
       laporan_siasatan: this.report1A,
       tindakan: this.tindakan1A,
-      // susulan: this.susulan1A,
       ullasan_penyelia: this.ullasan_penyelia1A,
       ullasan_ketua_seksyen: this.ullasan_ketua_seksyen1A,
       ullasan_ketua_unit: this.ulasanpenyelia,
-      //ulasan_timbalan:this.ulasan_timbalanA,
       sebelum_siasatan: this.firstFile,
-      // selepas_siasatan: this.firstFile1
+      picture1: this.kerjaHarianPictures[0],
+      picture2: this.kerjaHarianPictures[1],
+      picture3: this.kerjaHarianPictures[2],
+      id_pegawai: this.nama_pegawai1,
     };
     let key = localStorage.getItem("AccessToken");
     let headers = {
@@ -881,8 +923,9 @@ export class MtkworkformComponent implements OnInit {
     this.mainform1 = false;
   }
   optionchange(e) {
-    // console.log(e.checked);
-    this.showsuboption = true;
+    this.mainform = true;
+    this.mainform2 = false;
+    this.mainform1 = false;
   }
   radioChanged1(e) {
     // console.log(e.checked);

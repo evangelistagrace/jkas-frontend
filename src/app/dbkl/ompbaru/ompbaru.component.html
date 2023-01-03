@@ -188,42 +188,42 @@ DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
             <div class="table-responsive col-md-12">
                 <table mat-table [dataSource]="dataSource" class="table table-bordered table-striped table-hover table-condensed">
                     <ng-container matColumnDef="header-areaCode">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="3" i18n="@@op4">Area Code</th>
+                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="4" i18n="@@op4">Area Code</th>
                     </ng-container>
                     <ng-container matColumnDef="header-location">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="3" i18n="@@op5">Location</th>
+                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="4" i18n="@@op5">Location</th>
                     </ng-container>
                     <ng-container matColumnDef="header-parlimen">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="3" i18n="@@op6">Parliment</th>
+                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="4" i18n="@@op6">Parliment</th>
                     </ng-container>
                     <ng-container matColumnDef="header-coordinate">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="3" i18n="@@op7">Coordinate</th>
+                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="4" i18n="@@op7">Coordinate</th>
                     </ng-container>
                     <ng-container matColumnDef="header-totalUnitPremise">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="3" i18n="@@op8">Total Unit Premise</th>
+                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.rowspan]="4" i18n="@@op8">Total Unit Premise</th>
                     </ng-container>
-                    <ng-container matColumnDef="header-frequency">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.colspan]="2" i18n="@@op9">Collection Frequency</th>
+                    <ng-container matColumnDef="header-khidmat-sisapepejal">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef [attr.colspan]="8">Perkhidmatan Kutipan Sisa Pepejal</th>
                     </ng-container>
-                    <ng-container matColumnDef="header-measurement">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="11" i18n="@@op10">
-                            Measurement of Length / Frequency of Cleaning
+                    <ng-container matColumnDef="header-khidmat-pembersihan">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="57">
+                            Perkhidmatan Pembersihan
                         </th>
                     </ng-container>
-                    <ng-container matColumnDef="header-kadar">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3">Kadar</th>
+                    <!-- <ng-container matColumnDef="header-kadar">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="4">Kadar</th>
                     </ng-container>
                     <ng-container matColumnDef="header-frekuensi">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3">Frekuensi</th>
-                    </ng-container>
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="4">Frekuensi</th>
+                    </ng-container> -->
                     <ng-container matColumnDef="header-jumlah">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3">Jumlah Keseluruhan</th>
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="4">Jumlah Keseluruhan (RM/Sebulan)</th>
                     </ng-container>
                     <ng-container matColumnDef="header-notes">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3" i18n="@@op11">Notes</th>
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="4" i18n="@@op11">Notes</th>
                     </ng-container>
                     <ng-container matColumnDef="header-reference">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3" i18n="@@op12">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="4" i18n="@@op12">
                             Reference / Delivery Date
                         </th>
                     </ng-container>     
@@ -233,15 +233,15 @@ DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
                         </th>       
                     </ng-container> 
                     <ng-container matColumnDef="header-edit">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3" i18n="@@update">Edit</th>
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="4" i18n="@@update">Edit</th>
                     </ng-container>    
                     <ng-container matColumnDef="header-domesticWaste">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="2" i18n="@@op14">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="4" i18n="@@op14">
                             Domestic waste
                         </th>
                     </ng-container>
                     <ng-container matColumnDef="header-bulkGarbage">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="2" i18n="@@op15">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="4" i18n="@@op15">
                             Bulk Garbage
                         </th>
                     </ng-container>
@@ -251,42 +251,275 @@ DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
                         </th>
                     </ng-container>
                     <ng-container matColumnDef="header-sweep">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="3" i18n="@@op17">Sweep</th>
+                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="6">Sapuan</th>
                     </ng-container>
-                    <ng-container matColumnDef="header-bridges">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="2" i18n="@@op18">Bridges</th>
+                    <ng-container matColumnDef="header-cucian">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="33">Cucian</th>
                     </ng-container>
-                    <ng-container matColumnDef="header-laundry">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="3" i18n="@@op19">Laundry</th>
+                    <ng-container matColumnDef="header-pembersihan">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef colspan="15">Pembersihan</th>
                     </ng-container>
-                    <ng-container matColumnDef="header-gutterWash">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="2" i18n="@@op20">
-                            Gutter Wash (m)
-                        </th>
-                    </ng-container>
-                    <ng-container matColumnDef="header-cutTheGrass">
-                        <th class="text-center" rowspan="2" mat-header-cell *matHeaderCellDef>
-                            <span class="text-center" i18n="@@op21"> Cut the grass </span> (m<sup>2</sup>)
-                        </th>
-                    </ng-container>
-                    <ng-container matColumnDef="header-gardenWaste">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="2" i18n="@@op22">
-                            Garden Waste
+                    <ng-container matColumnDef="header-grass">
+                        <th class="text-center" mat-header-cell colspan="3" *matHeaderCellDef rowspan="2">
+                            Pemotongan Rumput (m<sup>2</sup>)
                         </th>
                     </ng-container>
                     <ng-container matColumnDef="header-available">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="2" i18n="@@op23">
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3" i18n="@@op23">
                             Available [√]
                         </th>
                     </ng-container>
                     <ng-container matColumnDef="header-none">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="2" i18n="@@op24">None [X]</th>
+                        <th class="text-center" mat-header-cell *matHeaderCellDef rowspan="3" i18n="@@op24">None [X]</th>
                     </ng-container>
-                    <ng-container matColumnDef="header-road">
-                        <th class="text-center" mat-header-cell *matHeaderCellDef i18n="@@op25">Road [m]</th>
+                    <ng-container matColumnDef="header-domestic-category">
+                        <th class="text-center" rowspan="2" mat-header-cell *matHeaderCellDef>Kategori Premis</th>
                     </ng-container>
-                    <ng-container matColumnDef="header-tpkk">
-                        <th mat-header-cell *matHeaderCellDef class="text-center">TPKK [m<sup>2</sup>]</th>
+                    <ng-container matColumnDef="header-domestic-jumlah">
+                        <th class="text-center" rowspan="2" mat-header-cell *matHeaderCellDef>Jumlah Unit Premis</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-domestic-frequency">
+                        <th class="text-center" rowspan="2" mat-header-cell *matHeaderCellDef>Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-domestic-total">
+                        <th class="text-center" rowspan="2" mat-header-cell *matHeaderCellDef>Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pukal-category">
+                        <th class="text-center" rowspan="2" mat-header-cell *matHeaderCellDef>Kategori Premis</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pukal-jumlah">
+                        <th class="text-center" rowspan="2" mat-header-cell *matHeaderCellDef>Jumlah Unit Premis</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pukal-frequency">
+                        <th class="text-center" rowspan="2" mat-header-cell *matHeaderCellDef>Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pukal-total">
+                        <th class="text-center" rowspan="2" mat-header-cell *matHeaderCellDef>Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-sweep-domestic">
+                        <th class="text-center" colspan="3" mat-header-cell *matHeaderCellDef>Sapuan Kawasan Perumahan [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-sweep-komersial">
+                        <th mat-header-cell colspan="3" *matHeaderCellDef class="text-center">Sapuan Kawasan Komersial [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-domestic">
+                        <th mat-header-cell colspan="3" *matHeaderCellDef class="text-center">Cucian Longkang Kawasan Perumahan [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-komersial">
+                        <th mat-header-cell colspan="3" *matHeaderCellDef class="text-center">Cucian Longkang Kawasan Komersial [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-monsoon">
+                        <th mat-header-cell colspan="3" *matHeaderCellDef class="text-center">Cucian Monsoon Drain Kawasan Perumahan [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-monsoon-komersial">
+                        <th mat-header-cell colspan="3" *matHeaderCellDef class="text-center">Cucian Monsoon Drain Kawasan Komersial [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-jejantas-dalam">
+                        <th mat-header-cell colspan="3" *matHeaderCellDef class="text-center">Cucian Jejantas Bahagian Dalam [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-jejantas-atas">
+                        <th mat-header-cell colspan="3" *matHeaderCellDef class="text-center">Cucian Jejantas Bahagian Atas Menggunakan Skylift [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-siar-bumbung">
+                        <th mat-header-cell colspan="3" *matHeaderCellDef class="text-center">Cucian Siar Kaki Berbumbung [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-siar-gulam1">
+                        <th mat-header-cell colspan="3" *matHeaderCellDef class="text-center">Cucian Siar Kaki Dibawah Gulam [RM2.50/m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-siar-gulam2">
+                        <th mat-header-cell colspan="3" *matHeaderCellDef class="text-center">Cucian Siar Kaki Dibawah Gulam [RM3.50/m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-tandas">
+                        <th mat-header-cell colspan="3" *matHeaderCellDef class="text-center">Cucian Tandas Awam [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-teksi">
+                        <th mat-header-cell colspan="3" *matHeaderCellDef class="text-center">Cucian Hentian Bas/Teksi [unit]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-lapang">
+                        <th mat-header-cell *matHeaderCellDef colspan="3" class="text-center">Pembersihan Kawasan Lapang/Kawasan Parkir/Kawasan Awam [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-tpkk">
+                        <th mat-header-cell *matHeaderCellDef colspan="3" class="text-center">Pembersihan TPKK [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-penjaja">
+                        <th mat-header-cell *matHeaderCellDef colspan="3" class="text-center">Pembersihan Pusat Penjaja [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-pasar">
+                        <th mat-header-cell *matHeaderCellDef colspan="3" class="text-center">Pembersihan Pasar [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-pasar-mlm">
+                        <th mat-header-cell *matHeaderCellDef colspan="3" class="text-center">Pembersihan Pasar Malam / Pasar Tani [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-sweep-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-sweep-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Panjang [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-sweep-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-sweep-komersial-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-sweep-komersial-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Panjang [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-sweep-komersial-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-domestic-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-domestic-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Panjang [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-domestic-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-komersial-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-komersial-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Panjang [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-komersial-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-monsoon-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-monsoon-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Panjang [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-monsoon-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-monsoon-komersial-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-monsoon-komersial-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Panjang [m]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-drain-monsoon-komersial-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-jejantas-dalam-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-jejantas-dalam-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Luas [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-jejantas-dalam-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-jejantas-atas-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-jejantas-atas-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Luas [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-jejantas-atas-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-siar-bumbung-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-siar-bumbung-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Luas [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-siar-bumbung-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-siar-gulam1-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-siar-gulam1-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Luas [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-siar-gulam1-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-siar-gulam2-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-siar-gulam2-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Luas [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-siar-gulam2-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-tandas-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-tandas-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Luas [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-tandas-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-teksi-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-teksi-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Luas [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-cucian-teksi-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-lapang-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-lapang-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Luas [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-lapang-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-tpkk-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-tpkk-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Luas [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-tpkk-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-penjaja-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-penjaja-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Luas [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-penjaja-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-pasar-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-pasar-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Luas [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-pasar-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-pasar-mlm-freq">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-pasar-mlm-unit">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Luas [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-pembersihan-pasar-mlm-jumlah">
+                        <th mat-header-cell *matHeaderCellDef class="text-center">Jumlah Harga (RM)</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-grass-freq">
+                        <th mat-header-cell *matHeaderCellDef rowspan="2" class="text-center">Frekuensi</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-grass-unit">
+                        <th mat-header-cell *matHeaderCellDef rowspan="2" class="text-center">Luas [m<sup>2</sup>]</th>
+                    </ng-container>
+                    <ng-container matColumnDef="header-grass-jumlah">
+                        <th mat-header-cell *matHeaderCellDef rowspan="2" class="text-center">Jumlah Harga (RM)</th>
                     </ng-container>
                     <ng-container matColumnDef="header-parking">
                         <th mat-header-cell *matHeaderCellDef class="text-center">
@@ -308,6 +541,7 @@ DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
                     <ng-container matColumnDef="header-busTaxi">
                         <th mat-header-cell *matHeaderCellDef class="text-center" i18n="@@op31">Bus /Taxi Station</th>
                     </ng-container>
+
                     <ng-container matColumnDef="areaCode">
                         <td mat-cell *matCellDef="let element">{{ element.areaCode }}</td>
                     </ng-container>
@@ -323,14 +557,200 @@ DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
                     <ng-container matColumnDef="totalPremise">
                         <td mat-cell *matCellDef="let element">{{ element.totalPremise }}</td>
                     </ng-container>
-                    <ng-container matColumnDef="domesticWaste">
-                        <td mat-cell *matCellDef="let element">{{ element.domesticWaste }}</td>
+                    <ng-container matColumnDef="domesticCategory">
+                        <td mat-cell *matCellDef="let element">{{ element.domesticCategory || '-' }}</td>
                     </ng-container>
-                    <ng-container matColumnDef="bulkWaste">
-                        <td mat-cell *matCellDef="let element">{{ element.bulkWaste }}</td>
+                    <ng-container matColumnDef="domesticTotal">
+                        <td mat-cell *matCellDef="let element">{{ element.domesticTotal }}</td>
                     </ng-container>
-                    <ng-container matColumnDef="illegalWaste">
-                        <td mat-cell *matCellDef="let element">{{ element.illegalWaste }}</td>
+                    <ng-container matColumnDef="domesticFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.domesticFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="domesticJumlah">
+                        <td mat-cell *matCellDef="let element">{{ (element.domesticTotal * element.domesticRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="pukalCategory">
+                        <td mat-cell *matCellDef="let element">{{ element.pukalCategory || '-' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="pukalTotal">
+                        <td mat-cell *matCellDef="let element">{{ element.pukalTotal }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="pukalFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.pukalFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="pukalJumlah">
+                        <td mat-cell *matCellDef="let element">{{ (element.pukalRate * element.pukalTotal) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="sweepFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.sweepFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="sweepUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.sweepUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="sweepTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.sweepUnit * element.sweepRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="sweepKomersialFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.sweepKomersialFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="sweepKomersialUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.sweepKomersialUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="sweepKomersialTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.sweepKomersialUnit * element.sweepKomersialRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianDrainDomesticFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianDrainDomesticFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianDrainDomesticUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianDrainDomesticUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianDrainDomesticTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.cucianDrainDomesticUnit * element.cucianDrainDomesticRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianDrainKomersialFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianDrainKomersialFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianDrainKomersialUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianDrainKomersialUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianDrainKomersialTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.cucianDrainKomersialUnit * element.cucianDrainKomersialRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianDrainMonsoonFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianDrainMonsoonFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianDrainMonsoonUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianDrainMonsoonUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianDrainMonsoonTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.cucianDrainMonsoonUnit * element.cucianDrainMonsoonRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianDrainMonsoonKomersialFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianDrainMonsoonKomersialFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianDrainMonsoonKomersialUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianDrainMonsoonKomersialUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianDrainMonsoonKomersialTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.cucianDrainMonsoonKomersialUnit * element.cucianDrainMonsoonKomersialRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianJejantasDalamFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianJejantasDalamFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianJejantasDalamUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianJejantasDalamUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianJejantasDalamTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.cucianJejantasDalamFreq * element.cucianJejantasDalamUnit * element.cucianJejantasDalamRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianJejantasAtasFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianJejantasAtasFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianJejantasAtasUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianJejantasAtasUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianJejantasAtasTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.cucianJejantasAtasFreq * element.cucianJejantasAtasUnit * element.cucianJejantasAtasRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianSiarBumbungFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianSiarBumbungFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianSiarBumbungUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianSiarBumbungUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianSiarBumbungTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.cucianSiarBumbungFreq * element.cucianSiarBumbungUnit * element.cucianSiarBumbungRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianSiarGulam1Freq">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianSiarGulam1Freq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianSiarGulam1Unit">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianSiarGulam1Unit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianSiarGulam1Total">
+                        <td mat-cell *matCellDef="let element">{{ (element.cucianSiarGulam1Freq * element.cucianSiarGulam1Unit * element.cucianSiarGulam1Rate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianSiarGulam2Freq">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianSiarGulam2Freq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianSiarGulam2Unit">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianSiarGulam2Unit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianSiarGulam2Total">
+                        <td mat-cell *matCellDef="let element">{{ (element.cucianSiarGulam2Freq * element.cucianSiarGulam2Unit * element.cucianSiarGulam2Rate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianTandasFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianTandasFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianTandasUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianTandasUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianTandasTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.cucianTandasFreq * element.cucianTandasUnit * element.cucianTandasRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianTeksiFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianTeksiFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianTeksiUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.cucianTeksiRate }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cucianTeksiTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.cucianTeksiFreq * element.cucianTeksiRate * element.cucianTeksiUnit) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihLapangFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.bersihLapangFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihLapangUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.bersihLapangUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihLapangTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.bersihLapangFreq * element.bersihLapangUnit * element.bersihLapangRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihTpkkFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.bersihTpkkFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihTpkkUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.bersihTpkkUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihTpkkTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.bersihTpkkFreq * element.bersihTpkkUnit * element.bersihTpkkRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihPenjajaFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.bersihPenjajaFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihPenjajaUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.bersihPenjajaUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihPenjajaTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.bersihPenjajaFreq * element.bersihPenjajaUnit * element.bersihPenjajaRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihPasarFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.bersihPasarFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihPasarUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.bersihPasarUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihPasarTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.bersihPasarFreq * element.bersihPasarUnit * element.bersihPasarRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihPasarMlmFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.bersihPasarMlmFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihPasarMlmUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.bersihPasarMlmUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="bersihPasarMlmTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.bersihPasarMlmFreq * element.bersihPasarMlmUnit * element.bersihPasarMlmRate) | currency : 'RM' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="grassFreq">
+                        <td mat-cell *matCellDef="let element">{{ element.grassFreq }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="grassUnit">
+                        <td mat-cell *matCellDef="let element">{{ element.grassUnit }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="grassTotal">
+                        <td mat-cell *matCellDef="let element">{{ (element.grassFreq * element.grassUnit * element.grassRate) | currency : 'RM' }}</td>
                     </ng-container>
                     <ng-container matColumnDef="road">
                         <td mat-cell *matCellDef="let element">{{ element.road }}</td>
@@ -365,21 +785,21 @@ DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
                     <ng-container matColumnDef="sampahKebun">
                         <td mat-cell *matCellDef="let element">{{ element.sampahKebun }}</td>
                     </ng-container>
-                    <ng-container matColumnDef="kadar">
+                    <!-- <ng-container matColumnDef="kadar">
                         <td mat-cell *matCellDef="let element">{{ (+element.kadar) | currency: 'RM ' }}</td>
                     </ng-container>
                     <ng-container matColumnDef="frekuensi">
                         <td mat-cell *matCellDef="let element">{{ element.frekuensi }}</td>
-                    </ng-container>
+                    </ng-container> -->
                     <ng-container matColumnDef="jumlah">
-                        <td mat-cell *matCellDef="let element">{{ ((+element.kadar) * (+element.frekuensi)) | currency: 'RM' }}</td>
+                        <td mat-cell *matCellDef="let element">{{ element.jumlahKeseluruhan | currency: 'RM' }}</td>
                     </ng-container>
                     <ng-container matColumnDef="catatan">
                         <td mat-cell *matCellDef="let element">{{ element.catatan }}</td>
                     </ng-container>
                     <ng-container matColumnDef="tarikhSerahan">
                         <td mat-cell *matCellDef="let element">
-                            <span *ngIf="element.suratSerahan;else tarikh" (click)="getPdf(element.suratSerahan)" style="color: #253d84; cursor: pointer">{{element.suratSerahan}}</span>
+                            <span *ngIf="element.suratSerahan;else tarikh" (click)="getPdf(element.suratSerahan)" style="color: #253d84; cursor: pointer">Surat Serahan</span>
                             <ng-template #tarikh>{{element.tarikh}}</ng-template>
                         </td>
                     </ng-container>
@@ -400,6 +820,7 @@ DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
                     <tr mat-header-row *matHeaderRowDef="headers"></tr>
                     <tr mat-header-row *matHeaderRowDef="headers2"></tr>
                     <tr mat-header-row *matHeaderRowDef="headers3"></tr>
+                    <tr mat-header-row *matHeaderRowDef="headers4"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
                 </table>
             </div>

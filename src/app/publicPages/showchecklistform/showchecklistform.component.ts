@@ -19,20 +19,114 @@ export class ShowchecklistformComponent implements OnInit {
     isHTML5: true,
   });
 
-  public uploader1: FileUploader = new FileUploader({
-    isHTML5: true,
-  });
+  // public uploader1: FileUploader = new FileUploader({
+  //   isHTML5: true,
+  // });
 
-  public uploader2: FileUploader = new FileUploader({
-    isHTML5: true,
-  });
+  // public uploader2: FileUploader = new FileUploader({
+  //   isHTML5: true,
+  // });
 
-  public uploader3: FileUploader = new FileUploader({
-    isHTML5: true,
-  });
-  public uploader4: FileUploader = new FileUploader({
-    isHTML5: true,
-  });
+  // public uploader3: FileUploader = new FileUploader({
+  //   isHTML5: true,
+  // });
+  // public uploader4: FileUploader = new FileUploader({
+  //   isHTML5: true,
+  // });
+
+  suratPermohonan:any = [];
+  doUploadSuratPermohonan() {
+    this.spinner.show();
+    for (var i=0; i<this.uploader.queue.length; i++) {
+      let data = new FormData();
+      let fileItem = this.uploader.queue[i]._file;
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + i);
+      this.http.post<any>(this.baseUrl + "/public/uploadFile", data).subscribe((response) => {
+        this.suratPermohonan.push(response.filename);
+      });
+    }
+    this.uploader.clearQueue();
+    this.spinner.hide();
+  }
+  removeSuratPermohonan(index) {
+    this.suratPermohonan.splice(index, 1);
+  }
+suratSalinan: any = [];
+  doUploadSuratSalinan() {
+    this.spinner.show();
+    for (var i=0; i<this.uploader.queue.length; i++) {
+      let data = new FormData();
+      let fileItem = this.uploader.queue[i]._file;
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + i);
+      this.http.post<any>(this.baseUrl + "/public/uploadFile", data).subscribe((response) => {
+        this.suratSalinan.push(response.filename);
+      });
+    }
+    this.uploader.clearQueue();
+    this.spinner.hide();
+  }
+  removeSuratSalinan(index) {
+    this.suratSalinan.splice(index, 1);
+  }
+
+  typeDisposal: any = [];
+  doUploadTypeDisposal() {
+    this.spinner.show();
+    for (var i=0; i<this.uploader.queue.length; i++) {
+      let data = new FormData();
+      let fileItem = this.uploader.queue[i]._file;
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + i);
+      this.http.post<any>(this.baseUrl + "/public/uploadFile", data).subscribe((response) => {
+        this.typeDisposal.push(response.filename);
+      });
+    }
+    this.uploader.clearQueue();
+    this.spinner.hide();
+  }
+  removeTypeDisposal(index) {
+    this.typeDisposal.splice(index, 1);
+  }
+
+  developmentStatus: any = [];
+  doUploadDevelopmentStatus() {
+    this.spinner.show();
+    for (var i=0; i<this.uploader.queue.length; i++) {
+      let data = new FormData();
+      let fileItem = this.uploader.queue[i]._file;
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + i);
+      this.http.post<any>(this.baseUrl + "/public/uploadFile", data).subscribe((response) => {
+        this.developmentStatus.push(response.filename);
+      });
+    }
+    this.uploader.clearQueue();
+    this.spinner.hide();
+  }
+  removeDevelopmentStatus(index) {
+    this.developmentStatus.splice(index, 1);
+  }
+
+  otherDocuments: any = [];
+  doUploadOtherDocuments() {
+    this.spinner.show();
+    for (var i=0; i<this.uploader.queue.length; i++) {
+      let data = new FormData();
+      let fileItem = this.uploader.queue[i]._file;
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + i);
+      this.http.post<any>(this.baseUrl + "/public/uploadFile", data).subscribe((response) => {
+        this.otherDocuments.push(response.filename);
+      });
+    }
+    this.uploader.clearQueue();
+    this.spinner.hide();
+  }
+  removeOtherDocuments(index) {
+    this.otherDocuments.splice(index, 1);
+  }
   c: any;
   url: any = environment.basePublicUrl;
   public saveUsername: boolean;
@@ -223,14 +317,11 @@ export class ShowchecklistformComponent implements OnInit {
           this.status_dokumen_keseluruhan =
             this.data[0].status_dokumen_keseluruhan;
 
-          this.surat_permohonan_perkhidmatan_pembersihan_dokumen =
-            this.data[0].surat_permohonan_perkhidmatan_pembersihan_dokumen;
-          this.surat_salinan_CF_dokumen = this.data[0].surat_salinan_CF_dokumen;
-          this.salinan_status_pembanginan_dokumen =
-            this.data[0].salinan_status_pembanginan_dokumen;
-          this.bagi_status_pembangunan_dokumen =
-            this.data[0].bagi_status_pembangunan_dokumen;
-          this.dinyatakan_jenis_sistem = this.data[0].dinyatakan_jenis_sistem;
+          this.suratPermohonan.push(this.data[0].surat_permohonan_perkhidmatan_pembersihan_dokumen);
+          this.suratSalinan.push(this.data[0].surat_salinan_CF_dokumen);
+          this.otherDocuments.push(this.data[0].salinan_status_pembanginan_dokumen);
+          this.developmentStatus.push(this.data[0].bagi_status_pembangunan_dokumen);
+          this.typeDisposal.push(this.data[0].dinyatakan_jenis_sistem);
 
           // Notice
           this.surat_permohonan_perkhidmatan_pembersihan_catatan =
@@ -305,231 +396,11 @@ export class ShowchecklistformComponent implements OnInit {
       );
   }
 
-  submit() {
-    for (var i = 0; i < this.uploader.queue.length; i++) {
-      let fileItem = this.uploader.queue[i]._file;
-      if (fileItem.size > 10000000) {
-        alert("Each File should be less than 10 MB of size.");
-        return;
-      }
-    }
-    for (var j = 0; j < this.uploader.queue.length; j++) {
-      let data = new FormData();
-      let fileItem = this.uploader.queue[j]._file;
-      if (j == 0) {
-        this.firstfile = fileItem.name;
-        data.append("file", fileItem);
-        data.append("fileSeq", "seq" + j);
-        this.uploadFile(data).subscribe((data) => { });
-        continue;
-      }
-      this.firstfile = this.firstfile + "," + fileItem.name;
-      data.append("file", fileItem);
-      data.append("fileSeq", "seq" + j);
-
-      this.uploadFile(data).subscribe((data) => { });
-    }
-    this.uploader.clearQueue();
-
-    // 2nd uploader
-
-    for (var i = 0; i < this.uploader1.queue.length; i++) {
-      let fileItem = this.uploader1.queue[i]._file;
-      if (fileItem.size > 10000000) {
-        alert("Each File should be less than 10 MB of size.");
-        return;
-      }
-    }
-    for (var j = 0; j < this.uploader1.queue.length; j++) {
-      let data = new FormData();
-      let fileItem = this.uploader1.queue[j]._file;
-      if (j == 0) {
-        this.secondfile = fileItem.name;
-        data.append("file", fileItem);
-        data.append("fileSeq", "seq" + j);
-
-        this.uploadFile(data).subscribe((data) => { });
-        continue;
-      }
-      this.secondfile = this.secondfile + "," + fileItem.name;
-      data.append("file", fileItem);
-      data.append("fileSeq", "seq" + j);
-
-      this.uploadFile(data).subscribe((data) => { });
-    }
-    this.uploader1.clearQueue();
-
-    for (var i = 0; i < this.uploader2.queue.length; i++) {
-      let fileItem = this.uploader2.queue[i]._file;
-      if (fileItem.size > 10000000) {
-        alert("Each File should be less than 10 MB of size.");
-        return;
-      }
-    }
-    for (var j = 0; j < this.uploader2.queue.length; j++) {
-      let data = new FormData();
-      let fileItem = this.uploader2.queue[j]._file;
-      if (j == 0) {
-        this.thirdfile = fileItem.name;
-        data.append("file", fileItem);
-        data.append("fileSeq", "seq" + j);
-
-        this.uploadFile(data).subscribe((data) => { });
-        continue;
-      }
-      this.thirdfile = this.thirdfile + "," + fileItem.name;
-      data.append("file", fileItem);
-      data.append("fileSeq", "seq" + j);
-
-      this.uploadFile(data).subscribe((data) => { });
-    }
-    this.uploader2.clearQueue();
-
-    for (var i = 0; i < this.uploader3.queue.length; i++) {
-      let fileItem = this.uploader3.queue[i]._file;
-      if (fileItem.size > 10000000) {
-        alert("Each File should be less than 10 MB of size.");
-        return;
-      }
-    }
-    for (var j = 0; j < this.uploader3.queue.length; j++) {
-      let data = new FormData();
-      let fileItem = this.uploader3.queue[j]._file;
-      if (j == 0) {
-        this.fourthfile = fileItem.name;
-        data.append("file", fileItem);
-        data.append("fileSeq", "seq" + j);
-
-        this.uploadFile(data).subscribe((data) => { });
-        continue;
-      }
-      this.fourthfile = this.fourthfile + "," + fileItem.name;
-      data.append("file", fileItem);
-      data.append("fileSeq", "seq" + j);
-
-      this.uploadFile(data).subscribe((data) => { });
-    }
-    this.uploader3.clearQueue();
-    this.updatedata();
-
-
-    for (var i = 0; i < this.uploader4.queue.length; i++) {
-      let fileItem = this.uploader4.queue[i]._file;
-      if (fileItem.size > 10000000) {
-        alert("Each File should be less than 10 MB of size.");
-        return;
-      }
-    }
-    for (var j = 0; j < this.uploader4.queue.length; j++) {
-      let data = new FormData();
-      let fileItem = this.uploader4.queue[j]._file;
-      if (j == 0) {
-        this.fivethnewfile = fileItem.name;
-        data.append("file", fileItem);
-        data.append("fileSeq", "seq" + j);
-
-        this.uploadFile(data).subscribe((data) => { });
-        continue;
-      }
-      this.fivethnewfile = this.fivethnewfile + "," + fileItem.name;
-      data.append("file", fileItem);
-      data.append("fileSeq", "seq" + j);
-
-      this.uploadFile(data).subscribe((data) => { });
-    }
-    this.uploader4.clearQueue();
-
-
-  }
-
   uploadFile(data: FormData): Observable<any> {
     return this.http.post<any>(this.baseUrl + "/public/uploadFile", data);
   }
   updatedata() {
     this.spinner.show();
-    if (this.firstfile != "") {
-      if (this.pdffiles1 != "") {
-        for (let i = 0; i < this.pdffiles1.length; i++) {
-          this.firstfile = this.firstfile + "," + this.pdffiles1[i];
-        }
-        // console.log(this.firstfile);
-      }
-    } else {
-      for (let i = 0; i < this.pdffiles1.length; i++) {
-        if (i == 0) {
-          this.firstfile = this.pdffiles1[i];
-          continue;
-        }
-        this.firstfile = this.firstfile + "," + this.pdffiles1[i];
-      }
-      // console.log(this.firstfile);
-    }
-
-    if (this.secondfile != "") {
-      if (this.pdffiles2 != "") {
-        for (let i = 0; i < this.pdffiles2.length; i++) {
-          this.secondfile = this.secondfile + "," + this.pdffiles2[i];
-        }
-      }
-    } else {
-      for (let i = 0; i < this.pdffiles2.length; i++) {
-        if (i == 0) {
-          this.secondfile = this.pdffiles2[i];
-          continue;
-        }
-        this.secondfile = this.secondfile + "," + this.pdffiles2[i];
-      }
-    }
-
-    if (this.thirdfile != "") {
-      if (this.pdffiles3 != "") {
-        for (let i = 0; i < this.pdffiles3.length; i++) {
-          this.thirdfile = this.thirdfile + "," + this.pdffiles3[i];
-        }
-      }
-    } else {
-      for (let i = 0; i < this.pdffiles3.length; i++) {
-        if (i == 0) {
-          this.thirdfile = this.pdffiles3[i];
-          continue;
-        }
-        this.thirdfile = this.thirdfile + "," + this.pdffiles3[i];
-      }
-    }
-
-    if (this.fourthfile != "") {
-      if (this.pdffiles4 != "") {
-        for (let i = 0; i < this.pdffiles4.length; i++) {
-          this.fourthfile = this.fourthfile + "," + this.pdffiles4[i];
-        }
-      }
-    } else {
-      for (let i = 0; i < this.pdffiles4.length; i++) {
-        if (i == 0) {
-          this.fourthfile = this.pdffiles4[i];
-          continue;
-        }
-        this.fourthfile = this.fourthfile + "," + this.pdffiles4[i];
-      }
-    }
-
-    if (this.fivethnewfile != "") {
-      if (this.pdffiles5 != "") {
-        for (let i = 0; i < this.pdffiles5.length; i++) {
-          this.fivethnewfile = this.fivethnewfile + "," + this.pdffiles5[i];
-        }
-      }
-    } else {
-      for (let i = 0; i < this.pdffiles5.length; i++) {
-        if (i == 0) {
-          this.fivethnewfile = this.pdffiles5[i];
-          continue;
-        }
-        this.fivethnewfile = this.fivethnewfile + "," + this.pdffiles5[i];
-      }
-    }
-
-
     // first Notice
     let firstNotice = "";
 
@@ -646,11 +517,11 @@ export class ShowchecklistformComponent implements OnInit {
       luas_kawasan_berumput: this.luas_kawasan_berumput,
       luas_kawasan_TPKK: this.luas_kawasan_TPKK,
       parkir_area: this.parkir_area,
-      surat_permohonan_perkhidmatan_pembersihan_dokumen: this.firstfile,
-      surat_salinan_CF_dokumen: this.secondfile,
-      salinan_status_pembanginan_dokumen: this.thirdfile,
-      bagi_status_pembangunan_dokumen: this.fourthfile,
-      dinyatakan_jenis_sistem: this.fivethnewfile,
+      surat_permohonan_perkhidmatan_pembersihan_dokumen: this.suratPermohonan.length != 0 ? this.suratPermohonan[0] : '',
+      surat_salinan_CF_dokumen: this.suratSalinan.length != 0 ? this.suratSalinan[0] : '',
+      salinan_status_pembanginan_dokumen: this.developmentStatus.length != 0 ? this.developmentStatus[0] : '',
+      bagi_status_pembangunan_dokumen: this.otherDocuments.length != 0 ? this.otherDocuments[0] : '',
+      dinyatakan_jenis_sistem: this.typeDisposal.length != 0 ? this.typeDisposal[0] : '',
       surat_permohonan_perkhidmatan_pembersihan_status: 0,
       surat_salinan_CF_status: 0,
       salinan_status_pembanginan_status: 0,

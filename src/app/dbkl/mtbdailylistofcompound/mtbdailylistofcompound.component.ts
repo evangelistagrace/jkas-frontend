@@ -108,8 +108,7 @@ export class MtbdailylistofcompoundComponent implements OnInit {
         type: "html",
         valuePrepareFunction: (cell, row) => {
           return (
-            "<a href=" + "/" + this.lang +
-            "/dbkl/mtbgetcompoundform?value4=" +
+            "<a href=dbkl/mtbgetcompoundform?value4=" +
             row.no_notis_bas +
             ">" +
             row.no_notis_bas +

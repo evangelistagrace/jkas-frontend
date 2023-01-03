@@ -50,11 +50,17 @@ export class NewInventoryComponent implements OnInit {
       rate: 83.60
     },
     {
+      id: 6,
+      caption: "MGB 1100L",
+      rate: 139.30
+    },
+    {
       id: 5,
-      caption: "Mobile Compactor",
+      caption: "Mobile Compactor / RORO",
       rate: 80
     }
   ];
+  frequencies = [];
   basePublicUrl = environment.basePublicUrl;
   registrationGroup: FormGroup;
   submitted: boolean;
@@ -117,9 +123,9 @@ export class NewInventoryComponent implements OnInit {
 
   // sisa domestik
   domesticCategory: any;
-  domesticTotal: any;
-  domesticRate: any;
-  domesticFreq: any;
+  domesticTotal: any = 0;
+  domesticRate: any = 0;
+  domesticFreq: any = 0;
   selectCategoryDomestic(id:any) {
     this.categories.forEach((val) => {
       if (val.id == id) {
@@ -130,9 +136,9 @@ export class NewInventoryComponent implements OnInit {
 
   // pukal
   pukalCategory: any;
-  pukalTotal: any;
-  pukalRate: any;
-  pukalFreq: any;
+  pukalTotal: any = 0;
+  pukalRate: any = 0;
+  pukalFreq: any = 0;
   selectCategoryPukal(id:any) {
     this.categories.forEach((val) => {
       if (val.id == id) {
@@ -177,10 +183,11 @@ export class NewInventoryComponent implements OnInit {
   cucianSiarGulam2Rate: any = 3.50;
   cucianSiarGulam2Freq: any = 0;
   cucianSiarGulam2Panjang: any = 0;
-  cucianTandasRate: any = 1.00;
+  cucianTandasRate: any = 2.50;
   cucianTandasFreq: any = 0;
   cucianTandasPanjang: any = 0;
-  cucianTeksiRate: any = 1.00;
+  cucianTeksiRate: any = 20.00;
+  cucianTeksiTotal: any = 0;
   cucianTeksiFreq: any = 0;
 
   // pembersihan
@@ -196,12 +203,12 @@ export class NewInventoryComponent implements OnInit {
   bersihPasarRate: any = 0.05;
   bersihPasarFreq: any = 0;
   bersihPasarPanjang: any = 0;
-  bersihPasarMlmRate: any = 0.12;
+  bersihPasarMlmRate: any = 1.00;
   bersihPasarMlmFreq: any = 0;
   bersihPasarMlmPanjang: any = 0;
 
   // lain lain
-  rumputRate: any = 0.15;
+  rumputRate: any = 0.075;
   rumputFreq: any = 0;
   rumputPanjang: any = 0;
 
@@ -217,6 +224,7 @@ export class NewInventoryComponent implements OnInit {
   check: boolean;
   kadar: any;
   frekuensi: any;
+  deliveryDate: any;
 
   constructor(
     private http: HttpClient,
@@ -225,6 +233,9 @@ export class NewInventoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    for(var i=1; i<=30; i++) {
+      this.frequencies.push(i);
+    }
     window.scroll(0, 0);
     $("input[name='key']").on('input', function (e) {
       var $input = $(this),
@@ -286,10 +297,6 @@ export class NewInventoryComponent implements OnInit {
     this.spinner.show();
     for (var i = 0; i < this.uploader.queue.length; i++) {
       let fileItem = this.uploader.queue[i]._file;
-      if (fileItem.size > 10000000) {
-        alert("Each File should be less than 10 MB of size.");
-        return;
-      }
     }
     for (var j = 0; j < this.uploader.queue.length; j++) {
       let data = new FormData();
@@ -297,10 +304,13 @@ export class NewInventoryComponent implements OnInit {
       this.fileName = fileItem.name;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + j);
-      this.http.post<any>(this.SERVER_URL, data).subscribe((data) => {
+      this.http.post<any>(this.SERVER_URL, data).subscribe((response) => {
+        console.log(response);
+        this.fileName = response.filename;
         this.spinner.hide();
       });
     }
+    this.uploader.clearQueue();
     console.log('filename: ', this.fileName);
     this.spinner.hide();
   }
@@ -410,10 +420,12 @@ export class NewInventoryComponent implements OnInit {
       sisa_domestik: this.sisa_domestik,
       sampah_pukal: this.sampah_pukal,
 
+      domestic_category: this.domesticCategory,
       domestic_total: this.domesticTotal,
       domestic_rate: this.domesticRate,
       domestic_freq: this.domesticFreq,
 
+      pukal_category: this.pukalCategory,
       pukal_total: this.pukalTotal,
       pukal_rate: this.pukalRate,
       pukal_freq: this.pukalFreq,
@@ -421,9 +433,9 @@ export class NewInventoryComponent implements OnInit {
       sapuan_domestic_unit: this.sapuanPanjang,
       sapuan_domestic_rate: this.sapuanRate,
       sapuan_domestic_freq: this.sapuanFreq,
-      sapuan_komersial_unit: this.sapuanPanjang,
-      sapuan_komersial_rate: this.sapuanRate,
-      sapuan_komersial_freq: this.sapuanFreq,
+      sapuan_komersial_unit: this.sapuanKomersialPanjang,
+      sapuan_komersial_rate: this.sapuanKomersialRate,
+      sapuan_komersial_freq: this.sapuanKomersialFreq,
 
       cucian_domestic_unit: this.cucianDomesticPanjang,
       cucian_domestic_rate: this.cucianDomesticRate,
@@ -456,6 +468,7 @@ export class NewInventoryComponent implements OnInit {
       cucian_tandas_rate: this.cucianTandasRate,
       cucian_tandas_freq: this.cucianTandasFreq,
       cucian_teksi_rate: this.cucianTeksiRate,
+      cucian_teksi_total: this.cucianTeksiTotal,
       cucian_teksi_freq: this.cucianTeksiFreq,
 
       bersih_lapang_unit: this.bersihLapangPanjang,
@@ -491,7 +504,7 @@ export class NewInventoryComponent implements OnInit {
       potong_rumput: this.potong_rumput,
       sampah_kebun: this.sampah_kebun,
       catatan: this.catatan,
-      rujukan_tarikh_serahan: this.rujuken_tarikh_serahan,
+      rujukan_tarikh_serahan: this.deliveryDate,
       tarikh_semakandi_lapangant_keadeansemata_ada: this
         .tarikh_semakandi_lapangant_keadeansemata_ada,
       tarikh_semakandi_lapangant_keadeansemata_tiada: this

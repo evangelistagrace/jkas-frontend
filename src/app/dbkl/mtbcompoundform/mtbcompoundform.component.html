@@ -231,6 +231,16 @@
             </h5>
           </div>
           <div class="form-group col-md-12">
+            <label for="select">Nama Pegawai MTK/MTB</label>
+            <select class="browser-default custom-select" (change)="selectParlimen()" id="select" [(ngModel)]="idPegawai" formControlName="idPegawai">
+              <option *ngFor="
+              let key of mtkList" value="{{ key.no_kad_pengenalan }}">
+                {{ key.officer_name }}
+              </option>
+              <option *ngFor="let item of IdPegawai" value="{{ item.no_kad_pengenalan }}">{{item.officer_name}}</option>
+            </select>
+          </div>
+          <!-- <div class="form-group col-md-12">
             <label for="select" i18n="@@mtbwrkfrm24mtk">Name of officer</label>
             <select class="browser-default custom-select" id="select" formControlName="namaPegawaiMtk"
               [(ngModel)]="namaPegawaiMtk" [ngClass]="{
@@ -257,7 +267,7 @@
                 Please fill this required field.
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="form-group col-md-12 col-xs-12">
             <label for="select" i18n="@@n45">Parliament</label><sup>*</sup>
             <select class="browser-default custom-select" formControlName="parlimen" id="select" [(ngModel)]="parlimen"
@@ -265,17 +275,7 @@
                 'is-invalid': submitted && f.parlimen.errors
               }" (change)="selectChangeHandler($event)">
               <option value="" disabled selected i18n="@@cap">Choose a Parliament</option>
-              <option i18n="@@n46">Batu</option>
-              <option i18n="@@n47">Kepong</option>
-              <option i18n="@@n48">Segambut</option>
-              <option i18n="@@n49">Titiwangsa</option>
-              <option i18n="@@n50">Wangsa Maju</option>
-              <option i18n="@@n51">Setiawangsa</option>
-              <option i18n="@@n52">Star Hill</option>
-              <option i18n="@@n53">Coastal Valley</option>
-              <option i18n="@@n54">Cheras</option>
-              <option i18n="@@n55">Bandar Tun Razak</option>
-              <option i18n="@@n56">Seputeh</option>
+              <option *ngFor="let parlimen of parlimens" value="{{ parlimen }}">{{ parlimen }}</option>
             </select>
             <div *ngIf="submitted && f.parlimen.errors" class="invalid-feedback">
               <div *ngIf="f.parlimen.errors.required" i18n="@@Valtrans1">

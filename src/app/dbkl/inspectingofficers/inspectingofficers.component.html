@@ -169,7 +169,7 @@
                         let i = index ">
                     <td style="text-align: center">{{ i+1 }}</td>
                     <td style="text-align: center">
-                      <a (click)="date(key.officer_name,key.parlimen)" style="color: red !important; cursor: pointer">
+                      <a (click)="date(key.no_kad_pengenalan,key.parlimen)" style="color: red !important; cursor: pointer">
                         {{ key.officer_name }}
                       </a>
                     </td>
@@ -197,8 +197,13 @@
                     <th class="text-center" id="rowhead" i18n="@@lol3">Date</th>
                   </tr>
                 </thead>
-                <tbody id="tableBody" *ngFor="let v of value4;">
-                  <tr *ngFor="let y of getDate;">
+                <tbody *ngIf="worklogs.length == 0">
+                  <tr>
+                    <td>Tiada Log Harian</td>
+                  </tr>
+                </tbody>
+                <tbody id="tableBody" *ngFor="let worklog of worklogs">
+                  <tr>
                     <!-- <td>
                                             <a [routerLink]="['/dbkl/dailyworkinfo']" [queryParams]="{ value: v.date,value2:v.id_mtb,value3:v.parlimen}" style="color: blue;">{{i+1}}</a>
                                         </td> -->
@@ -209,7 +214,7 @@
                           value2: mtbUser,
                           value3: parlime
                         }" style="color: red !important; cursor: pointer">{{ y }}</a> -->
-                      <a (click)="redir(y)" style="color: red !important; cursor: pointer">{{ y }}</a>
+                      <a (click)="redir(worklog)" style="color: red !important; cursor: pointer">{{ worklog }}</a>
                     </td>
 
                   </tr>

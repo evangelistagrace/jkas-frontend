@@ -235,7 +235,7 @@
             </h5>
           </div>
           <div class="form-group col-md-12">
-            <label for="select" i18n="@@n43">Officer ID</label><sup>*</sup>
+            <label for="select">ID Pegawai MTK/MTB</label><sup>*</sup>
             <!-- <select class="browser-default custom-select" formControlName="id_mtb" id="select" [(ngModel)]="id_mtb"
               [ngClass]="{
                 'is-invalid': submitted && f.id_mtb.errors
@@ -249,7 +249,7 @@
               'is-invalid': submitted && f.id_mtb.errors
             }" />
             <datalist id="item">
-              <option *ngFor="let item of IdPegawai" [value]="item"></option>
+              <option *ngFor="let pegawai of listPegawai" [value]="pegawai.no_kad_pengenalan">{{ pegawai.officer_name }}</option>
             </datalist>
             <div *ngIf="submitted && f.id_mtb.errors" class="invalid-feedback">
               <div *ngIf="f.id_mtb.errors.required" i18n="@@Valtrans1">

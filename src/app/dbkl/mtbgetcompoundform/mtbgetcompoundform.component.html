@@ -111,6 +111,40 @@
   </nav>
 </div>
 </div>
+
+<!-- Success Modal Start-->
+<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+  [ngStyle]="{ display: displaySuccess }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+  <div class="modal-dialog modal-dialog-centered" role="document ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
+          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
+          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center">
+          <span class="dialog-msg">Kompaun berjaya dikemaskini</span>
+        </h4>
+
+        <div class="d-flex justify-content-center">
+          <button type="button " i18n="@@ok" (click)="closeSuccessModal()" data-dismiss="modal " class="btn" style="
+              color: white !important;
+              border-radius: 4px !important;
+             background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+            ">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- End of Header -->
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#dc3545" type="ball-clip-rotate-multiple"
   [fullScreen]="true">
@@ -189,7 +223,7 @@
     <div class="card">
       <!-- ======= Services Section ======= -->
 
-      <form class="p-3 model-content">
+      <form class="p-3 model-content" (ngSubmit)="submitUpdate()">
         <div class="section-title">
           <span i18n="@@compoundform">Compound Form</span>
           <h2 i18n="@@compoundform">Compound Form</h2>
@@ -595,7 +629,7 @@
             [(ngModel)]="tempat" readonly />
         </div>
         <div class="text-center form-group col-md-12">
-
+          <button class="look_for" style="margin-right: 8px" type="submit" i18n="@@n75">Submit</button>
           <button class="look_for_red" type="button" (click)="cancel()" i18n="@@comeback">Back</button>
         </div>
       </form>

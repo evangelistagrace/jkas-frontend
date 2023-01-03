@@ -148,11 +148,42 @@
 
     <div class="card1" style="border: 1px solid #dcd8d8;border-radius: 4px;">
       <div class="section-title">
-        <span i18n="@@p2">IN-FIELD WORKS FORM</span>
-        <h2 i18n="@@p2">IN-FIELD WORKS FORM</h2>
+        <span i18n="@@mtbwrkfrm2">WORKS FORM IN THE FIELD </span>
+        <h2 i18n="@@mtbwrkfrm2">WORKS FORM IN THE FIELD</h2>
       </div>
-
-
+      <!-- <form *ngIf="inquiryId" class="modal-content sizing" [formGroup]="inquiryForm" style="border: none">
+        <div class="d-flex justify-content-end">
+          <button printSectionId="form1" [useExistingCss]="true" ngxPrint type="button"
+            style="border: 1px solid transparent; background: transparent">
+            <i style="
+                font-size: 30px;
+                color: #419641;
+                cursor: pointer;
+                float: right;
+                margin-top: 12px;
+              " id="print" class="fa fa-print" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
+              <strong i18n="@@mtbwrkfrm7">COMPLAINANT'S INFORMATION</strong>
+            </h5>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="select" i18n="@@mtbwrkfrm8">Nama</label>
+            <input type="text" class="form-control" formControlName="namaPengadu" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="select" i18n="@@mtbwrkfrm8">Address</label>
+            <input type="text" class="form-control" formControlName="alamatPengadu" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="select" i18n="@@mtbwrkfrm8">Nama</label>
+            <input type="text" class="form-control" formControlName="namaPengadu" />
+          </div>
+        </div>
+      </form> -->
       <form class="modal-content sizing" [formGroup]="formGroup" (ngSubmit)="onSubmit()" style="border: none"
         id="form1">
         <div class="d-flex justify-content-end">
@@ -168,6 +199,87 @@
           </button>
         </div>
         <div>
+          <div class="row" *ngIf="inquiry.inquiry_type == 'complaint'">
+            <div class="form-group col-md-12">
+              <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
+                <strong>MAKLUMAT PENGADU</strong>
+              </h5>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="select">Nama</label>
+              <input type="text" class="form-control" formControlName="namaPengadu" />
+            </div>
+            <div class="form-group col-md-6"></div>
+            <div class="form-group col-md-12">
+              <label>Alamat</label>
+              <textarea type="text" class="form-control" formControlName="alamatPengadu"></textarea>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="select">No Rujukan</label>
+              <input type="text" class="form-control" formControlName="noRujukan" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="select">E-mel</label>
+              <input type="text" class="form-control" formControlName="emel" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="select">No Telefon</label>
+              <input type="text" class="form-control" formControlName="noTelefon" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="select">No Faksimili</label>
+              <input type="text" class="form-control" formControlName="noFax" />
+            </div>
+          </div>
+          <div class="row" *ngIf="inquiry.inquiry_type == 'complaint'">
+            <div class="form-group col-md-12">
+              <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
+                <strong>MAKLUMAT ADUAN AWAM</strong>
+              </h5>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="select">Sumber Aduan</label>
+              <select class="browser-default custom-select" formControlName="sumberAduan">
+                <option value="" disabled="" selected=""></option>
+                <option value="Adu@KL">Adu@KL</option>
+                <option value="Whatsapp">Whatsapp</option>
+                <option value="Email">Email</option>
+                <option value="Surat">Surat</option>
+                <option value="Telefon">Telefon</option>
+                <option value="Lain-lain">Lain-lain</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6"></div>
+            <div class="form-group col-md-6">
+              <label>Tarikh Aduan</label>
+              <input type="text" class="form-control" formControlName="tarikhAduan" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="select">Tarikh Aduan Diterima</label>
+              <input type="text" class="form-control" formControlName="tarikhAduanTerima" />
+            </div>
+            <div class="form-group col-md-12">
+              <label for="select">Lokasi Aduan</label>
+              <input type="text" class="form-control" formControlName="lokasiAduan" />
+            </div>
+            <div class="form-group col-md-12">
+              <label for="select">Jenis Kawasan</label>
+              <div class="row" style="margin-left: 5px">
+                <div class="col-md-3">
+                  <input class="form-check-input" [(ngModel)]="jenisKawasan" name="jenisKawasan" checked type="radio" value="serviceArea" />
+                  <label class="form-check-label" for="serviceArea" i18n="@@mtbwrkfrm4">Service Area</label>
+                </div>
+                <div class="col-md-3">
+                  <input class="form-check-input" [(ngModel)]="jenisKawasan" name="jenisKawasan" type="radio" value="nonServiceArea" />
+                  <label class="form-check-label" for="nonServiceArea" i18n="@@mtbwrkfrm5">Non Service Area</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="select">Keterangan Aduan</label>
+              <textarea type="text" class="form-control" formControlName="keterangan"></textarea>
+            </div>
+          </div>
           <div class="row">
             <div class="form-group col-md-12">
               <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
@@ -177,7 +289,6 @@
             <div class="form-group col-md-6">
               <label for="select" i18n="@@mtbwrkfrm24">Name of officer</label>
               <input type="text" class="form-control" formControlName="namaPegawai" />
-
             </div>
             <div class="form-group col-md-6"></div>
             <div class="form-group col-md-6">
@@ -197,15 +308,25 @@
             </div>
             <div class="form-group col-md-6"></div>
             <div class="form-group col-md-8">
-              <div class="row">
-                <div class="col-md-6">
-                  <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
-                    <strong i18n="@@picture">PICTURE</strong>
-                  </h5>
-                  <span>
-                  <img width="300px" height="300px" src="{{ sebelum_siasatan }}"></span>
-                </div>
+              <label for="inputEmail4" i18n="@@mtbwrkfrm25">Monitoring Location :
+              </label>
+              <div class="col-md-12">
+                <div id="map" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"></div>
               </div>
+            </div>
+            <div class="form-group col-md-6"></div>
+            <div class="form-group col-md-12">
+              <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
+                <strong i18n="@@picture">PICTURE</strong>
+              </h5>
+            </div>
+            <div *ngFor="let picture of kerjaHarianPictures; let index=index" class="form-group col-md-4">
+              <label class="custom-file-upload uploade">
+                <input type="file" ng2FileSelect accept=".png" [uploader]="uploader" (change)="doUpload(index)" />
+                <i class="fa fa-cloud-upload"></i>Muat Naik Gambar<br />
+                <span class="text-dark">{{ picture }}</span>
+              </label>
+              <img *ngIf="picture != ''" [src]="basePublicUrl + '/jkas_resourses/public/images/' + picture" width="400px" />
             </div>
           </div>
 

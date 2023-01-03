@@ -6,7 +6,10 @@ import { environment } from "src/environments/environment";
 import { saveAs } from 'file-saver';
 import { FormGroup, Validators, FormControl } from "@angular/forms";
 import { FileUploader } from "ng2-file-upload";
-
+import "leaflet/dist/leaflet.css";
+import * as L from "leaflet";
+import "esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css";
+import * as ELG from "esri-leaflet-geocoder";
 @Component({
   selector: "app-complaintinvestigation",
   templateUrl: "./complaintinvestigation.component.html",
@@ -67,7 +70,21 @@ export class ComplaintinvestigationComponent implements OnInit {
   ullasan_ketua_seksyen1A: any;
   ulasanpenyelia: any;
   formGroup: FormGroup;
+  inquiryForm: FormGroup;
   lang: any = 'ms';
+
+  inquiry: any = {};
+  inquiryId: string;
+  kerjaHarianPictures: any = ['','',''];
+  options: { layers: L.TileLayer[]; zoom: number; center: L.LatLng };
+  greenIcon = L.icon({
+    iconUrl: "../../../assets/img/location1.png",
+    shadowUrl: "https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png",
+    iconSize: [50, 50],
+    shadowSize: [20, 30],
+  });
+  kerjaHarianLocation: string  = '0,0';
+  jenisKawasan: string = 'serviceArea';
 
   constructor(
     private http: HttpClient,
@@ -76,7 +93,80 @@ export class ComplaintinvestigationComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) {}
 
+  onMapReady(map: L.Map) {
+    console.log('map is ready.');
+    var searchControl = ELG.geosearch({
+      providers: [
+        ELG.arcgisOnlineProvider({
+          apikey: "AAPK84e96f4c08c449b3bbd50cd31f590027NJ-vkD2mOotBtzSVgNfBH267JjtCPI8IPiZczqaLARYyCKNx5cMqtr76efeyapde"
+        }),
+      ],
+      position: 'topright',
+      placeholder: 'Carian lokasi'
+    });
+    searchControl.addTo(map);
+
+    var marker = L.marker([0, 0], {
+      draggable: true,
+      icon: this.greenIcon,
+    }).addTo(map);
+    marker.on("dragend", function (event) {
+      var marker = event.target;
+      var result = marker.getLatLng();
+      this.kerjaHarianLocation = result.lat + "," + result.lng;
+    });
+    searchControl.on("results", function(data) {
+      if (data.results.length > 0) {
+        marker.setLatLng(data.results[0].latlng);
+        this.kerjaHarianLocation = marker.getLatLng().lat + ',' + marker.getLatLng().lng;
+      }
+    });
+
+    var latitude = this.kerjaHarianLocation.split(',')[0];
+    var longitude = this.kerjaHarianLocation.split(',')[1];
+    console.log('move to ', +latitude, ',', + longitude);
+    map.setView([+latitude, +longitude], 15);
+  }
+
+  doUpload(index) {
+    this.spinner.show();
+    for (var i=0; i<this.uploader.queue.length; i++) {
+      let data = new FormData();
+      let fileItem = this.uploader.queue[i]._file;
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + i);
+      this.http.post<any>(this.SERVER_URL, data).subscribe((response) => {
+        this.kerjaHarianPictures[index] = response.filename;
+        this.spinner.hide();
+      });
+    }
+    this.uploader.clearQueue();
+    this.spinner.hide();
+  }
+
+  setGeoLocation(position: { coords: { latitude: any; longitude: any } }) {
+    const {
+      coords: { latitude, longitude },
+    } = position;
+    this.options = {
+      layers: [
+        L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 18,
+          attribution: "",
+        }),
+      ],
+      zoom: 13,
+      center: L.latLng(latitude, longitude),
+    };
+  }
+
   ngOnInit() {
+    if (navigator.geolocation) {
+      console.log('Setting geolocation.');
+      navigator.geolocation.getCurrentPosition(this.setGeoLocation.bind(this));
+    } else {
+      console.log('Geolocation not set.');
+    }
     this.isAdminType = localStorage.getItem("isAdmin");
     this.username = localStorage.getItem("nama_pengguna");
     this.userrole = localStorage.getItem("roleforuser");
@@ -89,6 +179,7 @@ export class ComplaintinvestigationComponent implements OnInit {
     this.id = this.route.snapshot.queryParamMap.get("value1");
     this.masa = this.route.snapshot.queryParamMap.get("value2");
     this.parliamen = this.route.snapshot.queryParamMap.get("value5");
+    this.inquiryId = this.route.snapshot.queryParamMap.get('inquiryId');
     // console.log(this.date + " " + this.id + " " + this.masa);
 
     this.formGroup = new FormGroup({
@@ -102,6 +193,56 @@ export class ComplaintinvestigationComponent implements OnInit {
       ulasanPenyelia: new FormControl("", [Validators.required]),
       ulasanKetuaSeksyen: new FormControl(""),
       ulasanKetuaUnit: new FormControl(""),
+      inquiryId: new FormControl(""),
+      tarikh: new FormControl(""),
+      namaPengadu: new FormControl(""),
+      alamatPengadu: new FormControl(""),
+      noTelefon: new FormControl(""),
+      noFax: new FormControl(""),
+      emel: new FormControl(""),
+      sumberAduan: new FormControl(""),
+      lainLain: new FormControl(""),
+      tarikhTerima: new FormControl(""),
+      noRujukan: new FormControl(""),
+      tarikhAduan: new FormControl(""),
+      tarikhAduanTerima: new FormControl(""),
+      lokasiAduan: new FormControl(""),
+      keterangan: new FormControl(""),
+      masaSiasatan: new FormControl(""),
+      idPegawai: new FormControl(""),
+      lokasiSiasatan: new FormControl(""),
+      susulan: new FormControl(""),
+      jenisKawasan: new FormControl("")
+    });
+
+    this.inquiryForm = new FormGroup({
+      inquiryId: new FormControl(""),
+      parlimen: new FormControl(""),
+      tarikh: new FormControl(""),
+      namaPengadu: new FormControl(""),
+      alamatPengadu: new FormControl(""),
+      noTelefon: new FormControl(""),
+      noFax: new FormControl(""),
+      emel: new FormControl(""),
+      sumberAduan: new FormControl(""),
+      lainLain: new FormControl(""),
+      tarikhTerima: new FormControl(""),
+      noRujukan: new FormControl(""),
+      tarikhAduan: new FormControl(""),
+      lokasiAduan: new FormControl(""),
+      keterangan: new FormControl(""),
+      zon: new FormControl(""),
+      tarikhSiasatan: new FormControl(""),
+      masaSiasatan: new FormControl(""),
+      idPegawai: new FormControl(""),
+      lokasiSiasatan: new FormControl(""),
+      laporanSiasatan: new FormControl(""),
+      tindakan: new FormControl(""),
+      susulan: new FormControl(""),
+      ulasanPenyelia: new FormControl(""),
+      ulasanKetuaSeksyen: new FormControl(""),
+      ulasanKetuaUnit: new FormControl(""),
+      jenisKawasan: new FormControl("")
     });
 
     let key = localStorage.getItem("AccessToken");
@@ -115,6 +256,7 @@ export class ComplaintinvestigationComponent implements OnInit {
       id_mtb: this.id,
       masa_siasatan: this.masa,
       tarikh_siasatan: this.date,
+      inquiry_id: this.inquiryId
     };
     // console.log(body);
 
@@ -124,17 +266,35 @@ export class ComplaintinvestigationComponent implements OnInit {
       })
       .subscribe(
         (res : any) => {
+          this.inquiry = res[0];
+          this.jenisKawasan = this.inquiry.jenis_kawasan;
            //console.log(res);
           this.spinner.hide();
-          this.data = res;
-
-          if (res.length == 0) {
-            alert('No result found.');
-            return;
-          }
-
           let aduan = res[0];
-          this.formGroup.controls['formId'].setValue(aduan.form_id);
+          if (aduan.picture1) {
+            this.kerjaHarianPictures[0] = aduan.picture1;
+          }
+          if (aduan.picture2) {
+            this.kerjaHarianPictures[1] = aduan.picture2;
+          }
+          if (aduan.picture3) {
+            this.kerjaHarianPictures[2] = aduan.picture3;
+          }
+          this.formGroup.controls['namaPengadu'].setValue(aduan.pengadu_nama);
+          this.formGroup.controls['namaPengadu'].disable();
+          this.formGroup.controls['alamatPengadu'].setValue(aduan.pengadu_alamat);
+          this.formGroup.controls['alamatPengadu'].disable();
+          this.formGroup.controls['noRujukan'].setValue(aduan.no_rujukan);
+          this.formGroup.controls['emel'].setValue(aduan.emel);
+          this.formGroup.controls['noTelefon'].setValue(aduan.no_telefon);
+          this.formGroup.controls['noFax'].setValue(aduan.no_faksimili);
+          this.formGroup.controls['sumberAduan'].setValue(aduan.sumber_aduan);
+          this.formGroup.controls['sumberAduan'].disable();
+          this.formGroup.controls['tarikhAduan'].setValue(aduan.tarikh_aduan);
+          this.formGroup.controls['tarikhAduanTerima'].setValue(aduan.tarikh_terima);
+          this.formGroup.controls['lokasiAduan'].setValue(aduan.lokasi_aduan);
+          this.formGroup.controls['keterangan'].setValue(aduan.keterangan_aduan);
+          this.formGroup.controls['formId'].setValue(aduan.inquiry_id);
           this.formGroup.controls['zon'].setValue(aduan.zon);
           this.formGroup.controls['zon'].disable();
           this.formGroup.controls['tarikhSiasatan'].setValue(aduan.tarikh_siasatan);
@@ -153,7 +313,7 @@ export class ComplaintinvestigationComponent implements OnInit {
           this.formGroup.controls['ulasanKetuaSeksyen'].disable();
           this.formGroup.controls['ulasanKetuaUnit'].setValue(aduan.ullasan_ketua_unit);
           this.formGroup.controls['ulasanKetuaUnit'].disable();
-
+          this.kerjaHarianLocation = aduan.lokasi_siasatan;
           if (this.userrole === 'Superadmin') {
             this.formGroup.controls['ulasanPenyelia'].enable();
             this.formGroup.controls['ulasanKetuaSeksyen'].enable();
@@ -164,8 +324,6 @@ export class ComplaintinvestigationComponent implements OnInit {
           } else if (this.userrole === 'MerinyuMTK') {
             this.formGroup.controls['ulasanPenyelia'].enable();
           }
-          console.log(this.formGroup.controls);
-          this.sebelum_siasatan= this.basePublicUrl + "/jkas_resourses/public/images/" + aduan.sebelum_siasatan
           this.spinner.hide();
         },
         (error) => {
@@ -247,6 +405,7 @@ export class ComplaintinvestigationComponent implements OnInit {
       Authorization: key,
     };
     let body = this.formGroup.value;
+    body['']
     this.http
       .put(this.basePublicUrl + '/dbkl/updateComplaintComments', body, {
         headers,

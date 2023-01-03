@@ -114,7 +114,7 @@ export class MtbcomplaintDailyJobInfo1Component implements OnInit {
   }
 
   basePublicUrl = environment.basePublicUrl;
-  data: any;
+  data: any = [];
   loginError: boolean;
   errorMsg: any;
   parliamen: any;
@@ -649,37 +649,18 @@ export class MtbcomplaintDailyJobInfo1Component implements OnInit {
     //   custom: [{ name: 'routeToUpdateFeedback', title: `Edit ` }],
     // },
     columns: {
-      id: {
+      rujukan: {
         title: "NO RUJUKAN/ADUAN",
-      },
-      lokasi_aduan: {
-        title: "LOKASI KERJA HARIAN/ADUAN",
-      },
-      lokasi_siasatan: {
-        title: "Lokasi Penyiasatan",
-      },
-      borang_siasatan: {
-        title: "Borang Siasatan",
         type: "html",
         valuePrepareFunction: (cell, row) => {
           return (
-            "<a href=" +
-            "/" +
-            this.lang +
-            "/dbkl/complaintinvestigation?value1=" +
-            this.mtbis +
-            "&value2=" +
-            row.masa +
-            "&value3=" +
-            this.date +
-            "&alue5=" +
-            this.parliamen +
-            ">" +
-            "BORANG KERJA DI LAPANGAN"+
-            "</a>"
+            "<a href=\"dbkl/complaintinvestigation?inquiryId=" + row.id + "\">" + row.rujukan + "</a>"
           );
         },
       },
+      lokasi_aduan: {
+        title: "LOKASI KERJA HARIAN/ADUAN",
+      }
     },
   };
 
@@ -1106,7 +1087,7 @@ export class MtbcomplaintDailyJobInfo1Component implements OnInit {
         headers: headers,
       })
       .subscribe(
-        (res) => {
+        (res:any) => {
           this.spinner.hide();
           this.data = res;
          // console.log(this.data);

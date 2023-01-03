@@ -197,8 +197,8 @@
       &nbsp;<br />
       &nbsp;
 
-      <form class="modal-content sizing" [formGroup]="registrationGroup" (ngSubmit)="submit()" style="border: none"
-        id="form" *ngIf="this.mainform">
+      <!-- aduan awam-->
+      <form class="modal-content sizing" [formGroup]="registrationGroup" (ngSubmit)="submit()" style="border: none" id="form" *ngIf="this.mainform">
         <div class="d-flex justify-content-end">
           <button printSectionId="form" [useExistingCss]="true" ngxPrint type="button"
             style="border: 1px solid transparent; background: transparent">
@@ -244,7 +244,7 @@
               </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm11">No reference</label><sup>*</sup>
+              <label for="inputEmail4" i18n="@@mtbwrkfrm11">No reference</label>
               <input type="text" class="form-control" formControlName="norukujan" id="inputEmail4" placeholder=""
                 [(ngModel)]="no_rujukan" [ngClass]="{
                   'is-invalid': submitted && f.norukujan.errors
@@ -271,7 +271,7 @@
               </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm13">Telephone No</label><sup>*</sup>
+              <label for="inputEmail4" i18n="@@mtbwrkfrm13">Telephone No</label>
               <input type="text" class="form-control" formControlName="notelefon" id="inputEmail4" placeholder=""
                 [(ngModel)]="no_telefon" [ngClass]="{
                   'is-invalid': submitted && f.notelefon.errors
@@ -312,9 +312,12 @@
                   'is-invalid': submitted && f.samberaduan.errors
                 }">
                 <option value="" disabled="" selected=""></option>
-                <option>Adu@KL</option>
-                <option>Whatsapp</option>
-                <option>Lain-lain</option>
+                <option value="Adu@KL">Adu@KL</option>
+                <option value="Whatsapp">Whatsapp</option>
+                <option value="Email">Email</option>
+                <option value="Surat">Surat</option>
+                <option value="Telefon">Telefon</option>
+                <option value="Lain-lain">Lain-lain</option>
               </select>
             </div>
             <div *ngIf="submitted && f.samberaduan.errors" class="invalid-feedback">
@@ -322,10 +325,8 @@
                 Please fill this required field.
               </div>
             </div>
-
-            <div class="form-group col-md-6"></div>
-
-            <div class="form-group col-md-6">
+            <div *ngIf="sumber_aduan == 'Lain-lain'" class="form-group col-md-6"></div>
+            <div *ngIf="sumber_aduan == 'Lain-lain'" class="form-group col-md-6">
               <label for="inputEmail4" i18n="@@mtbwrkfrm17">
                 Other (specific)</label><sup>*</sup>
               <input type="text" class="form-control" formControlName="lain_lain" id="inputEmail4" placeholder=""
@@ -383,6 +384,20 @@
             </div>
 
             <div class="form-group col-md-12">
+              <label>Jenis Kawasan</label><sup>*</sup>
+              <div class="row" style="margin-left: 5px">
+                <div class="col-md-3">
+                  <input class="form-check-input" [(ngModel)]="jenisKawasan" name="jenisKawasan" checked type="radio" value="serviceArea" id="serviceArea" />
+                  <label class="form-check-label" for="serviceArea" i18n="@@mtbwrkfrm4">Service Area</label>
+                </div>
+                <div class="col-md-3">
+                  <input class="form-check-input" [(ngModel)]="jenisKawasan" name="jenisKawasan" type="radio" value="nonServiceArea" id="nonServiceArea" />
+                  <label class="form-check-label" for="nonServiceArea" i18n="@@mtbwrkfrm5">Non Service Area</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-12">
               <label for="inputEmail4" i18n="@@mtbwrkfrm21">Description of Complaint</label><sup>*</sup>
               <textarea type="text" class="form-control" formControlName="keteranganaduan" id="inputEmail4"
                 placeholder="" [(ngModel)]="description1" [ngClass]="{
@@ -408,7 +423,7 @@
                 [ngClass]="{
                   'is-invalid': submitted && f.zon.errors
                 }">
-                <option value="" disabled="" selected=""></option>
+                <option disabled selected>Pilih Zon</option>
                 <option *ngFor="let zone of zonedata">{{ zone }}</option>
               </select>
 
@@ -426,9 +441,7 @@
                 [(ngModel)]="parlimen" [ngClass]="{
                   'is-invalid': submitted && f.parlimen.errors
                 }">
-                <option value="" disabled="" selected="" i18n="@@stp">
-                  Select the Parliamen
-                </option>
+                <option disabled selected>Pilih Parlimen</option>
                 <option *ngFor="let parli of parildata">{{ parli }}</option>
               </select>
 
@@ -455,13 +468,12 @@
             <div class="form-group col-md-6"></div>
 
             <div class="form-group col-md-6">
-              <label for="select" i18n="@@mtbwrkfrm24">Name of officer</label><sup>*</sup>
+              <label for="select">Nama Pegawai MTK/MTB</label><sup>*</sup>
               <select class="browser-default custom-select" id="select" formControlName="idpegawai"
-                [(ngModel)]="nama_pegawai" [ngClass]="{
+                [ngClass]="{
                   'is-invalid': submitted && f.idpegawai.errors
                 }">
-                <option value="" disabled="" selected=""></option>
-                <option *ngFor="let key of dataShow">
+                <option *ngFor="let key of dataShow" value="{{ key.no_kad_pengenalan }}">
                   {{ key.officer_name }}
                 </option>
               </select>
@@ -475,27 +487,28 @@
               <label for="inputEmail4" i18n="@@mtbwrkfrm25">Investigation Location :
               </label>
               <div class="col-md-12">
-                <div id="map" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"></div>
+                <div id="map" leaflet [leafletOptions]="options" (leafletMapReady)="onAduanMapReady($event)"></div>
               </div>
               <div>
                 <i style="color: #253d84 !important" *ngIf="check" i18n="@@msg">{{ messageValue }}</i>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
-              <strong i18n="@@picture">PICTURE</strong>
-            </h5>
-            <div>
+          <div class="row">
+            <div class="col-md-12">
+              <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
+                <strong i18n="@@picture">PICTURE</strong>
+              </h5>
+            </div>
+            <div *ngFor="let picture of aduanPictures;let index=index;" class="form-group col-md-4">
               <label class="custom-file-upload uploade">
-                <input type="file" ng2FileSelect accept=".png" [uploader]="uploader2"
-                  [ngModelOptions]="{ standalone: true }" name="file2" [(ngModel)]="model2" #file="ngModel" />
+                <input type="file" ng2FileSelect accept=".png" [uploader]="uploader" (change)="doAduanUpload(index)" />
                 <i class="fa fa-cloud-upload"></i> Muat Naik Gambar<br />
-                <span class="text-dark">{{ filename2 }}</span>
+                <span class="text-dark">{{ picture }}</span>
               </label>
+              <img *ngIf="picture != ''" [src]="basePublicUrl + '/jkas_resourses/public/images/' + picture" width="400px" />
             </div>
           </div>
-
           <div class="row">
             <div class="form-group col-md-12">
               <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
@@ -668,8 +681,8 @@
         </div>
       </form>
 
-      <form class="modal-content sizing" [formGroup]="registrationGroup1" (ngSubmit)="submit1()" style="border: none"
-        id="form1" *ngIf="this.mainform1">
+      <!-- Kerja harian -->
+      <form class="modal-content sizing" [formGroup]="registrationGroup1" (ngSubmit)="submit1()" style="border: none" id="form1" *ngIf="this.mainform1">
         <div class="d-flex justify-content-end">
           <button printSectionId="form1" [useExistingCss]="true" ngxPrint type="button"
             style="border: 1px solid transparent; background: transparent">
@@ -690,7 +703,7 @@
               </h5>
             </div>
             <div class="form-group col-md-6">
-              <label for="select" i18n="@@mtbwrkfrm24">Name of officer</label><sup>*</sup>
+              <label for="select">Nama Pegawai MTK/MTB</label><sup>*</sup>
               <!-- <input type="text" class="form-control" name="nama_pegawai1" placeholder="" [(ngModel)]="nama_pegawai1"
                 formControlName="idpegawai1" [ngClass]="{
                   'is-invalid': submitted1 && f1.idpegawai1.errors
@@ -700,8 +713,7 @@
                 [(ngModel)]="nama_pegawai1" [ngClass]="{
                   'is-invalid': submitted && f.idpegawai1.errors
                 }">
-                <option value="" disabled="" selected=""></option>
-                <option *ngFor="let key of dataShow">
+                <option *ngFor="let key of dataShow" value="{{ key.no_kad_pengenalan }}">
                   {{ key.officer_name }}
                 </option>
               </select>
@@ -807,38 +819,18 @@
               </div>
             </div>
             <div class="form-group col-md-4"></div>
-            <div class="form-group col-md-8">
-              <div class="row">
-                <div class="col-md-6">
-                  <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
-                    <strong i18n="@@picture">PICTURE</strong>
-                  </h5>
-                  <div>
-                    <label class="custom-file-upload uploade">
-                      <input type="file" ng2FileSelect accept=".png" [uploader]="uploader"
-                        [ngModelOptions]="{ standalone: true }" name="file" [(ngModel)]="model" #file="ngModel" />
-                      <i class="fa fa-cloud-upload"></i> Muat Naik Gambar<br />
-                      <span class="text-dark">{{ filename }}</span>
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-6" *ngIf="imgBase64 !== undefined">
-                  <img [src]="imgBase64" width="400px" />
-                </div>
-                <!-- <div class="col-md-6">
-                  <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
-                    <strong style="font-size: 19px;" i18n="@@selepas">AFTER INVESTIGATION</strong>
-                  </h5>
-                  <div>
-                    <label class="custom-file-upload uploade">
-                      <input type="file" ng2FileSelect accept=".png" [uploader]="uploader1"
-                        [ngModelOptions]="{ standalone: true }" name="file1" [(ngModel)]="model1" #file="ngModel" />
-                      <i class="fa fa-cloud-upload"></i> Muat Naik Gambar<br />
-                      <span class="text-dark">{{ filename1 }}</span>
-                    </label>
-                  </div>
-                </div> -->
-              </div>
+            <div class="form-group col-md-12">
+              <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
+                <strong i18n="@@picture">PICTURE</strong>
+              </h5>
+            </div>
+            <div *ngFor="let picture of kerjaHarianPictures; let index=index" class="form-group col-md-4">
+              <label class="custom-file-upload uploade">
+                <input type="file" ng2FileSelect accept=".png" [uploader]="uploader" (change)="doUpload(index)" />
+                <i class="fa fa-cloud-upload"></i>Muat Naik Gambar<br />
+                <span class="text-dark">{{ picture }}</span>
+              </label>
+              <img *ngIf="picture != ''" [src]="basePublicUrl + '/jkas_resourses/public/images/' + picture" width="400px" />
             </div>
           </div>
 
@@ -997,355 +989,6 @@
           </div>
         </div>
       </form>
-
-      <form class="modal-content sizing" [formGroup]="registrationGroup2" (ngSubmit)="submit2()" style="border: none"
-        id="form2" *ngIf="this.mainform2">
-        <div class="d-flex justify-content-end">
-          <button printSectionId="form2" [useExistingCss]="true" ngxPrint type="button"
-            style="border: 1px solid transparent; background: transparent">
-            <i style="
-                font-size: 30px;
-                color: #419641;
-                cursor: pointer;
-                float: right;
-                margin-top: 12px;
-              " id="print" class="fa fa-print" aria-hidden="true"></i>
-          </button>
-        </div>
-        <div>
-          <div class="form-row">
-            <div class="col-md-4"></div>
-
-            <div class="col-md-12">
-              <h5 class="card-header info-color white-text" style="background-color: #253d84; color: white">
-                <strong i18n="@@mtbwrkfrmi">COMPLAINANT'S INFORMATION</strong>
-              </h5>
-            </div>
-            <div class="form-group col-md-6" style="margin-top: 10px">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm8"> Name </label><sup>*</sup>
-              <input type="text" class="form-control" id="inputEmail4" formControlName="nama2"
-                [(ngModel)]="pengadu_namaB" [ngClass]="{
-                  'is-invalid': submitted2 && f2.nama2.errors
-                }" />
-              <div *ngIf="submitted2 && f2.nama2.errors" class="invalid-feedback">
-                <div *ngIf="f2.nama2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-
-            <!-- <div class="form-group col-md-6" style="margin-top: 10px;">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm9">Date of Receipt of Complaint</label><sup>*</sup>
-              <input type="date" class="form-control" formControlName="tarikhterimaaduan2" name="tarikh_terima_aduanB"
-                [(ngModel)]="tarikh_terima_aduanB" [ngClass]="{
-                'is-invalid': submitted2 && f2.tarikhterimaaduan2.errors
-              }" />
-
-              <div *ngIf="submitted2 && f2.tarikhterimaaduan2.errors" class="invalid-feedback">
-                <div *ngIf="f2.tarikhterimaaduan2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div> -->
-
-            <div class="form-group col-md-12">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm10">Address</label><sup>*</sup>
-              <textarea type="text" class="form-control" formControlName="alamat2" id="inputEmail4" placeholder=""
-                [(ngModel)]="address1B" [ngClass]="{
-                  'is-invalid': submitted2 && f2.alamat2.errors
-                }"></textarea>
-
-              <div *ngIf="submitted2 && f2.alamat2.errors" class="invalid-feedback">
-                <div *ngIf="f2.alamat2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group col-md-6">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm11">No reference</label><sup>*</sup>
-              <input type="text" class="form-control" formControlName="norukujan2" id="inputEmail4" placeholder=""
-                [(ngModel)]="no_rujukanB" [ngClass]="{
-                  'is-invalid': submitted2 && f2.norukujan2.errors
-                }" />
-              <div *ngIf="submitted2 && f2.norukujan2.errors" class="invalid-feedback">
-                <div *ngIf="f2.norukujan2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm12">E-mail</label><sup>*</sup>
-              <input type="email" class="form-control" formControlName="email2" id="inputEmail4" placeholder=""
-                [(ngModel)]="emelB" [ngClass]="{
-                  'is-invalid': submitted2 && f2.email2.errors
-                }" />
-
-              <div *ngIf="submitted2 && f2.email2.errors" class="invalid-feedback">
-                <div *ngIf="f2.email2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-                <div *ngIf="f2.email2.errors.pattern" i18n="@@invalide">
-                  Invalid Email
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group col-md-6">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm13">Telephone No</label><sup>*</sup>
-              <input type="text" class="form-control" formControlName="notelefon2" id="inputEmail4" placeholder=""
-                [(ngModel)]="no_telefonB" [ngClass]="{
-                  'is-invalid': submitted2 && f2.notelefon2.errors
-                }" />
-
-              <div *ngIf="submitted2 && f2.notelefon2.errors" class="invalid-feedback">
-                <div *ngIf="f2.notelefon2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-                <div *ngIf="f2.notelefon2.errors.pattern" i18n="@@Phone1">
-                  Phone Number must contain 11 Numeric letter
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group col-md-6">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm14">No facsimile</label><sup>*</sup>
-              <input type="text" class="form-control" formControlName="nofaksimili2" id="inputEmail4" placeholder=""
-                [(ngModel)]="no_faksimiliB" [ngClass]="{
-                  'is-invalid': submitted2 && f2.nofaksimili2.errors
-                }" />
-
-              <div *ngIf="submitted2 && f2.nofaksimili2.errors" class="invalid-feedback">
-                <div *ngIf="f2.nofaksimili2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="form-group col-md-12">
-              <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
-                <strong i18n="@@mtbwrkfrm15">PUBLIC COMPLAINT INFORMATION</strong>
-              </h5>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="select" i18n="@@mtbwrkfrm16">Source Complaint</label><sup>*</sup>
-              <select class="browser-default custom-select" [(ngModel)]="sumber_aduanB" id="select"
-                formControlName="samberaduan2" [ngClass]="{
-                  'is-invalid': submitted2 && f2.samberaduan2.errors
-                }">
-                <option value="" disabled="" selected=""></option>
-                <option>Adu@KL</option>
-                <option>Whatsapp</option>
-                <option>Lain-lain</option>
-              </select>
-            </div>
-            <div *ngIf="submitted2 && f2.samberaduan2.errors" class="invalid-feedback">
-              <div *ngIf="f2.samberaduan2.errors.required" i18n="@@Valtrans1">
-                Please fill this required field.
-              </div>
-            </div>
-
-            <div class="form-group col-md-6"></div>
-
-            <div class="form-group col-md-6">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm17">
-                Other (specific)</label><sup>*</sup>
-              <input type="text" class="form-control" formControlName="lain_lain2" id="inputEmail4" placeholder=""
-                [(ngModel)]="lain_lainB" [ngClass]="{
-                  'is-invalid': submitted2 && f2.lain_lain2.errors
-                }" />
-
-              <div *ngIf="submitted2 && f2.lain_lain2.errors" class="invalid-feedback">
-                <div *ngIf="f2.lain_lain2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-            <div class="form-group col-md-6"></div>
-
-            <div class="form-group col-md-6">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm18">Date of Complaint</label><sup>*</sup>
-              <input type="date" class="form-control" formControlName="tarikhaduan2" name="tarikh_aduanB" placeholder=""
-                [(ngModel)]="tarikh_aduanB" [ngClass]="{
-                  'is-invalid': submitted2 && f2.tarikhaduan2.errors
-                }" />
-
-              <div *ngIf="submitted2 && f2.tarikhaduan2.errors" class="invalid-feedback">
-                <div *ngIf="f2.tarikhaduan2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm19">Date Complaint Received</label><sup>*</sup>
-              <input type="date" class="form-control" formControlName="tarikhterima2" name="tarikh_terimaB"
-                placeholder="" [(ngModel)]="tarikh_terimaB" [ngClass]="{
-                  'is-invalid': submitted2 && f2.tarikhterima2.errors
-                }" />
-
-              <div *ngIf="submitted2 && f2.tarikhterima2.errors" class="invalid-feedback">
-                <div *ngIf="f2.tarikhterima2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group col-md-12">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm20">Location of Complaint</label><sup>*</sup>
-              <input type="text" class="form-control" formControlName="lokasiaduan2" id="inputEmail4" placeholder=""
-                [(ngModel)]="lokasi_aduanB" [ngClass]="{
-                  'is-invalid': submitted2 && f2.lokasiaduan2.errors
-                }" />
-
-              <div *ngIf="submitted2 && f2.lokasiaduan2.errors" class="invalid-feedback">
-                <div *ngIf="f2.lokasiaduan2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group col-md-12">
-              <label for="inputEmail4" i18n="@@mtbwrkfrm21">Description of Complaint</label><sup>*</sup>
-              <textarea type="text" class="form-control" formControlName="keteranganaduan2" id="inputEmail4"
-                placeholder="" [(ngModel)]="description1B" [ngClass]="{
-                  'is-invalid': submitted && f.keteranganaduan2.errors
-                }"></textarea>
-
-              <div *ngIf="submitted2 && f2.keteranganaduan2.errors" class="invalid-feedback">
-                <div *ngIf="f2.keteranganaduan2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
-              <strong i18n="@@picture">PICTURE</strong>
-            </h5>
-            <div>
-              <label class="custom-file-upload uploade">
-                <input type="file" ng2FileSelect accept=".png" [uploader]="uploader3"
-                  [ngModelOptions]="{ standalone: true }" name="file3" [(ngModel)]="model3" #file="ngModel" />
-                <i class="fa fa-cloud-upload"></i> Muat Naik Gambar<br />
-                <span class="text-dark">{{ filename3 }}</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="form-group col-md-12">
-              <h5 class="card-header info-color white-text py-6" style="background-color: #253d84; color: white">
-                <strong i18n="@@CAUSE">CAUSE</strong>
-              </h5>
-            </div>
-            <div class="form-group col-md-12">
-              <textarea type="text" class="form-control" formControlName="cause1" id="inputEmail4" placeholder=""
-                [(ngModel)]="causeA" [ngClass]="{
-                  'is-invalid': submitted && f.cause1.errors
-                }"></textarea>
-
-              <div *ngIf="submitted && f.cause1.errors" class="invalid-feedback">
-                <div *ngIf="f.cause1.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <h5 class="card-header info-color white-text py-6" style="
-                  margin-bottom: 21px;
-                  background-color: #253d84;
-                  color: white;
-                ">
-                <strong i18n="@@SUPERVISOR">SUPERVISOR'S REVIEW (MTK)</strong>
-              </h5>
-
-              <textarea type="text" class="form-control" formControlName="ulasan2" id="inputEmail4" placeholder=""
-                [(ngModel)]="ullasan_penyelia1B" [ngClass]="{
-                  'is-invalid': submitted2 && f2.ulasan2.errors
-                }"></textarea>
-
-              <div *ngIf="submitted2 && f2.ulasan2.errors" class="invalid-feedback">
-                <div *ngIf="f2.ulasan2.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <h5 class="card-header info-color white-text py-6" style="
-                  margin-bottom: 21px;
-                  background-color: #253d84;
-                  color: white;
-                ">
-                <strong i18n="@@mtbwrkfrm30">SECTION HEAD'S COMMENT</strong>
-              </h5>
-              <textarea disabled type="text" class="form-control" formControlName="ulasan12" id="inputEmail4" placeholder=""
-                [(ngModel)]="ullasan_ketua_seksyen1B" [ngClass]="{
-                  'is-invalid': submitted2 && f2.ulasan12.errors
-                }"></textarea>
-
-              <div *ngIf="submitted2 && f2.ulasan12.errors" class="invalid-feedback">
-                <div *ngIf="f2.ulasan12.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <h5 class="card-header info-color white-text py-6" style="
-                  margin-bottom: 21px;
-                  background-color: #253d84;
-                  color: white;
-                  margin-top: 14px;
-                ">
-                <strong i18n="@@cothou">COMMENTS OF THE HEAD OF UNIT</strong>
-              </h5>
-              <textarea disabled type="text" class="form-control" formControlName="ulasanKetua_unit" id="inputEmail4"
-                placeholder="" [(ngModel)]="ulasanKetua_unit" [ngClass]="{
-                  'is-invalid': submitted2 && f2.ulasanKetua_unit.errors
-                }"></textarea>
-
-              <div *ngIf="submitted2 && f2.ulasanKetua_unit.errors" class="invalid-feedback">
-                <div *ngIf="f2.ulasanKetua_unit.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div>
-            <!-- <div class="col-md-6">
-              <h5 class="card-header info-color white-text py-6" style="
-                  margin-bottom: 21px;
-                  background-color: #253d84;
-                  color: white;
-                  margin-top: 14px;
-                  
-                ">
-                <strong i18n="@@ddsc">DEPUTY DIRECTOR'S COMMENT</strong>
-              </h5>
-              <textarea type="text" class="form-control" formControlName="ulasan_timbalan2" id="inputEmail4"
-                placeholder="" [(ngModel)]="ulasan_timbalanB" [ngClass]="{
-                  'is-invalid': submitted1 && f1.ulasan_timbalan.errors
-                }"></textarea>
-
-
-              <div *ngIf="submitted1 && f1.ulasan_timbalan.errors" class="invalid-feedback">
-                <div *ngIf="f1.ulasan_timbalan.errors.required" i18n="@@Valtrans1">
-                  Please fill this required field.
-                </div>
-              </div>
-            </div> -->
-            <div class="col-md-12 text-center mb-4">
-              <button class="look_for" ml-6 type="button" type="submit" i18n="@@mtbwrkfrm32">
-                Save
-              </button>
-              <button class="look_for_red" routerLink="/dbkl/dbklmainpage" i18n="@@mtbwrkfrm31">
-                Back
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
     </div>
   </section>
   <!-- End Services Section -->
@@ -1371,7 +1014,7 @@
           </h5>
           <div class="d-flex justify-content-center">
             <button type="button" style="margin-top: 15px !important" class="look_for">
-              <a style="color: white" href="{{ lang }}/dbkl/noticeform" i18n="@@y1">Yes</a>
+              <a style="color: white" href="dbkl/noticeform" i18n="@@y1">Yes</a>
             </button>
             <button type="button" style="margin-top: 15px !important; margin-left: 10px" data-dismiss="modal"
               class="look_for_red" (click)="closeSuccessModal()" i18n="@@nop1">

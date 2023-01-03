@@ -48,12 +48,19 @@ export class MtbworkLogComponent implements OnInit {
     };
 
     this.http
-      .get(this.basePublicUrl + "/dbkl/getMTBOfficerInfo", { headers: headers })
+      .post(this.basePublicUrl + "/dbkl/getMTBOfficersTarikh", {}, { headers: headers })
       .subscribe(
-        (res) => {
+        (res:any) => {
            //console.log(res);
           this.spinner.hide();
-          this.data = res;
+          this.data = [];
+          for (let result of res) {
+            this.data.push({
+              date: result,
+              id_mtb: '',
+              parlimen: ''
+            })
+          }
         },
         (error) => {
           this.loginError = true;
@@ -82,8 +89,7 @@ export class MtbworkLogComponent implements OnInit {
         type: "html",
         valuePrepareFunction: (cell, row) => {
           return (
-            "<a href=" + "/" + this.lang +
-            "/dbkl/mtbdailyjobinfo?value=" +
+            "<a href=dbkl/mtbdailyjobinfo?value=" +
             row.date +
             "&value2=" +
             row.id_mtb +

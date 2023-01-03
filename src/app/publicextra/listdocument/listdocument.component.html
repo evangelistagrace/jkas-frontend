@@ -220,22 +220,20 @@
                       id="file-upload"
                       [uploader]="uploader"
                       multiple
+                      (change)="doUploadSuratPermohonan()"
                     />
-
                     <i class="fa fa-cloud-upload"></i> </label
                   ><br />
                   <span i18n="@@udmb"> Please upload your document here.</span>
                   <table>
                     <tbody>
-                      <tr *ngFor="let item of uploader.queue">
+                      <tr *ngFor="let item of suratPermohonan; let i = index">
                         <th width="90%">
-                          {{ item.file.name }}({{ item.file.size }}
-                          MB)
+                          {{ item }}
                         </th>
                         <th class="text-center" width="10%">
-                          <!-- <mat-icon (click)="item.remove()">delete</mat-icon> -->
                           <i
-                            (click)="item.remove()"
+                            (click)="removeSuratPermohonan(i)"
                             class="fa fa-trash"
                             style="cursor: pointer"
                           ></i>
@@ -277,8 +275,9 @@
                       ng2FileSelect
                       accept=".pdf"
                       id="file-upload"
-                      [uploader]="uploader1"
+                      [uploader]="uploader"
                       multiple
+                      (change)="doUploadSuratSalinan()"
                     />
 
                     <i class="fa fa-cloud-upload"></i> </label
@@ -286,15 +285,14 @@
                   <span i18n="@@udmb"> Please upload your document here.</span>
                   <table>
                     <tbody>
-                      <tr *ngFor="let item of uploader1.queue">
+                      <tr *ngFor="let item of suratSalinan; let i = index;">
                         <th width="90%">
-                          {{ item.file.name }}({{ item.file.size }}
-                          MB)
+                          {{ item }}
                         </th>
                         <th class="text-center" width="10%">
                           <!-- <mat-icon (click)="item.remove()">delete</mat-icon> -->
                           <i
-                            (click)="item.remove()"
+                            (click)="removeSuratSalinan(i)"
                             class="fa fa-trash"
                             style="cursor: pointer"
                           ></i>
@@ -391,24 +389,22 @@
                       ng2FileSelect
                       accept=".pdf"
                       id="file-upload"
-                      [uploader]="uploader4"
+                      [uploader]="uploader"
                       multiple
+                      (change)="doUploadTypeDisposal()"
                     />
-
                     <i class="fa fa-cloud-upload"></i> </label
                   ><br />
                   <span i18n="@@udmb"> Please upload your document here.</span>
                   <table>
                     <tbody>
-                      <tr *ngFor="let item of uploader4.queue">
+                      <tr *ngFor="let item of typeDisposal; let i = index;">
                         <th width="90%">
-                          {{ item.file.name }}({{ item.file.size }}
-                          MB)
+                          {{ item }}
                         </th>
                         <th class="text-center" width="10%">
-                          <!-- <mat-icon (click)="item.remove()">delete</mat-icon> -->
                           <i
-                            (click)="item.remove()"
+                            (click)="removeTypeDisposal(i)"
                             class="fa fa-trash"
                             style="cursor: pointer"
                           ></i>
@@ -452,24 +448,23 @@
                       ng2FileSelect
                       accept=".pdf"
                       id="file-upload"
-                      [uploader]="uploader2"
+                      [uploader]="uploader"
                       multiple
+                      (change)="doUploadDevelopmentStatus()"
                     />
-
                     <i class="fa fa-cloud-upload"></i> </label
                   ><br />
                   <span i18n="@@udmb"> Please upload your document here.</span>
                   <table>
                     <tbody>
-                      <tr *ngFor="let item of uploader2.queue">
+                      <tr *ngFor="let item of developmentStatus; let i = index;">
                         <th width="90%">
-                          {{ item.file.name }}({{ item.file.size }}
-                          MB)
+                          {{ item }}
                         </th>
                         <th class="text-center" width="10%">
                           <!-- <mat-icon (click)="item.remove()">delete</mat-icon> -->
                           <i
-                            (click)="item.remove()"
+                            (click)="removeDevelopmentStatus(i)"
                             class="fa fa-trash"
                             style="cursor: pointer"
                           ></i>
@@ -561,24 +556,23 @@
                       ng2FileSelect
                       accept=".pdf"
                       id="file-upload"
-                      [uploader]="uploader3"
+                      [uploader]="uploader"
                       multiple
+                      (change)="doUploadOtherDocuments()"
                     />
-
                     <i class="fa fa-cloud-upload"></i> </label
                   ><br />
                   <span i18n="@@udmb"> Please upload your document here.</span>
                   <table>
                     <tbody>
-                      <tr *ngFor="let item of uploader3.queue">
+                      <tr *ngFor="let item of otherDocuments; let i = index;">
                         <th width="90%">
-                          {{ item.file.name }}({{ item.file.size }}
-                          MB)
+                          {{ item }}
                         </th>
                         <th class="text-center" width="10%">
                           <!-- <mat-icon (click)="item.remove()">delete</mat-icon> -->
                           <i
-                            (click)="item.remove()"
+                            (click)="removeOtherDocuments(i)"
                             class="fa fa-trash"
                             style="cursor: pointer"
                           ></i>

@@ -182,9 +182,26 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                   </div>
                 </div>
                 <div class="col-sm-2">
+                  <label for="bulan" class="active linerr">Bulan</label>
+                </div>
+                <div class="col-sm-2">
+                  <select class="browser-default custom-select" formControlName="bulan">
+                    <option *ngFor="let bulan of bulanList" value="{{ bulan.value }}">{{ bulan.name }}</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <label for="bulan" class="active linerr">Tahun</label>
+                </div>
+                <div class="col-sm-2">
+                  <select class="browser-default custom-select" formControlName="tahun">
+                    <option *ngFor="let tahun of tahunList" value="{{ tahun }}">{{ tahun }}</option>
+                  </select>
+                </div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-2 mt-1">
                   <label for="jumlahTuntutan" class="active linerr" i18n="@@totalclaims">Total Claims </label>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-9 mt-1">
                   <input type="text" id="jumlahTuntutan" style="width: 100%;" name="jumlahTuntutan"
                     class="form-control mb-2" placeholder="" formControlName="jumlahTuntutan"
                     [(ngModel)]="jumlah_tuntutan" [ngClass]="{
@@ -227,7 +244,6 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                             File is required
                           </div>
                         </div>
-
                         <i class="fa fa-cloud-upload"></i>
                       </label><br />
                       <span *ngFor="let data of FileArray; index as i">

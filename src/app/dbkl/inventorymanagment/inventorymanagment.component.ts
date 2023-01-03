@@ -7,6 +7,7 @@ import { FileUploader } from "ng2-file-upload";
 import { Observable } from "rxjs";
 import { NgxSpinnerService } from "ngx-spinner";
 import * as $ from "jquery";
+import { saveAs } from "file-saver";
 
 @Component({
   selector: "app-inventorymanagment",
@@ -14,6 +15,53 @@ import * as $ from "jquery";
   styleUrls: ["./inventorymanagment.component.css"],
 })
 export class InventorymanagmentComponent implements OnInit {
+  parliamens = [
+    "SEGAMBUT",
+    "TITIWANGSA",
+    "WANGSA MAJU",
+    "SETIAWANGSA",
+    "BATU",
+    "LEMBAH PANTAI",
+    "KEPONG",
+    "CHERAS",
+    "BUKIT BINTANG",
+    "SEPUTEH",
+    "BANDAR TUN RAZAK",
+  ];
+  categories = [
+    {
+      id: 1,
+      caption: "Kediaman Teres (Landed)",
+      rate: 7.8
+    },
+    {
+      id: 2,
+      caption: "Kediaman Bertingkat (Non-Landed)",
+      rate: 5.45
+    },
+    {
+      id: 3,
+      caption: "Kawasan Komersial",
+      rate: 12.50
+    },
+    {
+      id: 4,
+      caption: "MGB 660L",
+      rate: 83.60
+    },
+    {
+      id: 6,
+      caption: "MGB 1100L",
+      rate: 139.30
+    },
+    {
+      id: 5,
+      caption: "Mobile Compactor / RORO",
+      rate: 80
+    }
+  ];
+  frequencies = [];
+  SERVER_URL: any = environment.basePublicUrl + "/public/uploadFile";
   basePublicUrl = environment.basePublicUrl;
   registrationGroup: FormGroup;
   submitted: boolean;
@@ -87,6 +135,102 @@ export class InventorymanagmentComponent implements OnInit {
   ukuran_panjang_cucian_longkang: any="";
   kadar: any;
   frekuensi: any;
+  // sisa domestik
+  domesticCategory: any;
+  domesticTotal: any = 0;
+  domesticRate: any = 0;
+  domesticFreq: any = 0;
+  selectCategoryDomestic(id:any) {
+    this.categories.forEach((val) => {
+      if (val.id == id) {
+        this.domesticRate = val.rate;
+      }
+    });
+  }
+
+  // pukal
+  pukalCategory: any;
+  pukalTotal: any = 0;
+  pukalRate: any = 0;
+  pukalFreq: any = 0;
+  selectCategoryPukal(id:any) {
+    this.categories.forEach((val) => {
+      if (val.id == id) {
+        this.pukalRate = val.rate;
+      }
+    });
+  }
+
+  // sapuan
+  sapuanRate: any = 0.27870;
+  sapuanFreq: any = 0;
+  sapuanPanjang: any = 0;
+  sapuanKomersialRate: any = 0.55740;
+  sapuanKomersialFreq: any = 0;
+  sapuanKomersialPanjang: any = 0;
+
+  // cucian
+  cucianDomesticRate: any = 0.34838;
+  cucianDomesticFreq: any = 0;
+  cucianDomesticPanjang: any = 0;
+  cucianKomersialRate: any = 0.69676;
+  cucianKomersialFreq: any = 0;
+  cucianKomersialPanjang: any = 0;
+  cucianDrainDomesticRate: any = 0.09290;
+  cucianDrainDomesticFreq: any = 0;
+  cucianDrainDomesticPanjang: any = 0;
+  cucianDrainKomersialRate: any = 0.04645;
+  cucianDrainKomersialFreq: any = 0;
+  cucianDrainKomersialPanjang: any = 0;
+  cucianJejantasDalamRate: any = 4.5;
+  cucianJejantasDalamFreq: any = 0;
+  cucianJejantasDalamPanjang: any = 0;
+  cucianJejantasAtasRate: any = 9.0;
+  cucianJejantasAtasFreq: any = 0;
+  cucianJejantasAtasPanjang: any = 0;
+  cucianSiarRoofRate: any = 1.80;
+  cucianSiarRoofFreq: any = 0;
+  cucianSiarRoofPanjang: any = 0;
+  cucianSiarGulam1Rate: any = 2.50;
+  cucianSiarGulam1Freq: any = 0;
+  cucianSiarGulam1Panjang: any = 0;
+  cucianSiarGulam2Rate: any = 3.50;
+  cucianSiarGulam2Freq: any = 0;
+  cucianSiarGulam2Panjang: any = 0;
+  cucianTandasRate: any = 2.50;
+  cucianTandasFreq: any = 0;
+  cucianTandasPanjang: any = 0;
+  cucianTeksiRate: any = 20.00;
+  cucianTeksiTotal: any = 0;
+  cucianTeksiFreq: any = 0;
+
+  // pembersihan
+  bersihLapangRate: any = 0.00333;
+  bersihLapangFreq: any = 0;
+  bersihLapangPanjang: any = 0;
+  bersihTpkkRate: any = 0.00333;
+  bersihTpkkFreq: any = 0;
+  bersihTpkkPanjang: any = 0;
+  bersihPenjajaRate: any = 0.05;
+  bersihPenjajaFreq: any = 0;
+  bersihPenjajaPanjang: any = 0;
+  bersihPasarRate: any = 0.05;
+  bersihPasarFreq: any = 0;
+  bersihPasarPanjang: any = 0;
+  bersihPasarMlmRate: any = 1.00;
+  bersihPasarMlmFreq: any = 0;
+  bersihPasarMlmPanjang: any = 0;
+
+  // lain lain
+  rumputRate: any = 0.075;
+  rumputFreq: any = 0;
+  rumputPanjang: any = 0;
+
+  uploader: FileUploader = new FileUploader({
+    isHTML5: true,
+  });
+  fileName: string = "";
+  deliveryDate: any;
 
   constructor(
     private http: HttpClient,
@@ -94,8 +238,53 @@ export class InventorymanagmentComponent implements OnInit {
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService
   ) { }
+  doUpload() {
+    this.spinner.show();
+    for (var i = 0; i < this.uploader.queue.length; i++) {
+      let fileItem = this.uploader.queue[i]._file;
+    }
+    for (var j = 0; j < this.uploader.queue.length; j++) {
+      let data = new FormData();
+      let fileItem = this.uploader.queue[j]._file;
+      this.fileName = fileItem.name;
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + j);
+      this.http.post<any>(this.SERVER_URL, data).subscribe((response) => {
+        console.log(response);
+        this.fileName = response.filename;
+        this.spinner.hide();
+      });
+    }
+    this.uploader.clearQueue();
+    console.log('filename: ', this.fileName);
+    this.spinner.hide();
+  }
+  getPdf(e) {
+    this.downloadPdf(e).then((blob) => {
+      saveAs(blob, e);
+      var fileURL = window.URL.createObjectURL(blob);
+      let tab = window.open();
+      tab.location.href = fileURL;
+    });
+  }
+  downloadPdf(id: number) {
+    let key = localStorage.getItem("AccessToken");
+    let headers = {
+      "Content-Type": "application/json",
+      Authorization: key,
+    };
 
+    return this.http
+      .get(this.basePublicUrl + "/jkas_resourses/public/pdfs/" + id, {
+        headers,
+        responseType: "blob",
+      })
+      .toPromise();
+  }
   ngOnInit() {
+    for(var i=1; i<=30; i++) {
+      this.frequencies.push(i);
+    }
     window.scroll(0, 0);
     this.isAdminType = localStorage.getItem("isAdmin");
     this.username = localStorage.getItem("nama_pengguna");
@@ -114,7 +303,7 @@ export class InventorymanagmentComponent implements OnInit {
         headers: headers,
       })
       .subscribe(
-        (res) => {
+        (res:any) => {
           this.data = res;
           //console.log(res);
           localStorage.setItem("parlimen_subarea",this.data.parlimen_subarea);
@@ -143,6 +332,81 @@ export class InventorymanagmentComponent implements OnInit {
           this.tarikh_semakandi_lapangant_keadeansemata_tiada=this.data.tarikh_semakandi_lapangant_keadeansemata_tiada ;
           this.kadar = this.data.kadar;
           this.frekuensi = this.data.frekuensi;
+          this.fileName = res.surat_serahan;
+          this.deliveryDate = res.rujuken_tarikh_serahan;
+
+          this.domesticCategory = res.domestic_category;
+          this.domesticTotal = res.domestic_total;
+          this.domesticRate = res.domestic_rate;
+          this.domesticFreq = res.domestic_freq;
+    
+          this.pukalCategory = res.pukal_category;
+          this.pukalTotal = res.pukal_total;
+          this.pukalRate = res.pukal_rate;
+          this.pukalFreq = res.pukal_freq;
+    
+          this.sapuanPanjang = res.sapuan_domestic_unit;
+          this.sapuanRate = res.sapuan_domestic_rate;
+          this.sapuanFreq = res.sapuan_domestic_freq;
+          this.sapuanKomersialPanjang = res.sapuan_komersial_unit;
+          this.sapuanKomersialRate = res.sapuan_komersial_rate;
+          this.sapuanKomersialFreq = res.sapuan_komersial_freq;
+    
+          this.cucianDomesticPanjang = res.cucian_domestic_unit;
+          this.cucianDomesticRate = res.cucian_domestic_rate;
+          this.cucianDomesticFreq = res.cucian_domestic_freq;
+          this.cucianKomersialPanjang = res.cucian_komersial_unit;
+          this.cucianKomersialRate = res.cucian_komersial_rate;
+          this.cucianKomersialFreq = res.cucian_komersial_freq;
+          this.cucianDrainDomesticPanjang = res.cucian_drain_domestic_unit;
+          this.cucianDrainDomesticRate = res.cucian_drain_domestic_rate;
+          this.cucianDrainDomesticFreq = res.cucian_drain_domestic_freq;
+          this.cucianDrainKomersialPanjang = res.cucian_drain_komersial_unit;
+          this.cucianDrainKomersialRate = res.cucian_drain_komersial_rate;
+          this.cucianDrainKomersialFreq = res.cucian_drain_komersial_freq;
+          this.cucianJejantasDalamPanjang = res.cucian_jejantas_dalam_unit;
+          this.cucianJejantasDalamRate = res.cucian_jejantas_dalam_rate;
+          this.cucianJejantasDalamFreq = res.cucian_jejantas_dalam_freq;
+          this.cucianJejantasAtasPanjang = res.cucian_jejantas_atas_unit;
+          this.cucianJejantasAtasRate = res.cucian_jejantas_atas_rate;
+          this.cucianJejantasAtasFreq = res.cucian_jejantas_atas_freq;
+          this.cucianSiarRoofPanjang = res.cucian_siar_roof_unit;
+          this.cucianSiarRoofRate = res.cucian_siar_roof_rate;
+          this.cucianSiarRoofFreq = res.cucian_siar_roof_freq;
+          this.cucianSiarGulam1Panjang = res.cucian_siar_gulam1_unit;
+          this.cucianSiarGulam1Rate = res.cucian_siar_gulam1_rate;
+          this.cucianSiarGulam1Freq = res.cucian_siar_gulam1_freq;
+          this.cucianSiarGulam2Panjang = res.cucian_siar_gulam2_unit;
+          this.cucianSiarGulam2Rate = res.cucian_siar_gulam2_rate;
+          this.cucianSiarGulam2Freq = res.cucian_siar_gulam2_freq;
+          this.cucianTandasPanjang = res.cucian_tandas_unit;
+          this.cucianTandasRate = res.cucian_tandas_rate;
+          this.cucianTandasFreq = res.cucian_tandas_freq;
+          this.cucianTeksiRate = res.cucian_teksi_rate;
+          this.cucianTeksiTotal = res.cucian_teksi_total;
+          this.cucianTeksiFreq = res.cucian_teksi_freq;
+    
+          this.bersihLapangPanjang = res.bersih_lapang_unit;
+          this.bersihLapangRate = res.bersih_lapang_rate;
+          this.bersihLapangFreq = res.bersih_lapang_freq;
+          this.bersihTpkkPanjang = res.bersih_tpkk_unit;
+          this.bersihTpkkRate = res.bersih_tpkk_rate;
+          this.bersihTpkkFreq = res.bersih_tpkk_freq;
+          this.bersihPenjajaPanjang = res.bersih_penjaja_unit;
+          this.bersihPenjajaRate = res.bersih_penjaja_rate;
+          this.bersihPenjajaFreq = res.bersih_penjaja_freq;
+          this.bersihPasarPanjang = res.bersih_pasar_unit;
+          this.bersihPasarRate = res.bersih_pasar_rate;
+          this.bersihPasarFreq = res.bersih_pasar_freq;
+          this.bersihPasarMlmPanjang = res.bersih_pasar_mlm_unit;
+          this.bersihPasarMlmRate = res.bersih_pasar_mlm_rate;
+          this.bersihPasarMlmFreq = res.bersih_pasar_mlm_freq;
+    
+          this.rumputPanjang = res.rumput_unit;
+          this.rumputRate = res.rumput_rate;
+          this.rumputFreq = res.rumput_freq;
+
+
           this.spinner.hide();
         },
         (error) => {
@@ -166,33 +430,104 @@ export class InventorymanagmentComponent implements OnInit {
     this.spinner.show();
     let body = {
       parlimen: this.parlimen,
-      lokasi:this.lokasi,
-      kodarea:localStorage.getItem("kodarea"),
-      kordinat: localStorage.getItem("kordinat"),
-      parlimen_subarea:localStorage.getItem("parlimen_subarea"),
-      jumlah_unit_premis:this.jumlah_unit_premis,
-      kekerapan_kutipan_sisa_domestik: this.kekerapan_kutipan_sisa_domestik,
-      kekerapan_kutipan_sampah_pukal: this.kekerapan_kutipan_sampah_pukal,
-      kekerapan_kutipan_sampah_haram: this.kekerapan_kutipan_sampah_haram,
-      ukuran_panjang_sapuan_jalan: this.ukuran_panjang_sapuan_jalan,
-      ukuran_panjang_sapuan_TPKK: this.ukuran_panjang_sapuan_TPKK,
-      ukuran_panjang_sapuan_kaw_lapang_parkir: this.ukuran_panjang_sapuan_kaw_lapang_parkir,
-      ukuran_panjang_sapuan_jejantas: this.ukuran_panjang_sapuan_jejantas,
-      ukuran_panjang_cucian_jejantas: this.ukuran_panjang_cucian_jejantas,
-      ukuran_panjang_cucian_siarkaki: this.ukuran_panjang_cucian_siarkaki,
-      ukuran_panjang_cucian_siarkaki_berbumbung: this.ukuran_panjang_cucian_siarkaki_berbumbung,
-      ukuran_panjang_cucian_stesenbas_teksi: this.ukuran_panjang_cucian_stesenbas_teksi,
-      ukuran_panjang_cucian_longkang: this.ukuran_panjang_cucian_longkang,
-      ukuran_panjang_potongrumput: this.ukuran_panjang_potongrumput,
-      ukuran_panjang_sampahkebun: this.ukuran_panjang_sampahkebun,
+      lokasi: this.lokasi,
+      kordinat: "",
+      jumlah_unit_premis: this.jumlah_unit_premis,
+      sisa_domestik: this.sisa_domestik,
+      sampah_pukal: this.sampah_pukal,
+
+      domestic_category: this.domesticCategory,
+      domestic_total: this.domesticTotal,
+      domestic_rate: this.domesticRate,
+      domestic_freq: this.domesticFreq,
+
+      pukal_category: this.pukalCategory,
+      pukal_total: this.pukalTotal,
+      pukal_rate: this.pukalRate,
+      pukal_freq: this.pukalFreq,
+
+      sapuan_domestic_unit: this.sapuanPanjang,
+      sapuan_domestic_rate: this.sapuanRate,
+      sapuan_domestic_freq: this.sapuanFreq,
+      sapuan_komersial_unit: this.sapuanKomersialPanjang,
+      sapuan_komersial_rate: this.sapuanKomersialRate,
+      sapuan_komersial_freq: this.sapuanKomersialFreq,
+
+      cucian_domestic_unit: this.cucianDomesticPanjang,
+      cucian_domestic_rate: this.cucianDomesticRate,
+      cucian_domestic_freq: this.cucianDomesticFreq,
+      cucian_komersial_unit: this.cucianKomersialPanjang,
+      cucian_komersial_rate: this.cucianKomersialRate,
+      cucian_komersial_freq: this.cucianKomersialFreq,
+      cucian_drain_domestic_unit: this.cucianDrainDomesticPanjang,
+      cucian_drain_domestic_rate: this.cucianDrainDomesticRate,
+      cucian_drain_domestic_freq: this.cucianDrainDomesticFreq,
+      cucian_drain_komersial_unit: this.cucianDrainKomersialPanjang,
+      cucian_drain_komersial_rate: this.cucianDrainKomersialRate,
+      cucian_drain_komersial_freq: this.cucianDrainKomersialFreq,
+      cucian_jejantas_dalam_unit: this.cucianJejantasDalamPanjang,
+      cucian_jejantas_dalam_rate: this.cucianJejantasDalamRate,
+      cucian_jejantas_dalam_freq: this.cucianJejantasDalamFreq,
+      cucian_jejantas_atas_unit: this.cucianJejantasAtasPanjang,
+      cucian_jejantas_atas_rate: this.cucianJejantasAtasRate,
+      cucian_jejantas_atas_freq: this.cucianJejantasAtasFreq,
+      cucian_siar_roof_unit: this.cucianSiarRoofPanjang,
+      cucian_siar_roof_rate: this.cucianSiarRoofRate,
+      cucian_siar_roof_freq: this.cucianSiarRoofFreq,
+      cucian_siar_gulam1_unit: this.cucianSiarGulam1Panjang,
+      cucian_siar_gulam1_rate: this.cucianSiarGulam1Rate,
+      cucian_siar_gulam1_freq: this.cucianSiarGulam1Freq,
+      cucian_siar_gulam2_unit: this.cucianSiarGulam2Panjang,
+      cucian_siar_gulam2_rate: this.cucianSiarGulam2Rate,
+      cucian_siar_gulam2_freq: this.cucianSiarGulam2Freq,
+      cucian_tandas_unit: this.cucianTandasPanjang,
+      cucian_tandas_rate: this.cucianTandasRate,
+      cucian_tandas_freq: this.cucianTandasFreq,
+      cucian_teksi_rate: this.cucianTeksiRate,
+      cucian_teksi_total: this.cucianTeksiTotal,
+      cucian_teksi_freq: this.cucianTeksiFreq,
+
+      bersih_lapang_unit: this.bersihLapangPanjang,
+      bersih_lapang_rate: this.bersihLapangRate,
+      bersih_lapang_freq: this.bersihLapangFreq,
+      bersih_tpkk_unit: this.bersihTpkkPanjang,
+      bersih_tpkk_rate: this.bersihTpkkRate,
+      bersih_tpkk_freq: this.bersihTpkkFreq,
+      bersih_penjaja_unit: this.bersihPenjajaPanjang,
+      bersih_penjaja_rate: this.bersihPenjajaRate,
+      bersih_penjaja_freq: this.bersihPenjajaFreq,
+      bersih_pasar_unit: this.bersihPasarPanjang,
+      bersih_pasar_rate: this.bersihPasarRate,
+      bersih_pasar_freq: this.bersihPasarFreq,
+      bersih_pasar_mlm_unit: this.bersihPasarMlmPanjang,
+      bersih_pasar_mlm_rate: this.bersihPasarMlmRate,
+      bersih_pasar_mlm_freq: this.bersihPasarMlmFreq,
+
+      rumput_unit: this.rumputPanjang,
+      rumput_rate: this.rumputRate,
+      rumput_freq: this.rumputFreq,
+
+      sampah_haram: this.sampah_haram,
+      sapuan_jalan: this.sapuan_jalan,
+      sapuan_TPKK: this.sapuan_TPKK,
+      sapuan_parkir: this.sapuan_parkir,
+      sapuan_jejantas: this.sapuan_jejantas,
+      cucian_jejantas: this.cucian_jejantas,
+      cucian_siarkaki: this.cucian_siarkaki,
+      cucian_siarkaki_berbumbung: this.cucian_siarkaki_berbumbung,
+      cucian_stesenbas_teksi: this.cucian_slesenbaslteksi,
+      cucian_longkang: this.cucian_longkang,
+      potong_rumput: this.potong_rumput,
+      sampah_kebun: this.sampah_kebun,
       catatan: this.catatan,
-      rujukan_tarikh_serahan: this.rujuken_tarikh_serahan,
+      rujukan_tarikh_serahan: this.deliveryDate,
       tarikh_semakandi_lapangant_keadeansemata_ada: this
         .tarikh_semakandi_lapangant_keadeansemata_ada,
       tarikh_semakandi_lapangant_keadeansemata_tiada: this
         .tarikh_semakandi_lapangant_keadeansemata_tiada,
-      frekuensi: this.frekuensi,
-      kadar: this.kadar
+      surat_serahan: this.fileName,
+      kadar: this.kadar,
+      frekuensi: this.frekuensi
     };
 
     let headers = {

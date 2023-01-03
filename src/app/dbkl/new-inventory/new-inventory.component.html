@@ -130,55 +130,57 @@
                     <div class="col-md-12">
                         <h4 style="font-weight: 800;">Sisa Domestik</h4>
                     </div>
-                    <div class="form-group col-md-2">
-                        <label for="sisaCategory">Kategori Premise</label>
+                    <div class="form-group col-md-3">
+                        <label for="sisaCategory">Kategori Premis</label>
                         <select name="sisaCategory" [(ngModel)]="domesticCategory" (change)="selectCategoryDomestic($event.target.value)" class="browser-default custom-select form-control">
-                            <option value="-1" disabled selected>Kategory Premis</option>
                             <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.caption }}</option>
                         </select>
                         <!-- <input type="text" name="domesticCategory" class="form-control" placeholder="Kategory" /> -->
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="sisaJumlah">Jumlah Unit Premis</label>
+                        <label for="sisaJumlah">Jumlah Unit Premis/Tong</label>
                         <input type="text" name="sisaJumlah" [(ngModel)]="domesticTotal" name="domesticTotal" class="form-control" placeholder="Jumlah Unit Premis" />
                     </div>
                     <div class="form-group col-md-2">
                         <label for="sisaKadar">Kadar (RM)</label>
                         <input type="text" name="sisaKadar" name="domesticRate" value="{{ domesticRate | currency: 'RM' }}" disabled class="form-control" placeholder="Kadar (RM)" />
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-1">
                         <label for="sisaFreq">Frekuensi</label>
-                        <input type="text" name="sisaFreq" [(ngModel)]="domesticFreq" name="domesticFreq" class="form-control" placeholder="Frekuensi" />
+                        <select [(ngModel)]="domesticFreq" name="domesticFreq" class="form-control">
+                            <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                        </select>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="sisaJumlahHarga">Jumlah Harga (RM)</label>
-                        <input type="text" name="sisaJumlahHarga" name="domesticTotal" class="form-control" value="{{ (domesticRate * domesticFreq * domesticTotal) | currency: 'RM' }}" disabled placeholder="Jumlah (RM)" />
+                        <input type="text" name="sisaJumlahHarga" name="domesticTotal" class="form-control" value="{{ (domesticTotal * domesticRate) | currency: 'RM' }}" disabled placeholder="Jumlah (RM)" />
                     </div>
                     <div class="col-md-12">
                         <h4 style="font-weight: 800;" i18n="@@Inven10">Bulk Trash</h4>
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <label for="bulkCategory">Kategori Premis</label>
                         <select name="bulkCategory" [(ngModel)]="pukalCategory" (change)="selectCategoryPukal($event.target.value)" class="browser-default custom-select form-control">
-                            <option value="-1" disabled selected>Kategory Premis</option>
                             <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.caption }}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="bulkTotal">Jumlah Unit Premis</label>
+                        <label for="bulkTotal">Jumlah Unit Premis/Tong</label>
                         <input type="text" name="bulkTotal" [(ngModel)]="pukalTotal" name="bulkTotal" class="form-control" placeholder="Jumlah Unit Premis" />
                     </div>
                     <div class="form-group col-md-2">
                         <label for="bulkRate">Kadar (RM)</label>
-                        <input type="text" name="bulkRate" [(ngModel)]="pukalRate" value="{{ pukalRate | currency: 'RM' }}" name="bulkRate" disabled class="form-control" placeholder="Kadar (RM)" />
+                        <input type="text" name="bulkRate" value="{{ pukalRate | currency: 'RM' }}" name="bulkRate" disabled class="form-control" placeholder="Kadar (RM)" />
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-1">
                         <label for="bulkFreq">Frekuensi</label>
-                        <input type="text" name="bulkFreq" [(ngModel)]="pukalFreq" name="bulkFreq" class="form-control" placeholder="Frekuensi" />
+                        <select [(ngModel)]="pukalFreq" name="pukalFreq" class="form-control">
+                            <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                        </select>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="bulkJumlah">Jumlah Harga (RM)</label>
-                        <input type="text" name="bulkJumlah" name="bulkTotal" class="form-control" value="{{ (pukalFreq * pukalTotal * pukalRate) | currency: 'RM' }}" disabled placeholder="Jumlah (RM)" />
+                        <input type="text" name="bulkJumlah" name="bulkTotal" class="form-control" value="{{ (pukalTotal * pukalRate) | currency: 'RM' }}" disabled placeholder="Jumlah (RM)" />
                     </div>
                     <!-- <div class="form-group col-md-12">
                         <div class="col-12">
@@ -204,11 +206,13 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="kadarSapuan">Kadar (RM)</label>
-                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ sapuanRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ sapuanRate | currency: 'RM' :'symbol': '1.2-5' }}" placeholder="Kadar (RM)" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="sapuanFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="sapuanFreq" name="sapuanFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Panjang (m)</label>
@@ -216,7 +220,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="totalSapuan">Jumlah (RM)</label>
-                                <input type="text" class="form-control" disabled value="{{ (sapuanRate * sapuanFreq * sapuanPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                                <input type="text" class="form-control" disabled value="{{ (sapuanRate * sapuanPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -225,11 +229,13 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="kadarSapuan">Kadar (RM)</label>
-                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ sapuanKomersialRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ sapuanKomersialRate | currency: 'RM' : 'symbol' : '1.2-5' }}" placeholder="Kadar (RM)" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="sapuanKomersialFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="sapuanKomersialFreq" name="sapuanKomersialFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Panjang (m)</label>
@@ -237,12 +243,12 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="totalSapuan">Jumlah (RM)</label>
-                                <input type="text" class="form-control" disabled value="{{ (sapuanKomersialRate * sapuanKomersialFreq * sapuanKomersialPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                                <input type="text" class="form-control" disabled value="{{ (sapuanKomersialRate * sapuanKomersialPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label for="kadarSapuan">Jumlah Harga Keseluruhan Sapuan (RM)</label>
-                            <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ (sapuanRate * sapuanFreq * sapuanPanjang) + (sapuanKomersialRate * sapuanKomersialFreq * sapuanKomersialPanjang) | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ (sapuanRate * sapuanPanjang) + (sapuanKomersialRate * sapuanKomersialPanjang) | currency: 'RM' }}" placeholder="Kadar (RM)" />
                         </div>
                     </div>
                     <div class="form-group col-md-12">
@@ -255,11 +261,13 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="kadarSapuan">Kadar (RM)</label>
-                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianDomesticRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianDomesticRate | currency: 'RM':'symbol': '1.2-5' }}" placeholder="Kadar (RM)" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="cucianDomesticFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="cucianDomesticFreq" name="cucianDomesticFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Panjang (m)</label>
@@ -267,7 +275,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="totalSapuan">Jumlah (RM)</label>
-                                <input type="text" class="form-control" disabled value="{{ (cucianDomesticRate * cucianDomesticFreq * cucianDomesticPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                                <input type="text" class="form-control" disabled value="{{ (cucianDomesticRate * cucianDomesticPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -276,11 +284,13 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="kadarSapuan">Kadar (RM)</label>
-                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianKomersialRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianKomersialRate | currency: 'RM':'symbol': '1.2-5' }}" placeholder="Kadar (RM)" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="cucianKomersialFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="cucianKomersialFreq" name="cucianKomersialFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Panjang (m)</label>
@@ -288,7 +298,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="totalSapuan">Jumlah (RM)</label>
-                                <input type="text" class="form-control" disabled value="{{ (cucianKomersialRate * cucianKomersialFreq * cucianKomersialPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                                <input type="text" class="form-control" disabled value="{{ (cucianKomersialRate * cucianKomersialPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -297,11 +307,13 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="kadarSapuan">Kadar (RM)</label>
-                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianDrainDomesticRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianDrainDomesticRate | currency: 'RM':'symbol': '1.2-5' }}" placeholder="Kadar (RM)" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="cucianDrainDomesticFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="cucianDrainDomesticFreq" name="cucianDrainDomesticFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Panjang (m)</label>
@@ -309,7 +321,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="totalSapuan">Jumlah (RM)</label>
-                                <input type="text" class="form-control" disabled value="{{ (cucianDrainDomesticRate * cucianDrainDomesticFreq * cucianDrainDomesticPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                                <input type="text" class="form-control" disabled value="{{ (cucianDrainDomesticRate * cucianDrainDomesticPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -318,11 +330,13 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="kadarSapuan">Kadar (RM)</label>
-                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianDrainKomersialRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ cucianDrainKomersialRate | currency: 'RM':'symbol': '1.2-5' }}" placeholder="Kadar (RM)" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="cucianDrainKomersialFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="cucianDrainKomersialFreq" name="cucianDrainKomersialFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Panjang (m)</label>
@@ -330,7 +344,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="totalSapuan">Jumlah (RM)</label>
-                                <input type="text" class="form-control" disabled value="{{ (cucianDrainKomersialRate * cucianDrainKomersialFreq * cucianDrainKomersialPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                                <input type="text" class="form-control" disabled value="{{ (cucianDrainKomersialRate * cucianDrainKomersialPanjang) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -343,7 +357,9 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="cucianJejantasDalamFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="cucianJejantasDalamFreq" name="cucianJejantasDalamFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
@@ -364,7 +380,9 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="cucianJejantasAtasFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="cucianJejantasAtasFreq" name="cucianJejantasAtasFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
@@ -385,7 +403,9 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="cucianSiarRoofFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="cucianSiarRoofFreq" name="cucianSiarRoofFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
@@ -397,7 +417,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <h4 style="font-weight: 500;">Cucian Siar Kaki di Bawah Gulam [RM2.50/m<sup style="color: black;">2</sup>]</h4>
+                            <h4 style="font-weight: 500;">Cucian Siar Kaki [RM2.50/m<sup style="color: black;">2</sup>]</h4>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-3">
@@ -406,7 +426,9 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="cucianSiarGulam1Freq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="cucianSiarGulam1Freq" name="cucianSiarGulam1Freq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
@@ -418,7 +440,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <h4 style="font-weight: 500;">Cucian Siar Kaki di Bawah Gulam [RM3.50/m<sup style="color: black;">2</sup>]</h4>
+                            <h4 style="font-weight: 500;">Cucian Siar Kaki [RM3.50/m<sup style="color: black;">2</sup>]</h4>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-3">
@@ -427,7 +449,9 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="cucianSiarGulam2Freq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="cucianSiarGulam2Freq" name="cucianSiarGulam2Freq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
@@ -448,7 +472,9 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="cucianTandasFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="cucianTandasFreq" name="cucianTandasFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
@@ -469,16 +495,22 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="cucianTeksiFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="cucianTeksiFreq" name="cucianTeksiFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="cucianTeksiTotal">Kuantiti</label>
+                                <input type="text" class="form-control" [(ngModel)]="cucianTeksiTotal" name="cucianTeksiTotal" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="totalSapuan">Jumlah (RM)</label>
-                                <input type="text" class="form-control" disabled value="{{ (cucianTeksiRate * cucianTeksiFreq) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
+                                <input type="text" class="form-control" disabled value="{{ (cucianTeksiRate * cucianTeksiFreq * cucianTeksiTotal) | currency: 'RM' }}" placeholder="Jumlah Harga (RM)" />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label for="kadarSapuan">Jumlah Harga Keseluruhan Cucian (RM)</label>
-                            <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ (cucianDomesticRate * cucianDomesticFreq * cucianDomesticPanjang) + (cucianKomersialRate * cucianKomersialFreq * cucianKomersialPanjang) + (cucianDrainDomesticRate * cucianDrainDomesticFreq * cucianDrainDomesticPanjang) + (cucianDrainKomersialRate * cucianDrainKomersialFreq * cucianDrainKomersialPanjang) + (cucianJejantasDalamRate * cucianJejantasDalamFreq * cucianJejantasDalamPanjang) + (cucianJejantasAtasRate * cucianJejantasAtasFreq * cucianJejantasAtasPanjang) + (cucianSiarRoofRate * cucianSiarRoofFreq * cucianSiarRoofPanjang) + (cucianSiarGulam1Rate * cucianSiarGulam1Freq * cucianSiarGulam1Panjang) + (cucianSiarGulam2Rate * cucianSiarGulam2Freq * cucianSiarGulam2Panjang) + (cucianTandasRate * cucianTandasFreq * cucianTandasPanjang) + (cucianTeksiRate * cucianTeksiFreq)  | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                            <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ (cucianDomesticRate * cucianDomesticPanjang) + (cucianKomersialRate * cucianKomersialPanjang) + (cucianDrainDomesticRate * cucianDrainDomesticPanjang) + (cucianDrainKomersialRate * cucianDrainKomersialPanjang) + (cucianJejantasDalamRate * cucianJejantasDalamFreq * cucianJejantasDalamPanjang) + (cucianJejantasAtasRate * cucianJejantasAtasFreq * cucianJejantasAtasPanjang) + (cucianSiarRoofRate * cucianSiarRoofFreq * cucianSiarRoofPanjang) + (cucianSiarGulam1Rate * cucianSiarGulam1Freq * cucianSiarGulam1Panjang) + (cucianSiarGulam2Rate * cucianSiarGulam2Freq * cucianSiarGulam2Panjang) + (cucianTandasRate * cucianTandasFreq * cucianTandasPanjang) + (cucianTeksiRate * cucianTeksiFreq * cucianTeksiTotal)  | currency: 'RM' }}" placeholder="Kadar (RM)" />
                         </div>
                     </div>
                     <div class="form-group col-md-12">
@@ -494,8 +526,10 @@
                                 <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ bersihLapangRate | currency: 'RM' :'symbol': '1.2-5' }}" placeholder="Kadar (RM)" />
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="bersihLapangFreq" class="form-control" placeholder="Frekuensi" />
+                                <label for="bersihLapangPanjang">Frekuensi</label>
+                                <select [(ngModel)]="bersihLapangFreq" name="bersihLapangFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
@@ -516,7 +550,9 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="bersihTpkkFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="bersihTpkkFreq" name="bersihTpkkFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
@@ -537,7 +573,9 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="bersihPenjajaFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="bersihPenjajaFreq" name="bersihPenjajaFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
@@ -558,7 +596,9 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="bersihPasarFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="bersihPasarFreq" name="bersihPasarFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
@@ -570,7 +610,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <h4 style="font-weight: 500;">Pembersihan Pasar Malam/Pasar Tani [m<sup style="color: black;">2</sup>]</h4>
+                            <h4 style="font-weight: 500;">Pembersihan Pasar Malam/Pasar Tani [per petak]</h4>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-3">
@@ -579,7 +619,9 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="bersihPasarMlmFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="bersihPasarMlmFreq" name="bersihPasarMlmFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
@@ -596,20 +638,19 @@
                         </div>
                     </div>
                     <div class="form-group col-md-12">
-                        <div class="col-12">
-                            <h3 style="font-weight: 800;" i18n="@@Inven26">Others</h3>
-                        </div>
                         <div class="col-md-12">
-                            <h4 style="font-weight: 500;">Potong Rumput [m<sup style="color: black;">2</sup>]</h4>
+                            <h4 style="font-weight: 500;">Pemotongan Rumput [m<sup style="color: black;">2</sup>]</h4>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="kadarSapuan">Kadar (RM)</label>
-                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ rumputRate | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ rumputRate | currency: 'RM':'symbol': '1.2-5' }}" placeholder="Kadar (RM)" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="freqSapuan">Frekuensi</label>
-                                <input type="text" name="freqSapuan" [(ngModel)]="rumputFreq" class="form-control" placeholder="Frekuensi" />
+                                <select [(ngModel)]="rumputFreq" name="rumputFreq" class="form-control">
+                                    <option *ngFor="let freq of frequencies" value="{{ freq }}">{{ freq }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="panjangSapuan">Luas (m<sup style="color: black;">2</sup>)</label>
@@ -623,11 +664,11 @@
                     </div>
                     <div class="form-group col-md-12">
                         <div class="col-12">
-                            <h2 style="font-weight: 1000;">Jumlah Harga Keseluruhan Perkhidmatan (RM)</h2>
+                            <h2 style="font-weight: 1000; text-transform: uppercase;">Jumlah Harga Keseluruhan Perkhidmatan (RM/Sebulan)</h2>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-3">
-                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ (rumputRate * rumputFreq * rumputPanjang) + (bersihLapangRate * bersihLapangFreq * bersihLapangPanjang) + (bersihTpkkRate * bersihTpkkFreq * bersihTpkkPanjang) + (bersihPenjajaRate * bersihPenjajaFreq * bersihPenjajaPanjang) + (bersihPasarRate * bersihPasarFreq * bersihPasarPanjang) + (bersihPasarMlmRate * bersihPasarMlmFreq * bersihPasarMlmPanjang) + (cucianDomesticRate * cucianDomesticFreq * cucianDomesticPanjang) + (cucianKomersialRate * cucianKomersialFreq * cucianKomersialPanjang) + (cucianDrainDomesticRate * cucianDrainDomesticFreq * cucianDrainDomesticPanjang) + (cucianDrainKomersialRate * cucianDrainKomersialFreq * cucianDrainKomersialPanjang) + (cucianJejantasDalamRate * cucianJejantasDalamFreq * cucianJejantasDalamPanjang) + (cucianJejantasAtasRate * cucianJejantasAtasFreq * cucianJejantasAtasPanjang) + (cucianSiarRoofRate * cucianSiarRoofFreq * cucianSiarRoofPanjang) + (cucianSiarGulam1Rate * cucianSiarGulam1Freq * cucianSiarGulam1Panjang) + (cucianSiarGulam2Rate * cucianSiarGulam2Freq * cucianSiarGulam2Panjang) + (cucianTandasRate * cucianTandasFreq * cucianTandasPanjang) + (cucianTeksiRate * cucianTeksiFreq) + (sapuanRate * sapuanFreq * sapuanPanjang) + (sapuanKomersialRate * sapuanKomersialFreq * sapuanKomersialPanjang)  | currency: 'RM' }}" placeholder="Kadar (RM)" />
+                                <input type="text" disabled name="kadarSapuan" class="form-control" value="{{ (domesticRate * domesticTotal) + (pukalRate * pukalTotal) + (rumputRate * rumputFreq * rumputPanjang) + (bersihLapangRate * bersihLapangFreq * bersihLapangPanjang) + (bersihTpkkRate * bersihTpkkFreq * bersihTpkkPanjang) + (bersihPenjajaRate * bersihPenjajaFreq * bersihPenjajaPanjang) + (bersihPasarRate * bersihPasarFreq * bersihPasarPanjang) + (bersihPasarMlmRate * bersihPasarMlmFreq * bersihPasarMlmPanjang) + (cucianDomesticRate * cucianDomesticPanjang) + (cucianKomersialRate * cucianKomersialPanjang) + (cucianDrainDomesticRate * cucianDrainDomesticPanjang) + (cucianDrainKomersialRate * cucianDrainKomersialPanjang) + (cucianJejantasDalamRate * cucianJejantasDalamFreq * cucianJejantasDalamPanjang) + (cucianJejantasAtasRate * cucianJejantasAtasFreq * cucianJejantasAtasPanjang) + (cucianSiarRoofRate * cucianSiarRoofFreq * cucianSiarRoofPanjang) + (cucianSiarGulam1Rate * cucianSiarGulam1Freq * cucianSiarGulam1Panjang) + (cucianSiarGulam2Rate * cucianSiarGulam2Freq * cucianSiarGulam2Panjang) + (cucianTandasRate * cucianTandasFreq * cucianTandasPanjang) + (cucianTeksiRate * cucianTeksiFreq * cucianTeksiTotal) + (sapuanRate * sapuanPanjang) + (sapuanKomersialRate * sapuanKomersialPanjang)  | currency: 'RM' }}" placeholder="Kadar (RM)" />
                             </div>
                         </div>
                     </div>
@@ -637,13 +678,16 @@
                             <strong style="color: white;font-size: 16px;" i18n="@@Inven30">
                                 Reference / Delivery Date</strong>
                         </h5>
-                        <label class="custom-file-upload" *ngIf="!fileName;else file">
-                            <input type="file" ng2FileSelect accept=".pdf" [uploader]="uploader" (change)="doUpload()" />
-                            <i class="fa fa-cloud-upload"></i>
-                        </label>
-                        <ng-template #file>
-                            <span (click)="getPdf(fileName)" style="color: #253d84; cursor: pointer">{{fileName}}</span>
-                        </ng-template>
+                        <div class="row">
+                            <label class="custom-file-upload">
+                                <input type="file" ng2FileSelect accept=".pdf" [uploader]="uploader" (change)="doUpload()" />
+                                <i class="fa fa-cloud-upload"></i>
+                            </label>
+                            <span *ngIf="fileName" (click)="getPdf(fileName)" style="color: #253d84; cursor: pointer">{{fileName}}</span>
+                            <input type="date" class="form-control ml-4 col-md-2"
+                                    name="deliveryDate"
+                                    [(ngModel)]="deliveryDate" />
+                        </div>
                     </div>
                     <div class="form-group col-md-12 mt-top">
                         <h5 style="background-color: #253d84"

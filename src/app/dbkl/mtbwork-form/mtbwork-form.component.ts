@@ -227,6 +227,8 @@ export class MtbworkFormComponent implements OnInit {
   filename: string;
   filename1: string;
   imgBase64: string;
+  imgBase64_2: string;
+  imgBase64_3: string;
   UploaderData1: any = [];
   UploaderData2: any = [];
   UploaderData3: any = [];
@@ -253,30 +255,74 @@ export class MtbworkFormComponent implements OnInit {
   loginError: boolean;
   zonedata: any = [];
   parildata: any = [];
+
+  idPegawai1: string = '';
+  pictures: any = ['','',''];
+  location: string = '0,0';
+  
+  jenisKawasan: string = 'serviceArea';
+  aduanPictures: any = ['', '', ''];
+  idPegawai2: string = '';
+
   constructor(
     private http: HttpClient,
     private router: Router,
     private spinner: NgxSpinnerService
   ) { }
 
+  doUpload(index) {
+    this.spinner.show();
+    for (var j = 0; j < this.uploader.queue.length; j++) {
+      let data = new FormData();
+      let fileItem = this.uploader.queue[j]._file;
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + j);
+      this.http.post<any>(this.SERVER_URL, data).subscribe((response) => {
+        console.log(response);
+        this.pictures[index] = response.filename;
+        this.spinner.hide();
+      });
+    }
+    this.uploader.clearQueue();
+    this.spinner.hide();
+  }
+
+  doAduanUpload(index) {
+    this.spinner.show();
+    for (var j = 0; j < this.uploader.queue.length; j++) {
+      let data = new FormData();
+      let fileItem = this.uploader.queue[j]._file;
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + j);
+      this.http.post<any>(this.SERVER_URL, data).subscribe((response) => {
+        console.log(response);
+        this.aduanPictures[index] = response.filename;
+        this.spinner.hide();
+      });
+    }
+    this.uploader.clearQueue();
+    this.spinner.hide();
+  }
+  
+
   ngOnInit() {
     this.registrationGroup = new FormGroup({
+      namaPegawaiMtk: new FormControl("", [Validators.required]),
       nama: new FormControl("", [Validators.required]),
       alamat: new FormControl("", [Validators.required]),
-      norukujan: new FormControl("", [Validators.required]),
+      norukujan: new FormControl("", []),
       email: new FormControl("", [
         Validators.pattern(
           "^[A-za-z]{3,}[A-za-z0-9.]{1,}@[A-Za-z]{3,}[.][A-Za-z.]{2,6}$"
         ),
       ]),
       notelefon: new FormControl("", [
-        Validators.required,
         Validators.pattern("^[0-9]{11}$"),
       ]),
       nofaksimili: new FormControl(""),
 
       samberaduan: new FormControl("", [Validators.required]),
-      lain_lain: new FormControl("", [Validators.required]),
+      lain_lain: new FormControl("", []),
       tarikhaduan: new FormControl("", [Validators.required]),
       tarikhterima: new FormControl("", [Validators.required]),
       lokasiaduan: new FormControl("", [Validators.required]),
@@ -285,7 +331,7 @@ export class MtbworkFormComponent implements OnInit {
       zon: new FormControl("", [Validators.required]),
       parlimen: new FormControl("", [Validators.required]),
       tarikhsiasatan: new FormControl("", [Validators.required]),
-      idpegawai: new FormControl("", [Validators.required]),
+      idpegawai: new FormControl("", []),
 
       laporansiasatan: new FormControl(""),
       cause: new FormControl(""),
@@ -297,21 +343,16 @@ export class MtbworkFormComponent implements OnInit {
       ulasan1: new FormControl({ value: "", disabled: true }),
     });
     this.registrationGroup1 = new FormGroup({
-
+      idPegawai1: new FormControl("", [Validators.required]),
       zon1: new FormControl("", [Validators.required]),
       tarikhsiasatan1: new FormControl("", [Validators.required]),
-      idpegawai1: new FormControl("", [Validators.required]),
       parlimenB: new FormControl("", [Validators.required]),
       laporansiasatan1: new FormControl("", [Validators.required]),
-
       tindakan1: new FormControl("", [Validators.required]),
-
       susulan1: new FormControl("", [Validators.required]),
       ulasanpenyelia: new FormControl(""),
       ulasan1: new FormControl(""),
-      ulasan11: new FormControl(""),
-      namaPegawaiMtk: new FormControl("")
-      //  ulasan_timbalan1:new FormControl("", [Validators.required]),
+      ulasan11: new FormControl("")
     });
     this.registrationGroup2 = new FormGroup({
       nama2: new FormControl("", [Validators.required]),
@@ -543,6 +584,36 @@ export class MtbworkFormComponent implements OnInit {
 
 
   }
+  onMapKerjaHarian(map: L.Map) {
+    let searchControl = ELG.geosearch({
+      providers: [
+        ELG.arcgisOnlineProvider({
+          apikey: "AAPK84e96f4c08c449b3bbd50cd31f590027NJ-vkD2mOotBtzSVgNfBH267JjtCPI8IPiZczqaLARYyCKNx5cMqtr76efeyapde"
+        }),
+      ],
+      position: 'topright',
+      placeholder: 'Carian lokasi'
+    });
+    searchControl.addTo(map);
+
+    let latitude: any = 3.183356;
+    let longitude: any = 101.747636;
+    let marker = L.marker([latitude,longitude], {
+      draggable: true, icon: this.greenIcon
+    }).addTo(map);
+    marker.on('dragend', (event) => {
+      var marker = event.target;
+      var result = marker.getLatLng();
+      this.location = result.lat + ',' + result.lng;
+    });
+    searchControl.on("results", function (data) {
+      if (data.results.length > 0) {
+        marker.setLatLng(data.results[0].latlng);
+        this.location = marker.getLatLng() + ',' + marker.getLatLng().lng;
+      }
+    });
+    map.setView([latitude, longitude], 10);
+  }
   onMapReady(map: L.Map) {
     this.map = map;
     this.searchControl = ELG.geosearch({
@@ -555,7 +626,6 @@ export class MtbworkFormComponent implements OnInit {
       placeholder: 'Carian lokasi'
     });
     this.searchControl.addTo(this.map);
-    // console.log("hello");
     this.settomap(this.latitude, this.longitude);
     localStorage.setItem("area", this.latitude + ',' + this.longitude);
   }
@@ -564,13 +634,7 @@ export class MtbworkFormComponent implements OnInit {
       draggable: true,
       icon: this.greenIcon,
     }).addTo(this.map);
-    //marker.bindPopup("Di Sini").addTo(this.map).openPopup();
-    marker.on("dragend", function (e) {
-      marker.openPopup();
-    });
-
     this.searchControl.on("results", function (data) {
-      console.log('move marker...');
       if (data.results.length > 0) {
         marker.setLatLng(data.results[0].latlng);
         this.lati = marker.getLatLng().lat;
@@ -579,26 +643,12 @@ export class MtbworkFormComponent implements OnInit {
         localStorage.setItem("area", this.loct);
       }
     });
-
     marker.on("dragend", function (event) {
-      var marker = event.target; // you could also simply access the marker through the closure
+      var marker = event.target;
       var result = marker.getLatLng();
-      this.message = "Ok";
-      // but using the passed event is cleaner
-      // console.log(result);
-      this.lati = result.lat;
-      this.lngi = result.lng;
-      this.loct = this.lati + "," + this.lngi;
-      // this.loct=result.toString(
-      localStorage.setItem("area", this.loct);
+      this.loct = result.getLatLng().lat + "," + result.getLatLng().lng;
     });
-    this.map.setView([la, lo], 15);
-    var popup = L.popup({
-      offset: [0, -30],
-    })
-      .setLatLng([la, lo])
-      .setContent(this.message)
-      .openOn(this.map);
+    this.map.setView([la, lo], 10);
   }
 
   get f() {
@@ -606,37 +656,27 @@ export class MtbworkFormComponent implements OnInit {
   }
 
   submit() {
-    this.uploadSubmit1();
+    //this.uploadSubmit1();
     this.submitted = true;
 
     if (this.registrationGroup.invalid) {
       alert('Invalid form, please check again.');
+      console.error(this.registrationGroup);
       return;
     }
-
-    let loc = localStorage.getItem("area");
-    localStorage.removeItem("area");
-
-    if (loc == null) {
-      this.check = true;
-      this.messageValue = "Required Field";
-      return;
-    }
-
     this.spinner.show();
-
     this.tindakan = this.tindakan1;
     this.ullasan_ketua_seksyen = this.ullasan_ketua_seksyen1;
-
     this.ullasan_penyelia = this.ullasan_penyelia1;
-
     this.susulan = this.susulan1;
     this.laporan_siasatan = this.report1;
     this.pengadu_alamat = this.address1;
     this.keterangan_aduan = this.description1;
 
     let body = {
+      jenis_kawasan: this.jenisKawasan,
       pengadu_nama: this.pengadu_nama,
+      id_pegawai: this.idPegawai2,
       // tarikh_terima_aduan: this.tarikh_terima_aduan,
       pengadu_alamat: this.pengadu_alamat,
       no_rujukan: this.no_rujukan,
@@ -655,7 +695,7 @@ export class MtbworkFormComponent implements OnInit {
       parlimen: this.parlimen,
       tarikh_siasatan: this.tarikh_siasatan,
       nama_pegawai: this.nama_pegawai,
-      lokasi_siasatan: loc,
+      lokasi_siasatan: this.loct,
       gambar: this.firstFile2,
       laporan_siasatan: this.laporan_siasatan,
       cause: this.cause,
@@ -663,7 +703,10 @@ export class MtbworkFormComponent implements OnInit {
       susulan: this.susulan,
       ullasan_penyelia: this.ullasan_penyelia,
       ullasan_ketua_seksyen: this.ullasan_ketua_seksyen,
-      no_ic_pegawai_mtk: this.namaPegawaiMtk
+      no_ic_pegawai_mtk: this.namaPegawaiMtk,
+      picture1: this.aduanPictures[0],
+      picture2: this.aduanPictures[1],
+      picture3: this.aduanPictures[2]
       // ulasan_timbalan:this.ulasan_timbalan
     };
     let key = localStorage.getItem("AccessToken");
@@ -714,7 +757,6 @@ export class MtbworkFormComponent implements OnInit {
     return this.registrationGroup1.controls;
   }
   submit1() {
-    this.uploadSubmit();
     this.submitted1 = true;
     this.spinner.show();
     this.tindakanA = this.tindakan1A;
@@ -726,23 +768,18 @@ export class MtbworkFormComponent implements OnInit {
     this.laporan_siasatanA = this.report1A;
 
     let body = {
-      nama_pegawai: this.nama_pegawai1,
+      id_pegawai: this.idPegawai1,
       zon: this.zonA,
       parlimenA: this.parlimenA,
       tarikh_siasatan: this.tarikh_siasatanA,
-      // nama_pegawai: this.nama_pegawaiA,
-      lokasi_siasatan: "0,0",
+      lokasi_siasatan: this.location,
+      picture1: this.pictures[0],
+      picture2: this.pictures[1],
+      picture3: this.pictures[2],
       laporan_siasatan: this.report1A,
       tindakan: this.tindakan1A,
-      // susulan: this.susulan1A,
-      ullasan_penyelia: this.ullasan_penyelia1A,
-      ullasan_ketua_seksyen: this.ullasan_ketua_seksyen1A,
-      ullasan_ketua_unit: this.ulasanpenyelia,
-      no_ic_pegawai_mtk: this.namaPegawaiMtk,
-      //ulasan_timbalan:this.ulasan_timbalanA,
-      sebelum_siasatan: this.firstFile
-      // selepas_siasatan: this.firstFile1
     };
+    console.log('sending body ', body);
     let key = localStorage.getItem("AccessToken");
     let headers = {
       "Content-Type": "application/json",
@@ -884,7 +921,10 @@ export class MtbworkFormComponent implements OnInit {
   }
   optionchange(e) {
     // console.log(e.checked);
-    this.showsuboption = true;
+    this.showsuboption = false;
+    this.mainform = true;
+    this.mainform2 = false;
+    this.mainform1 = false;
   }
   radioChanged1(e) {
     // console.log(e.checked);

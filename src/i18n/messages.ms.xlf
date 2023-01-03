@@ -8169,7 +8169,7 @@ For Solid Waste Collection and Public Cleansing
 					Name of officer MTB
 				</source>
 				<target>
-					Nama Pegawai MTB
+					Nama Pegawai MTK/MTB
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">

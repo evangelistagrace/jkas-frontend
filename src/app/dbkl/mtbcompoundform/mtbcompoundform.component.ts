@@ -45,7 +45,7 @@ export class MtbcompoundformComponent implements OnInit {
   errorMsg: any;
   selectedParlimen: any;
   Parliament: any;
-  IdPegawai: Object;
+  IdPegawai: any = [];
   lang: string;
   anncdata: any;
   sucessmsg: string;
@@ -78,7 +78,19 @@ export class MtbcompoundformComponent implements OnInit {
   username: string;
   userrole: string;
 
+  idPegawai: string;
+  parlimens: any = [];
+
   constructor(private http: HttpClient, private spinner: NgxSpinnerService) { }
+
+  selectParlimen() {
+    for (let pegawai of this.IdPegawai) {
+      if (pegawai.no_kad_pengenalan === this.idPegawai) {
+        console.log('setting parlimen to ' + pegawai.parlimen);
+        this.parlimen = pegawai.parlimen;
+      }
+    }
+  }
 
   ngOnInit() {
     this.userrole = localStorage.getItem("roleforuser");
@@ -94,7 +106,7 @@ export class MtbcompoundformComponent implements OnInit {
       Authorization: key,
     };
     this.http
-      .get(this.basePublicUrl + "/dbkl/getIdPegawai", { headers: headers })
+      .get(this.basePublicUrl + "/dbkl/listPegawai", { headers: headers })
       .subscribe(
         (res) => {
           this.IdPegawai = res;
@@ -104,8 +116,14 @@ export class MtbcompoundformComponent implements OnInit {
           this.errorMsg = error["error"]["message"];
         }
       );
+    this.http
+      .get(this.basePublicUrl + "/dbkl/getBorangParlimen", { headers: headers })
+      .subscribe((result: any) => {
+        this.parlimens = result;
+      });
 
     this.checkboxGroup = new FormGroup({
+      idPegawai: new FormControl("", []),
       no_notis_bas: new FormControl("", [
         Validators.required,
         Validators.pattern("^[0-9]{4,10}$"),
@@ -113,7 +131,7 @@ export class MtbcompoundformComponent implements OnInit {
       kepada: new FormControl("", [Validators.required]),
       company_no: new FormControl("", [Validators.required]),
       alamat: new FormControl("", [Validators.required]),
-      id_mtb: new FormControl("", [Validators.required]),
+      //id_mtb: new FormControl("", [Validators.required]),
       parlimen: new FormControl("", [Validators.required]),
       // lokasi_kompaun: new FormControl("", [Validators.required]),
       butir_butir_kesalahan: new FormControl("", [Validators.required]),
@@ -224,6 +242,7 @@ export class MtbcompoundformComponent implements OnInit {
     this.butir_butir_kesalahan = this.Error1;
 
     let body = {
+      id_pegawai: this.idPegawai,
       no_notis_bas: this.no_notis_bas,
       kepada: this.kepada,
       company_no: this.company_no,

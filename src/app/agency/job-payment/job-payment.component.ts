@@ -114,6 +114,58 @@ export class JobPaymentComponent implements OnInit {
   successmsg: string;
   agency_token: string;
 
+  tahunList: any = [];
+  bulanList: any = [
+    {
+      name: 'Januari',
+      value: 1,
+    },
+    {
+      name: 'Februari',
+      value: 2,
+    },
+    {
+      name: 'March',
+      value: 3,
+    },
+    {
+      name: 'April',
+      value: 4,
+    },
+    {
+      name: 'Mei',
+      value: 5,
+    },
+    {
+      name: 'Jun',
+      value: 6,
+    },
+    {
+      name: 'Julai',
+      value: 7,
+    },
+    {
+      name: 'Ogos',
+      value: 8,
+    },
+    {
+      name: 'September',
+      value: 9,
+    },
+    {
+      name: 'Oktober',
+      value: 10,
+    },
+    {
+      name: 'November',
+      value: 11,
+    },
+    {
+      name: 'Disember',
+      value: 12,
+    }
+  ];
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -121,6 +173,9 @@ export class JobPaymentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    for (var i=2010; i<=2024; i++) {
+      this.tahunList.push(i);
+    }
     this.agency_token = localStorage.getItem('egency_token');
 
     window.scroll(0, 0);
@@ -145,6 +200,8 @@ export class JobPaymentComponent implements OnInit {
         Validators.required,
         Validators.pattern("^[A-za-z]{3,}[A-za-z0-9.]{1,}@[A-Za-z]{3,}[.][A-Za-z.]{2,6}$"),
       ]),
+      bulan: new FormControl(""),
+      tahun: new FormControl(""),
       jumlahTuntutan: new FormControl("", [Validators.required, Validators.pattern("^[0-9]{1,}$")]),
       noinvoicee: new FormControl("", [Validators.required]),
       kontraktorr: new FormControl("", [
@@ -280,8 +337,11 @@ export class JobPaymentComponent implements OnInit {
       summary_document: this.myfiles1.substring(2, this.myfiles1.length - 2),
       attachment: this.myfiles2.substring(2, this.myfiles2.length - 2),
       bd44: this.bd44Files,
-      laporan_tuntutan: this.laporanTuntutanFiles
+      laporan_tuntutan: this.laporanTuntutanFiles,
+      bulan: this.imageGroup.controls['bulan'].value,
+      tahun: this.imageGroup.controls['tahun'].value,
     };
+    console.log('body: ', body);
     // console.log(
     //   "my body" + JSON.stringify(body))
     this.http

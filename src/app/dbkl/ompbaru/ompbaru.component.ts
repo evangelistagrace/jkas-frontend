@@ -40,6 +40,38 @@ export interface OmpData {
   styleUrls: ["./ompbaru.component.css"],
 })
 export class OmpbaruComponent implements OnInit {
+  categories = [
+    {
+      id: "1",
+      caption: "Kediaman Teres (Landed)",
+      rate: 7.8
+    },
+    {
+      id: "2",
+      caption: "Kediaman Bertingkat (Non-Landed)",
+      rate: 5.45
+    },
+    {
+      id: "3",
+      caption: "Kawasan Komersial",
+      rate: 12.50
+    },
+    {
+      id: "4",
+      caption: "MGB 660L",
+      rate: 83.60
+    },
+    {
+      id: "5",
+      caption: "Mobile Compactor / RORO",
+      rate: 80
+    },
+    {
+      id: "6",
+      caption: "MGB 1100L",
+      rate: 139.30
+    }
+  ];
   basePublicUrl = environment.basePublicUrl;
   data: any;
   loginError: boolean;
@@ -86,14 +118,74 @@ export class OmpbaruComponent implements OnInit {
   dataSource = new MatTableDataSource<OmpData>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns: string[] = ['areaCode', 'location', 'parlimen', 'coordinate', 'totalPremise',
-                                'domesticWaste', 'bulkWaste','road','tpkk','kawasanLapang',
-                                'jejantasSapuan','jejantasCucian','cucianSiarKaki','cucianSiarKakiBerbumbung','cucianStesenBas','cucianLongkang',
-                                'potongRumput','sampahKebun','kadar','frekuensi','jumlah','catatan','tarikhSerahan','checkAda','checkTiada','kemaskini'];
-  headers: string[] = ['header-areaCode','header-location','header-parlimen','header-coordinate','header-totalUnitPremise','header-frequency',
-                        'header-measurement','header-kadar','header-frekuensi','header-jumlah','header-reference','header-review','header-notes','header-edit'];
-  headers2: string[] = ['header-domesticWaste','header-bulkGarbage','header-sweep','header-bridges','header-laundry','header-gutterWash',
-                        'header-cutTheGrass','header-gardenWaste','header-available','header-none'];
-  headers3: string[] = ['header-road','header-tpkk','header-parking','header-sweep2','header-laundry2','header-postFooter','header-postCoveredLegs','header-busTaxi'];
+                                
+                                'domesticCategory', 'domesticTotal','domesticFreq','domesticJumlah',
+                                'pukalCategory', 'pukalTotal','pukalFreq','pukalJumlah',
+                                'sweepFreq','sweepUnit','sweepTotal','sweepKomersialFreq','sweepKomersialUnit','sweepKomersialTotal',
+                                  
+                                'cucianDrainDomesticFreq', 'cucianDrainDomesticUnit','cucianDrainDomesticTotal',
+                                'cucianDrainKomersialFreq', 'cucianDrainKomersialUnit', 'cucianDrainKomersialTotal',
+                                'cucianDrainMonsoonFreq', 'cucianDrainMonsoonUnit', 'cucianDrainMonsoonTotal',
+                                'cucianDrainMonsoonKomersialFreq', 'cucianDrainMonsoonKomersialUnit', 'cucianDrainMonsoonKomersialTotal',
+                                'cucianJejantasDalamFreq','cucianJejantasDalamUnit', 'cucianJejantasDalamTotal',
+                                'cucianJejantasAtasFreq', 'cucianJejantasAtasUnit', 'cucianJejantasAtasTotal',
+                                'cucianSiarBumbungFreq', 'cucianSiarBumbungUnit', 'cucianSiarBumbungTotal',
+                                'cucianSiarGulam1Freq', 'cucianSiarGulam1Unit', 'cucianSiarGulam1Total',
+                                'cucianSiarGulam2Freq', 'cucianSiarGulam2Unit', 'cucianSiarGulam2Total',
+                                'cucianTandasFreq', 'cucianTandasUnit', 'cucianTandasTotal',
+                                'cucianTeksiFreq', 'cucianTeksiUnit', 'cucianTeksiTotal',
+
+                                'bersihLapangFreq','bersihLapangUnit','bersihLapangTotal',
+                                'bersihTpkkFreq', 'bersihTpkkUnit', 'bersihTpkkTotal',
+                                'bersihPenjajaFreq', 'bersihPenjajaUnit', 'bersihPenjajaTotal',
+                                'bersihPasarFreq', 'bersihPasarUnit', 'bersihPasarTotal',
+                                'bersihPasarMlmFreq', 'bersihPasarMlmUnit', 'bersihPasarMlmTotal',
+
+                                'grassFreq', 'grassUnit', 'grassTotal',
+
+                                'jumlah','tarikhSerahan',
+                                'checkAda','checkTiada','catatan','kemaskini'];
+  headers: string[] = [
+    'header-areaCode','header-location','header-parlimen','header-coordinate','header-totalUnitPremise',
+    'header-khidmat-sisapepejal', 'header-khidmat-pembersihan',
+    'header-jumlah','header-reference','header-review','header-notes','header-edit'];
+  headers2: string[] = [
+    'header-domesticWaste','header-bulkGarbage',
+    'header-sweep',
+    'header-cucian',
+    'header-pembersihan',
+    'header-grass',
+    'header-available','header-none'];
+  headers3: string[] = [
+    'header-domestic-category','header-domestic-jumlah','header-domestic-frequency','header-domestic-total',
+    'header-pukal-category','header-pukal-jumlah','header-pukal-frequency','header-pukal-total',
+    'header-sweep-domestic','header-sweep-komersial',
+    'header-cucian-drain-domestic', 'header-cucian-drain-komersial', 'header-cucian-drain-monsoon', 'header-cucian-drain-monsoon-komersial','header-cucian-jejantas-dalam', 'header-cucian-jejantas-atas', 'header-cucian-siar-bumbung', 'header-cucian-siar-gulam1', 'header-cucian-siar-gulam2','header-cucian-tandas', 'header-cucian-teksi',
+    'header-pembersihan-lapang', 'header-pembersihan-tpkk', 'header-pembersihan-penjaja', 'header-pembersihan-pasar', 'header-pembersihan-pasar-mlm'];
+  headers4: string[] = [
+      'header-sweep-freq','header-sweep-unit','header-sweep-jumlah', 
+      'header-sweep-komersial-freq','header-sweep-komersial-unit','header-sweep-komersial-jumlah',
+      
+      'header-cucian-drain-domestic-freq','header-cucian-drain-domestic-unit','header-cucian-drain-domestic-jumlah',
+      'header-cucian-drain-komersial-freq','header-cucian-drain-komersial-unit','header-cucian-drain-komersial-jumlah',
+      'header-cucian-drain-monsoon-freq','header-cucian-drain-monsoon-unit','header-cucian-drain-monsoon-jumlah',
+      'header-cucian-drain-monsoon-komersial-freq', 'header-cucian-drain-monsoon-komersial-unit','header-cucian-drain-monsoon-komersial-jumlah',
+      'header-cucian-jejantas-dalam-freq','header-cucian-jejantas-dalam-unit','header-cucian-jejantas-dalam-jumlah',
+      'header-cucian-jejantas-atas-freq','header-cucian-jejantas-atas-unit','header-cucian-jejantas-atas-jumlah',
+      'header-cucian-siar-bumbung-freq','header-cucian-siar-bumbung-unit','header-cucian-siar-bumbung-jumlah',
+      'header-cucian-siar-gulam1-freq','header-cucian-siar-gulam1-unit','header-cucian-siar-gulam1-jumlah',
+      'header-cucian-siar-gulam2-freq','header-cucian-siar-gulam2-unit','header-cucian-siar-gulam2-jumlah',
+      'header-cucian-tandas-freq','header-cucian-tandas-unit','header-cucian-tandas-jumlah',
+      'header-cucian-teksi-freq','header-cucian-teksi-unit','header-cucian-teksi-jumlah',
+
+      'header-pembersihan-lapang-freq', 'header-pembersihan-lapang-unit','header-pembersihan-lapang-jumlah',
+      'header-pembersihan-tpkk-freq', 'header-pembersihan-tpkk-unit','header-pembersihan-tpkk-jumlah',
+      'header-pembersihan-penjaja-freq','header-pembersihan-penjaja-unit','header-pembersihan-penjaja-jumlah',
+      'header-pembersihan-pasar-freq','header-pembersihan-pasar-unit','header-pembersihan-pasar-jumlah',
+      'header-pembersihan-pasar-mlm-freq','header-pembersihan-pasar-mlm-unit','header-pembersihan-pasar-mlm-jumlah',
+
+      'header-grass-freq','header-grass-unit','header-grass-jumlah'
+  ]
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -187,6 +279,76 @@ export class OmpbaruComponent implements OnInit {
               location: result.lokasi,
               parlimen: result.parlimen,
               areaCode: result.kodarea,
+
+              domesticCategory: result.domestic_category,
+              domesticRate: result.domestic_rate,
+              domesticTotal: result.domestic_total,
+              domesticFreq: result.domestic_freq,
+              pukalCategory: result.pukal_category,
+              pukalRate: result.pukal_rate,
+              pukalTotal: result.pukal_total,
+              pukalFreq: result.pukal_freq,
+
+              sweepFreq: result.sapuan_domestic_freq,
+              sweepUnit: result.sapuan_domestic_unit,
+              sweepRate: result.sapuan_domestic_rate,
+              sweepKomersialFreq: result.sapuan_komersial_freq,
+              sweepKomersialUnit: result.sapuan_komersial_unit,
+              sweepKomersialRate: result.sapuan_komersial_rate,
+
+              cucianDrainDomesticUnit: result.cucian_domestic_unit,
+              cucianDrainDomesticFreq: result.cucian_domestic_freq,
+              cucianDrainDomesticRate: result.cucian_domestic_rate,
+              cucianDrainKomersialFreq: result.cucian_komersial_freq,
+              cucianDrainKomersialUnit: result.cucian_komersial_unit,
+              cucianDrainKomersialRate: result.cucian_komersial_rate,
+              cucianDrainMonsoonFreq: result.cucian_drain_domestic_freq,
+              cucianDrainMonsoonUnit: result.cucian_drain_domestic_unit,
+              cucianDrainMonsoonRate: result.cucian_drain_domestic_rate,
+              cucianDrainMonsoonKomersialFreq: result.cucian_drain_komersial_freq,
+              cucianDrainMonsoonKomersialUnit: result.cucian_drain_komersial_unit,
+              cucianDrainMonsoonKomersialRate: result.cucian_drain_komersial_rate,
+              cucianJejantasDalamFreq: result.cucian_jejantas_dalam_freq,
+              cucianJejantasDalamUnit: result.cucian_jejantas_dalam_unit,
+              cucianJejantasDalamRate: result.cucian_jejantas_dalam_rate,
+              cucianJejantasAtasFreq: result.cucian_jejantas_atas_freq,
+              cucianJejantasAtasUnit: result.cucian_jejantas_atas_unit,
+              cucianJejantasAtasRate: result.cucian_jejantas_atas_rate,
+              cucianSiarBumbungFreq: result.cucian_siar_roof_freq,
+              cucianSiarBumbungUnit: result.cucian_siar_roof_unit,
+              cucianSiarBumbungRate: result.cucian_siar_roof_rate,
+              cucianSiarGulam1Freq: result.cucian_siar_gulam1_freq,
+              cucianSiarGulam1Unit: result.cucian_siar_gulam1_unit,
+              cucianSiarGulam1Rate: result.cucian_siar_gulam1_rate,
+              cucianSiarGulam2Freq: result.cucian_siar_gulam2_freq,
+              cucianSiarGulam2Unit: result.cucian_siar_gulam2_unit,
+              cucianSiarGulam2Rate: result.cucian_siar_gulam2_rate,
+              cucianTandasFreq: result.cucian_tandas_freq,
+              cucianTandasUnit: result.cucian_tandas_unit,
+              cucianTandasRate: result.cucian_tandas_rate,
+              cucianTeksiFreq: result.cucian_teksi_freq,
+              cucianTeksiRate: result.cucian_teksi_rate,
+              cucianTeksiUnit: result.cucian_teksi_total,
+
+              bersihLapangFreq: result.bersih_lapang_freq,
+              bersihLapangUnit: result.bersih_lapang_unit,
+              bersihLapangRate: result.bersih_lapang_rate,
+              bersihTpkkFreq: result.bersih_tpkk_freq,
+              bersihTpkkUnit: result.bersih_tpkk_unit,
+              bersihTpkkRate: result.bersih_tpkk_rate,
+              bersihPenjajaFreq: result.bersih_penjaja_freq,
+              bersihPenjajaUnit: result.bersih_penjaja_unit,
+              bersihPenjajaRate: result.bersih_penjaja_rate,
+              bersihPasarFreq: result.bersih_pasar_freq,
+              bersihPasarUnit: result.bersih_pasar_unit,
+              bersihPasarRate: result.bersih_pasar_rate,
+              bersihPasarMlmFreq: result.bersih_pasar_mlm_freq,
+              bersihPasarMlmUnit: result.bersih_pasar_mlm_unit,
+              bersihPasarMlmRate: result.bersih_pasar_mlm_rate,
+              grassFreq: result.rumput_freq,
+              grassUnit: result.rumput_unit,
+              grassRate: result.rumput_rate,
+              
               bulkWaste: result.kekerapan_kutipan_sampah_pukal,
               coordinate: result.kordinat,
               domesticWaste: result.kekerapan_kutipan_sisa_domestik,
@@ -212,6 +374,45 @@ export class OmpbaruComponent implements OnInit {
               notAvailable: result.tarikh_semakandi_lapangant_keadeansemata_tiada,
               suratSerahan: result.surat_serahan
             };
+            if (result.domestic_category) {
+              this.categories.forEach((category) => {
+                if (result.domestic_category === category.id) {
+                  console.log('set cat', category);
+                  newOmpData['domesticCategory'] = category.caption;
+                }
+              })
+            }
+            if (result.pukal_category) {
+              this.categories.forEach((category) => {
+                if (result.pukal_category === category.id) {
+                  console.log('set cat', category);
+                  newOmpData['pukalCategory'] = category.caption;
+                }
+              })
+            }
+            newOmpData['jumlahKeseluruhan'] = 
+                (+result.domestic_rate * +result.domestic_total) 
+              + (+result.pukal_rate * +result.pukal_total) 
+              + (+result.sapuan_domestic_unit * +result.sapuan_domestic_rate)
+              + (+result.sapuan_komersial_unit * +result.sapuan_komersial_rate)
+              + (+result.cucian_domestic_unit * +result.cucian_domestic_rate)
+              + (+result.cucian_komersial_unit * +result.cucian_komersial_rate)
+              + (+result.cucian_drain_domestic_unit * +result.cucian_drain_domestic_rate)
+              + (+result.cucian_drain_komersial_unit * +result.cucian_drain_komersial_rate)
+              + (+result.cucian_jejantas_dalam_freq * +result.cucian_jejantas_dalam_unit * +result.cucian_jejantas_dalam_rate)
+              + (+result.cucian_jejantas_atas_freq * +result.cucian_jejantas_atas_unit * +result.cucian_jejantas_atas_rate)
+              + (+result.cucian_siar_roof_freq * +result.cucian_siar_roof_unit * +result.cucian_siar_roof_rate)
+              + (+result.cucian_siar_gulam1_freq * +result.cucian_siar_gulam1_unit * +result.cucian_siar_gulam1_rate)
+              + (+result.cucian_siar_gulam2_freq * +result.cucian_siar_gulam2_unit * +result.cucian_siar_gulam2_rate)
+              + (+result.cucian_tandas_freq * +result.cucian_tandas_unit * +result.cucian_tandas_rate)
+              + (+result.cucian_teksi_freq * +result.cucian_teksi_rate * +result.cucian_teksi_total);
+              + (+result.bersih_lapang_freq * +result.bersih_lapang_unit * +result.bersih_lapang_rate)
+              + (+result.bersih_tpkk_freq * +result.bersih_tpkk_unit * +result.bersih_tpkk_rate)
+              + (+result.bersih_penjaja_freq * +result.bersih_penjaja_unit * +result.bersih_penjaja_rate)
+              + (+result.bersih_pasar_freq * +result.bersih_pasar_unit * +result.bersih_pasar_rate)
+              + (+result.bersih_pasar_mlm_freq * +result.bersih_pasar_mlm_unit * +result.bersih_pasar_mlm_rate)
+              + (+result.rumput_freq * +result.rumput_unit * +result.rumput_rate)
+              ;
             this.ompData.push(newOmpData);
           }
           console.log('data source: ', this.ompData);

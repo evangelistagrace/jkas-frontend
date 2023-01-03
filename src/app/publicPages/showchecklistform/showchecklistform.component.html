@@ -249,18 +249,17 @@
                 </td>
                 <td style="text-align: center" class="anc">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" multiple />
-
+                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" multiple (change)="doUploadSuratPermohonan()" />
                     <i class="fa fa-cloud-upload"></i>
                   </label><br><span i18n="@@puydh"> Please upload your document here.</span>
-                  <span style="display: block; cursor: pointer;" *ngFor="let val of pdffiles1; index as i">
+                  <span style="display: block; cursor: pointer;" *ngFor="let val of suratPermohonan; index as i">
                     <span>
-                      <a (click)="getPdf(val)" target="_blank">{{ pdffiles1[i] }}</a>
+                      <a (click)="getPdf(val)" target="_blank">{{ val }}</a>
                       <span id="cl{{ i }}" *ngIf="
                           surat_permohonan_perkhidmatan_pembersihan_dokumen !=
                           ''
                         ">
-                        <i (click)="removevalue1($event)" id="{{ i }}" class="fa fa-trash"
+                        <i (click)="removeSuratPermohonan(i)" id="{{ i }}" class="fa fa-trash"
                           style="cursor: pointer; margin-left: 8px"></i>
                       </span>
                     </span>
@@ -348,16 +347,15 @@
                   Planning Department)</td>
                 <td style="text-align: center" class="anc">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader1" multiple />
-
+                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" multiple (change)="doUploadSuratSalinan()" />
                     <i class="fa fa-cloud-upload"></i>
                   </label>
                   <br><span i18n="@@puydh"> Please upload your document here.</span>
-                  <span style="display: block; cursor: pointer;" *ngFor="let val of pdffiles2; index as i">
+                  <span style="display: block; cursor: pointer;" *ngFor="let val of suratSalinan; index as i">
                     <span>
-                      <a (click)="getPdf(val)" target="_blank">{{ pdffiles2[i] }}</a>
+                      <a (click)="getPdf(val)" target="_blank">{{ val }}</a>
                       <span id="cl2{{ i }}" *ngIf="surat_salinan_CF_dokumen != ''">
-                        <i (click)="removevalue2($event)" id="{{ i }}" class="fa fa-trash"
+                        <i (click)="removeSuratSalinan(i)" id="{{ i }}" class="fa fa-trash"
                           style="cursor: pointer; margin-left: 8px"></i>
                       </span>
                     </span>
@@ -365,15 +363,12 @@
                   </span>
                   <table>
                     <tbody>
-                      <tr *ngFor="let item of uploader1.queue">
+                      <tr *ngFor="let item of suratSalinan; index as i;">
                         <th width="90%">
-                          {{ item.file.name }}({{ item.file.size / 1000000 }}
-                          MB)
+                          {{ item }}
                         </th>
                         <th class="text-center" width="10%">
-
-
-                          <i (click)="item.remove()" class="fa fa-trash" style="cursor: pointer"></i>
+                          <i (click)="removeSuratSalinan(i)" class="fa fa-trash" style="cursor: pointer"></i>
                         </th>
                       </tr>
                     </tbody>
@@ -467,21 +462,18 @@
                 </td>
                 <td style="text-align: center">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader4" multiple />
-
+                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" multiple (change)="doUploadTypeDisposal()" />
                     <i class="fa fa-cloud-upload"></i>
                   </label><br>
                   <span i18n="@@puydh"> Please upload your document here.</span>
                   <table>
                     <tbody>
-                      <tr *ngFor="let item of uploader2.queue">
+                      <tr *ngFor="let item of typeDisposal; index as i">
                         <th width="90%">
-                          {{ item.file.name }}({{ item.file.size / 1000000 }}
-                          MB)
+                          {{ item }}
                         </th>
                         <th class="text-center" width="10%">
-
-                          <i (click)="item.remove()" class="fa fa-trash" style="cursor: pointer"></i>
+                          <i (click)="removeTypeDisposal(i)" class="fa fa-trash" style="cursor: pointer"></i>
                         </th>
                       </tr>
                     </tbody>
@@ -536,15 +528,15 @@
                 </td>
                 <td style="text-align: center" class="anc">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader2" multiple />
+                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" (change)="doUploadDevelopmentStatus()" multiple />
 
                     <i class="fa fa-cloud-upload"></i>
                   </label><br><span i18n="@@puydh"> Please upload your document here.</span>
-                  <span style="display: block; cursor: pointer;" *ngFor="let val of pdffiles3; index as i">
+                  <span style="display: block; cursor: pointer;" *ngFor="let val of developmentStatus; index as i">
                     <span>
-                      <a (click)="getPdf(val)" target="_blank">{{ pdffiles3[i] }}</a>
+                      <a (click)="getPdf(val)" target="_blank">{{ val }}</a>
                       <span id="cl3{{ i }}" *ngIf="salinan_status_pembanginan_dokumen != ''">
-                        <i (click)="removevalue3($event)" id="{{ i }}" class="fa fa-trash"
+                        <i (click)="removeDevelopmentStatus(i)" id="{{ i }}" class="fa fa-trash"
                           style="cursor: pointer; margin-left: 8px"></i>
                       </span>
                     </span>
@@ -552,14 +544,12 @@
                   </span>
                   <table>
                     <tbody>
-                      <tr *ngFor="let item of uploader2.queue">
+                      <tr *ngFor="let item of developmentStatus; index as i">
                         <th width="90%">
-                          {{ item.file.name }}({{ item.file.size / 1000000 }}
-                          MB)
+                          {{ item }}
                         </th>
                         <th class="text-center" width="10%">
-
-                          <i (click)="item.remove()" class="fa fa-trash" style="cursor: pointer"></i>
+                          <i (click)="removeDevelopmentStatus(i)" class="fa fa-trash" style="cursor: pointer"></i>
                         </th>
                       </tr>
                     </tbody>
@@ -746,15 +736,14 @@
                 </td>
                 <td style="text-align: center" class="anc">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader3" multiple />
-
+                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" (change)="doUploadOtherDocuments()" multiple />
                     <i class="fa fa-cloud-upload"></i>
                   </label><br><span i18n="@@puydh"> Please upload your document here.</span>
-                  <span style="display: block; cursor: pointer;" *ngFor="let val of pdffiles4; index as i">
+                  <span style="display: block; cursor: pointer;" *ngFor="let val of otherDocuments; index as i">
                     <span>
-                      <a (click)="getPdf(val)" target="_blank">{{ pdffiles4[i] }}</a>
+                      <a (click)="getPdf(val)" target="_blank">{{ val }}</a>
                       <span id="cl4{{ i }}" *ngIf="bagi_status_pembangunan_dokumen != ''">
-                        <i (click)="removevalue4($event)" id="{{ i }}" class="fa fa-trash"
+                        <i (click)="removeOtherDocuments(i)" id="{{ i }}" class="fa fa-trash"
                           style="cursor: pointer; margin-left: 8px"></i>
                       </span>
                     </span>
@@ -762,14 +751,13 @@
                   </span>
                   <table>
                     <tbody>
-                      <tr *ngFor="let item of uploader3.queue">
+                      <tr *ngFor="let item of otherDocuments; index as i">
                         <th width="90%">
-                          {{ item.file.name }}({{ item.file.size / 1000000 }}
-                          MB)
+                          {{ item }}
                         </th>
                         <th class="text-center" width="10%">
                           <!-- <mat-icon (click)="item.remove()">delete</mat-icon> -->
-                          <i class="fa fa-trash" style="cursor: pointer" (click)="item.remove()"></i>
+                          <i class="fa fa-trash" style="cursor: pointer" (click)="removeOtherDocuments(i)"></i>
                         </th>
                       </tr>
                     </tbody>
@@ -854,7 +842,7 @@
       <button class="look_for_red" style="margin-right: 20px" routerLink="/publicpage" i18n="@@cancel">
         Back
       </button>
-      <button class="look_for" (click)="submit()" i18n="@@submit">Submit</button>
+      <button class="look_for" (click)="updatedata()" i18n="@@submit">Submit</button>
     </div>
   </section>
   <!-- End Services Section -->

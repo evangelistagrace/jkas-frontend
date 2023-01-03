@@ -35,6 +35,8 @@ export class InspectingofficersComponent implements OnInit {
   datee: string;
   getMtb: any;
 
+  worklogs: any = [];
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -52,7 +54,7 @@ export class InspectingofficersComponent implements OnInit {
     };
 
     this.http
-      .get(this.basePublicUrl + "/dbkl/getMTBOfficersList", {
+      .get(this.basePublicUrl + "/dbkl/listPegawai", {
         headers: headers,
       })
       .subscribe(
@@ -62,9 +64,10 @@ export class InspectingofficersComponent implements OnInit {
           //console.log(this.data);
 
           for (let key of this.data) {
-            this.dataShow.push(key);
+            if (key.no_kad_pengenalan) {
+              this.dataShow.push(key);
+            }
           }
-
         },
         (error) => {
           this.loginError = true;
@@ -226,6 +229,7 @@ export class InspectingofficersComponent implements OnInit {
         (res) => {
           this.spinner.hide();
           this.getDate = res;
+          this.worklogs = res;
           //console.log(this.getDate);
 
         },
@@ -248,23 +252,23 @@ export class InspectingofficersComponent implements OnInit {
 
     };
     // console.log(",,,,,",body);
-
-    this.http
-      .post(this.basePublicUrl + "/dbkl/getMTB", body1, {
-        headers: headers,
-      })
-      .subscribe(
-        (res) => {
-          this.spinner.hide();
-          this.getMtb = res[0];
-          //  console.log(this.getMtb);
-          localStorage.setItem("mtbids", this.getMtb)
-        },
-        (error) => {
-          this.loginError = true;
-          this.errorMsg = error["error"]["message"];
-        }
-      );
+    localStorage.setItem("mtbids", id)
+    // this.http
+    //   .post(this.basePublicUrl + "/dbkl/getMTB", body1, {
+    //     headers: headers,
+    //   })
+    //   .subscribe(
+    //     (res) => {
+    //       this.spinner.hide();
+    //       this.getMtb = res[0];
+    //       //  console.log(this.getMtb);
+    //       localStorage.setItem("mtbids", this.getMtb)
+    //     },
+    //     (error) => {
+    //       this.loginError = true;
+    //       this.errorMsg = error["error"]["message"];
+    //     }
+    //   );
   }
   showDate(data: any) {
     // console.log(data);

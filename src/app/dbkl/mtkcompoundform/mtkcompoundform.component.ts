@@ -79,6 +79,8 @@ export class MtkcompoundformComponent implements OnInit {
   userrole: string;
   parildata: Object;
 
+  listPegawai: any = [];
+
   constructor(private http: HttpClient, private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
@@ -93,6 +95,22 @@ export class MtkcompoundformComponent implements OnInit {
       "Content-Type": "application/json",
       Authorization: key,
     };
+
+    this.http
+    .get(this.basePublicUrl + "/dbkl/listPegawai", {
+      headers: headers,
+    })
+    .subscribe(
+      (result:any) => {
+        this.spinner.hide();
+        this.listPegawai = result;
+      },
+      (error) => {
+        this.loginError = true;
+        this.errorMsg = error["error"]["message"];
+      }
+    );
+
     this.http
       .get(this.basePublicUrl + "/dbkl/getIdPegawai", { headers: headers })
       .subscribe(
@@ -231,7 +249,7 @@ export class MtkcompoundformComponent implements OnInit {
       kepada: this.kepada,
       company_no: this.company_no,
       alamat: this.alamat,
-      id_mtb: this.id_mtb,
+      id_pegawai: this.id_mtb,
       parlimen: this.parlimen,
       // lokasi_kompaun: this.lokasi_kompaun,
       sek47_1a: this.sek47_1a,

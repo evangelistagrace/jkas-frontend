@@ -194,7 +194,7 @@ export class MtblistofcompoundComponent implements OnInit {
     });
   }
 
-  date(id: string,parlimen:string) {
+  date(id: string,parlimen:string,no_ic_pegawai:string) {
     this.show = true;
     this.parli=parlimen;
     this.mtb = id;
@@ -209,7 +209,7 @@ export class MtblistofcompoundComponent implements OnInit {
       Authorization: key,
     };
     let body = {
-      officer_name:this.mtb,
+      officer_name:no_ic_pegawai,
     };
     this.http
       .post(this.basePublicUrl + "/dbkl/getMTBCompoundsTarikh",body, {

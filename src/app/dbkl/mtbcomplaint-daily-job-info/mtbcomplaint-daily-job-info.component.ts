@@ -312,37 +312,23 @@ export class MtbcomplaintDailyJobInfoComponent implements OnInit {
     //   custom: [{ name: 'routeToUpdateFeedback', title: `Edit ` }],
     // },
     columns: {
-      masa: {
-        title: "Masa",
-      },
-      lokasi_aduan: {
-        title: "Lokasi Aduan",
-      },
-      lokasi_siasatan: {
-        title: "Lokasi Siasatan",
-      },
-      borang_siasatan: {
-        title: "Borang Siasatan",
+      rujukan: {
+        title: "NO RUJUKAN/ADUAN",
         type: "html",
         valuePrepareFunction: (cell, row) => {
+          if (row.complaint_id) {
+            return (
+              "<a href=\"dbkl/complaintinvestigation?complaintId=" + row.complaint_id + "\">" + row.rujukan + "</a>"
+            );
+          }
           return (
-            "<a href=" +
-            "/" +
-            this.lang +
-            "/dbkl/complaintinvestigation?value1=" +
-            this.id +
-            "&value2=" +
-            row.masa +
-            "&value3=" +
-            this.date +
-            "&alue5=" +
-            this.parliamen +
-            ">" +
-            "BORANG KERJA DI LAPANGAN" +
-            "</a>"
+            "<a href=\"dbkl/complaintinvestigation?inquiryId=" + row.inquiry_id + "\">" + row.rujukan + "</a>"
           );
         },
       },
+      lokasi_aduan: {
+        title: "LOKASI KERJA HARIAN/ADUAN",
+      }
     },
   };
   selectedvalue(event: any) {

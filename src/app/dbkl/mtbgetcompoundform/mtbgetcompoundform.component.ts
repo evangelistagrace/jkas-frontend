@@ -222,6 +222,15 @@ export class MtbgetcompoundformComponent implements OnInit {
     this.uuk35 = value;
   }
 
+  displaySuccess:string = 'none';
+  closeSuccessModal() {
+    this.displaySuccess = 'none';
+  }
+  submitUpdate() {
+    //alert('Kompaun berjaya dikemaskini.');
+    this.displaySuccess = 'block';
+  }
+
   backtotop() {
     window.scroll(0, 0);
   }
