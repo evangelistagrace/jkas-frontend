@@ -144,6 +144,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { DbklppsppacatatanComponent } from './dbklppsppacatatan/dbklppsppacatatan.component';
+import { RouterModule } from '@angular/router';
 
 
 registerLocaleData(enLocale, "en");
@@ -301,7 +302,13 @@ registerLocaleData(msLocale, "ms");
       },
     }),
 
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    // RouterModule.forRoot([], {
+    //   anchorScrolling: 'enabled',
+    //   scrollPositionRestoration: 'enabled',
+    //   // Optional: if you want to handle fragment navigation without updating the URL
+    //   onSameUrlNavigation: 'reload'
+    // })
   ],
   exports: [ReplaceSubstring],
   providers: [

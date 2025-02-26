@@ -38,7 +38,6 @@
             ],
             "styles": [
               "src/custom-theme.scss",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/styles.css",
               "./node_modules/leaflet/dist/leaflet.css",
@@ -48,7 +47,8 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js"
+              "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js",
+              "src/assets/js/jquery.easing.min.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,
