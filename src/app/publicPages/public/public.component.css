@@ -156,3 +156,87 @@ button.btn-primary {
   background: url(../../../assets/img/section-title-bg.png) no-repeat;
   z-index: -1;
 }
+
+.carousel-item-custom {
+  flex: 1;
+  padding: 0 10px; /* Adds spacing between images */
+  max-width: 30%; /* Ensure each image takes equal space */
+}
+
+.carousel-item-custom img {
+  width: 100%;
+  height: 300px; /* Standard height */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+.light-background {
+  background-color: #effffb;
+  --surface-color: #ffffff;
+}
+
+
+swiper-container {
+  width: 100%;
+  height: 100%;
+  margin: 20px 0;
+}
+
+swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Fixed height */
+}
+
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This maintains aspect ratio while covering the container */
+  border-radius: 8px; /* Optional: adds rounded corners */
+}
+
+/* Optional: Add some hover effects */
+swiper-slide:hover .carousel-img {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+/* Pagination styles */
+::ng-deep .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  opacity: 0.5;
+}
+
+::ng-deep .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* Navigation button styles */
+::ng-deep .swiper-button-next,
+::ng-deep .swiper-button-prev {
+  color: #365968; /* Using your custom dark color */
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  padding: 20px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+/* Optional: Add hover effect */
+::ng-deep .swiper-button-next:hover,
+::ng-deep .swiper-button-prev:hover {
+  background-color: #ffffff;
+  color: #365968;
+}
+
+/* Adjust the size of the arrow icons */
+::ng-deep .swiper-button-next::after,
+::ng-deep .swiper-button-prev::after {
+  font-size: 20px;
+}
+
+.swiper-button-next, .swiper-button-prev {
+  color: #365968 !important;
+}

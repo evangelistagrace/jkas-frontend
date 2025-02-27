@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ExcelService } from './services/excel.service';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
@@ -311,6 +311,7 @@ registerLocaleData(msLocale, "ms");
     // })
   ],
   exports: [ReplaceSubstring],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA], // Add this line
   providers: [
     NgxSpinnerService,
     TableService,

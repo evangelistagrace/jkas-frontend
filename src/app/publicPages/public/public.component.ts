@@ -16,6 +16,10 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from "src/environments/environment";
 import { ViewportScroller } from "@angular/common";
 import { take } from "rxjs/operators";
+import { register } from 'swiper/element/bundle';
+
+// register Swiper custom elements
+register();
 
 @Component({
   selector: "app-public",
@@ -73,6 +77,17 @@ export class PublicComponent {
   path1: any;
   path2: any;
   imagelink: any;
+  images = [
+    '../../../assets/img/2.jpg',
+    '../../../assets/img/3.jpg',
+    '../../../assets/img/4.jpg',
+    '../../../assets/img/5.jpg',
+    '../../../assets/img/6.jpg',
+    '../../../assets/img/7.jpg',
+    '../../../assets/img/8.jpg',
+    '../../../assets/img/9.jpg',
+    '../../../assets/img/10.jpg',
+  ];
   @ViewChild("bgVideo") videoPlayer: ElementRef;
 
   constructor(
@@ -133,6 +148,44 @@ export class PublicComponent {
       e.stopPropagation();
       $(this).next('.dropdown-menu').toggle();
     });
+
+    // handle slider
+    // Get the swiper element
+    const swiperEl = document.querySelector('swiper-container');
+    
+    // Add the parameters
+    const swiperParams = {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      navigation: true,
+      pagination: {
+        clickable: true,
+        type: 'bullets'
+      },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+      },
+      loop: true,
+      injectStyles: [`
+        .swiper-pagination-bullet {
+          width: 10px;
+          height: 10px;
+          background-color: #000;
+          opacity: 0.5;
+        }
+        .swiper-pagination-bullet-active {
+          opacity: 1;
+        }
+      `],
+    };
+
+    // Assign the parameters to the Swiper element
+    Object.assign(swiperEl, swiperParams);
+
+    // Initialize Swiper
+    swiperEl.initialize();
   }
 
   ngOnInit(): void {

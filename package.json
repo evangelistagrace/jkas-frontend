@@ -66,8 +66,11 @@
     "ngx-pagination": "^5.0.0",
     "ngx-print": "^1.2.1",
     "ngx-spinner": "^10.0.1",
+    "primeicons": "^7.0.0",
+    "primeng": "^12.2.1",
     "rxjs": "~6.6.7",
     "rxjs-compat": "^6.6.7",
+    "swiper": "^11.2.4",
     "tslib": "^2.0.0",
     "xlsx": "^0.17.3",
     "zone.js": "~0.11.4"
