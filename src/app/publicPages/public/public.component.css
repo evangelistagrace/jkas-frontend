@@ -15,10 +15,12 @@
 #mainNav .navbar-nav {
   flex-wrap: nowrap;
 } */
+:root {
+  --custom-dark: #365968;
+}
 
 .d-flex > h5:nth-child(1) {
   width: max-content;
-  /* padding-right: 53px; */
   color: white;
 }
 
@@ -106,19 +108,51 @@
 .dropdown-submenu > a:after {
   display: block;
   content: " ";
-  float: left;  /* Change from right to left */
+  float: left; /* Change from right to left */
   width: 0;
   height: 0;
   border-color: transparent;
   border-style: solid;
-  border-width: 5px 5px 5px 0;  /* Adjust border width */
-  border-right-color: #cccccc;  /* Change from border-left-color to border-right-color */
+  border-width: 5px 5px 5px 0; /* Adjust border width */
+  border-right-color: #cccccc; /* Change from border-left-color to border-right-color */
   margin-top: 5px;
-  margin-left: -10px;  /* Change from margin-right to margin-left */
-  margin-right: 5px;  /* Add some spacing from text */
+  margin-left: -10px; /* Change from margin-right to margin-left */
+  margin-right: 5px; /* Add some spacing from text */
 }
 
 /* Optional: Adjust arrow position on hover */
 .dropdown-submenu:hover > a:after {
   border-right-color: #555;
+}
+
+h6.brand-heading,
+h6.intro-text {
+  color: white;
+}
+
+button.btn-primary {
+  background-color: #365968;
+  border: none !important;
+}
+
+/* .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x)* .5);
+  padding-left: calc(var(--bs-gutter-x)* .5);
+  margin-right: auto;
+  margin-left: auto;
+} */
+
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 122px;
+  height: 66px;
+  background: url(../../../assets/img/section-title-bg.png) no-repeat;
+  z-index: -1;
 }

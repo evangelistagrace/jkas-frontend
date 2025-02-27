@@ -43,13 +43,10 @@
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item" [routerLink]="[]" [fragment]="'orangAwam'">Orang Awam</a
-              ><a class="dropdown-item" href="#">Agensi</a
-              ><a class="dropdown-item" href="#">JKAS DBKL</a>
+              ><a class="dropdown-item" href="/agensi">Agensi</a
+              ><a class="dropdown-item" href="/dbkl/adminregister">JKAS DBKL</a>
             </div>
           </li>
-          <!-- <li class="nav-item nav-link js-scroll-trigger">
-            <a class="nav-link js-scroll-trigger" href="#download">Pengguna</a>
-          </li> -->
           <li class="nav-item nav-link js-scroll-trigger">
             <a class="nav-link js-scroll-trigger" href="#contact">Pengumuman</a>
           </li>
@@ -61,22 +58,21 @@
               >Manual
             </a>
             <div class="dropdown-menu">
-              <!-- <a class="dropdown-item" href="#">PDF 1</a
-              ><a class="dropdown-item" href="#">PDF 2</a> -->
               <div class="dropdown-submenu">
                 <a class="dropdown-item dropdown-toggle">Panduan Permohonan</a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Carta Aliran Proses</a>
-                  <a class="dropdown-item" href="#">Senarai Semak Dokumen</a>
+                  <a class="dropdown-item" href="assets/pdf/CARTAALIRSERAHANKAWASAN.pdf">Carta Aliran Proses</a>
+                  <a class="dropdown-item" href="assets/pdf/ManualPengguna.pdf">Senarai Semak Dokumen</a>
                 </div>
               </div>
-              <div class="dropdown-submenu">
-                <a class="dropdown-item dropdown-toggle">Kawasan Perkhidmatan Kutipan</a>
+              <a class="dropdown-item" href="assets/pdf/JKASManualPengguna.pdf">Kawasan Perkhidmatan Kutipan</a>
+              <!-- <div class="dropdown-submenu">
+                <a class="dropdown-item" href="assets/pdf/JKASManualPengguna.pdf">Kawasan Perkhidmatan Kutipan</a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="#">PDF 3</a>
                   <a class="dropdown-item" href="#">PDF 4</a>
                 </div>
-              </div>
+              </div> -->
             </div>
           </li>
           <li class="nav-item nav-link js-scroll-trigger">
@@ -126,7 +122,7 @@
       </div>
     </div>
   </header>
-  <section class="text-center text-dark bg-white content-section" id="orangAwam">
+  <!-- <section class="text-center text-dark bg-white content-section" id="orangAwam">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -152,7 +148,69 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
+  <section id="orangAwam" class="services section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2 class="mt-5">Orang Awam</h2>
+      <p>Sila pilih perkhidmatan anda</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+      <div class="row gy-4">
+
+        <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-item position-relative">
+            <div class="icon"><i class="bi bi-activity icon"></i></div>
+            <h4><a href="/public/serviceLogin" class="stretched-link">Senarai Kawasan Perkhidmatan</a></h4>
+            <p>Senarai kawasan yang diberi perkhidmatan di bawah seliaan DBKL</p>
+          </div>
+        </div><!-- End Service Item -->
+
+        <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-item position-relative">
+            <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
+            <h4><a href="https://www.swcorp.gov.my/myHCS/#" class="stretched-link">Jadual</a></h4>
+            <p>Anda akan disambungkan ke laman web rasmi SWCorp Malaysia</p>
+          </div>
+        </div><!-- End Service Item -->
+
+        <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-item position-relative">
+            <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
+            <h4><a href="/publicLogin" class="stretched-link">Permohonan Perkhidmatan Dan Semakan</a></h4>
+            <p>Bermula tahun 2011, semua perkhidmatan kutipan sisa pepejal dan pembersihan awam telah diserahkan kepada SWCorp berdasarkan Akta Pengurusan Sisa Pepejal dan Pembersihan Awam 2007 (Akta 672)</p>
+          </div>
+        </div><!-- End Service Item -->
+
+        <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+          <div class="service-item position-relative">
+            <div class="icon"><i class="bi bi-broadcast icon"></i></div>
+            <h4>Aduan Awam</h4>
+            <p>Sila klik di sini jika ada aduan yang berkenaan</p>
+            <!-- <div class="additional-links mt-3" style="position: relative; z-index: 2;">
+              <a href="https://www.swcorp.gov.my" class="custom-btn d-block mb-2">SISPAA</a>
+              <a href="https://adukl.dbkl.gov.my/" class="custom-btn d-block mb-2">ADU@KL</a>
+            </div> -->
+            <div class="mt-3" style="display: flex; flex-direction: column; width: 100%;">
+              <button class="btn btn-primary btn-lg btn-default" type="button" style="width: 100%;">
+                <a href="https://www.swcorp.gov.my" style="color: white; width: 100%; display: block;">SISPAA</a>
+              </button>
+              <button class="btn btn-primary btn-lg btn-default" type="button" style="width: 100%; margin-top: 10px;">
+                <a href="https://adukl.dbkl.gov.my/" style="color: white; width: 100%; display: block;">ADU@KL</a>
+              </button>
+            </div>
+          </div>
+        </div><!-- End Service Item -->
+
+      </div>
+
+    </div>
+
+  </section><!-- /Services Section -->
+
   <section
     class="text-center download-section content-section"
     id="download"
