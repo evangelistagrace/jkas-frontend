@@ -8,7 +8,11 @@
   "projects": {
     "JKAS-UI": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -44,6 +48,7 @@
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
               "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/swiper/swiper-bundle.css",
               "src/styles.css"
@@ -62,7 +67,7 @@
           },
           "configurations": {
             "production": {
-              "localize": ["en","ms"],
+              "localize": ["en", "ms"],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -89,17 +94,13 @@
               "outputPath": "dist",
               "aot": true,
               "i18nMissingTranslation": "error",
-              "localize": [
-                "ms"
-              ]
+              "localize": ["ms"]
             },
             "en": {
               "outputPath": "dist",
               "aot": true,
               "i18nMissingTranslation": "error",
-              "localize": [
-                "en"
-              ]
+              "localize": ["en"]
             }
           },
           "defaultConfiguration": ""
@@ -134,10 +135,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -156,9 +154,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {

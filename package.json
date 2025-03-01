@@ -93,6 +93,7 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "ng2-completer": "^9.0.1",
     "protractor": "~7.0.0",
+    "sass": "^1.85.1",
     "ts-node": "~7.0.0",
     "tslint": "~6.1.0",
     "typescript": "~4.3.5"
