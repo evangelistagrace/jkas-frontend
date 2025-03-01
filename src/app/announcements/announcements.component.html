@@ -1,0 +1,140 @@
+<!-- announcements.component.html -->
+<div class="announcements-container">
+  <!-- <h2 class="section-title">Pengumuman Terkini</h2> -->
+
+  <!-- Date Range Filter -->
+  <!-- <div class="date-filter"> -->
+  <div class="row">
+    <form [formGroup]="filterForm" class="date-filter-form d-flex justify-content-end p-3">
+      <!-- <div class="filter-group">
+        <label for="dateRange">Tapis mengikut tarikh:</label> -->
+      <p-calendar
+        id="dateRange"
+        formControlName="rangeDates"
+        selectionMode="range"
+        [readonlyInput]="true"
+        [showIcon]="true"
+        placeholder="Pilih julat tarikh"
+        [monthNavigator]="true"
+        [yearNavigator]="true"
+        [yearRange]="'2020:2030'"
+        dateFormat="dd/mm/yy"
+        [showButtonBar]="true"
+      ></p-calendar>
+
+      <button
+        type="button"
+        class="btn-clear-filter"
+        (click)="clearDateFilter()"
+        *ngIf="filterForm.get('rangeDates')?.value"
+      >
+        Kosongkan
+      </button>
+      <!-- </div> -->
+    </form>
+
+    <!-- <div
+      class="active-filter-info"
+      *ngIf="dateRange.startDate && dateRange.endDate"
+    >
+      <span
+        >Menunjukkan pengumuman dari
+        {{ dateRange.startDate | date : "dd/MM/yyyy" }} hingga
+        {{ dateRange.endDate | date : "dd/MM/yyyy" }}</span
+      >
+    </div> -->
+  </div>
+
+  <!-- </div> -->
+
+  <div class="announcements-list">
+    <div *ngFor="let announcement of announcements" class="announcement-card">
+      <div class="announcement-date">{{ formatDate(announcement.date) }}</div>
+      <h3 class="announcement-title">{{ announcement.title }}</h3>
+      <p class="announcement-summary">{{ announcement.summary }}</p>
+      <button class="btn-read-more" (click)="openAnnouncement(announcement.id)">
+        Baca Selanjutnya
+      </button>
+    </div>
+
+    <div *ngIf="announcements.length === 0" class="no-announcements">
+      Tiada pengumuman terkini.
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination-container" *ngIf="totalPages > 1">
+    <div class="pagination">
+      <button
+        [disabled]="currentPage === 1"
+        (click)="onPageChange(currentPage - 1)"
+        class="pagination-btn"
+      >
+      <i class="pi pi-chevron-left"></i>
+      </button>
+
+      <ng-container
+        *ngFor="let page of [].constructor(totalPages); let i = index"
+      >
+        <button
+          [class.active]="currentPage === i + 1"
+          (click)="onPageChange(i + 1)"
+          class="pagination-btn"
+        >
+          {{ i + 1 }}
+        </button>
+      </ng-container>
+
+      <button
+        [disabled]="currentPage === totalPages"
+        (click)="onPageChange(currentPage + 1)"
+        class="pagination-btn"
+      >
+      <i class="pi pi-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal for full announcement -->
+  <div
+    class="announcement-modal"
+    *ngIf="showFullAnnouncement"
+    (click)="closeAnnouncement()"
+  >
+    <div class="announcement-modal-content" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="closeAnnouncement()">&times;</button>
+
+      <div *ngIf="selectedAnnouncement" class="full-announcement">
+        <div class="full-announcement-date">
+          {{ formatDate(selectedAnnouncement.date) }}
+        </div>
+        <h2 class="full-announcement-title">
+          {{ selectedAnnouncement.title }}
+        </h2>
+
+        <div
+          class="announcement-metadata"
+          *ngIf="selectedAnnouncement.department"
+        >
+          <span class="department-label">Jabatan:</span>
+          {{ selectedAnnouncement.department }}
+        </div>
+
+        <div class="announcement-content">
+          {{ selectedAnnouncement.content }}
+        </div>
+
+        <div
+          class="announcement-tags"
+          *ngIf="
+            selectedAnnouncement.tags && selectedAnnouncement.tags.length > 0
+          "
+        >
+          <span class="tag" *ngFor="let tag of selectedAnnouncement.tags">{{
+            tag
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

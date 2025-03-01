@@ -145,7 +145,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { DbklppsppacatatanComponent } from './dbklppsppacatatan/dbklppsppacatatan.component';
 import { RouterModule } from '@angular/router';
-
+import { AnnouncementsComponent } from './announcements/announcements.component';
+import {CalendarModule} from 'primeng/calendar';
 
 registerLocaleData(enLocale, "en");
 registerLocaleData(msLocale, "ms");
@@ -261,7 +262,8 @@ registerLocaleData(msLocale, "ms");
     FiltercustombuttonComponent,
     FilterdoublecustombuttonComponent,
     TextboxComponent,
-    DbklppsppacatatanComponent
+    DbklppsppacatatanComponent,
+    AnnouncementsComponent
 
 
 
@@ -303,6 +305,7 @@ registerLocaleData(msLocale, "ms");
     }),
 
     BsDatepickerModule.forRoot(),
+    CalendarModule
     // RouterModule.forRoot([], {
     //   anchorScrolling: 'enabled',
     //   scrollPositionRestoration: 'enabled',
