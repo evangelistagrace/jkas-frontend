@@ -13,7 +13,7 @@
     "build": "ng build",
     "build:prod": "npm run build -- --configuration production --aot",
     "build-serve": "node --max_old_space_size=8048 ./node_modules/@angular/cli/bin/ng build --optimization=false --configuration=ms --base-href=/ms/",
-    "i18n:extract": "ng xi18n --output-path src/i18n",
+    "translation:extract": "ng extract-i18n --output-path src/i18n",
     "build-locale": "npm run build-locale:ms && npm run build-locale:en",
     "test": "ng test",
     "lint": "ng lint",
