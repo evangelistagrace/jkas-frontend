@@ -147,6 +147,8 @@ import { DbklppsppacatatanComponent } from './dbklppsppacatatan/dbklppsppacatata
 import { RouterModule } from '@angular/router';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import {CalendarModule} from 'primeng/calendar';
+import {DropdownModule} from 'primeng/dropdown';
+import {SelectButtonModule} from 'primeng/selectbutton';
 
 registerLocaleData(enLocale, "en");
 registerLocaleData(msLocale, "ms");
@@ -305,7 +307,9 @@ registerLocaleData(msLocale, "ms");
     }),
 
     BsDatepickerModule.forRoot(),
-    CalendarModule
+    CalendarModule,
+    DropdownModule,
+    SelectButtonModule
     // RouterModule.forRoot([], {
     //   anchorScrolling: 'enabled',
     //   scrollPositionRestoration: 'enabled',

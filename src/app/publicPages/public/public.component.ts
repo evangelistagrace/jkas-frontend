@@ -281,9 +281,9 @@ export class PublicComponent {
     let url = document.location.protocol + "//" + document.location.hostname;
     // console.log(url);
 
-    if (localStorage.getItem("lang") == "en") {
-      window.location.href = url + "/en/publicen";
-    }
+    // if (localStorage.getItem("lang") == "en") {
+    //   window.location.href = url + "/en/publicen";
+    // }
 
     if (
       localStorage.getItem("lang") == "" ||
