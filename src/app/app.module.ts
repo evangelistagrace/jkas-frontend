@@ -149,6 +149,7 @@ import { AnnouncementsComponent } from './announcements/announcements.component'
 import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from 'primeng/dropdown';
 import {SelectButtonModule} from 'primeng/selectbutton';
+import {TableModule} from 'primeng/table';
 
 registerLocaleData(enLocale, "en");
 registerLocaleData(msLocale, "ms");
@@ -309,7 +310,8 @@ registerLocaleData(msLocale, "ms");
     BsDatepickerModule.forRoot(),
     CalendarModule,
     DropdownModule,
-    SelectButtonModule
+    SelectButtonModule,
+    TableModule
     // RouterModule.forRoot([], {
     //   anchorScrolling: 'enabled',
     //   scrollPositionRestoration: 'enabled',

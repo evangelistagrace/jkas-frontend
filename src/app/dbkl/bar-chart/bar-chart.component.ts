@@ -10,7 +10,7 @@ import { ChartDataSets } from "chart.js";
 
 import { ChartOptions, ChartType } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { Color, Label } from "ng2-charts";
+import { BaseChartDirective, Color, Label } from "ng2-charts";
 import { ActivatedRoute, Router } from "@angular/router";
 import * as $ from "jquery";
 import { HttpClient } from "@angular/common/http";
@@ -19,6 +19,7 @@ import { environment } from "src/environments/environment";
 import { forkJoin } from "rxjs";
 import { DateRange } from "src/app/models/announcement.model";
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { Table } from "primeng/table";
 
 @Component({
   selector: "app-bar-chart",
@@ -26,6 +27,9 @@ import { FormBuilder, FormGroup } from "@angular/forms";
   styleUrls: ["./bar-chart.component.scss"],
 })
 export class BarChartComponent implements OnInit {
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
+  @ViewChild("dt") table: Table;
+
   Array1: any = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4];
   baseURL = environment.basePublicUrl;
   DataSets: any = [];
@@ -54,6 +58,30 @@ export class BarChartComponent implements OnInit {
     "PUSAT_TONG_YA",
     "PUSAT_TONG_TIDAK",
   ];
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: {
+      position: "right",
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label;
+        },
+        color: "#fff",
+        font: {
+          weight: "bold",
+          size: 12,
+        },
+      },
+    },
+    onClick: (event, activeElements) => {
+      this.handleChartClick(event, activeElements);
+    },
+  };
+
   public barChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -87,6 +115,9 @@ export class BarChartComponent implements OnInit {
         },
       },
     },
+    onClick: (event, activeElements) => {
+      this.handleChartClick(event, activeElements);
+    },
   };
 
   public barChartLabels: Label[] = ["", "", "", "", "", "", "", "", "", "", ""];
@@ -103,22 +134,7 @@ export class BarChartComponent implements OnInit {
     { backgroundColor: "hsl(30deg 4% 79%)" },
   ];
 
-  public barChartData: ChartDataSets[] = [
-    // { data: this.Array1, label: "Series A", stack: "a" },
-    // {
-    //   data: [28, 48, 40, 19, 86, 27, 90, 35, 86, 27, 90],
-    //   label: "Series B",
-    //   stack: "a",
-    // },
-    // {
-    //   data: [28, 48, 41, 19, 86, 27, 90, 23, 86, 27, 90],
-    //   label: "Series B",
-    //   stack: "a",
-    // },
-    // { data: [20, 59, 80, 81, 40, 55, 40, 56, 86, 27, 90], stack: "b" },
-    // { data: [28, 48, 30, 19, 85, 27, 90, 36, 86, 27, 90], stack: "b" },
-    // { data: [28, 44, 35, 19, 86, 27, 67, 35, 86, 27, 90], stack: "b" },
-  ];
+  public barChartData: ChartDataSets[] = [];
   accessToken: any;
   getaccess: string;
   selectedGuest1: any;
@@ -156,35 +172,33 @@ export class BarChartComponent implements OnInit {
   rangeDates: Date[] = [];
   stateOptions: any[];
   isBarChart: boolean = true;
+  selectedBarData: any = null;
+  chartData: any = null;
   colorList = [
-    "rgba(255, 99, 132, 0.2)",
-    "rgba(255, 159, 64, 0.2)",
-    "rgba(255, 205, 86, 0.2)",
-    "rgba(75, 192, 192, 0.2)",
-    "rgba(54, 162, 235, 0.2)",
-    "rgba(153, 102, 255, 0.2)",
-    "rgba(201, 203, 207, 0.2)",
-    // generate 5 more different colors in the same theme
-    "rgba(255, 130, 180, 0.2)", // Light pink
-    "rgba(191, 85, 236, 0.2)", // Light purple
-    "rgba(72, 202, 142, 0.2)", // Light green
-    "rgba(0, 184, 255, 0.2)", // Light blue
-    "rgba(240, 154, 80, 0.2)", // Light orange
+    "rgba(54, 162, 235, 0.6)", // Blue
+    "rgba(255, 99, 132, 0.6)", // Red
+    "rgba(75, 192, 192, 0.6)", // Teal
+    "rgba(255, 159, 64, 0.6)", // Orange
+    "rgba(153, 102, 255, 0.6)", // Purple
+    "rgba(255, 205, 86, 0.6)", // Yellow
+    "rgba(201, 203, 207, 0.6)", // Grey
+    "rgba(69, 179, 157, 0.6)", // Seafoam green
+    "rgba(220, 53, 69, 0.6)", // Crimson
+    "rgba(40, 167, 69, 0.6)", // Forest green
+    "rgba(111, 66, 193, 0.6)", // Deep purple
   ];
   borderColorList = [
-    "rgb(255, 99, 132)",
-    "rgb(255, 159, 64)",
-    "rgb(255, 205, 86)",
-    "rgb(75, 192, 192)",
-    "rgb(54, 162, 235)",
-    "rgb(153, 102, 255)",
-    "rgb(201, 203, 207)",
-    // generate 5 more colors in the same theme
-    "rgb(255, 130, 180)", // Light pink
-    "rgb(191, 85, 236)", // Light purple
-    "rgb(72, 202, 142)", // Light green
-    "rgb(0, 184, 255)", // Light blue
-    "rgb(240, 154, 80)", // Light orange
+    "rgb(54, 162, 235)", // Blue
+    "rgb(255, 99, 132)", // Red
+    "rgb(75, 192, 192)", // Teal
+    "rgb(255, 159, 64)", // Orange
+    "rgb(153, 102, 255)", // Purple
+    "rgb(255, 205, 86)", // Yellow
+    "rgb(201, 203, 207)", // Grey
+    "rgb(69, 179, 157)", // Seafoam green
+    "rgb(220, 53, 69)", // Crimson
+    "rgb(40, 167, 69)", // Forest green
+    "rgb(111, 66, 193)", // Deep purple
   ];
 
   constructor(
@@ -194,7 +208,7 @@ export class BarChartComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.filterForm = this.fb.group({
-      rangeDates: [null]
+      rangeDates: [null],
     });
   }
 
@@ -211,8 +225,8 @@ export class BarChartComponent implements OnInit {
     // console.log(this.jsondata)
     this.toggle2 = true;
     this.stateOptions = [
-      { label: 'Bar', value: true },
-      { label: 'Pie', value: false },
+      { label: "Bar", value: true },
+      { label: "Pie", value: false },
     ];
     let key = localStorage.getItem("AccessToken");
     let headers = {
@@ -639,8 +653,9 @@ export class BarChartComponent implements OnInit {
       this.barChartLabels = [];
       this.barChartData = [];
       let chartData = [];
-      let color = [];
+      let backgroundColor = [];
       let borderColor = [];
+
       // filter for valid rows
       rows = data.map(
         (row: any) =>
@@ -670,25 +685,221 @@ export class BarChartComponent implements OnInit {
       });
       console.log("rows: ", rows);
 
+      // Create a map to assign consistent colors to parliaments
+      const parliamentColorMap = {};
+
+      // Map each parliament to a fixed color index
       rows.forEach((row: any, index: any) => {
+        // Use modulo to handle if we somehow get more than 11 parliaments
+        parliamentColorMap[row.parliament] = index % this.colorList.length;
+      });
+
+      // Now create the data arrays for the chart
+      rows.forEach((row: any, index: any) => {
+        row.count = row.features.length;
         let count = row.features.length;
         let parliament = row.parliament;
 
         this.barChartLabels.push(parliament);
         chartData.push(count);
-        // let index = Math.floor(Math.random() * colorList.length - 1);
-        color.push(this.colorList[index]);
-        borderColor.push(this.borderColorList[index]);
+
+        // Use the consistent color mapping
+        let colorIndex = parliamentColorMap[parliament];
+        backgroundColor.push(this.colorList[colorIndex]);
+        borderColor.push(this.borderColorList[colorIndex]);
       });
+
+      this.chartData = rows;
       this.barChartData.push({
         data: chartData,
         label: categoryName,
-        backgroundColor: color,
+        backgroundColor: backgroundColor,
         borderColor: borderColor,
         borderWidth: 1,
         hoverBackgroundColor: "rgba(0, 0, 0, 0.1)",
       });
+
+      // Update chart type based on isBarChart value
+      this.updateChartType();
+
       this.spinner.hide();
     });
+  }
+
+  updateChartType() {
+    // Update chart type based on the isBarChart toggle value
+    this.barChartType = this.isBarChart ? "bar" : "pie";
+
+    // If it's a pie chart, show legend, otherwise hide it
+    this.barChartLegend = !this.isBarChart;
+
+    // Adjust the options for pie charts
+    if (!this.isBarChart && this.barChartData.length > 0) {
+      // For pie charts, we want to show all colors together
+      // No need to change anything here, as we're now setting colors at the data item level
+    }
+
+    // Force chart update if it exists
+    if (this.chart && this.chart.chart) {
+      this.chart.chart.update();
+    }
+  }
+
+  // Add listener for toggle change
+  onChartTypeChange() {
+    this.updateChartType();
+  }
+
+  handleChartClick(event, activeElements) {
+    if (activeElements && activeElements.length > 0) {
+      const clickedElement = activeElements[0];
+      const datasetIndex = clickedElement._datasetIndex;
+      const itemIndex = clickedElement._index;
+
+      // Get the data for the clicked bar
+      const datasetLabel = this.barChartData[datasetIndex].label;
+      const label = this.barChartLabels[itemIndex];
+      const value = this.barChartData[datasetIndex].data[itemIndex];
+
+      this.selectedBarData = {
+        category: datasetLabel,
+        parliament: label,
+        count: value,
+      };
+
+      // Show details for the selected bar
+      console.log("Clicked bar data:", this.selectedBarData);
+
+      // Fetch additional details for this parliament and category
+      this.fetchBarDetails(
+        this.selectedBarData.category,
+        this.selectedBarData.parliament
+      );
+    } else {
+      this.selectedBarData = null;
+    }
+  }
+
+  // Function to fetch additional details for the clicked bar
+  fetchBarDetails(category: string, parliament: string) {
+    console.log("category: ", category, "parliament: ", parliament);
+    this.spinner.show();
+
+    // If we couldn't use cached data, make an API call
+    let url = "";
+    let parentLayerId = -1;
+
+    // First, find the parent layer ID for the parliament
+    for (let i = 0; i < this.topLayers.length; i++) {
+      // Check if this is a parliament layer (parent layer)
+      if (this.topLayers[i]["parentLayerId"] === -1) {
+        // Extract parliament name without the (P###) part if it exists
+        let layerName = this.topLayers[i]["name"];
+        let parliamentName = parliament;
+
+        // Strip out the (P###) part for comparison if it exists
+        if (layerName.includes("(P")) {
+          layerName = layerName.split("(")[0].trim();
+        }
+        if (parliamentName.includes("(P")) {
+          parliamentName = parliamentName.split("(")[0].trim();
+        }
+
+        // Check if this is the parliament we're looking for
+        if (
+          layerName === parliamentName ||
+          this.topLayers[i]["name"] === parliament
+        ) {
+          parentLayerId = this.topLayers[i]["id"];
+          console.log(
+            `Found parliament layer: ${this.topLayers[i]["name"]} with ID: ${parentLayerId}`
+          );
+          break;
+        }
+      }
+    }
+
+    // If we found the parent parliament layer, now look for the category sublayer
+    if (parentLayerId !== -1) {
+      for (let i = 0; i < this.topLayers.length; i++) {
+        // Check if this is a sublayer of the identified parliament AND matches our category
+        if (
+          this.topLayers[i]["parentLayerId"] === parentLayerId &&
+          this.topLayers[i]["name"] === category
+        ) {
+          url = `https://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/JKAS_GASET/MapServer/${this.topLayers[i]["id"]}/query?where=PARLIMEN='${parliament}'&outFields=PARLIMEN,NAMA_JALAN,NAMA_TAMAN,NAMA_KAWASAN,KATEGORI,SERVIS_PERKHIDMATAN_JKAS&returnGeometry=false&returnTrueCurves=false&f=json`;
+          console.log(
+            `Found category layer: ${this.topLayers[i]["name"]} with ID: ${this.topLayers[i]["id"]}`
+          );
+          break;
+        }
+      }
+    }
+
+    // If we couldn't find the specific parliament+category combination, fall back to just searching by category
+    if (!url) {
+      console.log("Falling back to category-only search");
+      for (let i = 0; i < this.topLayers.length; i++) {
+        if (this.topLayers[i]["name"] === category) {
+          url = `https://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/JKAS_GASET/MapServer/${this.topLayers[i]["id"]}/query?where=PARLIMEN='${parliament}'&outFields=PARLIMEN,NAMA_JALAN,NAMA_TAMAN,NAMA_KAWASAN,KATEGORI,SERVIS_PERKHIDMATAN_JKAS&returnGeometry=false&returnTrueCurves=false&f=json`;
+          console.log(
+            `Found generic category layer: ${this.topLayers[i]["name"]} with ID: ${this.topLayers[i]["id"]}`
+          );
+          break;
+        }
+      }
+    }
+
+    if (url) {
+      this.http.get(url).subscribe(
+        (data: any) => {
+          console.log("Bar details data:", data);
+          if (data && data.features && data.features.length > 0) {
+            console.log("Bar details data:", data.features);
+            // Process and store the detailed results
+            this.selectedBarData.details = data.features.map(
+              (feature) => feature.attributes
+            );
+
+            // You can also calculate some statistics here if needed
+            this.selectedBarData.statistics = {
+              total: data.features.length,
+              // Add other statistics as needed
+            };
+          } else {
+            console.log("No features returned from the API");
+            this.selectedBarData.details = [];
+            this.selectedBarData.statistics = {
+              total: 0,
+            };
+          }
+          this.spinner.hide();
+        },
+        (error) => {
+          console.error("Error fetching bar details:", error);
+          this.selectedBarData.details = [];
+          this.selectedBarData.statistics = {
+            total: 0,
+          };
+          this.spinner.hide();
+        }
+      );
+    } else {
+      console.error(
+        "Could not find appropriate layer for this parliament and category combination"
+      );
+      this.selectedBarData.details = [];
+      this.selectedBarData.statistics = {
+        total: 0,
+      };
+      this.spinner.hide();
+    }
+  }
+
+  applyFilterGlobal($event: any, stringVal: string) {
+    this.table.filterGlobal(
+      ($event.target as HTMLInputElement).value,
+      stringVal
+    );
   }
 }

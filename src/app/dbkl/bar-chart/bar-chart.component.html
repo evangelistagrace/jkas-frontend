@@ -199,36 +199,172 @@
             <!-- <label for="chartType" i18n="@@chartType"
             >Chart Type</label
           > -->
-            <p-selectButton id="chartType" [options]="stateOptions" [(ngModel)]="isBarChart" optionLabel="label" optionValue="value"></p-selectButton>
+            <p-selectButton
+              id="chartType"
+              [options]="stateOptions"
+              [(ngModel)]="isBarChart"
+              optionLabel="label"
+              optionValue="value"
+              (onChange)="onChartTypeChange()"
+            ></p-selectButton>
           </div>
         </div>
       </div>
       <div class="section-title">
         <h2>{{ selectedCategory?.name }}</h2>
       </div>
-      <div class="row">
-        <div class="col chart-data-container">
-          <div class="chart-wrapper d-flex justify-content-center">
-            <canvas
-              baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
-              [plugins]="barChartPlugins"
-              [legend]="barChartLegend"
-              [chartType]="barChartType"
-              style="width: 80% !important"
-            >
-            </canvas>
-          </div>
-          <div>
-            <p>wdwsdw</p>
-          </div>
-      
+      <!-- <div class="row"> -->
+      <div class="row chart-data-container">
+        <div class="col-10 chart-wrapper d-flex justify-content-center">
+          <canvas
+            baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="isBarChart ? barChartOptions : pieChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            style="width: 100% !important"
+          >
+          </canvas>
         </div>
-      </div>
+        <!-- <div class="row mt-4" > -->
+        <div class="col-11 mt-4" *ngIf="selectedBarData">
+          <div class="card">
+            <!-- <div class="card-header bg-primary text-white">
+                  <h5 class="mb-0">
+                    Details for {{ selectedBarData.parliament }} -
+                    {{ selectedBarData.category }}
+                  </h5>
+                </div> -->
+            <div class="card-body">
+              <div class="row mb-3 justify-content-center">
+                <div class="col-md-4">
+                  <div class="card bg-light">
+                    <div class="card-body text-center">
+                      <h3 class="mb-0">{{ selectedBarData.count }}</h3>
+                      <p class="text-muted mb-0">Total Count</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-      <br />
+              <div
+                *ngIf="
+                  selectedBarData.details && selectedBarData.details.length > 0
+                "
+              >
+                <p-table
+                  #dt
+                  [value]="selectedBarData.details"
+                  [paginator]="true"
+                  [rows]="10"
+                  [showCurrentPageReport]="true"
+                  [rowsPerPageOptions]="[10, 25, 50]"
+                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                  [globalFilterFields]="[
+                    'NAMA_JALAN',
+                    'NAMA_TAMAN',
+                    'NAMA_KAWASAN',
+                    'KATEGORI',
+                    'SERVIS_PERKHIDMATAN_JKAS'
+                  ]"
+                  styleClass="p-datatable-responsive-demo"
+                >
+                  <ng-template pTemplate="caption">
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    >
+                      <h5 class="m-0">
+                        Details for {{ selectedBarData.parliament }} -
+                        {{ selectedBarData.category }}
+                      </h5>
+                      <span class="p-input-icon-left ml-auto">
+                        <i class="pi pi-search" style="left: 0.75rem"></i>
+                        <input
+                          pInputText
+                          type="text"
+                          (input)="
+                            dt.filterGlobal($event.target.value, 'contains')
+                          "
+                          placeholder="Search..."
+                          style="padding-left: 2rem"
+                        />
+                      </span>
+                    </div>
+                  </ng-template>
+
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th pSortableColumn="NAMA_JALAN">
+                        Nama Jalan <p-sortIcon field="NAMA_JALAN"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="NAMA_TAMAN">
+                        Nama Taman <p-sortIcon field="NAMA_TAMAN"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="NAMA_KAWASAN">
+                        Nama Kawasan
+                        <p-sortIcon field="NAMA_KAWASAN"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="KATEGORI">
+                        Kategori <p-sortIcon field="KATEGORI"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="SERVIS_PERKHIDMATAN_JKAS">
+                        Servis Perkhidmatan
+                        <p-sortIcon
+                          field="SERVIS_PERKHIDMATAN_JKAS"
+                        ></p-sortIcon>
+                      </th>
+                    </tr>
+                  </ng-template>
+
+                  <ng-template pTemplate="body" let-item>
+                    <tr>
+                      <td>
+                        <span class="p-column-title">Nama Jalan</span>
+                        {{ item.NAMA_JALAN || "-" }}
+                      </td>
+                      <td>
+                        <span class="p-column-title">Nama Taman</span>
+                        {{ item.NAMA_TAMAN || "-" }}
+                      </td>
+                      <td>
+                        <span class="p-column-title">Nama Kawasan</span>
+                        {{ item.NAMA_KAWASAN || "-" }}
+                      </td>
+                      <td>
+                        <span class="p-column-title">Kategori</span>
+                        {{ item.KATEGORI || "-" }}
+                      </td>
+                      <td>
+                        <span class="p-column-title">Servis Perkhidmatan</span>
+                        {{ item.SERVIS_PERKHIDMATAN_JKAS || "-" }}
+                      </td>
+                    </tr>
+                  </ng-template>
+
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td colspan="5">No records found.</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- </div> -->
+      </div>
+      <!-- </div> -->
+
+      <!-- Replace the empty paragraph with the close button -->
+      <!-- <div *ngIf="selectedBarData" class="row mb-4">
+        <div class="col-12 text-center">
+          <button class="btn btn-secondary" (click)="selectedBarData = null">
+            <i class="fa fa-times"></i> Close Details
+          </button>
+        </div>
+      </div> -->
       <!-- <div
         class="container d-flex justify-content-center"
         *ngIf="catagorylength > 2"
