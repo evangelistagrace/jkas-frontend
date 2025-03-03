@@ -15,15 +15,15 @@ export class TopbarV2Component implements OnInit {
   constructor(@Inject(LOCALE_ID) protected localeId: string, private translateService: TranslateService) { }
 
   ngOnInit() {
-    var header = document.getElementById("myDIV");
-    var btns = header.getElementsByClassName("ck1");
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function() {
-      var current = document.getElementsByClassName("active");
-      current[1].className = current[1].className.replace("active", "");
-      this.className += " active";
-      });
-    }
+    // var header = document.getElementById("myDIV");
+    // var btns = header.getElementsByClassName("ck1");
+    // for (var i = 0; i < btns.length; i++) {
+    //   btns[i].addEventListener("click", function() {
+    //   var current = document.getElementsByClassName("active");
+    //   current[1].className = current[1].className.replace("active", "");
+    //   this.className += " active";
+    //   });
+    // }
 
     if ("lang" in localStorage) {
 

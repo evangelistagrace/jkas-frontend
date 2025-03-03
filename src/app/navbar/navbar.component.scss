@@ -34,16 +34,40 @@
 .dropdown-submenu > a:after {
   display: block;
   content: " ";
-  float: left;
+  float: right;
   width: 0;
   height: 0;
   border-color: transparent;
   border-style: solid;
-  border-width: 5px 5px 5px 0;
-  border-right-color: #cccccc;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
   margin-top: 5px;
-  margin-left: -10px;
-  margin-right: 5px;
+  margin-right: -10px;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  /* Change from left: 100% to right: 100% */
+  right: 100%;
+  left: auto;
+  margin-top: -1px;
+  display: none;
+}
+
+/* Adjust the arrow direction to point left */
+.dropdown-submenu > a:after {
+  display: block;
+  content: " ";
+  float: left; /* Change from right to left */
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 5px 5px 0; /* Adjust border width */
+  border-right-color: #cccccc; /* Change from border-left-color to border-right-color */
+  margin-top: 5px;
+  margin-left: -10px; /* Change from margin-right to margin-left */
+  margin-right: 5px; /* Add some spacing from text */
 }
 
 .dropdown-submenu:hover > a:after {
@@ -53,4 +77,70 @@
 .d-flex > h5:nth-child(1) {
   width: max-content;
   color: white;
+}
+
+// Adjust the dropdown menu position
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  right: auto; // Change from 'right: 100%' to 'right: auto'
+  left: 100%; // Change back to 'left: 100%' for standard left-to-right dropdown
+  margin-top: -1px;
+  display: none;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+
+// Adjust the arrow direction to point right (standard direction)
+.dropdown-submenu > a:after {
+  display: block;
+  content: " ";
+  float: right; // Change back to 'float: right'
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px; // Standard right-pointing arrow
+  border-left-color: #cccccc; // Use left color for right-pointing arrow
+  margin-top: 5px;
+  margin-right: -10px; // Use right margin
+  margin-left: 5px; // Add some spacing from text
+}
+
+.dropdown-submenu:hover > a:after {
+  border-left-color: #555; // Change to match the left-pointing arrow
+}
+
+// If you need to adjust the parent dropdown position
+.dropdown-menu {
+  left: 0; // Ensure parent dropdowns are aligned to the left of their toggle
+}
+
+// For right-aligned menus in the navbar
+.navbar-nav.ml-auto .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+// If the rightmost dropdowns are still going off-screen, add this
+@media (min-width: 768px) {
+  .navbar-nav.ml-auto .dropdown-menu .dropdown-submenu .dropdown-menu {
+    right: 100%;
+    left: auto;
+  }
+
+  .navbar-nav.ml-auto .dropdown-menu .dropdown-submenu > a:after {
+    float: left;
+    border-width: 5px 5px 5px 0;
+    border-right-color: #cccccc;
+    border-left-color: transparent;
+    margin-left: -10px;
+    margin-right: 5px;
+  }
+
+  .navbar-nav.ml-auto .dropdown-menu .dropdown-submenu:hover > a:after {
+    border-right-color: #555;
+    border-left-color: transparent;
+  }
 }
