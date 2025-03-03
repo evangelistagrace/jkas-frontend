@@ -16,7 +16,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from "src/environments/environment";
 import { ViewportScroller } from "@angular/common";
 import { take } from "rxjs/operators";
-import { register } from 'swiper/element/bundle';
+import { register } from "swiper/element/bundle";
 
 // register Swiper custom elements
 register();
@@ -24,7 +24,7 @@ register();
 @Component({
   selector: "app-public",
   templateUrl: "./public.component.html",
-  styleUrls: ["./public.component.css"],
+  styleUrls: ["./public.component.scss"],
 })
 export class PublicComponent {
   languageList = [{ code: "ms", label: "Malay" }];
@@ -78,15 +78,65 @@ export class PublicComponent {
   path2: any;
   imagelink: any;
   images = [
-    '../../../assets/img/2.jpg',
-    '../../../assets/img/3.jpg',
-    '../../../assets/img/4.jpg',
-    '../../../assets/img/5.jpg',
-    '../../../assets/img/6.jpg',
-    '../../../assets/img/7.jpg',
-    '../../../assets/img/8.jpg',
-    '../../../assets/img/9.jpg',
-    '../../../assets/img/10.jpg',
+    "../../../assets/img/2.jpg",
+    "../../../assets/img/3.jpg",
+    "../../../assets/img/4.jpg",
+    "../../../assets/img/5.jpg",
+    "../../../assets/img/6.jpg",
+    "../../../assets/img/7.jpg",
+    "../../../assets/img/8.jpg",
+    "../../../assets/img/9.jpg",
+    "../../../assets/img/10.jpg",
+  ];
+  statistics = [
+    {
+      icon: 'bi bi-pin-map',
+      count: 232,
+      label: 'Jumlah Kawasan Perkhidmatan',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-house',
+      count: 521,
+      label: 'Jumlah Premis',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-tree',
+      count: 1453,
+      label: 'Bilangan Servis Pembersihan Awam',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-truck',
+      count: 32,
+      label: 'Jumlah Kutipan Sampah',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-map',
+      count: 621,
+      label: 'Keluasan Kawasan Kuala Lumpur (M2)',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-recycle',
+      count: 273,
+      label: 'Jumlah Kutipan Isi Rumah/Komersial',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-trash',
+      count: 1113,
+      label: 'Jumlah Pusat Tong',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-geo-alt',
+      count: 27,
+      label: 'Keluasan TPKK Dan Jumlah TPKK',
+      duration: 1
+    }
   ];
   @ViewChild("bgVideo") videoPlayer: ElementRef;
 
@@ -143,62 +193,27 @@ export class PublicComponent {
       }
     });
 
-    $('.dropdown-submenu > a').on('click', function(e) {
+    $(".dropdown-submenu > a").on("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
-      $(this).next('.dropdown-menu').toggle();
+      $(this).next(".dropdown-menu").toggle();
     });
 
-    // handle slider
-    // Get the swiper element
-    const swiperEl = document.querySelector('swiper-container');
-    
-    // Add the parameters
-    const swiperParams = {
-      slidesPerView: 3,
-      spaceBetween: 30,
-      navigation: true,
-      pagination: {
-        clickable: true,
-        type: 'bullets'
-      },
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true
-      },
-      loop: true,
-      injectStyles: [`
-        .swiper-pagination-bullet {
-          width: 10px;
-          height: 10px;
-          background-color: #000;
-          opacity: 0.5;
-        }
-        .swiper-pagination-bullet-active {
-          opacity: 1;
-        }
-      `],
-    };
-
-    // Assign the parameters to the Swiper element
-    Object.assign(swiperEl, swiperParams);
-
     // Initialize Swiper
-    swiperEl.initialize();
+    this.initSwiper();
   }
 
   ngOnInit(): void {
-    this.route.fragment.subscribe(fragment => {
+    this.route.fragment.subscribe((fragment) => {
       if (fragment) {
         setTimeout(() => {
           try {
             const element = document.getElementById(fragment);
             if (element) {
-              element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              element.scrollIntoView({ behavior: "smooth", block: "start" });
             }
           } catch (err) {
-            console.log('Error scrolling to element:', err);
+            console.log("Error scrolling to element:", err);
           }
         }, 100);
       }
@@ -545,5 +560,23 @@ export class PublicComponent {
     window.open(
       this.SERVER_URL + "/jkas_resourses/free/pdfs/CARTAALIRSERAHANKAWASAN.pdf"
     );
+  }
+
+  initSwiper() {
+    // Initialize all Swiper elements
+    const swiperEls = document.querySelectorAll('swiper-container');
+    
+    // Wait for DOM to be ready
+    setTimeout(() => {
+      swiperEls.forEach(swiperEl => {
+        // @ts-ignore - Using Swiper element API
+        swiperEl.initialize();
+      });
+      
+      // Initialize PureCounter after Swiper is initialized
+      if (typeof window !== 'undefined' && typeof (window as any).PureCounter === 'function') {
+        new (window as any).PureCounter();
+      }
+    }, 100);
   }
 }
