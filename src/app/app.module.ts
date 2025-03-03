@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { ExcelService } from './services/excel.service';
+import { ExcelService } from "./services/excel.service";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -103,53 +103,56 @@ import { NgxPrintModule } from "ngx-print";
 import { MerinyuanalysisComponent } from "./dbkl/merinyuanalysis/merinyuanalysis.component";
 import { MtbcomplaintDailyJobInfo1Component } from "./dbkl/mtbcomplaint-daily-job-info1/mtbcomplaint-daily-job-info1.component";
 import { FilterPipe } from "./services/uniquepipe";
-import { DbkldataComponent } from './dbkl/dbkldata/dbkldata.component';
-import { GaleryphotosComponent } from './superadmin/galeryphotos/galeryphotos.component';
-import { NotFound2Component } from './dbkl/not-found2/not-found2.component';
-import { AddnoncomplianceComponent } from './dbkl/addnoncompliance/addnoncompliance.component';
-import { UndeletedropdownComponent } from './undeletedropdown/undeletedropdown.component';
-import { UploaddocumentComponent } from './uploaddocument/uploaddocument.component';
-import { DemoTextComponent } from './dbkl/demo-text/demo-text.component';
-import { ShowpdfComponent } from './showpdf/showpdf.component';
-import { DbklppsppaComponent } from './pdfs/dbklppsppa/dbklppsppa.component';
-import { DbklpdfComponent } from './dbklpdf/dbklpdf.component';
-import { InactiveAreaComponent } from './dbkl/inactive-area/inactive-area.component';
-import { AnalisiskompaunComponent } from './dbkl/analisiskompaun/analisiskompaun.component';
-import { PublicppsppaComponent } from './publicextra/publicppsppa/publicppsppa.component';
-import { ListdocumentComponent } from './publicextra/listdocument/listdocument.component';
-import { ChecklistoptionComponent } from './publicextra/checklistoption/checklistoption.component';
-import { ServicesheduleComponent } from './publicextra/serviceshedule/serviceshedule.component';
-import { CollectnsheduleComponent } from './publicextra/collectnshedule/collectnshedule.component';
-import { CleansheduleComponent } from './publicextra/cleanshedule/cleanshedule.component';
-import { ServiceLoginComponent } from './service-login/service-login.component';
-import { UploadbuttonComponent } from './uploadbutton/uploadbutton.component';
-import { DbkluploadbuttonComponent } from './dbkluploadbutton/dbkluploadbutton.component';
-import { NewInventoryComponent } from './dbkl/new-inventory/new-inventory.component';
-import { InventorymapComponent } from './dbkl/inventorymap/inventorymap.component';
-import { MtkmapviewComponent } from './dbkl/mtkmapview/mtkmapview.component';
-import { MtkworkformComponent } from './dbkl/mtkworkform/mtkworkform.component';
-import { MtkcompoundformComponent } from './dbkl/mtkcompoundform/mtkcompoundform.component';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { DbkldataComponent } from "./dbkl/dbkldata/dbkldata.component";
+import { GaleryphotosComponent } from "./superadmin/galeryphotos/galeryphotos.component";
+import { NotFound2Component } from "./dbkl/not-found2/not-found2.component";
+import { AddnoncomplianceComponent } from "./dbkl/addnoncompliance/addnoncompliance.component";
+import { UndeletedropdownComponent } from "./undeletedropdown/undeletedropdown.component";
+import { UploaddocumentComponent } from "./uploaddocument/uploaddocument.component";
+import { DemoTextComponent } from "./dbkl/demo-text/demo-text.component";
+import { ShowpdfComponent } from "./showpdf/showpdf.component";
+import { DbklppsppaComponent } from "./pdfs/dbklppsppa/dbklppsppa.component";
+import { DbklpdfComponent } from "./dbklpdf/dbklpdf.component";
+import { InactiveAreaComponent } from "./dbkl/inactive-area/inactive-area.component";
+import { AnalisiskompaunComponent } from "./dbkl/analisiskompaun/analisiskompaun.component";
+import { PublicppsppaComponent } from "./publicextra/publicppsppa/publicppsppa.component";
+import { ListdocumentComponent } from "./publicextra/listdocument/listdocument.component";
+import { ChecklistoptionComponent } from "./publicextra/checklistoption/checklistoption.component";
+import { ServicesheduleComponent } from "./publicextra/serviceshedule/serviceshedule.component";
+import { CollectnsheduleComponent } from "./publicextra/collectnshedule/collectnshedule.component";
+import { CleansheduleComponent } from "./publicextra/cleanshedule/cleanshedule.component";
+import { ServiceLoginComponent } from "./service-login/service-login.component";
+import { UploadbuttonComponent } from "./uploadbutton/uploadbutton.component";
+import { DbkluploadbuttonComponent } from "./dbkluploadbutton/dbkluploadbutton.component";
+import { NewInventoryComponent } from "./dbkl/new-inventory/new-inventory.component";
+import { InventorymapComponent } from "./dbkl/inventorymap/inventorymap.component";
+import { MtkmapviewComponent } from "./dbkl/mtkmapview/mtkmapview.component";
+import { MtkworkformComponent } from "./dbkl/mtkworkform/mtkworkform.component";
+import { MtkcompoundformComponent } from "./dbkl/mtkcompoundform/mtkcompoundform.component";
+import { MatSliderModule } from "@angular/material/slider";
+import { MatSelectModule } from "@angular/material/select";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 import { ChartModule } from "angular-highcharts";
-import { FiltercustombuttonComponent } from './filtercustombutton/filtercustombutton.component';
-import { FilterdoublecustombuttonComponent } from './filterdoublecustombutton/filterdoublecustombutton.component';
-import { TextboxComponent } from './textbox/textbox.component';
+import { FiltercustombuttonComponent } from "./filtercustombutton/filtercustombutton.component";
+import { FilterdoublecustombuttonComponent } from "./filterdoublecustombutton/filterdoublecustombutton.component";
+import { TextboxComponent } from "./textbox/textbox.component";
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
-import { AutocompleteLibModule } from 'angular-ng-autocomplete';
-import { MatTableModule } from '@angular/material/table';
+import { AutocompleteLibModule } from "angular-ng-autocomplete";
+import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
-import { DbklppsppacatatanComponent } from './dbklppsppacatatan/dbklppsppacatatan.component';
-import { RouterModule } from '@angular/router';
-import { AnnouncementsComponent } from './announcements/announcements.component';
-import {CalendarModule} from 'primeng/calendar';
-import {DropdownModule} from 'primeng/dropdown';
-import {SelectButtonModule} from 'primeng/selectbutton';
-import {TableModule} from 'primeng/table';
+import { DbklppsppacatatanComponent } from "./dbklppsppacatatan/dbklppsppacatatan.component";
+import { RouterModule } from "@angular/router";
+import { AnnouncementsComponent } from "./announcements/announcements.component";
+import { CalendarModule } from "primeng/calendar";
+import { DropdownModule } from "primeng/dropdown";
+import { SelectButtonModule } from "primeng/selectbutton";
+import { TableModule } from "primeng/table";
+import { TopbarV2Component } from "./topbar-v2/topbar-v2.component";
+import { NavbarComponent } from "./navbar/navbar.component";
+import { FooterV2Component } from './footer-v2/footer-v2.component';
 
 registerLocaleData(enLocale, "en");
 registerLocaleData(msLocale, "ms");
@@ -266,10 +269,10 @@ registerLocaleData(msLocale, "ms");
     FilterdoublecustombuttonComponent,
     TextboxComponent,
     DbklppsppacatatanComponent,
-    AnnouncementsComponent
-
-
-
+    AnnouncementsComponent,
+    TopbarV2Component,
+    NavbarComponent,
+    FooterV2Component,
   ],
   imports: [
     MatTableModule,
@@ -311,7 +314,8 @@ registerLocaleData(msLocale, "ms");
     CalendarModule,
     DropdownModule,
     SelectButtonModule,
-    TableModule
+    TableModule,
+    RouterModule,
     // RouterModule.forRoot([], {
     //   anchorScrolling: 'enabled',
     //   scrollPositionRestoration: 'enabled',
@@ -331,8 +335,7 @@ registerLocaleData(msLocale, "ms");
     DatePipe,
     BsDatepickerConfig,
     ExcelService,
-    Ng2SmartTableComponent
-
+    Ng2SmartTableComponent,
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -352,11 +355,10 @@ registerLocaleData(msLocale, "ms");
     DbkluploadbuttonComponent,
     FiltercustombuttonComponent,
     FilterdoublecustombuttonComponent,
-    TextboxComponent
-
+    TextboxComponent,
   ],
 })
-export class AppModule { }
+export class AppModule {}
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "/assets/i18n/", ".json");
 }

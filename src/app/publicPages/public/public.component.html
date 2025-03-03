@@ -1,102 +1,5 @@
 <div id="page-top">
-  <nav
-    class="navbar navbar-light navbar-expand-md fixed-top"
-    id="mainNav"
-    style="background: #365968"
-  >
-    <div class="container-fluid">
-      <a class="navbar-brand js-scroll-trigger" href="#"
-        ><img
-          src="../../../assets/img/jkas%20logo.png"
-          width="64"
-          height="45" /></a
-      ><button
-        data-toggle="collapse"
-        class="navbar-toggler"
-        data-target="#navbarResponsive"
-        type="button"
-        aria-controls="navbarResponsive"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-        value="Menu"
-      >
-        <i class="fa fa-bars"></i>
-      </button>
-      <div
-        class="d-flex justify-content-center align-items-center align-content-center"
-      >
-        <h5 style="margin-bottom: 0">
-          INTEGRATED WASTE MANAGEMENT KUALA LUMPUR
-        </h5>
-      </div>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item nav-link js-scroll-trigger">
-            <a class="nav-link active js-scroll-trigger">Utama</a>
-          </li>
-          <li class="nav-item dropdown nav-link js-scroll-trigger">
-            <a
-              class="dropdown-toggle nav-link"
-              aria-expanded="false"
-              data-toggle="dropdown"
-              >Pengguna
-            </a>
-            <div class="dropdown-menu">
-              <a
-                class="dropdown-item"
-                [routerLink]="[]"
-                [fragment]="'orangAwam'"
-                >Orang Awam</a
-              ><a class="dropdown-item" href="/agensi">Agensi</a
-              ><a class="dropdown-item" href="/dbkl/adminregister">JKAS DBKL</a>
-            </div>
-          </li>
-          <li class="nav-item nav-link js-scroll-trigger">
-            <a
-              class="nav-link js-scroll-trigger"
-              [routerLink]="[]"
-              [fragment]="'pengumuman'"
-              >Pengumuman</a
-            >
-          </li>
-          <li class="nav-item dropdown nav-link js-scroll-trigger">
-            <a
-              class="dropdown-toggle nav-link"
-              aria-expanded="false"
-              data-toggle="dropdown"
-              >Manual
-            </a>
-            <div class="dropdown-menu">
-              <div class="dropdown-submenu">
-                <a class="dropdown-item dropdown-toggle">Panduan Permohonan</a>
-                <div class="dropdown-menu">
-                  <a
-                    class="dropdown-item"
-                    href="assets/pdf/CARTAALIRSERAHANKAWASAN.pdf"
-                    >Carta Aliran Proses</a
-                  >
-                  <a class="dropdown-item" href="assets/pdf/ManualPengguna.pdf"
-                    >Senarai Semak Dokumen</a
-                  >
-                </div>
-              </div>
-              <a class="dropdown-item" href="assets/pdf/JKASManualPengguna.pdf"
-                >Kawasan Perkhidmatan Kutipan</a
-              >
-            </div>
-          </li>
-          <li class="nav-item nav-link js-scroll-trigger">
-            <a
-              class="nav-link js-scroll-trigger"
-              [routerLink]="[]"
-              [fragment]="'galeri'"
-              >Galeri</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <app-navbar></app-navbar>
   <header class="masthead">
     <video
       #bgVideo
@@ -110,7 +13,7 @@
       preload="auto"
       poster="../../../assets/img/intro-bg.jpg"
     >
-      <source src="../../../assets/video/Building1.mp4" type="video/mp4" />
+      <source src="assets/video/Building1.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
     <div class="intro-body">
@@ -288,30 +191,5 @@
     </div>
   </section>
   <!-- End Gallery Section -->
-  <footer id="footer" class="footer dark-background">
-    <div class="container footer-top">
-      <div class="row gy-4">
-        <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">HUBUNGI KAMI</span>
-          </a>
-          <div class="footer-contact pt-3">
-            <p>Jabatan Kesihatan dan Alam Sekitar,</p>
-            <p>Jalan 3/19A Taman Shamelin Perkasa,</p>
-            <p>Pudu Ulu, 56100 Kuala Lumpur, Malaysia</p>
-            <p class="mt-3">
-              <i class="bi bi-telephone"></i>&nbsp;<span
-                >03-2109 2100/9260</span
-              >
-            </p>
-            <p>
-              <i class="bi bi-envelope"></i>&nbsp;<span
-                >jkas@dbkl.gov.my / alamsekitarjkas@dbkl.gov.my</span
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <app-footer-v2></app-footer-v2>
 </div>

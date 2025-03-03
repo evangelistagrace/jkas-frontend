@@ -250,3 +250,10 @@ swiper-slide:hover .carousel-img {
   padding-top: 0 !important;
   border-top: none !important;
 }
+
+.language-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-right: 20px;
+}
