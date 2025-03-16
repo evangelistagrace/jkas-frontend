@@ -92,11 +92,13 @@ h6 {
 /*--------------------------------------------------------------
 # Cta
 --------------------------------------------------------------*/
-
+.container {
+    padding: 100px;
+}
 .cta {
     background: linear-gradient(rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)), url("../../../assets/img/FMT-DBKL-BANGUNAN-200519-1.jpg") fixed center center;
     background-size: cover;
-    padding: 25px 0;
+    /* padding: 25px 0; */
 }
 
 .cta h3 {
