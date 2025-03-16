@@ -20,7 +20,17 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       label: "Utama",
       path: "/",
       fragment: null,
-      showFor: ["public", "admin"],
+      showFor: ["public", "admin", "adminregister"],
+    },
+    {
+      label: "Log Masuk",
+      onClick: () => { this.showRegisterForm(false); },
+      showFor: ["adminregister"],
+    },
+    {
+      label: "Daftar",
+      onClick: () => { this.showRegisterForm(true); },
+      showFor: ["adminregister"],
     },
     {
       label: "Pengguna",
@@ -68,7 +78,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
               label: "Senarai Semak Dokumen",
               externalPath: "assets/pdfs/ManualPengguna.pdf", // Using externalPath instead of path
               showFor: ["public"],
-            }
+            },
           ],
         },
         {
@@ -132,6 +142,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
+  // Handle onClick actions for navigation items
+  handleNavItemClick(onClick: Function): void {
+    if (typeof onClick === "function") {
+      onClick();
+    }
+  }
+
   private updatePageType(): void {
     // console.log("Current path: ", this.currentPath);
     this.isPublicPage =
@@ -139,28 +156,34 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     // You can add more conditions here to determine other page types
   }
 
-  isActive(path: string | null, fragment: string | null, externalPath?: string | null): boolean {
+  isActive(
+    path: string | null,
+    fragment: string | null,
+    externalPath?: string | null
+  ): boolean {
     // External paths (PDFs) can never be "active" in the traditional sense
     if (externalPath) {
       return false;
     }
-    
+
     if (path && this.currentPath.startsWith(path)) {
       // Special case for home page
       if (
         path === "/" &&
-        (this.currentPath === "/" || this.currentPath === "/public" || this.currentPath === "")
+        (this.currentPath === "/" ||
+          this.currentPath === "/public" ||
+          this.currentPath === "")
       ) {
         return false;
       }
-      
+
       return true;
     }
-    
-    if (fragment && this.currentPath.includes('#' + fragment)) {
+
+    if (fragment && this.currentPath.includes("#" + fragment)) {
       return true;
     }
-    
+
     return false;
   }
 
@@ -185,20 +208,37 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       return true;
     }
 
+    if (
+      this.currentPath.includes("/adminregister") &&
+      navItem.showFor.includes("adminregister")
+    ) {
+      return true;
+    }
+
     return false;
   }
 
   handlePdfClick(pdfPath: string): void {
     // You could log or track this if needed
     // console.log('Opening PDF: ', pdfPath);
-    
+
     // Open PDF in new tab
-    window.open(pdfPath, '_blank');
+    window.open(pdfPath, "_blank");
   }
 
   ngOnDestroy(): void {
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe();
+    }
+  }
+
+  showRegisterForm(show: boolean): void {
+    let container = document.querySelector(".container1");
+
+    if (show) {
+      container.classList.add("right-panel-active");
+    } else {
+      container.classList.remove("right-panel-active");
     }
   }
 }

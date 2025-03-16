@@ -40,7 +40,18 @@
           >
             <!-- Regular nav item -->
             <ng-container *ngIf="!item.dropdown">
+              <!-- Navigation item with onClick action -->
               <a
+                *ngIf="item.onClick"
+                href="javascript:void(0);"
+                class="nav-link js-scroll-trigger"
+                (click)="handleNavItemClick(item.onClick)"
+              >
+                {{ item.label }}
+              </a>
+              <!-- Regular navigation item with routerLink -->
+              <a
+                *ngIf="!item.onClick"
                 [routerLink]="item.path ? [item.path] : []"
                 [fragment]="item.fragment"
                 class="nav-link js-scroll-trigger"
