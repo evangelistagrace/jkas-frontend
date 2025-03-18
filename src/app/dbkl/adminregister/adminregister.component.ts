@@ -6,11 +6,14 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { AuthService } from "src/app/services/auth.service";
 import { environment } from "src/environments/environment";
 import * as $ from "jquery";
+import { FormToggleService } from '../../services/toggle-form.service';
+import { Subscription } from "rxjs";
+import { FormType } from "../../models/form-type.enum";
 
 @Component({
   selector: "app-adminregister",
   templateUrl: "./adminregister.component.html",
-  styleUrls: ["./adminregister.component.css"],
+  styleUrls: ["./adminregister.component.scss"],
 })
 export class AdminregisterComponent implements OnInit {
   idCardNo;
@@ -118,11 +121,20 @@ export class AdminregisterComponent implements OnInit {
   forgotMessage1: string;
   status1: boolean = false;
 
+  formTitle: string = "Log Masuk";
+  showLoginForm: boolean = true;
+  showRegisterForm: boolean = false;
+  showForgotForm: boolean = false;
+  showOtpForm: boolean = false;
+
+  private subscriptions = new Subscription();
+
   constructor(
     private http: HttpClient,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private authService: AuthService
+    private authService: AuthService,
+    private formToggleService: FormToggleService
   ) { }
 
   ngOnInit() {
@@ -136,7 +148,8 @@ export class AdminregisterComponent implements OnInit {
     }
     window.scroll(0, 5);
     localStorage.setItem("path", "/dbkl/adminregister");
-    this.regPassError = false;
+
+    // Initialize form groups
     this.publicLoginGroup = new FormGroup({
       idcardno: new FormControl("", [Validators.required]),
       password: new FormControl("", [
@@ -147,45 +160,6 @@ export class AdminregisterComponent implements OnInit {
         Validators.minLength(8),
       ]),
     });
-
-   
-      $(function () {
-        $('body').removeClass('fade-out');
-      });
-
-      $(".toggle-password").click(function () {
-        $(this).toggleClass("fa-eye fa-eye-slash");
-        var input = $($(this).attr("toggle"));
-        if (input.attr("type") == "password") {
-          input.attr("type", "text");
-        } else {
-          input.attr("type", "password");
-        }
-      });
-      
-      $(".toggle-password1").click(function () {
-        $(this).toggleClass("fa-eye fa-eye-slash");
-        var input = $($(this).attr("toggle"));
-        if (input.attr("type") == "password") {
-          input.attr("type", "text");
-        } else {
-          input.attr("type", "password");
-        }
-      });
-  
-      $(".toggle-password2").click(function () {
-        $(this).toggleClass("fa-eye fa-eye-slash");
-        var input = $($(this).attr("toggle"));
-        if (input.attr("type") == "password") {
-          input.attr("type", "text");
-        } else {
-          input.attr("type", "password");
-        }
-      });
-
-
-    this.hideform();
-    this.FhideForm();
 
     this.publicsignupGroup = new FormGroup({
       username: new FormControl("", [
@@ -230,40 +204,118 @@ export class AdminregisterComponent implements OnInit {
       forgotId: new FormControl("", [Validators.pattern("[A-za-z0-9]{6,}")]),
     });
 
-    const forgotPassword = document.getElementById("fpassd");
+
+    this.regPassError = false;
+  }
+
+  ngAfterViewInit() {
+    this.subscriptions.add(
+      this.formToggleService.showForm$.subscribe((formType: FormType) => {
+        console.log("Form Type: ", formType);
+         // First reset all form visibility
+         this.showLoginForm = false;
+         this.showRegisterForm = false;
+         this.showForgotForm = false;
+         this.showOtpForm = false;
+         
+         switch (formType) {
+          case FormType.LOGIN:
+            this.showLoginForm = true;
+            this.formTitle = "Log Masuk";
+            break;
+          case FormType.REGISTER:
+            this.showRegisterForm = true;
+            this.formTitle = "Daftar";
+            break;
+          case FormType.FORGOT_PASSWORD:
+            this.showForgotForm = true;
+            this.formTitle = "Lupa Kata Laluan";
+            break;
+          case FormType.OTP:
+            this.showOtpForm = true;
+            this.formTitle = "Sahkan OTP";
+            break;
+          default:
+            this.showLoginForm = true; // Default to login
+            break;
+        }
+      })
+    );
+
+
+    // DOM stuff
+    $(function () {
+      $('body').removeClass('fade-out');
+    });
+
+    $(".toggle-password").click(function () {
+      $(this).toggleClass("fa-eye fa-eye-slash");
+      var input = $($(this).attr("toggle"));
+      if (input.attr("type") == "password") {
+        input.attr("type", "text");
+      } else {
+        input.attr("type", "password");
+      }
+    });
+    
+    $(".toggle-password1").click(function () {
+      $(this).toggleClass("fa-eye fa-eye-slash");
+      var input = $($(this).attr("toggle"));
+      if (input.attr("type") == "password") {
+        input.attr("type", "text");
+      } else {
+        input.attr("type", "password");
+      }
+    });
+
+    $(".toggle-password2").click(function () {
+      $(this).toggleClass("fa-eye fa-eye-slash");
+      var input = $($(this).attr("toggle"));
+      if (input.attr("type") == "password") {
+        input.attr("type", "text");
+      } else {
+        input.attr("type", "password");
+      }
+    });
+
+
+  // this.hideform();
+  // this.FhideForm();
+
+    // const forgotPassword = document.getElementById("fpassd");
     // const createAccount = document.getElementById("create_account");
-    const signInBtn1 = document.getElementById("signInn");
-    const signInBtn = document.getElementById("signIn");
-    const signUpBtn = document.getElementById("signUp");
-    const signUpBtn2 = document.getElementById("signUpp");
-    const fistForm = document.getElementById("form1");
-    const secondForm = document.getElementById("form2");
-    this.container = document.querySelector(".container1");
+    // const signInBtn1 = document.getElementById("signInn");
+    // const signInBtn = document.getElementById("signIn");
+    // const signUpBtn = document.getElementById("signUp");
+    // const signUpBtn2 = document.getElementById("signUpp");
+    // const fistForm = document.getElementById("form1");
+    // const secondForm = document.getElementById("form2");
+    // this.container = document.querySelector(".container1");
 
-    forgotPassword.addEventListener("click", () => {
-      this.container.classList.add("right-panel-active");
-      this.LhideForm();
-      this.fshowForm();
-    });
+    // forgotPassword.addEventListener("click", () => {
+    //   this.container.classList.add("right-panel-active");
+    //   this.LhideForm();
+    //   this.fshowForm();
+    // });
 
-    signInBtn.addEventListener("click", () => {
-      this.showloginForm();
-      this.container.classList.remove("right-panel-active");
-    });
+    // signInBtn.addEventListener("click", () => {
+    //   this.showloginForm();
+    //   this.container.classList.remove("right-panel-active");
+    // });
 
-    signInBtn1.addEventListener("click", () => {
-      this.container.classList.remove("right-panel-active");
-    });
+    // signInBtn1.addEventListener("click", () => {
+    //   this.container.classList.remove("right-panel-active");
+    // });
 
-    signUpBtn.addEventListener("click", () => {
-      this.container.classList.add("right-panel-active");
-      this.FhideForm();
-      this.LshowForm();
-    });
+    // signUpBtn.addEventListener("click", () => {
+    //   this.container.classList.add("right-panel-active");
+    //   this.FhideForm();
+    //   this.LshowForm();
+    // });
 
-    signUpBtn2.addEventListener("click", () => {
-      this.container.classList.add("right-panel-active");
-    });
+    // signUpBtn2.addEventListener("click", () => {
+    //   this.container.classList.add("right-panel-active");
+    // });
   }
 
   hideform() {
@@ -768,5 +820,21 @@ export class AdminregisterComponent implements OnInit {
       this.regPassError = false;
       // document.getElementById("form_password").style.borderBottomColor ="black";
     }
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
+
+  onForgotPassword() {
+    this.formToggleService.showForm(FormType.FORGOT_PASSWORD);
+  }
+
+  onRegister() {
+    this.formToggleService.showForm(FormType.REGISTER);
+  }
+
+  onLogin() {
+    this.formToggleService.showForm(FormType.LOGIN);
   }
 }

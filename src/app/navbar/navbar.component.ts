@@ -3,6 +3,8 @@ import { Router, NavigationEnd, Event } from "@angular/router";
 import * as $ from "jquery";
 import { Subscription } from "rxjs";
 import { filter } from "rxjs/operators";
+import { FormToggleService } from '../services/toggle-form.service';
+import { FormType } from "../models/form-type.enum";
 
 @Component({
   selector: "app-navbar",
@@ -24,12 +26,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     },
     {
       label: "Log Masuk",
-      onClick: () => { this.showRegisterForm(false); },
+      onClick: () => { this.showForm(FormType.LOGIN); },
       showFor: ["adminregister"],
     },
     {
       label: "Daftar",
-      onClick: () => { this.showRegisterForm(true); },
+      onClick: () => { this.showForm(FormType.REGISTER); },
       showFor: ["adminregister"],
     },
     {
@@ -95,7 +97,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     },
   ];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private formToggleService: FormToggleService
+  ) {}
 
   ngOnInit(): void {
     // Get the current path
@@ -232,13 +237,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  showRegisterForm(show: boolean): void {
-    let container = document.querySelector(".container1");
-
-    if (show) {
-      container.classList.add("right-panel-active");
-    } else {
-      container.classList.remove("right-panel-active");
-    }
+  showForm(formType: FormType): void {
+    this.formToggleService.showForm(formType);
   }
 }

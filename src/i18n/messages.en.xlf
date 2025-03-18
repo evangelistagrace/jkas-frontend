@@ -2629,10 +2629,10 @@ Thank you.
 			</trans-unit>
 			<trans-unit id="login" datatype="html">
 				<source>
-					LOGIN
+					Login
 				</source>
 				<target>
-					LOGIN
+					Login
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -2661,10 +2661,10 @@ Thank you.
 			</trans-unit>
 			<trans-unit id="forgotpassword" datatype="html">
 				<source>
-					Forgot password
+					Forgot password?
 				</source>
 				<target>
-					Forgot password 
+					Forgot password?
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -2677,10 +2677,10 @@ Thank you.
 			</trans-unit>
 			<trans-unit id="createaccount" datatype="html">
 				<source>
-					REGISTER
+					Register
 				</source>
 				<target>
-					REGISTER
+					Register
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -14888,6 +14888,54 @@ based on the solid waste management and public cleansing act
 				</source>
 				<target>
 					Chart Type
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/publicPages/public/public.component.html
+					</context>
+					<context context-type="linenumber">
+						58
+					</context>
+				</context-group>
+			</trans-unit>		
+			<trans-unit id="noAccount" datatype="html">
+				<source>
+					Don't yet have an account?
+				</source>
+				<target>
+					Don't yet have an account?
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/publicPages/public/public.component.html
+					</context>
+					<context context-type="linenumber">
+						58
+					</context>
+				</context-group>
+			</trans-unit>	
+			<trans-unit id="haveAccount" datatype="html">
+				<source>
+					Already have an account?
+				</source>
+				<target>
+					Already have an account?
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/publicPages/public/public.component.html
+					</context>
+					<context context-type="linenumber">
+						58
+					</context>
+				</context-group>
+			</trans-unit>
+			<trans-unit id="backToLogin" datatype="html">
+				<source>
+					Remember your password?
+				</source>
+				<target>
+					Remember your password?
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">

@@ -2642,10 +2642,10 @@ For Solid Waste Collection and Public Cleansing
 			</trans-unit>
 			<trans-unit id="login" datatype="html">
 				<source>
-					LOGIN
+					Login
 				</source>
 				<target>
-					LOG MASUK
+					Log Masuk
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -2674,10 +2674,10 @@ For Solid Waste Collection and Public Cleansing
 			</trans-unit>
 			<trans-unit id="forgotpassword" datatype="html">
 				<source>
-					Forgot password
+					Forgot password?
 				</source>
 				<target>
-					Lupa Kata Laluan
+					Lupa Kata Laluan?
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -2690,10 +2690,10 @@ For Solid Waste Collection and Public Cleansing
 			</trans-unit>
 			<trans-unit id="createaccount" datatype="html">
 				<source>
-					REGISTER
+					Register
 				</source>
 				<target>
-					DAFTAR
+					Daftar
 				</target>
 				<context-group purpose="location">
 					<context context-type="sourcefile">
@@ -14937,7 +14937,55 @@ berdasarkan Akta Pengurusan Sisa Pepejal dan Pembersihan Awam
 						58
 					</context>
 				</context-group>
+			</trans-unit>	
+			<trans-unit id="noAccount" datatype="html">
+				<source>
+					Don't yet have an account?
+				</source>
+				<target>
+					Tiada akaun lagi?
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/publicPages/public/public.component.html
+					</context>
+					<context context-type="linenumber">
+						58
+					</context>
+				</context-group>
+			</trans-unit>	
+			<trans-unit id="haveAccount" datatype="html">
+				<source>
+					Already have an account?
+				</source>
+				<target>
+					Sudah mempunyai akaun?
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/publicPages/public/public.component.html
+					</context>
+					<context context-type="linenumber">
+						58
+					</context>
+				</context-group>
 			</trans-unit>		
+			<trans-unit id="backToLogin" datatype="html">
+				<source>
+					Ingat kata laluan?
+				</source>
+				<target>
+					Ingat kata laluan?
+				</target>
+				<context-group purpose="location">
+					<context context-type="sourcefile">
+						src/app/publicPages/public/public.component.html
+					</context>
+					<context context-type="linenumber">
+						58
+					</context>
+				</context-group>
+			</trans-unit>	
 		</body>
 	</file>
 </xliff>
