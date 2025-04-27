@@ -246,7 +246,11 @@
                   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                   [(selection)]="selectedRows"
                   (selectionChange)="onUserRowSelect($event)"
-                  [globalFilterFields]="['id_pengguna', 'nama_pengguna', 'peranan']"
+                  [globalFilterFields]="[
+                    'id_pengguna',
+                    'nama_pengguna',
+                    'peranan'
+                  ]"
                 >
                   <ng-template pTemplate="caption">
                     <div
@@ -362,8 +366,119 @@
           <div class="container desc" id="jkas3" *ngIf="this.is2nd">
             <div class="row-10" style="margin-top: 10px; width: 100%">
               <div style="overflow-x: scroll">
-                <ng2-smart-table [settings]="settings1" [source]="data1">
-                </ng2-smart-table>
+                <!-- <ng2-smart-table [settings]="settings1" [source]="data1">
+                </ng2-smart-table> -->
+                <p-table
+                  #dt1
+                  [value]="data1"
+                  dataKey="inventori_pengguna_id"
+                  [rows]="10"
+                  [paginator]="true"
+                  [rowsPerPageOptions]="[10, 25, 50]"
+                  [showCurrentPageReport]="true"
+                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                  [(selection)]="selectedRows"
+                  (selectionChange)="onUserRowSelect($event)"
+                  [globalFilterFields]="[
+                    'id_pengguna',
+                    'peranan',
+                    'aktiviti'
+                  ]"
+                >
+                  <ng-template pTemplate="caption">
+                    <div
+                      class="table-header d-flex justify-content-between align-items-center"
+                    >
+                      <h5 class="m-0">User Inventory</h5>
+                      <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input
+                          pInputText
+                          type="text"
+                          (input)="
+                            dt.filterGlobal($event.target.value, 'contains')
+                          "
+                          placeholder="Search..."
+                        />
+                      </span>
+                    </div>
+                  </ng-template>
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th style="width: 3rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                      </th>
+                      <th pSortableColumn="id_pengguna">
+                        ID Pengguna
+                        <p-sortIcon field="id_pengguna"></p-sortIcon>
+                        <p-columnFilter
+                          type="text"
+                          field="id_pengguna"
+                          display="menu"
+                        ></p-columnFilter>
+                      </th>
+                      <th pSortableColumn="tarikhOriginal">
+                        Tarikh
+                        <p-sortIcon field="tarikhOriginal"></p-sortIcon>
+                        <p-columnFilter
+                          type="date"
+                          field="tarikhOriginal"
+                          display="menu"
+                        ></p-columnFilter>
+                      </th>
+                      <th pSortableColumn="role">
+                        Peranan <p-sortIcon field="role"></p-sortIcon>
+                        <p-columnFilter
+                          field="role"
+                          matchMode="equals"
+                          display="menu"
+                        >
+                          <ng-template
+                            pTemplate="filter"
+                            let-value
+                            let-filter="filterCallback"
+                          >
+                            <p-dropdown
+                              [options]="perananOptions"
+                              [style]="{ 'min-width': '12rem' }"
+                              (onChange)="filter($event.value)"
+                              placeholder="Any"
+                            >
+                              <ng-template let-option pTemplate="item">
+                                <span>{{ option.label }}</span>
+                              </ng-template>
+                            </p-dropdown>
+                          </ng-template>
+                        </p-columnFilter>
+                      </th>
+                      <th pSortableColumn="aktiviti">
+                        Aktiviti
+                        <p-sortIcon field="aktiviti"></p-sortIcon>
+                        <p-columnFilter
+                          type="text"
+                          field="aktiviti"
+                          display="menu"
+                        ></p-columnFilter>
+                      </th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-user>
+                    <tr>
+                      <td>
+                        <p-tableCheckbox [value]="user"></p-tableCheckbox>
+                      </td>
+                      <td>{{ user.id_pengguna }}</td>
+                      <td>{{ user.tarikh }}</td>
+                      <td>{{ user.role }}</td>
+                      <td>{{ user.aktiviti }}</td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td colspan="6">No users found.</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
               </div>
             </div>
           </div>

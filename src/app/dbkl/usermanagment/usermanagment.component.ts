@@ -155,7 +155,24 @@ export class UsermanagmentComponent implements OnInit {
       .subscribe(
         (res: usermanagement[]) => {
           this.spinner.hide();
-          this.data1 = res;
+          // Store both original date object and formatted string
+          this.data1 = res.map((item: any) => {
+            const date = new Date(item.tarikh);
+            const formattedDate =
+              ("0" + date.getDate()).slice(-2) +
+              "/" +
+              ("0" + (date.getMonth() + 1)).slice(-2) +
+              "/" +
+              date.getFullYear();
+
+            return {
+              ...item,
+              tarikhOriginal: date, // Keep original Date object for filtering
+              tarikh: formattedDate, // Formatted string for display
+            };
+          });
+
+          console.log("log pengguna: ", this.data1);
         },
         (error) => {
           this.loginError = true;
