@@ -5,126 +5,357 @@
 <div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2">
   <div class="container-fluid" ngStickyNav>
     <nav class="navbar navbar-expand-lg">
-      <a routerLink="/public" class="navbar-brand ">
-        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
-
+      <a routerLink="/public" class="navbar-brand">
+        <img
+          src="../../../assets/img/DBKL LOGO (Lorry).png"
+          alt=""
+          loading="lazy"
+        />
       </a>
 
-      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
-        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <i class="fa fa-bars text-white"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul *ngIf="isAdminType == 'admincounter'" class="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li class="nav-item" style="list-style-type: none;">
-            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84; cursor: pointer"
-              i18n="@@home">HOME</a>
+        <ul
+          *ngIf="isAdminType == 'admincounter'"
+          class="navbar-nav ml-auto mt-2 mt-lg-0"
+        >
+          <li class="nav-item" style="list-style-type: none">
+            <a
+              routerLink="/dbkl/dbklmainpage"
+              class="nav-link"
+              style="color: #253d84; cursor: pointer"
+              i18n="@@home"
+              >HOME</a
+            >
           </li>
 
-          <li class="nav-item dropdown" id="user" style="list-style-type: none;">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="color: #253d84; cursor: pointer" i18n="@@n29">
+          <li class="nav-item dropdown" id="user" style="list-style-type: none">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84; cursor: pointer"
+              i18n="@@n29"
+            >
               ADMIN-COUNTER
             </a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" routerLink="/dbkl/dbkldata" style="color: white; cursor: pointer"
-                i18n="@@n1">Main Page</a>
-              <a routerLink="/dbkl/usermanagement" class="dropdown-item" style="color: white; cursor: pointer"
-                i18n="@@n2">User Management</a>
-              <a routerLink="/dbkl/applicationprocess" class="dropdown-item" style="color: white; cursor: pointer"
-                i18n="@@mainppss">Review of PPSPPA APPLICATION</a>
-              <a routerLink="/dbkl/inventorymanage" class="dropdown-item" style="color: white; cursor: pointer"
-                i18n="@@n4">Inventory Management</a>
-              <a routerLink="/dbkl/emeeting" class="dropdown-item" style="color: white; cursor: pointer"
-                i18n="@@n5">E-Meeting</a>
+              <a
+                class="dropdown-item"
+                routerLink="/dbkl/dbkldata"
+                style="color: white; cursor: pointer"
+                i18n="@@n1"
+                >Main Page</a
+              >
+              <a
+                routerLink="/dbkl/usermanagement"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n2"
+                >User Management</a
+              >
+              <a
+                routerLink="/dbkl/applicationprocess"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@mainppss"
+                >Review of PPSPPA APPLICATION</a
+              >
+              <a
+                routerLink="/dbkl/inventorymanage"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n4"
+                >Inventory Management</a
+              >
+              <a
+                routerLink="/dbkl/emeeting"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n5"
+                >E-Meeting</a
+              >
             </div>
           </li>
-          <li class="nav-item dropdown" style="list-style-type: none;">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="color: #253d84; cursor: pointer">
+          <li class="nav-item dropdown" style="list-style-type: none">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84; cursor: pointer"
+            >
               {{ username }}
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
-                i18n="@@Profile">Profile</a>
-              <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
-                i18n="@@jflogout">Logout</a>
+              <a
+                routerLink="/profileLog"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@Profile"
+                >Profile</a
+              >
+              <a
+                class="dropdown-item"
+                (click)="logout()"
+                style="color: white; cursor: pointer"
+                i18n="@@jflogout"
+                >Logout</a
+              >
             </div>
           </li>
         </ul>
       </div>
     </nav>
   </div>
-</div><!-- End of Header -->
+</div>
+<!-- End of Header -->
 
 <main>
-  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
-    [fullScreen]="true">
-
+  <ngx-spinner
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#253d84"
+    type="ball-clip-rotate-multiple"
+    [fullScreen]="true"
+  >
   </ngx-spinner>
   <!-- ======= Services Section ======= -->
   <section id="pentabirSlide1" class="pentabirSlide1">
     <div class="card">
       <div class="container">
         <div class="section-title">
-          <span i18n="@@u1"> User Management</span>
+          <!-- <span i18n="@@u1"> User Management</span> -->
           <h2 i18n="@@u1">User Management</h2>
         </div>
-        <div class="container-fluid row input d-flex justify-content-center" style="margin-bottom: 20px">
+        <div
+          class="container-fluid row input d-flex justify-content-center"
+          style="margin-bottom: 20px"
+        >
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-              (change)="radioChanged($event)" checked />
-            <label class="form-check-label" for="inlineRadio1" i18n="@@u2">User Inventory</label>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="inlineRadio1"
+              (change)="radioChanged($event)"
+              checked
+            />
+            <label class="form-check-label" for="inlineRadio1" i18n="@@u2"
+              >User Inventory</label
+            >
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-              (change)="radioChanged1($event)" />
-            <label class="form-check-label" for="inlineRadio1" i18n="@@u3">User Logs</label>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="inlineRadio2"
+              (change)="radioChanged1($event)"
+            />
+            <label class="form-check-label" for="inlineRadio1" i18n="@@u3"
+              >User Logs</label
+            >
           </div>
         </div>
 
-
-
-        <div class="container-fluid row input d-flex justify-content-center" id="tbl">
+        <div
+          class="container-fluid row input d-flex justify-content-center"
+          id="tbl"
+        >
           <div class="container desc" id="jkas2" *ngIf="this.is1st">
             <div class="col d-flex justify-content-between">
               <div>
-                <button [ngStyle]="{ display: display1 }" class="addNewRow" (click)="openModalDelete()" style="
-                  padding-left:0.5px;
-                  padding-right: 0.5px;
-                     background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
-                  margin-bottom: 0rem;
-                  width: 2.5em;
-                  margin-left:-14px !important;
-                  border-radius: 50% !important;
-                  padding-bottom: 8.5px;
-                " class="btn btn-danger">
-                  <i class="fa fa-trash" style="font-size: 14px" aria-hidden="true "></i>
+                <button
+                  [ngStyle]="{ display: display1 }"
+                  class="addNewRow"
+                  (click)="openModalDelete()"
+                  style="
+                    padding-left: 0.5px;
+                    padding-right: 0.5px;
+                    background-image: -webkit-linear-gradient(
+                      top,
+                      #d9534f 0,
+                      #c12e2a 100%
+                    );
+                    margin-bottom: 0rem;
+                    width: 2.5em;
+                    margin-left: -14px !important;
+                    border-radius: 50% !important;
+                    padding-bottom: 8.5px;
+                  "
+                  class="btn btn-danger"
+                >
+                  <i
+                    class="fa fa-trash"
+                    style="font-size: 14px"
+                    aria-hidden="true "
+                  ></i>
                 </button>
               </div>
 
               <div>
-                <button class="addNewRow" (click)="openSuccessModal()" style="
-                  padding-left:4.5px;
-                  padding-right: 0.5px;
-                 background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
-                  margin-bottom: 0rem;
-                  width: 2.5em;
-                  margin-left:-14px !important;
-                  border-radius: 50% !important;
-                 padding-bottom: 8.5px;
-                " class="btn btn-danger">
+                <button
+                  class="addNewRow"
+                  (click)="openSuccessModal()"
+                  style="
+                    padding-left: 4.5px;
+                    padding-right: 0.5px;
+                    background-image: linear-gradient(
+                      to bottom,
+                      #337ab7 0,
+                      #265a88 100%
+                    );
+                    margin-bottom: 0rem;
+                    width: 2.5em;
+                    margin-left: -14px !important;
+                    border-radius: 50% !important;
+                    padding-bottom: 8.5px;
+                  "
+                  class="btn btn-danger"
+                >
                   <i class="fa fa-user-plus" aria-hidden="true"></i>
                 </button>
-
               </div>
             </div>
             <div class="row-10" style="margin-top: 10px; width: 100%">
-              <div style="overflow-x: scroll">
-                <ng2-smart-table [settings]="settings" [source]="data" (custom)="onCustomEvent($event)"
-                  (userRowSelect)="onUserRowSelect($event)">
-                </ng2-smart-table>
+              <div style="overflow-x: auto">
+                <p-table
+                  #dt
+                  [value]="data"
+                  dataKey="inventori_pengguna_id"
+                  [rows]="10"
+                  [paginator]="true"
+                  [rowsPerPageOptions]="[10, 25, 50]"
+                  [showCurrentPageReport]="true"
+                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                  [(selection)]="selectedRows"
+                  (selectionChange)="onUserRowSelect($event)"
+                  [globalFilterFields]="['id_pengguna', 'nama_pengguna', 'peranan']"
+                >
+                  <ng-template pTemplate="caption">
+                    <div
+                      class="table-header d-flex justify-content-between align-items-center"
+                    >
+                      <h5 class="m-0">User Inventory</h5>
+                      <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input
+                          pInputText
+                          type="text"
+                          (input)="
+                            dt.filterGlobal($event.target.value, 'contains')
+                          "
+                          placeholder="Search..."
+                        />
+                      </span>
+                    </div>
+                  </ng-template>
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th style="width: 3rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                      </th>
+                      <th pSortableColumn="id_pengguna">
+                        ID Pengguna
+                        <p-sortIcon field="id_pengguna"></p-sortIcon>
+                        <p-columnFilter
+                          type="text"
+                          field="id_pengguna"
+                          display="menu"
+                        ></p-columnFilter>
+                      </th>
+                      <th pSortableColumn="nama_pengguna">
+                        Nama Pengguna
+                        <p-sortIcon field="nama_pengguna"></p-sortIcon>
+                        <p-columnFilter
+                          type="text"
+                          field="nama_pengguna"
+                          display="menu"
+                        ></p-columnFilter>
+                      </th>
+                      <th pSortableColumn="peranan">
+                        Peranan <p-sortIcon field="peranan"></p-sortIcon>
+                        <p-columnFilter
+                          field="peranan"
+                          matchMode="equals"
+                          display="menu"
+                        >
+                          <ng-template
+                            pTemplate="filter"
+                            let-value
+                            let-filter="filterCallback"
+                          >
+                            <p-dropdown
+                              [options]="perananOptions"
+                              [style]="{ 'min-width': '12rem' }"
+                              (onChange)="filter($event.value)"
+                              placeholder="Any"
+                            >
+                              <ng-template let-option pTemplate="item">
+                                <span>{{ option.label }}</span>
+                              </ng-template>
+                            </p-dropdown>
+                          </ng-template>
+                        </p-columnFilter>
+                      </th>
+                      <!-- <th pSortableColumn="catatan">
+                        Catatan <p-sortIcon field="catatan"></p-sortIcon>
+                        <p-columnFilter
+                          type="text"
+                          field="catatan"
+                          display="menu"
+                        ></p-columnFilter>
+                      </th> -->
+                      <th style="width: 5rem">Action</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-user>
+                    <tr>
+                      <td>
+                        <p-tableCheckbox [value]="user"></p-tableCheckbox>
+                      </td>
+                      <td>{{ user.id_pengguna }}</td>
+                      <td>{{ user.nama_pengguna }}</td>
+                      <td>{{ user.peranan }}</td>
+                      <!-- <td>{{ user.catatan }}</td> -->
+                      <td>
+                        <button
+                          pButton
+                          pRipple
+                          icon="fa fa-edit"
+                          class="p-button-rounded p-button-primary p-mr-2"
+                          (click)="
+                            onCustomEvent({
+                              action: 'routeToUpdateApplicationForm',
+                              data: user
+                            })
+                          "
+                        ></button>
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td colspan="6">No users found.</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
               </div>
             </div>
           </div>
@@ -146,18 +377,33 @@
 <app-footer></app-footer>
 <!-- End Footer -->
 
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
-    class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>
 
 <!-- Success Modal Start-->
-<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+<div
+  class="modal"
+  id="staticBackdrop"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display }"
+  aria-labelledby=" staticBackdropLabel "
+  aria-hidden="true "
+>
   <div class="modal-dialog modal-dialog-centered" role="document ">
     <div class="modal-content">
-      <div class="modal-header d-flex justify-content-center" style="
+      <div
+        class="modal-header d-flex justify-content-center"
+        style="
           border-bottom: 0px solid transparent !important;
           padding-bottom: 0px !important;
-        ">
+        "
+      >
         <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
       </div>
       <div class="modal-body">
@@ -165,8 +411,13 @@
           You don't have necessary privilege to access UserManagement
         </h5>
         <div class="d-flex justify-content-center">
-          <button type="button" class="btn" style="background-color: #253d84; color: white" (click)="closeModal()"
-            i18n="@@ok1">
+          <button
+            type="button"
+            class="btn"
+            style="background-color: #253d84; color: white"
+            (click)="closeModal()"
+            i18n="@@ok1"
+          >
             Ok
           </button>
         </div>
@@ -174,27 +425,64 @@
     </div>
   </div>
 </div>
-<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display2 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+<div
+  class="modal"
+  id="staticBackdrop"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display2 }"
+  aria-labelledby=" staticBackdropLabel "
+  aria-hidden="true "
+>
   <div class="modal-dialog modal-dialog-centered" role="document ">
     <div class="modal-content">
-      <div class="modal-header d-flex justify-content-center" style="
+      <div
+        class="modal-header d-flex justify-content-center"
+        style="
           border-bottom: 0px solid transparent !important;
           padding-bottom: 0px !important;
-        ">
+        "
+      >
         <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
       </div>
       <div class="modal-body">
-        <h5 class="text-center" i18n="@@delete">This account will be deleted. Are you sure?</h5>
+        <h5 class="text-center" i18n="@@delete">
+          This account will be deleted. Are you sure?
+        </h5>
         <div class="d-flex justify-content-center">
-          <button type="button" class="btn"
-            style="background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%); color: white;border-radius:4px"
-            (click)="deleteSelected()" i18n="@@y1">
+          <button
+            type="button"
+            class="btn"
+            style="
+              background-image: linear-gradient(
+                to bottom,
+                #337ab7 0,
+                #265a88 100%
+              );
+              color: white;
+              border-radius: 4px;
+            "
+            (click)="deleteSelected()"
+            i18n="@@y1"
+          >
             YES
           </button>
-          <button type="button" class="btn"
-            style="background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%); color: white;border-radius:4px"
-            (click)="closeModalDelete()" i18n="@@no">
+          <button
+            type="button"
+            class="btn"
+            style="
+              background-image: -webkit-linear-gradient(
+                top,
+                #d9534f 0,
+                #c12e2a 100%
+              );
+              color: white;
+              border-radius: 4px;
+            "
+            (click)="closeModalDelete()"
+            i18n="@@no"
+          >
             NO
           </button>
         </div>
@@ -202,14 +490,25 @@
     </div>
   </div>
 </div>
-<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display3 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+<div
+  class="modal"
+  id="staticBackdrop"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display3 }"
+  aria-labelledby=" staticBackdropLabel "
+  aria-hidden="true "
+>
   <div class="modal-dialog modal-dialog-centered" role="document ">
     <div class="modal-content">
-      <div class="modal-header d-flex justify-content-center" style="
+      <div
+        class="modal-header d-flex justify-content-center"
+        style="
           border-bottom: 0px solid transparent !important;
           padding-bottom: 0px !important;
-        ">
+        "
+      >
         <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
       </div>
       <div class="modal-body">
@@ -217,9 +516,21 @@
           Please Select Item to Delete.
         </h5>
         <div class="d-flex justify-content-center">
-          <button type="button" class="btn1"
-            style="background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%); color: white;border-radius:4px"
-            (click)="closemodal3()" i18n="@@okERR">
+          <button
+            type="button"
+            class="btn1"
+            style="
+              background-image: -webkit-linear-gradient(
+                top,
+                #d9534f 0,
+                #c12e2a 100%
+              );
+              color: white;
+              border-radius: 4px;
+            "
+            (click)="closemodal3()"
+            i18n="@@okERR"
+          >
             OK
           </button>
         </div>
@@ -230,32 +541,63 @@
 
 <!-- delete Modal-->
 
-<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display6 }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+<div
+  class="modal"
+  id="staticBackdrop"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display6 }"
+  aria-labelledby=" staticBackdropLabel "
+  aria-hidden="true "
+>
   <div class="modal-dialog modal-dialog-centered" role="document ">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
-          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+        <div
+          class="swal2-icon swal2-success swal2-animate-success-icon"
+          style="display: flex"
+        >
+          <div
+            class="swal2-success-circular-line-left"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
           <span class="swal2-success-line-tip"></span>
           <span class="swal2-success-line-long"></span>
           <div class="swal2-success-ring"></div>
-          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
-          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+          <div
+            class="swal2-success-fix"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+          <div
+            class="swal2-success-circular-line-right"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
         </div>
       </div>
       <div class="modal-body">
         <h4 class="text-center">
-          <span class="dialog-msg">{{dsucessmsg}}</span>
+          <span class="dialog-msg">{{ dsucessmsg }}</span>
         </h4>
 
         <div class="d-flex justify-content-center">
-          <button type="button " i18n="@@ok" (click)="onCloseSuccessModal1()" data-dismiss="modal " class="btn" style="
-            color: white !important;
-            border-radius: 4px !important;
-         background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
-            margin-left: inherit;
-          ">
+          <button
+            type="button "
+            i18n="@@ok"
+            (click)="onCloseSuccessModal1()"
+            data-dismiss="modal "
+            class="btn"
+            style="
+              color: white !important;
+              border-radius: 4px !important;
+              background-image: linear-gradient(
+                to bottom,
+                #337ab7 0,
+                #265a88 100%
+              );
+              margin-left: inherit;
+            "
+          >
             OK
           </button>
         </div>
@@ -265,31 +607,53 @@
 </div>
 <!-- Success Modal End -->
 <!-- Error Modal Start -->
-<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: errorDisplay1 }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div
+  class="modal"
+  id="staticBackdrop1"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: errorDisplay1 }"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <div class="col-12">
-          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
-            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
-                class="swal2-x-mark-line-right"></span></span>
+          <div
+            class="swal2-icon swal2-error swal2-animate-error-icon"
+            style="display: flex; justify-content: center"
+          >
+            <span class="swal2-x-mark"
+              ><span class="swal2-x-mark-line-left"></span
+              ><span class="swal2-x-mark-line-right"></span
+            ></span>
           </div>
         </div>
       </div>
       <div class="modal-body">
         <h6 style="text-align: center">
-          <span class="dialog-msg">{{derrmsg}}</span>
+          <span class="dialog-msg">{{ derrmsg }}</span>
           <br />
         </h6>
 
         <div class="d-flex justify-content-center mt-4">
-          <button class="btn" (click)="closeErrorModal1()" i18n="@@ok" style="
-            background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
-            color: white !important;
-            border-radius: 4px !important;
-            margin-left: inherit;
-          ">
+          <button
+            class="btn"
+            (click)="closeErrorModal1()"
+            i18n="@@ok"
+            style="
+              background-image: -webkit-linear-gradient(
+                top,
+                #d9534f 0,
+                #c12e2a 100%
+              );
+              color: white !important;
+              border-radius: 4px !important;
+              margin-left: inherit;
+            "
+          >
             Ok
           </button>
         </div>
@@ -298,74 +662,154 @@
   </div>
 </div>
 
-
-
 <!-- Modal add User -->
 
 <div>
-  <div class="modal  bd-example-modal-md" id="centralModalDanger" tabindex="-1" role="dialog"
-    aria-labelledby="myModalLabel" aria-hidden="true" [ngStyle]="{ display: display5 }" data-backdrop="static"
-    data-keyboard="false">
-    <div class="modal-dialog modal-md modal-notify modal-danger" role="document">
+  <div
+    class="modal bd-example-modal-md"
+    id="centralModalDanger"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+    aria-hidden="true"
+    [ngStyle]="{ display: display5 }"
+    data-backdrop="static"
+    data-keyboard="false"
+  >
+    <div
+      class="modal-dialog modal-md modal-notify modal-danger"
+      role="document"
+    >
       <div class="modal-content" id="dvStats">
-        <div class="modal-header" style="background-color: #253d84; height: 63px">
-          <img src="../../../assets/img/DBKL.png" style="margin-top: -12px" width="32%" height="50"
-            class="d-inline-block align-top" alt="" loading="lazy" />
-          <p id="txt" style="color: white;
-          font-size: 20px;font-weight: 700;margin-right: 100px;" i18n="@@addus">Add User</p>
+        <div
+          class="modal-header"
+          style="background-color: #253d84; height: 63px"
+        >
+          <img
+            src="../../../assets/img/DBKL.png"
+            style="margin-top: -12px"
+            width="32%"
+            height="50"
+            class="d-inline-block align-top"
+            alt=""
+            loading="lazy"
+          />
+          <p
+            id="txt"
+            style="
+              color: white;
+              font-size: 20px;
+              font-weight: 700;
+              margin-right: 100px;
+            "
+            i18n="@@addus"
+          >
+            Add User
+          </p>
 
-          <span><i style="color: #96D3EE;" class="fa fa-times close" aria-hidden="true" data-dismiss="modal"
-              aria-label="Close" (click)="closeUserModal()"></i></span>
+          <span
+            ><i
+              style="color: #96d3ee"
+              class="fa fa-times close"
+              aria-hidden="true"
+              data-dismiss="modal"
+              aria-label="Close"
+              (click)="closeUserModal()"
+            ></i
+          ></span>
           <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
                         &times;
                     </button> -->
         </div>
 
-        <div class="modal-body" style="margin-top: 20px;">
+        <div class="modal-body" style="margin-top: 20px">
           <form (ngSubmit)="addUser()">
-
             <label for="textInput" i18n="@@admin3">User ID</label>
-            <input style="margin-bottom: 5px !important" type="text" id="textInput" class="form-control mb-4"
-              name="masa_mesyuarat" [(ngModel)]="name" required>
+            <input
+              style="margin-bottom: 5px !important"
+              type="text"
+              id="textInput"
+              class="form-control mb-4"
+              name="masa_mesyuarat"
+              [(ngModel)]="name"
+              required
+            />
             <div>
-              <i *ngIf="c1" i18n="@@idcardrequired" style="color: red;">
-                *Name is required</i>
+              <i *ngIf="c1" i18n="@@idcardrequired" style="color: red">
+                *Name is required</i
+              >
             </div>
             <label for="textInput" i18n="@@admin1">Name</label>
-            <input type="text" style="background-color: white;margin-bottom: 5px !important" id="textInput"
-              class="form-control mb-4" name="no_siri_permohonan" [(ngModel)]="username1" required>
+            <input
+              type="text"
+              style="background-color: white; margin-bottom: 5px !important"
+              id="textInput"
+              class="form-control mb-4"
+              name="no_siri_permohonan"
+              [(ngModel)]="username1"
+              required
+            />
             <div>
-              <span *ngIf="c2" i18n="@@usernamerequired" style="color: red;">
-                *Username is required</span>
+              <span *ngIf="c2" i18n="@@usernamerequired" style="color: red">
+                *Username is required</span
+              >
             </div>
             <label for="textInput" i18n="@@admin5">Email</label>
-            <input style="margin-bottom: 5px !important" type="email" id="textInput" class="form-control mb-4"
-              name="email" [(ngModel)]="email" required>
+            <input
+              style="margin-bottom: 5px !important"
+              type="email"
+              id="textInput"
+              class="form-control mb-4"
+              name="email"
+              [(ngModel)]="email"
+              required
+            />
 
             <div>
-              <i *ngIf="c3" i18n="@@emailrequired" style="color: red;">
-                *Email is required</i>
+              <i *ngIf="c3" i18n="@@emailrequired" style="color: red">
+                *Email is required</i
+              >
             </div>
 
             <label for="textInput" i18n="@@admin8">Password</label>
-            <input style="margin-bottom: 5px !important" type="password" id="textInput" class="form-control mb-4"
-              name="password" [(ngModel)]="password" required>
+            <input
+              style="margin-bottom: 5px !important"
+              type="password"
+              id="textInput"
+              class="form-control mb-4"
+              name="password"
+              [(ngModel)]="password"
+              required
+            />
 
             <div>
-              <i *ngIf="c4" i18n="@@pl2" style="color: red;">
+              <i *ngIf="c4" i18n="@@pl2" style="color: red">
                 *Password must have an Uppercase, Lowercase, Special characters
-                and numbers.</i>
+                and numbers.</i
+              >
             </div>
 
-
-            <div id="btnn" class="text-center" style="margin: auto;">
-              <button style="background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
-            width: 122px;
-            border-radius: 4px;
-            margin: auto;
-            color: white;
-            margin-top: 9px !important;
-            height: 54px;" type="submit" class="look_for" i18n="@@addus">Add User</button>
+            <div id="btnn" class="text-center" style="margin: auto">
+              <button
+                style="
+                  background-image: linear-gradient(
+                    to bottom,
+                    #337ab7 0,
+                    #265a88 100%
+                  );
+                  width: 122px;
+                  border-radius: 4px;
+                  margin: auto;
+                  color: white;
+                  margin-top: 9px !important;
+                  height: 54px;
+                "
+                type="submit"
+                class="look_for"
+                i18n="@@addus"
+              >
+                Add User
+              </button>
             </div>
           </form>
         </div>

@@ -150,9 +150,11 @@ import { CalendarModule } from "primeng/calendar";
 import { DropdownModule } from "primeng/dropdown";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
+import { InputTextModule } from "primeng/inputtext";
+import { ButtonModule } from "primeng/button";
 import { TopbarV2Component } from "./topbar-v2/topbar-v2.component";
 import { NavbarComponent } from "./navbar/navbar.component";
-import { FooterV2Component } from './footer-v2/footer-v2.component';
+import { FooterV2Component } from "./footer-v2/footer-v2.component";
 
 registerLocaleData(enLocale, "en");
 registerLocaleData(msLocale, "ms");
@@ -315,6 +317,8 @@ registerLocaleData(msLocale, "ms");
     DropdownModule,
     SelectButtonModule,
     TableModule,
+    InputTextModule,
+    ButtonModule,
     RouterModule,
     // RouterModule.forRoot([], {
     //   anchorScrolling: 'enabled',

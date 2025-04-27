@@ -9,6 +9,8 @@ import { usermanagement } from "src/app/table/usermanagment";
 import { environment } from "src/environments/environment";
 import * as $ from "jquery";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+// Import PrimeNG components
+import { SelectItem } from "primeng/api";
 
 @Component({
   selector: "app-usermanagment",
@@ -55,6 +57,9 @@ export class UsermanagmentComponent implements OnInit {
   username1: any;
   doc: any;
 
+  // Add property for peranan dropdown options
+  perananOptions: SelectItem[] = [];
+
   settings = {
     selectMode: "multi",
     actions: {
@@ -74,13 +79,13 @@ export class UsermanagmentComponent implements OnInit {
     },
     columns: {
       nama_pengguna: {
-        title: "Nama Pengguna"
+        title: "Nama Pengguna",
       },
       id_pengguna: {
         title: "ID Pengguna",
       },
       kata_laluan: {
-        title: "Kata Laluan"
+        title: "Kata Laluan",
       },
       peranan: {
         title: "Peranan",
@@ -91,19 +96,16 @@ export class UsermanagmentComponent implements OnInit {
     },
   };
 
-
   constructor(
     private http: HttpClient,
     private tservice: TableService,
     private router: Router,
     private spinner: NgxSpinnerService
-  ) { }
+  ) {}
 
   ngOnInit() {
-
-    this.doc = document.getElementsByClassName('ng-pristine');
+    this.doc = document.getElementsByClassName("ng-pristine");
     //console.log(this.doc);
-
 
     this.lang = localStorage.getItem("lang");
     window.scroll(0, 0);
@@ -139,7 +141,8 @@ export class UsermanagmentComponent implements OnInit {
       .subscribe(
         (res: user[]) => {
           this.data = res;
-          // console.log("hy", res);
+          // Generate peranan dropdown options after data is loaded
+          this.generatePerananOptions();
         },
         (error) => {
           this.loginError = true;
@@ -152,7 +155,6 @@ export class UsermanagmentComponent implements OnInit {
       .subscribe(
         (res: usermanagement[]) => {
           this.spinner.hide();
-          // console.log(res);
           this.data1 = res;
         },
         (error) => {
@@ -162,29 +164,38 @@ export class UsermanagmentComponent implements OnInit {
       );
   }
 
+  // Method to generate unique peranan options for dropdown filter
+  generatePerananOptions() {
+    if (this.data && Array.isArray(this.data)) {
+      // Extract unique peranan values
+      const uniquePeranan = [...new Set(this.data.map((item) => item.peranan))];
 
+      // Create SelectItem array for p-dropdown
+      this.perananOptions = uniquePeranan.map((role) => ({
+        label: role,
+        value: role,
+      }));
+    }
+  }
+
+  // Modified onUserRowSelect to work with PrimeNG selection
+  onUserRowSelect(event) {
+    this.selected = true;
+    this.IdsArray = [];
+
+    if (this.selectedRows) {
+      for (let row of this.selectedRows) {
+        this.IdsArray.push(row.inventori_pengguna_id);
+      }
+      this.listOfIds = JSON.stringify(this.IdsArray);
+    }
+  }
 
   // id_pengguna: "ORANG1234"
   // inventori_pengguna_id: 3
   // kata_laluan: "$2b$04$mHGVGc2u20Zky0yI8/6DSuCedb50lfWsxALCurQWcXZYXn4VQk2fK"
   // nama_pengguna: "ORANG 1234"
   // peranan: "Orang"
-
-
-  onUserRowSelect(event) {
-    this.selected = true;
-    var i = 0;
-    var j = 0;
-    this.IdsArray = [];
-    this.selectedRows = event.selected;
-    for (i; i < this.selectedRows.length; i++)
-      this.IdsArray.push(this.selectedRows[i].inventori_pengguna_id);
-    this.selectedRows = "";
-    this.listOfIds = JSON.stringify(this.IdsArray);
-    // console.log(this.listOfIds);
-    // console.log(this.listOfIds.length);
-    // console.log(this.listOfIds.substring(1, this.listOfIds.length - 1));
-  }
 
   deleteSelected() {
     let authorization = localStorage.getItem("AccessToken");
@@ -208,58 +219,54 @@ export class UsermanagmentComponent implements OnInit {
         environment.basePublicUrl + "/dbkl/deleteInventoriPengguna",
         options
       )
-      .subscribe((s) => {
-        // console.log("my response" + JSON.stringify(s));
-        this.spinner.hide();
-        this.anncdata = s["message"];
+      .subscribe(
+        (s) => {
+          // console.log("my response" + JSON.stringify(s));
+          this.spinner.hide();
+          this.anncdata = s["message"];
 
-        if (this.anncdata == "inventori_pengguna_deleted") {
-
-          if (this.lang == "en") {
-
-            this.dsucessmsg = "Inventroi Pengguna list deleted Successfully!";
+          if (this.anncdata == "inventori_pengguna_deleted") {
+            if (this.lang == "en") {
+              this.dsucessmsg = "Inventroi Pengguna list deleted Successfully!";
+            } else {
+              this.dsucessmsg =
+                "Senarai pengguna Inventroi berjaya dihapuskan!";
+            }
           }
-          else {
-            this.dsucessmsg = "Senarai pengguna Inventroi berjaya dihapuskan!";
-          }
-        }
-        this.deletemodal();
-      },
+          this.deletemodal();
+        },
         (error) => {
           this.anncdata = error["message"];
           //  console.log(error)
           this.errordeletemodal();
           if (this.anncdata == "inventori_pengguna_not_deleted") {
-
             if (this.lang == "en") {
-
-              this.derrmsg = "Inventroi Pengguna  list could not be updated! Please refer console logs for further details.";
-            }
-            else {
-              this.derrmsg = "Senarai Pengguna Inventroi tidak dapat dikemas kini! Sila rujuk log konsol untuk keterangan lebih lanjut.";
+              this.derrmsg =
+                "Inventroi Pengguna  list could not be updated! Please refer console logs for further details.";
+            } else {
+              this.derrmsg =
+                "Senarai Pengguna Inventroi tidak dapat dikemas kini! Sila rujuk log konsol untuk keterangan lebih lanjut.";
             }
           }
-
-        });
-
+        }
+      );
   }
 
-
   addUser() {
-    if ((this.name == undefined) || (this.name.trim() == "")) {
-      return this.c1 = true;
+    if (this.name == undefined || this.name.trim() == "") {
+      return (this.c1 = true);
     }
-    if ((this.username == undefined) || (this.username.trim() == "")) {
+    if (this.username == undefined || this.username.trim() == "") {
       this.c1 = false;
-      return this.c2 = true;
+      return (this.c2 = true);
     }
-    if ((this.email == undefined) || (this.email.trim() == "")) {
+    if (this.email == undefined || this.email.trim() == "") {
       this.c2 = false;
-      return this.c3 = true;
+      return (this.c3 = true);
     }
-    if ((this.password == undefined) || (this.password.trim() == "")) {
+    if (this.password == undefined || this.password.trim() == "") {
       this.c3 = false;
-      return this.c4 = true;
+      return (this.c4 = true);
     }
 
     this.c1 = false;
@@ -274,9 +281,8 @@ export class UsermanagmentComponent implements OnInit {
       name: this.name,
       nama_pengguna: this.username1,
       email: this.email,
-      password: this.password
-    }
-
+      password: this.password,
+    };
 
     let headers = {
       "Content-Type": "application/json",
@@ -294,32 +300,23 @@ export class UsermanagmentComponent implements OnInit {
 
           this.spinner.hide();
 
-          if (res['message'] == 'user_added') {
+          if (res["message"] == "user_added") {
             if (this.lang == "en") {
-
               this.dsucessmsg = "User Added Successfully!";
-            }
-            else {
+            } else {
               this.dsucessmsg = "Pengguna Berjaya Ditambahkan !";
             }
           }
           this.deletemodal();
           //  window.location.reload();
-
         },
         (error) => {
-
           this.spinner.hide();
           this.loginError = true;
           this.spinner.hide();
           this.errorMsg = error["error"]["message"];
-
-
-
-        });
-
-
-
+        }
+      );
   }
 
   deleteChecked() {
@@ -353,15 +350,13 @@ export class UsermanagmentComponent implements OnInit {
   }
   closeModal() {
     this.display = "none";
-
   }
 
   openModalDelete() {
     if (this.listOfIds == undefined) {
       this.openmodal3();
       return;
-    }
-    else if (this.IdsArray.length == 0) {
+    } else if (this.IdsArray.length == 0) {
       this.openmodal3();
       return;
     }
@@ -371,12 +366,11 @@ export class UsermanagmentComponent implements OnInit {
     this.display2 = "none";
   }
   openmodal3() {
-    this.display3 = "block"
+    this.display3 = "block";
   }
   closemodal3() {
-    this.display3 = "none"
+    this.display3 = "none";
   }
-
 
   settings1 = {
     // selectMode: "multi",
@@ -405,9 +399,7 @@ export class UsermanagmentComponent implements OnInit {
     },
   };
   radioChanged(e) {
-    if (this.user_role == "superadmin" ||
-      this.user_role == "Pentadbir"
-    ) {
+    if (this.user_role == "superadmin" || this.user_role == "Pentadbir") {
       this.is1st = true;
       this.is2nd = false;
     } else {
@@ -478,5 +470,4 @@ export class UsermanagmentComponent implements OnInit {
         }
       );
   }
-
 }
