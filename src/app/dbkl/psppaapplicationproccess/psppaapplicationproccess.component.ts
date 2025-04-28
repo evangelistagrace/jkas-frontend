@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { TableService } from "src/app/table/table.service";
@@ -17,8 +17,9 @@ import { DbkluploadbuttonComponent } from "src/app/dbkluploadbutton/dbkluploadbu
 import { Observable } from "rxjs";
 import { Ng2SmartTableComponent } from "ng2-smart-table";
 import { DbklchecklistComponent } from "../dbklchecklist/dbklchecklist.component";
-import { DatePipe } from '@angular/common';
+import { DatePipe } from "@angular/common";
 import { DbklppsppacatatanComponent } from "src/app/dbklppsppacatatan/dbklppsppacatatan.component";
+import { Table } from "primeng/table";
 
 @Component({
   selector: "app-psppaapplicationproccess",
@@ -26,6 +27,7 @@ import { DbklppsppacatatanComponent } from "src/app/dbklppsppacatatan/dbklppsppa
   styleUrls: ["./psppaapplicationproccess.component.css"],
 })
 export class PsppaapplicationproccessComponent implements OnInit {
+  @ViewChild("dt") table: Table;
   basePublicUrl = environment.basePublicUrl;
   data: any;
   loginError: boolean;
@@ -49,15 +51,33 @@ export class PsppaapplicationproccessComponent implements OnInit {
   AccessToken: string;
   baseUrl = environment.basePublicUrl;
 
+  // Add status filter options
+  statusOptions = [
+    { label: "Lengkap", value: true },
+    { label: "Tidak Lengkap", value: false },
+  ];
+
+  // Properties for filters
+  siriFilter: string;
+  dateFilter: Date;
+  statusFilter: any;
+
+  // Add year range for date picker
+  yearRange: string;
+
   constructor(
     private http: HttpClient,
     private spinner: NgxSpinnerService,
     private tservice: TableService,
     private router: Router,
     private met: MeetingService,
-    private table: Ng2SmartTableComponent,
+    // private table: Ng2SmartTableComponent,
     private datePipe: DatePipe
-  ) { }
+  ) {
+    // Create a year range from 10 years ago to 10 years in the future
+    const currentYear = new Date().getFullYear();
+    this.yearRange = `${currentYear - 10}:${currentYear + 10}`;
+  }
 
   ngOnInit() {
     this.AccessToken = localStorage.getItem("AccessToken");
@@ -98,6 +118,54 @@ export class PsppaapplicationproccessComponent implements OnInit {
     });
   }
 
+  // Add this method to prepare the data for date filtering
+  setupDateFiltering() {
+    if (this.table && this.data) {
+      // Customize the filter function for the tarikh_permohonan column
+      this.table.filterService.register(
+        "dateIs",
+        (value: string, filter: string): boolean => {
+          if (filter === undefined || filter === null || filter.trim() === "") {
+            return true;
+          }
+
+          if (value === undefined || value === null) {
+            return false;
+          }
+
+          // Convert both to date objects for comparison
+          const filterDate = new Date(filter);
+          const valueDate = new Date(value);
+
+          // Compare only the date parts (year, month, day)
+          return (
+            filterDate.getFullYear() === valueDate.getFullYear() &&
+            filterDate.getMonth() === valueDate.getMonth() &&
+            filterDate.getDate() === valueDate.getDate()
+          );
+        }
+      );
+
+      // Add custom filter for lawatan tapak
+      this.table.filterService.register(
+        "lawatanExists",
+        (value: any, filter: boolean): boolean => {
+          if (filter === undefined || filter === null) {
+            return true;
+          }
+
+          // If filter is true, check if value exists and is not null/empty
+          // If filter is false, check if value doesn't exist or is null/empty
+          if (filter) {
+            return value !== undefined && value !== null && value !== "";
+          } else {
+            return value === undefined || value === null || value === "";
+          }
+        }
+      );
+    }
+  }
+
   getData() {
     let key = localStorage.getItem("AccessToken");
 
@@ -114,7 +182,10 @@ export class PsppaapplicationproccessComponent implements OnInit {
         (res) => {
           this.spinner.hide();
           this.data = res;
-          // console.log(this.data);
+          console.log(this.data);
+
+          // Call this after data is loaded
+          this.setupDateFiltering();
         },
         (error) => {
           this.loginError = true;
@@ -154,13 +225,13 @@ export class PsppaapplicationproccessComponent implements OnInit {
       tarikh_permohonan: {
         title: "2.TARIKH PERMOHONAN",
         valuePrepareFunction: (date) => {
-          return this.datePipe.transform(date, 'dd MMM yyyy');
-        }
+          return this.datePipe.transform(date, "dd MMM yyyy");
+        },
       },
       status_semakan_dokumen: {
         title: "3.STATUS SEMAKAN DOKUMEN",
         valuePrepareFunction: (cell, row) => {
-          return cell ? 'Lengkap' : 'Tidak Lengkap';
+          return cell ? "Lengkap" : "Tidak Lengkap";
         },
       },
       mesyuarat_permohanan_serahan_kawasan: {
@@ -205,6 +276,17 @@ export class PsppaapplicationproccessComponent implements OnInit {
     },
   };
 
+  // Add this method to handle the direct button click
+  routeToUpdateApplicationForm(rowData) {
+    this.keyValue = rowData;
+    localStorage.setItem("date", this.keyValue.tarikh_permohonan);
+    this.spinner.hide();
+    this.router.navigateByUrl(
+      "dbkl/dbklchecklist?id=" + this.keyValue.dokumen_senarai
+    );
+  }
+
+  // Keep the original method for backward compatibility
   onCustomEvent(event) {
     switch (event.action) {
       case "routeToUpdateApplicationForm":
@@ -222,21 +304,16 @@ export class PsppaapplicationproccessComponent implements OnInit {
     window.scroll(0, 0);
   }
 
-  onUserRowSelect(event) {
-    var i = 0;
-    var j = 0;
+  onSelectionChange(event) {
     this.IdsArray = [];
-    this.selectedRows = event.selected;
-    for (i; i < this.selectedRows.length; i++)
-      this.IdsArray.push(this.selectedRows[i].application_id);
-    this.selectedRows = "";
-    this.listOfIds = JSON.stringify(this.IdsArray);
-    // console.log(this.listOfIds);
-    //console.log(this.IdsArray.length);
+    this.selectedRows = event;
 
-    // console.log(this.listOfIds);
-    // console.log(this.listOfIds.length);
-    // console.log(this.listOfIds.substring(1, this.listOfIds.length - 1));
+    if (this.selectedRows && this.selectedRows.length > 0) {
+      for (let i = 0; i < this.selectedRows.length; i++) {
+        this.IdsArray.push(this.selectedRows[i].application_id);
+      }
+      this.listOfIds = JSON.stringify(this.IdsArray);
+    }
   }
 
   deleteSelected() {
@@ -356,5 +433,40 @@ export class PsppaapplicationproccessComponent implements OnInit {
           // console.log("error is", error["error"]);
         }
       );
+  }
+
+  // Filter methods that will be called from the template
+  onFilterSiri(value: string) {
+    this.table.filter(value, "no_siri_permohonan", "contains");
+  }
+
+  onFilterDate(value: Date) {
+    if (value) {
+      // Reset time part to compare dates only
+      const dateVal = new Date(value);
+      dateVal.setHours(0, 0, 0, 0);
+
+      this.table.filter(dateVal.toISOString(), "tarikh_permohonan", "dateIs");
+    } else {
+      this.table.filter(null, "tarikh_permohonan", "dateIs");
+    }
+  }
+
+  onFilterStatus(value: any) {
+    this.table.filter(value, "status_semakan_dokumen", "equals");
+  }
+
+  // Add options for Tetapan Lawatan Tapak filter
+  lawatanOptions = [
+    { label: "Ada Lawatan", value: true },
+    { label: "Tiada Lawatan", value: false },
+  ];
+
+  // Add property for the filter
+  lawatanFilter: any;
+
+  // Add filter method for Tetapan Lawatan Tapak
+  onFilterLawatan(value: any) {
+    this.table.filter(value, "maklumat_lawatan_tapak_id", "equals");
   }
 }

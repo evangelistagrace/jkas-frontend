@@ -152,6 +152,8 @@ import { SelectButtonModule } from "primeng/selectbutton";
 import { TableModule } from "primeng/table";
 import { InputTextModule } from "primeng/inputtext";
 import { ButtonModule } from "primeng/button";
+import { CheckboxModule } from "primeng/checkbox";
+import { RippleModule } from "primeng/ripple";
 import { TopbarV2Component } from "./topbar-v2/topbar-v2.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { FooterV2Component } from "./footer-v2/footer-v2.component";
@@ -319,6 +321,8 @@ registerLocaleData(msLocale, "ms");
     TableModule,
     InputTextModule,
     ButtonModule,
+    CheckboxModule,
+    RippleModule,
     RouterModule,
     // RouterModule.forRoot([], {
     //   anchorScrolling: 'enabled',
