@@ -253,12 +253,12 @@ export class MtkworkformComponent implements OnInit {
   parildata: any = [];
   searchControl: any;
 
-  kerjaHarianPictures: any = ['','',''];
+  kerjaHarianPictures: any = ["", "", ""];
   kerjaHarianLocation: any;
 
-  aduanPictures: any = ['','',''];
+  aduanPictures: any = ["", "", ""];
   aduanLocation: any;
-  jenisKawasan: string = 'serviceArea';
+  jenisKawasan: string = "serviceArea";
 
   mtkList: any = [];
 
@@ -270,7 +270,7 @@ export class MtkworkformComponent implements OnInit {
 
   doUpload(index) {
     this.spinner.show();
-    for (var i=0; i<this.uploader.queue.length; i++) {
+    for (var i = 0; i < this.uploader.queue.length; i++) {
       let data = new FormData();
       let fileItem = this.uploader.queue[i]._file;
       data.append("file", fileItem);
@@ -286,7 +286,7 @@ export class MtkworkformComponent implements OnInit {
 
   doAduanUpload(index) {
     this.spinner.show();
-    for (var i=0; i<this.uploader.queue.length; i++) {
+    for (var i = 0; i < this.uploader.queue.length; i++) {
       let data = new FormData();
       let fileItem = this.uploader.queue[i]._file;
       data.append("file", fileItem);
@@ -452,18 +452,21 @@ export class MtkworkformComponent implements OnInit {
         }
       );
 
-      this.http
-      .get(this.basePublicUrl + '/dbkl/listMtk', {
+    this.http
+      .get(this.basePublicUrl + "/dbkl/listMtk", {
         headers: headers,
       })
-      .subscribe((res:any) => {
-        this.spinner.hide();
-        for (let key of res) {  
-          this.mtkList.push(key);
+      .subscribe(
+        (res: any) => {
+          this.spinner.hide();
+          for (let key of res) {
+            this.mtkList.push(key);
+          }
+        },
+        (error) => {
+          alert("Failed to get mtk list: " + JSON.stringify(error));
         }
-      }, (error) => {
-        alert('Failed to get mtk list: ' + JSON.stringify(error))
-      });
+      );
     this.spinner.hide();
   }
   logout() {
@@ -526,9 +529,7 @@ export class MtkworkformComponent implements OnInit {
           "^[A-za-z]{3,}[A-za-z0-9.]{1,}@[A-Za-z]{3,}[.][A-Za-z.]{2,6}$"
         ),
       ]),
-      notelefon: new FormControl("", [
-        Validators.pattern("^[0-9]{11}$"),
-      ]),
+      notelefon: new FormControl("", [Validators.pattern("^[0-9]{11}$")]),
       nofaksimili: new FormControl("", []),
       samberaduan: new FormControl("", [Validators.required]),
       lain_lain: new FormControl("", []),
@@ -590,45 +591,48 @@ export class MtkworkformComponent implements OnInit {
   }
 
   onAduanMapReady(map: L.Map) {
-    this.aduanLocation = this.latitude + ',' + this.longitude;
+    this.aduanLocation = this.latitude + "," + this.longitude;
     var search = ELG.geosearch({
       providers: [
         ELG.arcgisOnlineProvider({
-          apikey: "AAPK84e96f4c08c449b3bbd50cd31f590027NJ-vkD2mOotBtzSVgNfBH267JjtCPI8IPiZczqaLARYyCKNx5cMqtr76efeyapde"
+          apikey:
+            "AAPK84e96f4c08c449b3bbd50cd31f590027NJ-vkD2mOotBtzSVgNfBH267JjtCPI8IPiZczqaLARYyCKNx5cMqtr76efeyapde",
         }),
       ],
-      position: 'topright',
-      placeholder: 'Carian lokasi'
+      position: "topright",
+      placeholder: "Carian lokasi",
     });
     search.addTo(map);
-    search.on("results", (data:any) => {
+    search.on("results", (data: any) => {
       if (data.results.length > 0) {
         marker.setLatLng(data.results[0].latlng);
-        this.aduanLocation = marker.getLatLng().lat + ',' + marker.getLatLng().lng;
+        this.aduanLocation =
+          marker.getLatLng().lat + "," + marker.getLatLng().lng;
       }
     });
-    
+
     var marker = L.marker([this.latitude, this.longitude], {
       draggable: true,
-      icon: this.greenIcon
+      icon: this.greenIcon,
     });
     marker.addTo(map);
-    marker.on('dragend', (event:any) => {
+    marker.on("dragend", (event: any) => {
       var marker = event.target;
       var result = marker.getLatLng();
-      this.aduanLocation = result.lat + ',' + result.lng;
-    })
+      this.aduanLocation = result.lat + "," + result.lng;
+    });
   }
 
   onMapReady(map: L.Map) {
     var searchControl = ELG.geosearch({
       providers: [
         ELG.arcgisOnlineProvider({
-          apikey: "AAPK84e96f4c08c449b3bbd50cd31f590027NJ-vkD2mOotBtzSVgNfBH267JjtCPI8IPiZczqaLARYyCKNx5cMqtr76efeyapde"
+          apikey:
+            "AAPK84e96f4c08c449b3bbd50cd31f590027NJ-vkD2mOotBtzSVgNfBH267JjtCPI8IPiZczqaLARYyCKNx5cMqtr76efeyapde",
         }),
       ],
-      position: 'topright',
-      placeholder: 'Carian lokasi'
+      position: "topright",
+      placeholder: "Carian lokasi",
     });
     searchControl.addTo(map);
 
@@ -641,14 +645,15 @@ export class MtkworkformComponent implements OnInit {
       var result = marker.getLatLng();
       this.kerjaHarianLocation = result.lat + "," + result.lng;
     });
-    searchControl.on("results", function(data) {
+    searchControl.on("results", function (data) {
       if (data.results.length > 0) {
         marker.setLatLng(data.results[0].latlng);
-        this.kerjaHarianLocation = marker.getLatLng().lat + ',' + marker.getLatLng().lng;
+        this.kerjaHarianLocation =
+          marker.getLatLng().lat + "," + marker.getLatLng().lng;
       }
     });
     map.setView([this.latitude, this.longitude], 15);
-    this.kerjaHarianLocation = this.latitude + ',' + this.longitude;
+    this.kerjaHarianLocation = this.latitude + "," + this.longitude;
   }
 
   get f() {
@@ -668,7 +673,7 @@ export class MtkworkformComponent implements OnInit {
     this.submitted = true;
 
     if (this.registrationGroup.invalid) {
-      alert('Ralat! Sila semak input anda.')
+      alert("Ralat! Sila semak input anda.");
       return;
     }
     this.spinner.show();
@@ -702,7 +707,7 @@ export class MtkworkformComponent implements OnInit {
       zon: this.zon,
       parlimen: this.parlimen,
       tarikh_siasatan: this.tarikh_siasatan,
-      id_pegawai: this.registrationGroup.controls['idpegawai'].value,
+      id_pegawai: this.registrationGroup.controls["idpegawai"].value,
       lokasi_siasatan: this.aduanLocation,
       picture1: this.aduanPictures[0],
       picture2: this.aduanPictures[1],
@@ -765,7 +770,7 @@ export class MtkworkformComponent implements OnInit {
   submit1() {
     this.submitted1 = true;
     if (this.registrationGroup1.invalid) {
-      alert('Ralat! Sila semak input.');
+      alert("Ralat! Sila semak input.");
       console.log(this.registrationGroup1);
       return;
     }
