@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { environment } from "../../../environments/environment";
 import { FileUploader } from "ng2-file-upload";
 import { NgxSpinnerService } from "ngx-spinner";
-import * as $ from 'jquery'
+import * as $ from "jquery";
 @Component({
   selector: "app-newemeeting",
   templateUrl: "./newemeeting.component.html",
@@ -32,7 +32,7 @@ export class NewemeetingComponent implements OnInit {
   meeting_dokumen: any;
   model: any = {};
   fieldArray: Array<any> = [];
-  isShowFieldTable:boolean=false;
+  isShowFieldTable: boolean = false;
   newAttribute: any = {};
   public uploader: FileUploader = new FileUploader({
     isHTML5: true,
@@ -51,7 +51,7 @@ export class NewemeetingComponent implements OnInit {
   detailedmeeting: any;
   errmsg: string;
   meetingupdate: string;
-  mettingtitle="E-MEETINGS-NEW"
+  mettingtitle = "E-MEETINGS-NEW";
   lang: string;
   dropdownSettings: any = {};
   constructor(
@@ -89,6 +89,10 @@ export class NewemeetingComponent implements OnInit {
     };
     this.model.hingga = this.route.snapshot.queryParamMap.get("value4");
     this.model.masa_mesyuarat = this.route.snapshot.queryParamMap.get("value5");
+    this.model.senarai_permohonan_filename =
+      this.route.snapshot.queryParamMap.get("value6");
+    this.model.minit_mesyuarat_filename =
+      this.route.snapshot.queryParamMap.get("value7");
     // console.log(this.model.masa_mesyuarat);
     localStorage.setItem(
       "path",
@@ -104,7 +108,7 @@ export class NewemeetingComponent implements OnInit {
         this.model.masa_mesyuarat
     );
     this.is1st = false;
-this.spinner.show();
+    this.spinner.show();
     let headers = {
       "Content-Type": "application/json",
       accept: "application/json",
@@ -127,18 +131,26 @@ this.spinner.show();
     return this.registrationGroup.controls;
   }
 
-  gettexts(e){
+  gettexts(e) {
     console.log(e.target.value);
-    
-this.mettingtitle=e.target.value;
+
+    this.mettingtitle = e.target.value;
   }
-  onSubmit() {
-    this.uploadSubmit();
+  async onSubmit() {
     this.spinner.show();
+
+    try {
+      await this.uploadSubmit();
+    } catch (error) {
+      console.error("File upload failed:", error);
+      this.spinner.hide();
+      return;
+    }
+
     let body = {
       jenis_jawatankuasa: this.model.jenis_jawatankuasa,
       jenis_mesyuarat: this.model.jenis_mesyuarat,
-      jabatan_terlibat: this.jabatan_terlibat.join(','),
+      jabatan_terlibat: this.jabatan_terlibat.join(","),
       tarikh_mesyuarat: this.model.tarikh_mesyuarat,
       masa_mesyuarat: this.model.masa_mesyuarat,
       hingga: this.model.hingga,
@@ -148,9 +160,9 @@ this.mettingtitle=e.target.value;
       setiausaha: this.model.setiausaha,
       tempat_mesyuarat: this.model.masa_mesyuarat,
       agenda_dan_minit: this.model.agenda_dan_minit,
-      meeting_dokumen: this.firstFile,
+      meeting_dokumen: this.meeting_dokumen,
     };
-     //console.log(body);
+    //console.log(body);
 
     let headers = {
       "Content-Type": "application/json",
@@ -166,32 +178,32 @@ this.mettingtitle=e.target.value;
         (data) => {
           this.spinner.hide();
           this.openModal();
-          this.detailedmeeting=data["message"] ;
-          if(this.meetingupdate=="detailed_meeting_added"){
+          this.detailedmeeting = data["message"];
+          if (this.meetingupdate == "detailed_meeting_added") {
             if (this.lang == "en") {
               this.meetingupdate = "Meeting Form added Successfully!";
             }
+          } else {
+            this.meetingupdate = "Borang Mesyuarat berjaya ditambahkan!";
           }
-          else {
-            this.meetingupdate= "Borang Mesyuarat berjaya ditambahkan!";
+        },
+        (error) => {
+          this.loginError = true;
+          this.spinner.hide();
+          this.errorMsg = error["error"]["message"];
+          this.openModal1();
+
+          if (this.errorMsg == "detailed_meeting_not_added") {
+            if (this.lang == "en") {
+              this.errmsg =
+                "Meeting could not be added! Please refer console logs for further details.";
+            } else {
+              this.errmsg =
+                "Mesyuarat tidak dapat ditambahkan! Sila rujuk log konsol untuk keterangan lebih lanjut.";
+            }
           }
-
-          },
-          (error) => {
-            this.loginError = true;
-            this.spinner.hide();
-            this.errorMsg = error["error"]["message"];
-            this.openModal1();
-
-            if(this.errorMsg=="detailed_meeting_not_added"){
-              if (this.lang == "en") {
-                this.errmsg = "Meeting could not be added! Please refer console logs for further details.";
-              }
-              else {
-                this.errmsg = "Mesyuarat tidak dapat ditambahkan! Sila rujuk log konsol untuk keterangan lebih lanjut.";
-              }
-          }});
-
+        }
+      );
   }
   addbutton1() {
     debugger;
@@ -200,38 +212,59 @@ this.mettingtitle=e.target.value;
 
   addFieldValue() {
     debugger;
-    this.isShowFieldTable=true;
-   // if (this.fieldArray.length >1) {
-      this.fieldArray.push(this.newAttribute);
-      this.newAttribute = {};
+    this.isShowFieldTable = true;
+    // if (this.fieldArray.length >1) {
+    this.fieldArray.push(this.newAttribute);
+    this.newAttribute = {};
     // } else {
 
     // }
   }
 
-  uploadSubmit() {
-    for (var j = 0; j < this.uploader.queue.length; j++) {
-      let data = new FormData();
-      let fileItem = this.uploader.queue[j]._file;
-      // console.log(fileItem.name);
-      this.UploaderData1.push(fileItem.name);
-      // console.log("my files array"
-      //   + this.UploaderData1);
-      this.myfiles = JSON.stringify(this.UploaderData1);
+  uploadSubmit(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const uploadedFiles = [];
+      const uploadPromises = [];
 
-      this.firstFile = fileItem.name;
-      // console.log(
-      //   "my string length........." +
-      //     this.myfiles.substring(1, this.myfiles.length - 1)
-      // );
-      // window.alert(this.firstFile)
-      data.append("file", fileItem);
-      data.append("fileSeq", "seq" + j);
+      for (let j = 0; j < this.uploader.queue.length; j++) {
+        const data = new FormData();
+        const fileItem = this.uploader.queue[j]._file;
+        uploadedFiles.push({ name: fileItem.name });
 
-      // this.uploadFile(data).subscribe(data => alert(data.message));
-      this.filename=fileItem.name;
-    }
-    this.uploader.clearQueue();
+        data.append("file", fileItem);
+        data.append("fileSeq", "seq" + j);
+
+        this.filename = fileItem.name;
+
+        // Create upload promise for each file
+        // const uploadPromise = this.http.post(this.SERVER_URL, data).toPromise();
+        const uploadPromise = Promise.resolve({
+          success: true,
+          fileName: fileItem.name,
+        });
+        uploadPromises.push(uploadPromise);
+      }
+
+      if (uploadPromises.length === 0) {
+        // No files to upload
+        this.meeting_dokumen = JSON.stringify([]);
+        resolve();
+        return;
+      }
+
+      // Wait for all uploads to complete
+      Promise.all(uploadPromises)
+        .then(() => {
+          this.uploader.clearQueue();
+          this.meeting_dokumen = JSON.stringify(uploadedFiles);
+          console.log("Uploaded files:", this.meeting_dokumen);
+          resolve();
+        })
+        .catch((error) => {
+          console.error("Upload failed:", error);
+          reject(error);
+        });
+    });
   }
 
   backtotop() {
@@ -255,9 +288,20 @@ this.mettingtitle=e.target.value;
     this.jabatan_terlibat.push(item);
   }
   onItemDeselect(item: any) {
-    for (let i=0; i<this.jabatan_terlibat.length; i++) {
+    for (let i = 0; i < this.jabatan_terlibat.length; i++) {
       if (this.jabatan_terlibat[i] === item) {
         this.jabatan_terlibat.splice(i, 1);
+      }
+    }
+  }
+  onFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      if (file) {
+        // Assuming you want to store the file name in the model
+        this.model.uploadedFileName = file.name;
+        console.log("File selected:", file.name);
       }
     }
   }

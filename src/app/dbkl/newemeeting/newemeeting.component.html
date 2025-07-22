@@ -188,11 +188,22 @@
             <div class="form-group col-md-12">
               <label for="textInput" i18n="@@em4">Type of Committee</label
               ><sup>*</sup>
-              <input type="text" id="textInput" class="form-control" name="jenis_jawatankuasa"
-                [(ngModel)]="model.jenis_jawatankuasa" #jenis_jawatankuasa="ngModel" [ngClass]="{
-                    'is-invalid': f.submitted && jenis_jawatankuasa.invalid
-                  }" required />
-              <div *ngIf="f.submitted && jenis_jawatankuasa.invalid" class="invalid-feedback">
+              <input
+                type="text"
+                id="textInput"
+                class="form-control"
+                name="jenis_jawatankuasa"
+                [(ngModel)]="model.jenis_jawatankuasa"
+                #jenis_jawatankuasa="ngModel"
+                [ngClass]="{
+                  'is-invalid': f.submitted && jenis_jawatankuasa.invalid
+                }"
+                required
+              />
+              <div
+                *ngIf="f.submitted && jenis_jawatankuasa.invalid"
+                class="invalid-feedback"
+              >
                 <div *ngIf="jenis_jawatankuasa.errors.required" i18n="@@lem3">
                   Please fill this required field.
                 </div>
@@ -204,19 +215,40 @@
               <select
                 class="browser-default custom-select form-control mb-2"
                 id="select"
-                [(ngModel)]="jenis_mesyuarat"
+                [(ngModel)]="model.jenis_mesyuarat"
                 name="jenis_mesyuarat"
-                formControlName="jenis_mesyuarat"
+                #jenis_mesyuarat="ngModel"
                 [ngClass]="{
-                  'is-invalid': submitted && f.jenis_mesyuarat.errors
+                  'is-invalid': f.submitted && jenis_mesyuarat.invalid
                 }"
+                required
               >
                 <option value="" selected="" disabled="" i18n="@@stmt">
                   Select the Meeting Type
                 </option>
-                <option i18n="@@general" value="Handover Committee Meeting Collection Service Area And Public Cleansing">Handover Committee Meeting Collection Service Area And Public Cleansing</option>
-                <option i18n="@@period" value="Performance Committee Meeting Payment For Collection Services And Public Cleansing">Performance Committee Meeting Payment For Collection Services And Public Cleansing</option>
+                <option
+                  i18n="@@general"
+                  value="Handover Committee Meeting Collection Service Area And Public Cleansing"
+                >
+                  Handover Committee Meeting Collection Service Area And Public
+                  Cleansing
+                </option>
+                <option
+                  i18n="@@period"
+                  value="Performance Committee Meeting Payment For Collection Services And Public Cleansing"
+                >
+                  Performance Committee Meeting Payment For Collection Services
+                  And Public Cleansing
+                </option>
               </select>
+              <div
+                *ngIf="f.submitted && jenis_mesyuarat.invalid"
+                class="invalid-feedback"
+              >
+                <div *ngIf="jenis_mesyuarat.errors.required" i18n="@@lem3">
+                  Please fill this required field.
+                </div>
+              </div>
             </div>
             <div class="form-group col-md-12 depart">
               <label for="select" i18n="@@lem5">Department Involved</label
@@ -469,30 +501,62 @@
               </div>
             </div>
             <div class="form-group col-md-12">
-              <label class="custom-file-upload uploade">
-                <input
-                  type="file"
-                  ng2FileSelect
-                  accept=".pdf"
-                  [uploader]="uploader"
-                  name="file"
-                  (change)="uploadSubmit()"
-                  [(ngModel)]="model.file"
-                  #file="ngModel"
-                  [ngClass]="{ 'is-invalid': f.submitted && file.invalid }"
-                  required
-                />
-                <div
-                  *ngIf="f.submitted && file.invalid"
-                  class="invalid-feedback"
-                >
-                  <div *ngIf="file.errors.required" i18n="@@lem15">
-                    Fill is required
-                  </div>
+              <label for="textInput" i18n="@@lem15">Upload Document</label
+              ><sup>*</sup>
+              <input
+                type="file"
+                id="fileUpload"
+                class="form-control"
+                (change)="onFileChange($event)"
+                accept=".pdf"
+                required
+              />
+              <div *ngIf="f.submitted && f.invalid" class="invalid-feedback">
+                <div *ngIf="file.errors.required" i18n="@@lem15">
+                  Fill is required
                 </div>
-                <i class="fa fa-cloud-upload"></i> Muat Naik Dokumen<br />
-              </label>
-              <span class="text-dark">{{ filename }}</span>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="uploadedFiles" i18n="@@uploadedFiles"
+                >Uploaded Files</label
+              >
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th i18n="@@fileName">File Name</th>
+                    <th i18n="@@action">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngIf="model.senarai_permohonan_filename">
+                    <td>{{ model.senarai_permohonan_filename }}</td>
+                    <td>
+                      <a
+                        [href]="
+                          'src/app/assets/' + model.senarai_permohonan_filename
+                        "
+                        download
+                        i18n="@@download"
+                        >Download</a
+                      >
+                    </td>
+                  </tr>
+                  <tr *ngIf="model.minit_mesyuarat_filename">
+                    <td>{{ model.minit_mesyuarat_filename }}</td>
+                    <td>
+                      <a
+                        [href]="
+                          'src/app/assets/' + model.minit_mesyuarat_filename
+                        "
+                        download
+                        i18n="@@download"
+                        >Download</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
           <div id="btnn" class="text-center">

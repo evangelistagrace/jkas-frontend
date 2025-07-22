@@ -338,6 +338,61 @@
               </div>
             </div>
           </div>
+
+          <!-- Upload Fields -->
+          <div class="row mt-3">
+            <div class="col-6">
+              <label for="senariPermohonan" class="inline-label"
+                >Senarai Permohonan</label
+              >
+              <input
+                type="file"
+                class="form-control"
+                id="senariPermohonan"
+                name="senarai_permohonan"
+                formControlName="senarai_permohonan"
+                accept=".pdf,.doc,.docx,.xlsx"
+                (change)="onFileSelected($event, 'senarai_permohonan')"
+                [ngClass]="{
+                  'is-invalid': submitted && f.senarai_permohonan.errors
+                }"
+              />
+              <div
+                *ngIf="submitted && f.senarai_permohonan.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.senarai_permohonan.errors.required" i18n="@@emvm">
+                  Please fill this required field.
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="minutMesyuarat" class="inline-label"
+                >Minit Mesyuarat</label
+              >
+              <input
+                type="file"
+                class="form-control"
+                id="minutMesyuarat"
+                name="minit_mesyuarat"
+                formControlName="minit_mesyuarat"
+                accept=".pdf,.doc,.docx,.xlsx"
+                (change)="onFileSelected($event, 'minit_mesyuarat')"
+                [ngClass]="{
+                  'is-invalid': submitted && f.minit_mesyuarat.errors
+                }"
+              />
+              <div
+                *ngIf="submitted && f.minit_mesyuarat.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.minit_mesyuarat.errors.required" i18n="@@emvm">
+                  Please fill this required field.
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div>&nbsp;</div>
 
           <div class="text-center">

@@ -34,9 +34,11 @@ export class EmeetingComponent implements OnInit {
   masa_mesyuarat: any;
   check: boolean;
   message: any;
-  isTable:boolean;
+  isTable: boolean;
   username: string;
   isAdminType: string;
+  senarai_permohonan: File | null = null;
+  minit_mesyuarat: File | null = null;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -52,10 +54,12 @@ export class EmeetingComponent implements OnInit {
     this.newGroup = new FormGroup({
       bill_mesyuarat: new FormControl("", [Validators.required]),
       jenis_mesyuarat: new FormControl("", [Validators.required]),
-     jenis_jawatankuasa: new FormControl("", [Validators.required]),
+      jenis_jawatankuasa: new FormControl("", [Validators.required]),
       tarikh_mesyuarat: new FormControl("", [Validators.required]),
       masa_mesyuarat: new FormControl("", [Validators.required]),
       hingga: new FormControl("", [Validators.required]),
+      senarai_permohonan: new FormControl("", [Validators.required]),
+      minit_mesyuarat: new FormControl("", [Validators.required]),
     });
     this.searchGroup = new FormGroup({
       jenis_mesyuarat: new FormControl("", [Validators.required]),
@@ -94,6 +98,38 @@ export class EmeetingComponent implements OnInit {
   addbutton() {
     this.is1st = true;
   }
+
+  onFileSelected(event: any, fieldName: string) {
+    const file = event.target.files[0];
+    if (file) {
+      const filePath = `src/app/assets/${file.name}`;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const fileContent = reader.result;
+        // Save the file content to the assets folder
+        this.http
+          .post("/save-file", { path: filePath, content: fileContent })
+          .subscribe(
+            () => {
+              console.log(`${file.name} saved successfully.`);
+            },
+            (error) => {
+              console.error(`Error saving ${file.name}:`, error);
+            }
+          );
+      };
+      reader.readAsDataURL(file);
+
+      if (fieldName === "senarai_permohonan") {
+        this.senarai_permohonan = file;
+      } else if (fieldName === "minit_mesyuarat") {
+        this.minit_mesyuarat = file;
+      }
+      // Update form control value
+      this.newGroup.get(fieldName)?.setValue(file.name);
+    }
+  }
+
   backtotop() {
     window.scroll(0, 0);
   }
@@ -114,6 +150,8 @@ export class EmeetingComponent implements OnInit {
         value3: this.tarikh_mesyuarat,
         value4: this.hingga,
         value5: this.masa_mesyuarat,
+        value6: this.senarai_permohonan?.name || "",
+        value7: this.minit_mesyuarat?.name || "",
       },
     });
   }
@@ -130,13 +168,10 @@ export class EmeetingComponent implements OnInit {
       return;
     }
     this.router.navigate(["/dbkl/listemeeting"], {
-      
       queryParams: {
         value: this.jenis_mesyuarat,
         value1: this.jenis_jawatankuasa,
       },
-
-
     });
     // this.isTable=true;
     // this.update();
@@ -189,8 +224,8 @@ export class EmeetingComponent implements OnInit {
           this.router.navigateByUrl("/dbkl/adminregister");
           localStorage.removeItem("AccessToken");
           localStorage.removeItem("user_type");
-          localStorage.setItem("isdbkl","false");
- 	  this.spinner.hide();
+          localStorage.setItem("isdbkl", "false");
+          this.spinner.hide();
         },
         (error) => {
           // console.log("error is", error["error"]);
