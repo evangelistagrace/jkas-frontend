@@ -301,6 +301,9 @@ export class MtkworkformComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Initialize forms first before other operations
+    this.initializeForms();
+    
     this.spinner.show();
     this.userrole = localStorage.getItem("roleforuser");
     this.isAdminType = localStorage.getItem("isAdmin");
@@ -489,7 +492,6 @@ export class MtkworkformComponent implements OnInit {
     const {
       coords: { latitude, longitude },
     } = position;
-    // console.log(latitude, longitude);
     this.latitude = latitude;
     this.longitude = longitude;
     this.area = this.latitude + this.longitude;
@@ -504,11 +506,17 @@ export class MtkworkformComponent implements OnInit {
       center: L.latLng(latitude, longitude),
     };
 
-    // L.marker([latitude, longitude], { icon: this.greenIcon }).bindPopup("latitute" + latitude, +"longitute" + longitude).addTo(this.map);
     this.mainform = false;
     this.mainform1 = false;
     this.mainform2 = false;
 
+    // Initialize forms if not already done
+    if (!this.registrationGroup) {
+      this.initializeForms();
+    }
+  }
+
+  private initializeForms() {
     this.registrationGroup = new FormGroup({
       nama: new FormControl("", [Validators.required]),
       alamat: new FormControl("", [Validators.required]),
@@ -522,28 +530,25 @@ export class MtkworkformComponent implements OnInit {
         Validators.pattern("^[0-9]{11}$"),
       ]),
       nofaksimili: new FormControl("", []),
-
       samberaduan: new FormControl("", [Validators.required]),
       lain_lain: new FormControl("", []),
       tarikhaduan: new FormControl("", [Validators.required]),
       tarikhterima: new FormControl("", [Validators.required]),
       lokasiaduan: new FormControl("", [Validators.required]),
       keteranganaduan: new FormControl("", [Validators.required]),
-
       zon: new FormControl("", []),
       parlimen: new FormControl("", []),
       tarikhsiasatan: new FormControl("", [Validators.required]),
       idpegawai: new FormControl("", [Validators.required]),
-
       laporansiasatan: new FormControl("", [Validators.required]),
       cause: new FormControl("", [Validators.required]),
       tindakan: new FormControl("", [Validators.required]),
-
       susulan: new FormControl("", [Validators.required]),
       ulasanKetua_unitf1: new FormControl("", []),
       ulasan: new FormControl("", []),
       ulasan1: new FormControl("", []),
     });
+
     this.registrationGroup1 = new FormGroup({
       zon1: new FormControl("", [Validators.required]),
       tarikhsiasatan1: new FormControl("", [Validators.required]),
@@ -554,13 +559,12 @@ export class MtkworkformComponent implements OnInit {
       ulasanpenyelia: new FormControl("", []),
       ulasan1: new FormControl("", []),
       ulasan11: new FormControl("", []),
-      //  ulasan_timbalan1:new FormControl("", [Validators.required]),
     });
+
     this.registrationGroup2 = new FormGroup({
       nama2: new FormControl("", [Validators.required]),
       alamat2: new FormControl("", [Validators.required]),
       norukujan2: new FormControl("", [Validators.required]),
-
       email2: new FormControl("", [
         Validators.required,
         Validators.pattern(
@@ -572,7 +576,6 @@ export class MtkworkformComponent implements OnInit {
         Validators.pattern("^[0-9]{11}$"),
       ]),
       nofaksimili2: new FormControl("", [Validators.required]),
-
       samberaduan2: new FormControl("", [Validators.required]),
       lain_lain2: new FormControl("", [Validators.required]),
       tarikhaduan2: new FormControl("", [Validators.required]),
@@ -649,7 +652,15 @@ export class MtkworkformComponent implements OnInit {
   }
 
   get f() {
-    return this.registrationGroup.controls;
+    return this.registrationGroup?.controls || {};
+  }
+
+  get f1() {
+    return this.registrationGroup1?.controls || {};
+  }
+
+  get f2() {
+    return this.registrationGroup2?.controls || {};
   }
 
   submit() {
@@ -747,9 +758,9 @@ export class MtkworkformComponent implements OnInit {
       );
   }
 
-  get f1() {
-    return this.registrationGroup1.controls;
-  }
+  // get f1() {
+  //   return this.registrationGroup1.controls;
+  // }
 
   submit1() {
     this.submitted1 = true;
@@ -827,9 +838,9 @@ export class MtkworkformComponent implements OnInit {
       );
   }
 
-  get f2() {
-    return this.registrationGroup2.controls;
-  }
+  // get f2() {
+  //   return this.registrationGroup2.controls;
+  // }
   submit2() {
     this.uploadSubmit2();
     this.submitted2 = true;
