@@ -2,55 +2,126 @@
 <app-topbar></app-topbar>
 <!-- End of Topbar -->
 <!-- Header -->
-<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+<div
+  class="container-fluid sticky-nav"
+  id=""
+  style="background-color: #f2f2f2 !important"
+>
   <div class="container-fluid" ngStickyNav>
     <nav class="navbar navbar-expand-lg">
       <a routerLink="/public" class="navbar-brand">
-        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+        <img
+          src="../../../assets/img/DBKL LOGO (Lorry).png"
+          alt=""
+          loading="lazy"
+        />
       </a>
 
-      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
-        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <i class="fa fa-bars text-white"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul *ngIf="isAdminType == 'admincounter'" class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <ul
+          *ngIf="isAdminType == 'admincounter'"
+          class="navbar-nav ml-auto mt-2 mt-lg-0"
+        >
           <li class="nav-item" style="list-style-type: none">
-            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@home">HOME</a>
+            <a
+              routerLink="/dbkl/dbklmainpage"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home"
+              >HOME</a
+            >
           </li>
           <li class="nav-item dropdown" id="user" style="list-style-type: none">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@n29">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n29"
+            >
               ADMIN-COUNTER
             </a>
 
             <div class="dropdown-menu">
-              <a class="dropdown-item" routerLink="/dbkl/dbkldata" style="color: white; cursor: pointer"
-                i18n="@@n1">Main Page</a>
-              <a routerLink="/dbkl/usermanagement" class="dropdown-item" style="color: white; cursor: pointer"
-                i18n="@@n2">User Management</a>
-              <a routerLink="/dbkl/applicationprocess" class="dropdown-item" style="color: white; cursor: pointer"
-                i18n="@@mainppss">Review of PPSPPA APPLICATION</a>
-              <a routerLink="/dbkl/inventorymanage" class="dropdown-item" style="color: white; cursor: pointer"
-                i18n="@@n4">Inventory Management</a>
-              <a routerLink="/dbkl/emeeting" class="dropdown-item" style="color: white; cursor: pointer"
-                i18n="@@n5">E-Meeting</a>
+              <a
+                class="dropdown-item"
+                routerLink="/dbkl/dbkldata"
+                style="color: white; cursor: pointer"
+                i18n="@@n1"
+                >Main Page</a
+              >
+              <a
+                routerLink="/dbkl/usermanagement"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n2"
+                >User Management</a
+              >
+              <a
+                routerLink="/dbkl/applicationprocess"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@mainppss"
+                >Review of PPSPPA APPLICATION</a
+              >
+              <a
+                routerLink="/dbkl/inventorymanage"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n4"
+                >Inventory Management</a
+              >
+              <a
+                routerLink="/dbkl/emeeting"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n5"
+                >E-Meeting</a
+              >
             </div>
           </li>
           <li class="nav-item dropdown" style="list-style-type: none">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+            >
               {{ username }}
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
-                i18n="@@Profile">Profile</a>
-              <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
-                i18n="@@jflogout">Logout</a>
+              <a
+                routerLink="/profileLog"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@Profile"
+                >Profile</a
+              >
+              <a
+                class="dropdown-item"
+                (click)="logout()"
+                style="color: white; cursor: pointer"
+                i18n="@@jflogout"
+                >Logout</a
+              >
             </div>
           </li>
         </ul>
@@ -81,28 +152,71 @@
       <form class="form-sizing" [formGroup]="newGroup">
         <div class="modal-body">
           <label for="select" i18n="@@em2"> Bil. Meeting</label>
-          <input type="text" class="form-control" id="inputEmail4" [(ngModel)]="bill_mesyuarat" name="bill_mesyuarat"
-            formControlName="bill_mesyuarat" [ngClass]="{ 'is-invalid': submitted && f.bill_mesyuarat.errors }" />
-          <div *ngIf="submitted && f.bill_mesyuarat.errors" class="invalid-feedback">
+          <select
+            class="browser-default custom-select form-control mb-2"
+            id="inputEmail4"
+            [(ngModel)]="bill_mesyuarat"
+            name="bill_mesyuarat"
+            formControlName="bill_mesyuarat"
+            [ngClass]="{ 'is-invalid': submitted && f.bill_mesyuarat.errors }"
+          >
+            <option value="" selected="" disabled="">
+              Sila Pilih Bil Mesyuarat
+            </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+          </select>
+          <div
+            *ngIf="submitted && f.bill_mesyuarat.errors"
+            class="invalid-feedback"
+          >
             <div *ngIf="f.bill_mesyuarat.errors.required" i18n="@@emvm">
               Please fill this required field.
             </div>
           </div>
 
           <label for="select" i18n="@@em3">Meeting Type</label>
-          <select class="browser-default custom-select form-control mb-2" id="select" [(ngModel)]="jenis_mesyuarat"
-            name="jenis_mesyuarat" formControlName="jenis_mesyuarat"
-            [ngClass]="{ 'is-invalid': submitted && f.jenis_mesyuarat.errors }">
+          <select
+            class="browser-default custom-select form-control mb-2"
+            id="select"
+            [(ngModel)]="jenis_mesyuarat"
+            name="jenis_mesyuarat"
+            formControlName="jenis_mesyuarat"
+            [ngClass]="{ 'is-invalid': submitted && f.jenis_mesyuarat.errors }"
+          >
             <option value="" selected="" disabled="" i18n="@@stmt">
               Select the Meeting Type
             </option>
-            <option i18n="@@general" value="Handover Committee Meeting Collection Service Area And Public Cleansing">
-              Handover Committee Meeting Collection Service Area And Public Cleansing</option>
-            <option i18n="@@period"
-              value="Performance Committee Meeting Payment For Collection Services And Public Cleansing">Performance
-              Committee Meeting Payment For Collection Services And Public Cleansing</option>
+            <option
+              i18n="@@general"
+              value="Handover Committee Meeting Collection Service Area And Public Cleansing"
+            >
+              Handover Committee Meeting Collection Service Area And Public
+              Cleansing
+            </option>
+            <option
+              i18n="@@period"
+              value="Performance Committee Meeting Payment For Collection Services And Public Cleansing"
+            >
+              Performance Committee Meeting Payment For Collection Services And
+              Public Cleansing
+            </option>
           </select>
-          <div *ngIf="submitted && f.jenis_mesyuarat.errors" class="invalid-feedback">
+          <div
+            *ngIf="submitted && f.jenis_mesyuarat.errors"
+            class="invalid-feedback"
+          >
             <div *ngIf="f.jenis_mesyuarat.errors.required" i18n="@@emvm">
               Please fill this required field.
             </div>
@@ -118,10 +232,21 @@
               <label for="select" i18n="@@em4">Type of Committee</label>
             </div>
             <div class="col-11">
-              <input type="text" class="form-control" id="jenisMesyuarat" [(ngModel)]="jenis_jawatankuasa"
-                name="jenis_jawatankuasa" formControlName="jenis_jawatankuasa"
-                [ngClass]="{ 'is-invalid': submitted && f.bill_mesyuarat.errors }" />
-              <div *ngIf="submitted && f.jenis_jawatankuasa.errors" class="invalid-feedback">
+              <input
+                type="text"
+                class="form-control"
+                id="jenisMesyuarat"
+                [(ngModel)]="jenis_jawatankuasa"
+                name="jenis_jawatankuasa"
+                formControlName="jenis_jawatankuasa"
+                [ngClass]="{
+                  'is-invalid': submitted && f.bill_mesyuarat.errors
+                }"
+              />
+              <div
+                *ngIf="submitted && f.jenis_jawatankuasa.errors"
+                class="invalid-feedback"
+              >
                 <div *ngIf="f.jenis_jawatankuasa.errors.required" i18n="@@emvm">
                   Please fill this required field.
                 </div>
@@ -130,17 +255,34 @@
           </div>
           <br />
           <div *ngIf="this.is1st" style="width: 625px">
-            <input type="text" class="form-control" name="jenis_jawatankuasa" id="inputEmail4"
-              [(ngModel)]="jenis_jawatankuasa" />
+            <input
+              type="text"
+              class="form-control"
+              name="jenis_jawatankuasa"
+              id="inputEmail4"
+              [(ngModel)]="jenis_jawatankuasa"
+            />
           </div>
           <div class="row">
             <div class="col-6">
-              <label for="textInput" class="inline-label" i18n="@@em5">Date of Meeting</label>
-              <input type="date" class="form-control" name="tarikh_mesyuarat" id="inputEmail4"
-                [(ngModel)]="tarikh_mesyuarat" formControlName="tarikh_mesyuarat" [ngClass]="{
+              <label for="textInput" class="inline-label" i18n="@@em5"
+                >Date of Meeting</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                name="tarikh_mesyuarat"
+                id="inputEmail4"
+                [(ngModel)]="tarikh_mesyuarat"
+                formControlName="tarikh_mesyuarat"
+                [ngClass]="{
                   'is-invalid': submitted && f.tarikh_mesyuarat.errors
-                }" />
-              <div *ngIf="submitted && f.tarikh_mesyuarat.errors" class="invalid-feedback">
+                }"
+              />
+              <div
+                *ngIf="submitted && f.tarikh_mesyuarat.errors"
+                class="invalid-feedback"
+              >
                 <div *ngIf="f.tarikh_mesyuarat.errors.required" i18n="@@emvm">
                   Please fill this required field.
                 </div>
@@ -148,24 +290,48 @@
             </div>
             <div class="col-6"></div>
             <div class="col-6">
-              <label for="textInput" class="inline-label" i18n="@@e7">Meeting Time</label>
-              <input type="time" class="form-control" name="masa_mesyuarat" id="inputEmail4"
-                [(ngModel)]="masa_mesyuarat" formControlName="masa_mesyuarat" [ngClass]="{
+              <label for="textInput" class="inline-label" i18n="@@e7"
+                >Meeting Time</label
+              >
+              <input
+                type="time"
+                class="form-control"
+                name="masa_mesyuarat"
+                id="inputEmail4"
+                [(ngModel)]="masa_mesyuarat"
+                formControlName="masa_mesyuarat"
+                [ngClass]="{
                   'is-invalid': submitted && f.masa_mesyuarat.errors
-                }" />
-              <div *ngIf="submitted && f.masa_mesyuarat.errors" class="invalid-feedback">
+                }"
+              />
+              <div
+                *ngIf="submitted && f.masa_mesyuarat.errors"
+                class="invalid-feedback"
+              >
                 <div *ngIf="f.masa_mesyuarat.errors.required" i18n="@@emvm">
                   Please fill this required field.
                 </div>
               </div>
             </div>
             <div class="col-6">
-              <label for="textInput" class="inline-label" i18n="@@em6">Until</label>
-              <input type="time" formControlName="hingga" class="form-control until" id="inputEmail4"
-                [(ngModel)]="hingga" name="hingga" [ngClass]="{
+              <label for="textInput" class="inline-label" i18n="@@em6"
+                >Until</label
+              >
+              <input
+                type="time"
+                formControlName="hingga"
+                class="form-control until"
+                id="inputEmail4"
+                [(ngModel)]="hingga"
+                name="hingga"
+                [ngClass]="{
                   'is-invalid': submitted && f.bill_mesyuarat.errors
-                }" />
-              <div *ngIf="submitted && f.hingga.errors" class="invalid-feedback">
+                }"
+              />
+              <div
+                *ngIf="submitted && f.hingga.errors"
+                class="invalid-feedback"
+              >
                 <div *ngIf="f.hingga.errors.required" i18n="@@emvm">
                   Please fill this required field.
                 </div>
@@ -175,7 +341,12 @@
           <div>&nbsp;</div>
 
           <div class="text-center">
-            <button class="look_for" type="button" (click)="search()" i18n="@@em8">
+            <button
+              class="look_for"
+              type="button"
+              (click)="search()"
+              i18n="@@em8"
+            >
               Search
             </button>
             <button class="look_for" type="submit" (click)="new()" i18n="@@em7">
@@ -185,16 +356,29 @@
         </div>
       </form>
 
-      <div class="container-fluid row input d-flex justify-content-center" id="tabl" *ngIf="this.isTable"
-        style="margin-top: 20px; margin-left: 1px">
+      <div
+        class="container-fluid row input d-flex justify-content-center"
+        id="tabl"
+        *ngIf="this.isTable"
+        style="margin-top: 20px; margin-left: 1px"
+      >
         <div class="col-12" style="overflow-x: scroll">
-          <ng2-smart-table [settings]="settings" [source]="data" (custom)="onCustomEvent($event)">
+          <ng2-smart-table
+            [settings]="settings"
+            [source]="data"
+            (custom)="onCustomEvent($event)"
+          >
           </ng2-smart-table>
         </div>
       </div>
 
-      <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
-        [fullScreen]="true">
+      <ngx-spinner
+        bdColor="rgba(0, 0, 0, 0.8)"
+        size="medium"
+        color="#253d84"
+        type="ball-clip-rotate-multiple"
+        [fullScreen]="true"
+      >
       </ngx-spinner>
     </div>
   </section>
@@ -203,5 +387,9 @@
 <!-- ======= Footer ======= -->
 <!-- End Footer -->
 <app-footer></app-footer>
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer; display: none"><i
-    class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>
