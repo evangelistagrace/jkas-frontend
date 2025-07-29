@@ -207,7 +207,7 @@ export class MerinyuanalysisComponent implements OnInit {
 
       const map: esri.Map = new EsriMap(mapProperties);
       const citiesLayer = new FeatureLayer({
-        url: "http://g-aset.dbkl.gov.my/gasset1/rest/services/ZAC/PARLIMEN_KL/MapServer/0",
+        url: "https://kluo.dbkl.gov.my/klgissvr/rest/services/Support_Layer_iwaste_MIL1/MapServer/3",
 
       });
       map.add(citiesLayer);

@@ -1,29 +1,29 @@
 var mapLayers = [
-  { label: 'BANDAR TUN RAZAK', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/BANDAR_TUN_RAZAK/MapServer', center: { y: 3.0911754, x: 101.7161946 } },
-  { label: 'BATU', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/BATU/MapServer', center: { y: 3.1927815, x: 101.6779529 } },
-  { label: 'BUKIT BINTANG', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/BUKIT_BINTANG/MapServer', center: { y: 3.1443954, x: 101.7029947 } },
-  { label: 'CHERAS', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/CHERAS/MapServer', center: { y: 3.1062989, x: 101.7204525 } },
-  { label: 'KEPONG', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/KEPONG/MapServer', center: { y: 3.2147088, x: 101.6332636 } },
-  { label: 'LEMBAH PANTAI', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/LEMBAH_PANTAI/MapServer', center: { y: 3.120926, x: 101.654274 } },
-  { label: 'SEGAMBUT', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/SEGAMBUT/MapServer', center: { y: 3.1918518, x: 101.6712445 } },
-  { label: 'SEPUTEH', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/SEPUTEH/MapServer', center: { y: 3.1150039, x: 101.6708962 } },
-  { label: 'SETIAWANGSA', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/SETIAWANGSA/MapServer', center: { y: 3.1829368, x: 101.7418409 } },
-  { label: 'TITIWANGSA', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/TITIWANGSA/MapServer', center: { y: 3.1775967, x: 101.7032149 } },
-  { label: 'WANGSA MAJU', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/WANGSA_MAJU/MapServer', center: { y: 3.199386, x: 101.7380007 } }
+  { label: 'BANDAR TUN RAZAK', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Bandar_Tun_Razak_MIL1/MapServer', center: { y: 3.0911754, x: 101.7161946 } },
+  { label: 'BATU', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Batu_MIL1/MapServer', center: { y: 3.1927815, x: 101.6779529 } },
+  { label: 'BUKIT BINTANG', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Bukit_Bintang_MIL1/MapServer', center: { y: 3.1443954, x: 101.7029947 } },
+  { label: 'CHERAS', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Cheras_MIL1/MapServer', center: { y: 3.1062989, x: 101.7204525 } },
+  { label: 'KEPONG', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Kepong_MIL1/MapServer', center: { y: 3.2147088, x: 101.6332636 } },
+  { label: 'LEMBAH PANTAI', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Lembah_Pantai_MIL1/MapServer', center: { y: 3.120926, x: 101.654274 } },
+  { label: 'SEGAMBUT', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Segambut_MIL1/MapServer', center: { y: 3.1918518, x: 101.6712445 } },
+  { label: 'SEPUTEH', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Seputeh_MIL1/MapServer', center: { y: 3.1150039, x: 101.6708962 } },
+  { label: 'SETIAWANGSA', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Setiawangsa_MIL1/MapServer', center: { y: 3.1829368, x: 101.7418409 } },
+  { label: 'TITIWANGSA', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Titiwangsa_MIL1/MapServer', center: { y: 3.1775967, x: 101.7032149 } },
+  { label: 'WANGSA MAJU', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/WangsaMaju_MIL1/MapServer', center: { y: 3.199386, x: 101.7380007 } }
 ]
 
 var featureLayers = [
-  { label: 'BANDAR TUN RAZAK', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/BANDAR_TUN_RAZAK/FeatureServer', center: { y: 3.0911754, x: 101.7161946 } },
-  { label: 'BATU', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/BATU/FeatureServer', center: { y: 3.1927815, x: 101.6779529 } },
-  { label: 'BUKIT BINTANG', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/BUKIT_BINTANG/FeatureServer', center: { y: 3.1443954, x: 101.7029947 } },
-  { label: 'CHERAS', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/CHERAS/FeatureServer', center: { y: 3.1062989, x: 101.7204525 } },
-  { label: 'KEPONG', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/KEPONG/FeatureServer', center: { y: 3.2147088, x: 101.6332636 } },
-  { label: 'LEMBAH PANTAI', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/LEMBAH_PANTAI/FeatureServer', center: { y: 3.120926, x: 101.654274 } },
-  { label: 'SEGAMBUT', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/SEGAMBUT/FeatureServer', center: { y: 3.1918518, x: 101.6712445 } },
-  { label: 'SEPUTEH', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/SEPUTEH/FeatureServer', center: { y: 3.1150039, x: 101.6708962 } },
-  { label: 'SETIAWANGSA', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/SETIAWANGSA/FeatureServer', center: { y: 3.1829368, x: 101.7418409 } },
-  { label: 'TITIWANGSA', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/TITIWANGSA/FeatureServer', center: { y: 3.1775967, x: 101.7032149 } },
-  { label: 'WANGSA MAJU', value: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/WANGSA_MAJU/FeatureServer', center: { y: 3.199386, x: 101.7380007 } }
+  { label: 'BANDAR TUN RAZAK', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Bandar_Tun_Razak_MIL1/FeatureServer', center: { y: 3.0911754, x: 101.7161946 } },
+  { label: 'BATU', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Batu_MIL1/FeatureServer', center: { y: 3.1927815, x: 101.6779529 } },
+  { label: 'BUKIT BINTANG', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Bukit_Bintang_MIL1/FeatureServer', center: { y: 3.1443954, x: 101.7029947 } },
+  { label: 'CHERAS', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Cheras_MIL1/FeatureServer', center: { y: 3.1062989, x: 101.7204525 } },
+  { label: 'KEPONG', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Kepong_MIL1/FeatureServer', center: { y: 3.2147088, x: 101.6332636 } },
+  { label: 'LEMBAH PANTAI', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Lembah_Pantai_MIL1/FeatureServer', center: { y: 3.120926, x: 101.654274 } },
+  { label: 'SEGAMBUT', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Segambut_MIL1/FeatureServer', center: { y: 3.1918518, x: 101.6712445 } },
+  { label: 'SEPUTEH', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Seputeh_MIL1/FeatureServer', center: { y: 3.1150039, x: 101.6708962 } },
+  { label: 'SETIAWANGSA', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Setiawangsa_MIL1/FeatureServer', center: { y: 3.1829368, x: 101.7418409 } },
+  { label: 'TITIWANGSA', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Titiwangsa_MIL1/FeatureServer', center: { y: 3.1775967, x: 101.7032149 } },
+  { label: 'WANGSA MAJU', value: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/WangsaMaju_MIL1/FeatureServer', center: { y: 3.199386, x: 101.7380007 } }
 ]
 
 var cleaningServiceInfo = [
@@ -142,13 +142,13 @@ var baseMapConfig = [
   { value: 'streets-relief-vector', title: '' }
 ]
 
-var parlimenURL = "http://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/BOUNDARY_PARLIMEN/MapServer/1"
+var parlimenURL = "https://kluo.dbkl.gov.my/klgissvr/rest/services/Support_Layer_iwaste_MIL1/MapServer/3"
 
 
 var gassetLayer = [
-  { type: 'basemap', name: 'baseMap', url: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/basemap2019/orthophoto2013/MapServer', label: 'Basemap DBKL' },
-  { name: 'dbklborder', url: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/Support/Base_Administration_Sept2018/MapServer/11', label: 'Sempadan WPKL' },
-  { name: 'jpph', url: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CADASTER2019/Cadaster_Parcel_2019/MapServer/0', label: 'JPPH Lot' },
-  { name: 'jupem', url: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/CADASTER2019/Cadaster_Parcel_2019/MapServer/1', label: 'LOT JUPEM 2015' },
-  { name: 'housing', url: 'http://g-aset.dbkl.gov.my/gasset1/rest/services/Support/Base_Administration_Sept2018/MapServer/7', label: 'Kawasan Perumahan /Taman' }
+  { type: 'basemap', name: 'baseMap', url: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Basemap_kl_MIL1/MapServer', label: 'Basemap DBKL' },
+  { name: 'dbklborder', url: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Sempadan_WPKL_MIL1/MapServer', label: 'Sempadan WPKL' },
+  { name: 'jpph', url: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Support_Layer_iwaste_MIL1/MapServer/1', label: 'JPPH Lot' },
+  { name: 'jupem', url: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Support_Layer_iwaste_MIL1/MapServer/0', label: 'LOT JUPEM 2015' },
+  { name: 'housing', url: 'https://kluo.dbkl.gov.my/klgissvr/rest/services/Support_Layer_iwaste_MIL1/MapServer/2', label: 'Kawasan Perumahan /Taman' }
 ]

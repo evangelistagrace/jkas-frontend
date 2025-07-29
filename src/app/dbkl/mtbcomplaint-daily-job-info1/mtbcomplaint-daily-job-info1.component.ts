@@ -518,23 +518,23 @@ export class MtbcomplaintDailyJobInfo1Component implements OnInit {
 
       const map: esri.Map = new EsriMap(mapProperties);
       const citiesLayer = new FeatureLayer({
-        url: "http://g-aset.dbkl.gov.my/gasset1/rest/services/ZAC/SEGAMBUT/MapServer ",
+        url: "https://kluo.dbkl.gov.my/klgissvr/rest/services/Segambut_MIL1/MapServer",
       });
       map.add(citiesLayer);
       const citiesLayer1 = new FeatureLayer({
-        url: "http://g-aset.dbkl.gov.my/gasset1/rest/services/ZAC/BATU/MapServer ",
+        url: "https://kluo.dbkl.gov.my/klgissvr/rest/services/Batu_MIL1/MapServer",
       });
       map.add(citiesLayer1);
       const citiesLayer2 = new FeatureLayer({
-        url: "http://g-aset.dbkl.gov.my/gasset1/rest/services/ZAC/KEPONG/MapServer",
+        url: "https://kluo.dbkl.gov.my/klgissvr/rest/services/Kepong_MIL1/MapServer",
       });
       map.add(citiesLayer2);
       const citiesLayer3 = new FeatureLayer({
-        url: "http://g-aset.dbkl.gov.my/gasset1/rest/services/ZAC/SEPUTEH/MapServer",
+        url: "https://kluo.dbkl.gov.my/klgissvr/rest/services/Seputeh_MIL1/MapServer",
       });
       map.add(citiesLayer2);
       const citiesLayer4 = new FeatureLayer({
-        url: "http://g-aset.dbkl.gov.my/gasset1/rest/services/ZAC/BUKIT_BINTANG/MapServer",
+        url: "https://kluo.dbkl.gov.my/klgissvr/rest/services/Bukit_Bintang_MIL1/MapServer",
       });
       map.add(citiesLayer4);
 
