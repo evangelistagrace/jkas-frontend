@@ -661,6 +661,7 @@ width: 100%;
   
   /* Modal Content */
   .modal1-content {
+    color: black;
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
