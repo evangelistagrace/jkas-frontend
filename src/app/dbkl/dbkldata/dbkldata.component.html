@@ -2,82 +2,34 @@
 <!-- End of Topbar -->
 <!-- Header -->
 <app-headerc></app-headerc>
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
-    [fullScreen]="true">
-    
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#253d84"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+>
 </ngx-spinner>
 <main id="main">
-    <!-- ======= Pricing Section ======= -->
-    
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-lg-3 col-md-3 mt-4 mt-md-0" data-aos="zoom-in">
-                    <div class="box featured" style="background-color: #FFC800;">
-                        <div class="row">
-                            <div class="down col-7">
-                                <h3 style="font-size: 24px">{{ data }} km<sup>2</sup></h3>
-                                <br />
-                                <h3 i18n="@@dd1">Total Service Area</h3>
-                            </div>
-                            <div class="down col-5">
-                                <img class="logo-proses" src="assets/img/locations.png" alt="" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <!-- ======= Pricing Section ======= -->
 
-                <div class="col-lg-3 col-md-3 mt-4 mt-md-0" data-aos="zoom-in">
-                    <div class="box featured" style="background-color: #0064F0;">
-                        <div class="row">
-                            <div class="down col-7">
-                                <h3 style="font-size: 24px">{{ data1 }}</h3>
-                                <br />
-                                <h3 i18n="@@dd2">Number of Permits</h3>
-                            </div>
-                            <div class="down col-5">
-                                <img class="logo-proses" src="assets/img/home.png" alt="" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <app-statistics
+        presentationMode="tiles"
+        [useApi]="true"
+      >
+      </app-statistics>
+    </div>
+  </section>
+  <!-- End Pricing Section -->
 
-                <div class="col-lg-3 col-md-3 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="150">
-                    <div class="box featured" style="background-color: #F01414;">
-                        <!-- <h3></h3> -->
-                        <div class="row">
-                            <div class="down col-7">
-                                <h3 style="font-size: 24px">{{ data2 }}</h3>
-                                <br />
-                                <h3 i18n="@@dd3">Total Public Cleansing</h3>
-                            </div>
-                            <div class="down col-5" style="margin-left: -5%">
-                                <img class="logo-proses" src="assets/img/sweeper.png" alt="" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-3 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="150">
-                    <div class="box featured" style="background-color: #33CC33;">
-                        <div class="row">
-                            <div class="down col-7">
-                                <h3 style="font-size: 24px">{{ data3 }}</h3>
-                                <br />
-                                <h3 i18n="@@dd4">Total Garbage Collection</h3>
-                            </div>
-                            <div class="down col-5" style="margin-left: -5%">
-                                <img class="logo-proses" src="assets/img/truck.png" alt="" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Pricing Section -->
-
-    <app-footer></app-footer>
-    <!-- End Footer -->
-   <a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i class="icofont-scroll-double-up"></i></a>
+  <app-footer></app-footer>
+  <!-- End Footer -->
+  <a
+    (click)="backtotop()"
+    class="back-to-top"
+    style="cursor: pointer; display: none"
+    ><i class="icofont-scroll-double-up"></i
+  ></a>
 </main>

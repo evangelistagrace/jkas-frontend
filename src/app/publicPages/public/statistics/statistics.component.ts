@@ -19,6 +19,7 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
   @Input() slidesPerView: number = 3;
   @Input() spaceeBetween: number = 30;
   @Input() useApi: boolean = false;
+  @Input() apiData: any = null;
 
   statistics: StatisticItem[] = [
     {
@@ -132,7 +133,7 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     if (this.useApi) {
       this.loadStatisticsFromApi();
-    }
+    } 
   }
 
   ngAfterViewInit(): void {
@@ -150,12 +151,44 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
 
     // You can implement multiple API calls here based on your needs
     // Example implementation:
+    // this.http
+    //   .get(`${this.basePublicUrl}/dbkl/getStatistics`, { headers })
+    //   .subscribe((res: any) => {
+    //     if (res && Array.isArray(res)) {
+    //       this.statistics = res;
+    //     }
+    //   });
+
     this.http
-      .get(`${this.basePublicUrl}/dbkl/getStatistics`, { headers })
+      .get(this.basePublicUrl + "/dbkl/getJumlahKawasanPerkhidmatan", {
+        headers: headers,
+      })
       .subscribe((res: any) => {
-        if (res && Array.isArray(res)) {
-          this.statistics = res;
-        }
+        this.statistics[0].count = res || 0; // Update the first statistic item
+      });
+
+    this.http
+      .get(this.basePublicUrl + "/dbkl/getJumlahPermis", {
+        headers: headers,
+      })
+      .subscribe((res: any) => {
+        this.statistics[1].count = res || 0; // Update the second statistic item
+      });
+
+    this.http
+      .get(this.basePublicUrl + "/dbkl/getJumlahPembersihanAwam", {
+        headers: headers,
+      })
+      .subscribe((res: any) => {
+        this.statistics[2].count = res || 0; // Update the third statistic item
+      });
+
+    this.http
+      .get(this.basePublicUrl + "/dbkl/getJumlahKutipanSampah", {
+        headers: headers,
+      })
+      .subscribe((res: any) => {
+        this.statistics[3].count = res || 0; // Update the fourth statistic item
       });
   }
 

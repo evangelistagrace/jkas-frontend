@@ -24,6 +24,8 @@ export class DbkldataComponent implements OnInit {
   data3: any;
   AccessToken: string;
   vdata: string;
+  // statisticsData: any = {};
+
   constructor(
     private http: HttpClient,
     private tservice: TableService,
@@ -33,7 +35,6 @@ export class DbkldataComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
     this.AccessToken = localStorage.getItem("AccessToken");
     window.scroll(0, 0);
     localStorage.setItem("path", "/dbkl/dbkldata");
@@ -42,42 +43,8 @@ export class DbkldataComponent implements OnInit {
       accept: "application/json",
     };
 
-    this.http
-      .get(this.baseUrl + "/dbkl/getJumlahKawasanPerkhidmatan", {
-        headers: headers,
-      })
-      .subscribe((res) => {
-        this.data = res;
-        //this.vdata=this.data+"km";
-        this.spinner.hide();
-      });
+    this.spinner.hide();
 
-    this.http
-      .get(this.baseUrl + "/dbkl/getJumlahPermis", {
-        headers: headers,
-      })
-      .subscribe((res) => {
-        this.data1 = res;
-        this.spinner.hide();
-      });
-
-    this.http
-      .get(this.baseUrl + "/dbkl/getJumlahPembersihanAwam", {
-        headers: headers,
-      })
-      .subscribe((res) => {
-        this.data2 = res;
-        this.spinner.hide();
-      });
-
-    this.http
-      .get(this.baseUrl + "/dbkl/getJumlahKutipanSampah", {
-        headers: headers,
-      })
-      .subscribe((res) => {
-        this.data3 = res;
-        this.spinner.hide();
-      });
   }
   backtotop() {
     window.scroll(0, 0);
@@ -102,8 +69,8 @@ export class DbkldataComponent implements OnInit {
           this.router.navigateByUrl("/dbkl/adminregister");
           localStorage.removeItem("AccessToken");
           localStorage.removeItem("user_type");
-          localStorage.setItem("isdbkl","false");
- 	  this.spinner.hide();
+          localStorage.setItem("isdbkl", "false");
+          this.spinner.hide();
         },
         (error) => {
           // console.log("error is", error["error"]);
