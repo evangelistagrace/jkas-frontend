@@ -109,7 +109,7 @@ export class PublicComponent {
     },
     {
       icon: 'bi bi-truck',
-      count: 32,
+      count: 2169,
       label: 'Jumlah Kutipan Sampah',
       duration: 1
     },
@@ -135,6 +135,60 @@ export class PublicComponent {
       icon: 'bi bi-geo-alt',
       count: 27,
       label: 'Keluasan TPKK Dan Jumlah TPKK',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-geo-alt',
+      count: 27,
+      label: 'Keluasan Kawasan Berumput (m2)',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-geo-alt',
+      count: 27,
+      label: 'Jumlah Panjang Longkang (m)',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-geo-alt',
+      count: 27,
+      label: 'Jumlah Panjang Jalan (m)',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-geo-alt',
+      count: 27,
+      label: 'Jumlah Tandas Awam',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-geo-alt',
+      count: 27,
+      label: 'Jumlah Hentian Teksi/Bas',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-geo-alt',
+      count: 27,
+      label: 'Jumlah Jejantas',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-geo-alt',
+      count: 27,
+      label: 'Jumlah Siar Kaki Berbumbung',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-geo-alt',
+      count: 27,
+      label: 'Keluasan Tempat Awam (m2)',
+      duration: 1
+    },
+    {
+      icon: 'bi bi-geo-alt',
+      count: 27,
+      label: 'Jumlah Lokasi Pasar Malam',
       duration: 1
     }
   ];
