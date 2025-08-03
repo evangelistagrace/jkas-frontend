@@ -83,6 +83,7 @@ import { MtkmapviewComponent } from "./dbkl/mtkmapview/mtkmapview.component";
 import { MtkcompoundformComponent } from "./dbkl/mtkcompoundform/mtkcompoundform.component";
 import { MtkworkformComponent } from "./dbkl/mtkworkform/mtkworkform.component";
 import { FooterComponent } from "./footer/footer.component";
+import { AdminAnnouncementsComponent } from './admin/admin-announcements/admin-announcements.component';
 
 const routes: Routes = [
   { path: "public", component: PublicComponent },
@@ -253,9 +254,7 @@ const routes: Routes = [
   { path: "dbkl/mtkmapview", component: MtkmapviewComponent, canActivate: [AuthGuard], },
   { path: "dbkl/mtkworkform", component: MtkworkformComponent, canActivate: [AuthGuard], },
   { path: "dbkl/mtkcompoundform", component: MtkcompoundformComponent, canActivate: [AuthGuard], },
-
-
-
+  { path: 'admin/announcements', component: AdminAnnouncementsComponent },
 ];
 
 const routerOptions: ExtraOptions = {

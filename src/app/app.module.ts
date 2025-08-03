@@ -157,6 +157,12 @@ import { RippleModule } from "primeng/ripple";
 import { TopbarV2Component } from "./topbar-v2/topbar-v2.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { FooterV2Component } from "./footer-v2/footer-v2.component";
+import { AdminAnnouncementsComponent } from "./admin/admin-announcements/admin-announcements.component";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { ToastModule } from "primeng/toast";
+import { DialogModule } from "primeng/dialog";
+import {EditorModule} from 'primeng/editor';
+import { QuillModule } from 'ngx-quill';
 
 registerLocaleData(enLocale, "en");
 registerLocaleData(msLocale, "ms");
@@ -277,6 +283,7 @@ registerLocaleData(msLocale, "ms");
     TopbarV2Component,
     NavbarComponent,
     FooterV2Component,
+    AdminAnnouncementsComponent,
   ],
   imports: [
     MatTableModule,
@@ -324,6 +331,11 @@ registerLocaleData(msLocale, "ms");
     CheckboxModule,
     RippleModule,
     RouterModule,
+    ConfirmDialogModule,
+    ToastModule,
+    DialogModule,
+    EditorModule,
+    QuillModule.forRoot()
     // RouterModule.forRoot([], {
     //   anchorScrolling: 'enabled',
     //   scrollPositionRestoration: 'enabled',

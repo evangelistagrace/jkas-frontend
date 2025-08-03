@@ -1,0 +1,358 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#253d84"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+></ngx-spinner>
+
+<app-topbar></app-topbar>
+<app-header></app-header>
+
+<main>
+  <section class="inspecting" id="inspecting">
+    <div class="card">
+      <!-- Page Header -->
+      <div class="p-mb-4">
+        <h1 class="p-text-center p-mb-0" i18n="@@adf">New Announcement</h1>
+        <!-- <p class="p-text-center p-text-secondary p-mt-1">Create and manage announcements</p> -->
+      </div>
+
+      <!-- Add Announcement Form -->
+      <div class="p-card p-mb-4">
+        <!-- <div class="p-card-header">
+          <h3 class="p-card-title p-mb-0">Create New Announcement</h3>
+        </div> -->
+        <div class="p-card-content">
+          <form [formGroup]="announcementForm" (ngSubmit)="onSubmit()">
+            <div class="p-fluid">
+              <!-- Announcement Heading Field -->
+              <div class="p-field p-mb-4">
+                <label for="heading" class="p-label-required" i18n="@@adf1">
+                  Announcement Heading
+                </label>
+                <input
+                  pInputText
+                  id="heading"
+                  formControlName="heading"
+                  placeholder="Enter announcement heading"
+                  [class.p-invalid]="submitted && announcementForm.get('heading')?.invalid"
+                />
+                <small
+                  class="p-error p-d-block"
+                  *ngIf="submitted && announcementForm.get('heading')?.errors?.['required']"
+                  i18n="@@notice2"
+                >
+                  Please fill this required field.
+                </small>
+              </div>
+
+              <!-- Announcement Content Field -->
+              <div class="p-field p-mb-4">
+                <label for="announcement" class="p-label-required" i18n="@@adf2">
+                  Announcement Content
+                </label>
+                <quill-editor 
+                  formControlName="announcement" 
+                  [styles]="{'height':'320px'}"
+                  [placeholder]="'Enter announcement details'"
+                  [modules]="quillModules"
+                  theme="snow"
+                ></quill-editor>
+
+                <small
+                  class="p-error p-d-block"
+                  *ngIf="submitted && announcementForm.get('announcement')?.errors?.['required']"
+                  i18n="@@notice2"
+                >
+                  Please fill this required field.
+                </small>
+              </div>
+
+              <!-- File Upload Field -->
+              <div class="p-field p-mb-4">
+                <label class="p-label">Image Upload (Optional)</label>
+                <div class="p-fileupload-wrapper">
+                  <div class="p-fileupload-choose">
+                    <input
+                      type="file"
+                      ng2FileSelect
+                      accept=".jpg,.png,.jpeg"
+                      [uploader]="uploader"
+                      multiple
+                      (change)="onFileSelect($event, uploader)"
+                      style="display: none;"
+                      #fileInput
+                    />
+                    <p-button
+                      label="Choose File"
+                      icon="pi pi-upload"
+                      severity="secondary"
+                      (click)="fileInput.click()"
+                      type="button"
+                      styleClass="p-button-sm"
+                    ></p-button>
+                  </div>
+                  <small class="p-text-secondary p-d-block p-mt-2">
+                    Supported formats: JPG, PNG, JPEG (Max size: 5MB)
+                  </small>
+                </div>
+
+                <!-- File List -->
+                <div *ngIf="uploader.queue.length > 0" class="p-mt-3">
+                  <div *ngFor="let item of uploader.queue" class="p-d-flex p-ai-center p-jc-between p-p-2 p-border-1 p-border-round p-mb-2">
+                    <div class="p-d-flex p-ai-center">
+                      <i class="pi pi-file p-mr-2 p-text-secondary"></i>
+                      <span class="p-text-sm">
+                        {{ item.file.name }} ({{ (item.file.size / 1000000).toFixed(2) }} MB)
+                      </span>
+                    </div>
+                    <p-button
+                      icon="pi pi-times"
+                      severity="danger"
+                      size="small"
+                      [text]="true"
+                      (click)="removeFile(item)"
+                      pTooltip="Remove file"
+                    ></p-button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="p-field">
+                <p-button
+                  label="Create Announcement"
+                  icon="pi pi-plus"
+                  type="submit"
+                  [disabled]="submitted && announcementForm.invalid"
+                  [loading]="submitted"
+                  styleClass="p-button-block"
+                ></p-button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Announcements List -->
+      <div class="p-card">
+        <div class="p-card-header">
+          <h1 class="p-text-center p-mb-3 mt-3" i18n="@@loa">Announcements List</h1>
+          <!-- <p class="p-text-secondary p-mt-1">Manage existing announcements</p> -->
+        </div>
+
+        <div class="p-card-content">
+          <!-- Actions Bar -->
+          <div class="p-d-flex p-jc-between p-ai-center p-mb-3">
+            <p-button
+              icon="pi pi-trash"
+              label="Delete Selected"
+              severity="danger"
+              (click)="deleteSelectedAnnouncements()"
+              [disabled]="!selectedAnnouncements || selectedAnnouncements.length === 0"
+              styleClass="p-button-sm"
+            ></p-button>
+            <span class="p-text-secondary p-text-sm">
+              {{ announcements?.length || 0 }} announcement(s) total
+            </span>
+          </div>
+
+        <p-table
+          [value]="announcements"
+          [(selection)]="selectedAnnouncements"
+          [paginator]="true"
+          [rows]="10"
+          [responsive]="true"
+          [scrollable]="true"
+          scrollHeight="400px"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 3rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+              </th>
+              <th pSortableColumn="announcement_id">
+                ID <p-sortIcon field="announcement_id"></p-sortIcon>
+              </th>
+              <th pSortableColumn="date">
+                Date <p-sortIcon field="date"></p-sortIcon>
+              </th>
+              <th pSortableColumn="announcement_heading">
+                Heading <p-sortIcon field="announcement_heading"></p-sortIcon>
+              </th>
+              <th>Announcement</th>
+              <th>Image</th>
+              <th>Actions</th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-announcement>
+            <tr>
+              <td>
+                <p-tableCheckbox [value]="announcement"></p-tableCheckbox>
+              </td>
+              <td>{{ announcement.announcement_id }}</td>
+              <td>{{ announcement.date }}</td>
+              <td>{{ announcement.announcement_heading }}</td>
+              <td>{{ announcement.announcement }}</td>
+              <td>
+                <a
+                  *ngIf="announcement.announcement_path"
+                  [href]="getImageUrl(announcement.announcement_path)"
+                  target="_blank"
+                >
+                  {{ announcement.announcement_path }}
+                </a>
+              </td>
+              <td>
+                <p-button
+                  icon="pi pi-pencil"
+                  severity="info"
+                  size="small"
+                  (click)="editAnnouncement(announcement)"
+                ></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        </div>
+      </div>
+      </div>
+  </section>
+
+  <app-footer></app-footer>
+</main>
+
+<!-- Update Dialog -->
+<p-dialog
+  header="Update Announcement"
+  [(visible)]="showUpdateDialog"
+  [modal]="true"
+  [responsive]="true"
+  [style]="{ width: '60vw', minWidth: '400px' }"
+  [maximizable]="true"
+  [closable]="true"
+>
+  <form [formGroup]="updateForm" (ngSubmit)="updateAnnouncement()">
+    <div class="p-fluid">
+      <!-- Update Heading Field -->
+      <div class="p-field p-mb-4">
+        <label for="updateHeading" class="p-label-required">
+          Announcement Heading
+        </label>
+        <input
+          pInputText
+          id="updateHeading"
+          formControlName="heading"
+          placeholder="Enter announcement heading"
+          [class.p-invalid]="updateForm.get('heading')?.invalid && updateForm.get('heading')?.touched"
+        />
+      </div>
+
+      <!-- Update Content Field -->
+      <div class="p-field p-mb-4">
+        <label for="updateAnnouncement" class="p-label-required">
+          Announcement Content
+        </label>
+        <quill-editor 
+          formControlName="announcement" 
+          [styles]="{'height':'280px'}"
+          [placeholder]="'Enter announcement details'"
+          [modules]="quillModules"
+          theme="snow"
+        ></quill-editor>
+      </div>
+
+      <!-- Update File Upload Field -->
+      <div class="p-field p-mb-4">
+        <label class="p-label">Image Upload (Optional)</label>
+        
+        <!-- Current File Display -->
+        <div *ngIf="editingAnnouncement?.announcement_path" class="p-mb-3">
+          <div class="p-d-flex p-ai-center p-p-2 p-border-1 p-border-round p-surface-100">
+            <i class="pi pi-image p-mr-2 p-text-secondary"></i>
+            <span class="p-text-sm p-mr-2">Current:</span>
+            <a
+              [href]="getImageUrl(editingAnnouncement.announcement_path)"
+              target="_blank"
+              class="p-text-primary p-text-sm"
+            >
+              {{ editingAnnouncement.announcement_path }}
+            </a>
+          </div>
+        </div>
+
+        <!-- File Upload -->
+        <div class="p-fileupload-wrapper">
+          <div class="p-fileupload-choose">
+            <input
+              type="file"
+              ng2FileSelect
+              accept=".jpg,.png,.jpeg"
+              [uploader]="uploader2"
+              multiple
+              style="display: none;"
+              #fileInputUpdate
+            />
+            <p-button
+              label="Choose New File"
+              icon="pi pi-upload"
+              severity="secondary"
+              (click)="fileInputUpdate.click()"
+              type="button"
+              styleClass="p-button-sm"
+            ></p-button>
+          </div>
+          <small class="p-text-secondary p-d-block p-mt-2">
+            Supported formats: JPG, PNG, JPEG (Max size: 5MB)
+          </small>
+        </div>
+
+        <!-- New File List -->
+        <div *ngIf="uploader2.queue.length > 0" class="p-mt-3">
+          <div *ngFor="let item of uploader2.queue" class="p-d-flex p-ai-center p-jc-between p-p-2 p-border-1 p-border-round p-mb-2">
+            <div class="p-d-flex p-ai-center">
+              <i class="pi pi-file p-mr-2 p-text-secondary"></i>
+              <span class="p-text-sm">
+                {{ item.file.name }} ({{ (item.file.size / 1000000).toFixed(2) }} MB)
+              </span>
+            </div>
+            <p-button
+              icon="pi pi-times"
+              severity="danger"
+              size="small"
+              [text]="true"
+              (click)="removeFile(item)"
+              pTooltip="Remove file"
+            ></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <div class="p-d-flex p-jc-end p-ai-center p-gap-2">
+      <p-button
+        label="Cancel"
+        icon="pi pi-times"
+        severity="secondary"
+        (click)="showUpdateDialog = false"
+        styleClass="p-button-sm"
+      ></p-button>
+      <p-button
+        label="Update Announcement"
+        icon="pi pi-check"
+        (click)="updateAnnouncement()"
+        styleClass="p-button-sm"
+      ></p-button>
+    </div>
+  </ng-template>
+</p-dialog>
+
+<!-- Toast Messages -->
+<p-toast></p-toast>
+
+<!-- Confirmation Dialog -->
+<p-confirmDialog></p-confirmDialog>

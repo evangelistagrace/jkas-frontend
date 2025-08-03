@@ -15,6 +15,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   currentPath: string = "";
   isPublicPage: boolean = false;
   routerSubscription: Subscription;
+  userRole: string = localStorage.getItem("roleforuser");
+
 
   // Navigation items structure for dynamic rendering
   navItems = [
@@ -95,6 +97,18 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       fragment: "galeri",
       showFor: ["public"],
     },
+    this.userRole === 'Superadmin' ? {
+      label: "Admin",
+      dropdown: true,
+      showFor: ["public"],
+      items: [
+        {
+          label: "Pengumuman",
+          path: "/admin/announcements",
+          showFor: ["public", "admin"],
+        },
+      ],
+    } : null,
   ];
 
   constructor(
