@@ -514,15 +514,15 @@ export class PublicComponent {
 
   initSwiper() {
     // Initialize all Swiper elements
-    const swiperEls = document.querySelectorAll('swiper-container');
-    
+    const swiperEls = document.querySelectorAll("swiper-container");
+
     // Wait for DOM to be ready
     setTimeout(() => {
-      swiperEls.forEach(swiperEl => {
+      swiperEls.forEach((swiperEl) => {
         // @ts-ignore - Using Swiper element API
         swiperEl.initialize();
       });
-      
+
       // Remove PureCounter initialization from here - it's now handled by the statistics component
     }, 100);
   }

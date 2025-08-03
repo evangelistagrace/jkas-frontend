@@ -1,5 +1,10 @@
 <!-- Carousel Mode -->
-<div *ngIf="presentationMode === 'carousel'" class="row gy-4" data-aos="fade-up" data-aos-delay="400">
+<div
+  *ngIf="presentationMode === 'carousel'"
+  class="row gy-4"
+  data-aos="fade-up"
+  data-aos-delay="400"
+>
   <swiper-container
     init="false"
     [attr.slides-per-view]="slidesPerView"
@@ -23,8 +28,11 @@
               [attr.data-purecounter-end]="stat.count"
               [attr.data-purecounter-duration]="stat.duration"
               class="purecounter"
-            >{{stat.count}}</span>
-            <p><strong>{{stat.label}}</strong></p>
+              >{{ stat.count }}</span
+            >
+            <p>
+              <strong>{{ stat.label }}</strong>
+            </p>
           </div>
         </div>
       </div>
@@ -33,7 +41,12 @@
 </div>
 
 <!-- Tiles Mode -->
-<div *ngIf="presentationMode === 'tiles'" class="row gy-4" data-aos="fade-up" data-aos-delay="400">
+<div
+  *ngIf="presentationMode === 'tiles'"
+  class="row gy-4"
+  data-aos="fade-up"
+  data-aos-delay="400"
+>
   <div class="col-lg-3 col-md-6" *ngFor="let stat of statistics">
     <div class="stats-item">
       <div class="stats-icon-wrapper">
@@ -45,8 +58,11 @@
           [attr.data-purecounter-end]="stat.count"
           [attr.data-purecounter-duration]="stat.duration"
           class="purecounter"
-        >{{stat.count}}</span>
-        <p><strong>{{stat.label}}</strong></p>
+          >{{ stat.count }}</span
+        >
+        <p>
+          <strong>{{ stat.label }}</strong>
+        </p>
       </div>
     </div>
   </div>
