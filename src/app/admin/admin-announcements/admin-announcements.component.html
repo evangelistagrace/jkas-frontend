@@ -162,10 +162,11 @@
           [value]="announcements"
           [(selection)]="selectedAnnouncements"
           [paginator]="true"
-          [rows]="10"
+          [rows]="rows"
+          [rowsPerPageOptions]="rowsPerPageOptions"
+          [showCurrentPageReport]="true"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} announcements"
           [responsive]="true"
-          [scrollable]="true"
-          scrollHeight="400px"
         >
           <ng-template pTemplate="header">
             <tr>
@@ -197,13 +198,20 @@
               <td>{{ announcement.announcement_heading }}</td>
               <td>{{ announcement.announcement }}</td>
               <td>
-                <a
-                  *ngIf="announcement.announcement_path"
-                  [href]="getImageUrl(announcement.announcement_path)"
-                  target="_blank"
-                >
-                  {{ announcement.announcement_path }}
-                </a>
+                <div *ngIf="announcement.announcement_path; else noImage">
+                  <img 
+                    [src]="getImageUrl(announcement.announcement_path)" 
+                    [alt]="announcement.announcement_heading"
+                    class="announcement-image p-mb-2"
+                    style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px; cursor: pointer;"
+                    (click)="viewImage(announcement.announcement_path)"
+                  />
+                  <br>
+                  <small class="p-text-secondary">{{ announcement.announcement_path }}</small>
+                </div>
+                <ng-template #noImage>
+                  <span class="p-text-secondary">No image</span>
+                </ng-template>
               </td>
               <td>
                 <p-button

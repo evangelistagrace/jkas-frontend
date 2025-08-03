@@ -21,6 +21,10 @@ export class AdminAnnouncementsComponent implements OnInit {
   updateForm: FormGroup;
   announcements: any[] = [];
   selectedAnnouncements: any[] = [];
+  
+  // Pagination properties
+  rows: number = 5;
+  rowsPerPageOptions: number[] = [5, 10, 15, 20];
 
   lang: string;
   submitted: boolean = false;
@@ -198,6 +202,7 @@ export class AdminAnnouncementsComponent implements OnInit {
             this.announcementForm.reset();
             this.submitted = false;
             this.loadAnnouncements();
+            this.selectedAnnouncements = []; // Clear selection after adding
           }
         },
         (error) => {
@@ -291,6 +296,7 @@ export class AdminAnnouncementsComponent implements OnInit {
             });
             this.showUpdateDialog = false;
             this.loadAnnouncements();
+            this.selectedAnnouncements = []; // Clear selection after update
           }
         },
         (error) => {
@@ -381,7 +387,18 @@ export class AdminAnnouncementsComponent implements OnInit {
   }
 
   getImageUrl(path: string): string {
-    return `${environment.basePublicUrl}/assets/public/images/${path}`;
+    return `${environment.basePublicUrl}/jkas_resourses/free/images/${path}`;
+  }
+
+  viewImage(imagePath: string) {
+    // Open image in new tab
+    window.open(this.getImageUrl(imagePath), '_blank');
+  }
+
+  onImageError(event: any) {
+    // Handle image load errors
+    event.target.src = 'assets/images/no-image-placeholder.png';
+    event.target.alt = 'Image not found';
   }
 
   onFileSelect(event: any, uploader: FileUploader) {
