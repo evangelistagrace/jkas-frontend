@@ -163,6 +163,7 @@ import { ToastModule } from "primeng/toast";
 import { DialogModule } from "primeng/dialog";
 import {EditorModule} from 'primeng/editor';
 import { QuillModule } from 'ngx-quill';
+import {StatisticsComponent} from "./publicPages/public/statistics/statistics.component";
 
 registerLocaleData(enLocale, "en");
 registerLocaleData(msLocale, "ms");
@@ -284,6 +285,7 @@ registerLocaleData(msLocale, "ms");
     NavbarComponent,
     FooterV2Component,
     AdminAnnouncementsComponent,
+    StatisticsComponent
   ],
   imports: [
     MatTableModule,

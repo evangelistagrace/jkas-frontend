@@ -88,110 +88,6 @@ export class PublicComponent {
     "../../../assets/img/9.jpg",
     "../../../assets/img/10.jpg",
   ];
-  statistics = [
-    {
-      icon: 'bi bi-pin-map',
-      count: 232,
-      label: 'Jumlah Kawasan Perkhidmatan',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-house',
-      count: 521,
-      label: 'Jumlah Premis',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-tree',
-      count: 1453,
-      label: 'Bilangan Servis Pembersihan Awam',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-truck',
-      count: 2169,
-      label: 'Jumlah Kutipan Sampah',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-map',
-      count: 621,
-      label: 'Keluasan Kawasan Kuala Lumpur (M2)',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-recycle',
-      count: 273,
-      label: 'Jumlah Kutipan Isi Rumah/Komersial',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-trash',
-      count: 1113,
-      label: 'Jumlah Pusat Tong',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-geo-alt',
-      count: 27,
-      label: 'Keluasan TPKK Dan Jumlah TPKK',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-geo-alt',
-      count: 27,
-      label: 'Keluasan Kawasan Berumput (m2)',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-geo-alt',
-      count: 27,
-      label: 'Jumlah Panjang Longkang (m)',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-geo-alt',
-      count: 27,
-      label: 'Jumlah Panjang Jalan (m)',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-geo-alt',
-      count: 27,
-      label: 'Jumlah Tandas Awam',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-geo-alt',
-      count: 27,
-      label: 'Jumlah Hentian Teksi/Bas',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-geo-alt',
-      count: 27,
-      label: 'Jumlah Jejantas',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-geo-alt',
-      count: 27,
-      label: 'Jumlah Siar Kaki Berbumbung',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-geo-alt',
-      count: 27,
-      label: 'Keluasan Tempat Awam (m2)',
-      duration: 1
-    },
-    {
-      icon: 'bi bi-geo-alt',
-      count: 27,
-      label: 'Jumlah Lokasi Pasar Malam',
-      duration: 1
-    }
-  ];
   @ViewChild("bgVideo") videoPlayer: ElementRef;
 
   constructor(
@@ -627,10 +523,7 @@ export class PublicComponent {
         swiperEl.initialize();
       });
       
-      // Initialize PureCounter after Swiper is initialized
-      if (typeof window !== 'undefined' && typeof (window as any).PureCounter === 'function') {
-        new (window as any).PureCounter();
-      }
+      // Remove PureCounter initialization from here - it's now handled by the statistics component
     }, 100);
   }
 }
