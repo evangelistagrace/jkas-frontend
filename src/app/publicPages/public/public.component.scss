@@ -1,4 +1,4 @@
-@import '~/src/custom-theme.scss';
+@import "~/src/custom-theme.scss";
 
 :root {
   --custom-dark: #365968;
@@ -117,7 +117,7 @@
 h6.brand-heading,
 h6.intro-text {
   color: white;
-  font-size: 29px; 
+  font-size: 29px;
   margin: 4rem 0;
 }
 
@@ -280,7 +280,6 @@ swiper-slide:hover .carousel-img {
 
 /* Add to your component's CSS file */
 
-
 .stats-item {
   background: #fff;
   padding: 30px;
@@ -292,7 +291,7 @@ swiper-slide:hover .carousel-img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -308,7 +307,7 @@ swiper-slide:hover .carousel-img {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   i {
     font-size: 36px;
     color: $leaf-green;
@@ -317,7 +316,7 @@ swiper-slide:hover .carousel-img {
 
 .stats-content {
   width: 100%;
-  
+
   .purecounter {
     display: block;
     font-size: 42px;
@@ -325,14 +324,24 @@ swiper-slide:hover .carousel-img {
     color: $leaf-green;
     margin-bottom: 10px;
   }
-  
+
   p {
     margin: 0;
     font-size: 16px;
     color: #444;
-    
+
     strong {
       font-weight: 600;
     }
+  }
+}
+@media (min-width: 768px) {
+  .masthead .intro-body .brand-heading {
+    // font-size: 100px;
+    font-size: 110px;
+  }
+  .masthead .intro-body .intro-text {
+    // font-size: 22px;
+    font-size: 27px;
   }
 }
