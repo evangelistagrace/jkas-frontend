@@ -1,13 +1,11 @@
 <!-- announcements.component.html -->
 <div class="announcements-container">
-  <!-- <h2 class="section-title">Pengumuman Terkini</h2> -->
-
   <!-- Date Range Filter -->
-  <!-- <div class="date-filter"> -->
   <div class="row">
-    <form [formGroup]="filterForm" class="date-filter-form d-flex justify-content-end p-3">
-      <!-- <div class="filter-group">
-        <label for="dateRange">Tapis mengikut tarikh:</label> -->
+    <form
+      [formGroup]="filterForm"
+      class="date-filter-form d-flex justify-content-end p-3"
+    >
       <p-calendar
         id="dateRange"
         formControlName="rangeDates"
@@ -30,29 +28,22 @@
       >
         Kosongkan
       </button>
-      <!-- </div> -->
     </form>
-
-    <!-- <div
-      class="active-filter-info"
-      *ngIf="dateRange.startDate && dateRange.endDate"
-    >
-      <span
-        >Menunjukkan pengumuman dari
-        {{ dateRange.startDate | date : "dd/MM/yyyy" }} hingga
-        {{ dateRange.endDate | date : "dd/MM/yyyy" }}</span
-      >
-    </div> -->
   </div>
-
-  <!-- </div> -->
 
   <div class="announcements-list">
     <div *ngFor="let announcement of announcements" class="announcement-card">
       <div class="announcement-date">{{ formatDate(announcement.date) }}</div>
-      <h3 class="announcement-title">{{ announcement.title }}</h3>
-      <p class="announcement-summary">{{ announcement.summary }}</p>
-      <button class="btn-read-more" (click)="openAnnouncement(announcement.id)">
+      <h3 class="announcement-title">
+        {{ announcement.announcement_heading }}
+      </h3>
+      <p class="announcement-summary">
+        {{ truncateText(announcement.announcement) }}
+      </p>
+      <button
+        class="btn-read-more"
+        (click)="openAnnouncement(announcement.announcement_id)"
+      >
         Baca Selanjutnya
       </button>
     </div>
@@ -70,7 +61,7 @@
         (click)="onPageChange(currentPage - 1)"
         class="pagination-btn"
       >
-      <i class="pi pi-chevron-left"></i>
+        <i class="pi pi-chevron-left"></i>
       </button>
 
       <ng-container
@@ -90,7 +81,7 @@
         (click)="onPageChange(currentPage + 1)"
         class="pagination-btn"
       >
-      <i class="pi pi-chevron-right"></i>
+        <i class="pi pi-chevron-right"></i>
       </button>
     </div>
   </div>
@@ -109,30 +100,23 @@
           {{ formatDate(selectedAnnouncement.date) }}
         </div>
         <h2 class="full-announcement-title">
-          {{ selectedAnnouncement.title }}
+          {{ selectedAnnouncement.announcement_heading }}
         </h2>
 
         <div
-          class="announcement-metadata"
-          *ngIf="selectedAnnouncement.department"
-        >
-          <span class="department-label">Jabatan:</span>
-          {{ selectedAnnouncement.department }}
-        </div>
-
-        <div class="announcement-content">
-          {{ selectedAnnouncement.content }}
-        </div>
+          class="announcement-content"
+          [innerHTML]="selectedAnnouncement.announcement"
+        ></div>
 
         <div
-          class="announcement-tags"
-          *ngIf="
-            selectedAnnouncement.tags && selectedAnnouncement.tags.length > 0
-          "
+          class="announcement-image"
+          *ngIf="selectedAnnouncement.announcement_path"
         >
-          <span class="tag" *ngFor="let tag of selectedAnnouncement.tags">{{
-            tag
-          }}</span>
+          <img
+            [src]="getImageUrl(selectedAnnouncement.announcement_path)"
+            [alt]="selectedAnnouncement.announcement_heading"
+            style="max-width: 100%; height: auto; border-radius: 4px"
+          />
         </div>
       </div>
     </div>
