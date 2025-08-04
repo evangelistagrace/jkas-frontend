@@ -10,7 +10,7 @@
     "build-locale:en": "ng build --configuration production --build-optimizer --vendor-chunk --common-chunk --i18n-locale en --i18n-format xlf --i18n-file src/i18n/messages.en.xlf  --output-path=dist/en --baseHref /en/",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider ng build",
     "build:prod": "npm run build -- --configuration production --aot",
     "build-serve": "node --max_old_space_size=8048 ./node_modules/@angular/cli/bin/ng build --optimization=false --configuration=ms --base-href=/ms/",
     "translation:extract": "ng extract-i18n --output-path src/i18n",
