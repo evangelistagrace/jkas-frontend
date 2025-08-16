@@ -78,15 +78,15 @@ export class PublicComponent {
   path2: any;
   imagelink: any;
   images = [
-    "../../../assets/img/2.jpg",
-    "../../../assets/img/3.jpg",
-    "../../../assets/img/4.jpg",
-    "../../../assets/img/5.jpg",
-    "../../../assets/img/6.jpg",
-    "../../../assets/img/7.jpg",
-    "../../../assets/img/8.jpg",
-    "../../../assets/img/9.jpg",
-    "../../../assets/img/10.jpg",
+    "assets/img/2.jpg",
+    "assets/img/3.jpg",
+    "assets/img/4.jpg",
+    "assets/img/5.jpg",
+    "assets/img/6.jpg",
+    "assets/img/7.jpg",
+    "assets/img/8.jpg",
+    "assets/img/9.jpg",
+    "assets/img/10.jpg",
   ];
   @ViewChild("bgVideo") videoPlayer: ElementRef;
 
