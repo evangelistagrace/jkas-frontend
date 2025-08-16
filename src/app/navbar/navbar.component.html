@@ -36,38 +36,38 @@
           <li
             *ngIf="shouldShowNavItem(item)"
             class="nav-item nav-link js-scroll-trigger"
-            [class.dropdown]="item.dropdown"
+            [class.dropdown]="item?.dropdown"
           >
             <!-- Regular nav item -->
-            <ng-container *ngIf="!item.dropdown">
+            <ng-container *ngIf="!item?.dropdown">
               <!-- Navigation item with onClick action -->
               <a
-                *ngIf="item.onClick"
+                *ngIf="item?.onClick"
                 href="javascript:void(0);"
                 class="nav-link js-scroll-trigger"
-                (click)="handleNavItemClick(item.onClick)"
+                (click)="handleNavItemClick(item?.onClick)"
               >
-                {{ item.label }}
+                {{ item?.label }}
               </a>
               <!-- Regular navigation item with routerLink -->
               <a
-                *ngIf="!item.onClick"
-                [routerLink]="item.path ? [item.path] : []"
-                [fragment]="item.fragment"
+                *ngIf="!item?.onClick"
+                [routerLink]="item?.path ? [item?.path] : []"
+                [fragment]="item?.fragment"
                 class="nav-link js-scroll-trigger"
               >
-                {{ item.label }}
+                {{ item?.label }}
               </a>
             </ng-container>
 
             <!-- Dropdown nav item -->
-            <ng-container *ngIf="item.dropdown">
+            <ng-container *ngIf="item?.dropdown">
               <a
                 class="dropdown-toggle nav-link"
                 aria-expanded="false"
                 data-toggle="dropdown"
               >
-                {{ item.label }}
+                {{ item?.label }}
               </a>
               <div class="dropdown-menu">
                 <ng-container *ngFor="let subItem of item.items">
@@ -75,27 +75,27 @@
                     <!-- Regular dropdown item -->
                     <!-- For subItem that's not a dropdown but has externalPath (PDF file) -->
                     <a
-                      *ngIf="!subItem.dropdown && subItem.externalPath"
+                      *ngIf="!subItem?.dropdown && subItem.externalPath"
                       class="dropdown-item"
                       href="javascript:void(0);"
                       (click)="handlePdfClick(subItem.externalPath)"
                     >
-                      {{ subItem.label }}
+                      {{ subItem?.label }}
                     </a>
 
                     <!-- For subItem that's not a dropdown and not externalPath (normal navigation) -->
                     <a
-                      *ngIf="!subItem.dropdown && !subItem.externalPath"
+                      *ngIf="!subItem?.dropdown && !subItem.externalPath"
                       class="dropdown-item"
-                      [routerLink]="subItem.path ? [subItem.path] : []"
-                      [fragment]="subItem.fragment"
+                      [routerLink]="subItem?.path ? [subItem?.path] : []"
+                      [fragment]="subItem?.fragment"
                     >
-                      {{ subItem.label }}
+                      {{ subItem?.label }}
                     </a>
                     <!-- Nested dropdown submenu -->
-                    <div *ngIf="subItem.dropdown" class="dropdown-submenu">
+                    <div *ngIf="subItem?.dropdown" class="dropdown-submenu">
                       <a class="dropdown-item dropdown-toggle">{{
-                        subItem.label
+                        subItem?.label
                       }}</a>
                       <div class="dropdown-menu">
                         <a
@@ -107,16 +107,16 @@
                               : null
                           "
                           [routerLink]="
-                            nestedItem.path ? [nestedItem.path] : null
+                            nestedItem?.path ? [nestedItem?.path] : null
                           "
-                          [fragment]="nestedItem.fragment"
+                          [fragment]="nestedItem?.fragment"
                           (click)="
                             nestedItem.externalPath
                               ? handlePdfClick(nestedItem.externalPath)
                               : null
                           "
                         >
-                          {{ nestedItem.label }}
+                          {{ nestedItem?.label }}
                         </a>
                       </div>
                     </div>

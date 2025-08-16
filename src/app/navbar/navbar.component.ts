@@ -207,7 +207,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   shouldShowNavItem(navItem: any): boolean {
-    if (!navItem.showFor) return true;
+    if (!navItem?.showFor) return true;
 
     if (this.isPublicPage && navItem.showFor.includes("public")) {
       return true;
