@@ -188,7 +188,7 @@
             styleClass="p-datatable-responsive-demo"
             [globalFilterFields]="['no_siri_permohonan', 'tarikh_permohonan']"
           >
-            <ng-template pTemplate="caption">
+            <!-- <ng-template pTemplate="caption">
               <div class="table-header d-flex justify-content-end">
                 <span class="p-input-icon-left">
                   <i class="pi pi-search"></i>
@@ -200,19 +200,24 @@
                   />
                 </span>
               </div>
-            </ng-template>
+            </ng-template> -->
             <ng-template pTemplate="header">
               <tr>
                 <th style="width: 3rem">
                   <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th>1.NO SIRI PERMOHONAN</th>
-                <th>2.TARIKH PERMOHONAN</th>
-                <th>3.STATUS SEMAKAN DOKUMEN</th>
-                <th>4.MESYUARAT PERMOHONAN SERAHAN KAWASAN</th>
-                <th>5.TETAPAN LAWATAN TAPAK</th>
-                <th>6.SURAT PENYERAHAN KAWASAN</th>
-                <th style="width: 8rem">TINDAKAN</th>
+                <th>NO SIRI PERMOHONAN</th>
+                <th>TARIKH PERMOHONAN</th>
+                <th>STATUS DOKUMEN PERMOHONAN</th>
+                <th>TETAPAN LAWATAN TAPAK</th>
+                <!-- <th>E-MESYUARAT</th> -->
+                <th>KEPUTUSAN LAWATAN TAPAK</th>
+                <th>MAKLUMBALAS KETIDAKPATUHAN</th>
+                <!-- <th>SENARAI KAWASAN - RIC/SLC</th>
+                <th>MINIT MESYUARAT RIC/SLC</th> -->
+                <th>KEPUTUSAN PERMOHONAN</th>
+                <th>CATATAN</th>
+                <!-- <th style="width: 8rem">TINDAKAN</th> -->
               </tr>
               <tr>
                 <th></th>
@@ -280,7 +285,7 @@
                   <!-- Add filter for Tetapan Lawatan Tapak -->
                   <p-columnFilter
                     type="boolean"
-                    field="maklumat_lawatan_tapak_id"
+                    field="site_visit_info.keputusan_lawatan_tapak"
                   >
                     <ng-template pTemplate="filter" let-filter="filterCallback">
                       <p-dropdown
@@ -302,6 +307,7 @@
                 </th>
                 <th></th>
                 <th></th>
+                <th></th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData>
@@ -315,27 +321,7 @@
                   {{
                     rowData.status_semakan_dokumen ? "Lengkap" : "Tidak Lengkap"
                   }}
-                </td>
-                <td>
-                  <app-meetingmodal
-                    [value]="rowData.no_siri_permohonan"
-                    [getMeetingData]="meetingData"
-                  ></app-meetingmodal>
-                </td>
-                <td>
-                  <a
-                    [routerLink]="['dbkl/dbklsitevisit']"
-                    [queryParams]="{ id: rowData.no_siri_permohonan }"
-                    >Kemaskini Maklumat</a
-                  >
-                </td>
-                <td>
-                  <app-dbklppsppa
-                    [value]="rowData.no_siri_permohonan"
-                    [getData]="data"
-                  ></app-dbklppsppa>
-                </td>
-                <td>
+                  <br />
                   <button
                     pButton
                     pRipple
@@ -345,6 +331,47 @@
                     (click)="routeToUpdateApplicationForm(rowData)"
                   ></button>
                 </td>
+                <td>
+                  <!-- <app-meetingmodal
+                    [value]="rowData.no_siri_permohonan"
+                    [getMeetingData]="meetingData"
+                  ></app-meetingmodal> -->
+                  Tarikh: {{ rowData.site_visit_info.tarikh | date : "dd MMM yyyy" }}
+                  Masa: {{ rowData.site_visit_info.tarikh | date : "HH:mm" }}
+                </td>
+                <td>
+                  <!-- <a
+                    [routerLink]="['dbkl/dbklsitevisit']"
+                    [queryParams]="{ id: rowData.no_siri_permohonan }"
+                    >Kemaskini Maklumat</a
+                  > -->
+                  {{ rowData.site_visit_info.keputusan_lawatan_tapak  }}
+                </td>
+                <td>
+                  <!-- <app-dbklppsppa
+                    [value]="rowData.no_siri_permohonan"
+                    [getData]="data"
+                  ></app-dbklppsppa> -->
+                  {{ rowData.site_visit_info.maklum_balas_ketidakpatuhan }}
+                </td>
+                <td>
+                  {{ rowData.status_keputusan_permohonan }}
+                  <br>
+                  Tarikh Serahan: {{ rowData.tarikh_keputusan_permohonan }}
+                </td>
+                <td>
+                  {{ rowData.catatan }}
+                </td>
+                <!-- <td>
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-edit"
+                    class="p-button-rounded p-button-text"
+                    (click)="routeToUpdateApplicationForm(rowData)"
+                  ></button>
+                </td> -->
               </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">

@@ -175,7 +175,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
     };
 
     this.http
-      .get(this.basePublicUrl + "/dbkl/getPublicApplicationList", {
+      .get(this.basePublicUrl + "/dbkl/getPublicApplicationList2", {
         headers: headers,
       })
       .subscribe(
@@ -282,7 +282,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
     localStorage.setItem("date", this.keyValue.tarikh_permohonan);
     this.spinner.hide();
     this.router.navigateByUrl(
-      "dbkl/dbklchecklist?id=" + this.keyValue.dokumen_senarai
+      "dbkl/dbklchecklist?id=" + this.keyValue.no_siri_permohonan
     );
   }
 
@@ -458,8 +458,8 @@ export class PsppaapplicationproccessComponent implements OnInit {
 
   // Add options for Tetapan Lawatan Tapak filter
   lawatanOptions = [
-    { label: "Ada Lawatan", value: true },
-    { label: "Tiada Lawatan", value: false },
+    { label: "Patuh", value: 'Patuh' },
+    { label: "Tidak Patuh", value: 'Tidak Patuh' },
   ];
 
   // Add property for the filter
@@ -467,6 +467,6 @@ export class PsppaapplicationproccessComponent implements OnInit {
 
   // Add filter method for Tetapan Lawatan Tapak
   onFilterLawatan(value: any) {
-    this.table.filter(value, "maklumat_lawatan_tapak_id", "equals");
+    this.table.filter(value, "site_visit_info.keputusan_lawatan_tapak", "equals");
   }
 }
