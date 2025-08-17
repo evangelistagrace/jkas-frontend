@@ -59,6 +59,8 @@ import { DbklchecklistComponent } from "./dbkl/dbklchecklist/dbklchecklist.compo
 import { DbklnoncomplianceComponent } from "./dbkl/dbklnoncompliance/dbklnoncompliance.component";
 import { DbklsitevisitComponent } from "./dbkl/dbklsitevisit/dbklsitevisit.component";
 import { PsppaapplicationproccessComponent } from "./dbkl/psppaapplicationproccess/psppaapplicationproccess.component";
+import { PsppaapplicationproccessBakComponent } from "./dbkl/psppaapplicationproccess-bak/psppaapplicationproccess-bak.component";
+
 import { EdituserinventoryComponent } from "./dbkl/edituserinventory/edituserinventory.component";
 import { InventorymanagmentComponent } from "./dbkl/inventorymanagment/inventorymanagment.component";
 import { OmpbaruComponent } from "./dbkl/ompbaru/ompbaru.component";
@@ -161,9 +163,9 @@ import { AdminAnnouncementsComponent } from "./admin/admin-announcements/admin-a
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { ToastModule } from "primeng/toast";
 import { DialogModule } from "primeng/dialog";
-import {EditorModule} from 'primeng/editor';
-import { QuillModule } from 'ngx-quill';
-import {StatisticsComponent} from "./publicPages/public/statistics/statistics.component";
+import { EditorModule } from "primeng/editor";
+import { QuillModule } from "ngx-quill";
+import { StatisticsComponent } from "./publicPages/public/statistics/statistics.component";
 
 registerLocaleData(enLocale, "en");
 registerLocaleData(msLocale, "ms");
@@ -285,7 +287,8 @@ registerLocaleData(msLocale, "ms");
     NavbarComponent,
     FooterV2Component,
     AdminAnnouncementsComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    PsppaapplicationproccessBakComponent
   ],
   imports: [
     MatTableModule,
@@ -337,7 +340,7 @@ registerLocaleData(msLocale, "ms");
     ToastModule,
     DialogModule,
     EditorModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
     // RouterModule.forRoot([], {
     //   anchorScrolling: 'enabled',
     //   scrollPositionRestoration: 'enabled',

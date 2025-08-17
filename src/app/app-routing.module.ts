@@ -60,7 +60,7 @@ import { ShowchecklistformComponent } from "./publicPages/showchecklistform/show
 import { AuthGuard } from "./services/auth.guard";
 import { ANNOUCEMENTSComponent } from "./superadmin/annoucements/annoucements.component";
 import { ManualuploadComponent } from "./superadmin/manualupload/manualupload.component";
-import { MapviewComponent } from "./dbkl/mapview/mapview.component"
+import { MapviewComponent } from "./dbkl/mapview/mapview.component";
 import { MerinyuanalysisComponent } from "./dbkl/merinyuanalysis/merinyuanalysis.component";
 import { MtbcomplaintDailyJobInfo1Component } from "./dbkl/mtbcomplaint-daily-job-info1/mtbcomplaint-daily-job-info1.component";
 import { DbkldataComponent } from "./dbkl/dbkldata/dbkldata.component";
@@ -83,12 +83,11 @@ import { MtkmapviewComponent } from "./dbkl/mtkmapview/mtkmapview.component";
 import { MtkcompoundformComponent } from "./dbkl/mtkcompoundform/mtkcompoundform.component";
 import { MtkworkformComponent } from "./dbkl/mtkworkform/mtkworkform.component";
 import { FooterComponent } from "./footer/footer.component";
-import { AdminAnnouncementsComponent } from './admin/admin-announcements/admin-announcements.component';
+import { AdminAnnouncementsComponent } from "./admin/admin-announcements/admin-announcements.component";
 
 const routes: Routes = [
   { path: "public", component: PublicComponent },
   { path: "", redirectTo: "public", pathMatch: "full" },
-
 
   // {
   //   path: "**",
@@ -109,7 +108,6 @@ const routes: Routes = [
 
   { path: "public/serviceLogin", component: ServiceLoginComponent },
 
-
   { path: "agency", component: AgencyComponent },
   { path: "agency/job-feedback", component: JobFeedbackComponent },
   { path: "agency/new-feedback", component: NewFeedbackComponent },
@@ -121,127 +119,275 @@ const routes: Routes = [
 
   {
     path: "dbkl/inspectingofficers",
-    component: InspectingofficersComponent, canActivate: [AuthGuard],
+    component: InspectingofficersComponent,
+    canActivate: [AuthGuard],
   },
-  { path: "dbkl/dailyworkinfo", component: DailyworkinfoComponent, canActivate: [AuthGuard], },
   {
-    path: "dbkl/omplama", component: OmplamaComponent, canActivate: [AuthGuard],
-    data: {
-      role: ['Superadmin', "Inventori", 'Kewangan']
-    }
+    path: "dbkl/dailyworkinfo",
+    component: DailyworkinfoComponent,
+    canActivate: [AuthGuard],
   },
-
+  {
+    path: "dbkl/omplama",
+    component: OmplamaComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["Superadmin", "Inventori", "Kewangan"],
+    },
+  },
 
   {
     path: "dbkl/complaintinvestigation",
-    component: ComplaintinvestigationComponent, canActivate: [AuthGuard],
+    component: ComplaintinvestigationComponent,
+    canActivate: [AuthGuard],
   },
-  { path: "dbkl/compoundinfo", component: CompoundinfoComponent, canActivate: [AuthGuard], },
+  {
+    path: "dbkl/compoundinfo",
+    component: CompoundinfoComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: "dbkl/compoundinspectingofficer",
-    component: CompoundinspectingofficerComponent, canActivate: [AuthGuard],
+    component: CompoundinspectingofficerComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: "dbkl/compounddailyworkinfo",
-    component: CompounddailyworkinfoComponent, canActivate: [AuthGuard],
+    component: CompounddailyworkinfoComponent,
+    canActivate: [AuthGuard],
   },
   { path: "dbkl/compoundform", component: Compoundform2Component },
-  { path: "dbkl/mtbwork-log", component: MtbworkLogComponent, canActivate: [AuthGuard], },
+  {
+    path: "dbkl/mtbwork-log",
+    component: MtbworkLogComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: "dbkl/mtbdailyjobinfo",
-    component: MtbcomplaintDailyJobInfoComponent, canActivate: [AuthGuard],
+    component: MtbcomplaintDailyJobInfoComponent,
+    canActivate: [AuthGuard],
   },
 
   {
-    path: "dbkl/mtbwork-form", component: MtbworkFormComponent, canActivate: [AuthGuard],
+    path: "dbkl/mtbwork-form",
+    component: MtbworkFormComponent,
+    canActivate: [AuthGuard],
     data: {
-      role: ['Superadmin', 'MerinyuMTB', 'MerinyuMTK', 'Kewangan', 'Analisis,MerinyuMTB,MerinyuMTK']
-    }
+      role: [
+        "Superadmin",
+        "MerinyuMTB",
+        "MerinyuMTK",
+        "Kewangan",
+        "Analisis,MerinyuMTB,MerinyuMTK",
+      ],
+    },
   },
-  { path: "dbkl/mtbcompoundform", component: MtbcompoundformComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/financialclaim", component: FinacialClaimReviewComponent, canActivate: [AuthGuard], },
   {
-    path: "dbkl/claim-review", component: ClaimReviewComponent, canActivate: [AuthGuard],
-    data: {
-      role: ['Superadmin', 'Kewangan']
-    }
+    path: "dbkl/mtbcompoundform",
+    component: MtbcompoundformComponent,
+    canActivate: [AuthGuard],
   },
-  { path: 'dbkl/resetpassword', component: DbklresetpasswordComponent },
-  { path: "dbkl/noticeform", component: NoticeformComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/mtblistofcompound", component: MtblistofcompoundComponent, canActivate: [AuthGuard], },
+  {
+    path: "dbkl/financialclaim",
+    component: FinacialClaimReviewComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/claim-review",
+    component: ClaimReviewComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["Superadmin", "Kewangan"],
+    },
+  },
+  { path: "dbkl/resetpassword", component: DbklresetpasswordComponent },
+  {
+    path: "dbkl/noticeform",
+    component: NoticeformComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/mtblistofcompound",
+    component: MtblistofcompoundComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: "dbkl/mtbdailylistofcompound",
-    component: MtbdailylistofcompoundComponent, canActivate: [AuthGuard],
-  },
-  { path: "dbkl/mtbcomplaints", component: MtbcomplaintInvestigationComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/mtbgetcompoundform", component: MtbgetcompoundformComponent, canActivate: [AuthGuard], },
-
-  {
-    path: "dbkl/barchart", component: BarChartComponent, canActivate: [AuthGuard],
-    data: {
-      role: ['Superadmin', 'Analisis', 'Kewangan', 'Analisis,MerinyuMTB,MerinyuMTK']
-    }
+    component: MtbdailylistofcompoundComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path: "dbkl/usermanagement", component: UsermanagmentComponent, canActivate: [AuthGuard],
-    data: {
-      role: ['Superadmin', 'Pentadbir'],
-    }
+    path: "dbkl/mtbcomplaints",
+    component: MtbcomplaintInvestigationComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/mtbgetcompoundform",
+    component: MtbgetcompoundformComponent,
+    canActivate: [AuthGuard],
   },
 
-  { path: "dbkl/emeeting", component: EmeetingComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/newemeeting", component: NewemeetingComponent, canActivate: [AuthGuard], },
+  {
+    path: "dbkl/barchart",
+    component: BarChartComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: [
+        "Superadmin",
+        "Analisis",
+        "Kewangan",
+        "Analisis,MerinyuMTB,MerinyuMTK",
+      ],
+    },
+  },
+  {
+    path: "dbkl/usermanagement",
+    component: UsermanagmentComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: ["Superadmin", "Pentadbir"],
+    },
+  },
+
+  {
+    path: "dbkl/emeeting",
+    component: EmeetingComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/newemeeting",
+    component: NewemeetingComponent,
+    canActivate: [AuthGuard],
+  },
 
   {
     path: "dbkl/applicationprocess",
-    component: PsppaapplicationproccessComponent, canActivate: [AuthGuard],
+    component: PsppaapplicationproccessComponent,
+    canActivate: [AuthGuard],
   },
-  { path: "dbkl/dbklchecklist", component: DbklchecklistComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/dbklsitevisit", component: DbklsitevisitComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/dbklnoncompliance", component: DbklnoncomplianceComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/inventorymanage", component: NewInventoryComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/edituserinventory", component: EdituserinventoryComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/ompbaru", component: OmpbaruComponent, canActivate: [AuthGuard] },
-  { path: "dbkl/showomplama", component: ShowomplamaComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/listemeeting", component: ListemeetingComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/getemeeting", component: GetemeetingComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/dbklmainpage", component: DbklmainpageComponent, canActivate: [AuthGuard], },
+  {
+    path: "dbkl/dbklchecklist",
+    component: DbklchecklistComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/dbklsitevisit",
+    component: DbklsitevisitComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/dbklnoncompliance",
+    component: DbklnoncomplianceComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/inventorymanage",
+    component: NewInventoryComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/edituserinventory",
+    component: EdituserinventoryComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/ompbaru",
+    component: OmpbaruComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/showomplama",
+    component: ShowomplamaComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/listemeeting",
+    component: ListemeetingComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/getemeeting",
+    component: GetemeetingComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/dbklmainpage",
+    component: DbklmainpageComponent,
+    canActivate: [AuthGuard],
+  },
   { path: "dbkl/mainpage", component: HalamauthamaComponent },
   { path: "profileLog", component: ProfileComponent },
   {
-    path: 'superadmin/annoucement', component: ANNOUCEMENTSComponent, canActivate: [AuthGuard],
+    path: "superadmin/annoucement",
+    component: ANNOUCEMENTSComponent,
+    canActivate: [AuthGuard],
     data: {
-      role: ['Superadmin']
-    }
+      role: ["Superadmin"],
+    },
   },
   {
-    path: 'superadmin/manualupload', component: ManualuploadComponent, canActivate: [AuthGuard],
+    path: "superadmin/manualupload",
+    component: ManualuploadComponent,
+    canActivate: [AuthGuard],
     data: {
-      role: ['Superadmin']
-    }
+      role: ["Superadmin"],
+    },
   },
   {
-    path: 'superadmin/galeryphoto', component: GaleryphotosComponent, canActivate: [AuthGuard],
+    path: "superadmin/galeryphoto",
+    component: GaleryphotosComponent,
+    canActivate: [AuthGuard],
     data: {
-      role: ['Superadmin']
-    }
+      role: ["Superadmin"],
+    },
   },
-  { path: 'accessdenied', component: NotFoundComponent },
-  { path: 'googleAnaltytics', component: GoogleAnalyticsComponent },
-  { path: 'dbkl/mapview', component: MapviewComponent, canActivate: [AuthGuard], },
+  { path: "accessdenied", component: NotFoundComponent },
+  { path: "googleAnaltytics", component: GoogleAnalyticsComponent },
+  {
+    path: "dbkl/mapview",
+    component: MapviewComponent,
+    canActivate: [AuthGuard],
+  },
 
-  { path: "dbkl/merinyuanalysis", component: MerinyuanalysisComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/mtbmap", component: MtbcomplaintDailyJobInfo1Component, canActivate: [AuthGuard], },
-  { path: "dbkl/dbkldata", component: DbkldataComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/addnoncompliance", component: AddnoncomplianceComponent, canActivate: [AuthGuard], },
+  {
+    path: "dbkl/merinyuanalysis",
+    component: MerinyuanalysisComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/mtbmap",
+    component: MtbcomplaintDailyJobInfo1Component,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/dbkldata",
+    component: DbkldataComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/addnoncompliance",
+    component: AddnoncomplianceComponent,
+    canActivate: [AuthGuard],
+  },
 
   { path: "mapdemo", component: DemoTextComponent },
-  { path: "dbkl/inactivearea", component: InactiveAreaComponent, canActivate: [AuthGuard], },
   {
-    path: "dbkl/compoundanalysis", component: AnalisiskompaunComponent, canActivate: [AuthGuard],
+    path: "dbkl/inactivearea",
+    component: InactiveAreaComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/compoundanalysis",
+    component: AnalisiskompaunComponent,
+    canActivate: [AuthGuard],
     data: {
-      role: ['Superadmin', 'Analisis', 'Kewangan', 'Analisis,MerinyuMTB,MerinyuMTK']
-    }
+      role: [
+        "Superadmin",
+        "Analisis",
+        "Kewangan",
+        "Analisis,MerinyuMTB,MerinyuMTK",
+      ],
+    },
   },
   { path: "public/checklistoption", component: ChecklistoptionComponent },
   { path: "public/listdocument", component: ListdocumentComponent },
@@ -249,24 +395,44 @@ const routes: Routes = [
   { path: "public/sevices", component: ServicesheduleComponent },
   { path: "public/collectionshedule", component: CollectnsheduleComponent },
   { path: "public/cleaningshedule", component: CleansheduleComponent },
-  { path: "dbkl/updateinventory", component: InventorymanagmentComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/inventorymap", component: InventorymapComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/mtkmapview", component: MtkmapviewComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/mtkworkform", component: MtkworkformComponent, canActivate: [AuthGuard], },
-  { path: "dbkl/mtkcompoundform", component: MtkcompoundformComponent, canActivate: [AuthGuard], },
-  { path: 'admin/announcements', component: AdminAnnouncementsComponent },
+  {
+    path: "dbkl/updateinventory",
+    component: InventorymanagmentComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/inventorymap",
+    component: InventorymapComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/mtkmapview",
+    component: MtkmapviewComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/mtkworkform",
+    component: MtkworkformComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "dbkl/mtkcompoundform",
+    component: MtkcompoundformComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: "admin/announcements", component: AdminAnnouncementsComponent },
 ];
 
 const routerOptions: ExtraOptions = {
-  scrollPositionRestoration: 'enabled',
-  anchorScrolling: 'enabled',
+  scrollPositionRestoration: "enabled",
+  anchorScrolling: "enabled",
   scrollOffset: [0, 64], // Adjust this value based on your navbar height
-  onSameUrlNavigation: 'reload',
-  relativeLinkResolution: 'legacy'
+  onSameUrlNavigation: "reload",
+  relativeLinkResolution: "legacy",
 };
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
