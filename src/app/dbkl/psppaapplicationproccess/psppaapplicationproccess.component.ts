@@ -14,6 +14,7 @@ import { FiltercustombuttonComponent } from "src/app/filtercustombutton/filtercu
 // import { FilterdoublecustombuttonComponent } from "src/app/filterdoublecustombutton/filterdoublecustombutton.component";
 import { TextboxComponent } from "src/app/textbox/textbox.component";
 import { DbkluploadbuttonComponent } from "src/app/dbkluploadbutton/dbkluploadbutton.component";
+import { FileUploader } from "ng2-file-upload";
 import { Observable } from "rxjs";
 import { Ng2SmartTableComponent } from "ng2-smart-table";
 import { DbklchecklistComponent } from "../dbklchecklist/dbklchecklist.component";
@@ -64,6 +65,30 @@ export class PsppaapplicationproccessComponent implements OnInit {
 
   // Add year range for date picker
   yearRange: string;
+
+  // Add properties for site visit edit dialog
+  showSiteVisitDialog: boolean = false;
+  editSiteVisitData: any = {
+    no_siri_permohonan: "",
+    date: null,
+    time: null,
+  };
+
+  // Add file upload properties
+  SERVER_URL = environment.basePublicUrl + "/public/uploadFreeFile";
+
+  uploader: FileUploader = new FileUploader({
+    isHTML5: true,
+    url: this.SERVER_URL,
+    maxFileSize: 1024 * 1024 * 10, // 10MB
+  });
+
+  // Add upload dialog properties
+  showUploadDialog: boolean = false;
+  uploadSiteVisitData: any = {
+    no_siri_permohonan: "",
+    site_id: "",
+  };
 
   constructor(
     private http: HttpClient,
@@ -458,8 +483,8 @@ export class PsppaapplicationproccessComponent implements OnInit {
 
   // Add options for Tetapan Lawatan Tapak filter
   lawatanOptions = [
-    { label: "Patuh", value: 'Patuh' },
-    { label: "Tidak Patuh", value: 'Tidak Patuh' },
+    { label: "Patuh", value: "Patuh" },
+    { label: "Tidak Patuh", value: "Tidak Patuh" },
   ];
 
   // Add property for the filter
@@ -467,6 +492,232 @@ export class PsppaapplicationproccessComponent implements OnInit {
 
   // Add filter method for Tetapan Lawatan Tapak
   onFilterLawatan(value: any) {
-    this.table.filter(value, "site_visit_info.keputusan_lawatan_tapak", "equals");
+    this.table.filter(
+      value,
+      "site_visit_info.keputusan_lawatan_tapak",
+      "equals"
+    );
+  }
+
+  // Add method to open site visit edit dialog
+  openSiteVisitEditDialog(rowData: any) {
+    this.editSiteVisitData.site_id = rowData.site_visit_info.site_id;
+
+    // Pre-fill with existing date and time if available
+    if (
+      rowData.site_visit_info &&
+      (rowData.site_visit_info.tarikh_datetime ||
+        rowData.site_visit_info.tarikh)
+    ) {
+      const existingDateTime = new Date(
+        rowData.site_visit_info.tarikh_datetime ||
+          rowData.site_visit_info.tarikh
+      );
+      this.editSiteVisitData.date = existingDateTime;
+      this.editSiteVisitData.time = existingDateTime;
+    } else {
+      this.editSiteVisitData.date = null;
+      this.editSiteVisitData.time = null;
+    }
+
+    this.showSiteVisitDialog = true;
+  }
+
+  // Add method to close dialog
+  closeSiteVisitDialog() {
+    this.showSiteVisitDialog = false;
+    this.editSiteVisitData = {
+      site_id: "",
+      date: null,
+      time: null,
+    };
+  }
+
+  // Add method to save site visit date and time
+  saveSiteVisitDateTime() {
+    this.spinner.show();
+
+    // Combine date and time
+    const combinedDateTime = new Date(this.editSiteVisitData.date);
+    const timeOnly = new Date(this.editSiteVisitData.time);
+
+    combinedDateTime.setHours(timeOnly.getHours());
+    combinedDateTime.setMinutes(timeOnly.getMinutes());
+
+    const key = localStorage.getItem("AccessToken");
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: key,
+    };
+
+    const requestBody = {
+      site_id: this.editSiteVisitData.site_id,
+      tarikh_datetime: combinedDateTime.toISOString(),
+    };
+
+    this.http
+      .put(
+        this.basePublicUrl +
+          "/dbkl/updateSiteVisitApplicationList2/" +
+          this.editSiteVisitData.site_id,
+        requestBody,
+        {
+          headers: headers,
+        }
+      )
+      .subscribe(
+        (res) => {
+          this.spinner.hide();
+          this.closeSiteVisitDialog();
+
+          if (this.lang == "en") {
+            this.sucessMsg = "Site visit date and time updated successfully!";
+          } else {
+            this.sucessMsg =
+              "Tarikh dan masa lawatan tapak berjaya dikemaskini!";
+          }
+
+          this.openSuccess();
+          this.getData(); // Refresh the table data
+        },
+        (error) => {
+          this.spinner.hide();
+          this.closeSiteVisitDialog();
+
+          if (this.lang == "en") {
+            this.errmsg =
+              "Failed to update site visit date and time. Please try again.";
+          } else {
+            this.errmsg =
+              "Gagal mengemaskini tarikh dan masa lawatan tapak. Sila cuba lagi.";
+          }
+
+          this.openError();
+        }
+      );
+  }
+
+  // Add file upload method
+  uploadFile(data: FormData): Observable<any> {
+    return this.http.post<any>(this.SERVER_URL, data);
+  }
+
+  // Add method to open upload dialog
+  openUploadDialog(rowData: any) {
+    this.uploadSiteVisitData.no_siri_permohonan = rowData.no_siri_permohonan;
+    this.uploadSiteVisitData.site_id = rowData.site_visit_info?.site_id || "";
+    this.showUploadDialog = true;
+  }
+
+  // Add method to close upload dialog
+  closeUploadDialog() {
+    this.showUploadDialog = false;
+    this.uploader.clearQueue();
+    this.uploadSiteVisitData = {
+      no_siri_permohonan: "",
+      site_id: "",
+    };
+  }
+
+  // Add method to handle file upload
+  uploadSiteVisitFile() {
+    if (this.uploader.queue.length === 0) {
+      if (this.lang == "en") {
+        this.errmsg = "Please select a file to upload.";
+      } else {
+        this.errmsg = "Sila pilih fail untuk dimuat naik.";
+      }
+      this.openError();
+      return;
+    }
+
+    // Handle file uploads
+    for (var i = 0; i < this.uploader.queue.length; i++) {
+      let fileItem = this.uploader.queue[i]._file;
+      if (fileItem.size > 10000000) {
+        if (this.lang == "en") {
+          this.errmsg = "Each file should be less than 10 MB";
+        } else {
+          this.errmsg = "Setiap fail mestilah kurang daripada 10 MB";
+        }
+        this.openError();
+        return;
+      }
+    }
+
+    this.spinner.show();
+    let fileName = "";
+
+    for (var j = 0; j < this.uploader.queue.length; j++) {
+      let data = new FormData();
+      let fileItem = this.uploader.queue[j]._file;
+      fileName = fileItem.name;
+      data.append("file", fileItem);
+      data.append("fileSeq", "seq" + j);
+      this.uploadFile(data).subscribe((data) => console.log(data.message));
+    }
+
+    // Update site visit with file name
+    const key = localStorage.getItem("AccessToken");
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: key,
+    };
+
+    const requestBody = {
+      tetapan_lawatan_tapak_filename: fileName,
+    };
+
+    this.http
+      .put(
+        this.basePublicUrl +
+          "/dbkl/updateSiteVisitApplicationList2/" +
+          this.uploadSiteVisitData.site_id,
+        requestBody,
+        { headers: headers }
+      )
+      .subscribe(
+        (res) => {
+          this.spinner.hide();
+          this.closeUploadDialog();
+
+          if (this.lang == "en") {
+            this.sucessMsg = "Site visit file uploaded successfully!";
+          } else {
+            this.sucessMsg = "Fail lawatan tapak berjaya dimuat naik!";
+          }
+
+          this.openSuccess();
+          this.getData(); // Refresh the table data
+        },
+        (error) => {
+          this.spinner.hide();
+          this.closeUploadDialog();
+
+          if (this.lang == "en") {
+            this.errmsg = "Failed to upload site visit file. Please try again.";
+          } else {
+            this.errmsg =
+              "Gagal memuat naik fail lawatan tapak. Sila cuba lagi.";
+          }
+
+          this.openError();
+        }
+      );
+  }
+
+  // Add method to handle file selection
+  onFileSelect(event: any, uploader: FileUploader) {
+    // Handle file selection if needed
+  }
+
+  // Add method to remove file from queue
+  removeFile(item: any) {
+    item.remove();
+  }
+
+  // Add method to get file URL
+  getFileUrl(filename: string): string {
+    return `${environment.basePublicUrl}/jkas_resourses/free/images/${filename}`;
   }
 }

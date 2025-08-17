@@ -336,8 +336,55 @@
                     [value]="rowData.no_siri_permohonan"
                     [getMeetingData]="meetingData"
                   ></app-meetingmodal> -->
-                  Tarikh: {{ rowData.site_visit_info.tarikh | date : "dd MMM yyyy" }}
-                  Masa: {{ rowData.site_visit_info.tarikh | date : "HH:mm" }}
+                  Tarikh:
+                  {{
+                    rowData.site_visit_info.tarikh_datetime ||
+                      rowData.site_visit_info.tarikh | date : "dd MMM yyyy"
+                  }}
+                  Masa:
+                  {{
+                    rowData.site_visit_info.tarikh_datetime ||
+                      rowData.site_visit_info.tarikh | date : "HH:mm"
+                  }}
+                  <div
+                    *ngIf="
+                      rowData.site_visit_info.tetapan_lawatan_tapak_filename
+                    "
+                  >
+                    Fail:
+                    <a
+                      [href]="
+                        getFileUrl(
+                          rowData.site_visit_info.tetapan_lawatan_tapak_filename
+                        )
+                      "
+                      target="_blank"
+                      class="p-text-primary"
+                    >
+                      {{
+                        rowData.site_visit_info.tetapan_lawatan_tapak_filename
+                      }}
+                    </a>
+                  </div>
+                  <br />
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-edit"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="openSiteVisitEditDialog(rowData)"
+                    title="Edit Site Visit Date/Time"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-upload"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="openUploadDialog(rowData)"
+                    title="Upload Site Visit File"
+                  ></button>
                 </td>
                 <td>
                   <!-- <a
@@ -345,7 +392,7 @@
                     [queryParams]="{ id: rowData.no_siri_permohonan }"
                     >Kemaskini Maklumat</a
                   > -->
-                  {{ rowData.site_visit_info.keputusan_lawatan_tapak  }}
+                  {{ rowData.site_visit_info.keputusan_lawatan_tapak }}
                 </td>
                 <td>
                   <!-- <app-dbklppsppa
@@ -356,7 +403,7 @@
                 </td>
                 <td>
                   {{ rowData.status_keputusan_permohonan }}
-                  <br>
+                  <br />
                   Tarikh Serahan: {{ rowData.tarikh_keputusan_permohonan }}
                 </td>
                 <td>
@@ -586,3 +633,163 @@
     </div>
   </div>
 </div>
+
+<!-- Site Visit Edit Dialog -->
+<p-dialog
+  header="Kemaskini Tetapan Lawatan Tapak"
+  [(visible)]="showSiteVisitDialog"
+  [modal]="true"
+  [closable]="true"
+  [style]="{ width: '450px', minHeight: '600px' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="p-fluid">
+    <div class="field">
+      <label for="siteVisitDate">Date</label>
+      <p-calendar
+        id="siteVisitDate"
+        [(ngModel)]="editSiteVisitData.date"
+        [showButtonBar]="true"
+        [showIcon]="true"
+        [readonlyInput]="true"
+        [monthNavigator]="true"
+        [yearNavigator]="true"
+        [yearRange]="yearRange"
+        [dateFormat]="'dd/mm/yy'"
+        [style]="{ width: '100%' }"
+        placeholder="Select date"
+      >
+      </p-calendar>
+    </div>
+
+    <div class="field">
+      <label for="siteVisitTime">Time</label>
+      <p-calendar
+        id="siteVisitTime"
+        [(ngModel)]="editSiteVisitData.time"
+        [timeOnly]="true"
+        [showTime]="true"
+        [showIcon]="true"
+        [readonlyInput]="true"
+        [style]="{ width: '100%' }"
+        placeholder="Select time"
+        hourFormat="24"
+      >
+      </p-calendar>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      type="button"
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="closeSiteVisitDialog()"
+    ></button>
+    <button
+      pButton
+      type="button"
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-primary"
+      (click)="saveSiteVisitDateTime()"
+      [disabled]="!editSiteVisitData.date || !editSiteVisitData.time"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<!-- Site Visit File Upload Dialog -->
+<p-dialog
+  header="Muat Naik Fail Lawatan Tapak"
+  [(visible)]="showUploadDialog"
+  [modal]="true"
+  [closable]="true"
+  [style]="{ width: '450px', minHeight: '400px' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="p-fluid">
+    <div class="field">
+      <label class="p-label">Fail PDF Lawatan Tapak</label>
+      <div class="p-fileupload-wrapper">
+        <div class="p-fileupload-choose">
+          <input
+            type="file"
+            ng2FileSelect
+            [uploader]="uploader"
+            (change)="onFileSelect($event, uploader)"
+            style="display: none"
+            #fileInputUpload
+          />
+          <p-button
+            label="Pilih Fail"
+            icon="pi pi-upload"
+            severity="secondary"
+            (click)="fileInputUpload.click()"
+            type="button"
+            styleClass="p-button-sm"
+          ></p-button>
+        </div>
+        <small class="p-text-secondary p-d-block p-mt-2">
+          Format yang disokong: PDF (Saiz maksimum: 10MB)
+        </small>
+      </div>
+
+      <!-- File List -->
+      <div *ngIf="uploader.queue.length > 0" class="p-mt-3">
+        <div
+          *ngFor="let item of uploader.queue"
+          class="p-d-flex p-ai-center p-jc-between p-p-2 p-border-1 p-border-round p-mb-2"
+        >
+          <div class="p-d-flex p-ai-center">
+            <i class="pi pi-file-pdf p-mr-2 p-text-secondary"></i>
+            <span class="p-text-sm">
+              {{ item.file.name }} ({{
+                (item.file.size / 1000000).toFixed(2)
+              }}
+              MB)
+            </span>
+          </div>
+          <p-button
+            icon="pi pi-times"
+            severity="danger"
+            size="small"
+            [text]="true"
+            (click)="removeFile(item)"
+            pTooltip="Buang fail"
+          ></p-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="p-text-secondary">No. Siri Permohonan:</label>
+      <span class="p-text-bold">{{
+        uploadSiteVisitData.no_siri_permohonan
+      }}</span>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      type="button"
+      label="Batal"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="closeUploadDialog()"
+    ></button>
+    <button
+      pButton
+      type="button"
+      label="Muat Naik"
+      icon="pi pi-upload"
+      class="p-button-primary"
+      (click)="uploadSiteVisitFile()"
+      [disabled]="uploader.queue.length === 0"
+    ></button>
+  </ng-template>
+</p-dialog>
