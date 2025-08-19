@@ -718,6 +718,18 @@ export class PsppaapplicationproccessComponent implements OnInit {
 
   // Add method to get file URL
   getFileUrl(filename: string): string {
-    return `${environment.basePublicUrl}/jkas_resourses/free/docs/${filename}`;
+    let fileExtension = filename.split('.').pop();  
+    let path=''
+
+    let PHOTO_EXTENSIONS = ['png', 'jpg', 'jpeg'];
+    let DOC_EXTENSIONS = ['pdf', 'docx', 'pptx', 'xls', 'xlsx'];
+
+    if (PHOTO_EXTENSIONS.includes(fileExtension)) {
+      path = 'images';
+    } else if (DOC_EXTENSIONS.includes(fileExtension)) {
+      path = 'docs';
+    }
+
+    return `${environment.basePublicUrl}/jkas_resourses/free/${path}/${filename}`;
   }
 }
