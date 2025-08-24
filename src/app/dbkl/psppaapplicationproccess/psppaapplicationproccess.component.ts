@@ -549,6 +549,10 @@ export class PsppaapplicationproccessComponent implements OnInit {
           this.editSiteVisitData.tarikh_keputusan_permohonan = null;
         }
         break;
+      case "catatan":
+        this.editSiteVisitData.title = "Catatan";
+        this.editSiteVisitData.catatan = rowData.catatan || null;
+        break;
     }
 
     this.showSiteVisitDialog = true;
@@ -629,6 +633,16 @@ export class PsppaapplicationproccessComponent implements OnInit {
           status_keputusan_permohonan:
             this.editSiteVisitData.status_keputusan_permohonan,
           tarikh_keputusan_permohonan: tarikhKeputusan.toISOString(),
+        };
+        break;
+      case "catatan":
+        apiPath =
+          this.basePublicUrl +
+          "/dbkl/updateApplicationList2/" +
+          this.editSiteVisitData.no_siri_permohonan;
+        requestBody = {
+          no_siri_permohonan: this.editSiteVisitData.no_siri_permohonan,
+          catatan: this.editSiteVisitData.catatan,
         };
         break;
     }

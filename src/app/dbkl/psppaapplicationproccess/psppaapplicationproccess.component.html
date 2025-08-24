@@ -484,7 +484,23 @@
                   ></button>
                 </td>
                 <td>
-                  {{ rowData.catatan }}
+                  <textarea 
+                    class="form-control" 
+                    rows="3" 
+                    [(ngModel)]="rowData.catatan"
+                    style="resize: none; overflow-y: auto; max-height: 80px;"
+                    disabled
+                    >
+                  </textarea>
+                   <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-edit"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="openSiteVisitEditDialog('catatan', rowData)"
+                    title="Edit Site Visit Detail"
+                  ></button>
                 </td>
                 <!-- <td>
                   <button
@@ -858,6 +874,20 @@
       </p-calendar>
     </div>
   </div>
+
+  <!-- catatan -->
+   <div class="p-fluid" *ngIf="editSiteVisitData.type === 'catatan'">
+     <div class="field">
+       <label for="catatan">Catatan</label>
+       <textarea
+         id="catatan"
+         [(ngModel)]="editSiteVisitData.catatan"
+         rows="3"
+         class="form-control"
+         style="resize: none; overflow-y: auto; max-height: 80px;"
+       ></textarea>
+     </div>
+   </div>
 
   <ng-template pTemplate="footer">
     <button
