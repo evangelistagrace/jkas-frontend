@@ -449,7 +449,39 @@
                 <td>
                   {{ rowData.status_keputusan_permohonan }}
                   <br />
-                  Tarikh Serahan: {{ rowData.tarikh_keputusan_permohonan }}
+                  {{ rowData.tarikh_keputusan_permohonan ? (rowData.status_keputusan_permohonan === 'Lulus' ? 'Tarikh Serahan: ' : '') + (rowData.tarikh_keputusan_permohonan | date : "dd MMM yyyy") : 'N/A' }}
+                  <div
+                    *ngIf="
+                      rowData.filename_keputusan_permohonan
+                    "
+                  >
+                    Fail:
+                    <a
+                      href="javascript:void(0)"
+                      (click)="handleFileClick(rowData.filename_keputusan_permohonan)"
+                    >
+                      {{ rowData.filename_keputusan_permohonan }}
+                    </a>
+                  </div>
+                  <br />
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-edit"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="openSiteVisitEditDialog('keputusan_permohonan', rowData)"
+                    title="Edit Site Visit Detail"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-upload"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="openUploadDialog('keputusan_permohonan',rowData)"
+                    title="Upload Site Visit File"
+                  ></button>
                 </td>
                 <td>
                   {{ rowData.catatan }}
@@ -781,6 +813,49 @@
         [style]="{ width: '100%' }"
       >
       </p-dropdown>
+    </div>
+  </div>
+
+  <!-- keputusan permohonan -->
+   <div class="p-fluid" *ngIf="editSiteVisitData.type === 'keputusan_permohonan'">
+    <div class="field">
+      <label class="p-text-secondary">No. Siri Permohonan:</label>
+      <span class="p-text-bold"> {{
+        editSiteVisitData.no_siri_permohonan
+      }}</span>
+    </div>
+    <div class="field">
+      <label for="keputusanPermohonan">Keputusan Permohonan</label>
+      <p-dropdown
+        id="keputusanPermohonan"
+        [(ngModel)]="editSiteVisitData.status_keputusan_permohonan"
+        [options]="[
+          { label: 'Lulus', value: 'Lulus' },
+          { label: 'Tidak Lulus', value: 'Tidak Lulus' }
+        ]"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Pilih keputusan"
+        [style]="{ width: '100%' }"
+      >
+      </p-dropdown>
+    </div>
+    <div class="field">
+      <label for="tarikhKeputusanPermohonan">Tarikh Serahan</label>
+      <p-calendar
+        id="tarikhKeputusanPermohonan"
+        [(ngModel)]="editSiteVisitData.tarikh_keputusan_permohonan"
+        [showButtonBar]="true"
+        [showIcon]="true"
+        [readonlyInput]="true"
+        [monthNavigator]="true"
+        [yearNavigator]="true"
+        [yearRange]="yearRange"
+        [dateFormat]="'dd/mm/yy'"
+        [style]="{ width: '100%' }"
+        placeholder="Select date"
+      >
+      </p-calendar>
     </div>
   </div>
 

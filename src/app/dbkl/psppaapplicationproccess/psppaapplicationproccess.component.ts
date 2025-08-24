@@ -536,6 +536,19 @@ export class PsppaapplicationproccessComponent implements OnInit {
         this.editSiteVisitData.status_maklumbalas_ketidakpatuhan =
           rowData.site_visit_info.status_maklumbalas_ketidakpatuhan || null;
         break;
+      case "keputusan_permohonan":
+        this.editSiteVisitData.title = "Keputusan Permohonan";
+        this.editSiteVisitData.status_keputusan_permohonan =
+          rowData.status_keputusan_permohonan || null;
+        // Pre-fill with existing date and time if available
+        if (rowData.tarikh_keputusan_permohonan) {
+          const existingDate = new Date(rowData.tarikh_keputusan_permohonan);
+          
+          this.editSiteVisitData.tarikh_keputusan_permohonan = existingDate;
+        } else {
+          this.editSiteVisitData.tarikh_keputusan_permohonan = null;
+        }
+        break;
     }
 
     this.showSiteVisitDialog = true;
@@ -567,9 +580,13 @@ export class PsppaapplicationproccessComponent implements OnInit {
     this.spinner.show();
     const key = localStorage.getItem("AccessToken");
     const headers = {
-        "Content-Type": "application/json",
-        Authorization: key,
+      "Content-Type": "application/json",
+      Authorization: key,
     };
+    let apiPath =
+      this.basePublicUrl +
+      "/dbkl/updateSiteVisitApplicationList2/" +
+      this.editSiteVisitData.site_id;
 
     let requestBody = {};
 
@@ -580,7 +597,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
 
         combinedDateTime.setHours(timeOnly.getHours());
         combinedDateTime.setMinutes(timeOnly.getMinutes());
-        
+
         requestBody = {
           site_id: this.editSiteVisitData.site_id,
           tarikh_datetime: combinedDateTime.toISOString(),
@@ -589,27 +606,37 @@ export class PsppaapplicationproccessComponent implements OnInit {
       case "keputusan_lawatan_tapak":
         requestBody = {
           site_id: this.editSiteVisitData.site_id,
-          keputusan_lawatan_tapak: this.editSiteVisitData.keputusan_lawatan_tapak
+          keputusan_lawatan_tapak:
+            this.editSiteVisitData.keputusan_lawatan_tapak,
         };
         break;
       case "maklumbalas_ketidakpatuhan":
         requestBody = {
           site_id: this.editSiteVisitData.site_id,
-          status_maklumbalas_ketidakpatuhan: this.editSiteVisitData.status_maklumbalas_ketidakpatuhan
+          status_maklumbalas_ketidakpatuhan:
+            this.editSiteVisitData.status_maklumbalas_ketidakpatuhan,
+        };
+        break;
+      case "keputusan_permohonan":
+        apiPath =
+          this.basePublicUrl +
+          "/dbkl/updateApplicationList2/" +
+          this.editSiteVisitData.no_siri_permohonan;
+        const tarikhKeputusan = new Date(this.editSiteVisitData.tarikh_keputusan_permohonan);
+        const dateString = tarikhKeputusan.toISOString().split('T')[0];
+        requestBody = {
+          no_siri_permohonan: this.editSiteVisitData.no_siri_permohonan,
+          status_keputusan_permohonan:
+            this.editSiteVisitData.status_keputusan_permohonan,
+          tarikh_keputusan_permohonan: tarikhKeputusan.toISOString(),
         };
         break;
     }
 
     this.http
-      .put(
-        this.basePublicUrl +
-          "/dbkl/updateSiteVisitApplicationList2/" +
-          this.editSiteVisitData.site_id,
-        requestBody,
-        {
-          headers: headers,
-        }
-      )
+      .put(apiPath, requestBody, {
+        headers: headers,
+      })
       .subscribe(
         (res) => {
           this.spinner.hide();
@@ -618,8 +645,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
           if (this.lang == "en") {
             this.sucessMsg = "Site visit details updated successfully!";
           } else {
-            this.sucessMsg =
-              "Maklumat lawatan tapak berjaya dikemaskini!";
+            this.sucessMsg = "Maklumat lawatan tapak berjaya dikemaskini!";
           }
 
           this.openSuccess();
@@ -711,7 +737,8 @@ export class PsppaapplicationproccessComponent implements OnInit {
       Authorization: key,
     };
 
-    let requestBody = {}
+    let apiPath = this.basePublicUrl + "/dbkl/updateSiteVisitApplicationList2/" + this.uploadSiteVisitData.site_id;
+    let requestBody = {};
 
     switch (this.uploadSiteVisitData.type) {
       case "tetapan_lawatan_tapak":
@@ -729,13 +756,16 @@ export class PsppaapplicationproccessComponent implements OnInit {
           maklumbalas_ketidakpatuhan_filename: fileName,
         };
         break;
+      case "keputusan_permohonan":
+        apiPath = this.basePublicUrl + "/dbkl/updateApplicationList2/" + this.uploadSiteVisitData.no_siri_permohonan;
+        requestBody = {
+          filename_keputusan_permohonan: fileName,
+        };
+        break;
     }
 
     this.http
-      .put(
-        this.basePublicUrl +
-          "/dbkl/updateSiteVisitApplicationList2/" +
-          this.uploadSiteVisitData.site_id,
+      .put(apiPath,
         requestBody,
         { headers: headers }
       )
@@ -779,89 +809,89 @@ export class PsppaapplicationproccessComponent implements OnInit {
     item.remove();
   }
 
-getFileUrl(filename: string): string {
-  let fileExtension = filename.split(".").pop()?.toLowerCase();
-  let path = "";
+  getFileUrl(filename: string): string {
+    let fileExtension = filename.split(".").pop()?.toLowerCase();
+    let path = "";
 
-  let PHOTO_EXTENSIONS = ["png", "jpg", "jpeg"];
-  let DOC_EXTENSIONS = ["pdf", "docx", "pptx", "xls", "xlsx"];
+    let PHOTO_EXTENSIONS = ["png", "jpg", "jpeg"];
+    let DOC_EXTENSIONS = ["pdf", "docx", "pptx", "xls", "xlsx"];
 
-  if (PHOTO_EXTENSIONS.includes(fileExtension)) {
-    path = "images";
-  } else if (DOC_EXTENSIONS.includes(fileExtension)) {
-    path = "docs";
-  }
-
-  return `${environment.basePublicUrl}/jkas_resourses/free/${path}/${filename}`;
-}
-
-// New method to check if file should be downloaded
-shouldDownloadFile(filename: string): boolean {
-  let fileExtension = filename.split(".").pop()?.toLowerCase();
-  let DOWNLOAD_EXTENSIONS = ["docx", "pptx", "xls", "xlsx", "zip", "rar"];
-  return DOWNLOAD_EXTENSIONS.includes(fileExtension);
-}
-
-// New method to handle file click
-handleFileClick(filename: string, event?: Event): void {
-  if (event) {
-    event.preventDefault();
-  }
-
-  const fileExtension = filename.split(".").pop()?.toLowerCase();
-  const DOWNLOAD_EXTENSIONS = ["docx", "pptx", "xls", "xlsx", "zip", "rar"];
-  const PREVIEW_EXTENSIONS = ["pdf", "png", "jpg", "jpeg"];
-
-  console.log('filename: ', filename)
-  console.log('fileExtension: ', fileExtension)
-
-  if (DOWNLOAD_EXTENSIONS.includes(fileExtension)) {
-    // Download the file
-    this.downloadFile(filename, this.getFileUrl(filename));
-  } else if (PREVIEW_EXTENSIONS.includes(fileExtension)) {
-    // Open in new tab for preview
-    window.open(this.getFileUrl(filename), '_blank');
-  } else {
-    // Default behavior - try to open in new tab
-    window.open(this.getFileUrl(filename), '_blank');
-  }
-}
-
-// Keep existing downloadFile method as is
-downloadFile(filename: string, fileUrl: string): void {
-  this.spinner.show();
-  
-  this.http.get(fileUrl, { responseType: 'blob' }).subscribe(
-    (blob: Blob) => {
-      this.spinner.hide();
-      
-      // Create blob URL
-      const url = window.URL.createObjectURL(blob);
-      
-      // Create download link
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = filename;
-      
-      // Trigger download
-      document.body.appendChild(link);
-      link.click();
-      
-      // Cleanup
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    },
-    (error) => {
-      this.spinner.hide();
-      
-      if (this.lang == "en") {
-        this.errmsg = "Failed to download file. Please try again.";
-      } else {
-        this.errmsg = "Gagal memuat turun fail. Sila cuba lagi.";
-      }
-      
-      this.openError();
+    if (PHOTO_EXTENSIONS.includes(fileExtension)) {
+      path = "images";
+    } else if (DOC_EXTENSIONS.includes(fileExtension)) {
+      path = "docs";
     }
-  );
-}
+
+    return `${environment.basePublicUrl}/jkas_resourses/free/${path}/${filename}`;
+  }
+
+  // New method to check if file should be downloaded
+  shouldDownloadFile(filename: string): boolean {
+    let fileExtension = filename.split(".").pop()?.toLowerCase();
+    let DOWNLOAD_EXTENSIONS = ["docx", "pptx", "xls", "xlsx", "zip", "rar"];
+    return DOWNLOAD_EXTENSIONS.includes(fileExtension);
+  }
+
+  // New method to handle file click
+  handleFileClick(filename: string, event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
+
+    const fileExtension = filename.split(".").pop()?.toLowerCase();
+    const DOWNLOAD_EXTENSIONS = ["docx", "pptx", "xls", "xlsx", "zip", "rar"];
+    const PREVIEW_EXTENSIONS = ["pdf", "png", "jpg", "jpeg"];
+
+    console.log("filename: ", filename);
+    console.log("fileExtension: ", fileExtension);
+
+    if (DOWNLOAD_EXTENSIONS.includes(fileExtension)) {
+      // Download the file
+      this.downloadFile(filename, this.getFileUrl(filename));
+    } else if (PREVIEW_EXTENSIONS.includes(fileExtension)) {
+      // Open in new tab for preview
+      window.open(this.getFileUrl(filename), "_blank");
+    } else {
+      // Default behavior - try to open in new tab
+      window.open(this.getFileUrl(filename), "_blank");
+    }
+  }
+
+  // Keep existing downloadFile method as is
+  downloadFile(filename: string, fileUrl: string): void {
+    this.spinner.show();
+
+    this.http.get(fileUrl, { responseType: "blob" }).subscribe(
+      (blob: Blob) => {
+        this.spinner.hide();
+
+        // Create blob URL
+        const url = window.URL.createObjectURL(blob);
+
+        // Create download link
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+
+        // Trigger download
+        document.body.appendChild(link);
+        link.click();
+
+        // Cleanup
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      },
+      (error) => {
+        this.spinner.hide();
+
+        if (this.lang == "en") {
+          this.errmsg = "Failed to download file. Please try again.";
+        } else {
+          this.errmsg = "Gagal memuat turun fail. Sila cuba lagi.";
+        }
+
+        this.openError();
+      }
+    );
+  }
 }
