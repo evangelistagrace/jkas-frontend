@@ -602,9 +602,13 @@ nav .nav-link {
   transform: rotateZ(45deg);
 }
 
-a,
-a:hover {
+a {
   /* color: white !important; */
+  color: #2196F3;
+}
+
+a:hover {
+  color: #1b76c0;
 }
 
 nav .nav-item:hover {

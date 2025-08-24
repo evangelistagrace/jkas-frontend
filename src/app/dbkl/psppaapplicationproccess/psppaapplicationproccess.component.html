@@ -374,7 +374,7 @@
                     type="button"
                     icon="fa fa-edit"
                     class="p-button-rounded p-button-text p-button-sm"
-                    (click)="openSiteVisitEditDialog(rowData)"
+                    (click)="openSiteVisitEditDialog('tetapan_lawatan_tapak', rowData)"
                     title="Edit Site Visit Date/Time"
                   ></button>
                   <button
@@ -383,7 +383,7 @@
                     type="button"
                     icon="fa fa-upload"
                     class="p-button-rounded p-button-text p-button-sm"
-                    (click)="openUploadDialog(rowData)"
+                    (click)="openUploadDialog('tetapan_lawatan_tapak', rowData)"
                     title="Upload Site Visit File"
                   ></button>
                 </td>
@@ -393,7 +393,46 @@
                     [queryParams]="{ id: rowData.no_siri_permohonan }"
                     >Kemaskini Maklumat</a
                   > -->
-                  {{ rowData.site_visit_info.keputusan_lawatan_tapak }}
+                  {{ rowData.site_visit_info.keputusan_lawatan_tapak[0] ? rowData.site_visit_info.keputusan_lawatan_tapak : 'N/A' }}
+                  <div
+                    *ngIf="
+                      rowData.site_visit_info.keputusan_lawatan_tapak_filename[0]
+                    "
+                  >
+                    Fail:
+                    <a
+                      [href]="
+                        getFileUrl(
+                          rowData.site_visit_info.keputusan_lawatan_tapak_filename[0]
+                        )
+                      "
+                      target="_blank"
+                      class="p-text-primary"
+                    >
+                      {{
+                        rowData.site_visit_info.keputusan_lawatan_tapak_filename[0]
+                      }}
+                    </a>
+                  </div>
+                  <br />
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-edit"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="openSiteVisitEditDialog('keputusan_lawatan_tapak', rowData)"
+                    title="Edit Site Visit Date/Time"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-upload"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="openUploadDialog('keputusan_lawatan_tapak',rowData)"
+                    title="Upload Site Visit File"
+                  ></button>
                 </td>
                 <td>
                   <!-- <app-dbklppsppa
@@ -637,7 +676,7 @@
 
 <!-- Site Visit Edit Dialog -->
 <p-dialog
-  header="Kemaskini Tetapan Lawatan Tapak"
+  header="Kemasikini {{ editSiteVisitData.title || 'Data' }}"
   [(visible)]="showSiteVisitDialog"
   [modal]="true"
   [closable]="true"
@@ -645,7 +684,14 @@
   [draggable]="false"
   [resizable]="false"
 >
-  <div class="p-fluid">
+<!-- tetapan lawatan tapak -->
+  <div class="p-fluid" *ngIf="editSiteVisitData.type === 'tetapan_lawatan_tapak'">
+    <div class="field">
+      <label class="p-text-secondary">No. Siri Permohonan:</label>
+      <span class="p-text-bold"> {{
+        editSiteVisitData.no_siri_permohonan
+      }}</span>
+    </div>
     <div class="field">
       <label for="siteVisitDate">Date</label>
       <p-calendar
@@ -681,6 +727,32 @@
     </div>
   </div>
 
+  <!-- keputusan lawatan tapak -->
+  <div class="p-fluid" *ngIf="editSiteVisitData.type === 'keputusan_lawatan_tapak'">
+    <div class="field">
+      <label class="p-text-secondary">No. Siri Permohonan:</label>
+      <span class="p-text-bold"> {{
+        editSiteVisitData.no_siri_permohonan
+      }}</span>
+    </div>
+    <div class="field">
+      <label for="keputusanLawatan">Keputusan Lawatan Tapak</label>
+      <p-dropdown
+        id="keputusanLawatan"
+        [(ngModel)]="editSiteVisitData.keputusan_lawatan_tapak"
+        [options]="[
+          { label: 'Patuh', value: 'Patuh' },
+          { label: 'Tidak Patuh', value: 'Tidak Patuh' }
+        ]"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Pilih keputusan"
+        [style]="{ width: '100%' }"
+      >
+      </p-dropdown>
+    </div>
+  </div>
+
   <ng-template pTemplate="footer">
     <button
       pButton
@@ -696,8 +768,8 @@
       label="Save"
       icon="pi pi-check"
       class="p-button-primary"
-      (click)="saveSiteVisitDateTime()"
-      [disabled]="!editSiteVisitData.date || !editSiteVisitData.time"
+      (click)="saveSiteVisit()"
+      
     ></button>
   </ng-template>
 </p-dialog>
@@ -713,6 +785,12 @@
   [resizable]="false"
 >
   <div class="p-fluid">
+    <div class="field">
+      <label class="p-text-secondary">No. Siri Permohonan:</label>
+      <span class="p-text-bold">{{
+        uploadSiteVisitData.no_siri_permohonan
+      }}</span>
+    </div>
     <div class="field">
       <label class="p-label">Fail PDF Lawatan Tapak</label>
       <div class="p-fileupload-wrapper">
@@ -764,13 +842,6 @@
           ></p-button>
         </div>
       </div>
-    </div>
-
-    <div class="field">
-      <label class="p-text-secondary">No. Siri Permohonan:</label>
-      <span class="p-text-bold">{{
-        uploadSiteVisitData.no_siri_permohonan
-      }}</span>
     </div>
   </div>
 

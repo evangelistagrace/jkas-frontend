@@ -207,7 +207,6 @@ export class PsppaapplicationproccessComponent implements OnInit {
         (res) => {
           this.spinner.hide();
           this.data = res;
-          console.log(this.data);
 
           // Call this after data is loaded
           this.setupDateFiltering();
@@ -500,24 +499,38 @@ export class PsppaapplicationproccessComponent implements OnInit {
   }
 
   // Add method to open site visit edit dialog
-  openSiteVisitEditDialog(rowData: any) {
+  openSiteVisitEditDialog(type: string, rowData: any) {
     this.editSiteVisitData.site_id = rowData.site_visit_info.site_id;
+    this.editSiteVisitData.no_siri_permohonan = rowData.no_siri_permohonan;
+    this.editSiteVisitData.type = type;
 
-    // Pre-fill with existing date and time if available
-    if (
-      rowData.site_visit_info &&
-      (rowData.site_visit_info.tarikh_datetime ||
-        rowData.site_visit_info.tarikh)
-    ) {
-      const existingDateTime = new Date(
-        rowData.site_visit_info.tarikh_datetime ||
-          rowData.site_visit_info.tarikh
-      );
-      this.editSiteVisitData.date = existingDateTime;
-      this.editSiteVisitData.time = existingDateTime;
-    } else {
-      this.editSiteVisitData.date = null;
-      this.editSiteVisitData.time = null;
+    console.log("rowdata: ", rowData);
+
+    switch (type) {
+      case "tetapan_lawatan_tapak":
+        this.editSiteVisitData.title = "Tetapan Lawatan Tapak";
+        // Pre-fill with existing date and time if available
+        if (
+          rowData.site_visit_info &&
+          (rowData.site_visit_info.tarikh_datetime ||
+            rowData.site_visit_info.tarikh)
+        ) {
+          const existingDateTime = new Date(
+            rowData.site_visit_info.tarikh_datetime ||
+              rowData.site_visit_info.tarikh
+          );
+          this.editSiteVisitData.date = existingDateTime;
+          this.editSiteVisitData.time = existingDateTime;
+        } else {
+          this.editSiteVisitData.date = null;
+          this.editSiteVisitData.time = null;
+        }
+        break;
+      case "keputusan_lawatan_tapak":
+        this.editSiteVisitData.title = "Keputusan Lawatan Tapak";
+        this.editSiteVisitData.keputusan_lawatan_tapak =
+          rowData.site_visit_info.keputusan_lawatan_tapak[0] || null;
+        break;
     }
 
     this.showSiteVisitDialog = true;
@@ -526,34 +539,61 @@ export class PsppaapplicationproccessComponent implements OnInit {
   // Add method to close dialog
   closeSiteVisitDialog() {
     this.showSiteVisitDialog = false;
-    this.editSiteVisitData = {
-      site_id: "",
-      date: null,
-      time: null,
-    };
+
+    switch (this.editSiteVisitData.type) {
+      case "tetapan_lawatan_tapak":
+        this.editSiteVisitData = {
+          site_id: "",
+          date: null,
+          time: null,
+        };
+        break;
+      case "keputusan_lawatan_tapak":
+        this.editSiteVisitData = {
+          site_id: "",
+          keputusan_lawatan_tapak: null,
+        };
+        break;
+    }
   }
 
   // Add method to save site visit date and time
-  saveSiteVisitDateTime() {
+  saveSiteVisit() {
     this.spinner.show();
-
-    // Combine date and time
-    const combinedDateTime = new Date(this.editSiteVisitData.date);
-    const timeOnly = new Date(this.editSiteVisitData.time);
-
-    combinedDateTime.setHours(timeOnly.getHours());
-    combinedDateTime.setMinutes(timeOnly.getMinutes());
-
     const key = localStorage.getItem("AccessToken");
     const headers = {
-      "Content-Type": "application/json",
-      Authorization: key,
+        "Content-Type": "application/json",
+        Authorization: key,
     };
 
-    const requestBody = {
-      site_id: this.editSiteVisitData.site_id,
-      tarikh_datetime: combinedDateTime.toISOString(),
-    };
+    let requestBody = {};
+
+    switch (this.editSiteVisitData.type) {
+      case "tetapan_lawatan_tapak":
+        const combinedDateTime = new Date(this.editSiteVisitData.date);
+        const timeOnly = new Date(this.editSiteVisitData.time);
+
+        combinedDateTime.setHours(timeOnly.getHours());
+        combinedDateTime.setMinutes(timeOnly.getMinutes());
+        
+        requestBody = {
+          site_id: this.editSiteVisitData.site_id,
+          tarikh_datetime: combinedDateTime.toISOString(),
+        };
+        break;
+      case "keputusan_lawatan_tapak":
+        requestBody = {
+          site_id: this.editSiteVisitData.site_id,
+          keputusan_lawatan_tapak: this.editSiteVisitData.keputusan_lawatan_tapak
+        };
+        break;
+      case "maklumbalas_ketidakpatuhan":
+        requestBody = {
+          site_id: this.editSiteVisitData.site_id,
+          maklumbalas_ketidakpatuhan: this.editSiteVisitData.maklumbalas_ketidakpatuhan
+        };
+        break;
+    }
 
     this.http
       .put(
@@ -571,10 +611,10 @@ export class PsppaapplicationproccessComponent implements OnInit {
           this.closeSiteVisitDialog();
 
           if (this.lang == "en") {
-            this.sucessMsg = "Site visit date and time updated successfully!";
+            this.sucessMsg = "Site visit details updated successfully!";
           } else {
             this.sucessMsg =
-              "Tarikh dan masa lawatan tapak berjaya dikemaskini!";
+              "Maklumat lawatan tapak berjaya dikemaskini!";
           }
 
           this.openSuccess();
@@ -586,10 +626,10 @@ export class PsppaapplicationproccessComponent implements OnInit {
 
           if (this.lang == "en") {
             this.errmsg =
-              "Failed to update site visit date and time. Please try again.";
+              "Failed to update site visit details. Please try again.";
           } else {
             this.errmsg =
-              "Gagal mengemaskini tarikh dan masa lawatan tapak. Sila cuba lagi.";
+              "Gagal mengemaskini maklumat lawatan tapak. Sila cuba lagi.";
           }
 
           this.openError();
@@ -603,9 +643,11 @@ export class PsppaapplicationproccessComponent implements OnInit {
   }
 
   // Add method to open upload dialog
-  openUploadDialog(rowData: any) {
+  openUploadDialog(type: string, rowData: any) {
     this.uploadSiteVisitData.no_siri_permohonan = rowData.no_siri_permohonan;
     this.uploadSiteVisitData.site_id = rowData.site_visit_info?.site_id || "";
+    this.uploadSiteVisitData.type = type;
+
     this.showUploadDialog = true;
   }
 
@@ -664,9 +706,25 @@ export class PsppaapplicationproccessComponent implements OnInit {
       Authorization: key,
     };
 
-    const requestBody = {
-      tetapan_lawatan_tapak_filename: fileName,
-    };
+    let requestBody = {}
+
+    switch (this.uploadSiteVisitData.type) {
+      case "tetapan_lawatan_tapak":
+        requestBody = {
+          tetapan_lawatan_tapak_filename: fileName,
+        };
+        break;
+      case "keputusan_lawatan_tapak":
+        requestBody = {
+          keputusan_lawatan_tapak_filename: fileName,
+        };
+        break;
+      case "maklumbalas_ketidakpatuhan":
+        requestBody = {
+          maklumbalas_ketidakpatuhan_filename: fileName,
+        };
+        break;
+    }
 
     this.http
       .put(
@@ -718,16 +776,16 @@ export class PsppaapplicationproccessComponent implements OnInit {
 
   // Add method to get file URL
   getFileUrl(filename: string): string {
-    let fileExtension = filename.split('.').pop();  
-    let path=''
+    let fileExtension = filename.split(".").pop();
+    let path = "";
 
-    let PHOTO_EXTENSIONS = ['png', 'jpg', 'jpeg'];
-    let DOC_EXTENSIONS = ['pdf', 'docx', 'pptx', 'xls', 'xlsx'];
+    let PHOTO_EXTENSIONS = ["png", "jpg", "jpeg"];
+    let DOC_EXTENSIONS = ["pdf", "docx", "pptx", "xls", "xlsx"];
 
     if (PHOTO_EXTENSIONS.includes(fileExtension)) {
-      path = 'images';
+      path = "images";
     } else if (DOC_EXTENSIONS.includes(fileExtension)) {
-      path = 'docs';
+      path = "docs";
     }
 
     return `${environment.basePublicUrl}/jkas_resourses/free/${path}/${filename}`;
