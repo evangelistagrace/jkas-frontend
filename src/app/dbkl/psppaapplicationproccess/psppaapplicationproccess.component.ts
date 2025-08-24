@@ -529,7 +529,12 @@ export class PsppaapplicationproccessComponent implements OnInit {
       case "keputusan_lawatan_tapak":
         this.editSiteVisitData.title = "Keputusan Lawatan Tapak";
         this.editSiteVisitData.keputusan_lawatan_tapak =
-          rowData.site_visit_info.keputusan_lawatan_tapak[0] || null;
+          rowData.site_visit_info.keputusan_lawatan_tapak || null;
+        break;
+      case "maklumbalas_ketidakpatuhan":
+        this.editSiteVisitData.title = "Maklumbalas Ketidakpatuhan";
+        this.editSiteVisitData.status_maklumbalas_ketidakpatuhan =
+          rowData.site_visit_info.status_maklumbalas_ketidakpatuhan || null;
         break;
     }
 
@@ -590,7 +595,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
       case "maklumbalas_ketidakpatuhan":
         requestBody = {
           site_id: this.editSiteVisitData.site_id,
-          maklumbalas_ketidakpatuhan: this.editSiteVisitData.maklumbalas_ketidakpatuhan
+          status_maklumbalas_ketidakpatuhan: this.editSiteVisitData.status_maklumbalas_ketidakpatuhan
         };
         break;
     }
@@ -774,20 +779,89 @@ export class PsppaapplicationproccessComponent implements OnInit {
     item.remove();
   }
 
-  // Add method to get file URL
-  getFileUrl(filename: string): string {
-    let fileExtension = filename.split(".").pop();
-    let path = "";
+getFileUrl(filename: string): string {
+  let fileExtension = filename.split(".").pop()?.toLowerCase();
+  let path = "";
 
-    let PHOTO_EXTENSIONS = ["png", "jpg", "jpeg"];
-    let DOC_EXTENSIONS = ["pdf", "docx", "pptx", "xls", "xlsx"];
+  let PHOTO_EXTENSIONS = ["png", "jpg", "jpeg"];
+  let DOC_EXTENSIONS = ["pdf", "docx", "pptx", "xls", "xlsx"];
 
-    if (PHOTO_EXTENSIONS.includes(fileExtension)) {
-      path = "images";
-    } else if (DOC_EXTENSIONS.includes(fileExtension)) {
-      path = "docs";
-    }
-
-    return `${environment.basePublicUrl}/jkas_resourses/free/${path}/${filename}`;
+  if (PHOTO_EXTENSIONS.includes(fileExtension)) {
+    path = "images";
+  } else if (DOC_EXTENSIONS.includes(fileExtension)) {
+    path = "docs";
   }
+
+  return `${environment.basePublicUrl}/jkas_resourses/free/${path}/${filename}`;
+}
+
+// New method to check if file should be downloaded
+shouldDownloadFile(filename: string): boolean {
+  let fileExtension = filename.split(".").pop()?.toLowerCase();
+  let DOWNLOAD_EXTENSIONS = ["docx", "pptx", "xls", "xlsx", "zip", "rar"];
+  return DOWNLOAD_EXTENSIONS.includes(fileExtension);
+}
+
+// New method to handle file click
+handleFileClick(filename: string, event?: Event): void {
+  if (event) {
+    event.preventDefault();
+  }
+
+  const fileExtension = filename.split(".").pop()?.toLowerCase();
+  const DOWNLOAD_EXTENSIONS = ["docx", "pptx", "xls", "xlsx", "zip", "rar"];
+  const PREVIEW_EXTENSIONS = ["pdf", "png", "jpg", "jpeg"];
+
+  console.log('filename: ', filename)
+  console.log('fileExtension: ', fileExtension)
+
+  if (DOWNLOAD_EXTENSIONS.includes(fileExtension)) {
+    // Download the file
+    this.downloadFile(filename, this.getFileUrl(filename));
+  } else if (PREVIEW_EXTENSIONS.includes(fileExtension)) {
+    // Open in new tab for preview
+    window.open(this.getFileUrl(filename), '_blank');
+  } else {
+    // Default behavior - try to open in new tab
+    window.open(this.getFileUrl(filename), '_blank');
+  }
+}
+
+// Keep existing downloadFile method as is
+downloadFile(filename: string, fileUrl: string): void {
+  this.spinner.show();
+  
+  this.http.get(fileUrl, { responseType: 'blob' }).subscribe(
+    (blob: Blob) => {
+      this.spinner.hide();
+      
+      // Create blob URL
+      const url = window.URL.createObjectURL(blob);
+      
+      // Create download link
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      
+      // Trigger download
+      document.body.appendChild(link);
+      link.click();
+      
+      // Cleanup
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    },
+    (error) => {
+      this.spinner.hide();
+      
+      if (this.lang == "en") {
+        this.errmsg = "Failed to download file. Please try again.";
+      } else {
+        this.errmsg = "Gagal memuat turun fail. Sila cuba lagi.";
+      }
+      
+      this.openError();
+    }
+  );
+}
 }

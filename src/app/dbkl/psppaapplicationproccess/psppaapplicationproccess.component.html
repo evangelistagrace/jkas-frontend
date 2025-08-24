@@ -354,17 +354,10 @@
                   >
                     Fail:
                     <a
-                      [href]="
-                        getFileUrl(
-                          rowData.site_visit_info.tetapan_lawatan_tapak_filename
-                        )
-                      "
-                      target="_blank"
-                      class="p-text-primary"
+                      href="javascript:void(0)"
+                      (click)="handleFileClick(rowData.site_visit_info.tetapan_lawatan_tapak_filename)"
                     >
-                      {{
-                        rowData.site_visit_info.tetapan_lawatan_tapak_filename
-                      }}
+                      {{ rowData.site_visit_info.tetapan_lawatan_tapak_filename }}
                     </a>
                   </div>
                   <br />
@@ -393,25 +386,18 @@
                     [queryParams]="{ id: rowData.no_siri_permohonan }"
                     >Kemaskini Maklumat</a
                   > -->
-                  {{ rowData.site_visit_info.keputusan_lawatan_tapak[0] ? rowData.site_visit_info.keputusan_lawatan_tapak : 'N/A' }}
+                  {{ rowData.site_visit_info.keputusan_lawatan_tapak || 'N/A' }}
                   <div
                     *ngIf="
-                      rowData.site_visit_info.keputusan_lawatan_tapak_filename[0]
+                      rowData.site_visit_info.keputusan_lawatan_tapak_filename
                     "
                   >
                     Fail:
                     <a
-                      [href]="
-                        getFileUrl(
-                          rowData.site_visit_info.keputusan_lawatan_tapak_filename[0]
-                        )
-                      "
-                      target="_blank"
-                      class="p-text-primary"
+                      href="javascript:void(0)"
+                      (click)="handleFileClick(rowData.site_visit_info.keputusan_lawatan_tapak_filename)"
                     >
-                      {{
-                        rowData.site_visit_info.keputusan_lawatan_tapak_filename[0]
-                      }}
+                      {{ rowData.site_visit_info.keputusan_lawatan_tapak_filename }}
                     </a>
                   </div>
                   <br />
@@ -422,7 +408,7 @@
                     icon="fa fa-edit"
                     class="p-button-rounded p-button-text p-button-sm"
                     (click)="openSiteVisitEditDialog('keputusan_lawatan_tapak', rowData)"
-                    title="Edit Site Visit Date/Time"
+                    title="Edit Site Visit Detail"
                   ></button>
                   <button
                     pButton
@@ -439,7 +425,26 @@
                     [value]="rowData.no_siri_permohonan"
                     [getData]="data"
                   ></app-dbklppsppa> -->
-                  {{ rowData.site_visit_info.maklum_balas_ketidakpatuhan }}
+                  {{ rowData.site_visit_info.status_maklumbalas_ketidakpatuhan || 'N/A'}}
+                  <div *ngIf="rowData.site_visit_info.maklumbalas_ketidakpatuhan_filename">
+                    Fail:
+                    <a
+                      href="javascript:void(0)"
+                      (click)="handleFileClick(rowData.site_visit_info.maklumbalas_ketidakpatuhan_filename)"
+                    >
+                      {{ rowData.site_visit_info.maklumbalas_ketidakpatuhan_filename }}
+                    </a>
+                  </div>
+                  <br />
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-edit"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="openSiteVisitEditDialog('maklumbalas_ketidakpatuhan', rowData)"
+                    title="Edit Site Detail"
+                  ></button>
                 </td>
                 <td>
                   {{ rowData.status_keputusan_permohonan }}
@@ -740,6 +745,32 @@
       <p-dropdown
         id="keputusanLawatan"
         [(ngModel)]="editSiteVisitData.keputusan_lawatan_tapak"
+        [options]="[
+          { label: 'Patuh', value: 'Patuh' },
+          { label: 'Tidak Patuh', value: 'Tidak Patuh' }
+        ]"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Pilih keputusan"
+        [style]="{ width: '100%' }"
+      >
+      </p-dropdown>
+    </div>
+  </div>
+
+  <!-- maklumbalas ketidakpatuhan -->
+  <div class="p-fluid" *ngIf="editSiteVisitData.type === 'maklumbalas_ketidakpatuhan'">
+    <div class="field">
+      <label class="p-text-secondary">No. Siri Permohonan:</label>
+      <span class="p-text-bold"> {{
+        editSiteVisitData.no_siri_permohonan
+      }}</span>
+    </div>
+    <div class="field">
+      <label for="maklumbalasKetidakpatuhan">Maklumbalas Ketidakpatuhan</label>
+      <p-dropdown
+        id="maklumbalasKetidakpatuhan"
+        [(ngModel)]="editSiteVisitData.status_maklumbalas_ketidakpatuhan"
         [options]="[
           { label: 'Patuh', value: 'Patuh' },
           { label: 'Tidak Patuh', value: 'Tidak Patuh' }
