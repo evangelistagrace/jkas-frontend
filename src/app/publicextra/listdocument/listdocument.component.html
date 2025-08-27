@@ -129,6 +129,57 @@
         >
           APPLICATION SOLID WASTE COLLECTION SERVICES AND PUBLIC CLEANING
         </h5>
+        <!-- applicant details -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h6 class="mb-0">Data Pemohon</h6>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="username">Nama:</label>
+                  <input type="text" class="form-control" id="username" [(ngModel)]="username" disabled />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email">Emel:</label>
+                  <input type="email" class="form-control" id="email" [(ngModel)]="email" disabled/>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="icNo">No. I/C:</label>
+                  <input type="text" class="form-control" id="icNo" [(ngModel)]="icNo" disabled/>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="no_tel_mobile">No. Tel (Mobile):</label>
+                  <input type="text" class="form-control" id="no_tel_mobile" [(ngModel)]="no_tel_mobile" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="no_tel_office">No. Tel (Pejabat):</label>
+                  <input type="text" class="form-control" id="no_tel_office" [(ngModel)]="no_tel_office" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="nama_syarikat">Nama Syarikat:</label>
+                  <input type="text" class="form-control" id="nama_syarikat" [(ngModel)]="nama_syarikat" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <div class="table-responsive">
           <table
             class="table table-bordered table-striped table-hover table-condensed"

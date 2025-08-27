@@ -148,6 +148,11 @@ export class ListdocumentComponent implements OnInit {
   display: string;
   errorDisplay: string;
   username: string;
+  email: string;
+  icNo: string;
+  no_tel_mobile: string;
+  no_tel_office: string;
+  nama_syarikat: string;
   appno: any;
   basePublicUrl = environment.basePublicUrl;
   npErrorMessage: any;
@@ -171,7 +176,48 @@ export class ListdocumentComponent implements OnInit {
     // console.log("username at checklist", this.username);
     if (!this.accessToken) {
       this.router.navigateByUrl("/publicLogin");
-    }
+    } else {
+      let headers = {
+        accept: "application/json",
+        Authorization: this.accessToken,
+      };
+
+      this.http
+        .post(this.basePublicUrl + "/public/getPublicUSerInfo", {}, {
+          headers: headers,
+        })
+        .subscribe(
+          (res) => {
+            console.log("user info", res);
+            this.spinner.hide();
+            
+            if (res) {
+              const userData: any = res;
+              this.username = userData.username || this.username;
+              this.email = userData.email || this.email;
+              this.icNo = userData.id_card_no || this.icNo;
+              this.no_tel_mobile = userData.no_tel_mobile || this.no_tel_mobile;
+              this.no_tel_office = userData.no_tel_office || this.no_tel_office;
+              this.nama_syarikat = userData.nama_syarikat || this.nama_syarikat;
+            }
+
+            // for (var index of this.applicationList) {
+            //   this.arr = index.mesyuarat_permohonan_serahan_kawasan;
+
+            //   if (this.arr != null) {
+            //     this.datearray.push(this.arr.split(","));
+            //   }
+            // }
+
+            // // Call this after data is loaded
+            // this.setupDateFiltering();
+          },
+          (error) => {
+            // this.router.navigateByUrl("publicLogin");
+            this.spinner.hide();
+          }
+        );
+      }
   }
 
   submit() {
