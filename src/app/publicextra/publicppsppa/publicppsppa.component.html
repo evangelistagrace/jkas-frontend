@@ -108,14 +108,192 @@
         Only complete applications will be processed.
       </div>
 
-      <div class="col-12" style="overflow-x: scroll">
-        <ng2-smart-table
-          [settings]="settings"
-          [source]="characters"
-          (custom)="onCustomEvent($event)"
-          (userRowSelect)="onUserRowSelect($event)"
+      <div class="col-12 d-flex justify-content-between">
+        <button
+          class="addNewRow"
+          (click)="deleteChecked()"
+          style="
+            padding-left: 0.5px;
+            padding-right: 0.5px;
+            background-image: -webkit-linear-gradient(
+              top,
+              #d9534f 0,
+              #c12e2a 100%
+            );
+            margin-bottom: 0.3rem;
+            width: 2.5em;
+            border-radius: 50% !important;
+            border: none;
+          "
+          class="btn btn-danger"
         >
-        </ng2-smart-table>
+          <i
+            class="fa fa-trash"
+            style="font-size: 18px"
+            aria-hidden="true "
+          ></i>
+        </button>
+      </div>
+
+      <div class="col-12" style="overflow-x: scroll">
+        <p-table
+          #dt
+          [value]="applicationList"
+          dataKey="application_id"
+          [paginator]="true"
+          [rows]="10"
+          [rowsPerPageOptions]="[5, 10, 25, 50]"
+          [selectionMode]="'multiple'"
+          [(selection)]="selectedRows"
+          (selectionChange)="onSelectionChange($event)"
+          styleClass="p-datatable-responsive-demo"
+          [globalFilterFields]="['no_siri_permohonan', 'tarikh_permohonan']"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 3rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+              </th>
+              <th>NO SIRI PERMOHONAN</th>
+              <th>TARIKH PERMOHONAN</th>
+              <th>STATUS DOKUMEN PERMOHONAN</th>
+              <th>4.MESYUARAT JAWATANKUASA SERAHAN KAWASAN</th>
+              <th>5.MAKLUMAT LAWATAN TAPAK</th>
+              <th>6.STATUS LAWATAN TAPAK</th>
+              <th>7.SURAT PENYERAHAN KAWASAN</th>
+              <th style="width: 8rem">KEMASKINI</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th>
+                <p-columnFilter type="text" field="no_siri_permohonan">
+                  <ng-template pTemplate="filter" let-filter="filterCallback">
+                    <input
+                      type="text"
+                      pInputText
+                      [(ngModel)]="siriFilter"
+                      (input)="onFilterSiri($event.target.value)"
+                      placeholder="Search by ID"
+                      class="p-column-filter w-100"
+                    />
+                  </ng-template>
+                </p-columnFilter>
+              </th>
+              <th>
+                <p-columnFilter type="date" field="tarikh_permohonan">
+                  <ng-template pTemplate="filter" let-filter="filterCallback">
+                    <div class="p-fluid">
+                      <p-calendar
+                        [(ngModel)]="dateFilter"
+                        [showButtonBar]="true"
+                        [showIcon]="true"
+                        [readonlyInput]="true"
+                        [monthNavigator]="true"
+                        [yearNavigator]="true"
+                        [yearRange]="yearRange"
+                        (onSelect)="onFilterDate($event)"
+                        (onClear)="onFilterDate(null)"
+                        [dateFormat]="'dd/mm/yy'"
+                        [style]="{ width: '100%' }"
+                        styleClass="date-filter-calendar"
+                        placeholder="Filter by date"
+                        appendTo="body"
+                      >
+                      </p-calendar>
+                    </div>
+                  </ng-template>
+                </p-columnFilter>
+              </th>
+              <th>
+                <p-columnFilter type="boolean" field="status_semakan_dokumen">
+                  <ng-template pTemplate="filter" let-filter="filterCallback">
+                    <p-dropdown
+                      [(ngModel)]="statusFilter"
+                      [options]="statusOptions"
+                      (onChange)="onFilterStatus($event.value)"
+                      placeholder="Filter by status"
+                      [showClear]="true"
+                      appendTo="body"
+                      [style]="{ width: '100%' }"
+                      styleClass="status-filter-dropdown"
+                    >
+                      <ng-template let-option pTemplate="item">
+                        {{ option.label }}
+                      </ng-template>
+                    </p-dropdown>
+                  </ng-template>
+                </p-columnFilter>
+              </th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData>
+            <tr [pSelectableRow]="rowData">
+              <td>
+                <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+              </td>
+              <td>{{ rowData.no_siri_permohonan }}</td>
+              <td>{{ rowData.tarikh_permohonan | date : "dd.MM.yy" }}</td>
+              <td>
+                {{
+                  rowData.status_semakan_dokumen ? "Lengkap" : "Tidak Lengkap"
+                }}
+              </td>
+              <td>
+                {{ rowData.mesyuarat_permohanan_serahan_kawasan || "N/A" }}
+              </td>
+              <td>
+                <div
+                  *ngIf="
+                    rowData.maklumat_lawatan_tapak_id !== null;
+                    else noData
+                  "
+                >
+                  <a
+                    [routerLink]="[
+                      '/' +
+                        lang +
+                        '/public/maklumat/' +
+                        rowData.maklumat_lawatan_tapak_id
+                    ]"
+                  >
+                    Papar Maklumat
+                  </a>
+                </div>
+                <ng-template #noData>
+                  <p>-</p>
+                </ng-template>
+              </td>
+              <td>{{ rowData.status_Lawatan_Tapak || "N/A" }}</td>
+              <td>
+                <app-showpdf
+                  [value]="rowData.no_siri_permohonan"
+                  [getData]="applicationList"
+                ></app-showpdf>
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="fa fa-edit"
+                  class="p-button-rounded p-button-text"
+                  (click)="routeToUpdateApplicationForm(rowData)"
+                  title="Edit Application"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="9" class="text-center">Tiada Data Dijumpai</td>
+            </tr>
+          </ng-template>
+        </p-table>
       </div>
 
       <div>
@@ -233,6 +411,101 @@
             i18n="@@no"
           >
             NO
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  data-backdrop="static"
+  style="background: #02020259; display: block"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+  [ngStyle]="{ display: displaysuccess }"
+>
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div
+          class="swal2-icon swal2-success swal2-animate-success-icon"
+          style="display: flex"
+        >
+          <div
+            class="swal2-success-circular-line-left"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+          <span class="swal2-success-line-tip"></span>
+          <span class="swal2-success-line-long"></span>
+          <div class="swal2-success-ring"></div>
+          <div
+            class="swal2-success-fix"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+          <div
+            class="swal2-success-circular-line-right"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+        </div>
+      </div>
+      <div class="modal-body" style="align-self: center">
+        <h4 class="text-center">
+          {{ sucessMsg }}
+        </h4>
+
+        <div class="d-flex justify-content-center">
+          <button
+            type="button"
+            style="margin-top: 15px !important"
+            class="look_for"
+            (click)="closeSuccess()"
+            i18n="@@ok1"
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Error Modal -->
+<div
+  class="modal"
+  tabindex="-1"
+  style="background: #02020259; display: block"
+  role="dialog"
+  [ngStyle]="{ display: errorDisplay1 }"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div
+          class="swal2-icon swal2-error swal2-animate-error-icon"
+          style="display: flex"
+        >
+          <span class="swal2-x-mark"
+            ><span class="swal2-x-mark-line-left"></span
+            ><span class="swal2-x-mark-line-right"></span
+          ></span>
+        </div>
+      </div>
+      <div class="modal-body" style="align-self: center">
+        <h4 class="text-center">{{ errmsg }}</h4>
+        <div class="d-flex justify-content-center">
+          <button
+            type="button"
+            data-dismiss="modal"
+            class="look_for_red"
+            (click)="closeError()"
+            i18n="@@okERR"
+          >
+            OK
           </button>
         </div>
       </div>

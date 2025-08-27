@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import * as $ from "jquery";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
@@ -9,15 +9,16 @@ import { ApplicationList } from "src/app/table/applicationList";
 import { UploaddocumentComponent } from "src/app/uploaddocument/uploaddocument.component";
 import { MeetingService } from "src/app/services/meeting.service";
 import { ShowpdfComponent } from "src/app/showpdf/showpdf.component";
-import { Ng2SmartTableComponent } from "ng2-smart-table";
-
+import { Table } from "primeng/table";
 
 @Component({
-  selector: 'app-publicppsppa',
-  templateUrl: './publicppsppa.component.html',
-  styleUrls: ['./publicppsppa.component.css']
+  selector: "app-publicppsppa",
+  templateUrl: "./publicppsppa.component.html",
+  styleUrls: ["./publicppsppa.component.css"],
 })
 export class PublicppsppaComponent implements OnInit {
+  @ViewChild("dt") table: Table;
+
   accessToken: string;
   basePublicUrl = environment.basePublicUrl;
   applicationList: any;
@@ -37,14 +38,37 @@ export class PublicppsppaComponent implements OnInit {
   display2: string;
   selected: boolean;
 
+  // Add status filter options
+  statusOptions = [
+    { label: "Lengkap", value: true },
+    { label: "Tidak Lengkap", value: false },
+  ];
+
+  // Properties for filters
+  siriFilter: string;
+  dateFilter: Date;
+  statusFilter: any;
+
+  // Add year range for date picker
+  yearRange: string;
+
+  // Add missing properties for success/error handling
+  displaysuccess: string;
+  errorDisplay1: string;
+  sucessMsg: string;
+  errmsg: string;
+
   constructor(
     private http: HttpClient,
     private spinner: NgxSpinnerService,
     private tservice: TableService,
     private router: Router,
-    private met: MeetingService,
-    private table: Ng2SmartTableComponent
-  ) { }
+    private met: MeetingService
+  ) {
+    // Create a year range from 10 years ago to 10 years in the future
+    const currentYear = new Date().getFullYear();
+    this.yearRange = `${currentYear - 10}:${currentYear + 10}`;
+  }
 
   ngOnInit() {
     window.scroll(0, 0);
@@ -54,7 +78,7 @@ export class PublicppsppaComponent implements OnInit {
 
     this.accessToken = localStorage.getItem("AccessToken");
     this.username = localStorage.getItem("username");
-    // console.log("username at public page", this.username);
+
     if (!this.accessToken) {
       this.router.navigateByUrl("/publicLogin");
     }
@@ -64,16 +88,8 @@ export class PublicppsppaComponent implements OnInit {
         var dropdownMenu = $(this).children(".dropdown-menu");
         if (dropdownMenu.is(":visible")) {
           dropdownMenu.parent().toggleClass("open");
-          
         }
       });
-    });
-
-    let elem = $('.ng2-smart-page-item');
-    elem.on('click', function(){
-      if($(this).children('span')){
-        console.log($(this).children('span').text);
-      }
     });
 
     let headers = {
@@ -88,15 +104,17 @@ export class PublicppsppaComponent implements OnInit {
       .subscribe(
         (res) => {
           this.applicationList = res;
-          // console.log(this.applicationList);
 
           for (var index of this.applicationList) {
-            this.arr = index.mesyuarat_permohanan_serahan_kawasan;
+            this.arr = index.mesyuarat_permohonan_serahan_kawasan;
 
             if (this.arr != null) {
               this.datearray.push(this.arr.split(","));
             }
           }
+
+          // Call this after data is loaded
+          this.setupDateFiltering();
         },
         (error) => {
           this.router.navigateByUrl("publicLogin");
@@ -108,6 +126,57 @@ export class PublicppsppaComponent implements OnInit {
       this.characters = data;
       this.spinner.hide();
     });
+  }
+
+  // Add this method to prepare the data for date filtering
+  setupDateFiltering() {
+    if (this.table && this.applicationList) {
+      // Customize the filter function for the tarikh_permohonan column
+      this.table.filterService.register(
+        "dateIs",
+        (value: string, filter: string): boolean => {
+          if (filter === undefined || filter === null || filter.trim() === "") {
+            return true;
+          }
+
+          if (value === undefined || value === null) {
+            return false;
+          }
+
+          // Convert both to date objects for comparison
+          const filterDate = new Date(filter);
+          const valueDate = new Date(value);
+
+          // Compare only the date parts (year, month, day)
+          return (
+            filterDate.getFullYear() === valueDate.getFullYear() &&
+            filterDate.getMonth() === valueDate.getMonth() &&
+            filterDate.getDate() === valueDate.getDate()
+          );
+        }
+      );
+    }
+  }
+
+  // Filter methods that will be called from the template
+  onFilterSiri(value: string) {
+    this.table.filter(value, "no_siri_permohonan", "contains");
+  }
+
+  onFilterDate(value: Date) {
+    if (value) {
+      // Reset time part to compare dates only
+      const dateVal = new Date(value);
+      dateVal.setHours(0, 0, 0, 0);
+
+      this.table.filter(dateVal.toISOString(), "tarikh_permohonan", "dateIs");
+    } else {
+      this.table.filter(null, "tarikh_permohonan", "dateIs");
+    }
+  }
+
+  onFilterStatus(value: any) {
+    this.table.filter(value, "status_semakan_dokumen", "equals");
   }
 
   backtotop() {
@@ -123,7 +192,7 @@ export class PublicppsppaComponent implements OnInit {
 
     let body = {};
 
-   // console.log(header);
+    // console.log(header);
     this.http
       .post(this.basePublicUrl + "/public/logout", body, { headers: header })
       .subscribe(
@@ -140,181 +209,30 @@ export class PublicppsppaComponent implements OnInit {
       );
   }
 
-  settings = {
-    // selectMode: "multi",
-
-    actions: {
-      columnTitle: "KEMASKINI",
-      position: "right",
-      edit: false,
-      // delete :true,
-      delete: false,
-      add: false,
-      new: false,
-      custom: [
-        {
-          name: "routeToUpdateApplicationForm",
-          type: "html",
-          title: '<i class="fa fa-edit custom-font"></i>',
-        },
-      ],
-    },
-    columns: {
-      no_siri_permohonan: {
-        title: "1.NO SIRI PERMOHONAN",
-      },
-      tarikh_permohonan: {
-        title: "2.TARIKH PERMOHONAN",
-      },
-
-      status_semakan_dokumen: {
-        title: "3.STATUS SEMAKAN DOKUMEN",
-        type: "html",
-        valuePrepareFunction: (cell, row) => {
-          return row.status_semakan_dokumen ? 'Lengkap' : 'Tidak Lengkap';
-        },
-      },
-      mesyuarat_permohanan_serahan_kawasan: {
-        title: "4.MESYUARAT JAWATANKUASA SERAHAN KAWASAN",
-      },
-      maklumat_lawatan_tapak_id: {
-        title: "5.MAKLUMAT LAWATAN TAPAK",
-        type: "html",
-        valuePrepareFunction: (cell, row) => {
-          if (row.maklumat_lawatan_tapak_id !== null) {
-            return (
-              "<a  href=" +
-              "/" +
-              this.lang +
-              "/public/maklumat/" +
-              row.maklumat_lawatan_tapak_id +
-              " >" +
-              "Papar Maklumat" +
-              "</a>"
-            );
-          } else {
-            return "<p>-</p>";
-          }
-        },
-      },
-      status_Lawatan_Tapak: {
-        title: " 6.STATUS LAWATAN TAPAK",
-      },
-      surat_penyerahan_kawasan: {
-        title: "7.SURAT PENYERAHAN KAWASAN",
-        type: "custom",
-        renderComponent: ShowpdfComponent,
-        valuePrepareFunction: (cell, row) => {
-          this.met.value = row.no_siri_permohonan;
-          this.met.getData = this.characters;
-      },
-      // surat_penyerahan_kawasan: {
-      //   title: "Surat Penyerahan Kawasan",
-        // type: "custom",
-        // renderComponent: UploaddocumentComponent,
-        // valuePrepareFunction: (cell, row) => {
-        //   this.met.value = row.no_siri_permohonan;
-        //   this.met.getData = this.characters;
-        //   console.log(row.no_siri_permohonan+" "+this.characters);
-
-      //   },
-      // },
-    }},
-  };
-  onUserRowSelect(event) {
-    var i = 0;
-    var j = 0;
+  // Update selection change method for PrimeNG
+  onSelectionChange(event) {
     this.IdsArray = [];
-    this.selectedRows = event.selected;
-    for (i; i < this.selectedRows.length; i++)
-      this.IdsArray.push(this.selectedRows[i].application_id);
-    this.selectedRows = "";
-    this.listOfIds = JSON.stringify(this.IdsArray);
-    // console.log(this.listOfIds);
-    // console.log(this.listOfIds.length);
-    // console.log(this.listOfIds.substring(1, this.listOfIds.length - 1));
-  }
-  routeToNewApplication() {
-    this.router.navigateByUrl("/public/checklistoption");
-  }
-  deleteSelected() {
-    this.spinner.show();
-    const options = {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        accept: "application/json",
-        Authorization: this.accessToken,
-      }),
-      body: {
-        app_id_list: this.listOfIds.substring(1, this.listOfIds.length - 1),
-      },
-    };
-    // console.log(options);
-    this.http
-      .delete(
-        environment.basePublicUrl + "/public/deleteApplicationList",
-        options
-      )
-      .subscribe((s) => {
-        // console.log("my response" + JSON.stringify(s));
-        this.spinner.hide();
-        this.reloadComponent();
-      });
-  }
-  reloadComponent() {
-    this.backtotop();
-    let currentUrl = this.router.url;
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = "reload";
-    this.router.navigate([currentUrl]);
-  }
-  onCustomEvent(event) {
-    this.spinner.show();
-    switch (event.action) {
-      case "routeToDeleteApplication":
-        // console.log(event.data);
-        this.keyValue = event.data;
-        // console.log(this.keyValue.application_id);
+    this.selectedRows = event;
 
-        const options = {
-          headers: new HttpHeaders({
-            "Content-Type": "application/json",
-            Authorization: this.accessToken,
-          }),
-          body: {
-            app_id_list: this.keyValue.application_id,
-          },
-        };
-
-        this.http
-          .delete(this.basePublicUrl + "/public/deleteApplicationList", options)
-          .subscribe(
-            (res) => {
-              // console.log(res);
-              this.spinner.hide();
-              if (res["status"] == "success") {
-                window.location.reload();
-              }
-            },
-            (error) => {
-              this.spinner.hide();
-              this.loginError = true;
-              this.errorMsg = error["error"]["message"];
-            }
-          );
-        break;
-      case "routeToUpdateApplicationForm":
-
-        // console.log(event.data);
-        this.keyValue = event.data;
-        localStorage.setItem("date1", this.keyValue.tarikh_permohonan);
-        this.spinner.hide();
-        this.router.navigateByUrl(
-          "public/showchecklist?id=" + this.keyValue.dokumen_senarai
-        );
-        break;
+    if (this.selectedRows && this.selectedRows.length > 0) {
+      for (let i = 0; i < this.selectedRows.length; i++) {
+        this.IdsArray.push(this.selectedRows[i].application_id);
+      }
+      this.listOfIds = JSON.stringify(this.IdsArray);
     }
   }
+
+  // Update this method to handle direct button click
+  routeToUpdateApplicationForm(rowData) {
+    this.spinner.show();
+    this.keyValue = rowData;
+    localStorage.setItem("date1", this.keyValue.tarikh_permohonan);
+    this.spinner.hide();
+    this.router.navigateByUrl(
+      "public/showchecklist?id=" + this.keyValue.dokumen_senarai
+    );
+  }
+
   closeModal() {
     this.display = "none";
   }
@@ -327,22 +245,92 @@ export class PublicppsppaComponent implements OnInit {
   deleteChecked() {
     if (this.IdsArray == undefined) {
       this.display = "block";
-
-    }
-    else if (this.IdsArray.length == 0) {
+    } else if (this.IdsArray.length == 0) {
       this.display = "block";
-    }
-    else {
+    } else {
       this.opendeletemodal();
-
-      
     }
-   
   }
   cancel() {
+    window.history.back(); // <-- go back to previous location on cancel
+  }
 
-    window.history.back();// <-- go back to previous location on cancel
+  // Add the missing deleteSelected method
+  deleteSelected() {
+    this.closeModalDelete();
+    this.spinner.show();
+    const options = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        accept: "application/json",
+        Authorization: this.accessToken,
+      }),
+      body: {
+        app_id_list: this.listOfIds.substring(1, this.listOfIds.length - 1),
+      },
+    };
 
+    this.http
+      .delete(
+        environment.basePublicUrl + "/public/deleteApplicationList",
+        options
+      )
+      .subscribe(
+        (s) => {
+          this.spinner.hide();
+
+          if (s["status"] == "success") {
+            if (this.lang == "en") {
+              this.sucessMsg = "Application List deleted Successfully!";
+            } else {
+              this.sucessMsg = "Senarai Aplikasi berjaya dipadam!";
+            }
+          }
+
+          this.openSuccess();
+          this.reloadComponent();
+        },
+        (error) => {
+          this.spinner.hide();
+          this.loginError = true;
+          this.errorMsg = error["error"]["message"];
+
+          if (this.lang == "en") {
+            this.errmsg =
+              "Failed to delete application list. Please try again.";
+          } else {
+            this.errmsg = "Gagal memadamkan senarai aplikasi. Sila cuba lagi.";
+          }
+
+          this.openError();
+        }
+      );
+  }
+
+  // Add missing success/error modal methods
+  openSuccess() {
+    this.displaysuccess = "block";
+  }
+
+  closeSuccess() {
+    this.displaysuccess = "none";
+    this.reloadComponent();
+  }
+
+  openError() {
+    this.errorDisplay1 = "block";
+  }
+
+  closeError() {
+    this.errorDisplay1 = "none";
+  }
+
+  // Add reload component method
+  reloadComponent() {
+    this.backtotop();
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigate([currentUrl]);
   }
 }
-
