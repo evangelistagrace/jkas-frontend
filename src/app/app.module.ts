@@ -118,6 +118,7 @@ import { DbklpdfComponent } from "./dbklpdf/dbklpdf.component";
 import { InactiveAreaComponent } from "./dbkl/inactive-area/inactive-area.component";
 import { AnalisiskompaunComponent } from "./dbkl/analisiskompaun/analisiskompaun.component";
 import { PublicppsppaComponent } from "./publicextra/publicppsppa/publicppsppa.component";
+import { PublicppsppaBakComponent } from "./publicppsppa-bak/publicppsppa-bak.component";
 import { ListdocumentComponent } from "./publicextra/listdocument/listdocument.component";
 import { ChecklistoptionComponent } from "./publicextra/checklistoption/checklistoption.component";
 import { ServicesheduleComponent } from "./publicextra/serviceshedule/serviceshedule.component";
@@ -288,7 +289,8 @@ registerLocaleData(msLocale, "ms");
     FooterV2Component,
     AdminAnnouncementsComponent,
     StatisticsComponent,
-    PsppaapplicationproccessBakComponent
+    PsppaapplicationproccessBakComponent,
+    PublicppsppaBakComponent
   ],
   imports: [
     MatTableModule,
