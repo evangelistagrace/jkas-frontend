@@ -209,8 +209,8 @@
                 <th>E-MESYUARAT</th>
                 <th>KEPUTUSAN LAWATAN TAPAK</th>
                 <th>MAKLUMBALAS KETIDAKPATUHAN</th>
-                <!-- <th>SENARAI KAWASAN - RIC/SLC</th>
-                <th>MINIT MESYUARAT RIC/SLC</th> -->
+                <th>SENARAI KAWASAN - RIC/SLC</th>
+                <th>MINIT MESYUARAT RIC/SLC</th>
                 <th>KEPUTUSAN PERMOHONAN</th>
                 <th>CATATAN</th>
                 <!-- <th style="width: 8rem">TINDAKAN</th> -->
@@ -302,6 +302,8 @@
                     </ng-template>
                   </p-columnFilter>
                 </th>
+                <th></th>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -530,6 +532,96 @@
                       )
                     "
                     title="Edit Site Detail"
+                  ></button>
+                </td>
+                <!-- senarai kawasan RIC/SLC -->
+                <td>
+                  Bil. RIC/SLC: {{ rowData.senarai_kwsn_bil_no }}
+                  <br />
+                  Tarikh: {{ rowData.senarai_kwsn_tarikh | date : "dd.MM.yy" }}
+                  <div
+                    *ngIf="
+                      rowData.senarai_kwsn_filename
+                    "
+                  >
+                    Fail:
+                    <a
+                      href="javascript:void(0)"
+                      (click)="
+                        handleFileClick(
+                          rowData.senarai_kwsn_filename
+                        )
+                      "
+                    >
+                      {{
+                        rowData.senarai_kwsn_filename
+                      }}
+                    </a>
+                  </div>
+                  <br />
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-edit"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="
+                      openSiteVisitEditDialog('senarai_kawasan', rowData)
+                    "
+                    title="Edit Meeting Details"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-upload"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="openUploadDialog('senarai_kawasan', rowData)"
+                    title="Upload Meeting File"
+                  ></button>
+                </td>
+                <!-- minit mesyuarat RIC/SLC -->
+                <td>
+                  Tarikh: {{ rowData.senarai_kwsn_minit_msyrt_tarikh | date : "dd.MM.yy" }}
+                  <div
+                    *ngIf="
+                      rowData.senarai_kwsn_minit_msyrt_filename
+                    "
+                  >
+                    Fail:
+                    <a
+                      href="javascript:void(0)"
+                      (click)="
+                        handleFileClick(
+                          rowData.senarai_kwsn_minit_msyrt_filename
+                        )
+                      "
+                    >
+                      {{
+                        rowData.senarai_kwsn_minit_msyrt_filename
+                      }}
+                    </a>
+                  </div>
+                  <br />
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-edit"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="
+                      openSiteVisitEditDialog('senarai_kawasan_minit_mesyuarat', rowData)
+                    "
+                    title="Edit Meeting Details"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-upload"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="openUploadDialog('senarai_kawasan_minit_mesyuarat', rowData)"
+                    title="Upload Meeting File"
                   ></button>
                 </td>
                 <td>
@@ -823,7 +915,7 @@
 
 <!-- Site Visit Edit Dialog -->
 <p-dialog
-  header="Kemasikini {{ editSiteVisitData.title || 'Data' }}"
+  header="Kemaskini {{ editSiteVisitData.title || 'Data' }}"
   [(visible)]="showSiteVisitDialog"
   [modal]="true"
   [closable]="true"
@@ -1007,9 +1099,9 @@
       >
     </div>
     <div class="field">
-      <label for="keputusanPermohonan">Bil. Mesyuarat</label>
+      <label for="bilEmesyuarat">Bil. Mesyuarat</label>
       <input
-        id="bilMesyuarat"
+        id="bilEmesyuarat"
         type="text"
         pInputText
         [(ngModel)]="editSiteVisitData.emesy_bil_no"
@@ -1022,6 +1114,88 @@
       <p-calendar
         id="emesyTarikh"
         [(ngModel)]="editSiteVisitData.emesy_tarikh"
+        [showButtonBar]="true"
+        [showIcon]="true"
+        [readonlyInput]="true"
+        [monthNavigator]="true"
+        [yearNavigator]="true"
+        [yearRange]="yearRange"
+        [dateFormat]="'dd/mm/yy'"
+        [style]="{ width: '100%' }"
+        placeholder="Select date"
+      >
+      </p-calendar>
+    </div>
+  </div>
+
+  <!-- senarai kawasan -->
+  <div
+    class="p-fluid"
+    *ngIf="editSiteVisitData.type === 'senarai_kawasan'"
+  >
+    <div class="field">
+      <label class="p-text-secondary">No. Siri Permohonan:</label>
+      <span class="p-text-bold">
+        {{ editSiteVisitData.no_siri_permohonan }}</span
+      >
+    </div>
+    <div class="field">
+      <label for="senaraiKwsnTarikh">Tarikh Permohonan RIC/SLC</label>
+      <p-calendar
+        id="senaraiKwsnTarikh"
+        [(ngModel)]="editSiteVisitData.senarai_kwsn_tarikh"
+        [showButtonBar]="true"
+        [showIcon]="true"
+        [readonlyInput]="true"
+        [monthNavigator]="true"
+        [yearNavigator]="true"
+        [yearRange]="yearRange"
+        [dateFormat]="'dd/mm/yy'"
+        [style]="{ width: '100%' }"
+        placeholder="Select date"
+      >
+      </p-calendar>
+    </div>
+    <div class="field">
+      <label for="bilSenaraiKwsn">Bil. RIC/SLC</label>
+      <input
+        id="bilSenaraiKwsn"
+        type="text"
+        pInputText
+        [(ngModel)]="editSiteVisitData.senarai_kwsn_bil_no"
+        [style]="{ width: '100%' }"
+        placeholder="Enter meeting number"
+      />
+    </div>
+    <div class="field">
+      <label for="tempatMesyrt">Tempat Mesyuarat</label>
+      <input
+        id="tempatMesyrt"
+        type="text"
+        pInputText
+        [(ngModel)]="editSiteVisitData.senarai_kwsn_tempat"
+        [style]="{ width: '100%' }"
+        placeholder="Enter meeting place"
+      />
+    </div>
+  </div>
+
+  <!-- senarai kawasan minit mesyuarat -->
+  <div
+    class="p-fluid"
+    *ngIf="editSiteVisitData.type === 'senarai_kawasan_minit_mesyuarat'"
+  >
+    <div class="field">
+      <label class="p-text-secondary">No. Siri Permohonan:</label>
+      <span class="p-text-bold">
+        {{ editSiteVisitData.no_siri_permohonan }}</span
+      >
+    </div>
+    <div class="field">
+      <label for="senaraiKwsnMinitMesyrtTarikh">Tarikh Minit Mesyuarat RIC/SLC</label>
+      <p-calendar
+        id="senaraiKwsnMinitMesyrtTarikh"
+        [(ngModel)]="editSiteVisitData.senarai_kwsn_minit_msyrt_tarikh"
         [showButtonBar]="true"
         [showIcon]="true"
         [readonlyInput]="true"

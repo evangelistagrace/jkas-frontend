@@ -565,6 +565,30 @@ export class PsppaapplicationproccessComponent implements OnInit {
           this.editSiteVisitData.emesy_tarikh = null;
         }
         break;
+      case "senarai_kawasan":
+        this.editSiteVisitData.title = "Senarai Kawasan - RIC/SLC";
+        this.editSiteVisitData.senarai_kwsn_bil_no = rowData.senarai_kwsn_bil_no || null;
+        this.editSiteVisitData.senarai_kwsn_tempat = rowData.senarai_kwsn_tempat || null;
+        // Pre-fill with existing date and time if available
+        if (rowData.senarai_kwsn_tarikh) {
+          const existingDate = new Date(rowData.senarai_kwsn_tarikh);
+
+          this.editSiteVisitData.senarai_kwsn_tarikh = existingDate;
+        } else {
+          this.editSiteVisitData.senarai_kwsn_tarikh = null;
+        }
+        break;
+      case "senarai_kawasan_minit_mesyuarat":
+        this.editSiteVisitData.title = "Minit Mesyuarat RIC/SLC";
+        // Pre-fill with existing date and time if available
+        if (rowData.senarai_kwsn_minit_msyrt_tarikh) {
+          const existingDate = new Date(rowData.senarai_kwsn_minit_msyrt_tarikh);
+
+          this.editSiteVisitData.senarai_kwsn_minit_msyrt_tarikh = existingDate;
+        } else {
+          this.editSiteVisitData.senarai_kwsn_minit_msyrt_tarikh = null;
+        }
+        break;
     }
 
     this.showSiteVisitDialog = true;
@@ -671,6 +695,33 @@ export class PsppaapplicationproccessComponent implements OnInit {
           emesy_tarikh: tarikhEmesy.toISOString(),
         };
         break;
+      case "senarai_kawasan":
+        apiPath =
+          this.basePublicUrl +
+          "/dbkl/updateApplicationList2/" +
+          this.editSiteVisitData.no_siri_permohonan;
+        const senaraiKwsnTarikh = new Date(this.editSiteVisitData.senarai_kwsn_tarikh);
+        requestBody = {
+          no_siri_permohonan: this.editSiteVisitData.no_siri_permohonan,
+          senarai_kwsn_bil_no:
+            this.editSiteVisitData.senarai_kwsn_bil_no,
+          senarai_kwsn_tarikh: senaraiKwsnTarikh.toISOString(),
+          senarai_kwsn_tempat:
+            this.editSiteVisitData.senarai_kwsn_tempat,
+        };
+        break;
+      case "senarai_kawasan_minit_mesyuarat":
+        apiPath =
+          this.basePublicUrl +
+          "/dbkl/updateApplicationList2/" +
+          this.editSiteVisitData.no_siri_permohonan;
+        const senaraiKwsnMinitTarikh = new Date(this.editSiteVisitData.senarai_kwsn_minit_msyrt_tarikh);
+        requestBody = {
+          no_siri_permohonan: this.editSiteVisitData.no_siri_permohonan,
+          senarai_kwsn_minit_msyrt_tarikh: senaraiKwsnMinitTarikh.toISOString(),
+        };
+        break;
+        
     }
 
     this.http
@@ -734,6 +785,12 @@ export class PsppaapplicationproccessComponent implements OnInit {
         break;
       case "emesy":
         this.uploadSiteVisitData.title = "E-Mesyuarat";
+        break;
+      case "senarai_kawasan":
+        this.uploadSiteVisitData.title = "Senarai Kawasan - RIC/SLC";
+        break;
+      case "senarai_kawasan_minit_mesyuarat":
+        this.uploadSiteVisitData.title = "Minit Mesyuarat RIC/SLC";
         break;
     }
 
@@ -821,6 +878,18 @@ export class PsppaapplicationproccessComponent implements OnInit {
         apiPath = this.basePublicUrl + "/dbkl/updateApplicationList2/" + this.uploadSiteVisitData.no_siri_permohonan;
         requestBody = {
           emesy_filename: fileName,
+        };
+        break;
+      case "senarai_kawasan":
+        apiPath = this.basePublicUrl + "/dbkl/updateApplicationList2/" + this.uploadSiteVisitData.no_siri_permohonan;
+        requestBody = {
+          senarai_kwsn_filename: fileName,
+        };
+        break;
+      case "senarai_kawasan_minit_mesyuarat":
+        apiPath = this.basePublicUrl + "/dbkl/updateApplicationList2/" + this.uploadSiteVisitData.no_siri_permohonan;
+        requestBody = {
+          senarai_kwsn_minit_msyrt_filename: fileName,
         };
         break;
     }
