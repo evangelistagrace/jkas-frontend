@@ -553,6 +553,18 @@ export class PsppaapplicationproccessComponent implements OnInit {
         this.editSiteVisitData.title = "Catatan";
         this.editSiteVisitData.catatan = rowData.catatan || null;
         break;
+      case "emesy":
+        this.editSiteVisitData.title = "E-Mesyuarat";
+        this.editSiteVisitData.emesy_bil_no = rowData.emesy_bil_no|| null;
+        // Pre-fill with existing date and time if available
+        if (rowData.emesy_tarikh) {
+          const existingDate = new Date(rowData.emesy_tarikh);
+          
+          this.editSiteVisitData.emesy_tarikh = existingDate;
+        } else {
+          this.editSiteVisitData.emesy_tarikh = null;
+        }
+        break;
     }
 
     this.showSiteVisitDialog = true;
@@ -562,21 +574,23 @@ export class PsppaapplicationproccessComponent implements OnInit {
   closeSiteVisitDialog() {
     this.showSiteVisitDialog = false;
 
-    switch (this.editSiteVisitData.type) {
-      case "tetapan_lawatan_tapak":
-        this.editSiteVisitData = {
-          site_id: "",
-          date: null,
-          time: null,
-        };
-        break;
-      case "keputusan_lawatan_tapak":
-        this.editSiteVisitData = {
-          site_id: "",
-          keputusan_lawatan_tapak: null,
-        };
-        break;
-    }
+    this.editSiteVisitData = {};
+
+    // switch (this.editSiteVisitData.type) {
+    //   case "tetapan_lawatan_tapak":
+    //     this.editSiteVisitData = {
+    //       site_id: "",
+    //       date: null,
+    //       time: null,
+    //     };
+    //     break;
+    //   case "keputusan_lawatan_tapak":
+    //     this.editSiteVisitData = {
+    //       site_id: "",
+    //       keputusan_lawatan_tapak: null,
+    //     };
+    //     break;
+    // }
   }
 
   // Add method to save site visit date and time
@@ -627,7 +641,6 @@ export class PsppaapplicationproccessComponent implements OnInit {
           "/dbkl/updateApplicationList2/" +
           this.editSiteVisitData.no_siri_permohonan;
         const tarikhKeputusan = new Date(this.editSiteVisitData.tarikh_keputusan_permohonan);
-        const dateString = tarikhKeputusan.toISOString().split('T')[0];
         requestBody = {
           no_siri_permohonan: this.editSiteVisitData.no_siri_permohonan,
           status_keputusan_permohonan:
@@ -643,6 +656,19 @@ export class PsppaapplicationproccessComponent implements OnInit {
         requestBody = {
           no_siri_permohonan: this.editSiteVisitData.no_siri_permohonan,
           catatan: this.editSiteVisitData.catatan,
+        };
+        break;
+      case "emesy":
+        apiPath =
+          this.basePublicUrl +
+          "/dbkl/updateApplicationList2/" +
+          this.editSiteVisitData.no_siri_permohonan;
+        const tarikhEmesy = new Date(this.editSiteVisitData.emesy_tarikh);
+        requestBody = {
+          no_siri_permohonan: this.editSiteVisitData.no_siri_permohonan,
+          emesy_bil_no:
+            this.editSiteVisitData.emesy_bil_no,
+          emesy_tarikh: tarikhEmesy.toISOString(),
         };
         break;
     }
@@ -693,6 +719,24 @@ export class PsppaapplicationproccessComponent implements OnInit {
     this.uploadSiteVisitData.site_id = rowData.site_visit_info?.site_id || "";
     this.uploadSiteVisitData.type = type;
 
+    switch (this.uploadSiteVisitData.type) {
+      case "tetapan_lawatan_tapak":
+        this.uploadSiteVisitData.title = "Tetapan Lawatan Tapak";
+        break;
+      case "keputusan_lawatan_tapak":
+        this.uploadSiteVisitData.title = "Keputusan Lawatan Tapak";
+        break;
+      case "maklumbalas_ketidakpatuhan":
+        this.uploadSiteVisitData.title = "Maklumbalas Ketidakpatuhan";
+        break;
+      case "keputusan_permohonan":
+        this.uploadSiteVisitData.title = "Keputusan Permohonan";
+        break;
+      case "emesy":
+        this.uploadSiteVisitData.title = "E-Mesyuarat";
+        break;
+    }
+
     this.showUploadDialog = true;
   }
 
@@ -700,10 +744,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
   closeUploadDialog() {
     this.showUploadDialog = false;
     this.uploader.clearQueue();
-    this.uploadSiteVisitData = {
-      no_siri_permohonan: "",
-      site_id: "",
-    };
+    this.uploadSiteVisitData = {};
   }
 
   // Add method to handle file upload
@@ -774,6 +815,12 @@ export class PsppaapplicationproccessComponent implements OnInit {
         apiPath = this.basePublicUrl + "/dbkl/updateApplicationList2/" + this.uploadSiteVisitData.no_siri_permohonan;
         requestBody = {
           filename_keputusan_permohonan: fileName,
+        };
+        break;
+      case "emesy":
+        apiPath = this.basePublicUrl + "/dbkl/updateApplicationList2/" + this.uploadSiteVisitData.no_siri_permohonan;
+        requestBody = {
+          emesy_filename: fileName,
         };
         break;
     }
@@ -855,9 +902,6 @@ export class PsppaapplicationproccessComponent implements OnInit {
     const fileExtension = filename.split(".").pop()?.toLowerCase();
     const DOWNLOAD_EXTENSIONS = ["docx", "pptx", "xls", "xlsx", "zip", "rar"];
     const PREVIEW_EXTENSIONS = ["pdf", "png", "jpg", "jpeg"];
-
-    console.log("filename: ", filename);
-    console.log("fileExtension: ", fileExtension);
 
     if (DOWNLOAD_EXTENSIONS.includes(fileExtension)) {
       // Download the file

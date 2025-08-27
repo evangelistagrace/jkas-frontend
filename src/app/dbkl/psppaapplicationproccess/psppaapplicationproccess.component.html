@@ -206,7 +206,7 @@
                 <th>TARIKH PERMOHONAN</th>
                 <th>STATUS DOKUMEN PERMOHONAN</th>
                 <th>TETAPAN LAWATAN TAPAK</th>
-                <!-- <th>E-MESYUARAT</th> -->
+                <th>E-MESYUARAT</th>
                 <th>KEPUTUSAN LAWATAN TAPAK</th>
                 <th>MAKLUMBALAS KETIDAKPATUHAN</th>
                 <!-- <th>SENARAI KAWASAN - RIC/SLC</th>
@@ -277,8 +277,9 @@
                   </p-columnFilter>
                 </th>
                 <th></th>
+                <th></th>
                 <th>
-                  <!-- Add filter for Tetapan Lawatan Tapak -->
+                  <!-- Add filter for Keputusan Lawatan Tapak -->
                   <p-columnFilter
                     type="boolean"
                     field="site_visit_info.keputusan_lawatan_tapak"
@@ -382,6 +383,52 @@
                     class="p-button-rounded p-button-text p-button-sm"
                     (click)="openUploadDialog('tetapan_lawatan_tapak', rowData)"
                     title="Upload Site Visit File"
+                  ></button>
+                </td>
+                <!-- e-mesyuarat -->
+                <td>
+                  Bil. Mesy: {{ rowData.emesy_bil_no }}
+                  <br />
+                  Tarikh: {{ rowData.emesy_tarikh | date : "dd.MM.yy" }}
+                  <div
+                    *ngIf="
+                      rowData.emesy_filename
+                    "
+                  >
+                    Fail:
+                    <a
+                      href="javascript:void(0)"
+                      (click)="
+                        handleFileClick(
+                          rowData.emesy_filename
+                        )
+                      "
+                    >
+                      {{
+                        rowData.emesy_filename
+                      }}
+                    </a>
+                  </div>
+                  <br />
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-edit"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="
+                      openSiteVisitEditDialog('emesy', rowData)
+                    "
+                    title="Edit Meeting Date/Time"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="fa fa-upload"
+                    class="p-button-rounded p-button-text p-button-sm"
+                    (click)="openUploadDialog('emesy', rowData)"
+                    title="Upload Meeting File"
                   ></button>
                 </td>
                 <td>
@@ -780,7 +827,7 @@
   [(visible)]="showSiteVisitDialog"
   [modal]="true"
   [closable]="true"
-  [style]="{ width: '450px', minHeight: '600px' }"
+  [style]="{ width: '450px', minHeight: '700px' }"
   [draggable]="false"
   [resizable]="false"
 >
@@ -948,6 +995,47 @@
     </div>
   </div>
 
+  <!-- emesy -->
+  <div
+    class="p-fluid"
+    *ngIf="editSiteVisitData.type === 'emesy'"
+  >
+    <div class="field">
+      <label class="p-text-secondary">No. Siri Permohonan:</label>
+      <span class="p-text-bold">
+        {{ editSiteVisitData.no_siri_permohonan }}</span
+      >
+    </div>
+    <div class="field">
+      <label for="keputusanPermohonan">Bil. Mesyuarat</label>
+      <input
+        id="bilMesyuarat"
+        type="text"
+        pInputText
+        [(ngModel)]="editSiteVisitData.emesy_bil_no"
+        [style]="{ width: '100%' }"
+        placeholder="Enter meeting number"
+      />
+    </div>
+    <div class="field">
+      <label for="emesyTarikh">Tarikh E-Mesyuarat</label>
+      <p-calendar
+        id="emesyTarikh"
+        [(ngModel)]="editSiteVisitData.emesy_tarikh"
+        [showButtonBar]="true"
+        [showIcon]="true"
+        [readonlyInput]="true"
+        [monthNavigator]="true"
+        [yearNavigator]="true"
+        [yearRange]="yearRange"
+        [dateFormat]="'dd/mm/yy'"
+        [style]="{ width: '100%' }"
+        placeholder="Select date"
+      >
+      </p-calendar>
+    </div>
+  </div>
+
   <ng-template pTemplate="footer">
     <button
       pButton
@@ -970,7 +1058,7 @@
 
 <!-- Site Visit File Upload Dialog -->
 <p-dialog
-  header="Muat Naik Fail Lawatan Tapak"
+  header="Muat Naik Fail {{ uploadSiteVisitData.title }}"
   [(visible)]="showUploadDialog"
   [modal]="true"
   [closable]="true"
@@ -986,7 +1074,7 @@
       }}</span>
     </div>
     <div class="field">
-      <label class="p-label">Fail PDF Lawatan Tapak</label>
+      <label class="p-label">Fail {{ uploadSiteVisitData.title }}</label>
       <div class="p-fileupload-wrapper">
         <div class="p-fileupload-choose">
           <input
