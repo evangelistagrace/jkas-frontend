@@ -161,6 +161,7 @@
               <th>KEPUTUSAN LAWATAN TAPAK</th>
               <th>MAKLUMBALAS KETIDAKPATUHAN</th>
               <th>KEPUTUSAN PERMOHONAN</th>
+              <th>CATATAN</th>
             </tr>
             <tr>
               <th></th>
@@ -223,6 +224,7 @@
                   </ng-template>
                 </p-columnFilter>
               </th>
+              <th></th>
               <th></th>
               <th></th>
               <th></th>
@@ -401,6 +403,9 @@
                     {{ rowData.filename_keputusan_permohonan }}
                   </a>
                 </div>
+              </td>
+              <td>
+                {{ rowData.catatan || "" }}
               </td>
             </tr>
           </ng-template>
