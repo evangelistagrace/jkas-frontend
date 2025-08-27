@@ -10,6 +10,9 @@ import { UploaddocumentComponent } from "src/app/uploaddocument/uploaddocument.c
 import { MeetingService } from "src/app/services/meeting.service";
 import { ShowpdfComponent } from "src/app/showpdf/showpdf.component";
 import { Table } from "primeng/table";
+import { FileUploader } from "ng2-file-upload";
+import { Observable } from "rxjs";
+
 
 @Component({
   selector: "app-publicppsppa",
@@ -58,6 +61,23 @@ export class PublicppsppaComponent implements OnInit {
   sucessMsg: string;
   errmsg: string;
 
+  // Add file upload properties
+  SERVER_URL = environment.basePublicUrl + "/public/uploadFreeFile";
+
+  uploader: FileUploader = new FileUploader({
+    isHTML5: true,
+    url: this.SERVER_URL,
+    maxFileSize: 1024 * 1024 * 10, // 10MB
+  });
+
+  uploadSiteVisitData: any = {
+    no_siri_permohonan: "",
+    site_id: "",
+  };
+
+  // Add upload dialog properties
+  showUploadDialog: boolean = false;
+
   constructor(
     private http: HttpClient,
     private spinner: NgxSpinnerService,
@@ -98,23 +118,24 @@ export class PublicppsppaComponent implements OnInit {
     };
 
     this.http
-      .get(this.basePublicUrl + "/public/viewApplicationList", {
+      .get(this.basePublicUrl + "/public/viewApplicationList2", {
         headers: headers,
       })
       .subscribe(
         (res) => {
           this.applicationList = res;
+          this.spinner.hide();
 
-          for (var index of this.applicationList) {
-            this.arr = index.mesyuarat_permohonan_serahan_kawasan;
+          // for (var index of this.applicationList) {
+          //   this.arr = index.mesyuarat_permohonan_serahan_kawasan;
 
-            if (this.arr != null) {
-              this.datearray.push(this.arr.split(","));
-            }
-          }
+          //   if (this.arr != null) {
+          //     this.datearray.push(this.arr.split(","));
+          //   }
+          // }
 
-          // Call this after data is loaded
-          this.setupDateFiltering();
+          // // Call this after data is loaded
+          // this.setupDateFiltering();
         },
         (error) => {
           this.router.navigateByUrl("publicLogin");
@@ -122,10 +143,10 @@ export class PublicppsppaComponent implements OnInit {
         }
       );
 
-    this.tservice.getCharacters().subscribe((data: ApplicationList[]) => {
-      this.characters = data;
-      this.spinner.hide();
-    });
+    // this.tservice.getCharacters().subscribe((data: ApplicationList[]) => {
+    //   this.characters = data;
+    //   this.spinner.hide();
+    // });
   }
 
   // Add this method to prepare the data for date filtering
@@ -332,5 +353,276 @@ export class PublicppsppaComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = "reload";
     this.router.navigate([currentUrl]);
+  }
+
+  getData() {
+    // let headers = {
+    //   "Content-Type": "application/json",
+    //   Authorization: key,
+    // };
+
+    // this.http
+    //   .get(this.basePublicUrl + "/dbkl/getPublicApplicationList2", {
+    //     headers: headers,
+    //   })
+    //   .subscribe(
+    //     (res) => {
+    //       this.spinner.hide();
+    //       this.data = res;
+
+    //       // Call this after data is loaded
+    //       this.setupDateFiltering();
+    //     },
+    //     (error) => {
+    //       this.loginError = true;
+    //       this.spinner.hide();
+    //       this.errorMsg = error["error"]["message"];
+    //     }
+    //   );
+
+    let headers = {
+      accept: "application/json",
+      Authorization: this.accessToken,
+    };
+
+    this.http
+      .get(this.basePublicUrl + "/public/viewApplicationList2", {
+        headers: headers,
+      })
+      .subscribe(
+        (res) => {
+          this.applicationList = res;
+        },
+        (error) => {
+          this.router.navigateByUrl("publicLogin");
+          this.spinner.hide();
+        }
+      );
+  }
+
+  routeToDocumentChecklist(rowData) {
+    this.spinner.show();
+    this.keyValue = rowData;
+    localStorage.setItem("date1", this.keyValue.tarikh_permohonan);
+    this.spinner.hide();
+    this.router.navigateByUrl(
+      "public/showchecklist?id=" + this.keyValue.dokumen_senarai
+    );
+  }
+
+  // Add file upload method
+    uploadFile(data: FormData): Observable<any> {
+      return this.http.post<any>(this.SERVER_URL, data);
+    }
+  
+    // Add method to open upload dialog
+    openUploadDialog(type: string, rowData: any) {
+      this.uploadSiteVisitData.no_siri_permohonan = rowData.no_siri_permohonan;
+      this.uploadSiteVisitData.site_id = rowData.site_visit_info?.site_id || "";
+      this.uploadSiteVisitData.type = type;
+  
+      switch (this.uploadSiteVisitData.type) {
+        case "maklumbalas_ketidakpatuhan":
+          this.uploadSiteVisitData.title = "Maklumbalas Ketidakpatuhan";
+          break;
+      }
+  
+      this.showUploadDialog = true;
+    }
+  
+    // Add method to close upload dialog
+    closeUploadDialog() {
+      this.showUploadDialog = false;
+      this.uploader.clearQueue();
+      this.uploadSiteVisitData = {};
+    }
+  
+    // Add method to handle file upload
+    uploadSiteVisitFile() {
+      if (this.uploader.queue.length === 0) {
+        if (this.lang == "en") {
+          this.errmsg = "Please select a file to upload.";
+        } else {
+          this.errmsg = "Sila pilih fail untuk dimuat naik.";
+        }
+        this.openError();
+        return;
+      }
+  
+      // Handle file uploads
+      for (var i = 0; i < this.uploader.queue.length; i++) {
+        let fileItem = this.uploader.queue[i]._file;
+        if (fileItem.size > 10000000) {
+          if (this.lang == "en") {
+            this.errmsg = "Each file should be less than 10 MB";
+          } else {
+            this.errmsg = "Setiap fail mestilah kurang daripada 10 MB";
+          }
+          this.openError();
+          return;
+        }
+      }
+  
+      this.spinner.show();
+      let fileName = "";
+  
+      for (var j = 0; j < this.uploader.queue.length; j++) {
+        let data = new FormData();
+        let fileItem = this.uploader.queue[j]._file;
+        fileName = fileItem.name;
+        data.append("file", fileItem);
+        data.append("fileSeq", "seq" + j);
+        this.uploadFile(data).subscribe((data) => console.log(data.message));
+      }
+  
+      // Update site visit with file name
+      const key = localStorage.getItem("AccessToken");
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: key,
+      };
+  
+      let apiPath = this.basePublicUrl + "/public/updateSiteVisitInformation2/" + this.uploadSiteVisitData.site_id;
+      let requestBody = {};
+  
+      switch (this.uploadSiteVisitData.type) {
+        case "maklumbalas_ketidakpatuhan":
+          requestBody = {
+            maklumbalas_ketidakpatuhan_filename: fileName,
+          };
+          break;
+      }
+  
+      this.http
+        .put(apiPath,
+          requestBody,
+          { headers: headers }
+        )
+        .subscribe(
+          (res) => {
+            this.spinner.hide();
+            this.closeUploadDialog();
+  
+            if (this.lang == "en") {
+              this.sucessMsg = "Site visit file uploaded successfully!";
+            } else {
+              this.sucessMsg = "Fail lawatan tapak berjaya dimuat naik!";
+            }
+  
+            this.openSuccess();
+            this.getData(); // Refresh the table data
+          },
+          (error) => {
+            this.spinner.hide();
+            this.closeUploadDialog();
+  
+            if (this.lang == "en") {
+              this.errmsg = "Failed to upload site visit file. Please try again.";
+            } else {
+              this.errmsg =
+                "Gagal memuat naik fail lawatan tapak. Sila cuba lagi.";
+            }
+  
+            this.openError();
+          }
+        );
+    }
+  
+    // Add method to handle file selection
+    onFileSelect(event: any, uploader: FileUploader) {
+      // Handle file selection if needed
+    }
+  
+    // Add method to remove file from queue
+    removeFile(item: any) {
+      item.remove();
+    }
+  
+
+  getFileUrl(filename: string): string {
+    // Process filename to match backend logic
+    // Remove all characters except alphanumeric and dots (same as backend regex)
+    let processedFilename = filename.replace(/[^a-zA-Z0-9.]/g, '');
+    
+    let fileExtension = processedFilename.split(".").pop()?.toLowerCase();
+    let path = "";
+
+    let PHOTO_EXTENSIONS = ["png", "jpg", "jpeg"];
+    let DOC_EXTENSIONS = ["pdf", "docx", "pptx", "xls", "xlsx"];
+
+    if (PHOTO_EXTENSIONS.includes(fileExtension)) {
+      path = "images";
+    } else if (DOC_EXTENSIONS.includes(fileExtension)) {
+      path = "docs";
+    }
+
+    return `${environment.basePublicUrl}/jkas_resourses/free/${path}/${processedFilename}`;
+  }
+
+  // New method to check if file should be downloaded
+  shouldDownloadFile(filename: string): boolean {
+    let fileExtension = filename.split(".").pop()?.toLowerCase();
+    let DOWNLOAD_EXTENSIONS = ["docx", "pptx", "xls", "xlsx", "zip", "rar"];
+    return DOWNLOAD_EXTENSIONS.includes(fileExtension);
+  }
+
+  // New method to handle file click
+  handleFileClick(filename: string, event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
+
+    const fileExtension = filename.split(".").pop()?.toLowerCase();
+    const DOWNLOAD_EXTENSIONS = ["docx", "pptx", "xls", "xlsx", "zip", "rar"];
+    const PREVIEW_EXTENSIONS = ["pdf", "png", "jpg", "jpeg"];
+
+    if (DOWNLOAD_EXTENSIONS.includes(fileExtension)) {
+      // Download the file
+      this.downloadFile(filename, this.getFileUrl(filename));
+    } else if (PREVIEW_EXTENSIONS.includes(fileExtension)) {
+      // Open in new tab for preview
+      window.open(this.getFileUrl(filename), "_blank");
+    } else {
+      // Default behavior - try to open in new tab
+      window.open(this.getFileUrl(filename), "_blank");
+    }
+  }
+
+  // Keep existing downloadFile method as is
+  downloadFile(filename: string, fileUrl: string): void {
+    this.spinner.show();
+
+    this.http.get(fileUrl, { responseType: "blob" }).subscribe(
+      (blob: Blob) => {
+        this.spinner.hide();
+
+        // Create blob URL
+        const url = window.URL.createObjectURL(blob);
+
+        // Create download link
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+
+        // Trigger download
+        document.body.appendChild(link);
+        link.click();
+
+        // Cleanup
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      },
+      (error) => {
+        this.spinner.hide();
+
+        if (this.lang == "en") {
+          this.errmsg = "Failed to download file. Please try again.";
+        } else {
+          this.errmsg = "Gagal memuat turun fail. Sila cuba lagi.";
+        }
+
+        this.openError();
+      }
+    );
   }
 }

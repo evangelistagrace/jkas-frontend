@@ -157,11 +157,10 @@
               <th>NO SIRI PERMOHONAN</th>
               <th>TARIKH PERMOHONAN</th>
               <th>STATUS DOKUMEN PERMOHONAN</th>
-              <th>4.MESYUARAT JAWATANKUASA SERAHAN KAWASAN</th>
-              <th>5.MAKLUMAT LAWATAN TAPAK</th>
-              <th>6.STATUS LAWATAN TAPAK</th>
-              <th>7.SURAT PENYERAHAN KAWASAN</th>
-              <th style="width: 8rem">KEMASKINI</th>
+              <th>TETAPAN LAWATAN TAPAK</th>
+              <th>KEPUTUSAN LAWATAN TAPAK</th>
+              <th>MAKLUMBALAS KETIDAKPATUHAN</th>
+              <th>KEPUTUSAN PERMOHONAN</th>
             </tr>
             <tr>
               <th></th>
@@ -228,7 +227,6 @@
               <th></th>
               <th></th>
               <th></th>
-              <th></th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-rowData>
@@ -238,15 +236,54 @@
               </td>
               <td>{{ rowData.no_siri_permohonan }}</td>
               <td>{{ rowData.tarikh_permohonan | date : "dd.MM.yy" }}</td>
+              <!-- status dokumen permohonan -->
               <td>
                 {{
                   rowData.status_semakan_dokumen ? "Lengkap" : "Tidak Lengkap"
                 }}
+                <br />
+                <button
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="fa fa-edit"
+                  class="p-button-rounded p-button-text"
+                  (click)="routeToDocumentChecklist(rowData)"
+                ></button>
               </td>
+              <!-- tetapan lawatan tapak -->
               <td>
+                Tarikh:
+                {{
+                  rowData.site_visit_info.tarikh_datetime ||
+                    rowData.site_visit_info.tarikh | date : "dd.MM.yy"
+                }}
+                <br />
+                Masa:
+                {{
+                  rowData.site_visit_info.tarikh_datetime ||
+                    rowData.site_visit_info.tarikh | date : "HH:mm"
+                }}
+                <div
+                  *ngIf="rowData.site_visit_info.tetapan_lawatan_tapak_filename"
+                >
+                  Fail:
+                  <a
+                    href="javascript:void(0)"
+                    (click)="
+                      handleFileClick(
+                        rowData.site_visit_info.tetapan_lawatan_tapak_filename
+                      )
+                    "
+                  >
+                    {{ rowData.site_visit_info.tetapan_lawatan_tapak_filename }}
+                  </a>
+                </div>
+              </td>
+              <!-- <td>
                 {{ rowData.mesyuarat_permohanan_serahan_kawasan || "N/A" }}
-              </td>
-              <td>
+              </td> -->
+              <!-- <td>
                 <div
                   *ngIf="
                     rowData.maklumat_lawatan_tapak_id !== null;
@@ -267,24 +304,103 @@
                 <ng-template #noData>
                   <p>-</p>
                 </ng-template>
-              </td>
-              <td>{{ rowData.status_Lawatan_Tapak || "N/A" }}</td>
+              </td> -->
+              <!-- keputusan lawatan tapak -->
               <td>
-                <app-showpdf
-                  [value]="rowData.no_siri_permohonan"
-                  [getData]="applicationList"
-                ></app-showpdf>
+                {{ rowData.site_visit_info.keputusan_lawatan_tapak || "N/A" }}
+                <div
+                  *ngIf="
+                    rowData.site_visit_info.keputusan_lawatan_tapak_filename
+                  "
+                >
+                  Fail:
+                  <a
+                    href="javascript:void(0)"
+                    (click)="
+                      handleFileClick(
+                        rowData.site_visit_info.keputusan_lawatan_tapak_filename
+                      )
+                    "
+                  >
+                    {{
+                      rowData.site_visit_info.keputusan_lawatan_tapak_filename
+                    }}
+                  </a>
+                </div>
               </td>
+              <!-- <td>{{ rowData.status_Lawatan_Tapak || "N/A" }}</td> -->
+              <!-- maklumbalas ketidakpatuhan -->
               <td>
+                <!-- <app-dbklppsppa
+                    [value]="rowData.no_siri_permohonan"
+                    [getData]="data"
+                  ></app-dbklppsppa> -->
+                {{
+                  rowData.site_visit_info.status_maklumbalas_ketidakpatuhan ||
+                    "N/A"
+                }}
+                <div
+                  *ngIf="
+                    rowData.site_visit_info.maklumbalas_ketidakpatuhan_filename
+                  "
+                >
+                  Fail:
+                  <a
+                    href="javascript:void(0)"
+                    (click)="
+                      handleFileClick(
+                        rowData.site_visit_info
+                          .maklumbalas_ketidakpatuhan_filename
+                      )
+                    "
+                  >
+                    {{
+                      rowData.site_visit_info
+                        .maklumbalas_ketidakpatuhan_filename
+                    }}
+                  </a>
+                </div>
+                <br />
                 <button
                   pButton
                   pRipple
                   type="button"
-                  icon="fa fa-edit"
-                  class="p-button-rounded p-button-text"
-                  (click)="routeToUpdateApplicationForm(rowData)"
-                  title="Edit Application"
+                  icon="fa fa-upload"
+                  class="p-button-rounded p-button-text p-button-sm"
+                  (click)="
+                    openUploadDialog('maklumbalas_ketidakpatuhan', rowData)
+                  "
+                  title="Upload File"
                 ></button>
+              </td>
+              <!-- <td>
+                <app-showpdf
+                  [value]="rowData.no_siri_permohonan"
+                  [getData]="applicationList"
+                ></app-showpdf>
+              </td> -->
+              <td>
+                {{ rowData.status_keputusan_permohonan }}
+                <br />
+                {{
+                  rowData.tarikh_keputusan_permohonan
+                    ? (rowData.status_keputusan_permohonan === "Lulus"
+                        ? "Tarikh Serahan: "
+                        : "") +
+                      (rowData.tarikh_keputusan_permohonan | date : "dd.MM.yy")
+                    : "N/A"
+                }}
+                <div *ngIf="rowData.filename_keputusan_permohonan">
+                  Fail:
+                  <a
+                    href="javascript:void(0)"
+                    (click)="
+                      handleFileClick(rowData.filename_keputusan_permohonan)
+                    "
+                  >
+                    {{ rowData.filename_keputusan_permohonan }}
+                  </a>
+                </div>
               </td>
             </tr>
           </ng-template>
@@ -512,3 +628,94 @@
     </div>
   </div>
 </div>
+
+
+<!-- Site Visit File Upload Dialog -->
+<p-dialog
+  header="Muat Naik Fail {{ uploadSiteVisitData.title }}"
+  [(visible)]="showUploadDialog"
+  [modal]="true"
+  [closable]="true"
+  [style]="{ width: '450px', minHeight: '400px' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="p-fluid">
+    <div class="field">
+      <label class="p-text-secondary">No. Siri Permohonan:</label>
+      <span class="p-text-bold">{{
+        uploadSiteVisitData.no_siri_permohonan
+      }}</span>
+    </div>
+    <div class="field">
+      <label class="p-label">Fail {{ uploadSiteVisitData.title }}</label>
+      <div class="p-fileupload-wrapper">
+        <div class="p-fileupload-choose">
+          <input
+            type="file"
+            ng2FileSelect
+            [uploader]="uploader"
+            (change)="onFileSelect($event, uploader)"
+            style="display: none"
+            #fileInputUpload
+          />
+          <p-button
+            label="Pilih Fail"
+            icon="pi pi-upload"
+            severity="secondary"
+            (click)="fileInputUpload.click()"
+            type="button"
+            styleClass="p-button-sm"
+          ></p-button>
+        </div>
+        <small class="p-text-secondary p-d-block p-mt-2">
+          Format yang disokong: PDF (Saiz maksimum: 10MB)
+        </small>
+      </div>
+
+      <!-- File List -->
+      <div *ngIf="uploader.queue.length > 0" class="p-mt-3">
+        <div
+          *ngFor="let item of uploader.queue"
+          class="p-d-flex p-ai-center p-jc-between p-p-2 p-border-1 p-border-round p-mb-2"
+        >
+          <div class="p-d-flex p-ai-center">
+            <i class="pi pi-file-pdf p-mr-2 p-text-secondary"></i>
+            <span class="p-text-sm">
+              {{ item.file.name }} ({{ (item.file.size / 1000000).toFixed(2) }}
+              MB)
+            </span>
+          </div>
+          <p-button
+            icon="pi pi-times"
+            severity="danger"
+            size="small"
+            [text]="true"
+            (click)="removeFile(item)"
+            pTooltip="Buang fail"
+          ></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      type="button"
+      label="Batal"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="closeUploadDialog()"
+    ></button>
+    <button
+      pButton
+      type="button"
+      label="Muat Naik"
+      icon="pi pi-upload"
+      class="p-button-primary"
+      (click)="uploadSiteVisitFile()"
+      [disabled]="uploader.queue.length === 0"
+    ></button>
+  </ng-template>
+</p-dialog>
