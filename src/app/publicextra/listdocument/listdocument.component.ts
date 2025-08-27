@@ -188,7 +188,6 @@ export class ListdocumentComponent implements OnInit {
         })
         .subscribe(
           (res) => {
-            console.log("user info", res);
             this.spinner.hide();
             
             if (res) {
