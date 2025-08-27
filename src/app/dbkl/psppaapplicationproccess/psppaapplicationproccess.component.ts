@@ -939,8 +939,12 @@ export class PsppaapplicationproccessComponent implements OnInit {
     item.remove();
   }
 
-  getFileUrl(filename: string): string {
-    let fileExtension = filename.split(".").pop()?.toLowerCase();
+getFileUrl(filename: string): string {
+    // Process filename to match backend logic
+    // Remove all characters except alphanumeric and dots (same as backend regex)
+    let processedFilename = filename.replace(/[^a-zA-Z0-9.]/g, '');
+    
+    let fileExtension = processedFilename.split(".").pop()?.toLowerCase();
     let path = "";
 
     let PHOTO_EXTENSIONS = ["png", "jpg", "jpeg"];
@@ -952,7 +956,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
       path = "docs";
     }
 
-    return `${environment.basePublicUrl}/jkas_resourses/free/${path}/${filename}`;
+    return `${environment.basePublicUrl}/jkas_resourses/free/${path}/${processedFilename}`;
   }
 
   // New method to check if file should be downloaded
