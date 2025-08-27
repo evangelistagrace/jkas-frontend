@@ -312,7 +312,7 @@
                   <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
                 </td>
                 <td>{{ rowData.no_siri_permohonan }}</td>
-                <td>{{ rowData.tarikh_permohonan | date : "dd MMM yyyy" }}</td>
+                <td>{{ rowData.tarikh_permohonan | date : "dd.MM.yy" }}</td>
                 <td>
                   {{
                     rowData.status_semakan_dokumen ? "Lengkap" : "Tidak Lengkap"
@@ -335,7 +335,7 @@
                   Tarikh:
                   {{
                     rowData.site_visit_info.tarikh_datetime ||
-                      rowData.site_visit_info.tarikh | date : "dd MMM yyyy"
+                      rowData.site_visit_info.tarikh | date : "dd.MM.yy"
                   }}
                   <br />
                   Masa:
@@ -494,7 +494,7 @@
                           ? "Tarikh Serahan: "
                           : "") +
                         (rowData.tarikh_keputusan_permohonan
-                          | date : "dd MMM yyyy")
+                          | date : "dd.MM.yy")
                       : "N/A"
                   }}
                   <div *ngIf="rowData.filename_keputusan_permohonan">
