@@ -1,17 +1,34 @@
 <app-rating></app-rating>
 
-<div class="modal modal-box" tabindex="-1" style="background: #02020259;display: block" role="dialog"
-  [ngStyle]="{ display: display }">
+<div
+  class="modal modal-box"
+  tabindex="-1"
+  style="background: #02020259; display: block"
+  role="dialog"
+  [ngStyle]="{ display: display }"
+>
   <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
-          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+        <div
+          class="swal2-icon swal2-success swal2-animate-success-icon"
+          style="display: flex"
+        >
+          <div
+            class="swal2-success-circular-line-left"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
           <span class="swal2-success-line-tip"></span>
           <span class="swal2-success-line-long"></span>
           <div class="swal2-success-ring"></div>
-          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
-          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+          <div
+            class="swal2-success-fix"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+          <div
+            class="swal2-success-circular-line-right"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
         </div>
       </div>
       <div class="modal-body">
@@ -20,7 +37,13 @@
         </h4>
 
         <div class="d-flex justify-content-center">
-          <button type="button" data-dismiss="modal" class="look_for" (click)="closeSuccessModal()" i18n="@@okk">
+          <button
+            type="button"
+            data-dismiss="modal"
+            class="look_for"
+            (click)="closeSuccessModal()"
+            i18n="@@okk"
+          >
             OK
           </button>
         </div>
@@ -31,21 +54,36 @@
 
 <!-- Error Modal -->
 
-<div class="modal modal-box" tabindex="-1" style="background: #02020259; display: block" role="dialog"
-  [ngStyle]="{ display: errorDisplay }">
+<div
+  class="modal modal-box"
+  tabindex="-1"
+  style="background: #02020259; display: block"
+  role="dialog"
+  [ngStyle]="{ display: errorDisplay }"
+>
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex">
-          <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
-              class="swal2-x-mark-line-right"></span></span>
+        <div
+          class="swal2-icon swal2-error swal2-animate-error-icon"
+          style="display: flex"
+        >
+          <span class="swal2-x-mark"
+            ><span class="swal2-x-mark-line-left"></span
+            ><span class="swal2-x-mark-line-right"></span
+          ></span>
         </div>
       </div>
       <div class="modal-body">
         <h4 class="text-center" i18n="@@err1">ERROR !</h4>
         <p class="text-center font-weight-bold">{{ errorMessage }}</p>
         <div class="d-flex justify-content-center">
-          <button type="button" data-dismiss="modal" class="btn" (click)="closeErrorModal()">
+          <button
+            type="button"
+            data-dismiss="modal"
+            class="btn"
+            (click)="closeErrorModal()"
+          >
             OK
           </button>
         </div>
@@ -59,41 +97,82 @@
 <app-topbar></app-topbar>
 
 <!-- ======= Header ======= -->
-<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2  !important">
+<div
+  class="container-fluid sticky-nav"
+  id=""
+  style="background-color: #f2f2f2 !important"
+>
   <div class="container-fluid" ngStickyNav>
     <nav class="navbar navbar-expand-lg">
       <a routerLink="/public" class="navbar-brand">
-        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
-
+        <img src="assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
       </a>
-      <button class="navbar-toggler border-white" type="button" style="
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        style="
           background-color: black !important;
           border: 1px solid white !important;
-        " data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
-        aria-expanded="false" aria-label="Toggle navigation">
+        "
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <i class="fa fa-bars text-white"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a routerLink="/public" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@home">HOME</a>
+            <a
+              routerLink="/public"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home"
+              >HOME</a
+            >
           </li>
           <li class="nav-item">
-            <a routerLink="/publicpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@psppaapplication">PSPPA APPLICATION</a>
+            <a
+              routerLink="/publicpage"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@psppaapplication"
+              >PSPPA APPLICATION</a
+            >
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+            >
               {{ username }}
             </a>
             <div class="dropdown-menu">
-              <a routerLink="/profileLog" class="dropdown-item" style=" cursor: pointer" i18n="@@Profile">Profile</a>
-              <a class="dropdown-item" style=" cursor: pointer" data-toggle="modal" data-target="#centralModalDanger"
-                class="dropdown-item" i18n="@@jflogout">Logout</a>
+              <a
+                routerLink="/profileLog"
+                class="dropdown-item"
+                style="cursor: pointer"
+                i18n="@@Profile"
+                >Profile</a
+              >
+              <a
+                class="dropdown-item"
+                style="cursor: pointer"
+                data-toggle="modal"
+                data-target="#centralModalDanger"
+                class="dropdown-item"
+                i18n="@@jflogout"
+                >Logout</a
+              >
             </div>
           </li>
         </ul>
@@ -102,19 +181,33 @@
   </div>
 </div>
 <!-- End Header -->
-<main id="main" class="inner-page ">
+<main id="main" class="inner-page">
   <!-- ======= Services Section ======= -->
-  <section style="border: 1px solid rgb(224, 217, 217);border-radius: 4px;" id="checklistForm" class="services">
+  <section
+    style="border: 1px solid rgb(224, 217, 217); border-radius: 4px"
+    id="checklistForm"
+    class="services"
+  >
     <div class="">
       <div class="d-flex justify-content-end">
-        <button printSectionId="main" [useExistingCss]="true" ngxPrint type="button"
-          style="border: 1px solid transparent; background: transparent">
-          <i style="
+        <button
+          printSectionId="main"
+          [useExistingCss]="true"
+          ngxPrint
+          type="button"
+          style="border: 1px solid transparent; background: transparent"
+        >
+          <i
+            style="
               font-size: 30px;
-              color: #419641 ;
+              color: #419641;
               cursor: pointer;
               float: right;
-            " id="print" class="fa fa-print" aria-hidden="true"></i>
+            "
+            id="print"
+            class="fa fa-print"
+            aria-hidden="true"
+          ></i>
         </button>
       </div>
       <div class="section-title">
@@ -122,33 +215,44 @@
         <h2 i18n="@@checklistdescription1">checklist document</h2>
       </div>
       <div style="margin-left: 17px; margin-right: 17px">
-
-        <h5 class="text-center" i18n="@@checklistdescription" id="heading2"
-          style="margin-bottom: 39px; font-size: 18px">
+        <h5
+          class="text-center"
+          i18n="@@checklistdescription"
+          id="heading2"
+          style="margin-bottom: 39px; font-size: 18px"
+        >
           GARBAGE COLLECTION / DRAIN CLEANING / ROAD SWEEPING AND GRASS CUTTING
         </h5>
         <div id="head">
           <div>
-            <p style="margin-top: 2%;display: inline-block;" i18n="@@Applicationno">
-              Application Serial No :</p>
+            <p
+              style="margin-top: 2%; display: inline-block"
+              i18n="@@Applicationno"
+            >
+              Application Serial No :
+            </p>
             <span style="font-weight: 700">{{ c }}</span>
           </div>
           <div>
-            <p style="margin-top: 2%;display: inline-block;" i18n="@@dateofapp">
-              Date of Application :</p>
+            <p style="margin-top: 2%; display: inline-block" i18n="@@dateofapp">
+              Date of Application :
+            </p>
             <span style="font-weight: 700">{{ createDate }}</span>
           </div>
         </div>
         <div class="table-responsive">
-          <table class="
-              table table-bordered table-striped table-hover table-condensed
-            " id="DyanmicTable">
+          <table
+            class="table table-bordered table-striped table-hover table-condensed"
+            id="DyanmicTable"
+          >
             <thead>
-              <tr style="
-              background-color: #253d84;
+              <tr
+                style="
+                  background-color: #253d84;
                   color: white;
                   font-weight: normal !important;
-                ">
+                "
+              >
                 <th class="text-center" i18n="@@Bill">Bill</th>
                 <th class="text-center" i18n="@@Details">Details</th>
                 <th class="text-center" i18n="@@DocumentReview">
@@ -163,26 +267,43 @@
               <tr>
                 <td>1.</td>
                 <td>
-                  <span i18n="@@cleaningservice">Cleaning service application letter for:</span>
+                  <span i18n="@@cleaningservice"
+                    >Cleaning service application letter for:</span
+                  >
                   <ul style="list-style-type: lower-roman">
                     <li>
                       <span class="d-flex justify-content-between">
                         <span i18n="@@Garbage">Garbage Collection</span>
                         <span *ngFor="let val of data">
-                          <span class="d-flex align-items-center" *ngIf="val.kutipan_sampah === true">
-                            <input type="checkbox" #saveUserNameCheckBox (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.kutipan_sampah === true"
+                          >
+                            <input
+                              type="checkbox"
+                              #saveUserNameCheckBox
+                              (change)="
                                 onSaveUsernameChanged(
                                   saveUserNameCheckBox.checked
                                 )
-                              " checked />
+                              "
+                              checked
+                            />
                           </span>
 
-                          <span class="d-flex align-items-center" *ngIf="val.kutipan_sampah === false">
-                            <input type="checkbox" #saveUserNameCheckBox (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.kutipan_sampah === false"
+                          >
+                            <input
+                              type="checkbox"
+                              #saveUserNameCheckBox
+                              (change)="
                                 onSaveUsernameChanged(
                                   saveUserNameCheckBox.checked
                                 )
-                              " />
+                              "
+                            />
                           </span>
                         </span>
                       </span>
@@ -191,57 +312,99 @@
                       <span class="d-flex justify-content-between">
                         <span i18n="@@Street"> Street Sweep</span>
                         <span *ngFor="let val of data">
-                          <span class="d-flex align-items-center" *ngIf="val.sapuan_jalan === true">
-                            <input type="checkbox" checked #saveUserNameCheckBox1 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.sapuan_jalan === true"
+                          >
+                            <input
+                              type="checkbox"
+                              checked
+                              #saveUserNameCheckBox1
+                              (change)="
                                 onSaveUsernameChanged1(
                                   saveUserNameCheckBox1.checked
                                 )
-                              " />
+                              "
+                            />
                           </span>
-                          <span class="d-flex align-items-center" *ngIf="val.sapuan_jalan === false"><input
-                              type="checkbox" #saveUserNameCheckBox1 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.sapuan_jalan === false"
+                            ><input
+                              type="checkbox"
+                              #saveUserNameCheckBox1
+                              (change)="
                                 onSaveUsernameChanged1(
                                   saveUserNameCheckBox1.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
                         </span>
                       </span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Drain">Drain Cleaning</span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Drain">Drain Cleaning</span>
                         <span *ngFor="let val of data">
-                          <span class="d-flex align-items-center" *ngIf="val.cucian_longkang == true"><input
-                              type="checkbox" checked #saveUserNameCheckBox2 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.cucian_longkang == true"
+                            ><input
+                              type="checkbox"
+                              checked
+                              #saveUserNameCheckBox2
+                              (change)="
                                 onSaveUsernameChanged2(
                                   saveUserNameCheckBox2.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
 
-                          <span class="d-flex align-items-center" *ngIf="val.cucian_longkang == false"><input
-                              type="checkbox" #saveUserNameCheckBox2 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.cucian_longkang == false"
+                            ><input
+                              type="checkbox"
+                              #saveUserNameCheckBox2
+                              (change)="
                                 onSaveUsernameChanged2(
                                   saveUserNameCheckBox2.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
                         </span>
                       </span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Grass">Grass Cutting</span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Grass">Grass Cutting</span>
                         <span *ngFor="let val of data">
-                          <span class="d-flex align-items-center" *ngIf="val.pemotongan_rumput == true"><input
-                              type="checkbox" checked #saveUserNameCheckBox3 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.pemotongan_rumput == true"
+                            ><input
+                              type="checkbox"
+                              checked
+                              #saveUserNameCheckBox3
+                              (change)="
                                 onSaveUsernameChanged3(
                                   saveUserNameCheckBox3.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
 
-                          <span class="d-flex align-items-center" *ngIf="data[0].pemotongan_rumput == false"><input
-                              type="checkbox" #saveUserNameCheckBox3 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="data[0].pemotongan_rumput == false"
+                            ><input
+                              type="checkbox"
+                              #saveUserNameCheckBox3
+                              (change)="
                                 onSaveUsernameChanged3(
                                   saveUserNameCheckBox3.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
                         </span>
                       </span>
                     </li>
@@ -249,18 +412,38 @@
                 </td>
                 <td style="text-align: center" class="anc">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" multiple (change)="doUploadSuratPermohonan()" />
-                    <i class="fa fa-cloud-upload"></i>
-                  </label><br><span i18n="@@puydh"> Please upload your document here.</span>
-                  <span style="display: block; cursor: pointer;" *ngFor="let val of suratPermohonan; index as i">
+                    <input
+                      type="file"
+                      ng2FileSelect
+                      accept=".pdf"
+                      id="file-upload"
+                      [uploader]="uploader"
+                      multiple
+                      (change)="doUploadSuratPermohonan()"
+                    />
+                    <i class="fa fa-cloud-upload"></i> </label
+                  ><br /><span i18n="@@puydh">
+                    Please upload your document here.</span
+                  >
+                  <span
+                    style="display: block; cursor: pointer"
+                    *ngFor="let val of suratPermohonan; index as i"
+                  >
                     <span>
                       <a (click)="getPdf(val)" target="_blank">{{ val }}</a>
-                      <span id="cl{{ i }}" *ngIf="
+                      <span
+                        id="cl{{ i }}"
+                        *ngIf="
                           surat_permohonan_perkhidmatan_pembersihan_dokumen !=
                           ''
-                        ">
-                        <i (click)="removeSuratPermohonan(i)" id="{{ i }}" class="fa fa-trash"
-                          style="cursor: pointer; margin-left: 8px"></i>
+                        "
+                      >
+                        <i
+                          (click)="removeSuratPermohonan(i)"
+                          id="{{ i }}"
+                          class="fa fa-trash"
+                          style="cursor: pointer; margin-left: 8px"
+                        ></i>
                       </span>
                     </span>
                     <br />
@@ -273,9 +456,11 @@
                           MB)
                         </th>
                         <th class="text-center" width="10%">
-
-
-                          <i (click)="item.remove()" class="fa fa-trash" style="cursor: pointer"></i>
+                          <i
+                            (click)="item.remove()"
+                            class="fa fa-trash"
+                            style="cursor: pointer"
+                          ></i>
                         </th>
                       </tr>
                     </tbody>
@@ -283,92 +468,146 @@
                 </td>
                 <td>
                   <span *ngFor="let val of data">
-                    <span *ngIf="
+                    <span
+                      *ngIf="
                         val.surat_permohonan_perkhidmatan_pembersihan_status ==
                         true
-                      " i18n="@@Complete">
+                      "
+                      i18n="@@Complete"
+                    >
                       Complete
                     </span>
-                    <span *ngIf="
+                    <span
+                      *ngIf="
                         val.surat_permohonan_perkhidmatan_pembersihan_status ==
                         false
-                      " i18n="@@Incomplete">
+                      "
+                      i18n="@@Incomplete"
+                    >
                       Incomplete
                     </span>
                   </span>
                 </td>
                 <td class="add">
-                  <div style="margin-bottom: 4px" *ngIf="
+                  <div
+                    style="margin-bottom: 4px"
+                    *ngIf="
                       surat_permohonan_perkhidmatan_pembersihan_catatan != ''
-                    ">
-                    <div *ngFor="let x of notice1; index as i" style="width: 241px; text-align: left !important;">
+                    "
+                  >
+                    <div
+                      *ngFor="let x of notice1; index as i"
+                      style="width: 241px; text-align: left !important"
+                    >
                       <div class="d-flex justify-content-start">
                         <div *ngIf="x.includes('DBKL:')" class="message-dbkl">
                           <span>{{ x.substring(5) }}</span>
                         </div>
                       </div>
                       <div class="d-flex justify-content-end">
-                        <div *ngIf="x.includes('PUBLIC:')" class="message-public">
+                        <div
+                          *ngIf="x.includes('PUBLIC:')"
+                          class="message-public"
+                        >
                           <span>{{ x.substring(7) }}</span>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div style="margin-bottom: 2px">
-                    <div
-                      *ngFor="let x of firstMessage; index as i"
-                    >
+                    <div *ngFor="let x of firstMessage; index as i">
                       <div class="message-public-draft">
                         <span>{{ x.substring(7) }}</span>
                       </div>
                     </div>
                   </div>
-                  <div class="row" style="margin-top: 20px;">
+                  <div class="row" style="margin-top: 20px">
                     <div class="col-8">
-                      <textarea [(ngModel)]="text" (ngModelChange)="getData(text)"
-                        id="tex1">
+                      <textarea
+                        [(ngModel)]="text"
+                        (ngModelChange)="getData(text)"
+                        id="tex1"
+                      >
                       </textarea>
                     </div>
                     <div class="col-2">
-                      <i (click)="add1()" class="fa fa-paper-plane" aria-hidden="true"></i>
+                      <i
+                        (click)="add1()"
+                        class="fa fa-paper-plane"
+                        aria-hidden="true"
+                      ></i>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="module_item">
-                    <a style="color: red !important;cursor: pointer;text-align: center;" (click)="opendocument()"
-                      target="_blank">CONTOH SURAT PERMOHONAN.pdf</a>
+                    <a
+                      style="
+                        color: red !important;
+                        cursor: pointer;
+                        text-align: center;
+                      "
+                      (click)="opendocument()"
+                      target="_blank"
+                      >CONTOH SURAT PERMOHONAN.pdf</a
+                    >
                   </div>
                 </td>
               </tr>
               <tr>
                 <td>2.</td>
-                <td i18n="@@Copyletter">Copy of CF / CCC / Form F / Confirmation Letter from JPIF (Infrastructure
-                  Planning Department)</td>
+                <td i18n="@@Copyletter">
+                  Copy of CF / CCC / Form F / Confirmation Letter from JPIF
+                  (Infrastructure Planning Department)
+                </td>
                 <td style="text-align: center" class="anc">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" multiple (change)="doUploadSuratSalinan()" />
+                    <input
+                      type="file"
+                      ng2FileSelect
+                      accept=".pdf"
+                      id="file-upload"
+                      [uploader]="uploader"
+                      multiple
+                      (change)="doUploadSuratSalinan()"
+                    />
                     <i class="fa fa-cloud-upload"></i>
                   </label>
-                  <br><span i18n="@@puydh"> Please upload your document here.</span>
-                  <span style="display: block; cursor: pointer;" *ngFor="let val of suratSalinan; index as i">
+                  <br /><span i18n="@@puydh">
+                    Please upload your document here.</span
+                  >
+                  <span
+                    style="display: block; cursor: pointer"
+                    *ngFor="let val of suratSalinan; index as i"
+                  >
                     <span>
                       <a (click)="getPdf(val)" target="_blank">{{ val }}</a>
-                      <span id="cl2{{ i }}" *ngIf="surat_salinan_CF_dokumen != ''">
-                        <i (click)="removeSuratSalinan(i)" id="{{ i }}" class="fa fa-trash"
-                          style="cursor: pointer; margin-left: 8px"></i>
+                      <span
+                        id="cl2{{ i }}"
+                        *ngIf="surat_salinan_CF_dokumen != ''"
+                      >
+                        <i
+                          (click)="removeSuratSalinan(i)"
+                          id="{{ i }}"
+                          class="fa fa-trash"
+                          style="cursor: pointer; margin-left: 8px"
+                        ></i>
                       </span>
                     </span>
                     <br />
                   </span>
                   <table>
                     <tbody>
-                      <tr *ngFor="let item of suratSalinan; index as i;">
+                      <tr *ngFor="let item of suratSalinan; index as i">
                         <th width="90%">
                           {{ item }}
                         </th>
                         <th class="text-center" width="10%">
-                          <i (click)="removeSuratSalinan(i)" class="fa fa-trash" style="cursor: pointer"></i>
+                          <i
+                            (click)="removeSuratSalinan(i)"
+                            class="fa fa-trash"
+                            style="cursor: pointer"
+                          ></i>
                         </th>
                       </tr>
                     </tbody>
@@ -385,54 +624,92 @@
                   </span>
                 </td>
                 <td class="add">
-                  <div style="margin-bottom: 4px" *ngIf="surat_salinan_CF_catatan != ''">
-                    <div *ngFor="let x of notice2; index as i" style="width: 241px; text-align: left !important;">
+                  <div
+                    style="margin-bottom: 4px"
+                    *ngIf="surat_salinan_CF_catatan != ''"
+                  >
+                    <div
+                      *ngFor="let x of notice2; index as i"
+                      style="width: 241px; text-align: left !important"
+                    >
                       <div class="d-flex justify-content-start">
                         <div *ngIf="x.includes('DBKL:')" class="message-dbkl">
                           <span>{{ x.substring(5) }}</span>
                         </div>
                       </div>
                       <div class="d-flex justify-content-end">
-                        <div *ngIf="x.includes('PUBLIC:')" class="message-public">
+                        <div
+                          *ngIf="x.includes('PUBLIC:')"
+                          class="message-public"
+                        >
                           <span>{{ x.substring(7) }}</span>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div style="margin-bottom: 2px">
-                    <div
-                      *ngFor="let x of secondMessage; index as i"
-                    >
+                    <div *ngFor="let x of secondMessage; index as i">
                       <div class="message-public-draft">
                         <span>{{ x.substring(7) }}</span>
                       </div>
                     </div>
                   </div>
-                  <div class="row" style="margin-top: 20px;">
+                  <div class="row" style="margin-top: 20px">
                     <div class="col-8">
-                      <textarea [(ngModel)]="text2" (ngModelChange)="getData2(text2)"
-                        id="tex1">
+                      <textarea
+                        [(ngModel)]="text2"
+                        (ngModelChange)="getData2(text2)"
+                        id="tex1"
+                      >
                       </textarea>
                     </div>
                     <div class="col-2">
-                      <i (click)="add2()" class="fa fa-paper-plane" aria-hidden="true"></i>
+                      <i
+                        (click)="add2()"
+                        class="fa fa-paper-plane"
+                        aria-hidden="true"
+                      ></i>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="module_item">
-                    <a style="color: red !important;cursor: pointer;text-align: center;" (click)="open2nddocument()"
-                      target="_blank">CONTOH BORANG F.pdf</a>
+                    <a
+                      style="
+                        color: red !important;
+                        cursor: pointer;
+                        text-align: center;
+                      "
+                      (click)="open2nddocument()"
+                      target="_blank"
+                      >CONTOH BORANG F.pdf</a
+                    >
                   </div>
-                  <br>
+                  <br />
                   <div class="module_item">
-                    <a style="color: red !important;cursor: pointer;text-align: center;" (click)="open3rddocument()"
-                      target="_blank">JALAN AWAM.pdf</a>
+                    <a
+                      style="
+                        color: red !important;
+                        cursor: pointer;
+                        text-align: center;
+                      "
+                      (click)="open3rddocument()"
+                      target="_blank"
+                      >JALAN AWAM.pdf</a
+                    >
                   </div>
-                  <br>
+                  <br />
                   <div class="module_item">
-                    <a style="color: red !important;cursor: pointer;text-align: center;" (click)="open4rthdocument()"
-                      target="_blank">PELAN JALAN AWAM.pdf</a>
+                    <a
+                      style="
+                        color: red !important;
+                        cursor: pointer;
+                        text-align: center;
+                      "
+                      (click)="open4rthdocument()"
+                      target="_blank"
+                      >PELAN JALAN AWAM.pdf</a
+                    >
                   </div>
                 </td>
               </tr>
@@ -442,29 +719,38 @@
                   State the name of the building/park to be serviced
                 </td>
                 <td>
-
-                  <textarea id="inputBtm1" style="margin-left: 20px;width: 80%" maxlength="100"
-                    [(ngModel)]="buildingName1"></textarea>
-
-
+                  <textarea
+                    id="inputBtm1"
+                    style="margin-left: 20px; width: 80%"
+                    maxlength="100"
+                    [(ngModel)]="buildingName1"
+                  ></textarea>
                 </td>
                 <td></td>
                 <td></td>
                 <td></td>
-
               </tr>
               <tr>
-                <td>
-                  4.
-                </td>
+                <td>4.</td>
                 <td i18n="@@sttowds">
-                  <span>State the type of waste disposal system used and the number of bins.</span>
+                  <span
+                    >State the type of waste disposal system used and the number
+                    of bins.</span
+                  >
                 </td>
                 <td style="text-align: center">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" multiple (change)="doUploadTypeDisposal()" />
-                    <i class="fa fa-cloud-upload"></i>
-                  </label><br>
+                    <input
+                      type="file"
+                      ng2FileSelect
+                      accept=".pdf"
+                      id="file-upload"
+                      [uploader]="uploader"
+                      multiple
+                      (change)="doUploadTypeDisposal()"
+                    />
+                    <i class="fa fa-cloud-upload"></i> </label
+                  ><br />
                   <span i18n="@@puydh"> Please upload your document here.</span>
                   <table>
                     <tbody>
@@ -473,7 +759,11 @@
                           {{ item }}
                         </th>
                         <th class="text-center" width="10%">
-                          <i (click)="removeTypeDisposal(i)" class="fa fa-trash" style="cursor: pointer"></i>
+                          <i
+                            (click)="removeTypeDisposal(i)"
+                            class="fa fa-trash"
+                            style="cursor: pointer"
+                          ></i>
                         </th>
                       </tr>
                     </tbody>
@@ -489,38 +779,66 @@
                   <span i18n="@@Copy">Copy of Development Status</span>
                   <ul style="list-style-type: lower-roman">
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Strata">Strata "Title"</span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Strata">Strata "Title"</span>
                         <span *ngFor="let val of data">
-                          <span class="d-flex align-items-center" *ngIf="val.strata_title == true"><input
-                              type="checkbox" checked #saveUserNameCheckBox4 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.strata_title == true"
+                            ><input
+                              type="checkbox"
+                              checked
+                              #saveUserNameCheckBox4
+                              (change)="
                                 onSaveUsernameChanged4(
                                   saveUserNameCheckBox4.checked
                                 )
-                              " /></span>
-                          <span class="d-flex align-items-center" *ngIf="val.strata_title == false"><input
-                              type="checkbox" #saveUserNameCheckBox4 (change)="
+                              "
+                          /></span>
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.strata_title == false"
+                            ><input
+                              type="checkbox"
+                              #saveUserNameCheckBox4
+                              (change)="
                                 onSaveUsernameChanged4(
                                   saveUserNameCheckBox4.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
                         </span>
                       </span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Freehold"> Freehold</span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Freehold"> Freehold</span>
                         <span *ngFor="let val of data">
-                          <span class="d-flex align-items-center" *ngIf="val.hak_milik_kekal == true"><input
-                              type="checkbox" checked #saveUserNameCheckBox5 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.hak_milik_kekal == true"
+                            ><input
+                              type="checkbox"
+                              checked
+                              #saveUserNameCheckBox5
+                              (change)="
                                 onSaveUsernameChanged5(
                                   saveUserNameCheckBox5.checked
                                 )
-                              " /></span>
-                          <span class="d-flex align-items-center" *ngIf="val.hak_milik_kekal == false"><input
-                              type="checkbox" #saveUserNameCheckBox5 (change)="
+                              "
+                          /></span>
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.hak_milik_kekal == false"
+                            ><input
+                              type="checkbox"
+                              #saveUserNameCheckBox5
+                              (change)="
                                 onSaveUsernameChanged5(
                                   saveUserNameCheckBox5.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
                         </span>
                       </span>
                     </li>
@@ -528,16 +846,36 @@
                 </td>
                 <td style="text-align: center" class="anc">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" (change)="doUploadDevelopmentStatus()" multiple />
+                    <input
+                      type="file"
+                      ng2FileSelect
+                      accept=".pdf"
+                      id="file-upload"
+                      [uploader]="uploader"
+                      (change)="doUploadDevelopmentStatus()"
+                      multiple
+                    />
 
-                    <i class="fa fa-cloud-upload"></i>
-                  </label><br><span i18n="@@puydh"> Please upload your document here.</span>
-                  <span style="display: block; cursor: pointer;" *ngFor="let val of developmentStatus; index as i">
+                    <i class="fa fa-cloud-upload"></i> </label
+                  ><br /><span i18n="@@puydh">
+                    Please upload your document here.</span
+                  >
+                  <span
+                    style="display: block; cursor: pointer"
+                    *ngFor="let val of developmentStatus; index as i"
+                  >
                     <span>
                       <a (click)="getPdf(val)" target="_blank">{{ val }}</a>
-                      <span id="cl3{{ i }}" *ngIf="salinan_status_pembanginan_dokumen != ''">
-                        <i (click)="removeDevelopmentStatus(i)" id="{{ i }}" class="fa fa-trash"
-                          style="cursor: pointer; margin-left: 8px"></i>
+                      <span
+                        id="cl3{{ i }}"
+                        *ngIf="salinan_status_pembanginan_dokumen != ''"
+                      >
+                        <i
+                          (click)="removeDevelopmentStatus(i)"
+                          id="{{ i }}"
+                          class="fa fa-trash"
+                          style="cursor: pointer; margin-left: 8px"
+                        ></i>
                       </span>
                     </span>
                     <br />
@@ -549,7 +887,11 @@
                           {{ item }}
                         </th>
                         <th class="text-center" width="10%">
-                          <i (click)="removeDevelopmentStatus(i)" class="fa fa-trash" style="cursor: pointer"></i>
+                          <i
+                            (click)="removeDevelopmentStatus(i)"
+                            class="fa fa-trash"
+                            style="cursor: pointer"
+                          ></i>
                         </th>
                       </tr>
                     </tbody>
@@ -560,43 +902,59 @@
                     <span *ngIf="val.salinan_status_pembanginan_status == true">
                       Lengkap
                     </span>
-                    <span *ngIf="val.salinan_status_pembanginan_status == false">
+                    <span
+                      *ngIf="val.salinan_status_pembanginan_status == false"
+                    >
                       Tidak Lengkap
                     </span>
                   </span>
                 </td>
                 <td class="add">
-                  <div style="margin-bottom: 4px" *ngIf="salinan_status_pembanginan_catatan != ''">
-                    <div *ngFor="let x of notice3; index as i" style="width: 241px; text-align: left !important;">
+                  <div
+                    style="margin-bottom: 4px"
+                    *ngIf="salinan_status_pembanginan_catatan != ''"
+                  >
+                    <div
+                      *ngFor="let x of notice3; index as i"
+                      style="width: 241px; text-align: left !important"
+                    >
                       <div class="d-flex justify-content-start">
                         <div *ngIf="x.includes('DBKL:')" class="message-dbkl">
                           <span>{{ x.substring(5) }}</span>
                         </div>
                       </div>
                       <div class="d-flex justify-content-end">
-                        <div *ngIf="x.includes('PUBLIC:')" class="message-public">
+                        <div
+                          *ngIf="x.includes('PUBLIC:')"
+                          class="message-public"
+                        >
                           <span>{{ x.substring(7) }}</span>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div style="margin-bottom: 2px">
-                    <div
-                      *ngFor="let x of thirdMessage; index as i"
-                    >
+                    <div *ngFor="let x of thirdMessage; index as i">
                       <div class="message-public-draft">
                         <span>{{ x.substring(7) }}</span>
                       </div>
                     </div>
                   </div>
-                  <div class="row" style="margin-top: 20px;">
+                  <div class="row" style="margin-top: 20px">
                     <div class="col-8">
-                      <textarea [(ngModel)]="text3" (ngModelChange)="getData3(text3)"
-                        id="tex3">
+                      <textarea
+                        [(ngModel)]="text3"
+                        (ngModelChange)="getData3(text3)"
+                        id="tex3"
+                      >
                       </textarea>
                     </div>
                     <div class="col-2">
-                      <i (click)="add3()" class="fa fa-paper-plane" aria-hidden="true"></i>
+                      <i
+                        (click)="add3()"
+                        class="fa fa-paper-plane"
+                        aria-hidden="true"
+                      ></i>
                     </div>
                   </div>
                 </td>
@@ -614,121 +972,210 @@
                   </h6>
                   <ul style="list-style-type: lower-roman">
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@StreetName">Street Name</span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@StreetName">Street Name</span>
                         <span *ngFor="let val of data">
-                          <span class="d-flex align-items-center" *ngIf="val.nama_jalan == true"><input type="checkbox"
-                              checked #saveUserNameCheckBox6 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.nama_jalan == true"
+                            ><input
+                              type="checkbox"
+                              checked
+                              #saveUserNameCheckBox6
+                              (change)="
                                 onSaveUsernameChanged6(
                                   saveUserNameCheckBox6.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
 
-                          <span class="d-flex align-items-center" *ngIf="val.nama_jalan == false"><input type="checkbox"
-                              #saveUserNameCheckBox6 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.nama_jalan == false"
+                            ><input
+                              type="checkbox"
+                              #saveUserNameCheckBox6
+                              (change)="
                                 onSaveUsernameChanged6(
                                   saveUserNameCheckBox6.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
                         </span>
                       </span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Roadlength">
-                          Road length by street name</span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Roadlength">
+                          Road length by street name</span
+                        >
                         <span *ngFor="let val of data">
-                          <span class="d-flex align-items-center" *ngIf="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="
                               val.panjang_jalan_mengikut_nama_jalan == true
-                            "><input type="checkbox" checked #saveUserNameCheckBox7 (change)="
+                            "
+                            ><input
+                              type="checkbox"
+                              checked
+                              #saveUserNameCheckBox7
+                              (change)="
                                 onSaveUsernameChanged7(
                                   saveUserNameCheckBox7.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
 
-                          <span class="d-flex align-items-center" *ngIf="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="
                               val.panjang_jalan_mengikut_nama_jalan == false
-                            "><input type="checkbox" #saveUserNameCheckBox7 (change)="
+                            "
+                            ><input
+                              type="checkbox"
+                              #saveUserNameCheckBox7
+                              (change)="
                                 onSaveUsernameChanged7(
                                   saveUserNameCheckBox7.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
                         </span>
                       </span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Thelength">The length of the drain
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Thelength"
+                          >The length of the drain
                         </span>
                         <span *ngFor="let val of data">
-                          <span class="d-flex align-items-center" *ngIf="val.panjang_longkang == true"><input
-                              type="checkbox" checked #saveUserNameCheckBox8 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.panjang_longkang == true"
+                            ><input
+                              type="checkbox"
+                              checked
+                              #saveUserNameCheckBox8
+                              (change)="
                                 onSaveUsernameChanged8(
                                   saveUserNameCheckBox8.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
 
-                          <span class="d-flex align-items-center" *ngIf="val.panjang_longkang == false"><input
-                              type="checkbox" #saveUserNameCheckBox8 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.panjang_longkang == false"
+                            ><input
+                              type="checkbox"
+                              #saveUserNameCheckBox8
+                              (change)="
                                 onSaveUsernameChanged8(
                                   saveUserNameCheckBox8.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
                         </span>
                       </span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Grassyarea">Grassy area</span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Grassyarea">Grassy area</span>
                         <span *ngFor="let val of data">
-                          <span class="d-flex align-items-center" *ngIf="val.luas_kawasan_berumput == true"><input
-                              type="checkbox" checked #saveUserNameCheckBox9 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.luas_kawasan_berumput == true"
+                            ><input
+                              type="checkbox"
+                              checked
+                              #saveUserNameCheckBox9
+                              (change)="
                                 onSaveUsernameChanged9(
                                   saveUserNameCheckBox9.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
 
-                          <span class="d-flex align-items-center" *ngIf="val.luas_kawasan_berumput == false"><input
-                              type="checkbox" #saveUserNameCheckBox9 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.luas_kawasan_berumput == false"
+                            ><input
+                              type="checkbox"
+                              #saveUserNameCheckBox9
+                              (change)="
                                 onSaveUsernameChanged9(
                                   saveUserNameCheckBox9.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
                         </span>
                       </span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@TPKKarea1">TPKK area</span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@TPKKarea1">TPKK area</span>
                         <span *ngFor="let val of data">
-                          <span class="d-flex align-items-center" *ngIf="val.luas_kawasan_TPKK == true"><input
-                              type="checkbox" checked #saveUserNameCheckBox10 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.luas_kawasan_TPKK == true"
+                            ><input
+                              type="checkbox"
+                              checked
+                              #saveUserNameCheckBox10
+                              (change)="
                                 onSaveUsernameChanged10(
                                   saveUserNameCheckBox10.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
 
-                          <span class="d-flex align-items-center" *ngIf="val.luas_kawasan_TPKK == false"><input
-                              type="checkbox" #saveUserNameCheckBox10 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.luas_kawasan_TPKK == false"
+                            ><input
+                              type="checkbox"
+                              #saveUserNameCheckBox10
+                              (change)="
                                 onSaveUsernameChanged10(
                                   saveUserNameCheckBox10.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
                         </span>
                       </span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"><span i18n="@@Largespace">Large space (parking area)
-                          if applicable</span>
+                      <span class="d-flex justify-content-between"
+                        ><span i18n="@@Largespace"
+                          >Large space (parking area) if applicable</span
+                        >
                         <span *ngFor="let val of data">
-                          <span class="d-flex align-items-center" *ngIf="val.parkir_area == true"><input checked
-                              type="checkbox" #saveUserNameCheckBox11 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.parkir_area == true"
+                            ><input
+                              checked
+                              type="checkbox"
+                              #saveUserNameCheckBox11
+                              (change)="
                                 onSaveUsernameChanged11(
                                   saveUserNameCheckBox11.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
 
-                          <span class="d-flex align-items-center" *ngIf="val.parkir_area == false"><input
-                              type="checkbox" #saveUserNameCheckBox11 (change)="
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.parkir_area == false"
+                            ><input
+                              type="checkbox"
+                              #saveUserNameCheckBox11
+                              (change)="
                                 onSaveUsernameChanged11(
                                   saveUserNameCheckBox11.checked
                                 )
-                              " /></span>
+                              "
+                          /></span>
                         </span>
                       </span>
                     </li>
@@ -736,15 +1183,35 @@
                 </td>
                 <td style="text-align: center" class="anc">
                   <label class="custom-file-upload">
-                    <input type="file" ng2FileSelect accept=".pdf" id="file-upload" [uploader]="uploader" (change)="doUploadOtherDocuments()" multiple />
-                    <i class="fa fa-cloud-upload"></i>
-                  </label><br><span i18n="@@puydh"> Please upload your document here.</span>
-                  <span style="display: block; cursor: pointer;" *ngFor="let val of otherDocuments; index as i">
+                    <input
+                      type="file"
+                      ng2FileSelect
+                      accept=".pdf"
+                      id="file-upload"
+                      [uploader]="uploader"
+                      (change)="doUploadOtherDocuments()"
+                      multiple
+                    />
+                    <i class="fa fa-cloud-upload"></i> </label
+                  ><br /><span i18n="@@puydh">
+                    Please upload your document here.</span
+                  >
+                  <span
+                    style="display: block; cursor: pointer"
+                    *ngFor="let val of otherDocuments; index as i"
+                  >
                     <span>
                       <a (click)="getPdf(val)" target="_blank">{{ val }}</a>
-                      <span id="cl4{{ i }}" *ngIf="bagi_status_pembangunan_dokumen != ''">
-                        <i (click)="removeOtherDocuments(i)" id="{{ i }}" class="fa fa-trash"
-                          style="cursor: pointer; margin-left: 8px"></i>
+                      <span
+                        id="cl4{{ i }}"
+                        *ngIf="bagi_status_pembangunan_dokumen != ''"
+                      >
+                        <i
+                          (click)="removeOtherDocuments(i)"
+                          id="{{ i }}"
+                          class="fa fa-trash"
+                          style="cursor: pointer; margin-left: 8px"
+                        ></i>
                       </span>
                     </span>
                     <br />
@@ -757,7 +1224,11 @@
                         </th>
                         <th class="text-center" width="10%">
                           <!-- <mat-icon (click)="item.remove()">delete</mat-icon> -->
-                          <i class="fa fa-trash" style="cursor: pointer" (click)="removeOtherDocuments(i)"></i>
+                          <i
+                            class="fa fa-trash"
+                            style="cursor: pointer"
+                            (click)="removeOtherDocuments(i)"
+                          ></i>
                         </th>
                       </tr>
                     </tbody>
@@ -774,51 +1245,80 @@
                   </span>
                 </td>
                 <td class="add">
-                  <div style="margin-bottom: 4px" *ngIf="
-                  bagi_status_pembangunan_catatan != ''
-                    ">
-                    <div *ngFor="let x of notice4; index as i" style="width: 241px; text-align: left !important;">
+                  <div
+                    style="margin-bottom: 4px"
+                    *ngIf="bagi_status_pembangunan_catatan != ''"
+                  >
+                    <div
+                      *ngFor="let x of notice4; index as i"
+                      style="width: 241px; text-align: left !important"
+                    >
                       <div class="d-flex justify-content-start">
                         <div *ngIf="x.includes('DBKL:')" class="message-dbkl">
                           <span>{{ x.substring(5) }}</span>
                         </div>
                       </div>
                       <div class="d-flex justify-content-end">
-                        <div *ngIf="x.includes('PUBLIC:')" class="message-public">
+                        <div
+                          *ngIf="x.includes('PUBLIC:')"
+                          class="message-public"
+                        >
                           <span>{{ x.substring(7) }}</span>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div style="margin-bottom: 2px">
-                    <div
-                      *ngFor="let x of fourthMessage; index as i"
-                    >
+                    <div *ngFor="let x of fourthMessage; index as i">
                       <div class="message-public-draft">
                         <span>{{ x.substring(7) }}</span>
                       </div>
                     </div>
                   </div>
-                  <div class="row" style="margin-top: 20px;">
+                  <div class="row" style="margin-top: 20px">
                     <div class="col-8">
-                      <textarea [(ngModel)]="text4" (ngModelChange)="getData4(text4)"
-                        id="text4">
+                      <textarea
+                        [(ngModel)]="text4"
+                        (ngModelChange)="getData4(text4)"
+                        id="text4"
+                      >
                       </textarea>
                     </div>
                     <div class="col-2">
-                      <i (click)="add4()" class="fa fa-paper-plane" aria-hidden="true"></i>
+                      <i
+                        (click)="add4()"
+                        class="fa fa-paper-plane"
+                        aria-hidden="true"
+                      ></i>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="module_item">
-                    <a style="color: red !important;cursor: pointer;text-align: center;" (click)="open5thdocument()"
-                      target="_blank">CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH SWCorp.pdf</a>
+                    <a
+                      style="
+                        color: red !important;
+                        cursor: pointer;
+                        text-align: center;
+                      "
+                      (click)="open5thdocument()"
+                      target="_blank"
+                      >CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH
+                      SWCorp.pdf</a
+                    >
                   </div>
-                  <br>
+                  <br />
                   <div class="module_item">
-                    <a style="color: red !important;cursor: pointer;text-align: center;" (click)="open6thdocument()"
-                      target="_blank">PELAN INVENTORI KAWASAN PERKHIDMATAN PEMBERSIHAN.pdf</a>
+                    <a
+                      style="
+                        color: red !important;
+                        cursor: pointer;
+                        text-align: center;
+                      "
+                      (click)="open6thdocument()"
+                      target="_blank"
+                      >PELAN INVENTORI KAWASAN PERKHIDMATAN PEMBERSIHAN.pdf</a
+                    >
                   </div>
                 </td>
               </tr>
@@ -827,22 +1327,44 @@
         </div>
       </div>
     </div>
-    <div class="d-flex mt-3" style="margin-left: 20px;">
-      <input style="margin-top: 6px;" type="checkbox" [(ngModel)]="confirm" />
-      <span i18n="@@icgai">&nbsp; I certify that all information provided is true and accurate.</span>
+    <div class="d-flex mt-3" style="margin-left: 20px">
+      <input style="margin-top: 6px" type="checkbox" [(ngModel)]="confirm" />
+      <span i18n="@@icgai"
+        >&nbsp; I certify that all information provided is true and
+        accurate.</span
+      >
     </div>
     <div class="d-flex justify-content-center mt-3">
       <span i18n="@@overallstatus">Overall Document Status : </span>
-      <span *ngIf="status_dokumen_keseluruhan == true" style="margin-left: 5px; font-weight: 700">Lengkap</span>
-      <span *ngIf="status_dokumen_keseluruhan == false" style="margin-left: 5px; font-weight: 700">Tidak Lengkap</span>
-      <span *ngIf="status_dokumen_keseluruhan == null" style="margin-left: 5px; font-weight: 700"
-        i18n="@@Submitted">Submitted</span>
+      <span
+        *ngIf="status_dokumen_keseluruhan == true"
+        style="margin-left: 5px; font-weight: 700"
+        >Lengkap</span
+      >
+      <span
+        *ngIf="status_dokumen_keseluruhan == false"
+        style="margin-left: 5px; font-weight: 700"
+        >Tidak Lengkap</span
+      >
+      <span
+        *ngIf="status_dokumen_keseluruhan == null"
+        style="margin-left: 5px; font-weight: 700"
+        i18n="@@Submitted"
+        >Submitted</span
+      >
     </div>
-    <div class="d-flex justify-content-center mt-3" style="    margin-bottom: 10px;">
-      <button class="look_for_red" style="margin-right: 20px" routerLink="/publicpage" i18n="@@cancel">
+    <div class="d-flex justify-content-center mt-3" style="margin-bottom: 10px">
+      <button
+        class="look_for_red"
+        style="margin-right: 20px"
+        routerLink="/publicpage"
+        i18n="@@cancel"
+      >
         Back
       </button>
-      <button class="look_for" (click)="updatedata()" i18n="@@submit">Submit</button>
+      <button class="look_for" (click)="updatedata()" i18n="@@submit">
+        Submit
+      </button>
     </div>
   </section>
   <!-- End Services Section -->
@@ -850,5 +1372,9 @@
 <!-- ======= Footer ======= -->
 <app-footer></app-footer>
 
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
-    class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>

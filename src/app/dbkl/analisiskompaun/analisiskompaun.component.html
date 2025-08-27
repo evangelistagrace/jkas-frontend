@@ -1,60 +1,114 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
-  [fullScreen]="true">
-
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#253d84"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+>
 </ngx-spinner>
 <!-- ======= Top Bar ======= -->
 <app-topbar></app-topbar>
 
 <!-- ======= Header ======= -->
-<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+<div
+  class="container-fluid sticky-nav"
+  id=""
+  style="background-color: #f2f2f2 !important"
+>
   <div class="container-fluid" ngStickyNav>
     <nav class="navbar navbar-expand-lg">
-      <a routerLink="/public" class="navbar-brand ">
-        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
-
+      <a routerLink="/public" class="navbar-brand">
+        <img src="assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
       </a>
 
-
-
-
-
-      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
-        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <i class="fa fa-bars text-white"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li class="nav-item" style="list-style-type: none;">
-            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@home">HOME</a>
+          <li class="nav-item" style="list-style-type: none">
+            <a
+              routerLink="/dbkl/dbklmainpage"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home"
+              >HOME</a
+            >
           </li>
-          <li class="nav-item dropdown" id="user" style="list-style-type: none;">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important;" i18n="@@n25">
+          <li class="nav-item dropdown" id="user" style="list-style-type: none">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important"
+              i18n="@@n25"
+            >
               ANALYSIS & REPORTING
             </a>
 
             <div class="dropdown-menu">
-              <a routerLink="/dbkl/barchart" class="dropdown-item" style="color: white; cursor: pointer"
-                i18n="@@n26">Inventory Analysis</a>
-              <a class="dropdown-item" routerLink="/dbkl/merinyuanalysis" style="color: white; cursor: pointer"
-                i18n="@@n27">Merinyu Analysis</a>
-              <a class="dropdown-item" routerLink="/dbkl/compoundanalysis" style="color: white; cursor: pointer"
-                i18n="@@ana">Compound Analysis</a>
+              <a
+                routerLink="/dbkl/barchart"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n26"
+                >Inventory Analysis</a
+              >
+              <a
+                class="dropdown-item"
+                routerLink="/dbkl/merinyuanalysis"
+                style="color: white; cursor: pointer"
+                i18n="@@n27"
+                >Merinyu Analysis</a
+              >
+              <a
+                class="dropdown-item"
+                routerLink="/dbkl/compoundanalysis"
+                style="color: white; cursor: pointer"
+                i18n="@@ana"
+                >Compound Analysis</a
+              >
             </div>
           </li>
-          <li class="nav-item dropdown" style="list-style-type: none;">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+          <li class="nav-item dropdown" style="list-style-type: none">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+            >
               {{ username }}
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
-                i18n="@@Profile">Profile</a>
-              <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
-                i18n="@@jflogout">Logout</a>
+              <a
+                routerLink="/profileLog"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@Profile"
+                >Profile</a
+              >
+              <a
+                class="dropdown-item"
+                (click)="logout()"
+                style="color: white; cursor: pointer"
+                i18n="@@jflogout"
+                >Logout</a
+              >
             </div>
           </li>
         </ul>
@@ -70,490 +124,565 @@
         <span i18n="@@ana">Compound Analysis</span>
         <h2 i18n="@@ana">Compound Analysis</h2>
       </div>
-      <div style="float: right;">
+      <div style="float: right">
         <button class="look_for" (click)="createPdf()">PDF</button>
         <button class="look_for" (click)="exportAsXLSX()">EXCEL</button>
       </div>
       <div>
-        <h5 class="text-center font-weight-bold p-1" style="margin-top: 7px" i18n="@@nocn">
+        <h5
+          class="text-center font-weight-bold p-1"
+          style="margin-top: 7px"
+          i18n="@@nocn"
+        >
           NUMBER OF COMPOUND NOTICES ISSUED FOR THE YEAR 2021
         </h5>
       </div>
       <div class="table-responsive col-md-12">
-        <table class="table table-bordered table-striped table-hover table-condensed" id="DyanmicTable">
+        <table
+          class="table table-bordered table-striped table-hover table-condensed"
+          id="DyanmicTable"
+        >
           <thead>
             <tr>
-              <th class="text-center" style="text-align: left; vertical-align: bottom;background-color: #253d84;">
-                <span style="float: right;margin-left: 82px;" i18n="@@parlime">PARLIAMENT </span><br>
-                <hr class="line">
-                <span style="float:left ;" i18n="@@bu">MONTH</span>
+              <th
+                class="text-center"
+                style="
+                  text-align: left;
+                  vertical-align: bottom;
+                  background-color: #253d84;
+                "
+              >
+                <span style="float: right; margin-left: 82px" i18n="@@parlime"
+                  >PARLIAMENT </span
+                ><br />
+                <hr class="line" />
+                <span style="float: left" i18n="@@bu">MONTH</span>
               </th>
-              <th *ngFor="let data of compound">{{data.parlimen}}
-              </th>
+              <th *ngFor="let data of compound">{{ data.parlimen }}</th>
             </tr>
           </thead>
 
           <tbody id="tableBody">
             <tr>
-              <td style="background-color: #253d84;color: white;" i18n="@@d1">JANUARY</td>
-              <td *ngFor="let data of compound ;index as i"><span
-                  *ngFor="let item of data.dataCount">{{item.January}}</span></td>
+              <td style="background-color: #253d84; color: white" i18n="@@d1">
+                JANUARY
+              </td>
+              <td *ngFor="let data of compound; index as i">
+                <span *ngFor="let item of data.dataCount">{{
+                  item.January
+                }}</span>
+              </td>
             </tr>
             <tr>
-              <td style="background-color: #253d84;color: white;" i18n="@@d2">FEBRUARY</td>
-              <td *ngFor="let data of compound ;index as i"><span
-                  *ngFor="let item of data.dataCount">{{item.February}}</span></td>
+              <td style="background-color: #253d84; color: white" i18n="@@d2">
+                FEBRUARY
+              </td>
+              <td *ngFor="let data of compound; index as i">
+                <span *ngFor="let item of data.dataCount">{{
+                  item.February
+                }}</span>
+              </td>
             </tr>
             <tr>
-              <td style="background-color: #253d84;color: white;" i18n="@@d3">MARCH</td>
-              <td *ngFor="let data of compound ;index as i"><span
-                  *ngFor="let item of data.dataCount">{{item.March}}</span></td>
+              <td style="background-color: #253d84; color: white" i18n="@@d3">
+                MARCH
+              </td>
+              <td *ngFor="let data of compound; index as i">
+                <span *ngFor="let item of data.dataCount">{{
+                  item.March
+                }}</span>
+              </td>
             </tr>
             <tr>
-              <td style="background-color: #253d84;color: white;" i18n="@@d4">APRIL</td>
-              <td *ngFor="let data of compound ;index as i"><span
-                  *ngFor="let item of data.dataCount">{{item.April}}</span></td>
+              <td style="background-color: #253d84; color: white" i18n="@@d4">
+                APRIL
+              </td>
+              <td *ngFor="let data of compound; index as i">
+                <span *ngFor="let item of data.dataCount">{{
+                  item.April
+                }}</span>
+              </td>
             </tr>
             <tr>
-              <td style="background-color: #253d84;color: white;" i18n="@@d5">MAY</td>
-              <td *ngFor="let data of compound ;index as i"><span
-                  *ngFor="let item of data.dataCount">{{item.May}}</span></td>
+              <td style="background-color: #253d84; color: white" i18n="@@d5">
+                MAY
+              </td>
+              <td *ngFor="let data of compound; index as i">
+                <span *ngFor="let item of data.dataCount">{{ item.May }}</span>
+              </td>
             </tr>
             <tr>
-              <td style="background-color: #253d84;color: white;" i18n="@@d6">JUNE</td>
-              <td *ngFor="let data of compound ;index as i"><span
-                  *ngFor="let item of data.dataCount">{{item.June}}</span></td>
+              <td style="background-color: #253d84; color: white" i18n="@@d6">
+                JUNE
+              </td>
+              <td *ngFor="let data of compound; index as i">
+                <span *ngFor="let item of data.dataCount">{{ item.June }}</span>
+              </td>
             </tr>
             <tr>
-              <td style="background-color: #253d84;color: white;" i18n="@@d7">JULY</td>
-              <td *ngFor="let data of compound ;index as i"><span
-                  *ngFor="let item of data.dataCount">{{item.July}}</span></td>
+              <td style="background-color: #253d84; color: white" i18n="@@d7">
+                JULY
+              </td>
+              <td *ngFor="let data of compound; index as i">
+                <span *ngFor="let item of data.dataCount">{{ item.July }}</span>
+              </td>
             </tr>
             <tr>
-              <td style="background-color: #253d84;color: white;" i18n="@@d8">AUGUST</td>
-              <td *ngFor="let data of compound ;index as i"><span
-                  *ngFor="let item of data.dataCount">{{item.August}}</span></td>
+              <td style="background-color: #253d84; color: white" i18n="@@d8">
+                AUGUST
+              </td>
+              <td *ngFor="let data of compound; index as i">
+                <span *ngFor="let item of data.dataCount">{{
+                  item.August
+                }}</span>
+              </td>
             </tr>
             <tr>
-              <td style="background-color: #253d84;color: white;" i18n="@@d9">SEPTEMBER</td>
-              <td *ngFor="let data of compound ;index as i"><span
-                  *ngFor="let item of data.dataCount">{{item.September}}</span></td>
+              <td style="background-color: #253d84; color: white" i18n="@@d9">
+                SEPTEMBER
+              </td>
+              <td *ngFor="let data of compound; index as i">
+                <span *ngFor="let item of data.dataCount">{{
+                  item.September
+                }}</span>
+              </td>
             </tr>
             <tr>
-              <td style="background-color: #253d84;color: white;" i18n="@@d10">OCTOBER</td>
-              <td *ngFor="let data of compound ;index as i"><span
-                  *ngFor="let item of data.dataCount">{{item.October}}</span></td>
+              <td style="background-color: #253d84; color: white" i18n="@@d10">
+                OCTOBER
+              </td>
+              <td *ngFor="let data of compound; index as i">
+                <span *ngFor="let item of data.dataCount">{{
+                  item.October
+                }}</span>
+              </td>
             </tr>
             <tr>
-              <td style="background-color: #253d84;color: white;" i18n="@@d11">NOVEMBER</td>
-              <td *ngFor="let data of compound ;index as i"><span
-                  *ngFor="let item of data.dataCount">{{item.November}}</span></td>
+              <td style="background-color: #253d84; color: white" i18n="@@d11">
+                NOVEMBER
+              </td>
+              <td *ngFor="let data of compound; index as i">
+                <span *ngFor="let item of data.dataCount">{{
+                  item.November
+                }}</span>
+              </td>
             </tr>
             <tr>
-              <td style="background-color: #253d84;color: white;" i18n="@@d12">DECEMBER</td>
-              <td *ngFor="let data of compound ;index as i"><span
-                  *ngFor="let item of data.dataCount">{{item.December}}</span></td>
+              <td style="background-color: #253d84; color: white" i18n="@@d12">
+                DECEMBER
+              </td>
+              <td *ngFor="let data of compound; index as i">
+                <span *ngFor="let item of data.dataCount">{{
+                  item.December
+                }}</span>
+              </td>
             </tr>
-            <tr style="color: white;font-weight: normal !important;">
-              <td style="background-color: #253d84;" i18n="@@total">TOTAL</td>
-              <td style="color: black;" *ngFor="let data of compound ;index as i"><span
-                  *ngFor="let item of data.dataCount">{{item.total}}</span></td>
+            <tr style="color: white; font-weight: normal !important">
+              <td style="background-color: #253d84" i18n="@@total">TOTAL</td>
+              <td
+                style="color: black"
+                *ngFor="let data of compound; index as i"
+              >
+                <span *ngFor="let item of data.dataCount">{{
+                  item.total
+                }}</span>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div style="float: right;">
+      <div style="float: right">
         <button class="look_for" (click)="createPdf1()">PDF</button>
-        <button class="look_for" (click)="exportAsXLSX1()">
-          EXCEL</button>
+        <button class="look_for" (click)="exportAsXLSX1()">EXCEL</button>
       </div>
       <div>
-        <h5 class="text-center font-weight-bold p-1" style="margin-top: 40px" i18n="@@locn">
+        <h5
+          class="text-center font-weight-bold p-1"
+          style="margin-top: 40px"
+          i18n="@@locn"
+        >
           LIST OF COMPOUND NOTICES ISSUED FOR THE YEAR 2021
         </h5>
       </div>
       <div class="table-responsive col-md-12">
-        <table class="table table-bordered table-striped table-hover table-condensed" id="DyanmicTable1">
+        <table
+          class="table table-bordered table-striped table-hover table-condensed"
+          id="DyanmicTable1"
+        >
           <thead>
-            <tr style="
-        background-color: #253d84;
-        color: white;
-        font-weight: normal !important;
-      ">
+            <tr
+              style="
+                background-color: #253d84;
+                color: white;
+                font-weight: normal !important;
+              "
+            >
               <th class="text-center" rowspan="3" i18n="@@mon">MONTH</th>
               <th class="text-center" colspan="19" i18n="@@too">
                 TYPE OF OFFENSE (LEGAL PROVISIONS)
               </th>
               <th class="text-center" rowspan="3" i18n="@@total">TOTAL</th>
             </tr>
-            <tr style="
-        background-color: #253d84;
-        color: white;
-        font-weight: normal !important;
-      ">
+            <tr
+              style="
+                background-color: #253d84;
+                color: white;
+                font-weight: normal !important;
+              "
+            >
               <th class="text-center" colspan="8" i18n="@@lg">
                 LOCAL GOVERNMENT ACT 1976
               </th>
               <th class="text-center" colspan="11" i18n="@@n62">
                 Roads, Drains and Buildings Act 1974
               </th>
-
             </tr>
             <tr>
               <th class="text-center">SEK. 82(5)</th>
               <th class="text-center">SEK. 69</th>
-              <th class="text-center">
-                UUK 8
-              </th>
+              <th class="text-center">UUK 8</th>
               <th class="text-center">UUK 9</th>
               <th class="text-center">UUK 3</th>
               <th class="text-center">UUK 33</th>
               <th class="text-center">UUK 34</th>
               <th class="text-center">UUK 35</th>
-              <th class="text-center">
-                SEK. 46(1)(b)
-              </th>
-              <th class="text-center">
-                SEK. 46(1)(c)
-              </th>
-              <th class="text-center">
-                SEK. 46(1)(d)
-              </th>
+              <th class="text-center">SEK. 46(1)(b)</th>
+              <th class="text-center">SEK. 46(1)(c)</th>
+              <th class="text-center">SEK. 46(1)(d)</th>
               <th class="text-center">SEK. 46(1)(e)</th>
               <th class="text-center">SEK. 46(1)(g)</th>
               <th class="text-center">SEK. 47(1)(a)</th>
               <th class="text-center">SEK. 47(1)(b)</th>
-              <th class="text-center">
-                SEK. 47(1)(d)
-              </th>
-              <th class="text-center">
-                SEK. 47(1)(e)
-              </th>
-              <th class="text-center">
-                SEK. 47(2)(a)
-              </th>
-              <th class="text-center">
-                SEK. 47(1)(g)
-              </th>
+              <th class="text-center">SEK. 47(1)(d)</th>
+              <th class="text-center">SEK. 47(1)(e)</th>
+              <th class="text-center">SEK. 47(2)(a)</th>
+              <th class="text-center">SEK. 47(1)(g)</th>
             </tr>
           </thead>
 
           <tbody id="tableBody">
             <tr *ngFor="let jan of january">
               <td i18n="@@d1">JANUARY</td>
-              <td>{{jan.sek82_5}}</td>
-              <td>{{jan.sek69}}</td>
-              <td>{{jan.uuk8}}</td>
-              <td>{{jan.uuk9}}</td>
-              <td>{{jan.uuk3}}</td>
-              <td>{{jan.uuk33}}</td>
-              <td>{{jan.uuk34}}</td>
-              <td>{{jan.uuk35}}</td>
-              <td>{{jan.sek46_1b}}</td>
-              <td>{{jan.sek46_1c}}</td>
-              <td>{{jan.sek46_1d}}</td>
-              <td>{{jan.sek46_1e}}</td>
-              <td>{{jan.sek46_1g}}</td>
-              <td>{{jan.sek47_1a}}</td>
-              <td>{{jan.sek47_1b}}</td>
-              <td>{{jan.sek47_1d}}</td>
-              <td>{{jan.sek47_1e}}</td>
-              <td>{{jan.sek47_2a}}</td>
-              <td>{{jan.sek47_1g}}</td>
-              <td>{{jan.total}}</td>
+              <td>{{ jan.sek82_5 }}</td>
+              <td>{{ jan.sek69 }}</td>
+              <td>{{ jan.uuk8 }}</td>
+              <td>{{ jan.uuk9 }}</td>
+              <td>{{ jan.uuk3 }}</td>
+              <td>{{ jan.uuk33 }}</td>
+              <td>{{ jan.uuk34 }}</td>
+              <td>{{ jan.uuk35 }}</td>
+              <td>{{ jan.sek46_1b }}</td>
+              <td>{{ jan.sek46_1c }}</td>
+              <td>{{ jan.sek46_1d }}</td>
+              <td>{{ jan.sek46_1e }}</td>
+              <td>{{ jan.sek46_1g }}</td>
+              <td>{{ jan.sek47_1a }}</td>
+              <td>{{ jan.sek47_1b }}</td>
+              <td>{{ jan.sek47_1d }}</td>
+              <td>{{ jan.sek47_1e }}</td>
+              <td>{{ jan.sek47_2a }}</td>
+              <td>{{ jan.sek47_1g }}</td>
+              <td>{{ jan.total }}</td>
             </tr>
             <tr *ngFor="let february of feb">
               <td i18n="@@d2">FEBRUARY</td>
-              <td>{{february.sek82_5}}</td>
-              <td>{{february.sek69}}</td>
-              <td>{{february.uuk8}}</td>
-              <td>{{february.uuk9}}</td>
-              <td>{{february.uuk3}}</td>
-              <td>{{february.uuk33}}</td>
-              <td>{{february.uuk34}}</td>
-              <td>{{february.uuk35}}</td>
-              <td>{{february.sek46_1b}}</td>
-              <td>{{february.sek46_1c}}</td>
-              <td>{{february.sek46_1d}}</td>
-              <td>{{february.sek46_1e}}</td>
-              <td>{{february.sek46_1g}}</td>
-              <td>{{february.sek47_1a}}</td>
-              <td>{{february.sek47_1b}}</td>
-              <td>{{february.sek47_1d}}</td>
-              <td>{{february.sek47_1e}}</td>
-              <td>{{february.sek47_2a}}</td>
-              <td>{{february.sek47_1g}}</td>
-              <td>{{february.total}}</td>
+              <td>{{ february.sek82_5 }}</td>
+              <td>{{ february.sek69 }}</td>
+              <td>{{ february.uuk8 }}</td>
+              <td>{{ february.uuk9 }}</td>
+              <td>{{ february.uuk3 }}</td>
+              <td>{{ february.uuk33 }}</td>
+              <td>{{ february.uuk34 }}</td>
+              <td>{{ february.uuk35 }}</td>
+              <td>{{ february.sek46_1b }}</td>
+              <td>{{ february.sek46_1c }}</td>
+              <td>{{ february.sek46_1d }}</td>
+              <td>{{ february.sek46_1e }}</td>
+              <td>{{ february.sek46_1g }}</td>
+              <td>{{ february.sek47_1a }}</td>
+              <td>{{ february.sek47_1b }}</td>
+              <td>{{ february.sek47_1d }}</td>
+              <td>{{ february.sek47_1e }}</td>
+              <td>{{ february.sek47_2a }}</td>
+              <td>{{ february.sek47_1g }}</td>
+              <td>{{ february.total }}</td>
             </tr>
             <tr *ngFor="let mar of march">
               <td i18n="@@d3">MARCH</td>
-              <td>{{mar.sek82_5}}</td>
-              <td>{{mar.sek69}}</td>
-              <td>{{mar.uuk8}}</td>
-              <td>{{mar.uuk9}}</td>
-              <td>{{mar.uuk3}}</td>
-              <td>{{mar.uuk33}}</td>
-              <td>{{mar.uuk34}}</td>
-              <td>{{mar.uuk35}}</td>
-              <td>{{mar.sek46_1b}}</td>
-              <td>{{mar.sek46_1c}}</td>
-              <td>{{mar.sek46_1d}}</td>
-              <td>{{mar.sek46_1e}}</td>
-              <td>{{mar.sek46_1g}}</td>
-              <td>{{mar.sek47_1a}}</td>
-              <td>{{mar.sek47_1b}}</td>
-              <td>{{mar.sek47_1d}}</td>
-              <td>{{mar.sek47_1e}}</td>
-              <td>{{mar.sek47_2a}}</td>
-              <td>{{mar.sek47_1g}}</td>
-              <td>{{mar.total}}</td>
+              <td>{{ mar.sek82_5 }}</td>
+              <td>{{ mar.sek69 }}</td>
+              <td>{{ mar.uuk8 }}</td>
+              <td>{{ mar.uuk9 }}</td>
+              <td>{{ mar.uuk3 }}</td>
+              <td>{{ mar.uuk33 }}</td>
+              <td>{{ mar.uuk34 }}</td>
+              <td>{{ mar.uuk35 }}</td>
+              <td>{{ mar.sek46_1b }}</td>
+              <td>{{ mar.sek46_1c }}</td>
+              <td>{{ mar.sek46_1d }}</td>
+              <td>{{ mar.sek46_1e }}</td>
+              <td>{{ mar.sek46_1g }}</td>
+              <td>{{ mar.sek47_1a }}</td>
+              <td>{{ mar.sek47_1b }}</td>
+              <td>{{ mar.sek47_1d }}</td>
+              <td>{{ mar.sek47_1e }}</td>
+              <td>{{ mar.sek47_2a }}</td>
+              <td>{{ mar.sek47_1g }}</td>
+              <td>{{ mar.total }}</td>
             </tr>
             <tr *ngFor="let apr of april">
               <td i18n="@@d4">APRIL</td>
-              <td>{{apr.sek82_5}}</td>
-              <td>{{apr.sek69}}</td>
-              <td>{{apr.uuk8}}</td>
-              <td>{{apr.uuk9}}</td>
-              <td>{{apr.uuk3}}</td>
-              <td>{{apr.uuk33}}</td>
-              <td>{{apr.uuk34}}</td>
-              <td>{{apr.uuk35}}</td>
-              <td>{{apr.sek46_1b}}</td>
-              <td>{{apr.sek46_1c}}</td>
-              <td>{{apr.sek46_1d}}</td>
-              <td>{{apr.sek46_1e}}</td>
-              <td>{{apr.sek46_1g}}</td>
-              <td>{{apr.sek47_1a}}</td>
-              <td>{{apr.sek47_1b}}</td>
-              <td>{{apr.sek47_1d}}</td>
-              <td>{{apr.sek47_1e}}</td>
-              <td>{{apr.sek47_2a}}</td>
-              <td>{{apr.sek47_1g}}</td>
-              <td>{{apr.total}}</td>
+              <td>{{ apr.sek82_5 }}</td>
+              <td>{{ apr.sek69 }}</td>
+              <td>{{ apr.uuk8 }}</td>
+              <td>{{ apr.uuk9 }}</td>
+              <td>{{ apr.uuk3 }}</td>
+              <td>{{ apr.uuk33 }}</td>
+              <td>{{ apr.uuk34 }}</td>
+              <td>{{ apr.uuk35 }}</td>
+              <td>{{ apr.sek46_1b }}</td>
+              <td>{{ apr.sek46_1c }}</td>
+              <td>{{ apr.sek46_1d }}</td>
+              <td>{{ apr.sek46_1e }}</td>
+              <td>{{ apr.sek46_1g }}</td>
+              <td>{{ apr.sek47_1a }}</td>
+              <td>{{ apr.sek47_1b }}</td>
+              <td>{{ apr.sek47_1d }}</td>
+              <td>{{ apr.sek47_1e }}</td>
+              <td>{{ apr.sek47_2a }}</td>
+              <td>{{ apr.sek47_1g }}</td>
+              <td>{{ apr.total }}</td>
             </tr>
             <tr *ngFor="let maydata of may">
               <td i18n="@@d5">MAY</td>
-              <td>{{maydata.sek82_5}}</td>
-              <td>{{maydata.sek69}}</td>
-              <td>{{maydata.uuk8}}</td>
-              <td>{{maydata.uuk9}}</td>
-              <td>{{maydata.uuk3}}</td>
-              <td>{{maydata.uuk33}}</td>
-              <td>{{maydata.uuk34}}</td>
-              <td>{{maydata.uuk35}}</td>
-              <td>{{maydata.sek46_1b}}</td>
-              <td>{{maydata.sek46_1c}}</td>
-              <td>{{maydata.sek46_1d}}</td>
-              <td>{{maydata.sek46_1e}}</td>
-              <td>{{maydata.sek46_1g}}</td>
-              <td>{{maydata.sek47_1a}}</td>
-              <td>{{maydata.sek47_1b}}</td>
-              <td>{{maydata.sek47_1d}}</td>
-              <td>{{maydata.sek47_1e}}</td>
-              <td>{{maydata.sek47_2a}}</td>
-              <td>{{maydata.sek47_1g}}</td>
-              <td>{{maydata.total}}</td>
+              <td>{{ maydata.sek82_5 }}</td>
+              <td>{{ maydata.sek69 }}</td>
+              <td>{{ maydata.uuk8 }}</td>
+              <td>{{ maydata.uuk9 }}</td>
+              <td>{{ maydata.uuk3 }}</td>
+              <td>{{ maydata.uuk33 }}</td>
+              <td>{{ maydata.uuk34 }}</td>
+              <td>{{ maydata.uuk35 }}</td>
+              <td>{{ maydata.sek46_1b }}</td>
+              <td>{{ maydata.sek46_1c }}</td>
+              <td>{{ maydata.sek46_1d }}</td>
+              <td>{{ maydata.sek46_1e }}</td>
+              <td>{{ maydata.sek46_1g }}</td>
+              <td>{{ maydata.sek47_1a }}</td>
+              <td>{{ maydata.sek47_1b }}</td>
+              <td>{{ maydata.sek47_1d }}</td>
+              <td>{{ maydata.sek47_1e }}</td>
+              <td>{{ maydata.sek47_2a }}</td>
+              <td>{{ maydata.sek47_1g }}</td>
+              <td>{{ maydata.total }}</td>
             </tr>
             <tr *ngFor="let jun of june">
               <td i18n="@@d6">JUNE</td>
-              <td>{{jun.sek82_5}}</td>
-              <td>{{jun.sek69}}</td>
-              <td>{{jun.uuk8}}</td>
-              <td>{{jun.uuk9}}</td>
-              <td>{{jun.uuk3}}</td>
-              <td>{{jun.uuk33}}</td>
-              <td>{{jun.uuk34}}</td>
-              <td>{{jun.uuk35}}</td>
-              <td>{{jun.sek46_1b}}</td>
-              <td>{{jun.sek46_1c}}</td>
-              <td>{{jun.sek46_1d}}</td>
-              <td>{{jun.sek46_1e}}</td>
-              <td>{{jun.sek46_1g}}</td>
-              <td>{{jun.sek47_1a}}</td>
-              <td>{{jun.sek47_1b}}</td>
-              <td>{{jun.sek47_1d}}</td>
-              <td>{{jun.sek47_1e}}</td>
-              <td>{{jun.sek47_2a}}</td>
-              <td>{{jun.sek47_1g}}</td>
-              <td>{{jun.total}}</td>
+              <td>{{ jun.sek82_5 }}</td>
+              <td>{{ jun.sek69 }}</td>
+              <td>{{ jun.uuk8 }}</td>
+              <td>{{ jun.uuk9 }}</td>
+              <td>{{ jun.uuk3 }}</td>
+              <td>{{ jun.uuk33 }}</td>
+              <td>{{ jun.uuk34 }}</td>
+              <td>{{ jun.uuk35 }}</td>
+              <td>{{ jun.sek46_1b }}</td>
+              <td>{{ jun.sek46_1c }}</td>
+              <td>{{ jun.sek46_1d }}</td>
+              <td>{{ jun.sek46_1e }}</td>
+              <td>{{ jun.sek46_1g }}</td>
+              <td>{{ jun.sek47_1a }}</td>
+              <td>{{ jun.sek47_1b }}</td>
+              <td>{{ jun.sek47_1d }}</td>
+              <td>{{ jun.sek47_1e }}</td>
+              <td>{{ jun.sek47_2a }}</td>
+              <td>{{ jun.sek47_1g }}</td>
+              <td>{{ jun.total }}</td>
             </tr>
-
 
             <tr *ngFor="let jul of july">
               <td i18n="@@d7">JULY</td>
-              <td>{{jul.sek82_5}}</td>
-              <td>{{jul.sek69}}</td>
-              <td>{{jul.uuk8}}</td>
-              <td>{{jul.uuk9}}</td>
-              <td>{{jul.uuk3}}</td>
-              <td>{{jul.uuk33}}</td>
-              <td>{{jul.uuk34}}</td>
-              <td>{{jul.uuk35}}</td>
-              <td>{{jul.sek46_1b}}</td>
-              <td>{{jul.sek46_1c}}</td>
-              <td>{{jul.sek46_1d}}</td>
-              <td>{{jul.sek46_1e}}</td>
-              <td>{{jul.sek46_1g}}</td>
-              <td>{{jul.sek47_1a}}</td>
-              <td>{{jul.sek47_1b}}</td>
-              <td>{{jul.sek47_1d}}</td>
-              <td>{{jul.sek47_1e}}</td>
-              <td>{{jul.sek47_2a}}</td>
-              <td>{{jul.sek47_1g}}</td>
-              <td>{{jul.total}}</td>
+              <td>{{ jul.sek82_5 }}</td>
+              <td>{{ jul.sek69 }}</td>
+              <td>{{ jul.uuk8 }}</td>
+              <td>{{ jul.uuk9 }}</td>
+              <td>{{ jul.uuk3 }}</td>
+              <td>{{ jul.uuk33 }}</td>
+              <td>{{ jul.uuk34 }}</td>
+              <td>{{ jul.uuk35 }}</td>
+              <td>{{ jul.sek46_1b }}</td>
+              <td>{{ jul.sek46_1c }}</td>
+              <td>{{ jul.sek46_1d }}</td>
+              <td>{{ jul.sek46_1e }}</td>
+              <td>{{ jul.sek46_1g }}</td>
+              <td>{{ jul.sek47_1a }}</td>
+              <td>{{ jul.sek47_1b }}</td>
+              <td>{{ jul.sek47_1d }}</td>
+              <td>{{ jul.sek47_1e }}</td>
+              <td>{{ jul.sek47_2a }}</td>
+              <td>{{ jul.sek47_1g }}</td>
+              <td>{{ jul.total }}</td>
             </tr>
             <tr *ngFor="let aug of august">
               <td i18n="@@d8">AUGUST</td>
-              <td>{{aug.sek82_5}}</td>
-              <td>{{aug.sek69}}</td>
-              <td>{{aug.uuk8}}</td>
-              <td>{{aug.uuk9}}</td>
-              <td>{{aug.uuk3}}</td>
-              <td>{{aug.uuk33}}</td>
-              <td>{{aug.uuk34}}</td>
-              <td>{{aug.uuk35}}</td>
-              <td>{{aug.sek46_1b}}</td>
-              <td>{{aug.sek46_1c}}</td>
-              <td>{{aug.sek46_1d}}</td>
-              <td>{{aug.sek46_1e}}</td>
-              <td>{{aug.sek46_1g}}</td>
-              <td>{{aug.sek47_1a}}</td>
-              <td>{{aug.sek47_1b}}</td>
-              <td>{{aug.sek47_1d}}</td>
-              <td>{{aug.sek47_1e}}</td>
-              <td>{{aug.sek47_2a}}</td>
-              <td>{{aug.sek47_1g}}</td>
-              <td>{{aug.total}}</td>
+              <td>{{ aug.sek82_5 }}</td>
+              <td>{{ aug.sek69 }}</td>
+              <td>{{ aug.uuk8 }}</td>
+              <td>{{ aug.uuk9 }}</td>
+              <td>{{ aug.uuk3 }}</td>
+              <td>{{ aug.uuk33 }}</td>
+              <td>{{ aug.uuk34 }}</td>
+              <td>{{ aug.uuk35 }}</td>
+              <td>{{ aug.sek46_1b }}</td>
+              <td>{{ aug.sek46_1c }}</td>
+              <td>{{ aug.sek46_1d }}</td>
+              <td>{{ aug.sek46_1e }}</td>
+              <td>{{ aug.sek46_1g }}</td>
+              <td>{{ aug.sek47_1a }}</td>
+              <td>{{ aug.sek47_1b }}</td>
+              <td>{{ aug.sek47_1d }}</td>
+              <td>{{ aug.sek47_1e }}</td>
+              <td>{{ aug.sek47_2a }}</td>
+              <td>{{ aug.sek47_1g }}</td>
+              <td>{{ aug.total }}</td>
             </tr>
             <tr *ngFor="let sep of september">
               <td i18n="@@d9">SEPTEMBER</td>
-              <td>{{sep.sek82_5}}</td>
-              <td>{{sep.sek69}}</td>
-              <td>{{sep.uuk8}}</td>
-              <td>{{sep.uuk9}}</td>
-              <td>{{sep.uuk3}}</td>
-              <td>{{sep.uuk33}}</td>
-              <td>{{sep.uuk34}}</td>
-              <td>{{sep.uuk35}}</td>
-              <td>{{sep.sek46_1b}}</td>
-              <td>{{sep.sek46_1c}}</td>
-              <td>{{sep.sek46_1d}}</td>
-              <td>{{sep.sek46_1e}}</td>
-              <td>{{sep.sek46_1g}}</td>
-              <td>{{sep.sek47_1a}}</td>
-              <td>{{sep.sek47_1b}}</td>
-              <td>{{sep.sek47_1d}}</td>
-              <td>{{sep.sek47_1e}}</td>
-              <td>{{sep.sek47_2a}}</td>
-              <td>{{sep.sek47_1g}}</td>
-              <td>{{sep.total}}</td>
+              <td>{{ sep.sek82_5 }}</td>
+              <td>{{ sep.sek69 }}</td>
+              <td>{{ sep.uuk8 }}</td>
+              <td>{{ sep.uuk9 }}</td>
+              <td>{{ sep.uuk3 }}</td>
+              <td>{{ sep.uuk33 }}</td>
+              <td>{{ sep.uuk34 }}</td>
+              <td>{{ sep.uuk35 }}</td>
+              <td>{{ sep.sek46_1b }}</td>
+              <td>{{ sep.sek46_1c }}</td>
+              <td>{{ sep.sek46_1d }}</td>
+              <td>{{ sep.sek46_1e }}</td>
+              <td>{{ sep.sek46_1g }}</td>
+              <td>{{ sep.sek47_1a }}</td>
+              <td>{{ sep.sek47_1b }}</td>
+              <td>{{ sep.sek47_1d }}</td>
+              <td>{{ sep.sek47_1e }}</td>
+              <td>{{ sep.sek47_2a }}</td>
+              <td>{{ sep.sek47_1g }}</td>
+              <td>{{ sep.total }}</td>
             </tr>
             <tr *ngFor="let oct of october">
               <td i18n="@@d10">OCTOBER</td>
-              <td>{{oct.sek82_5}}</td>
-              <td>{{oct.sek69}}</td>
-              <td>{{oct.uuk8}}</td>
-              <td>{{oct.uuk9}}</td>
-              <td>{{oct.uuk3}}</td>
-              <td>{{oct.uuk33}}</td>
-              <td>{{oct.uuk34}}</td>
-              <td>{{oct.uuk35}}</td>
-              <td>{{oct.sek46_1b}}</td>
-              <td>{{oct.sek46_1c}}</td>
-              <td>{{oct.sek46_1d}}</td>
-              <td>{{oct.sek46_1e}}</td>
-              <td>{{oct.sek46_1g}}</td>
-              <td>{{oct.sek47_1a}}</td>
-              <td>{{oct.sek47_1b}}</td>
-              <td>{{oct.sek47_1d}}</td>
-              <td>{{oct.sek47_1e}}</td>
-              <td>{{oct.sek47_2a}}</td>
-              <td>{{oct.sek47_1g}}</td>
-              <td>{{oct.total}}</td>
+              <td>{{ oct.sek82_5 }}</td>
+              <td>{{ oct.sek69 }}</td>
+              <td>{{ oct.uuk8 }}</td>
+              <td>{{ oct.uuk9 }}</td>
+              <td>{{ oct.uuk3 }}</td>
+              <td>{{ oct.uuk33 }}</td>
+              <td>{{ oct.uuk34 }}</td>
+              <td>{{ oct.uuk35 }}</td>
+              <td>{{ oct.sek46_1b }}</td>
+              <td>{{ oct.sek46_1c }}</td>
+              <td>{{ oct.sek46_1d }}</td>
+              <td>{{ oct.sek46_1e }}</td>
+              <td>{{ oct.sek46_1g }}</td>
+              <td>{{ oct.sek47_1a }}</td>
+              <td>{{ oct.sek47_1b }}</td>
+              <td>{{ oct.sek47_1d }}</td>
+              <td>{{ oct.sek47_1e }}</td>
+              <td>{{ oct.sek47_2a }}</td>
+              <td>{{ oct.sek47_1g }}</td>
+              <td>{{ oct.total }}</td>
             </tr>
             <tr *ngFor="let nov of november">
               <td i18n="@@d11">NOVEMBER</td>
-              <td>{{nov.sek82_5}}</td>
-              <td>{{nov.sek69}}</td>
-              <td>{{nov.uuk8}}</td>
-              <td>{{nov.uuk9}}</td>
-              <td>{{nov.uuk3}}</td>
-              <td>{{nov.uuk33}}</td>
-              <td>{{nov.uuk34}}</td>
-              <td>{{nov.uuk35}}</td>
-              <td>{{nov.sek46_1b}}</td>
-              <td>{{nov.sek46_1c}}</td>
-              <td>{{nov.sek46_1d}}</td>
-              <td>{{nov.sek46_1e}}</td>
-              <td>{{nov.sek46_1g}}</td>
-              <td>{{nov.sek47_1a}}</td>
-              <td>{{nov.sek47_1b}}</td>
-              <td>{{nov.sek47_1d}}</td>
-              <td>{{nov.sek47_1e}}</td>
-              <td>{{nov.sek47_2a}}</td>
-              <td>{{nov.sek47_1g}}</td>
-              <td>{{nov.total}}</td>
+              <td>{{ nov.sek82_5 }}</td>
+              <td>{{ nov.sek69 }}</td>
+              <td>{{ nov.uuk8 }}</td>
+              <td>{{ nov.uuk9 }}</td>
+              <td>{{ nov.uuk3 }}</td>
+              <td>{{ nov.uuk33 }}</td>
+              <td>{{ nov.uuk34 }}</td>
+              <td>{{ nov.uuk35 }}</td>
+              <td>{{ nov.sek46_1b }}</td>
+              <td>{{ nov.sek46_1c }}</td>
+              <td>{{ nov.sek46_1d }}</td>
+              <td>{{ nov.sek46_1e }}</td>
+              <td>{{ nov.sek46_1g }}</td>
+              <td>{{ nov.sek47_1a }}</td>
+              <td>{{ nov.sek47_1b }}</td>
+              <td>{{ nov.sek47_1d }}</td>
+              <td>{{ nov.sek47_1e }}</td>
+              <td>{{ nov.sek47_2a }}</td>
+              <td>{{ nov.sek47_1g }}</td>
+              <td>{{ nov.total }}</td>
             </tr>
             <tr *ngFor="let des of desember">
               <td i18n="@@d12">DECEMBER</td>
-              <td>{{des.sek82_5}}</td>
-              <td>{{des.sek69}}</td>
-              <td>{{des.uuk8}}</td>
-              <td>{{des.uuk9}}</td>
-              <td>{{des.uuk3}}</td>
-              <td>{{des.uuk33}}</td>
-              <td>{{des.uuk34}}</td>
-              <td>{{des.uuk35}}</td>
-              <td>{{des.sek46_1b}}</td>
-              <td>{{des.sek46_1c}}</td>
-              <td>{{des.sek46_1d}}</td>
-              <td>{{des.sek46_1e}}</td>
-              <td>{{des.sek46_1g}}</td>
-              <td>{{des.sek47_1a}}</td>
-              <td>{{des.sek47_1b}}</td>
-              <td>{{des.sek47_1d}}</td>
-              <td>{{des.sek47_1e}}</td>
-              <td>{{des.sek47_2a}}</td>
-              <td>{{des.sek47_1g}}</td>
-              <td>{{des.total}}</td>
+              <td>{{ des.sek82_5 }}</td>
+              <td>{{ des.sek69 }}</td>
+              <td>{{ des.uuk8 }}</td>
+              <td>{{ des.uuk9 }}</td>
+              <td>{{ des.uuk3 }}</td>
+              <td>{{ des.uuk33 }}</td>
+              <td>{{ des.uuk34 }}</td>
+              <td>{{ des.uuk35 }}</td>
+              <td>{{ des.sek46_1b }}</td>
+              <td>{{ des.sek46_1c }}</td>
+              <td>{{ des.sek46_1d }}</td>
+              <td>{{ des.sek46_1e }}</td>
+              <td>{{ des.sek46_1g }}</td>
+              <td>{{ des.sek47_1a }}</td>
+              <td>{{ des.sek47_1b }}</td>
+              <td>{{ des.sek47_1d }}</td>
+              <td>{{ des.sek47_1e }}</td>
+              <td>{{ des.sek47_2a }}</td>
+              <td>{{ des.sek47_1g }}</td>
+              <td>{{ des.total }}</td>
             </tr>
 
-
-            <tr style="font-weight: normal !important;" *ngFor="let tot of datatotal">
-              <td style="background-color: #253d84;color: white;" i18n="@@total">TOTAL</td>
-              <td>{{tot.sek82_5_total}}</td>
-              <td>{{tot.sek69_total}}</td>
-              <td>{{tot.uuk8_total}}</td>
-              <td>{{tot.uuk9_total}}</td>
-              <td>{{tot.uuk3_total}}</td>
-              <td>{{tot.uuk33_total}}</td>
-              <td>{{tot.uuk34_total}}</td>
-              <td>{{tot.uuk35_total}}</td>
-              <td>{{tot.sek46_1b_total}}</td>
-              <td>{{tot.sek46_1c_total}}</td>
-              <td>{{tot.sek46_1d_total}}</td>
-              <td>{{tot.sek46_1e_total}}</td>
-              <td>{{tot.sek46_1g_total}}</td>
-              <td>{{tot.sek47_1a_total}}</td>
-              <td>{{tot.sek47_1b_total}}</td>
-              <td>{{tot.sek47_1d_total}}</td>
-              <td>{{tot.sek47_1e_total}}</td>
-              <td>{{tot.sek47_2a_total}}</td>
-              <td>{{tot.sek47_1g_total}}</td>
-              <td>{{tot.total_total}}</td>
+            <tr
+              style="font-weight: normal !important"
+              *ngFor="let tot of datatotal"
+            >
+              <td
+                style="background-color: #253d84; color: white"
+                i18n="@@total"
+              >
+                TOTAL
+              </td>
+              <td>{{ tot.sek82_5_total }}</td>
+              <td>{{ tot.sek69_total }}</td>
+              <td>{{ tot.uuk8_total }}</td>
+              <td>{{ tot.uuk9_total }}</td>
+              <td>{{ tot.uuk3_total }}</td>
+              <td>{{ tot.uuk33_total }}</td>
+              <td>{{ tot.uuk34_total }}</td>
+              <td>{{ tot.uuk35_total }}</td>
+              <td>{{ tot.sek46_1b_total }}</td>
+              <td>{{ tot.sek46_1c_total }}</td>
+              <td>{{ tot.sek46_1d_total }}</td>
+              <td>{{ tot.sek46_1e_total }}</td>
+              <td>{{ tot.sek46_1g_total }}</td>
+              <td>{{ tot.sek47_1a_total }}</td>
+              <td>{{ tot.sek47_1b_total }}</td>
+              <td>{{ tot.sek47_1d_total }}</td>
+              <td>{{ tot.sek47_1e_total }}</td>
+              <td>{{ tot.sek47_2a_total }}</td>
+              <td>{{ tot.sek47_1g_total }}</td>
+              <td>{{ tot.total_total }}</td>
             </tr>
           </tbody>
         </table>
       </div>
-
-
-
     </div>
   </section>
 </main>
 <!-- ======= Footer ======= -->
 <app-footer></app-footer>
 
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
-    class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>

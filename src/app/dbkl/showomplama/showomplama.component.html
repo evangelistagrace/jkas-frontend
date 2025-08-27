@@ -1,259 +1,351 @@
 <app-topbar></app-topbar>
-<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
-    <div class="container-fluid" ngStickyNav>
-        <nav class="navbar navbar-expand-lg">
-            <a routerLink="/public" class="navbar-brand ">
-                <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+<div
+  class="container-fluid sticky-nav"
+  id=""
+  style="background-color: #f2f2f2 !important"
+>
+  <div class="container-fluid" ngStickyNav>
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand">
+        <img src="assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+      </a>
 
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fa fa-bars text-white"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul
+          *ngIf="isAdminType == 'financial'"
+          class="navbar-nav ml-auto mt-2 mt-lg-0"
+        >
+          <li class="nav-item">
+            <a
+              routerLink="/dbkl/dbklmainpage"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home"
+              >HOME</a
+            >
+          </li>
+
+          <li class="nav-item dropdown" id="user">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n6"
+            >
+              INVENTORY DATA
             </a>
 
-
-            <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
-                data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="fa fa-bars text-white"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul *ngIf="isAdminType == 'financial'" class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li class="nav-item">
-                        <a routerLink="/dbkl/dbklmainpage" class="nav-link"
-                            style="color: #253d84 !important; cursor: pointer" i18n="@@home">HOME</a>
-                    </li>
-
-                    <li class="nav-item dropdown" id="user">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            style="color: #253d84 !important; cursor: pointer" i18n="@@n6">
-                            INVENTORY DATA
-                        </a>
-
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" routerLink="/dbkl/mapview" (click)="getUser('financial')"
-                                style="color: white; cursor: pointer" i18n="@@n1">Main Page</a>
-                            <a routerLink="/dbkl/omplama" class="dropdown-item" (click)="getUser('financial')"
-                                style="color: white; cursor: pointer" i18n="@@n8">OMP Lama</a>
-                            <a routerLink="/dbkl/ompbaru" class="dropdown-item" (click)="getUser('financial')"
-                                style="color: white; cursor: pointer" i18n="@@n9">New OMP</a>
-                            <a routerLink="/dbkl/inactivearea" class="dropdown-item" (click)="getUser('financial')"
-                                style="color: white; cursor: pointer" i18n="@@insmall">Inactive Areas</a>
-
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            style="color: #253d84 !important; cursor: pointer">
-                            {{ username }}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
-                                i18n="@@Profile">Profile</a>
-                            <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
-                                i18n="@@jflogout">Logout</a>
-                        </div>
-                    </li>
-                </ul>
+            <div class="dropdown-menu">
+              <a
+                class="dropdown-item"
+                routerLink="/dbkl/mapview"
+                (click)="getUser('financial')"
+                style="color: white; cursor: pointer"
+                i18n="@@n1"
+                >Main Page</a
+              >
+              <a
+                routerLink="/dbkl/omplama"
+                class="dropdown-item"
+                (click)="getUser('financial')"
+                style="color: white; cursor: pointer"
+                i18n="@@n8"
+                >OMP Lama</a
+              >
+              <a
+                routerLink="/dbkl/ompbaru"
+                class="dropdown-item"
+                (click)="getUser('financial')"
+                style="color: white; cursor: pointer"
+                i18n="@@n9"
+                >New OMP</a
+              >
+              <a
+                routerLink="/dbkl/inactivearea"
+                class="dropdown-item"
+                (click)="getUser('financial')"
+                style="color: white; cursor: pointer"
+                i18n="@@insmall"
+                >Inactive Areas</a
+              >
             </div>
-        </nav>
-    </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+            >
+              {{ username }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a
+                routerLink="/profileLog"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@Profile"
+                >Profile</a
+              >
+              <a
+                class="dropdown-item"
+                (click)="logout()"
+                style="color: white; cursor: pointer"
+                i18n="@@jflogout"
+                >Logout</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 </div>
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
-    [fullScreen]="true">
-
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#253d84"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+>
 </ngx-spinner>
 <main>
-    <section class="ompbaru" id="ompbaru">
-        <div class="card" style="box-shadow: 0 0 30px rgb(214 215 216 / 60%)">
-            <div class="text-center">
-                <div class="section-title">
-                    <h6 style="font-weight: 900; font-size: 20px;" i18n="@@omp3">
-                        DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
-                    </h6>
-                    <h6 style="font-weight: 900; font-size: 15px;" i18n="@@omp4">
-                        KUALA LUMPUR SERVICE AREA
-                    </h6>
-                    <!-- <span>PROSES PERMOHONAN PPSSPPA</span>
+  <section class="ompbaru" id="ompbaru">
+    <div class="card" style="box-shadow: 0 0 30px rgb(214 215 216 / 60%)">
+      <div class="text-center">
+        <div class="section-title">
+          <h6 style="font-weight: 900; font-size: 20px" i18n="@@omp3">
+            DETAILED OPERATING SCHEDULE FOR SOLID WASTE COLLECTION AND CLEANING
+          </h6>
+          <h6 style="font-weight: 900; font-size: 15px" i18n="@@omp4">
+            KUALA LUMPUR SERVICE AREA
+          </h6>
+          <!-- <span>PROSES PERMOHONAN PPSSPPA</span>
                 <h2>PROSES PERMOHONAN PPSSPPA</h2> -->
-                    <!-- <span>New OMP</span>
+          <!-- <span>New OMP</span>
                 <h2>New OMP</h2> -->
-                </div>
-            </div>
+        </div>
+      </div>
 
-            <div style="text-align: center">
-                <b>{{ errorMsg }}</b>
-            </div>
+      <div style="text-align: center">
+        <b>{{ errorMsg }}</b>
+      </div>
 
-            <div class="search col d-flex justify-content-between mb-2">
-                <div class="tb_search">
-                    <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.."
-                        class="form-control">
-                </div>
-                <div class="mb-2">
-                    <button class="look_for_red" routerLink="/dbkl/omplama" id="middlebtn" i18n="@@comeback">
-                        Back
-                    </button>
-                </div>
-            </div>
+      <div class="search col d-flex justify-content-between mb-2">
+        <div class="tb_search">
+          <input
+            type="text"
+            id="search_input_all"
+            onkeyup="FilterkeyWord_all_table()"
+            placeholder="Search.."
+            class="form-control"
+          />
+        </div>
+        <div class="mb-2">
+          <button
+            class="look_for_red"
+            routerLink="/dbkl/omplama"
+            id="middlebtn"
+            i18n="@@comeback"
+          >
+            Back
+          </button>
+        </div>
+      </div>
 
-            <div class="table-responsive col-12">
-                <table class="table table-bordered table-striped table-hover table-condensed" id="DyanmicTable">
-                    <thead>
-                        <tr style="
+      <div class="table-responsive col-12">
+        <table
+          class="table table-bordered table-striped table-hover table-condensed"
+          id="DyanmicTable"
+        >
+          <thead>
+            <tr
+              style="
                 background-color: #253d84;
                 color: white;
                 font-weight: normal !important;
-              ">
-                            <th class="text-center" rowspan="3" i18n="@@op4">Area code</th>
-                            <th class="text-center" rowspan="3" i18n="@@op5">Location</th>
+              "
+            >
+              <th class="text-center" rowspan="3" i18n="@@op4">Area code</th>
+              <th class="text-center" rowspan="3" i18n="@@op5">Location</th>
 
-                            <th class="text-center" rowspan="3" i18n="@@op6">Parliament</th>
-                            <th class="text-center" rowspan="3" i18n="@@op7">Coordinates</th>
-                            <th class="text-center" rowspan="3" i18n="@@op8">
-                                Number of permit units
-                            </th>
-                            <th class="text-center" colspan="3" i18n="@@op9">
-                                Quotation Frequency
-                            </th>
-                            <th class="text-center" colspan="11" i18n="@@op10">
-                                Measurement of Length / Frequency of Cleaning
-                            </th>
-                            <th class="text-center" rowspan="3" i18n="@@op11">Notes</th>
-                            <th class="text-center" rowspan="3" i18n="@@op12">
-                                Reference / Delivery Date
-                            </th>
-                            <th class="text-center" colspan="2" i18n="@@op13">
-                                Field Review Date / Current Condition
-                            </th>
-                        </tr>
-                        <tr style="
+              <th class="text-center" rowspan="3" i18n="@@op6">Parliament</th>
+              <th class="text-center" rowspan="3" i18n="@@op7">Coordinates</th>
+              <th class="text-center" rowspan="3" i18n="@@op8">
+                Number of permit units
+              </th>
+              <th class="text-center" colspan="3" i18n="@@op9">
+                Quotation Frequency
+              </th>
+              <th class="text-center" colspan="11" i18n="@@op10">
+                Measurement of Length / Frequency of Cleaning
+              </th>
+              <th class="text-center" rowspan="3" i18n="@@op11">Notes</th>
+              <th class="text-center" rowspan="3" i18n="@@op12">
+                Reference / Delivery Date
+              </th>
+              <th class="text-center" colspan="2" i18n="@@op13">
+                Field Review Date / Current Condition
+              </th>
+            </tr>
+            <tr
+              style="
                 background-color: #253d84;
                 color: white;
                 font-weight: normal !important;
-              ">
-                            <th class="text-center" rowspan="2" i18n="@@op14">
-                                Domestic waste
-                            </th>
-                            <th class="text-center" rowspan="2" i18n="@@op15">Bulk waste</th>
-                            <th class="text-center" rowspan="2" i18n="@@op16">
-                                Illegal waste
-                            </th>
-                            <th class="text-center" colspan="3" i18n="@@op17">Sweep</th>
-                            <th class="text-center" colspan="2" i18n="@@op18">Bridges</th>
-                            <th class="text-center" colspan="3" i18n="@@op19">Laundry</th>
-                            <th class="text-center" rowspan="2" i18n="@@op20">
-                                Gutter Wash (m)
-                            </th>
-                            <th class="text-center" rowspan="2" i18n="@@op21">
-                                Cut the grass (m2)
-                            </th>
-                            <th class="text-center" rowspan="2" i18n="@@op22">
-                                Garden Waste
-                            </th>
-                            <th class="text-center" rowspan="2" i18n="@@op23">
-                                There are [√]
-                            </th>
+              "
+            >
+              <th class="text-center" rowspan="2" i18n="@@op14">
+                Domestic waste
+              </th>
+              <th class="text-center" rowspan="2" i18n="@@op15">Bulk waste</th>
+              <th class="text-center" rowspan="2" i18n="@@op16">
+                Illegal waste
+              </th>
+              <th class="text-center" colspan="3" i18n="@@op17">Sweep</th>
+              <th class="text-center" colspan="2" i18n="@@op18">Bridges</th>
+              <th class="text-center" colspan="3" i18n="@@op19">Laundry</th>
+              <th class="text-center" rowspan="2" i18n="@@op20">
+                Gutter Wash (m)
+              </th>
+              <th class="text-center" rowspan="2" i18n="@@op21">
+                Cut the grass (m2)
+              </th>
+              <th class="text-center" rowspan="2" i18n="@@op22">
+                Garden Waste
+              </th>
+              <th class="text-center" rowspan="2" i18n="@@op23">
+                There are [√]
+              </th>
 
-                            <th class="text-center" rowspan="2" i18n="@@op24">None [X]</th>
-                        </tr>
-                        <tr style="
+              <th class="text-center" rowspan="2" i18n="@@op24">None [X]</th>
+            </tr>
+            <tr
+              style="
                 background-color: #253d84;
                 color: white;
                 font-weight: normal !important;
-              ">
-                            <th class="text-center" i18n="@@op25">Road [m]</th>
-                            <th class="text-center">TPKK [m²]</th>
-                            <th class="text-center" i18n="@@op26">Kaw Lapang Parking [m²]</th>
-                            <th class="text-center" i18n="@@op27">Sweep[m]</th>
-                            <th class="text-center" i18n="@@op28">Laundry[m]</th>
-                            <th class="text-center" i18n="@@op29">Post Footer [m]</th>
-                            <th class="text-center" i18n="@@op30">Post Covered Legs [m]</th>
-                            <th class="text-center" i18n="@@op31">Bus /Taxi Station</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        <tr *ngFor="let key of data  | paginate: { itemsPerPage: 10, currentPage: p }">
-                            <td>{{ key.kodarea }}</td>
-                            <td>{{ key.lokasi }}</td>
-                            <td>
-                                {{ key.parlimen }}
-                            </td>
-                            <td>{{ key.kordinat }}</td>
-                            <!-- <td>
+              "
+            >
+              <th class="text-center" i18n="@@op25">Road [m]</th>
+              <th class="text-center">TPKK [m²]</th>
+              <th class="text-center" i18n="@@op26">Kaw Lapang Parking [m²]</th>
+              <th class="text-center" i18n="@@op27">Sweep[m]</th>
+              <th class="text-center" i18n="@@op28">Laundry[m]</th>
+              <th class="text-center" i18n="@@op29">Post Footer [m]</th>
+              <th class="text-center" i18n="@@op30">Post Covered Legs [m]</th>
+              <th class="text-center" i18n="@@op31">Bus /Taxi Station</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr
+              *ngFor="
+                let key of data
+                  | paginate : { itemsPerPage: 10, currentPage: p }
+              "
+            >
+              <td>{{ key.kodarea }}</td>
+              <td>{{ key.lokasi }}</td>
+              <td>
+                {{ key.parlimen }}
+              </td>
+              <td>{{ key.kordinat }}</td>
+              <!-- <td>
                                       TARIKH:-<br />
                                       Masa:-<br />
                                       Tempat:-<br />
                                   </td> -->
-                            <td>{{ key.jumlah_unit_premis }}</td>
-                            <td>
-                                <a style="color: black !important">{{
-                                    key.kekerapan_kutipan_sisa_domestik
-                                    }}</a>
-                            </td>
-                            <td>
-                                {{ key.kekerapan_kutipan_sampah_pukal }}
-                            </td>
-                            <td>
-                                {{ key.kekerapan_kutipan_sampah_haram }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_sapuan_jalan }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_sapuan_TPKK }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_sapuan_kewlapangparkir }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_jejantas_sapuan }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_jejantas_cucian }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_cucian_siarkaki }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_cucian_siarkaki_berbumbung }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_cucian_slesenbaslteksi }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_cucian_longkang }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_potongrumput }}
-                            </td>
-                            <td>
-                                {{ key.ukuran_panjang_sampahkebun }}
-                            </td>
+              <td>{{ key.jumlah_unit_premis }}</td>
+              <td>
+                <a style="color: black !important">{{
+                  key.kekerapan_kutipan_sisa_domestik
+                }}</a>
+              </td>
+              <td>
+                {{ key.kekerapan_kutipan_sampah_pukal }}
+              </td>
+              <td>
+                {{ key.kekerapan_kutipan_sampah_haram }}
+              </td>
+              <td>
+                {{ key.ukuran_panjang_sapuan_jalan }}
+              </td>
+              <td>
+                {{ key.ukuran_panjang_sapuan_TPKK }}
+              </td>
+              <td>
+                {{ key.ukuran_panjang_sapuan_kewlapangparkir }}
+              </td>
+              <td>
+                {{ key.ukuran_panjang_jejantas_sapuan }}
+              </td>
+              <td>
+                {{ key.ukuran_panjang_jejantas_cucian }}
+              </td>
+              <td>
+                {{ key.ukuran_panjang_cucian_siarkaki }}
+              </td>
+              <td>
+                {{ key.ukuran_panjang_cucian_siarkaki_berbumbung }}
+              </td>
+              <td>
+                {{ key.ukuran_panjang_cucian_slesenbaslteksi }}
+              </td>
+              <td>
+                {{ key.ukuran_panjang_cucian_longkang }}
+              </td>
+              <td>
+                {{ key.ukuran_panjang_potongrumput }}
+              </td>
+              <td>
+                {{ key.ukuran_panjang_sampahkebun }}
+              </td>
 
-                            <td>
-                                {{ key.catatan }}
-                            </td>
-                            <td>
-                                {{ key.rujuken_tarikh_serahan }}
-                            </td>
-                            <td>
-                                {{ key.tarikh_semakandi_lapangant_keadeansemata_ada }}
-                            </td>
-                            <td>
-                                {{ key.tarikh_semakandi_lapangant_keadeansemata_tiada }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="pagination">
-                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                </div>
-            </div>
+              <td>
+                {{ key.catatan }}
+              </td>
+              <td>
+                {{ key.rujuken_tarikh_serahan }}
+              </td>
+              <td>
+                {{ key.tarikh_semakandi_lapangant_keadeansemata_ada }}
+              </td>
+              <td>
+                {{ key.tarikh_semakandi_lapangant_keadeansemata_tiada }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </main>
 <!-- End #main -->
 
 <!-- ======= Footer ======= -->
 <app-footer></app-footer>
 
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer"><i class="icofont-simple-up"></i></a>
+<a (click)="backtotop()" class="back-to-top" style="cursor: pointer"
+  ><i class="icofont-simple-up"></i
+></a>

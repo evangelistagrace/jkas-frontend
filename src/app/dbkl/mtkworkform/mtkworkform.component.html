@@ -10,7 +10,7 @@
   <div class="container-fluid" ngStickyNav>
     <nav class="navbar navbar-expand-lg">
       <a routerLink="/public" class="navbar-brand">
-        <img src="../../../assets/img/DBKL LOGO (Lorry).png" loading="lazy" />
+        <img src="assets/img/DBKL LOGO (Lorry).png" loading="lazy" />
       </a>
 
       <button
@@ -294,7 +294,10 @@
         <div class="card-body">
           <div class="row justify-content-center">
             <div class="col-md-8">
-              <h5 class="text-center mb-4" style="color: #253d84; font-weight: bold;">
+              <h5
+                class="text-center mb-4"
+                style="color: #253d84; font-weight: bold"
+              >
                 Pilih Jenis Borang
               </h5>
               <div class="row">
@@ -349,8 +352,10 @@
         *ngIf="this.mainform && registrationGroup"
       >
         <div class="card">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0" style="color: white;">
+          <div
+            class="card-header d-flex justify-content-between align-items-center"
+          >
+            <h5 class="mb-0" style="color: white">
               <i class="fa fa-file-text-o mr-2"></i>
               <span i18n="@@mtbwrkfrm3">BORANG ADUAN AWAM</span>
             </h5>
@@ -390,7 +395,10 @@
                     *ngIf="submitted && f['nama'] && f['nama'].errors"
                     class="invalid-feedback"
                   >
-                    <div *ngIf="f['nama'].errors['required']" i18n="@@Valtrans1">
+                    <div
+                      *ngIf="f['nama'].errors['required']"
+                      i18n="@@Valtrans1"
+                    >
                       Sila isi medan yang diperlukan.
                     </div>
                   </div>
@@ -423,7 +431,10 @@
                       'is-invalid': submitted && f.alamat.errors
                     }"
                   ></textarea>
-                  <div *ngIf="submitted && f.alamat.errors" class="invalid-feedback">
+                  <div
+                    *ngIf="submitted && f.alamat.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.alamat.errors.required" i18n="@@Valtrans1">
                       Sila isi medan yang diperlukan.
                     </div>
@@ -445,7 +456,10 @@
                       'is-invalid': submitted && f.email.errors
                     }"
                   />
-                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div
+                    *ngIf="submitted && f.email.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.email.errors.pattern" i18n="@@invalide">
                       E-mel tidak sah
                     </div>
@@ -464,7 +478,10 @@
                       'is-invalid': submitted && f.notelefon.errors
                     }"
                   />
-                  <div *ngIf="submitted && f.notelefon.errors" class="invalid-feedback">
+                  <div
+                    *ngIf="submitted && f.notelefon.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.notelefon.errors.pattern" i18n="@@Phone1">
                       No telefon mesti mengandungi 11 digit
                     </div>
@@ -503,7 +520,9 @@
                       'is-invalid': submitted && f.samberaduan.errors
                     }"
                   >
-                    <option value="" disabled selected>Pilih Sumber Aduan</option>
+                    <option value="" disabled selected>
+                      Pilih Sumber Aduan
+                    </option>
                     <option value="Adu@KL">Adu@KL</option>
                     <option value="Whatsapp">Whatsapp</option>
                     <option value="Email">Email</option>
@@ -511,8 +530,14 @@
                     <option value="Telefon">Telefon</option>
                     <option value="Lain-lain">Lain-lain</option>
                   </select>
-                  <div *ngIf="submitted && f.samberaduan.errors" class="invalid-feedback">
-                    <div *ngIf="f.samberaduan.errors.required" i18n="@@Valtrans1">
+                  <div
+                    *ngIf="submitted && f.samberaduan.errors"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="f.samberaduan.errors.required"
+                      i18n="@@Valtrans1"
+                    >
                       Sila isi medan yang diperlukan.
                     </div>
                   </div>
@@ -546,8 +571,14 @@
                       'is-invalid': submitted && f.tarikhaduan.errors
                     }"
                   />
-                  <div *ngIf="submitted && f.tarikhaduan.errors" class="invalid-feedback">
-                    <div *ngIf="f.tarikhaduan.errors.required" i18n="@@Valtrans1">
+                  <div
+                    *ngIf="submitted && f.tarikhaduan.errors"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="f.tarikhaduan.errors.required"
+                      i18n="@@Valtrans1"
+                    >
                       Sila isi medan yang diperlukan.
                     </div>
                   </div>
@@ -566,8 +597,14 @@
                       'is-invalid': submitted && f.tarikhterima.errors
                     }"
                   />
-                  <div *ngIf="submitted && f.tarikhterima.errors" class="invalid-feedback">
-                    <div *ngIf="f.tarikhterima.errors.required" i18n="@@Valtrans1">
+                  <div
+                    *ngIf="submitted && f.tarikhterima.errors"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="f.tarikhterima.errors.required"
+                      i18n="@@Valtrans1"
+                    >
                       Sila isi medan yang diperlukan.
                     </div>
                   </div>
@@ -589,8 +626,14 @@
                       'is-invalid': submitted && f.lokasiaduan.errors
                     }"
                   />
-                  <div *ngIf="submitted && f.lokasiaduan.errors" class="invalid-feedback">
-                    <div *ngIf="f.lokasiaduan.errors.required" i18n="@@Valtrans1">
+                  <div
+                    *ngIf="submitted && f.lokasiaduan.errors"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="f.lokasiaduan.errors.required"
+                      i18n="@@Valtrans1"
+                    >
                       Sila isi medan yang diperlukan.
                     </div>
                   </div>
@@ -599,7 +642,9 @@
 
               <div class="row">
                 <div class="col-md-12 mb-3">
-                  <label class="form-label">Jenis Kawasan <span class="required">*</span></label>
+                  <label class="form-label"
+                    >Jenis Kawasan <span class="required">*</span></label
+                  >
                   <div class="radio-group">
                     <div class="form-check form-check-inline">
                       <input
@@ -611,7 +656,11 @@
                         value="serviceArea"
                         id="serviceArea"
                       />
-                      <label class="form-check-label" for="serviceArea" i18n="@@mtbwrkfrm4">
+                      <label
+                        class="form-check-label"
+                        for="serviceArea"
+                        i18n="@@mtbwrkfrm4"
+                      >
                         Kawasan Perkhidmatan
                       </label>
                     </div>
@@ -624,7 +673,11 @@
                         value="nonServiceArea"
                         id="nonServiceArea"
                       />
-                      <label class="form-check-label" for="nonServiceArea" i18n="@@mtbwrkfrm5">
+                      <label
+                        class="form-check-label"
+                        for="nonServiceArea"
+                        i18n="@@mtbwrkfrm5"
+                      >
                         Bukan Kawasan Perkhidmatan
                       </label>
                     </div>
@@ -647,8 +700,14 @@
                       'is-invalid': submitted && f.keteranganaduan.errors
                     }"
                   ></textarea>
-                  <div *ngIf="submitted && f.keteranganaduan.errors" class="invalid-feedback">
-                    <div *ngIf="f.keteranganaduan.errors.required" i18n="@@Valtrans1">
+                  <div
+                    *ngIf="submitted && f.keteranganaduan.errors"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="f.keteranganaduan.errors.required"
+                      i18n="@@Valtrans1"
+                    >
                       Sila isi medan yang diperlukan.
                     </div>
                   </div>
@@ -678,7 +737,10 @@
                     <option disabled selected>Pilih Zon</option>
                     <option *ngFor="let zone of zonedata">{{ zone }}</option>
                   </select>
-                  <div *ngIf="submitted && f.zon.errors" class="invalid-feedback">
+                  <div
+                    *ngIf="submitted && f.zon.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.zon.errors.required" i18n="@@Valtrans1">
                       Sila isi medan yang diperlukan.
                     </div>
@@ -700,7 +762,10 @@
                     <option disabled selected>Pilih Parlimen</option>
                     <option *ngFor="let parli of parildata">{{ parli }}</option>
                   </select>
-                  <div *ngIf="submitted && f.parlimen.errors" class="invalid-feedback">
+                  <div
+                    *ngIf="submitted && f.parlimen.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.parlimen.errors.required" i18n="@@Valtrans1">
                       Sila isi medan yang diperlukan.
                     </div>
@@ -723,8 +788,14 @@
                       'is-invalid': submitted && f.tarikhsiasatan.errors
                     }"
                   />
-                  <div *ngIf="submitted && f.tarikhsiasatan.errors" class="invalid-feedback">
-                    <div *ngIf="f.tarikhsiasatan.errors.required" i18n="@@Valtrans1">
+                  <div
+                    *ngIf="submitted && f.tarikhsiasatan.errors"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="f.tarikhsiasatan.errors.required"
+                      i18n="@@Valtrans1"
+                    >
                       Sila isi medan yang diperlukan.
                     </div>
                   </div>
@@ -749,7 +820,10 @@
                       {{ key.officer_name }}
                     </option>
                   </select>
-                  <div *ngIf="submitted && f.idpegawai.errors" class="invalid-feedback">
+                  <div
+                    *ngIf="submitted && f.idpegawai.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.idpegawai.errors.required" i18n="@@Valtrans1">
                       Sila isi medan yang diperlukan.
                     </div>
@@ -759,7 +833,9 @@
 
               <div class="row">
                 <div class="col-md-12 mb-3">
-                  <label class="form-label" i18n="@@mtbwrkfrm25">Lokasi Siasatan</label>
+                  <label class="form-label" i18n="@@mtbwrkfrm25"
+                    >Lokasi Siasatan</label
+                  >
                   <div class="map-container">
                     <div
                       id="map"
@@ -797,7 +873,9 @@
                     <img
                       *ngIf="picture != ''"
                       [src]="
-                        basePublicUrl + '/jkas_resourses/public/images/' + picture
+                        basePublicUrl +
+                        '/jkas_resourses/public/images/' +
+                        picture
                       "
                       class="uploaded-image"
                       alt="Uploaded Image"
@@ -823,8 +901,14 @@
                       'is-invalid': submitted && f.laporansiasatan.errors
                     }"
                   ></textarea>
-                  <div *ngIf="submitted && f.laporansiasatan.errors" class="invalid-feedback">
-                    <div *ngIf="f.laporansiasatan.errors.required" i18n="@@Valtrans1">
+                  <div
+                    *ngIf="submitted && f.laporansiasatan.errors"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="f.laporansiasatan.errors.required"
+                      i18n="@@Valtrans1"
+                    >
                       Sila isi medan yang diperlukan.
                     </div>
                   </div>
@@ -848,7 +932,10 @@
                       'is-invalid': submitted && f.cause.errors
                     }"
                   ></textarea>
-                  <div *ngIf="submitted && f.cause.errors" class="invalid-feedback">
+                  <div
+                    *ngIf="submitted && f.cause.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.cause.errors.required" i18n="@@Valtrans1">
                       Sila isi medan yang diperlukan.
                     </div>
@@ -873,7 +960,10 @@
                       'is-invalid': submitted && f.tindakan.errors
                     }"
                   ></textarea>
-                  <div *ngIf="submitted && f.tindakan.errors" class="invalid-feedback">
+                  <div
+                    *ngIf="submitted && f.tindakan.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.tindakan.errors.required" i18n="@@Valtrans1">
                       Sila isi medan yang diperlukan.
                     </div>
@@ -898,7 +988,10 @@
                       'is-invalid': submitted && f.susulan.errors
                     }"
                   ></textarea>
-                  <div *ngIf="submitted && f.susulan.errors" class="invalid-feedback">
+                  <div
+                    *ngIf="submitted && f.susulan.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.susulan.errors.required" i18n="@@Valtrans1">
                       Sila isi medan yang diperlukan.
                     </div>
@@ -946,7 +1039,11 @@
                 <!-- <i class="fa fa-save mr-2"></i> -->
                 <span i18n="@@mtbwrkfrm32">Simpan</span>
               </button>
-              <button type="button" class="btn btn-secondary btn-large" routerLink="/dbkl/dbklmainpage">
+              <button
+                type="button"
+                class="btn btn-secondary btn-large"
+                routerLink="/dbkl/dbklmainpage"
+              >
                 <!-- <i class="fa fa-arrow-left mr-2"></i> -->
                 <span i18n="@@mtbwrkfrm31">Kembali</span>
               </button>
@@ -964,8 +1061,10 @@
         *ngIf="this.mainform1 && registrationGroup1"
       >
         <div class="card">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0" style="color: white;">
+          <div
+            class="card-header d-flex justify-content-between align-items-center"
+          >
+            <h5 class="mb-0" style="color: white">
               <i class="fa fa-calendar-check-o mr-2"></i>
               <span i18n="@@mtbwrkfrm6">BORANG KERJA HARIAN</span>
             </h5>
@@ -997,7 +1096,10 @@
                     formControlName="idpegawai1"
                     [(ngModel)]="nama_pegawai1"
                     [ngClass]="{
-                      'is-invalid': submitted1 && f1['idpegawai1'] && f1['idpegawai1'].errors
+                      'is-invalid':
+                        submitted1 &&
+                        f1['idpegawai1'] &&
+                        f1['idpegawai1'].errors
                     }"
                   >
                     <option value="" disabled selected>Pilih Pegawai</option>
@@ -1009,10 +1111,15 @@
                     </option>
                   </select>
                   <div
-                    *ngIf="submitted1 && f1['idpegawai1'] && f1['idpegawai1'].errors"
+                    *ngIf="
+                      submitted1 && f1['idpegawai1'] && f1['idpegawai1'].errors
+                    "
                     class="invalid-feedback"
                   >
-                    <div *ngIf="f1['idpegawai1'].errors['required']" i18n="@@Valtrans1">
+                    <div
+                      *ngIf="f1['idpegawai1'].errors['required']"
+                      i18n="@@Valtrans1"
+                    >
                       Sila isi medan yang diperlukan.
                     </div>
                   </div>
@@ -1031,8 +1138,14 @@
                       'is-invalid': submitted1 && f1.tarikhsiasatan1.errors
                     }"
                   />
-                  <div *ngIf="submitted1 && f1.tarikhsiasatan1.errors" class="invalid-feedback">
-                    <div *ngIf="f1.tarikhsiasatan1.errors.required" i18n="@@Valtrans1">
+                  <div
+                    *ngIf="submitted1 && f1.tarikhsiasatan1.errors"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="f1.tarikhsiasatan1.errors.required"
+                      i18n="@@Valtrans1"
+                    >
                       Sila isi medan yang diperlukan.
                     </div>
                   </div>
@@ -1056,7 +1169,10 @@
                     <option value="" disabled selected>Pilih Zon</option>
                     <option *ngFor="let zone of zonedata">{{ zone }}</option>
                   </select>
-                  <div *ngIf="submitted1 && f1.zon1.errors" class="invalid-feedback">
+                  <div
+                    *ngIf="submitted1 && f1.zon1.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f1.zon1.errors.required" i18n="@@Valtrans1">
                       Sila isi medan yang diperlukan.
                     </div>
@@ -1078,8 +1194,14 @@
                     <option value="" disabled selected>Pilih Parlimen</option>
                     <option *ngFor="let parli of parildata">{{ parli }}</option>
                   </select>
-                  <div *ngIf="submitted1 && f1.parlimenB.errors" class="invalid-feedback">
-                    <div *ngIf="f1.parlimenB.errors.required" i18n="@@Valtrans1">
+                  <div
+                    *ngIf="submitted1 && f1.parlimenB.errors"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="f1.parlimenB.errors.required"
+                      i18n="@@Valtrans1"
+                    >
                       Sila isi medan yang diperlukan.
                     </div>
                   </div>
@@ -1088,7 +1210,9 @@
 
               <div class="row">
                 <div class="col-md-12 mb-3">
-                  <label class="form-label" i18n="@@mtbwrkfrm25">Lokasi Pemantauan</label>
+                  <label class="form-label" i18n="@@mtbwrkfrm25"
+                    >Lokasi Pemantauan</label
+                  >
                   <div class="map-container">
                     <div
                       id="map"
@@ -1126,7 +1250,9 @@
                     <img
                       *ngIf="picture != ''"
                       [src]="
-                        basePublicUrl + '/jkas_resourses/public/images/' + picture
+                        basePublicUrl +
+                        '/jkas_resourses/public/images/' +
+                        picture
                       "
                       class="uploaded-image"
                       alt="Uploaded Image"
@@ -1152,8 +1278,14 @@
                       'is-invalid': submitted1 && f1.laporansiasatan1.errors
                     }"
                   ></textarea>
-                  <div *ngIf="submitted1 && f1.laporansiasatan1.errors" class="invalid-feedback">
-                    <div *ngIf="f1.laporansiasatan1.errors.required" i18n="@@Valtrans1">
+                  <div
+                    *ngIf="submitted1 && f1.laporansiasatan1.errors"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="f1.laporansiasatan1.errors.required"
+                      i18n="@@Valtrans1"
+                    >
                       Sila isi medan yang diperlukan.
                     </div>
                   </div>
@@ -1177,8 +1309,14 @@
                       'is-invalid': submitted1 && f1.tindakan1.errors
                     }"
                   ></textarea>
-                  <div *ngIf="submitted1 && f1.tindakan1.errors" class="invalid-feedback">
-                    <div *ngIf="f1.tindakan1.errors.required" i18n="@@Valtrans1">
+                  <div
+                    *ngIf="submitted1 && f1.tindakan1.errors"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="f1.tindakan1.errors.required"
+                      i18n="@@Valtrans1"
+                    >
                       Sila isi medan yang diperlukan.
                     </div>
                   </div>
@@ -1225,7 +1363,11 @@
                 <!-- <i class="fa fa-save mr-2"></i> -->
                 <span i18n="@@mtbwrkfrm32">Simpan</span>
               </button>
-              <button type="button" class="btn btn-secondary" routerLink="/dbkl/dbklmainpage">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                routerLink="/dbkl/dbklmainpage"
+              >
                 <!-- <i class="fa fa-arrow-left mr-2"></i> -->
                 <span i18n="@@mtbwrkfrm31">Kembali</span>
               </button>
@@ -1461,7 +1603,7 @@
     </div>
   </div>
 </div>
-                  <!-- type="file"
+<!-- type="file"
                   ng2FileSelect
                   accept=".png"
                   [uploader]="uploader"

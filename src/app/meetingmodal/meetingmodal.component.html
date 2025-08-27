@@ -1,61 +1,138 @@
 <div *ngFor="let ky of data; index as i">
   <div *ngIf="ky.no_siri_permohonan == keyValue">
-    <span *ngFor="let key of meetingValue;index as i">
-     <p *ngIf="key.no_siri_permohonan==keyValue">
-        <b>Tarikh :</b> {{key.tarikh_mesyuarat}}
+    <span *ngFor="let key of meetingValue; index as i">
+      <p *ngIf="key.no_siri_permohonan == keyValue">
+        <b>Tarikh :</b> {{ key.tarikh_mesyuarat }}
       </p>
-      <p *ngIf="key.no_siri_permohonan==keyValue">
-       <b>Masa :</b> {{key.masa_mesyuarat}}
-      <p>
-      <p *ngIf="key.no_siri_permohonan==keyValue">
-        <b>Tempat :</b> {{key.tempat_mesyuarat}}
+      <p *ngIf="key.no_siri_permohonan == keyValue">
+        <b>Masa :</b> {{ key.masa_mesyuarat }}
+      </p>
+
+      <p></p>
+      <p *ngIf="key.no_siri_permohonan == keyValue">
+        <b>Tempat :</b> {{ key.tempat_mesyuarat }}
       </p>
     </span>
-    <a class="dropdown-item" style="
+    <a
+      class="dropdown-item"
+      style="
         cursor: pointer;
         color: red !important;
         cursor: pointer;
         border: none;
         background: none;
-      " data-toggle="modal" data-target="#centralModalDanger" class="dropdown-item"
-      (click)="showValue(ky.no_siri_permohonan)">Kemaskini Maklumat</a>
+      "
+      data-toggle="modal"
+      data-target="#centralModalDanger"
+      class="dropdown-item"
+      (click)="showValue(ky.no_siri_permohonan)"
+      >Kemaskini Maklumat</a
+    >
   </div>
 </div>
 
 <!-- Success Modal Start-->
 <div *ngIf="ck == true">
-  <div class="modal  bd-example-modal-md" id="centralModalDanger" tabindex="-1" role="dialog"
-    aria-labelledby="myModalLabel" aria-hidden="true" [ngStyle]="{ display: display }" data-backdrop="static"
-    data-keyboard="false">
-    <div class="modal-dialog modal-md modal-notify modal-danger" role="document">
+  <div
+    class="modal bd-example-modal-md"
+    id="centralModalDanger"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+    aria-hidden="true"
+    [ngStyle]="{ display: display }"
+    data-backdrop="static"
+    data-keyboard="false"
+  >
+    <div
+      class="modal-dialog modal-md modal-notify modal-danger"
+      role="document"
+    >
       <div class="modal-content" id="dvStats">
-        <div class="modal-header" style="background-color: #253d84; height: 63px">
-          <img src="../../../assets/img/DBKL LOGO (Lorry).png" width="35" style="margin: 10px 0px 10px 30px" height="40"
-            class="d-inline-block align-top" alt="" loading="lazy" />
+        <div
+          class="modal-header"
+          style="background-color: #253d84; height: 63px"
+        >
+          <img
+            src="assets/img/DBKL LOGO (Lorry).png"
+            width="35"
+            style="margin: 10px 0px 10px 30px"
+            height="40"
+            class="d-inline-block align-top"
+            alt=""
+            loading="lazy"
+          />
           <p id="txt" i18n="@@updatemeeting">UPDATE OF MEETING INFORMATION</p>
-          <span><i style="color: #96D3EE;" class="fa fa-times close" aria-hidden="true" data-dismiss="modal" aria-label="Close"
-              (click)="closeModal()"></i></span>
+          <span
+            ><i
+              style="color: #96d3ee"
+              class="fa fa-times close"
+              aria-hidden="true"
+              data-dismiss="modal"
+              aria-label="Close"
+              (click)="closeModal()"
+            ></i
+          ></span>
         </div>
         <div class="modal-body">
-          <label for="textInput" i18n="@@applicationslno">Application serial number</label>
-          <input type="text" style="background-color: white;" id="textInput" class="form-control mb-4"
-            placeholder="Maklumat Mesyuarat" name="no_siri_permohonan" [(ngModel)]="no_siri_permohonan" readonly>
+          <label for="textInput" i18n="@@applicationslno"
+            >Application serial number</label
+          >
+          <input
+            type="text"
+            style="background-color: white"
+            id="textInput"
+            class="form-control mb-4"
+            placeholder="Maklumat Mesyuarat"
+            name="no_siri_permohonan"
+            [(ngModel)]="no_siri_permohonan"
+            readonly
+          />
           <div class="mb-4">
             <label for="textInput" i18n="@@dateofmeet">Date of Meeting</label>
-            <input type="text" class="form-control" [bsConfig]="bsConfig" #dp="bsDatepicker" bsDatepicker
-              [(bsValue)]="datePickerValue" [minDate]="minDate">
-            <i *ngIf="check" style="color: #253d84;font-weight: 600;" i18n="@@selectvaliddate">Select Valid Meeting
-              Date</i>
+            <input
+              type="text"
+              class="form-control"
+              [bsConfig]="bsConfig"
+              #dp="bsDatepicker"
+              bsDatepicker
+              [(bsValue)]="datePickerValue"
+              [minDate]="minDate"
+            />
+            <i
+              *ngIf="check"
+              style="color: #253d84; font-weight: 600"
+              i18n="@@selectvaliddate"
+              >Select Valid Meeting Date</i
+            >
           </div>
           <label for="textInput" i18n="@@meetingtime">Meeting Time</label>
-          <input type="time" id="textInput" class="form-control mb-4" placeholder="Meeting Time" name="masa_mesyuarat"
-            [(ngModel)]="masa_mesyuarat">
+          <input
+            type="time"
+            id="textInput"
+            class="form-control mb-4"
+            placeholder="Meeting Time"
+            name="masa_mesyuarat"
+            [(ngModel)]="masa_mesyuarat"
+          />
           <label for="textInput" i18n="@@meetingplace">Meeting Place</label>
-          <textarea id="textarea" class="form-control mb-4" placeholder="Tempat mesyuarat" name="tempat_mesyuarat"
-            [(ngModel)]="tempat_mesyuarat"></textarea>
-          <div id="btnn" class="text-center" style="margin: auto;">
-            <button style="margin: auto;" type="submit" class="look_for"
-              (click)="update(detailed_meeting_id)" i18n="@@update">Update</button>
+          <textarea
+            id="textarea"
+            class="form-control mb-4"
+            placeholder="Tempat mesyuarat"
+            name="tempat_mesyuarat"
+            [(ngModel)]="tempat_mesyuarat"
+          ></textarea>
+          <div id="btnn" class="text-center" style="margin: auto">
+            <button
+              style="margin: auto"
+              type="submit"
+              class="look_for"
+              (click)="update(detailed_meeting_id)"
+              i18n="@@update"
+            >
+              Update
+            </button>
           </div>
         </div>
       </div>

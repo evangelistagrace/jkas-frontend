@@ -1,130 +1,297 @@
 <!-- Topbar -->
 <app-topbar></app-topbar>
 <!-- End of Topbar -->
-<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+<div
+  class="container-fluid sticky-nav"
+  id=""
+  style="background-color: #f2f2f2 !important"
+>
   <div class="container-fluid" ngStickyNav>
     <nav class="navbar navbar-expand-lg">
-      <a routerLink="/public" class="navbar-brand ">
-        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
-
+      <a routerLink="/public" class="navbar-brand">
+        <img src="assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
       </a>
 
-
-
-
-
-      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
-        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <i class="fa fa-bars text-white"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@home">HOME</a>
+            <a
+              routerLink="/dbkl/dbklmainpage"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home"
+              >HOME</a
+            >
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"
-              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-              id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false" style="color: #253d84 !important; cursor: pointer" i18n="@@n11">
+            <a
+              class="nav-link dropdown-toggle"
+              *ngIf="
+                userrole == 'Superadmin' ||
+                userrole == 'MerinyuMTB' ||
+                userrole == 'Kewangan' ||
+                userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+              "
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n11"
+            >
               MTB
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item"
-                *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'" i18n="@@n12"
-                routerLink="/dbkl/mapview">Map View</a>
-          <li class="dropdown-submenu">
-            <a class="dropdown-item dropdown-toggle"
-              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-              style="color: white; cursor: pointer" i18n="@@n15">Field Form</a>
-            <ul class="dropdown-menu">
-              <li>
-                <a routerLink="/dbkl/mtbwork-form"
-                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                  class="dropdown-item" i18n="@@n13">Work Form</a>
+              <a
+                class="dropdown-item"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTB' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                i18n="@@n12"
+                routerLink="/dbkl/mapview"
+                >Map View</a
+              >
+              <li class="dropdown-submenu">
+                <a
+                  class="dropdown-item dropdown-toggle"
+                  *ngIf="
+                    userrole == 'Superadmin' ||
+                    userrole == 'MerinyuMTB' ||
+                    userrole == 'Kewangan' ||
+                    userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                  "
+                  style="color: white; cursor: pointer"
+                  i18n="@@n15"
+                  >Field Form</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtbwork-form"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      class="dropdown-item"
+                      i18n="@@n13"
+                      >Work Form</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtbcompoundform"
+                      class="dropdown-item"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      i18n="@@n14"
+                      >Compound Form</a
+                    >
+                  </li>
+                </ul>
               </li>
-              <li>
-                <a routerLink="/dbkl/mtbcompoundform" class="dropdown-item"
-                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                  i18n="@@n14">Compound Form</a>
+              <li class="dropdown-submenu">
+                <a
+                  class="dropdown-item dropdown-toggle"
+                  *ngIf="
+                    userrole == 'Superadmin' ||
+                    userrole == 'MerinyuMTB' ||
+                    userrole == 'Kewangan' ||
+                    userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                  "
+                  style="color: white; cursor: pointer"
+                  i18n="@@n16"
+                  >Work Log</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtbwork-log"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      class="dropdown-item"
+                      i18n="@@n17"
+                      >Daily Work / Complaints</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtblistofcompound"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      class="dropdown-item"
+                      i18n="@@n18"
+                      >List of Compounds</a
+                    >
+                  </li>
+                </ul>
               </li>
-            </ul>
+            </div>
           </li>
-          <li class="dropdown-submenu">
-            <a class="dropdown-item dropdown-toggle"
-              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-              style="color: white; cursor: pointer" i18n="@@n16">Work Log</a>
-            <ul class="dropdown-menu">
-              <li>
-                <a routerLink="/dbkl/mtbwork-log"
-                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                  class="dropdown-item" i18n="@@n17">Daily Work / Complaints</a>
-              </li>
-              <li>
-                <a routerLink="/dbkl/mtblistofcompound"
-                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                  class="dropdown-item" i18n="@@n18">List of Compounds</a>
-              </li>
-            </ul>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              *ngIf="
+                userrole == 'Superadmin' ||
+                userrole == 'MerinyuMTK' ||
+                userrole == 'Kewangan' ||
+                userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+              "
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n19"
+            >
+              MTK
+            </a>
+            <div class="dropdown-menu">
+              <a
+                class="dropdown-item"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                style="color: white; cursor: pointer"
+                routerLink="/dbkl/mtkmapview"
+                i18n="@@n20"
+                >Monitoring MTK</a
+              >
+              <a
+                routerLink="/dbkl/mtbcompoundform"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                i18n="@@n14"
+                style="cursor: pointer"
+                >Compound Form</a
+              >
+              <a
+                routerLink="/dbkl/inspectingofficers"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n21"
+                >Work MTB</a
+              >
+              <a
+                routerLink="/dbkl/mtblistofcompound"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n22"
+                >Compound MTB</a
+              >
+            </div>
           </li>
-      </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle"
-          *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-          id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-          style="color: #253d84 !important; cursor: pointer" i18n="@@n19">
-          MTK
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            style="color: white; cursor: pointer" routerLink="/dbkl/mtkmapview" i18n="@@n20">Monitoring
-            MTK</a>
-          <a routerLink="/dbkl/mtbcompoundform"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            class="dropdown-item" i18n="@@n14" style="cursor: pointer;">Compound
-            Form</a>
-          <a routerLink="/dbkl/inspectingofficers"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n21">Work MTB</a>
-          <a routerLink="/dbkl/mtblistofcompound"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n22">Compound MTB</a>
-        </div>
-      </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
-          {{ username }}
-        </a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
-            i18n="@@Profile">Profile</a>
-          <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer" i18n="@@jflogout">Logout</a>
-        </div>
-      </li>
-      </ul>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+            >
+              {{ username }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a
+                routerLink="/profileLog"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@Profile"
+                >Profile</a
+              >
+              <a
+                class="dropdown-item"
+                (click)="logout()"
+                style="color: white; cursor: pointer"
+                i18n="@@jflogout"
+                >Logout</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
-  </nav>
 </div>
-</div><!-- End Header -->
+<!-- End Header -->
 
 <main>
   <section class="completed" id="completed">
     <!-- Central Modal Medium Danger -->
-    <div class="modal fade" id="centralModalDanger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-      aria-hidden="true">
+    <div
+      class="modal fade"
+      id="centralModalDanger"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-notify modal-danger" role="document">
         <!--Content-->
         <div class="modal-content">
           <!--Header-->
           <div class="modal-header" style="background-color: #253d84">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <a aria-hidden="true" style="font-size: 20px" class="text-white">&times;</a>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <a aria-hidden="true" style="font-size: 20px" class="text-white"
+                >&times;</a
+              >
             </button>
           </div>
 
@@ -138,16 +305,28 @@
 
           <!--Footer-->
           <div class="modal-footer justify-content-center">
-            <a type="button" href="dbkl/noticeform" class="btn" style="background-color: #253d84; color: #fff"
-              i18n="@@yes">Yes <i class="far fa-gem ml-1 text-white"></i></a>
-            <a type="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal" i18n="@@no">No</a>
+            <a
+              type="button"
+              href="dbkl/noticeform"
+              class="btn"
+              style="background-color: #253d84; color: #fff"
+              i18n="@@yes"
+              >Yes <i class="far fa-gem ml-1 text-white"></i
+            ></a>
+            <a
+              type="button"
+              class="btn btn-outline-danger waves-effect"
+              data-dismiss="modal"
+              i18n="@@no"
+              >No</a
+            >
           </div>
         </div>
         <!--/.Content-->
       </div>
     </div>
 
-    <div class="card1" style="border:1px solid #e6e6e6;border-radius:4px">
+    <div class="card1" style="border: 1px solid #e6e6e6; border-radius: 4px">
       <div class="section-title">
         <span i18n="@@p2">WORK FORM IN THE FIELD</span>
         <h2 i18n="@@p2">WORK FORM IN THE FIELD</h2>
@@ -158,118 +337,245 @@
           <div class="col-md-4"></div>
 
           <div class="col-md-12">
-            <h5 style="background-color: #253d84" class="card-header info-color white-text">
-              <strong style="color: white" i18n="@@p3">COMPLAINANT'S INFORMATION</strong>
+            <h5
+              style="background-color: #253d84"
+              class="card-header info-color white-text"
+            >
+              <strong style="color: white" i18n="@@p3"
+                >COMPLAINANT'S INFORMATION</strong
+              >
             </h5>
           </div>
           <div class="form-group col-md-6" style="margin-top: 10px">
             <label for="inputEmail4" i18n="@@admin3"> Name </label>
-            <input type="text" class="form-control" id="inputEmail4" name="information_name"
-              [(ngModel)]="information_name" readonly />
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              name="information_name"
+              [(ngModel)]="information_name"
+              readonly
+            />
           </div>
 
           <div class="form-group col-md-6" style="margin-top: 10px">
-            <label for="inputEmail4" i18n="@@p4">Date of Receipt of Complaint</label>
-            <input type="text" class="form-control" id="inputEmail4" name="tarikh_terima_aduan"
-              [(ngModel)]="tarikh_terima_aduan" readonly />
+            <label for="inputEmail4" i18n="@@p4"
+              >Date of Receipt of Complaint</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              name="tarikh_terima_aduan"
+              [(ngModel)]="tarikh_terima_aduan"
+              readonly
+            />
           </div>
 
           <div class="form-group col-md-12">
             <label for="inputEmail4" i18n="@@n40">Address</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="" name="pengadu_alamat"
-              [(ngModel)]="pengadu_alamat" readonly />
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              placeholder=""
+              name="pengadu_alamat"
+              [(ngModel)]="pengadu_alamat"
+              readonly
+            />
           </div>
 
           <div class="form-group col-md-6">
             <label for="inputEmail4" i18n="@@p5">No reference</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="" name="no_rujukan"
-              [(ngModel)]="no_rujukan" readonly />
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              placeholder=""
+              name="no_rujukan"
+              [(ngModel)]="no_rujukan"
+              readonly
+            />
           </div>
 
           <div class="form-group col-md-6">
             <label for="inputEmail4" i18n="@@admin5">E-mail</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="" name="emel" [(ngModel)]="emel"
-              readonly />
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail4"
+              placeholder=""
+              name="emel"
+              [(ngModel)]="emel"
+              readonly
+            />
           </div>
 
           <div class="form-group col-md-6">
             <label for="inputEmail4" i18n="@@p6">Telephone No</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="" name="no_telefon"
-              [(ngModel)]="no_telefon" readonly />
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              placeholder=""
+              name="no_telefon"
+              [(ngModel)]="no_telefon"
+              readonly
+            />
           </div>
           <div class="form-group col-md-6">
             <label for="inputEmail4" i18n="@@p7">No facsimile</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="" name="no_faksimili"
-              [(ngModel)]="no_faksimili" readonly />
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              placeholder=""
+              name="no_faksimili"
+              [(ngModel)]="no_faksimili"
+              readonly
+            />
           </div>
 
           <div class="form-group col-md-12">
-            <h5 style="background-color: #253d84" class="card-header info-color white-text py-6">
-              <strong style="color: white" i18n="@@p8">PUBLIC COMPLAINT INFORMATION</strong>
+            <h5
+              style="background-color: #253d84"
+              class="card-header info-color white-text py-6"
+            >
+              <strong style="color: white" i18n="@@p8"
+                >PUBLIC COMPLAINT INFORMATION</strong
+              >
             </h5>
           </div>
 
           <div class="form-group col-md-6">
             <label for="inputEmail4" i18n="@@p24"> Source Complaint</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="" name="sumber_aduan"
-              [(ngModel)]="sumber_aduan" readonly />
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              placeholder=""
+              name="sumber_aduan"
+              [(ngModel)]="sumber_aduan"
+              readonly
+            />
           </div>
 
           <div class="form-group col-md-6"></div>
 
           <div class="form-group col-md-6">
             <label for="inputEmail4" i18n="@@mtbwrkfrm17">
-              Other (specific)</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="" [(ngModel)]="lain_lain"
-              name="lain_lain" readonly />
+              Other (specific)</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              placeholder=""
+              [(ngModel)]="lain_lain"
+              name="lain_lain"
+              readonly
+            />
           </div>
           <div class="form-group col-md-6"></div>
 
           <div class="form-group col-md-6">
             <label for="inputEmail4" i18n="@@p9">Date of Complaint</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="" name="tarikh_aduan"
-              [(ngModel)]="tarikh_aduan" readonly />
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              placeholder=""
+              name="tarikh_aduan"
+              [(ngModel)]="tarikh_aduan"
+              readonly
+            />
           </div>
           <div class="form-group col-md-6">
             <label for="inputEmail4" i18n="@@p10">Acceptance date</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="" name="tarikh_terima"
-              [(ngModel)]="tarikh_terima" readonly />
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              placeholder=""
+              name="tarikh_terima"
+              [(ngModel)]="tarikh_terima"
+              readonly
+            />
           </div>
 
           <div class="form-group col-md-12">
             <label for="inputEmail4" i18n="@@p11">Location of Complaint</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="" name="lokasi_aduan"
-              [(ngModel)]="lokasi_aduan" readonly />
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              placeholder=""
+              name="lokasi_aduan"
+              [(ngModel)]="lokasi_aduan"
+              readonly
+            />
           </div>
 
           <div class="form-group col-md-12">
-            <label for="inputEmail4" i18n="@@p12">Description of Complaint</label>
-            <textarea class="form-control form-status mb-2" name="status" aria-label="With textarea"
-              [(ngModel)]="keterangan_aduan" readonly></textarea>
+            <label for="inputEmail4" i18n="@@p12"
+              >Description of Complaint</label
+            >
+            <textarea
+              class="form-control form-status mb-2"
+              name="status"
+              aria-label="With textarea"
+              [(ngModel)]="keterangan_aduan"
+              readonly
+            ></textarea>
           </div>
 
           <div class="form-g-roup col-md-12">
-            <h5 style="background-color: #253d84" class="card-header info-color white-text py-6">
-              <strong style="color: white" i18n="@@p14">INVESTIGATION INFORMATION
+            <h5
+              style="background-color: #253d84"
+              class="card-header info-color white-text py-6"
+            >
+              <strong style="color: white" i18n="@@p14"
+                >INVESTIGATION INFORMATION
               </strong>
             </h5>
           </div>
           <div class="form-group col-md-6">
             <label for="select" i18n="@@mtbwrkfrm33">Zone</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="" name="zon" [(ngModel)]="zon"
-              readonly />
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              placeholder=""
+              name="zon"
+              [(ngModel)]="zon"
+              readonly
+            />
           </div>
           <div class="form-group col-md-6"></div>
           <div class="form-group col-md-6">
             <label for="inputEmail4" i18n="@@p16">Investigation Date</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="" name="tarikh_siasatan"
-              [(ngModel)]="tarikh_siasatan" readonly />
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              placeholder=""
+              name="tarikh_siasatan"
+              [(ngModel)]="tarikh_siasatan"
+              readonly
+            />
           </div>
           <div class="form-group col-md-6"></div>
           <div class="form-group col-md-6">
             <label for="inputEmail4" i18n="@@p17">Name of officer</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="" name="nama_pegawai"
-              [(ngModel)]="nama_pegawai" readonly />
+            <input
+              type="text"
+              class="form-control"
+              id="inputEmail4"
+              placeholder=""
+              name="nama_pegawai"
+              [(ngModel)]="nama_pegawai"
+              readonly
+            />
           </div>
 
           <!-- <div class="form-group col-md-8">
@@ -280,67 +586,127 @@
           </div> -->
 
           <div class="form-group col-md-12">
-            <h5 style="background-color: #253d84" class="card-header info-color white-text py-6">
-              <strong style="color: white" i18n="@@p19">INVESTIGATION REPORT</strong>
+            <h5
+              style="background-color: #253d84"
+              class="card-header info-color white-text py-6"
+            >
+              <strong style="color: white" i18n="@@p19"
+                >INVESTIGATION REPORT</strong
+              >
             </h5>
           </div>
           <div class="form-group col-md-12">
-            <textarea class="form-control form-status mb-2" name="laporan_siasatan" aria-label="With textarea"
-              [(ngModel)]="laporan_siasatan" readonly></textarea>
+            <textarea
+              class="form-control form-status mb-2"
+              name="laporan_siasatan"
+              aria-label="With textarea"
+              [(ngModel)]="laporan_siasatan"
+              readonly
+            ></textarea>
           </div>
           <div class="form-group col-md-12">
-            <h5 style="background-color: #253d84" class="card-header info-color white-text py-6">
+            <h5
+              style="background-color: #253d84"
+              class="card-header info-color white-text py-6"
+            >
               <strong style="color: white" i18n="@@p20">NO</strong>
             </h5>
           </div>
 
           <div class="form-group col-md-12">
-            <textarea class="form-control form-status mb-2" name="tindakan" aria-label="With textarea"
-              [(ngModel)]="tindakan" readonly></textarea>
+            <textarea
+              class="form-control form-status mb-2"
+              name="tindakan"
+              aria-label="With textarea"
+              [(ngModel)]="tindakan"
+              readonly
+            ></textarea>
           </div>
           <div class="form-group col-md-12">
-            <h5 style="background-color: #253d84" class="card-header info-color white-text py-6">
+            <h5
+              style="background-color: #253d84"
+              class="card-header info-color white-text py-6"
+            >
               <strong style="color: white" i18n="@@p21"> SUSULAN</strong>
             </h5>
           </div>
           <div class="form-group col-md-12">
-            <textarea class="form-control form-status mb-2" name="susulan" aria-label="With textarea"
-              [(ngModel)]="susulan" readonly></textarea>
+            <textarea
+              class="form-control form-status mb-2"
+              name="susulan"
+              aria-label="With textarea"
+              [(ngModel)]="susulan"
+              readonly
+            ></textarea>
           </div>
 
           <div class="col-md-6">
-            <h5 style="background-color: #253d84" class="card-header info-color white-text py-6">
-              <strong style="color: white" i18n="@@p22">SUPERVISOR'S REVIEW (MTK)</strong>
+            <h5
+              style="background-color: #253d84"
+              class="card-header info-color white-text py-6"
+            >
+              <strong style="color: white" i18n="@@p22"
+                >SUPERVISOR'S REVIEW (MTK)</strong
+              >
             </h5>
           </div>
           <div class="col-md-6">
-            <h5 style="background-color: #253d84" class="card-header info-color white-text py-6">
-              <strong style="color: white" i18n="@@p23">SECTION HEAD'S COMMENT (P/J)</strong>
+            <h5
+              style="background-color: #253d84"
+              class="card-header info-color white-text py-6"
+            >
+              <strong style="color: white" i18n="@@p23"
+                >SECTION HEAD'S COMMENT (P/J)</strong
+              >
             </h5>
           </div>
 
           <div class="form-group col-md-6">
-            <textarea class="form-control form-status mb-2" name="ullasan_penyelia" aria-label="With textarea"
-              [(ngModel)]="ullasan_penyelia" readonly></textarea>
+            <textarea
+              class="form-control form-status mb-2"
+              name="ullasan_penyelia"
+              aria-label="With textarea"
+              [(ngModel)]="ullasan_penyelia"
+              readonly
+            ></textarea>
           </div>
           <div class="form-group col-md-6">
-            <textarea class="form-control form-status mb-2" name="ullasan_ketua_seksyen" aria-label="With textarea"
-              [(ngModel)]="ullasan_ketua_seksyen" readonly></textarea>
+            <textarea
+              class="form-control form-status mb-2"
+              name="ullasan_ketua_seksyen"
+              aria-label="With textarea"
+              [(ngModel)]="ullasan_ketua_seksyen"
+              readonly
+            ></textarea>
           </div>
           <div class="col-md-6">
-            <h5 style="background-color: #253d84" class="card-header info-color white-text py-6">
-              <strong style="color: white" i18n="@@cothou">COMMENTS OF THE HEAD OF UNIT</strong>
+            <h5
+              style="background-color: #253d84"
+              class="card-header info-color white-text py-6"
+            >
+              <strong style="color: white" i18n="@@cothou"
+                >COMMENTS OF THE HEAD OF UNIT</strong
+              >
             </h5>
           </div>
           <div class="col-md-6"></div>
           <div class="form-group col-md-6">
-            <textarea class="form-control form-status mb-2" name="ulasanKetua_unitf1" aria-label="With textarea"
-              [(ngModel)]="ulasanKetua_unitf1" readonly></textarea>
+            <textarea
+              class="form-control form-status mb-2"
+              name="ulasanKetua_unitf1"
+              aria-label="With textarea"
+              [(ngModel)]="ulasanKetua_unitf1"
+              readonly
+            ></textarea>
           </div>
 
           <div class="col-md-12 text-center mb-4">
-            <a [routerLink]="['/dbkl/mtbdailyjobinfo']" [queryParams]="{ value: date, value2: id, value3: parliamen }">
-              <button class="look_for_red" i18n="@@bc1">Back</button></a>
+            <a
+              [routerLink]="['/dbkl/mtbdailyjobinfo']"
+              [queryParams]="{ value: date, value2: id, value3: parliamen }"
+            >
+              <button class="look_for_red" i18n="@@bc1">Back</button></a
+            >
           </div>
         </div>
       </form>
@@ -352,5 +718,9 @@
 <!-- ======= Footer ======= -->
 <app-footer></app-footer>
 <!-- End Footer -->
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
-    class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>

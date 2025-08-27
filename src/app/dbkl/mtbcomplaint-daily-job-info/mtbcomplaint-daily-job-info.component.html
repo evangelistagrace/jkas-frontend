@@ -1,192 +1,395 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
-    [fullScreen]="true">
-
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#253d84"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+>
 </ngx-spinner>
 <!-- Topbar -->
 <app-topbar></app-topbar>
 <!-- End of Topbar -->
-<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
-    <div class="container-fluid" ngStickyNav>
-        <nav class="navbar navbar-expand-lg">
-            <a routerLink="/public" class="navbar-brand ">
-                <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+<div
+  class="container-fluid sticky-nav"
+  id=""
+  style="background-color: #f2f2f2 !important"
+>
+  <div class="container-fluid" ngStickyNav>
+    <nav class="navbar navbar-expand-lg">
+      <a routerLink="/public" class="navbar-brand">
+        <img src="assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
+      </a>
 
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fa fa-bars text-white"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a
+              routerLink="/dbkl/dbklmainpage"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home"
+              >HOME</a
+            >
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              *ngIf="
+                userrole == 'Superadmin' ||
+                userrole == 'MerinyuMTB' ||
+                userrole == 'Kewangan' ||
+                userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+              "
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n11"
+            >
+              MTB
             </a>
-
-
-
-
-            <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
-                data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="fa fa-bars text-white"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li class="nav-item">
-                        <a routerLink="/dbkl/dbklmainpage" class="nav-link"
-                            style="color: #253d84 !important; cursor: pointer" i18n="@@home">HOME</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" 
-                            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                            id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" style="color: #253d84 !important; cursor: pointer" i18n="@@n11">
-                            MTB
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item"
-                                *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                                i18n="@@n12" routerLink="/dbkl/mapview">Map View</a>
-                    <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle"
-                            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                            style="color: white; cursor: pointer" i18n="@@n15">Field Form</a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a routerLink="/dbkl/mtbwork-form"
-                                    *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                                    class="dropdown-item" i18n="@@n13">Work Form</a>
-                            </li>
-                            <li>
-                                <a routerLink="/dbkl/mtbcompoundform" class="dropdown-item"
-                                    *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                                    i18n="@@n14">Compound Form</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle"
-                            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                            style="color: white; cursor: pointer" i18n="@@n16">Work Log</a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a routerLink="/dbkl/mtbwork-log"
-                                    *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                                    class="dropdown-item" i18n="@@n17">Daily Work / Complaints</a>
-                            </li>
-                            <li>
-                                <a routerLink="/dbkl/mtblistofcompound"
-                                    *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                                    class="dropdown-item" i18n="@@n18">List of Compounds</a>
-                            </li>
-                        </ul>
-                    </li>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a
+                class="dropdown-item"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTB' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                i18n="@@n12"
+                routerLink="/dbkl/mapview"
+                >Map View</a
+              >
+              <li class="dropdown-submenu">
+                <a
+                  class="dropdown-item dropdown-toggle"
+                  *ngIf="
+                    userrole == 'Superadmin' ||
+                    userrole == 'MerinyuMTB' ||
+                    userrole == 'Kewangan' ||
+                    userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                  "
+                  style="color: white; cursor: pointer"
+                  i18n="@@n15"
+                  >Field Form</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtbwork-form"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      class="dropdown-item"
+                      i18n="@@n13"
+                      >Work Form</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtbcompoundform"
+                      class="dropdown-item"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      i18n="@@n14"
+                      >Compound Form</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                <a
+                  class="dropdown-item dropdown-toggle"
+                  *ngIf="
+                    userrole == 'Superadmin' ||
+                    userrole == 'MerinyuMTB' ||
+                    userrole == 'Kewangan' ||
+                    userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                  "
+                  style="color: white; cursor: pointer"
+                  i18n="@@n16"
+                  >Work Log</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtbwork-log"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      class="dropdown-item"
+                      i18n="@@n17"
+                      >Daily Work / Complaints</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtblistofcompound"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      class="dropdown-item"
+                      i18n="@@n18"
+                      >List of Compounds</a
+                    >
+                  </li>
+                </ul>
+              </li>
             </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle"
-                    *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                    id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false" style="color: #253d84 !important; cursor: pointer" i18n="@@n19">
-                    MTK
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item"
-                        *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                        style="color: white; cursor: pointer" routerLink="/dbkl/mtkmapview" i18n="@@n20">Monitoring
-                        MTK</a>
-                        <a routerLink="/dbkl/mtkworkform"
-                        *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                        class="dropdown-item" (click)="getUser('financial')" i18n="@@n13" style="cursor: pointer;">Work Form</a>
-                    <a routerLink="/dbkl/mtbcompoundform"
-                        *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                        class="dropdown-item" i18n="@@n14" style="cursor: pointer;">Compound
-                        Form</a>
-                    <a routerLink="/dbkl/inspectingofficers"
-                        *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                        class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n21">Work MTB</a>
-                    <a routerLink="/dbkl/mtblistofcompound"
-                        *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                        class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n22">Compound MTB</a>
-                </div>
-            </li>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              *ngIf="
+                userrole == 'Superadmin' ||
+                userrole == 'MerinyuMTK' ||
+                userrole == 'Kewangan' ||
+                userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+              "
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n19"
+            >
+              MTK
+            </a>
+            <div class="dropdown-menu">
+              <a
+                class="dropdown-item"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                style="color: white; cursor: pointer"
+                routerLink="/dbkl/mtkmapview"
+                i18n="@@n20"
+                >Monitoring MTK</a
+              >
+              <a
+                routerLink="/dbkl/mtkworkform"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                (click)="getUser('financial')"
+                i18n="@@n13"
+                style="cursor: pointer"
+                >Work Form</a
+              >
+              <a
+                routerLink="/dbkl/mtbcompoundform"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                i18n="@@n14"
+                style="cursor: pointer"
+                >Compound Form</a
+              >
+              <a
+                routerLink="/dbkl/inspectingofficers"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n21"
+                >Work MTB</a
+              >
+              <a
+                routerLink="/dbkl/mtblistofcompound"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n22"
+                >Compound MTB</a
+              >
+            </div>
+          </li>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
-                    {{ username }}
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
-                        i18n="@@Profile">Profile</a>
-                    <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
-                        i18n="@@jflogout">Logout</a>
-                </div>
-            </li>
-            </ul>
-    </div>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+            >
+              {{ username }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a
+                routerLink="/profileLog"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@Profile"
+                >Profile</a
+              >
+              <a
+                class="dropdown-item"
+                (click)="logout()"
+                style="color: white; cursor: pointer"
+                i18n="@@jflogout"
+                >Logout</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
     </nav>
+  </div>
 </div>
-</div><!-- End Header -->
+<!-- End Header -->
 <main id="main">
-    <section id="inspecting">
-        <div class="card">
-            <div class="col d-flex justify-content-end print">
-                <button printSectionId="main" [useExistingCss]="true" ngxPrint type="button"
-                    style="border: 1px solid transparent; background: transparent">
-                    <i style="
+  <section id="inspecting">
+    <div class="card">
+      <div class="col d-flex justify-content-end print">
+        <button
+          printSectionId="main"
+          [useExistingCss]="true"
+          ngxPrint
+          type="button"
+          style="border: 1px solid transparent; background: transparent"
+        >
+          <i
+            style="
               font-size: 30px;
               color: #419641;
               cursor: pointer;
               float: right;
               margin-top: 1em;
-            " id="print" class="fa fa-print" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="text-center">
-                <div class="section-title">
-                    <!-- <span>PROSES PERMOHONAN PPSSPPA</span>
+            "
+            id="print"
+            class="fa fa-print"
+            aria-hidden="true"
+          ></i>
+        </button>
+      </div>
+      <div class="text-center">
+        <div class="section-title">
+          <!-- <span>PROSES PERMOHONAN PPSSPPA</span>
 
                   <h2>PROSES PERMOHONAN PPSSPPA</h2> -->
-                    <span i18n="@@dwi1">Complaint Daily Work Information</span>
-                    <h2 i18n="@@dwi1">Complaint Daily Work Information</h2>
-                </div>
+          <span i18n="@@dwi1">Complaint Daily Work Information</span>
+          <h2 i18n="@@dwi1">Complaint Daily Work Information</h2>
+        </div>
+      </div>
+
+      <div
+        class="container-fluid mb-3 d-flex justify-content-center viewSelect"
+      >
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            style="cursor: pointer"
+            name="inlineRadioOptions"
+            id="inlineRadio1"
+            value="2"
+          />
+          <label class="form-check-label" for="inlineRadio1" i18n="@@dwi2"
+            >Map View</label
+          >
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            style="cursor: pointer"
+            type="radio"
+            name="inlineRadioOptions"
+            id="inlineRadio2"
+            value="3"
+            checked
+          />
+          <label class="form-check-label" for="inlineRadio1" i18n="@@dwi3"
+            >Table View</label
+          >
+        </div>
+      </div>
+      <div class="d-flex justify-content-center viewSelect">
+        <div class="col-sm-6 d-flex justify-content-center mtbId">
+          <b i18n="@@dji1">Lower Level Inspection ID (MTB) : </b>{{ mtbnames }}
+        </div>
+        <div class="col-sm-3 d-flex justify-content-center parliamentt">
+          <b i18n="@@dji2">Parliament : </b> {{ parliamen }}
+        </div>
+        <div class="col-sm-3 d-flex justify-content-center datee">
+          <b i18n="@@dji3">Date : </b> {{ date }}
+        </div>
+      </div>
+
+      <div class="desc" id="jkas2">
+        <div class="d-flex justify-content-center selectBox mb-2" id="mapView">
+          <div class="col-md-3">
+            <label i18n="@@dwi5"> Parliament </label>
+            <select
+              class="browser-default custom-select"
+              (change)="selectChangeHandler($event)"
+              id="select"
+            >
+              <option value="" disabled="" selected="">Pilih Parlimen</option>
+              <option *ngFor="let parlia of parliaments">{{ parlia }}</option>
+            </select>
+
+            <div>
+              <i
+                *ngIf="check"
+                style="font-size: small; color: red; font-weight: bold"
+                i18n="@@pleaseParliament"
+                >*Please Select Parliament</i
+              >
             </div>
 
-            <div class="container-fluid mb-3 d-flex justify-content-center viewSelect">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" style="cursor: pointer" name="inlineRadioOptions"
-                        id="inlineRadio1" value="2" />
-                    <label class="form-check-label" for="inlineRadio1" i18n="@@dwi2">Map View</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" style="cursor: pointer" type="radio" name="inlineRadioOptions"
-                        id="inlineRadio2" value="3" checked />
-                    <label class="form-check-label" for="inlineRadio1" i18n="@@dwi3">Table View</label>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center viewSelect">
-                <div class="col-sm-6 d-flex justify-content-center mtbId">
-                    <b i18n="@@dji1">Lower Level Inspection ID (MTB) : </b>{{ mtbnames }}
-                </div>
-                <div class="col-sm-3 d-flex justify-content-center parliamentt">
-                    <b i18n="@@dji2">Parliament : </b> {{ parliamen }}
-                </div>
-                <div class="col-sm-3 d-flex justify-content-center datee">
-                    <b i18n="@@dji3">Date : </b> {{ date }}
-                </div>
-            </div>
-
-            <div class="desc" id="jkas2">
-                <div class="d-flex justify-content-center selectBox mb-2" id="mapView">
-                    <div class="col-md-3">
-                        <label i18n="@@dwi5"> Parliament </label>
-                        <select class="browser-default custom-select" (change)="selectChangeHandler($event)"
-                            id="select">
-                            <option value="" disabled="" selected="">
-                                Pilih Parlimen
-                            </option>
-                            <option *ngFor="let parlia of parliaments">{{ parlia }}</option>
-                        </select>
-
-                        <div>
-                            <i *ngIf="check" style="font-size: small; color: red; font-weight: bold"
-                                i18n="@@pleaseParliament">*Please Select Parliament</i>
-                        </div>
-
-                        <label i18n="@@dwi8"> Location </label>
-                        <!-- <select class="browser-default custom-select" id="select1" (change)="getLocation($event)">
+            <label i18n="@@dwi8"> Location </label>
+            <!-- <select class="browser-default custom-select" id="select1" (change)="getLocation($event)">
                             <option value="" disabled="" selected="">
                                 Select the Location
                             </option>
@@ -194,143 +397,238 @@
                                 {{ data }}
                             </option>
                         </select> -->
-                        <input class="form-control" list="data" name="data" id="select1"
-                            (change)="getLocation($event)" />
-                        <datalist id="data">
-                            <option value="" disabled="" selected="">
-                                Select the Location
-                            </option>
-                            <option *ngFor="let data of parliament" [value]="data"></option>
-                        </datalist>
+            <input
+              class="form-control"
+              list="data"
+              name="data"
+              id="select1"
+              (change)="getLocation($event)"
+            />
+            <datalist id="data">
+              <option value="" disabled="" selected="">
+                Select the Location
+              </option>
+              <option *ngFor="let data of parliament" [value]="data"></option>
+            </datalist>
 
-                        <div>
-                            <i *ngIf="check1" style="font-size: small; color: red; font-weight: bold"
-                                i18n="@@pleaseParliament">*Please Select Parliament</i>
-                        </div>
-                    </div>
-
-                    <!--  -->
-                    <div class="col-md-3 sweep">
-                        <label i18n="@@dwi9"> Sweep</label><br />
-                        <div id="listResults">
-                            <div class="col-xs-12">
-                                <div class="col-xs-2 d-flex">
-                                    <div class="checkbox checkbox-circle checkbox-red text-center">
-                                        <input id="checkbox2" (change)="selectedvalue($event)" name="vehicle1"
-                                            value="Jalan" type="checkbox" />
-                                        <label></label>
-                                    </div>
-                                    <div class="items ml-2" i18n="@@dwi11">The Road</div>
-                                </div>
-                                <div class="col-xs-2 d-flex">
-                                    <div class="checkbox checkbox-circle checkbox-yellow text-center">
-                                        <input id="checkbox3" (change)="selectedvalue($event)" name="vehicle2"
-                                            value="TPKK" type="checkbox" />
-                                        <label></label>
-                                    </div>
-                                    <div class="items ml-2">TPKK</div>
-                                </div>
-                                <div class="col-xs-2 d-flex">
-                                    <div class="checkbox checkbox-circle checkbox-green text-center">
-                                        <input id="checkbox4" (change)="selectedvalue($event)" name="vehicle3"
-                                            value="Kaw Lapang" type="checkbox" />
-                                        <label></label>
-                                    </div>
-                                    <div class="items ml-2" i18n="@@mv2">Kaw. Field/Parking</div>
-                                </div>
-                                <div class="col-xs-2 d-flex">
-                                    <div class="checkbox checkbox-circle checkbox-blue text-center">
-                                        <input id="checkbox5" (change)="selectedvalue($event)" name="vehicle3"
-                                            value="Sapuan Jejentas" type="checkbox" />
-                                        <label></label>
-                                    </div>
-                                    <div class="items ml-2" i18n="@@mv3">Bridges</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
-                    <div class="col-md-3 lokasi">
-                        <label i18n="@@dwi8"> Location</label><br />
-                        <div id="listResults">
-                            <div class="col-xs-12">
-                                <div class="col-xs-2 d-flex">
-                                    <div class="checkbox checkbox-circle checkbox-orange text-center">
-                                        <input id="checkbox2" (change)="selectedvalue($event)" value="Cucian Jejentas"
-                                            type="checkbox" />
-                                        <label></label>
-                                    </div>
-                                    <div class="items ml-2" i18n="@@mv3">Bridges</div>
-                                </div>
-                                <div class="col-xs-2 d-flex">
-                                    <div class="checkbox checkbox-circle checkbox-purple text-center">
-                                        <input id="checkbox3" (change)="selectedvalue($event)" value="Siar Kaki"
-                                            type="checkbox" />
-                                        <label></label>
-                                    </div>
-                                    <div class="items ml-2" i18n="@@mv4">Post legs</div>
-                                </div>
-                                <div class="col-xs-2 d-flex">
-                                    <div class="checkbox checkbox-circle checkbox-red text-center">
-                                        <input id="checkbox4" (change)="selectedvalue($event)"
-                                            value="Siar Kaki Berbumbung" type="checkbox" />
-                                        <label></label>
-                                    </div>
-                                    <div class="items ml-2" i18n="@@mv5">Post Covered Legs</div>
-                                </div>
-                                <div class="col-xs-2 d-flex">
-                                    <div class="checkbox checkbox-circle checkbox-teal text-center">
-                                        <input id="checkbox5" (change)="selectedvalue($event)" value="Stesen Bas"
-                                            type="checkbox" />
-                                        <label></label>
-                                    </div>
-                                    <div class="items ml-2" i18n="@@mv6">Bus/Taxi Station</div>
-                                </div>
-                                <div class="col-xs-2 d-flex">
-                                    <div class="checkbox checkbox-circle checkbox-black text-center">
-                                        <input id="checkbox6" (change)="selectedvalue($event)" value="Longkang"
-                                            type="checkbox" />
-                                        <label></label>
-                                    </div>
-                                    <div class="items ml-2" i18n="@@mv7">Drain</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 d-flex justify-content-center buttons" style="align-self: center">
-                        <button class="look_for" style="width: 100px" i18n="@@dwi20" (click)="Search()">
-                            Search
-                        </button>
-                        <button class="look_for_red" style="width: 100px" (click)="onReset()" type="reset"
-                            i18n="@@reset">
-                            Reset
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div id="mapId" style="height: 100vh; margin-bottom: 15px" leaflet [leafletOptions]="options"
-                        (leafletMapReady)="onMapReady($event)"></div>
-                </div>
-            </div>
-            <div class="desc mm" id="jkas3">
-                <div class="table-responsive col-md-12" style="margin-bottom: 15px">
-                    <div class="card mtt">
-                        <ng2-smart-table [settings]="settings" [source]="data">
-                        </ng2-smart-table>
-                    </div>
-                </div>
-            </div>
             <div>
-                <button (click)="cancel()" style="margin-right: 30px;" class="look_for_red" type="button" i18n="@@n74">
-                    Back
-                </button>
+              <i
+                *ngIf="check1"
+                style="font-size: small; color: red; font-weight: bold"
+                i18n="@@pleaseParliament"
+                >*Please Select Parliament</i
+              >
             </div>
+          </div>
+
+          <!--  -->
+          <div class="col-md-3 sweep">
+            <label i18n="@@dwi9"> Sweep</label><br />
+            <div id="listResults">
+              <div class="col-xs-12">
+                <div class="col-xs-2 d-flex">
+                  <div
+                    class="checkbox checkbox-circle checkbox-red text-center"
+                  >
+                    <input
+                      id="checkbox2"
+                      (change)="selectedvalue($event)"
+                      name="vehicle1"
+                      value="Jalan"
+                      type="checkbox"
+                    />
+                    <label></label>
+                  </div>
+                  <div class="items ml-2" i18n="@@dwi11">The Road</div>
+                </div>
+                <div class="col-xs-2 d-flex">
+                  <div
+                    class="checkbox checkbox-circle checkbox-yellow text-center"
+                  >
+                    <input
+                      id="checkbox3"
+                      (change)="selectedvalue($event)"
+                      name="vehicle2"
+                      value="TPKK"
+                      type="checkbox"
+                    />
+                    <label></label>
+                  </div>
+                  <div class="items ml-2">TPKK</div>
+                </div>
+                <div class="col-xs-2 d-flex">
+                  <div
+                    class="checkbox checkbox-circle checkbox-green text-center"
+                  >
+                    <input
+                      id="checkbox4"
+                      (change)="selectedvalue($event)"
+                      name="vehicle3"
+                      value="Kaw Lapang"
+                      type="checkbox"
+                    />
+                    <label></label>
+                  </div>
+                  <div class="items ml-2" i18n="@@mv2">Kaw. Field/Parking</div>
+                </div>
+                <div class="col-xs-2 d-flex">
+                  <div
+                    class="checkbox checkbox-circle checkbox-blue text-center"
+                  >
+                    <input
+                      id="checkbox5"
+                      (change)="selectedvalue($event)"
+                      name="vehicle3"
+                      value="Sapuan Jejentas"
+                      type="checkbox"
+                    />
+                    <label></label>
+                  </div>
+                  <div class="items ml-2" i18n="@@mv3">Bridges</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+          <div class="col-md-3 lokasi">
+            <label i18n="@@dwi8"> Location</label><br />
+            <div id="listResults">
+              <div class="col-xs-12">
+                <div class="col-xs-2 d-flex">
+                  <div
+                    class="checkbox checkbox-circle checkbox-orange text-center"
+                  >
+                    <input
+                      id="checkbox2"
+                      (change)="selectedvalue($event)"
+                      value="Cucian Jejentas"
+                      type="checkbox"
+                    />
+                    <label></label>
+                  </div>
+                  <div class="items ml-2" i18n="@@mv3">Bridges</div>
+                </div>
+                <div class="col-xs-2 d-flex">
+                  <div
+                    class="checkbox checkbox-circle checkbox-purple text-center"
+                  >
+                    <input
+                      id="checkbox3"
+                      (change)="selectedvalue($event)"
+                      value="Siar Kaki"
+                      type="checkbox"
+                    />
+                    <label></label>
+                  </div>
+                  <div class="items ml-2" i18n="@@mv4">Post legs</div>
+                </div>
+                <div class="col-xs-2 d-flex">
+                  <div
+                    class="checkbox checkbox-circle checkbox-red text-center"
+                  >
+                    <input
+                      id="checkbox4"
+                      (change)="selectedvalue($event)"
+                      value="Siar Kaki Berbumbung"
+                      type="checkbox"
+                    />
+                    <label></label>
+                  </div>
+                  <div class="items ml-2" i18n="@@mv5">Post Covered Legs</div>
+                </div>
+                <div class="col-xs-2 d-flex">
+                  <div
+                    class="checkbox checkbox-circle checkbox-teal text-center"
+                  >
+                    <input
+                      id="checkbox5"
+                      (change)="selectedvalue($event)"
+                      value="Stesen Bas"
+                      type="checkbox"
+                    />
+                    <label></label>
+                  </div>
+                  <div class="items ml-2" i18n="@@mv6">Bus/Taxi Station</div>
+                </div>
+                <div class="col-xs-2 d-flex">
+                  <div
+                    class="checkbox checkbox-circle checkbox-black text-center"
+                  >
+                    <input
+                      id="checkbox6"
+                      (change)="selectedvalue($event)"
+                      value="Longkang"
+                      type="checkbox"
+                    />
+                    <label></label>
+                  </div>
+                  <div class="items ml-2" i18n="@@mv7">Drain</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-md-3 d-flex justify-content-center buttons"
+            style="align-self: center"
+          >
+            <button
+              class="look_for"
+              style="width: 100px"
+              i18n="@@dwi20"
+              (click)="Search()"
+            >
+              Search
+            </button>
+            <button
+              class="look_for_red"
+              style="width: 100px"
+              (click)="onReset()"
+              type="reset"
+              i18n="@@reset"
+            >
+              Reset
+            </button>
+          </div>
         </div>
-    </section>
+        <div class="col-md-12">
+          <div
+            id="mapId"
+            style="height: 100vh; margin-bottom: 15px"
+            leaflet
+            [leafletOptions]="options"
+            (leafletMapReady)="onMapReady($event)"
+          ></div>
+        </div>
+      </div>
+      <div class="desc mm" id="jkas3">
+        <div class="table-responsive col-md-12" style="margin-bottom: 15px">
+          <div class="card mtt">
+            <ng2-smart-table [settings]="settings" [source]="data">
+            </ng2-smart-table>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button
+          (click)="cancel()"
+          style="margin-right: 30px"
+          class="look_for_red"
+          type="button"
+          i18n="@@n74"
+        >
+          Back
+        </button>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- ======= Footer ======= -->
 <app-footer></app-footer>
 <!-- End Footer -->
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
-        class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>

@@ -1,59 +1,128 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
-  [fullScreen]="true">
-
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#253d84"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+>
 </ngx-spinner>
 <!-- ======= Top Bar ======= -->
 <app-topbar></app-topbar>
 
 <!-- ======= Header ======= -->
-<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+<div
+  class="container-fluid sticky-nav"
+  id=""
+  style="background-color: #f2f2f2 !important"
+>
   <div class="container-fluid" ngStickyNav>
     <nav class="navbar navbar-expand-lg">
-      <a routerLink="/public" class="navbar-brand ">
-        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
-
+      <a routerLink="/public" class="navbar-brand">
+        <img src="assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
       </a>
 
-      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
-        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <i class="fa fa-bars text-white"></i>
       </button>
 
-      <ul *ngIf="isAdminType == 'financial'" class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <ul
+        *ngIf="isAdminType == 'financial'"
+        class="navbar-nav ml-auto mt-2 mt-lg-0"
+      >
         <li class="nav-item">
-          <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-            i18n="@@home">HOME</a>
+          <a
+            routerLink="/dbkl/dbklmainpage"
+            class="nav-link"
+            style="color: #253d84 !important; cursor: pointer"
+            i18n="@@home"
+            >HOME</a
+          >
         </li>
 
         <li class="nav-item dropdown" id="user">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer" i18n="@@n6">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style="color: #253d84 !important; cursor: pointer"
+            i18n="@@n6"
+          >
             INVENTORY DATA
           </a>
 
           <div class="dropdown-menu">
-            <a class="dropdown-item" routerLink="/dbkl/mapview" (click)="getUser('financial')"
-              style="color: white; cursor: pointer" i18n="@@n1">Main Page</a>
-            <a routerLink="/dbkl/omplama" class="dropdown-item" (click)="getUser('financial')"
-              style="color: white; cursor: pointer" i18n="@@n8">OMP Lama</a>
-            <a routerLink="/dbkl/ompbaru" class="dropdown-item" (click)="getUser('financial')"
-              style="color: white; cursor: pointer" i18n="@@n9">New OMP</a>
-            <a routerLink="/dbkl/inactivearea" class="dropdown-item" (click)="getUser('financial')"
-              style="color: white; cursor: pointer" i18n="@@insmall">Inactive Areas</a>
-
+            <a
+              class="dropdown-item"
+              routerLink="/dbkl/mapview"
+              (click)="getUser('financial')"
+              style="color: white; cursor: pointer"
+              i18n="@@n1"
+              >Main Page</a
+            >
+            <a
+              routerLink="/dbkl/omplama"
+              class="dropdown-item"
+              (click)="getUser('financial')"
+              style="color: white; cursor: pointer"
+              i18n="@@n8"
+              >OMP Lama</a
+            >
+            <a
+              routerLink="/dbkl/ompbaru"
+              class="dropdown-item"
+              (click)="getUser('financial')"
+              style="color: white; cursor: pointer"
+              i18n="@@n9"
+              >New OMP</a
+            >
+            <a
+              routerLink="/dbkl/inactivearea"
+              class="dropdown-item"
+              (click)="getUser('financial')"
+              style="color: white; cursor: pointer"
+              i18n="@@insmall"
+              >Inactive Areas</a
+            >
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style="color: #253d84 !important; cursor: pointer"
+          >
             {{ username }}
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-            <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
-              i18n="@@Profile">Profile</a>
-            <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer"
-              i18n="@@jflogout">Logout</a>
+            <a
+              routerLink="/profileLog"
+              class="dropdown-item"
+              style="color: white; cursor: pointer"
+              i18n="@@Profile"
+              >Profile</a
+            >
+            <a
+              class="dropdown-item"
+              (click)="logout()"
+              style="color: white; cursor: pointer"
+              i18n="@@jflogout"
+              >Logout</a
+            >
           </div>
         </li>
       </ul>
@@ -63,27 +132,36 @@
 
 <!-- Modal -->
 <div id="myModal" class="modal1">
-
   <!-- Modal content -->
-  <div class="modal1-content" style="background-image: url('../../../assets/img/imagemap.jpg')">
+  <div
+    class="modal1-content"
+    style="background-image: url('../../../assets/img/imagemap.jpg')"
+  >
     <div class="modal-title">
-      <h3 style="font-size: 20px;text-align: center;"><span class="close" (click)="close()">&times;</span></h3>
-      <h3 style="font-size: 20px;text-align: center;" i18n="@@PENAFIAN">DISCLAIMER</h3>
+      <h3 style="font-size: 20px; text-align: center">
+        <span class="close" (click)="close()">&times;</span>
+      </h3>
+      <h3 style="font-size: 20px; text-align: center" i18n="@@PENAFIAN">
+        DISCLAIMER
+      </h3>
     </div>
 
-    <p align="justify" i18n="@@penaf">Disclaimer: The Mayor of Kuala Lumpur hereby affirms that all information
-      published and contained in this website is for general reference only and does not guarantee that the
-      information
-      contained therein is complete and up to date. The information displayed is subject to any change without notice.
-      For the purpose of verifying the accuracy of the information displayed, you are advised to make a verification
-      and
-      review with the Environment Division, Department of Health and Environment, Kuala Lumpur City Hall. Any party is
-      prohibited from copying, uploading, processing, republishing, posting or making any action to amend the
-      information contained in this website either in part or in whole in any form and forum without the written
-      permission of the Mayor Kuala Lumpur. The Mayor of Kuala Lumpur shall not be liable for any losses incurred as a
-      result of references made through this website</p>
+    <p align="justify" i18n="@@penaf">
+      Disclaimer: The Mayor of Kuala Lumpur hereby affirms that all information
+      published and contained in this website is for general reference only and
+      does not guarantee that the information contained therein is complete and
+      up to date. The information displayed is subject to any change without
+      notice. For the purpose of verifying the accuracy of the information
+      displayed, you are advised to make a verification and review with the
+      Environment Division, Department of Health and Environment, Kuala Lumpur
+      City Hall. Any party is prohibited from copying, uploading, processing,
+      republishing, posting or making any action to amend the information
+      contained in this website either in part or in whole in any form and forum
+      without the written permission of the Mayor Kuala Lumpur. The Mayor of
+      Kuala Lumpur shall not be liable for any losses incurred as a result of
+      references made through this website
+    </p>
   </div>
-
 </div>
 <!-- End Header -->
 <main id="main" class="main">
@@ -97,9 +175,12 @@
         <div class="row">
           <mat-form-field appearance="outline" [style.width.%]="100">
             <mat-label>Pilih Parlimen</mat-label>
-            <mat-select (selectionChange)="parliamentChange()" [(value)]="selectedParliament">
+            <mat-select
+              (selectionChange)="parliamentChange()"
+              [(value)]="selectedParliament"
+            >
               <mat-option *ngFor="let p of parliamens" [value]="p.value">
-                {{p.label}}
+                {{ p.label }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -108,15 +189,24 @@
         <div class="row">
           <mat-form-field appearance="outline" [style.width.%]="100">
             <mat-label>Pilih Perkhidmatan</mat-label>
-            <mat-select [(value)]="selectedfeaturelayer" (selectionChange)="serviceChange()">
+            <mat-select
+              [(value)]="selectedfeaturelayer"
+              (selectionChange)="serviceChange()"
+            >
               <mat-optgroup label="Jadual Kutipan">
-                <mat-option *ngFor="let k of collectionServiceInfo" [value]="k.layer">
-                  {{k.service}}
+                <mat-option
+                  *ngFor="let k of collectionServiceInfo"
+                  [value]="k.layer"
+                >
+                  {{ k.service }}
                 </mat-option>
               </mat-optgroup>
               <mat-optgroup label="Jadual Pembersihan">
-                <mat-option *ngFor="let k of cleaningServiceInfo" [value]="k.layer">
-                  {{k.service}}
+                <mat-option
+                  *ngFor="let k of cleaningServiceInfo"
+                  [value]="k.layer"
+                >
+                  {{ k.service }}
                 </mat-option>
               </mat-optgroup>
             </mat-select>
@@ -129,7 +219,7 @@
             <mat-select [(value)]="selectedStreet">
               <mat-option>None</mat-option>
               <mat-option *ngFor="let p of streets" [value]="p">
-                {{p}}
+                {{ p }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -141,7 +231,7 @@
             <mat-select [(value)]="selectedResidential">
               <mat-option>None</mat-option>
               <mat-option *ngFor="let r of residential" [value]="r">
-                {{r}}
+                {{ r }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -153,7 +243,7 @@
             <mat-select [(value)]="selectedArea">
               <mat-option>None</mat-option>
               <mat-option *ngFor="let a of area" [value]="a">
-                {{a}}
+                {{ a }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -161,49 +251,58 @@
 
         <div class="row pb-3">
           <div class="col-sm p-2">
-            <button mat-flat-button color="warn" (click)="reset()" style="margin-left: -14px;">
+            <button
+              mat-flat-button
+              color="warn"
+              (click)="reset()"
+              style="margin-left: -14px"
+            >
               <mat-icon>search_off</mat-icon>Semula
             </button>
           </div>
           <div class="col-sm p-2">
-            <button mat-flat-button color="primary" (click)="loadLayer()" style="margin-left: -7px;">
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="loadLayer()"
+              style="margin-left: -7px"
+            >
               <mat-icon>search</mat-icon>
               Cari
             </button>
           </div>
         </div>
 
-        <div class="row pb-2 font-weight-bold">
-          Paparan:
-        </div>
+        <div class="row pb-2 font-weight-bold">Paparan:</div>
         <div class="row pb-3">
-          <mat-button-toggle-group name="viewtype" aria-label="Paparan" value="maptable"
-            (change)="showTableChange2($event)">
-            <mat-button-toggle value="maptable">Peta dan Jadual</mat-button-toggle>
+          <mat-button-toggle-group
+            name="viewtype"
+            aria-label="Paparan"
+            value="maptable"
+            (change)="showTableChange2($event)"
+          >
+            <mat-button-toggle value="maptable"
+              >Peta dan Jadual</mat-button-toggle
+            >
             <mat-button-toggle value="map">Peta</mat-button-toggle>
             <mat-button-toggle value="table">Jadual</mat-button-toggle>
           </mat-button-toggle-group>
         </div>
 
-        <div class="row pb-2 font-weight-bold">
-          Lapisan Peta:
-        </div>
+        <div class="row pb-2 font-weight-bold">Lapisan Peta:</div>
         <div *ngFor="let l of gassetLayer" class="row pb-2 pl-2">
           <mat-slide-toggle [name]="l.name" (change)="handleLayer($event)">
-            {{l.label}}
+            {{ l.label }}
           </mat-slide-toggle>
         </div>
 
-
-        <div class="row pb-2 pt-2 font-weight-bold">
-          Pilihan Cetakan:
-        </div>
+        <div class="row pb-2 pt-2 font-weight-bold">Pilihan Cetakan:</div>
         <div class="row">
           <mat-form-field appearance="outline" [style.width.%]="100">
             <mat-label>Saiz Kertas</mat-label>
             <mat-select [(value)]="selectedPaper">
               <mat-option *ngFor="let p of paperSize" [value]="p">
-                {{p}}
+                {{ p }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -214,33 +313,49 @@
             Cetak
           </button>
         </div>
-
       </div>
 
       <div class="col-sm-9 col-md-9 col-xs-12 m-0 p-0" id="appContainer">
         <!--div id="mapDiv"></div-->
         <div id="mapDiv"></div>
         <div id="topbar2">
-          <button class="action-button esri-icon-measure-line" id="distanceButton" type="button"
-            title="Measure distance between two or more points"></button>
-          <button class="action-button esri-icon-measure-area" id="areaButton" type="button"
-            title="Measure area"></button>
+          <button
+            class="action-button esri-icon-measure-line"
+            id="distanceButton"
+            type="button"
+            title="Measure distance between two or more points"
+          ></button>
+          <button
+            class="action-button esri-icon-measure-area"
+            id="areaButton"
+            type="button"
+            title="Measure area"
+          ></button>
         </div>
         <div id="tableContainer2">
           <div id="tableDiv"></div>
         </div>
         <div>
-          <button (click)="cancel()" style="margin-right: 30px;" class="look_for_red" type="button" i18n="@@n74">
+          <button
+            (click)="cancel()"
+            style="margin-right: 30px"
+            class="look_for_red"
+            type="button"
+            i18n="@@n74"
+          >
             Back
           </button>
         </div>
       </div>
-
     </div>
   </section>
 </main>
 <!-- ======= Footer ======= -->
 <app-footer></app-footer>
 
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
-    class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>

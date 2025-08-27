@@ -425,7 +425,7 @@ export class PsppaapplicationproccessComponent implements OnInit {
 
   closeSuccess() {
     this.displaysuccess = "none";
-    window.location.reload();
+    // window.location.reload();
   }
 
   openError() {

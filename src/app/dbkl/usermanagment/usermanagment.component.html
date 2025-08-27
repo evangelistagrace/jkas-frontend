@@ -6,11 +6,7 @@
   <div class="container-fluid" ngStickyNav>
     <nav class="navbar navbar-expand-lg">
       <a routerLink="/public" class="navbar-brand">
-        <img
-          src="../../../assets/img/DBKL LOGO (Lorry).png"
-          alt=""
-          loading="lazy"
-        />
+        <img src="assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
       </a>
 
       <button
@@ -379,11 +375,7 @@
                   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                   [(selection)]="selectedRows"
                   (selectionChange)="onUserRowSelect($event)"
-                  [globalFilterFields]="[
-                    'id_pengguna',
-                    'peranan',
-                    'aktiviti'
-                  ]"
+                  [globalFilterFields]="['id_pengguna', 'peranan', 'aktiviti']"
                 >
                   <ng-template pTemplate="caption">
                     <div

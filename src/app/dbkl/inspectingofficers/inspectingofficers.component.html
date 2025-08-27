@@ -1,125 +1,294 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
-  [fullScreen]="true">
-
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#253d84"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+>
 </ngx-spinner>
 <!-- Topbar -->
 <app-topbar></app-topbar>
 <!-- End of Topbar -->
 <!-- ======= Header ======= -->
-<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+<div
+  class="container-fluid sticky-nav"
+  id=""
+  style="background-color: #f2f2f2 !important"
+>
   <div class="container-fluid" ngStickyNav>
     <nav class="navbar navbar-expand-lg">
-      <a routerLink="/public" class="navbar-brand ">
-        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
-
+      <a routerLink="/public" class="navbar-brand">
+        <img src="assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
       </a>
 
-
-
-
-
-      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
-        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <i class="fa fa-bars text-white"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@home">HOME</a>
+            <a
+              routerLink="/dbkl/dbklmainpage"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home"
+              >HOME</a
+            >
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"
-              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-              id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false" style="color: #253d84 !important; cursor: pointer" i18n="@@n11">
+            <a
+              class="nav-link dropdown-toggle"
+              *ngIf="
+                userrole == 'Superadmin' ||
+                userrole == 'MerinyuMTB' ||
+                userrole == 'Kewangan' ||
+                userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+              "
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n11"
+            >
               MTB
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item"
-                *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'" i18n="@@n12"
-                routerLink="/dbkl/mapview">Map View</a>
-          <li class="dropdown-submenu">
-            <a class="dropdown-item dropdown-toggle"
-              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-              style="color: white; cursor: pointer" i18n="@@n15">Field Form</a>
-            <ul class="dropdown-menu">
-              <li>
-                <a routerLink="/dbkl/mtbwork-form"
-                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                  class="dropdown-item" i18n="@@n13">Work Form</a>
+              <a
+                class="dropdown-item"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTB' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                i18n="@@n12"
+                routerLink="/dbkl/mapview"
+                >Map View</a
+              >
+              <li class="dropdown-submenu">
+                <a
+                  class="dropdown-item dropdown-toggle"
+                  *ngIf="
+                    userrole == 'Superadmin' ||
+                    userrole == 'MerinyuMTB' ||
+                    userrole == 'Kewangan' ||
+                    userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                  "
+                  style="color: white; cursor: pointer"
+                  i18n="@@n15"
+                  >Field Form</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtbwork-form"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      class="dropdown-item"
+                      i18n="@@n13"
+                      >Work Form</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtbcompoundform"
+                      class="dropdown-item"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      i18n="@@n14"
+                      >Compound Form</a
+                    >
+                  </li>
+                </ul>
               </li>
-              <li>
-                <a routerLink="/dbkl/mtbcompoundform" class="dropdown-item"
-                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                  i18n="@@n14">Compound Form</a>
+              <li class="dropdown-submenu">
+                <a
+                  class="dropdown-item dropdown-toggle"
+                  *ngIf="
+                    userrole == 'Superadmin' ||
+                    userrole == 'MerinyuMTB' ||
+                    userrole == 'Kewangan' ||
+                    userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                  "
+                  style="color: white; cursor: pointer"
+                  i18n="@@n16"
+                  >Work Log</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtbwork-log"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      class="dropdown-item"
+                      i18n="@@n17"
+                      >Daily Work / Complaints</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtblistofcompound"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      class="dropdown-item"
+                      i18n="@@n18"
+                      >List of Compounds</a
+                    >
+                  </li>
+                </ul>
               </li>
-            </ul>
+            </div>
           </li>
-          <li class="dropdown-submenu">
-            <a class="dropdown-item dropdown-toggle"
-              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-              style="color: white; cursor: pointer" i18n="@@n16">Work Log</a>
-            <ul class="dropdown-menu">
-              <li>
-                <a routerLink="/dbkl/mtbwork-log"
-                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                  class="dropdown-item" i18n="@@n17">Daily Work / Complaints</a>
-              </li>
-              <li>
-                <a routerLink="/dbkl/mtblistofcompound"
-                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                  class="dropdown-item" i18n="@@n18">List of Compounds</a>
-              </li>
-            </ul>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              *ngIf="
+                userrole == 'Superadmin' ||
+                userrole == 'MerinyuMTK' ||
+                userrole == 'Kewangan' ||
+                userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+              "
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n19"
+            >
+              MTK
+            </a>
+            <div class="dropdown-menu">
+              <a
+                class="dropdown-item"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                style="color: white; cursor: pointer"
+                routerLink="/dbkl/mtkmapview"
+                i18n="@@n20"
+                >Monitoring MTK</a
+              >
+              <a
+                routerLink="/dbkl/mtkworkform"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                (click)="getUser('financial')"
+                i18n="@@n13"
+                style="cursor: pointer"
+                >Work Form</a
+              >
+              <a
+                routerLink="/dbkl/mtkcompoundform"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                i18n="@@n14"
+                style="cursor: pointer"
+                >Compound Form</a
+              >
+              <a
+                routerLink="/dbkl/inspectingofficers"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n21"
+                >Work MTB</a
+              >
+              <a
+                routerLink="/dbkl/mtblistofcompound"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n22"
+                >Compound MTB</a
+              >
+            </div>
           </li>
-      </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle"
-          *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-          id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-          style="color: #253d84 !important; cursor: pointer" i18n="@@n19">
-          MTK
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            style="color: white; cursor: pointer" routerLink="/dbkl/mtkmapview" i18n="@@n20">Monitoring
-            MTK</a>
-          <a routerLink="/dbkl/mtkworkform"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            class="dropdown-item" (click)="getUser('financial')" i18n="@@n13" style="cursor: pointer;">Work Form</a>
-          <a routerLink="/dbkl/mtkcompoundform"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            class="dropdown-item" i18n="@@n14" style="cursor: pointer;">Compound
-            Form</a>
-          <a routerLink="/dbkl/inspectingofficers"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n21">Work MTB</a>
-          <a routerLink="/dbkl/mtblistofcompound"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n22">Compound MTB</a>
-        </div>
-      </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
-          {{ username }}
-        </a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
-            i18n="@@Profile">Profile</a>
-          <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer" i18n="@@jflogout">Logout</a>
-        </div>
-      </li>
-      </ul>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+            >
+              {{ username }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a
+                routerLink="/profileLog"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@Profile"
+                >Profile</a
+              >
+              <a
+                class="dropdown-item"
+                (click)="logout()"
+                style="color: white; cursor: pointer"
+                i18n="@@jflogout"
+                >Logout</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
-  </nav>
 </div>
-</div><!-- End Header -->
+<!-- End Header -->
 <main>
   <!-- ======= Breadcrumbs ======= -->
 
@@ -129,15 +298,20 @@
     <div class="card">
       <div class="text-center">
         <div class="d-flex justify-content-center">
-          <img class="logo-proses" src="../../../assets/img/logo.png " height="100" alt="" />
+          <img
+            class="logo-proses"
+            src="../../../assets/img/logo.png "
+            height="100"
+            alt=""
+          />
         </div>
         <div class="section-title">
           <!-- <span>PROSES PERMOHONAN PPSSPPA</span>
                     <h2>PROSES PERMOHONAN PPSSPPA</h2> -->
           <span i18n="@@lol1">
-            List of Lower Form Inspection Officers (MTB)</span>
-          <h2 i18n="@@lol1">
-            List of Lower Form Inspection Officers (MTB)</h2>
+            List of Lower Form Inspection Officers (MTB)</span
+          >
+          <h2 i18n="@@lol1">List of Lower Form Inspection Officers (MTB)</h2>
         </div>
       </div>
       <br />
@@ -145,31 +319,48 @@
       <div class="container">
         <div class="row">
           <div class="col">
-
             <label for="select"> <b>MTK/MTB : &nbsp;</b></label>
-            <input type="text" [(ngModel)]="dataVALUE" name="dataVALUE" (ngModelChange)="searchMtb(dataVALUE)">
+            <input
+              type="text"
+              [(ngModel)]="dataVALUE"
+              name="dataVALUE"
+              (ngModelChange)="searchMtb(dataVALUE)"
+            />
             <div class="row-10" style="margin-top: 10px; width: 93%">
-              <table class="table table-bordered table-striped table-hover table-condensed" id="table-id">
+              <table
+                class="table table-bordered table-striped table-hover table-condensed"
+                id="table-id"
+              >
                 <thead>
-                  <tr style="
+                  <tr
+                    style="
                       background-color: #253d84;
                       color: white;
                       font-weight: normal !important;
-                    ">
+                    "
+                  >
                     <th class="text-center" id="rowhead">Bil.</th>
                     <th class="text-center" id="rowhead">ID MTK/MTB</th>
-                    <th class="text-center" id="rowhead" i18n="@@dwi5">Parliament</th>
+                    <th class="text-center" id="rowhead" i18n="@@dwi5">
+                      Parliament
+                    </th>
                   </tr>
                 </thead>
 
                 <tbody id="tableBody">
-                  <tr *ngFor="
+                  <tr
+                    *ngFor="
                       let key of dataShow
-                        | paginate: { itemsPerPage: 10, currentPage: p }
-                        let i = index ">
-                    <td style="text-align: center">{{ i+1 }}</td>
+                        | paginate : { itemsPerPage: 10, currentPage: p };
+                      let i = index
+                    "
+                  >
+                    <td style="text-align: center">{{ i + 1 }}</td>
                     <td style="text-align: center">
-                      <a (click)="date(key.no_kad_pengenalan,key.parlimen)" style="color: red !important; cursor: pointer">
+                      <a
+                        (click)="date(key.no_kad_pengenalan, key.parlimen)"
+                        style="color: red !important; cursor: pointer"
+                      >
                         {{ key.officer_name }}
                       </a>
                     </td>
@@ -178,22 +369,40 @@
                 </tbody>
               </table>
               <div class="pagination">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                <pagination-controls
+                  (pageChange)="p = $event"
+                ></pagination-controls>
               </div>
             </div>
           </div>
           <div class="col">
             <label for="text" i18n="@@lol2"><b>Date And Month : </b> </label>
-            <input type="date" id="datem" style="width: 150px" [(ngModel)]="datevalue"  name="datevalue" (ngModelChange)="searchdate(datevalue)"/>
+            <input
+              type="date"
+              id="datem"
+              style="width: 150px"
+              [(ngModel)]="datevalue"
+              name="datevalue"
+              (ngModelChange)="searchdate(datevalue)"
+            />
 
-            <div class="row-10" style="margin-top: 10px; width: 93%" *ngIf="show == true">
-              <table class="table table-bordered table-striped table-hover table-condensed" id="myTable">
+            <div
+              class="row-10"
+              style="margin-top: 10px; width: 93%"
+              *ngIf="show == true"
+            >
+              <table
+                class="table table-bordered table-striped table-hover table-condensed"
+                id="myTable"
+              >
                 <thead>
-                  <tr style="
+                  <tr
+                    style="
                       background-color: #253d84;
                       color: white;
                       font-weight: normal !important;
-                    ">
+                    "
+                  >
                     <th class="text-center" id="rowhead" i18n="@@lol3">Date</th>
                   </tr>
                 </thead>
@@ -214,9 +423,12 @@
                           value2: mtbUser,
                           value3: parlime
                         }" style="color: red !important; cursor: pointer">{{ y }}</a> -->
-                      <a (click)="redir(worklog)" style="color: red !important; cursor: pointer">{{ worklog }}</a>
+                      <a
+                        (click)="redir(worklog)"
+                        style="color: red !important; cursor: pointer"
+                        >{{ worklog }}</a
+                      >
                     </td>
-
                   </tr>
                 </tbody>
               </table>
@@ -232,5 +444,9 @@
 <app-footer></app-footer>
 <!-- End Footer -->
 
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
-    class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>

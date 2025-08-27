@@ -1,20 +1,44 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
-  [fullScreen]="true">
-
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#253d84"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+>
 </ngx-spinner>
 <!-- Success Modal -->
-<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" [ngStyle]="{ display: display }"
-  role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div
+  class="modal"
+  id="staticBackdrop"
+  data-backdrop="static"
+  tabindex="-1"
+  [ngStyle]="{ display: display }"
+  role="dialog"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
-          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+        <div
+          class="swal2-icon swal2-success swal2-animate-success-icon"
+          style="display: flex"
+        >
+          <div
+            class="swal2-success-circular-line-left"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
           <span class="swal2-success-line-tip"></span>
           <span class="swal2-success-line-long"></span>
           <div class="swal2-success-ring"></div>
-          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
-          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+          <div
+            class="swal2-success-fix"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+          <div
+            class="swal2-success-circular-line-right"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
         </div>
       </div>
       <div class="modal-body">
@@ -22,16 +46,31 @@
           <span class="dialog-msg" i18n="@@invsucc">{{ successmsg }}</span>
         </h4>
         <h6 class="text-center font-weight-bold">
-          <span i18n="@@inbois" style="font-weight: 500 !important">Invoice :&nbsp;</span><b>{{ npid1 }}</b><span
-            class="ml-2" i18n="@@kontractor" style="font-weight: 500 !important">Contractor :&nbsp;</span><b>{{
-            kontraktor1 }}</b>
+          <span i18n="@@inbois" style="font-weight: 500 !important"
+            >Invoice :&nbsp;</span
+          ><b>{{ npid1 }}</b
+          ><span
+            class="ml-2"
+            i18n="@@kontractor"
+            style="font-weight: 500 !important"
+            >Contractor :&nbsp;</span
+          ><b>{{ kontraktor1 }}</b>
         </h6>
         <div class="d-flex justify-content-center">
-          <button type="button" (click)="onCloseHandled1()" class="btn" style="
-background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
+          <button
+            type="button"
+            (click)="onCloseHandled1()"
+            class="btn"
+            style="
+              background-image: linear-gradient(
+                to bottom,
+                #337ab7 0,
+                #265a88 100%
+              );
               color: white !important;
               border-radius: 4px !important;
-            ">
+            "
+          >
             OK
           </button>
         </div>
@@ -41,15 +80,28 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
 </div>
 <!-- Success Modal End -->
 <!-- Error Modal Start -->
-<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display1 }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div
+  class="modal"
+  id="staticBackdrop1"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display1 }"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <div class="col-12">
-          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
-            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
-                class="swal2-x-mark-line-right"></span></span>
+          <div
+            class="swal2-icon swal2-error swal2-animate-error-icon"
+            style="display: flex; justify-content: center"
+          >
+            <span class="swal2-x-mark"
+              ><span class="swal2-x-mark-line-left"></span
+              ><span class="swal2-x-mark-line-right"></span
+            ></span>
           </div>
         </div>
       </div>
@@ -60,8 +112,20 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
         </h6>
 
         <div class="d-flex justify-content-center mt-4">
-          <button class="btn" (click)="onCloseHandled()" i18n="@@ok"
-            style="background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);border-radius:4px; color: white !important">
+          <button
+            class="btn"
+            (click)="onCloseHandled()"
+            i18n="@@ok"
+            style="
+              background-image: -webkit-linear-gradient(
+                top,
+                #d9534f 0,
+                #c12e2a 100%
+              );
+              border-radius: 4px;
+              color: white !important;
+            "
+          >
             Ok
           </button>
         </div>
@@ -74,33 +138,53 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
 <app-topbar></app-topbar>
 
 <!-- Header Start -->
-<div class="container-fluid sticky-nav" id="" style="background-color: #F2F2F2 !important">
+<div
+  class="container-fluid sticky-nav"
+  id=""
+  style="background-color: #f2f2f2 !important"
+>
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg">
       <a routerLink="/public" class="navbar-brand">
-        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
-
+        <img src="assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
       </a>
 
-
-      <button class="navbar-toggler border-white" type="button" style="
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        style="
           border: 1px solid white !important;
           background-color: black !important;
-        " data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
-        aria-expanded="false" aria-label="Toggle navigation">
+        "
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <i class="fa fa-bars text-white"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a routerLink="/agency" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@home">HOME</a>
+            <a
+              routerLink="/agency"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home"
+              >HOME</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" style="color: #253d84 !important; cursor: pointer" routerLink="/agency/createinvoice"
-              i18n="@@jbpayclaim">
-              Job Payment Claim</a>
+            <a
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              routerLink="/agency/createinvoice"
+              i18n="@@jbpayclaim"
+            >
+              Job Payment Claim</a
+            >
           </li>
         </ul>
       </div>
@@ -134,50 +218,124 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                 </p>
               </div>
               <div class="row">
-                <div class="col-sm-2 col-xs-2 ">
-                  <label for="namaPemohan" class="linerr" i18n="@@noinbois">No Invoices </label><span
-                    style="color: #253d84; width: 100%; font-size: large; padding-top: 1em"></span>
+                <div class="col-sm-2 col-xs-2">
+                  <label for="namaPemohan" class="linerr" i18n="@@noinbois"
+                    >No Invoices </label
+                  ><span
+                    style="
+                      color: #253d84;
+                      width: 100%;
+                      font-size: large;
+                      padding-top: 1em;
+                    "
+                  ></span>
                 </div>
-                <div class="col-sm-9 col-xs-9 ">
-                  <input type="text" id="namaPemohan" style="width: 100%;" readonly name="no_inbois"
-                    class="form-control mb-2" placeholder="" formControlName="noinvoicee" [(ngModel)]="no_inbois" />
+                <div class="col-sm-9 col-xs-9">
+                  <input
+                    type="text"
+                    id="namaPemohan"
+                    style="width: 100%"
+                    readonly
+                    name="no_inbois"
+                    class="form-control mb-2"
+                    placeholder=""
+                    formControlName="noinvoicee"
+                    [(ngModel)]="no_inbois"
+                  />
                 </div>
                 <div class="col-sm-2">
-                  <label for="namaPemohan" class="linerr" i18n="@@kontractor"> Contractor </label><span
-                    style="color: #253d84; font-size: large;width: 100%; padding-top: 1em"></span>
+                  <label for="namaPemohan" class="linerr" i18n="@@kontractor">
+                    Contractor </label
+                  ><span
+                    style="
+                      color: #253d84;
+                      font-size: large;
+                      width: 100%;
+                      padding-top: 1em;
+                    "
+                  ></span>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" id="namaPemohan" style="width: 100%;" readonly name="kontraktor"
-                    class="form-control mb-2" placeholder="" formControlName="kontraktorr" [(ngModel)]="kontraktor" />
+                  <input
+                    type="text"
+                    id="namaPemohan"
+                    style="width: 100%"
+                    readonly
+                    name="kontraktor"
+                    class="form-control mb-2"
+                    placeholder=""
+                    formControlName="kontraktorr"
+                    [(ngModel)]="kontraktor"
+                  />
                 </div>
                 <div class="col-sm-2">
-                  <label for="namaPemohan" class="linerr" i18n="@@applicantname">Applicant Name </label>
+                  <label for="namaPemohan" class="linerr" i18n="@@applicantname"
+                    >Applicant Name
+                  </label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" id="namaPemohan" style="width: 100%;" name="namaPemohan" class="form-control mb-2"
-                    placeholder="" formControlName="namaPemohan" [ngClass]="{
-                  'is-invalid': submitted && f.namaPemohan.errors
-                }" [(ngModel)]="nama_pemohon" />
-                  <div *ngIf="submitted && f.namaPemohan.errors" class="invalid-feedback">
-                    <div *ngIf="f.namaPemohan.errors.required" class="errorMessage" i18n="@@jobfvm3">
+                  <input
+                    type="text"
+                    id="namaPemohan"
+                    style="width: 100%"
+                    name="namaPemohan"
+                    class="form-control mb-2"
+                    placeholder=""
+                    formControlName="namaPemohan"
+                    [ngClass]="{
+                      'is-invalid': submitted && f.namaPemohan.errors
+                    }"
+                    [(ngModel)]="nama_pemohon"
+                  />
+                  <div
+                    *ngIf="submitted && f.namaPemohan.errors"
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="f.namaPemohan.errors.required"
+                      class="errorMessage"
+                      i18n="@@jobfvm3"
+                    >
                       Application Name is required
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-2">
-                  <label for="eMel" class="linerr" i18n="@@email"> Email </label>
+                  <label for="eMel" class="linerr" i18n="@@email">
+                    Email
+                  </label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" id="eMel" name="eMel" style="width: 100%;" class="form-control mb-2" placeholder=""
-                    formControlName="eMel" [(ngModel)]="emal" [ngClass]="{
-                  'is-invalid': submitted && f.eMel.errors
-                }" />
+                  <input
+                    type="text"
+                    id="eMel"
+                    name="eMel"
+                    style="width: 100%"
+                    class="form-control mb-2"
+                    placeholder=""
+                    formControlName="eMel"
+                    [(ngModel)]="emal"
+                    [ngClass]="{
+                      'is-invalid': submitted && f.eMel.errors
+                    }"
+                  />
                 </div>
-                <div *ngIf="submitted && f.eMel.errors" class="invalid-feedback">
-                  <div *ngIf="f.eMel.errors.required" class="errorMessage" i18n="@@jobfvm5">
+                <div
+                  *ngIf="submitted && f.eMel.errors"
+                  class="invalid-feedback"
+                >
+                  <div
+                    *ngIf="f.eMel.errors.required"
+                    class="errorMessage"
+                    i18n="@@jobfvm5"
+                  >
                     Email is required
                   </div>
-                  <div *ngIf="f.eMel.errors.pattern" i18n="@@jobfvm6" class="errorMessage">
+                  <div
+                    *ngIf="f.eMel.errors.pattern"
+                    i18n="@@jobfvm6"
+                    class="errorMessage"
+                  >
                     Email must be like this :- example@abc.com
                   </div>
                 </div>
@@ -185,34 +343,71 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                   <label for="bulan" class="active linerr">Bulan</label>
                 </div>
                 <div class="col-sm-2">
-                  <select class="browser-default custom-select" formControlName="bulan">
-                    <option *ngFor="let bulan of bulanList" value="{{ bulan.value }}">{{ bulan.name }}</option>
+                  <select
+                    class="browser-default custom-select"
+                    formControlName="bulan"
+                  >
+                    <option
+                      *ngFor="let bulan of bulanList"
+                      value="{{ bulan.value }}"
+                    >
+                      {{ bulan.name }}
+                    </option>
                   </select>
                 </div>
                 <div class="col-sm-2">
                   <label for="bulan" class="active linerr">Tahun</label>
                 </div>
                 <div class="col-sm-2">
-                  <select class="browser-default custom-select" formControlName="tahun">
-                    <option *ngFor="let tahun of tahunList" value="{{ tahun }}">{{ tahun }}</option>
+                  <select
+                    class="browser-default custom-select"
+                    formControlName="tahun"
+                  >
+                    <option *ngFor="let tahun of tahunList" value="{{ tahun }}">
+                      {{ tahun }}
+                    </option>
                   </select>
                 </div>
                 <div class="col-sm-4"></div>
                 <div class="col-sm-2 mt-1">
-                  <label for="jumlahTuntutan" class="active linerr" i18n="@@totalclaims">Total Claims </label>
+                  <label
+                    for="jumlahTuntutan"
+                    class="active linerr"
+                    i18n="@@totalclaims"
+                    >Total Claims
+                  </label>
                 </div>
                 <div class="col-sm-9 mt-1">
-                  <input type="text" id="jumlahTuntutan" style="width: 100%;" name="jumlahTuntutan"
-                    class="form-control mb-2" placeholder="" formControlName="jumlahTuntutan"
-                    [(ngModel)]="jumlah_tuntutan" [ngClass]="{
-                  'is-invalid': submitted && f.jumlahTuntutan.errors
-                }" />
+                  <input
+                    type="text"
+                    id="jumlahTuntutan"
+                    style="width: 100%"
+                    name="jumlahTuntutan"
+                    class="form-control mb-2"
+                    placeholder=""
+                    formControlName="jumlahTuntutan"
+                    [(ngModel)]="jumlah_tuntutan"
+                    [ngClass]="{
+                      'is-invalid': submitted && f.jumlahTuntutan.errors
+                    }"
+                  />
                 </div>
-                <div *ngIf="submitted && f.jumlahTuntutan.errors" class="invalid-feedback">
-                  <div *ngIf="f.jumlahTuntutan.errors.required" class="errorMessage" i18n="@@jobfvm7">
+                <div
+                  *ngIf="submitted && f.jumlahTuntutan.errors"
+                  class="invalid-feedback"
+                >
+                  <div
+                    *ngIf="f.jumlahTuntutan.errors.required"
+                    class="errorMessage"
+                    i18n="@@jobfvm7"
+                  >
                     Total Claims is required
                   </div>
-                  <div *ngIf="f.jumlahTuntutan.errors.pattern" class="errorMessage" i18n="@@jobpay">
+                  <div
+                    *ngIf="f.jumlahTuntutan.errors.pattern"
+                    class="errorMessage"
+                    i18n="@@jobpay"
+                  >
                     Must Contain Numeric Value
                   </div>
                 </div>
@@ -221,34 +416,58 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                 <th class="h6 bgcolorhead" i18n="@@uploadinfo">
                   Please upload documents as follows
                 </th>
-                <th class="bgcolorhead"> </th>
+                <th class="bgcolorhead"></th>
                 <tbody class="">
                   <tr>
                     <td style="font-weight: normal">
-                      <span i18n="@@inbois">Invoice</span><span style="
+                      <span i18n="@@inbois">Invoice</span
+                      ><span
+                        style="
                           color: #253d84;
                           font-size: large;
                           padding-top: 1em;
-                        ">*</span>
+                        "
+                        >*</span
+                      >
                     </td>
 
                     <td>
                       <label class="custom-file-upload">
-                        <input type="file" ng2FileSelect accept=".pdf" [uploader]="uploader" multiple
-                          formControlName="file" [ngClass]="{
+                        <input
+                          type="file"
+                          ng2FileSelect
+                          accept=".pdf"
+                          [uploader]="uploader"
+                          multiple
+                          formControlName="file"
+                          [ngClass]="{
                             'is-invalid': submitted && f.file.errors
-                          }" />
-                        <div *ngIf="submitted && f.file.errors" class="invalid-feedback">
-                          <div style="color: red !important;" *ngIf="f.file.errors.required"
-                            class="text-white font-italic font-weight-bold" i18n="@@jobfvm8">
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.file.errors"
+                          class="invalid-feedback"
+                        >
+                          <div
+                            style="color: red !important"
+                            *ngIf="f.file.errors.required"
+                            class="text-white font-italic font-weight-bold"
+                            i18n="@@jobfvm8"
+                          >
                             File is required
                           </div>
                         </div>
-                        <i class="fa fa-cloud-upload"></i>
-                      </label><br />
+                        <i class="fa fa-cloud-upload"></i> </label
+                      ><br />
                       <span *ngFor="let data of FileArray; index as i">
-                        <a class="filename" style="color: black" target="_blank" *ngIf="showfiles"
-                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}">{{ data }}<br /></a>
+                        <a
+                          class="filename"
+                          style="color: black"
+                          target="_blank"
+                          *ngIf="showfiles"
+                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}"
+                          >{{ data }}<br
+                        /></a>
                       </span>
                       <!-- <input
                         type="button"
@@ -259,18 +478,32 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
 
                       <table>
                         <tbody style="font-size: x-small; padding-right: 5px">
-                          <tr *ngFor="let item of uploader.queue" style="overflow-x: scroll">
-                            <th width="" style="font-size: 15px; font-weight: 700">
-                              <span>{{ item.file.name }}({{
-                                item.file.size / 1000000
+                          <tr
+                            *ngFor="let item of uploader.queue"
+                            style="overflow-x: scroll"
+                          >
+                            <th
+                              width=""
+                              style="font-size: 15px; font-weight: 700"
+                            >
+                              <span
+                                >{{ item.file.name }}({{
+                                  item.file.size / 1000000
                                 }}
-                                MB)</span>
+                                MB)</span
+                              >
                               <span class="text-center">
-                                <i style="
+                                <i
+                                  style="
                                     cursor: pointer;
                                     font-size: 15px;
                                     font-weight: 700;
-                                  " class="fa fa-trash" (click)="item.remove()" aria-hidden="true"></i></span>
+                                  "
+                                  class="fa fa-trash"
+                                  (click)="item.remove()"
+                                  aria-hidden="true"
+                                ></i
+                              ></span>
                             </th>
                           </tr>
                         </tbody>
@@ -280,24 +513,43 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                   <tr>
                     <td style="font-weight: normal">
                       <span i18n="@@summaryreport"> Summary Report</span>
-                      <span style="
+                      <span
+                        style="
                           color: #253d84;
                           font-size: large;
                           padding-top: 1em;
-                        ">*</span>
+                        "
+                        >*</span
+                      >
 
-                      <br />(<span i18n="@@serviceandareacost">Please specify area, service and cost service</span>)
+                      <br />(<span i18n="@@serviceandareacost"
+                        >Please specify area, service and cost service</span
+                      >)
                     </td>
 
                     <td>
                       <label class="custom-file-upload">
-                        <input type="file" ng2FileSelect accept=".pdf" [uploader]="uploader1" multiple
-                          formControlName="file1" [ngClass]="{
+                        <input
+                          type="file"
+                          ng2FileSelect
+                          accept=".pdf"
+                          [uploader]="uploader1"
+                          multiple
+                          formControlName="file1"
+                          [ngClass]="{
                             'is-invalid': submitted && f.file1.errors
-                          }" />
-                        <div *ngIf="submitted && f.file1.errors" class="invalid-feedback">
-                          <div style="color: red !important;" *ngIf="f.file1.errors.required"
-                            class="text-white font-italic font-weight-bold" i18n="@@jobfvm8">
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.file1.errors"
+                          class="invalid-feedback"
+                        >
+                          <div
+                            style="color: red !important"
+                            *ngIf="f.file1.errors.required"
+                            class="text-white font-italic font-weight-bold"
+                            i18n="@@jobfvm8"
+                          >
                             File is required
                           </div>
                         </div>
@@ -306,24 +558,41 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
 
                       <br />
                       <span *ngFor="let data of FileArray1">
-                        <a class="filename" style="color: black" target="_blank" *ngIf="showfiles"
-                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}">{{ data }}<br /></a>
+                        <a
+                          class="filename"
+                          style="color: black"
+                          target="_blank"
+                          *ngIf="showfiles"
+                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}"
+                          >{{ data }}<br
+                        /></a>
                       </span>
                       <br />
                       <table>
                         <tbody style="font-size: x-small; padding-right: 5px">
                           <tr *ngFor="let item of uploader1.queue">
-                            <th width="" style="font-size: 15px; font-weight: 700">
-                              <span>{{ item.file.name }}({{
-                                item.file.size / 1000000
+                            <th
+                              width=""
+                              style="font-size: 15px; font-weight: 700"
+                            >
+                              <span
+                                >{{ item.file.name }}({{
+                                  item.file.size / 1000000
                                 }}
-                                MB)</span>
+                                MB)</span
+                              >
                               <span class="text-center">
-                                <i style="
+                                <i
+                                  style="
                                     cursor: pointer;
                                     font-size: 15px;
                                     font-weight: 700;
-                                  " class="fa fa-trash" (click)="item.remove()" aria-hidden="true"></i></span>
+                                  "
+                                  class="fa fa-trash"
+                                  (click)="item.remove()"
+                                  aria-hidden="true"
+                                ></i
+                              ></span>
                             </th>
                           </tr>
                         </tbody>
@@ -333,21 +602,38 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                   <tr>
                     <td style="font-weight: normal">
                       <span i18n="@@attachment"> Attachment</span>
-                      <span style="
+                      <span
+                        style="
                           color: #253d84;
                           font-size: large;
                           padding-top: 1em;
-                        ">*</span>
+                        "
+                        >*</span
+                      >
                     </td>
                     <td>
                       <label class="custom-file-upload">
-                        <input type="file" ng2FileSelect accept=".pdf" [uploader]="uploader2" multiple
-                          formControlName="file2" [ngClass]="{
+                        <input
+                          type="file"
+                          ng2FileSelect
+                          accept=".pdf"
+                          [uploader]="uploader2"
+                          multiple
+                          formControlName="file2"
+                          [ngClass]="{
                             'is-invalid': submitted && f.file2.errors
-                          }" />
-                        <div *ngIf="submitted && f.file2.errors" class="invalid-feedback">
-                          <div style="color: red !important;" *ngIf="f.file2.errors.required"
-                            class="text-white font-italic font-weight-bold" i18n="@@jobfvm8">
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.file2.errors"
+                          class="invalid-feedback"
+                        >
+                          <div
+                            style="color: red !important"
+                            *ngIf="f.file2.errors.required"
+                            class="text-white font-italic font-weight-bold"
+                            i18n="@@jobfvm8"
+                          >
                             File is required
                           </div>
                         </div>
@@ -355,24 +641,41 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                       </label>
                       <br />
                       <span *ngFor="let data of FileArray2">
-                        <a class="filename" style="color: black" *ngIf="showfiles" target="_blank"
-                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}">{{ data }}<br /></a>
+                        <a
+                          class="filename"
+                          style="color: black"
+                          *ngIf="showfiles"
+                          target="_blank"
+                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}"
+                          >{{ data }}<br
+                        /></a>
                       </span>
                       <br />
                       <table>
                         <tbody style="font-size: x-small; padding-right: 5px">
                           <tr *ngFor="let item of uploader2.queue">
-                            <th width="" style="font-size: 15px; font-weight: 700">
-                              <span>{{ item.file.name }}({{
-                                item.file.size / 1000000
+                            <th
+                              width=""
+                              style="font-size: 15px; font-weight: 700"
+                            >
+                              <span
+                                >{{ item.file.name }}({{
+                                  item.file.size / 1000000
                                 }}
-                                MB)</span>
+                                MB)</span
+                              >
                               <span class="text-center">
-                                <i style="
+                                <i
+                                  style="
                                     cursor: pointer;
                                     font-size: 15px;
                                     font-weight: 700;
-                                  " class="fa fa-trash" (click)="item.remove()" aria-hidden="true"></i></span>
+                                  "
+                                  class="fa fa-trash"
+                                  (click)="item.remove()"
+                                  aria-hidden="true"
+                                ></i
+                              ></span>
                             </th>
                           </tr>
                         </tbody>
@@ -382,23 +685,43 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                   <tr>
                     <td style="font-weight: normal">
                       <span>Lampiran</span>
-                      <span style="
+                      <span
+                        style="
                           color: #253d84;
                           font-size: large;
                           padding-top: 1em;
-                        ">*</span>
+                        "
+                        >*</span
+                      >
 
-                      <br />(<span>Borang BD44/45 atau bilangan logistik dan pekerja bagi setiap kawasan serahan baru</span>)
+                      <br />(<span
+                        >Borang BD44/45 atau bilangan logistik dan pekerja bagi
+                        setiap kawasan serahan baru</span
+                      >)
                     </td>
                     <td>
                       <label class="custom-file-upload">
-                        <input type="file" ng2FileSelect accept=".pdf" [uploader]="bd44Uploader" multiple
-                          formControlName="file1" [ngClass]="{
+                        <input
+                          type="file"
+                          ng2FileSelect
+                          accept=".pdf"
+                          [uploader]="bd44Uploader"
+                          multiple
+                          formControlName="file1"
+                          [ngClass]="{
                             'is-invalid': submitted && f.file1.errors
-                          }" />
-                        <div *ngIf="submitted && f.file1.errors" class="invalid-feedback">
-                          <div style="color: red !important;" *ngIf="f.file1.errors.required"
-                            class="text-white font-italic font-weight-bold" i18n="@@jobfvm8">
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.file1.errors"
+                          class="invalid-feedback"
+                        >
+                          <div
+                            style="color: red !important"
+                            *ngIf="f.file1.errors.required"
+                            class="text-white font-italic font-weight-bold"
+                            i18n="@@jobfvm8"
+                          >
                             File is required
                           </div>
                         </div>
@@ -406,24 +729,41 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                       </label>
                       <br />
                       <span *ngFor="let data of FileArray1">
-                        <a class="filename" style="color: black" target="_blank" *ngIf="showfiles"
-                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}">{{ data }}<br /></a>
+                        <a
+                          class="filename"
+                          style="color: black"
+                          target="_blank"
+                          *ngIf="showfiles"
+                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}"
+                          >{{ data }}<br
+                        /></a>
                       </span>
                       <br />
                       <table>
                         <tbody style="font-size: x-small; padding-right: 5px">
                           <tr *ngFor="let item of bd44Uploader.queue">
-                            <th width="" style="font-size: 15px; font-weight: 700">
-                              <span>{{ item.file.name }}({{
-                                item.file.size / 1000000
+                            <th
+                              width=""
+                              style="font-size: 15px; font-weight: 700"
+                            >
+                              <span
+                                >{{ item.file.name }}({{
+                                  item.file.size / 1000000
                                 }}
-                                MB)</span>
+                                MB)</span
+                              >
                               <span class="text-center">
-                                <i style="
+                                <i
+                                  style="
                                     cursor: pointer;
                                     font-size: 15px;
                                     font-weight: 700;
-                                  " class="fa fa-trash" (click)="item.remove()" aria-hidden="true"></i></span>
+                                  "
+                                  class="fa fa-trash"
+                                  (click)="item.remove()"
+                                  aria-hidden="true"
+                                ></i
+                              ></span>
                             </th>
                           </tr>
                         </tbody>
@@ -433,24 +773,43 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                   <tr>
                     <td style="font-weight: normal">
                       <span i18n="@@summaryreport"> Summary Report</span>
-                      <span style="
+                      <span
+                        style="
                           color: #253d84;
                           font-size: large;
                           padding-top: 1em;
-                        ">*</span>
+                        "
+                        >*</span
+                      >
 
-                      <br />(<span>Laporan tuntutan KWPSPPA bagi kawasan baru</span>)
+                      <br />(<span
+                        >Laporan tuntutan KWPSPPA bagi kawasan baru</span
+                      >)
                     </td>
 
                     <td>
                       <label class="custom-file-upload">
-                        <input type="file" ng2FileSelect accept=".pdf" [uploader]="laporanTuntutanUploader" multiple
-                          formControlName="file1" [ngClass]="{
+                        <input
+                          type="file"
+                          ng2FileSelect
+                          accept=".pdf"
+                          [uploader]="laporanTuntutanUploader"
+                          multiple
+                          formControlName="file1"
+                          [ngClass]="{
                             'is-invalid': submitted && f.file1.errors
-                          }" />
-                        <div *ngIf="submitted && f.file1.errors" class="invalid-feedback">
-                          <div style="color: red !important;" *ngIf="f.file1.errors.required"
-                            class="text-white font-italic font-weight-bold" i18n="@@jobfvm8">
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.file1.errors"
+                          class="invalid-feedback"
+                        >
+                          <div
+                            style="color: red !important"
+                            *ngIf="f.file1.errors.required"
+                            class="text-white font-italic font-weight-bold"
+                            i18n="@@jobfvm8"
+                          >
                             File is required
                           </div>
                         </div>
@@ -459,25 +818,44 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
 
                       <br />
                       <span *ngFor="let data of FileArray1">
-                        <a class="filename" style="color: black" target="_blank" *ngIf="showfiles"
-                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}">{{ data }}<br /></a>
+                        <a
+                          class="filename"
+                          style="color: black"
+                          target="_blank"
+                          *ngIf="showfiles"
+                          href="{{ url }}/jkas_resourses/public/pdfs/{{ data }}"
+                          >{{ data }}<br
+                        /></a>
                       </span>
                       <br />
 
                       <table>
                         <tbody style="font-size: x-small; padding-right: 5px">
-                          <tr *ngFor="let item of laporanTuntutanUploader.queue">
-                            <th width="" style="font-size: 15px; font-weight: 700">
-                              <span>{{ item.file.name }}({{
-                                item.file.size / 1000000
+                          <tr
+                            *ngFor="let item of laporanTuntutanUploader.queue"
+                          >
+                            <th
+                              width=""
+                              style="font-size: 15px; font-weight: 700"
+                            >
+                              <span
+                                >{{ item.file.name }}({{
+                                  item.file.size / 1000000
                                 }}
-                                MB)</span>
+                                MB)</span
+                              >
                               <span class="text-center">
-                                <i style="
+                                <i
+                                  style="
                                     cursor: pointer;
                                     font-size: 15px;
                                     font-weight: 700;
-                                  " class="fa fa-trash" (click)="item.remove()" aria-hidden="true"></i></span>
+                                  "
+                                  class="fa fa-trash"
+                                  (click)="item.remove()"
+                                  aria-hidden="true"
+                                ></i
+                              ></span>
                             </th>
                           </tr>
                         </tbody>
@@ -487,10 +865,21 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
                 </tbody>
               </table>
               <div class="btn-row d-flex justify-content-center">
-                <button type="button" class="look_for_red" (click)="comeback()" i18n="@@comeback">
+                <button
+                  type="button"
+                  class="look_for_red"
+                  (click)="comeback()"
+                  i18n="@@comeback"
+                >
                   Comeback
                 </button>
-                <button type="button" class="look_for" (click)="CreateInvoice()" style="margin-left: 2em" i18n="@@done">
+                <button
+                  type="button"
+                  class="look_for"
+                  (click)="CreateInvoice()"
+                  style="margin-left: 2em"
+                  i18n="@@done"
+                >
                   Done
                 </button>
               </div>
@@ -505,5 +894,9 @@ background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
   <!-- ======= Footer ======= -->
 </main>
 <app-footer></app-footer>
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
-    class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>

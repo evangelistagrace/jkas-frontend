@@ -2,129 +2,317 @@
 <app-topbar></app-topbar>
 <!-- End of Topbar -->
 <!-- Header -->
-<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+<div
+  class="container-fluid sticky-nav"
+  id=""
+  style="background-color: #f2f2f2 !important"
+>
   <div class="container-fluid" ngStickyNav>
     <nav class="navbar navbar-expand-lg">
-      <a routerLink="/public" class="navbar-brand ">
-        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
-
+      <a routerLink="/public" class="navbar-brand">
+        <img src="assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
       </a>
-      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
-        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <i class="fa fa-bars text-white"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@home">HOME</a>
+            <a
+              routerLink="/dbkl/dbklmainpage"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home"
+              >HOME</a
+            >
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"
-              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-              id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false" style="color: #253d84 !important; cursor: pointer" i18n="@@n11">
+            <a
+              class="nav-link dropdown-toggle"
+              *ngIf="
+                userrole == 'Superadmin' ||
+                userrole == 'MerinyuMTB' ||
+                userrole == 'Kewangan' ||
+                userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+              "
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n11"
+            >
               MTB
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item"
-                *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'" i18n="@@n12"
-                routerLink="/dbkl/mapview">Map View</a>
-          <li class="dropdown-submenu">
-            <a class="dropdown-item dropdown-toggle"
-              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-              style="color: white; cursor: pointer" i18n="@@n15">Field Form</a>
-            <ul class="dropdown-menu">
-              <li>
-                <a routerLink="/dbkl/mtbwork-form"
-                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                  class="dropdown-item" i18n="@@n13">Work Form</a>
+              <a
+                class="dropdown-item"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTB' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                i18n="@@n12"
+                routerLink="/dbkl/mapview"
+                >Map View</a
+              >
+              <li class="dropdown-submenu">
+                <a
+                  class="dropdown-item dropdown-toggle"
+                  *ngIf="
+                    userrole == 'Superadmin' ||
+                    userrole == 'MerinyuMTB' ||
+                    userrole == 'Kewangan' ||
+                    userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                  "
+                  style="color: white; cursor: pointer"
+                  i18n="@@n15"
+                  >Field Form</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtbwork-form"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      class="dropdown-item"
+                      i18n="@@n13"
+                      >Work Form</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtbcompoundform"
+                      class="dropdown-item"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      i18n="@@n14"
+                      >Compound Form</a
+                    >
+                  </li>
+                </ul>
               </li>
-              <li>
-                <a routerLink="/dbkl/mtbcompoundform" class="dropdown-item"
-                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                  i18n="@@n14">Compound Form</a>
+              <li class="dropdown-submenu">
+                <a
+                  class="dropdown-item dropdown-toggle"
+                  *ngIf="
+                    userrole == 'Superadmin' ||
+                    userrole == 'MerinyuMTB' ||
+                    userrole == 'Kewangan' ||
+                    userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                  "
+                  style="color: white; cursor: pointer"
+                  i18n="@@n16"
+                  >Work Log</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtbwork-log"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      class="dropdown-item"
+                      i18n="@@n17"
+                      >Daily Work / Complaints</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      routerLink="/dbkl/mtblistofcompound"
+                      *ngIf="
+                        userrole == 'Superadmin' ||
+                        userrole == 'MerinyuMTB' ||
+                        userrole == 'Kewangan' ||
+                        userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                      "
+                      class="dropdown-item"
+                      i18n="@@n18"
+                      >List of Compounds</a
+                    >
+                  </li>
+                </ul>
               </li>
-            </ul>
+            </div>
           </li>
-          <li class="dropdown-submenu">
-            <a class="dropdown-item dropdown-toggle"
-              *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-              style="color: white; cursor: pointer" i18n="@@n16">Work Log</a>
-            <ul class="dropdown-menu">
-              <li>
-                <a routerLink="/dbkl/mtbwork-log"
-                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                  class="dropdown-item" i18n="@@n17">Daily Work / Complaints</a>
-              </li>
-              <li>
-                <a routerLink="/dbkl/mtblistofcompound"
-                  *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTB' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-                  class="dropdown-item" i18n="@@n18">List of Compounds</a>
-              </li>
-            </ul>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              *ngIf="
+                userrole == 'Superadmin' ||
+                userrole == 'MerinyuMTK' ||
+                userrole == 'Kewangan' ||
+                userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+              "
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@n19"
+            >
+              MTK
+            </a>
+            <div class="dropdown-menu">
+              <a
+                class="dropdown-item"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                style="color: white; cursor: pointer"
+                routerLink="/dbkl/mtkmapview"
+                i18n="@@n20"
+                >Monitoring MTK</a
+              >
+              <a
+                routerLink="/dbkl/mtkworkform"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                (click)="getUser('financial')"
+                i18n="@@n13"
+                style="cursor: pointer"
+                >Work Form</a
+              >
+              <a
+                routerLink="/dbkl/mtbcompoundform"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                i18n="@@n14"
+                style="cursor: pointer"
+                >Compound Form</a
+              >
+              <a
+                routerLink="/dbkl/inspectingofficers"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n21"
+                >Work MTB</a
+              >
+              <a
+                routerLink="/dbkl/mtblistofcompound"
+                *ngIf="
+                  userrole == 'Superadmin' ||
+                  userrole == 'MerinyuMTK' ||
+                  userrole == 'Kewangan' ||
+                  userrole == 'Analisis,MerinyuMTB,MerinyuMTK'
+                "
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@n22"
+                >Compound MTB</a
+              >
+            </div>
           </li>
-      </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle"
-          *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-          id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-          style="color: #253d84 !important; cursor: pointer" i18n="@@n19">
-          MTK
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            style="color: white; cursor: pointer" routerLink="/dbkl/mtkmapview" i18n="@@n20">Monitoring
-            MTK</a>
-          <a routerLink="/dbkl/mtkworkform"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            class="dropdown-item" (click)="getUser('financial')" i18n="@@n13" style="cursor: pointer;">Work Form</a>
-          <a routerLink="/dbkl/mtbcompoundform"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan'|| userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            class="dropdown-item" i18n="@@n14" style="cursor: pointer;">Compound
-            Form</a>
-          <a routerLink="/dbkl/inspectingofficers"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n21">Work MTB</a>
-          <a routerLink="/dbkl/mtblistofcompound"
-            *ngIf="userrole == 'Superadmin' ||  userrole == 'MerinyuMTK' || userrole == 'Kewangan' || userrole == 'Analisis,MerinyuMTB,MerinyuMTK'"
-            class="dropdown-item" style="color: white; cursor: pointer" i18n="@@n22">Compound MTB</a>
-        </div>
-      </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
-          {{ username }}
-        </a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <a routerLink="/profileLog" class="dropdown-item" style="color: white; cursor: pointer"
-            i18n="@@Profile">Profile</a>
-          <a class="dropdown-item" (click)="logout()" style="color: white; cursor: pointer" i18n="@@jflogout">Logout</a>
-        </div>
-      </li>
-      </ul>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+            >
+              {{ username }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a
+                routerLink="/profileLog"
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@Profile"
+                >Profile</a
+              >
+              <a
+                class="dropdown-item"
+                (click)="logout()"
+                style="color: white; cursor: pointer"
+                i18n="@@jflogout"
+                >Logout</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
-  </nav>
-</div>
 </div>
 
 <!-- Success Modal Start-->
-<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: displaySuccess }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+<div
+  class="modal"
+  id="staticBackdrop"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: displaySuccess }"
+  aria-labelledby=" staticBackdropLabel "
+  aria-hidden="true "
+>
   <div class="modal-dialog modal-dialog-centered" role="document ">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
-          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+        <div
+          class="swal2-icon swal2-success swal2-animate-success-icon"
+          style="display: flex"
+        >
+          <div
+            class="swal2-success-circular-line-left"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
           <span class="swal2-success-line-tip"></span>
           <span class="swal2-success-line-long"></span>
           <div class="swal2-success-ring"></div>
-          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
-          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+          <div
+            class="swal2-success-fix"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+          <div
+            class="swal2-success-circular-line-right"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
         </div>
       </div>
       <div class="modal-body">
@@ -133,11 +321,22 @@
         </h4>
 
         <div class="d-flex justify-content-center">
-          <button type="button " i18n="@@ok" (click)="closeSuccessModal()" data-dismiss="modal " class="btn" style="
+          <button
+            type="button "
+            i18n="@@ok"
+            (click)="closeSuccessModal()"
+            data-dismiss="modal "
+            class="btn"
+            style="
               color: white !important;
               border-radius: 4px !important;
-             background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
-            ">
+              background-image: linear-gradient(
+                to bottom,
+                #337ab7 0,
+                #265a88 100%
+              );
+            "
+          >
             OK
           </button>
         </div>
@@ -146,36 +345,69 @@
   </div>
 </div>
 <!-- End of Header -->
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#dc3545" type="ball-clip-rotate-multiple"
-  [fullScreen]="true">
-
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#dc3545"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+>
 </ngx-spinner>
 <!-- Success Modal Start-->
-<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+<div
+  class="modal"
+  id="staticBackdrop"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display }"
+  aria-labelledby=" staticBackdropLabel "
+  aria-hidden="true "
+>
   <div class="modal-dialog modal-dialog-centered" role="document ">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
-          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+        <div
+          class="swal2-icon swal2-success swal2-animate-success-icon"
+          style="display: flex"
+        >
+          <div
+            class="swal2-success-circular-line-left"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
           <span class="swal2-success-line-tip"></span>
           <span class="swal2-success-line-long"></span>
           <div class="swal2-success-ring"></div>
-          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
-          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+          <div
+            class="swal2-success-fix"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+          <div
+            class="swal2-success-circular-line-right"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
         </div>
       </div>
       <div class="modal-body">
         <h4 class="text-center">
-          <span class="dialog-msg" i18n="@@success1">Application updated successfully!&nbsp;</span>
+          <span class="dialog-msg" i18n="@@success1"
+            >Application updated successfully!&nbsp;</span
+          >
         </h4>
 
         <div class="d-flex justify-content-center">
-          <button type="button " i18n="@@ok" (click)="onCloseHandled()" data-dismiss="modal " class="btn" style="
+          <button
+            type="button "
+            i18n="@@ok"
+            (click)="onCloseHandled()"
+            data-dismiss="modal "
+            class="btn"
+            style="
               color: white !important;
               border-radius: 0px !important;
               background-color: #253d84;
-            ">
+            "
+          >
             OK
           </button>
         </div>
@@ -185,15 +417,28 @@
 </div>
 <!-- Success Modal End -->
 <!-- Error Modal Start -->
-<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display1 }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div
+  class="modal"
+  id="staticBackdrop1"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display1 }"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <div class="col-12">
-          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
-            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
-                class="swal2-x-mark-line-right"></span></span>
+          <div
+            class="swal2-icon swal2-error swal2-animate-error-icon"
+            style="display: flex; justify-content: center"
+          >
+            <span class="swal2-x-mark"
+              ><span class="swal2-x-mark-line-left"></span
+              ><span class="swal2-x-mark-line-right"></span
+            ></span>
           </div>
         </div>
       </div>
@@ -201,15 +446,21 @@
         <h6 style="text-align: center">
           <span i18n="@@invoiceinfo3" class="dialog-msg">Bad request!</span>
           <br /><span i18n="@@invoiceinfo4" class="dialog-msg">
-            Please try again.</span>
+            Please try again.</span
+          >
         </h6>
 
         <div class="d-flex justify-content-center mt-4">
-          <button class="btn" (click)="onCloseHandled1()" i18n="@@ok" style="
+          <button
+            class="btn"
+            (click)="onCloseHandled1()"
+            i18n="@@ok"
+            style="
               background-color: #253d84;
               color: white !important;
               border-radius: 0px !important;
-            ">
+            "
+          >
             Ok
           </button>
         </div>
@@ -230,8 +481,10 @@
         </div>
         <div class="text-center">
           <div>
-            <img src="../../../assets/img/DBKL LOGO (Lorry).png" height="70" alt="" />
-            <h6 style="font-weight: 900" i18n="@@omp2">KUALA LUMPUR CITY HALL</h6>
+            <img src="assets/img/DBKL LOGO (Lorry).png" height="70" alt="" />
+            <h6 style="font-weight: 900" i18n="@@omp2">
+              KUALA LUMPUR CITY HALL
+            </h6>
             <h6 style="font-weight: 900" i18n="@@omp1">
               DEPARTMENT OF HEALTH AND ENVIRONMENT
             </h6>
@@ -241,56 +494,117 @@
           </div>
         </div>
         <div class="d-flex justify-content-end">
-          <button printSectionId="Borang" [useExistingCss]="true" ngxPrint type="button"
-            style="border: 1px solid transparent; background: transparent">
-            <i style="
+          <button
+            printSectionId="Borang"
+            [useExistingCss]="true"
+            ngxPrint
+            type="button"
+            style="border: 1px solid transparent; background: transparent"
+          >
+            <i
+              style="
                 font-size: 30px;
                 color: #419641;
                 cursor: pointer;
                 float: right;
                 margin-top: 12px;
-              " id="print" class="fa fa-print" aria-hidden="true"></i>
+              "
+              id="print"
+              class="fa fa-print"
+              aria-hidden="true"
+            ></i>
           </button>
         </div>
         <div class="form-group col-md-12">
           <label for="textInput" i18n="@@nonotis">No Notis BAS</label>
-          <input type="text" id="textInput" class="form-control mb-2" placeholder="Text input" name="no_notis_bas"
-            [(ngModel)]="no_notis_bas" readonly />
+          <input
+            type="text"
+            id="textInput"
+            class="form-control mb-2"
+            placeholder="Text input"
+            name="no_notis_bas"
+            [(ngModel)]="no_notis_bas"
+            readonly
+          />
         </div>
 
         <div class="form-group col-md-12">
-          <h5 style="background-color: #253d84" class="card-header info-color text-center white-text py-6">
-            <strong style="color: white" i18n="@@offender">OFFENDER INFORMATION</strong>
+          <h5
+            style="background-color: #253d84"
+            class="card-header info-color text-center white-text py-6"
+          >
+            <strong style="color: white" i18n="@@offender"
+              >OFFENDER INFORMATION</strong
+            >
           </h5>
         </div>
         <div class="form-group col-md-12">
           <label for="textInput" i18n="@@to1">To</label>
-          <input type="text" id="textInput" class="form-control mb-2" name="kepada" [(ngModel)]="kepada" readonly />
+          <input
+            type="text"
+            id="textInput"
+            class="form-control mb-2"
+            name="kepada"
+            [(ngModel)]="kepada"
+            readonly
+          />
         </div>
 
         <div class="form-group col-md-12">
           <label for="textInput" i18n="@@nokp">No.KP/Syarikat</label>
-          <input type="text" id="textInput" class="form-control mb-2" name="company_no" [(ngModel)]="company_no"
-            readonly />
+          <input
+            type="text"
+            id="textInput"
+            class="form-control mb-2"
+            name="company_no"
+            [(ngModel)]="company_no"
+            readonly
+          />
         </div>
 
         <div class="form-group col-md-12">
           <label for="textInput" i18n="@@address">Address</label>
-          <input type="text" id="textInput" class="form-control mb-2" name="address" [(ngModel)]="alamat" readonly />
+          <input
+            type="text"
+            id="textInput"
+            class="form-control mb-2"
+            name="address"
+            [(ngModel)]="alamat"
+            readonly
+          />
         </div>
 
         <div class="form-group col-md-12">
-          <h5 style="background-color: #253d84" class="card-header info-color text-center white-text py-6">
-            <strong style="color: white" i18n="@@officerinfo">OFFICER INFORMATION</strong>
+          <h5
+            style="background-color: #253d84"
+            class="card-header info-color text-center white-text py-6"
+          >
+            <strong style="color: white" i18n="@@officerinfo"
+              >OFFICER INFORMATION</strong
+            >
           </h5>
         </div>
         <div class="form-group col-md-12">
           <label for="select" i18n="@@Officer">Officer ID</label>
-          <input type="text" id="textInput" class="form-control mb-2" name="id_mtb" [(ngModel)]="id_mtb" readonly />
+          <input
+            type="text"
+            id="textInput"
+            class="form-control mb-2"
+            name="id_mtb"
+            [(ngModel)]="id_mtb"
+            readonly
+          />
         </div>
         <div class="form-group col-md-12">
           <label for="select" i18n="@@parliament1">Parliament</label>
-          <input type="text" id="textInput" class="form-control mb-2" name="parlimen" [(ngModel)]="parlimen" readonly />
+          <input
+            type="text"
+            id="textInput"
+            class="form-control mb-2"
+            name="parlimen"
+            [(ngModel)]="parlimen"
+            readonly
+          />
         </div>
         <!-- <div class="form-group col-md-12">
           <label for="select" i18n="@@location1">Location</label>
@@ -316,321 +630,695 @@
           </h6>
         </div>
 
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.sek47_1a == true"><input type="checkbox" checked
-                #saveUserNameCheckBox1 (change)="onSaveUsernameChanged1(saveUserNameCheckBox1.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_1a == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox1
+                (change)="
+                  onSaveUsernameChanged1(saveUserNameCheckBox1.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.sek47_1a == false"><input type="checkbox" #saveUserNameCheckBox1
-                (change)="onSaveUsernameChanged1(saveUserNameCheckBox1.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_1a == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox1
+                (change)="
+                  onSaveUsernameChanged1(saveUserNameCheckBox1.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>SEK. 47(1)(a)</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.sek47_1c == true"><input type="checkbox" checked
-                #saveUserNameCheckBox2 (change)="onSaveUsernameChanged2(saveUserNameCheckBox2.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_1c == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox2
+                (change)="
+                  onSaveUsernameChanged2(saveUserNameCheckBox2.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.sek47_1c == false"><input type="checkbox" #saveUserNameCheckBox2
-                (change)="onSaveUsernameChanged2(saveUserNameCheckBox2.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_1c == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox2
+                (change)="
+                  onSaveUsernameChanged2(saveUserNameCheckBox2.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>SEK. 47(1)(c)</span></label>
         </div>
 
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.sek47_1d == true"><input type="checkbox" checked
-                #saveUserNameCheckBox3 (change)="onSaveUsernameChanged3(saveUserNameCheckBox3.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_1d == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox3
+                (change)="
+                  onSaveUsernameChanged3(saveUserNameCheckBox3.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.sek47_1d == false"><input type="checkbox" #saveUserNameCheckBox3
-                (change)="onSaveUsernameChanged3(saveUserNameCheckBox3.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_1d == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox3
+                (change)="
+                  onSaveUsernameChanged3(saveUserNameCheckBox3.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>SEK. 47(1)(d)</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.sek47_1e == true"><input type="checkbox" checked
-                #saveUserNameCheckBox4 (change)="onSaveUsernameChanged4(saveUserNameCheckBox4.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_1e == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox4
+                (change)="
+                  onSaveUsernameChanged4(saveUserNameCheckBox4.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.sek47_1e == false"><input type="checkbox" #saveUserNameCheckBox4
-                (change)="onSaveUsernameChanged4(saveUserNameCheckBox4.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_1e == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox4
+                (change)="
+                  onSaveUsernameChanged4(saveUserNameCheckBox4.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>SEK. 47(1)(e)</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.sek47_1g == true"><input type="checkbox" checked
-                #saveUserNameCheckBox5 (change)="onSaveUsernameChanged5(saveUserNameCheckBox5.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_1g == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox5
+                (change)="
+                  onSaveUsernameChanged5(saveUserNameCheckBox5.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.sek47_1g == false"><input type="checkbox" #saveUserNameCheckBox5
-                (change)="onSaveUsernameChanged5(saveUserNameCheckBox5.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_1g == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox5
+                (change)="
+                  onSaveUsernameChanged5(saveUserNameCheckBox5.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>SEK. 47(1)(g)</span></label>
         </div>
 
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.sek47_2a == true"><input type="checkbox" checked
-                #saveUserNameCheckBox6 (change)="onSaveUsernameChanged6(saveUserNameCheckBox6.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_2a == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox6
+                (change)="
+                  onSaveUsernameChanged6(saveUserNameCheckBox6.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.sek47_2a == false"><input type="checkbox" #saveUserNameCheckBox6
-                (change)="onSaveUsernameChanged6(saveUserNameCheckBox6.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_2a == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox6
+                (change)="
+                  onSaveUsernameChanged6(saveUserNameCheckBox6.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>SEK. 47(2)(a)</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.sek47_2b == true"><input type="checkbox" checked
-                #saveUserNameCheckBox7 (change)="onSaveUsernameChanged7(saveUserNameCheckBox7.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_2b == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox7
+                (change)="
+                  onSaveUsernameChanged7(saveUserNameCheckBox7.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.sek47_2b == false"><input type="checkbox" #saveUserNameCheckBox7
-                (change)="onSaveUsernameChanged7(saveUserNameCheckBox7.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek47_2b == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox7
+                (change)="
+                  onSaveUsernameChanged7(saveUserNameCheckBox7.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>SEK. 47(2)(b)</span></label>
         </div>
 
-
-
-
         <div class="form-group col-md-12">
           <h6 class=" ">
-            <strong i18n="@@tbai">TRADE, BUSINESS AND INDUSTRY LICENSING (WPKL) BY-LAWS 1986</strong>
+            <strong i18n="@@tbai"
+              >TRADE, BUSINESS AND INDUSTRY LICENSING (WPKL) BY-LAWS
+              1986</strong
+            >
           </h6>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.uuk8 == true"><input type="checkbox" checked
-                #saveUserNameCheckBox8 (change)="onSaveUsernameChanged8(saveUserNameCheckBox8.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk8 == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox8
+                (change)="
+                  onSaveUsernameChanged8(saveUserNameCheckBox8.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.uuk8 == false"><input type="checkbox" #saveUserNameCheckBox8
-                (change)="onSaveUsernameChanged8(saveUserNameCheckBox8.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk8 == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox8
+                (change)="
+                  onSaveUsernameChanged8(saveUserNameCheckBox8.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>UUK 8</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.uuk9 == true"><input type="checkbox" checked
-                #saveUserNameCheckBox9 (change)="onSaveUsernameChanged9(saveUserNameCheckBox9.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk9 == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox9
+                (change)="
+                  onSaveUsernameChanged9(saveUserNameCheckBox9.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.uuk9 == false"><input type="checkbox" #saveUserNameCheckBox9
-                (change)="onSaveUsernameChanged9(saveUserNameCheckBox9.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk9 == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox9
+                (change)="
+                  onSaveUsernameChanged9(saveUserNameCheckBox9.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>UUK 9</span></label>
         </div>
 
-
         <div class="form-group col-md-12">
           <h6 class=" ">
-            <strong i18n="@@posb">PROHIBITION OF SPITTING BY-LAWS (WPKL) 1991</strong>
+            <strong i18n="@@posb"
+              >PROHIBITION OF SPITTING BY-LAWS (WPKL) 1991</strong
+            >
           </h6>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.uuk3 == true"><input type="checkbox" checked
-                #saveUserNameCheckBox10 (change)="onSaveUsernameChanged10(saveUserNameCheckBox10.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk3 == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox10
+                (change)="
+                  onSaveUsernameChanged10(saveUserNameCheckBox10.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.uuk3 == false"><input type="checkbox" #saveUserNameCheckBox10
-                (change)="onSaveUsernameChanged10(saveUserNameCheckBox10.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk3 == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox10
+                (change)="
+                  onSaveUsernameChanged10(saveUserNameCheckBox10.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>UUK 3</span></label>
         </div>
 
-
-
-
-
         <div class="form-group col-md-12">
           <h6 class=" ">
-            <strong i18n="@@rdab">ROADS, DRAINAGE AND BUILDINGS ACT 1974 - (OBSTACLES)</strong>
+            <strong i18n="@@rdab"
+              >ROADS, DRAINAGE AND BUILDINGS ACT 1974 - (OBSTACLES)</strong
+            >
           </h6>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.sek46_1b == true"><input type="checkbox" checked
-                #saveUserNameCheckBox11 (change)="onSaveUsernameChanged11(saveUserNameCheckBox11.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek46_1b == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox11
+                (change)="
+                  onSaveUsernameChanged11(saveUserNameCheckBox11.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.sek46_1b == false"><input type="checkbox"
-                #saveUserNameCheckBox11 (change)="onSaveUsernameChanged11(saveUserNameCheckBox11.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek46_1b == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox11
+                (change)="
+                  onSaveUsernameChanged11(saveUserNameCheckBox11.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>SEK. 46(1)(b)</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.sek46_1c == true"><input type="checkbox" checked
-                #saveUserNameCheckBox12 (change)="onSaveUsernameChanged12(saveUserNameCheckBox12.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek46_1c == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox12
+                (change)="
+                  onSaveUsernameChanged12(saveUserNameCheckBox12.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.sek46_1c == false"><input type="checkbox"
-                #saveUserNameCheckBox12 (change)="onSaveUsernameChanged12(saveUserNameCheckBox12.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek46_1c == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox12
+                (change)="
+                  onSaveUsernameChanged12(saveUserNameCheckBox12.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>SEK. 46(1)(c)</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.sek46_1d == true"><input type="checkbox" checked
-                #saveUserNameCheckBox13 (change)="onSaveUsernameChanged13(saveUserNameCheckBox13.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek46_1d == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox13
+                (change)="
+                  onSaveUsernameChanged13(saveUserNameCheckBox13.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.sek46_1d == false"><input type="checkbox"
-                #saveUserNameCheckBox13 (change)="onSaveUsernameChanged13(saveUserNameCheckBox13.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek46_1d == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox13
+                (change)="
+                  onSaveUsernameChanged13(saveUserNameCheckBox13.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>SEK. 46(1)(d)</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.sek46_1e == true"><input type="checkbox" checked
-                #saveUserNameCheckBox14 (change)="onSaveUsernameChanged14(saveUserNameCheckBox14.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek46_1e == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox14
+                (change)="
+                  onSaveUsernameChanged14(saveUserNameCheckBox14.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.sek46_1e == false"><input type="checkbox"
-                #saveUserNameCheckBox14 (change)="onSaveUsernameChanged14(saveUserNameCheckBox14.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek46_1e == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox14
+                (change)="
+                  onSaveUsernameChanged14(saveUserNameCheckBox14.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>SEK. 46(1)(e)</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.sek46_1f == true"><input type="checkbox" checked
-                #saveUserNameCheckBox15 (change)="onSaveUsernameChanged15(saveUserNameCheckBox15.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek46_1f == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox15
+                (change)="
+                  onSaveUsernameChanged15(saveUserNameCheckBox15.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.sek46_1f == false"><input type="checkbox"
-                #saveUserNameCheckBox15 (change)="onSaveUsernameChanged15(saveUserNameCheckBox15.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek46_1f == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox15
+                (change)="
+                  onSaveUsernameChanged15(saveUserNameCheckBox15.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>SEK. 46(1)(f)</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.sek46_1g == true"><input type="checkbox" checked
-                #saveUserNameCheckBox16 (change)="onSaveUsernameChanged16(saveUserNameCheckBox16.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek46_1g == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox16
+                (change)="
+                  onSaveUsernameChanged16(saveUserNameCheckBox16.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.sek46_1g == false"><input type="checkbox"
-                #saveUserNameCheckBox16 (change)="onSaveUsernameChanged16(saveUserNameCheckBox16.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.sek46_1g == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox16
+                (change)="
+                  onSaveUsernameChanged16(saveUserNameCheckBox16.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>SEK. 46(1)(g)</span></label>
         </div>
 
-
-
         <div class="form-group col-md-12">
           <h6 class=" ">
-            <strong i18n="@@felb">FOOD ESTABLISHMENT LICENSING (WPKL) BY -LAWS 1985</strong>
+            <strong i18n="@@felb"
+              >FOOD ESTABLISHMENT LICENSING (WPKL) BY -LAWS 1985</strong
+            >
           </h6>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.uuk5_a== true"><input type="checkbox" checked
-                #saveUserNameCheckBox17 (change)="onSaveUsernameChanged17(saveUserNameCheckBox17.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk5_a == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox17
+                (change)="
+                  onSaveUsernameChanged17(saveUserNameCheckBox17.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.uuk5_a == false"><input type="checkbox" #saveUserNameCheckBox17
-                (change)="onSaveUsernameChanged17(saveUserNameCheckBox17.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk5_a == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox17
+                (change)="
+                  onSaveUsernameChanged17(saveUserNameCheckBox17.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>UUK 5(a)</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.uuk5_b == true"><input type="checkbox" checked
-                #saveUserNameCheckBox18 (change)="onSaveUsernameChanged18(saveUserNameCheckBox18.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk5_b == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox18
+                (change)="
+                  onSaveUsernameChanged18(saveUserNameCheckBox18.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.uuk5_b == false"><input type="checkbox" #saveUserNameCheckBox18
-                (change)="onSaveUsernameChanged18(saveUserNameCheckBox18.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk5_b == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox18
+                (change)="
+                  onSaveUsernameChanged18(saveUserNameCheckBox18.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>UUK 5(b)</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.uuk5_c == true"><input type="checkbox" checked
-                #saveUserNameCheckBox19 (change)="onSaveUsernameChanged19(saveUserNameCheckBox19.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk5_c == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox19
+                (change)="
+                  onSaveUsernameChanged19(saveUserNameCheckBox19.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.uuk5_c == false"><input type="checkbox" #saveUserNameCheckBox19
-                (change)="onSaveUsernameChanged19(saveUserNameCheckBox19.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk5_c == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox19
+                (change)="
+                  onSaveUsernameChanged19(saveUserNameCheckBox19.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>UUK 5(c)</span></label>
         </div>
 
-
         <div class="form-group col-md-12">
           <h6 class=" ">
-            <strong i18n="@@tasl">TRADERS AND STALL LICENSING (WPKL) BY -LAWS 1989</strong>
+            <strong i18n="@@tasl"
+              >TRADERS AND STALL LICENSING (WPKL) BY -LAWS 1989</strong
+            >
           </h6>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.uuk33 == true"><input type="checkbox" checked
-                #saveUserNameCheckBox20 (change)="onSaveUsernameChanged20(saveUserNameCheckBox20.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk33 == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox20
+                (change)="
+                  onSaveUsernameChanged20(saveUserNameCheckBox20.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.uuk33 == false"><input type="checkbox" #saveUserNameCheckBox20
-                (change)="onSaveUsernameChanged20(saveUserNameCheckBox20.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk33 == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox20
+                (change)="
+                  onSaveUsernameChanged20(saveUserNameCheckBox20.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>UUK 33</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.uuk34 == true"><input type="checkbox" checked
-                #saveUserNameCheckBox21 (change)="onSaveUsernameChanged21(saveUserNameCheckBox21.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk34 == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox21
+                (change)="
+                  onSaveUsernameChanged21(saveUserNameCheckBox21.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.uuk34 == false"><input type="checkbox" #saveUserNameCheckBox21
-                (change)="onSaveUsernameChanged21(saveUserNameCheckBox21.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk34 == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox21
+                (change)="
+                  onSaveUsernameChanged21(saveUserNameCheckBox21.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>UUK 34</span></label>
         </div>
-        <div class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4">
+        <div
+          class="form-group col-md-12 custom-control ml-4 custom-checkbox mb-4"
+        >
           <span *ngFor="let val of compounddata">
-            <span class="align-items-center" *ngIf="val.uuk35 == true"><input type="checkbox" checked
-                #saveUserNameCheckBox22 (change)="onSaveUsernameChanged22(saveUserNameCheckBox22.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk35 == true"
+              ><input
+                type="checkbox"
+                checked
+                #saveUserNameCheckBox22
+                (change)="
+                  onSaveUsernameChanged22(saveUserNameCheckBox22.checked)
+                "
+            /></span>
 
-            <span class="align-items-center" *ngIf="val.uuk35 == false"><input type="checkbox" #saveUserNameCheckBox22
-                (change)="onSaveUsernameChanged22(saveUserNameCheckBox22.checked)" /></span>
+            <span class="align-items-center" *ngIf="val.uuk35 == false"
+              ><input
+                type="checkbox"
+                #saveUserNameCheckBox22
+                (change)="
+                  onSaveUsernameChanged22(saveUserNameCheckBox22.checked)
+                "
+            /></span>
           </span>
 
           <label>&nbsp;- &nbsp; &nbsp;<span>UUK 35</span></label>
         </div>
 
-
-
         <div class="form-group col-md-12">
-          <h5 style="background-color: #253d84" class="card-header info-color text-center white-text py-6">
-            <strong style="color: white" i18n="@@errordetails"> Error Details</strong>
+          <h5
+            style="background-color: #253d84"
+            class="card-header info-color text-center white-text py-6"
+          >
+            <strong style="color: white" i18n="@@errordetails">
+              Error Details</strong
+            >
           </h5>
         </div>
         <div class="form-group col-md-12">
-          <input type="text" id="inputbox" class="form-control mt-2 mb-2" name="error"
-            [(ngModel)]="butir_butir_kesalahan" readonly />
+          <input
+            type="text"
+            id="inputbox"
+            class="form-control mt-2 mb-2"
+            name="error"
+            [(ngModel)]="butir_butir_kesalahan"
+            readonly
+          />
         </div>
         <div class="form-group col-md-6">
           <label for="textInput" i18n="@@date1">Date</label>
-          <input type="text" id="textInput" class="form-control mb-2" name="tarikh" [(ngModel)]="tarikh" readonly />
+          <input
+            type="text"
+            id="textInput"
+            class="form-control mb-2"
+            name="tarikh"
+            [(ngModel)]="tarikh"
+            readonly
+          />
         </div>
 
         <div class="form-group col-md-6">
           <label for="textInput" i18n="@@time"> Time</label>
-          <input type="text" id="textInput" class="form-control mb-2" name="waktu" [(ngModel)]="waktu" readonly />
+          <input
+            type="text"
+            id="textInput"
+            class="form-control mb-2"
+            name="waktu"
+            [(ngModel)]="waktu"
+            readonly
+          />
         </div>
 
         <div class="form-grngoup col-md-12">
           <label for="textInput" i18n="@@theplace"> The place</label>
-          <input type="text" id="textInput" class="form-control mb-2" placeholder="Text input" name="place"
-            [(ngModel)]="tempat" readonly />
+          <input
+            type="text"
+            id="textInput"
+            class="form-control mb-2"
+            placeholder="Text input"
+            name="place"
+            [(ngModel)]="tempat"
+            readonly
+          />
         </div>
         <div class="text-center form-group col-md-12">
-          <button class="look_for" style="margin-right: 8px" type="submit" i18n="@@n75">Submit</button>
-          <button class="look_for_red" type="button" (click)="cancel()" i18n="@@comeback">Back</button>
+          <button
+            class="look_for"
+            style="margin-right: 8px"
+            type="submit"
+            i18n="@@n75"
+          >
+            Submit
+          </button>
+          <button
+            class="look_for_red"
+            type="button"
+            (click)="cancel()"
+            i18n="@@comeback"
+          >
+            Back
+          </button>
         </div>
       </form>
     </div>
@@ -641,5 +1329,9 @@
 <app-footer></app-footer>
 <!-- End Footer -->
 
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
-    class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>

@@ -14,11 +14,7 @@
   <div class="container-fluid" ngStickyNav>
     <nav class="navbar navbar-expand-lg">
       <a routerLink="/public" class="navbar-brand">
-        <img
-          src="../../../assets/img/DBKL LOGO (Lorry).png"
-          alt=""
-          loading="lazy"
-        />
+        <img src="assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
       </a>
 
       <button
@@ -355,9 +351,15 @@
                     Fail:
                     <a
                       href="javascript:void(0)"
-                      (click)="handleFileClick(rowData.site_visit_info.tetapan_lawatan_tapak_filename)"
+                      (click)="
+                        handleFileClick(
+                          rowData.site_visit_info.tetapan_lawatan_tapak_filename
+                        )
+                      "
                     >
-                      {{ rowData.site_visit_info.tetapan_lawatan_tapak_filename }}
+                      {{
+                        rowData.site_visit_info.tetapan_lawatan_tapak_filename
+                      }}
                     </a>
                   </div>
                   <br />
@@ -367,7 +369,9 @@
                     type="button"
                     icon="fa fa-edit"
                     class="p-button-rounded p-button-text p-button-sm"
-                    (click)="openSiteVisitEditDialog('tetapan_lawatan_tapak', rowData)"
+                    (click)="
+                      openSiteVisitEditDialog('tetapan_lawatan_tapak', rowData)
+                    "
                     title="Edit Site Visit Date/Time"
                   ></button>
                   <button
@@ -386,7 +390,7 @@
                     [queryParams]="{ id: rowData.no_siri_permohonan }"
                     >Kemaskini Maklumat</a
                   > -->
-                  {{ rowData.site_visit_info.keputusan_lawatan_tapak || 'N/A' }}
+                  {{ rowData.site_visit_info.keputusan_lawatan_tapak || "N/A" }}
                   <div
                     *ngIf="
                       rowData.site_visit_info.keputusan_lawatan_tapak_filename
@@ -395,9 +399,16 @@
                     Fail:
                     <a
                       href="javascript:void(0)"
-                      (click)="handleFileClick(rowData.site_visit_info.keputusan_lawatan_tapak_filename)"
+                      (click)="
+                        handleFileClick(
+                          rowData.site_visit_info
+                            .keputusan_lawatan_tapak_filename
+                        )
+                      "
                     >
-                      {{ rowData.site_visit_info.keputusan_lawatan_tapak_filename }}
+                      {{
+                        rowData.site_visit_info.keputusan_lawatan_tapak_filename
+                      }}
                     </a>
                   </div>
                   <br />
@@ -407,7 +418,12 @@
                     type="button"
                     icon="fa fa-edit"
                     class="p-button-rounded p-button-text p-button-sm"
-                    (click)="openSiteVisitEditDialog('keputusan_lawatan_tapak', rowData)"
+                    (click)="
+                      openSiteVisitEditDialog(
+                        'keputusan_lawatan_tapak',
+                        rowData
+                      )
+                    "
                     title="Edit Site Visit Detail"
                   ></button>
                   <button
@@ -416,7 +432,9 @@
                     type="button"
                     icon="fa fa-upload"
                     class="p-button-rounded p-button-text p-button-sm"
-                    (click)="openUploadDialog('keputusan_lawatan_tapak',rowData)"
+                    (click)="
+                      openUploadDialog('keputusan_lawatan_tapak', rowData)
+                    "
                     title="Upload Site Visit File"
                   ></button>
                 </td>
@@ -425,14 +443,30 @@
                     [value]="rowData.no_siri_permohonan"
                     [getData]="data"
                   ></app-dbklppsppa> -->
-                  {{ rowData.site_visit_info.status_maklumbalas_ketidakpatuhan || 'N/A'}}
-                  <div *ngIf="rowData.site_visit_info.maklumbalas_ketidakpatuhan_filename">
+                  {{
+                    rowData.site_visit_info.status_maklumbalas_ketidakpatuhan ||
+                      "N/A"
+                  }}
+                  <div
+                    *ngIf="
+                      rowData.site_visit_info
+                        .maklumbalas_ketidakpatuhan_filename
+                    "
+                  >
                     Fail:
                     <a
                       href="javascript:void(0)"
-                      (click)="handleFileClick(rowData.site_visit_info.maklumbalas_ketidakpatuhan_filename)"
+                      (click)="
+                        handleFileClick(
+                          rowData.site_visit_info
+                            .maklumbalas_ketidakpatuhan_filename
+                        )
+                      "
                     >
-                      {{ rowData.site_visit_info.maklumbalas_ketidakpatuhan_filename }}
+                      {{
+                        rowData.site_visit_info
+                          .maklumbalas_ketidakpatuhan_filename
+                      }}
                     </a>
                   </div>
                   <br />
@@ -442,23 +476,34 @@
                     type="button"
                     icon="fa fa-edit"
                     class="p-button-rounded p-button-text p-button-sm"
-                    (click)="openSiteVisitEditDialog('maklumbalas_ketidakpatuhan', rowData)"
+                    (click)="
+                      openSiteVisitEditDialog(
+                        'maklumbalas_ketidakpatuhan',
+                        rowData
+                      )
+                    "
                     title="Edit Site Detail"
                   ></button>
                 </td>
                 <td>
                   {{ rowData.status_keputusan_permohonan }}
                   <br />
-                  {{ rowData.tarikh_keputusan_permohonan ? (rowData.status_keputusan_permohonan === 'Lulus' ? 'Tarikh Serahan: ' : '') + (rowData.tarikh_keputusan_permohonan | date : "dd MMM yyyy") : 'N/A' }}
-                  <div
-                    *ngIf="
-                      rowData.filename_keputusan_permohonan
-                    "
-                  >
+                  {{
+                    rowData.tarikh_keputusan_permohonan
+                      ? (rowData.status_keputusan_permohonan === "Lulus"
+                          ? "Tarikh Serahan: "
+                          : "") +
+                        (rowData.tarikh_keputusan_permohonan
+                          | date : "dd MMM yyyy")
+                      : "N/A"
+                  }}
+                  <div *ngIf="rowData.filename_keputusan_permohonan">
                     Fail:
                     <a
                       href="javascript:void(0)"
-                      (click)="handleFileClick(rowData.filename_keputusan_permohonan)"
+                      (click)="
+                        handleFileClick(rowData.filename_keputusan_permohonan)
+                      "
                     >
                       {{ rowData.filename_keputusan_permohonan }}
                     </a>
@@ -470,7 +515,9 @@
                     type="button"
                     icon="fa fa-edit"
                     class="p-button-rounded p-button-text p-button-sm"
-                    (click)="openSiteVisitEditDialog('keputusan_permohonan', rowData)"
+                    (click)="
+                      openSiteVisitEditDialog('keputusan_permohonan', rowData)
+                    "
                     title="Edit Site Visit Detail"
                   ></button>
                   <button
@@ -479,20 +526,20 @@
                     type="button"
                     icon="fa fa-upload"
                     class="p-button-rounded p-button-text p-button-sm"
-                    (click)="openUploadDialog('keputusan_permohonan',rowData)"
+                    (click)="openUploadDialog('keputusan_permohonan', rowData)"
                     title="Upload Site Visit File"
                   ></button>
                 </td>
                 <td>
-                  <textarea 
-                    class="form-control" 
-                    rows="3" 
+                  <textarea
+                    class="form-control"
+                    rows="3"
                     [(ngModel)]="rowData.catatan"
-                    style="resize: none; overflow-y: auto; max-height: 80px;"
+                    style="resize: none; overflow-y: auto; max-height: 80px"
                     disabled
-                    >
+                  >
                   </textarea>
-                   <button
+                  <button
                     pButton
                     pRipple
                     type="button"
@@ -737,13 +784,16 @@
   [draggable]="false"
   [resizable]="false"
 >
-<!-- tetapan lawatan tapak -->
-  <div class="p-fluid" *ngIf="editSiteVisitData.type === 'tetapan_lawatan_tapak'">
+  <!-- tetapan lawatan tapak -->
+  <div
+    class="p-fluid"
+    *ngIf="editSiteVisitData.type === 'tetapan_lawatan_tapak'"
+  >
     <div class="field">
       <label class="p-text-secondary">No. Siri Permohonan:</label>
-      <span class="p-text-bold"> {{
-        editSiteVisitData.no_siri_permohonan
-      }}</span>
+      <span class="p-text-bold">
+        {{ editSiteVisitData.no_siri_permohonan }}</span
+      >
     </div>
     <div class="field">
       <label for="siteVisitDate">Date</label>
@@ -781,12 +831,15 @@
   </div>
 
   <!-- keputusan lawatan tapak -->
-  <div class="p-fluid" *ngIf="editSiteVisitData.type === 'keputusan_lawatan_tapak'">
+  <div
+    class="p-fluid"
+    *ngIf="editSiteVisitData.type === 'keputusan_lawatan_tapak'"
+  >
     <div class="field">
       <label class="p-text-secondary">No. Siri Permohonan:</label>
-      <span class="p-text-bold"> {{
-        editSiteVisitData.no_siri_permohonan
-      }}</span>
+      <span class="p-text-bold">
+        {{ editSiteVisitData.no_siri_permohonan }}</span
+      >
     </div>
     <div class="field">
       <label for="keputusanLawatan">Keputusan Lawatan Tapak</label>
@@ -807,12 +860,15 @@
   </div>
 
   <!-- maklumbalas ketidakpatuhan -->
-  <div class="p-fluid" *ngIf="editSiteVisitData.type === 'maklumbalas_ketidakpatuhan'">
+  <div
+    class="p-fluid"
+    *ngIf="editSiteVisitData.type === 'maklumbalas_ketidakpatuhan'"
+  >
     <div class="field">
       <label class="p-text-secondary">No. Siri Permohonan:</label>
-      <span class="p-text-bold"> {{
-        editSiteVisitData.no_siri_permohonan
-      }}</span>
+      <span class="p-text-bold">
+        {{ editSiteVisitData.no_siri_permohonan }}</span
+      >
     </div>
     <div class="field">
       <label for="maklumbalasKetidakpatuhan">Maklumbalas Ketidakpatuhan</label>
@@ -833,12 +889,15 @@
   </div>
 
   <!-- keputusan permohonan -->
-   <div class="p-fluid" *ngIf="editSiteVisitData.type === 'keputusan_permohonan'">
+  <div
+    class="p-fluid"
+    *ngIf="editSiteVisitData.type === 'keputusan_permohonan'"
+  >
     <div class="field">
       <label class="p-text-secondary">No. Siri Permohonan:</label>
-      <span class="p-text-bold"> {{
-        editSiteVisitData.no_siri_permohonan
-      }}</span>
+      <span class="p-text-bold">
+        {{ editSiteVisitData.no_siri_permohonan }}</span
+      >
     </div>
     <div class="field">
       <label for="keputusanPermohonan">Keputusan Permohonan</label>
@@ -876,18 +935,18 @@
   </div>
 
   <!-- catatan -->
-   <div class="p-fluid" *ngIf="editSiteVisitData.type === 'catatan'">
-     <div class="field">
-       <label for="catatan">Catatan</label>
-       <textarea
-         id="catatan"
-         [(ngModel)]="editSiteVisitData.catatan"
-         rows="3"
-         class="form-control"
-         style="resize: none; overflow-y: auto; max-height: 80px;"
-       ></textarea>
-     </div>
-   </div>
+  <div class="p-fluid" *ngIf="editSiteVisitData.type === 'catatan'">
+    <div class="field">
+      <label for="catatan">Catatan</label>
+      <textarea
+        id="catatan"
+        [(ngModel)]="editSiteVisitData.catatan"
+        rows="3"
+        class="form-control"
+        style="resize: none; overflow-y: auto; max-height: 80px"
+      ></textarea>
+    </div>
+  </div>
 
   <ng-template pTemplate="footer">
     <button
@@ -905,7 +964,6 @@
       icon="pi pi-check"
       class="p-button-primary"
       (click)="saveSiteVisit()"
-      
     ></button>
   </ng-template>
 </p-dialog>
@@ -962,9 +1020,7 @@
           <div class="p-d-flex p-ai-center">
             <i class="pi pi-file-pdf p-mr-2 p-text-secondary"></i>
             <span class="p-text-sm">
-              {{ item.file.name }} ({{
-                (item.file.size / 1000000).toFixed(2)
-              }}
+              {{ item.file.name }} ({{ (item.file.size / 1000000).toFixed(2) }}
               MB)
             </span>
           </div>

@@ -1,20 +1,44 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
-  [fullScreen]="true">
-
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#253d84"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+>
 </ngx-spinner>
 <!-- Success Modal Start-->
-<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+<div
+  class="modal"
+  id="staticBackdrop"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display }"
+  aria-labelledby=" staticBackdropLabel "
+  aria-hidden="true "
+>
   <div class="modal-dialog modal-dialog-centered" role="document ">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
-          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+        <div
+          class="swal2-icon swal2-success swal2-animate-success-icon"
+          style="display: flex"
+        >
+          <div
+            class="swal2-success-circular-line-left"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
           <span class="swal2-success-line-tip"></span>
           <span class="swal2-success-line-long"></span>
           <div class="swal2-success-ring"></div>
-          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
-          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+          <div
+            class="swal2-success-fix"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+          <div
+            class="swal2-success-circular-line-right"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
         </div>
       </div>
       <div class="modal-body">
@@ -24,11 +48,22 @@
         </h4>
 
         <div class="d-flex justify-content-center">
-          <button type="button " i18n="@@ok" (click)="onCloseHandled()" data-dismiss="modal " class="btn" style="
+          <button
+            type="button "
+            i18n="@@ok"
+            (click)="onCloseHandled()"
+            data-dismiss="modal "
+            class="btn"
+            style="
               color: white !important;
               border-radius: 4px !important;
-               background-image: linear-gradient(to bottom, #337ab7 0, #265a88 100%);
-            ">
+              background-image: linear-gradient(
+                to bottom,
+                #337ab7 0,
+                #265a88 100%
+              );
+            "
+          >
             OK
           </button>
         </div>
@@ -38,15 +73,28 @@
 </div>
 <!-- Success Modal End -->
 <!-- Error Modal Start -->
-<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display1 }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div
+  class="modal"
+  id="staticBackdrop1"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display1 }"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <div class="col-12">
-          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
-            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
-                class="swal2-x-mark-line-right"></span></span>
+          <div
+            class="swal2-icon swal2-error swal2-animate-error-icon"
+            style="display: flex; justify-content: center"
+          >
+            <span class="swal2-x-mark"
+              ><span class="swal2-x-mark-line-left"></span
+              ><span class="swal2-x-mark-line-right"></span
+            ></span>
           </div>
         </div>
       </div>
@@ -57,11 +105,20 @@
         </h6>
 
         <div class="d-flex justify-content-center mt-4">
-          <button class="btn" (click)="onCloseHandled1()" i18n="@@ok" style="
-               background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+          <button
+            class="btn"
+            (click)="onCloseHandled1()"
+            i18n="@@ok"
+            style="
+              background-image: -webkit-linear-gradient(
+                top,
+                #d9534f 0,
+                #c12e2a 100%
+              );
               color: white !important;
               border-radius: 4px !important;
-            ">
+            "
+          >
             Ok
           </button>
         </div>
@@ -75,37 +132,61 @@
 
 <!-- Header Start -->
 
-<div class="container-fluid sticky-nav" id="" style="background-color: #F2F2F2 !important">
+<div
+  class="container-fluid sticky-nav"
+  id=""
+  style="background-color: #f2f2f2 !important"
+>
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg">
-      <a routerLink="/public" class="navbar-brand ">
-        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
-
+      <a routerLink="/public" class="navbar-brand">
+        <img src="assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
       </a>
 
-
-      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
-        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <i class="fa fa-bars text-white"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a routerLink="/agency/job-feedback" class="nav-link" style="color:#253d84 !important ; cursor: pointer"
-              i18n="@@home">HOME
+            <a
+              routerLink="/agency/job-feedback"
+              class="nav-link"
+              style="color: #253d84 !important ; cursor: pointer"
+              i18n="@@home"
+              >HOME
             </a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+            >
               {{ npid }}
             </a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" style="color: white; cursor: pointer" (click)="logout()"
-                i18n="@@jflogout">Logout</a>
+              <a
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                (click)="logout()"
+                i18n="@@jflogout"
+                >Logout</a
+              >
             </div>
           </li>
         </ul>
@@ -131,13 +212,24 @@
             <form class="p-5" [formGroup]="registrationGroup">
               <div class="row">
                 <div class="col-sm-3">
-                  <label for="disabledSelect" class="linerr" i18n="@@organisation">Organization/ Department
+                  <label
+                    for="disabledSelect"
+                    class="linerr"
+                    i18n="@@organisation"
+                    >Organization/ Department
                   </label>
                 </div>
                 <div class="col-sm-9">
-                  <select class="browser-default custom-select mb-4" id="disabledSelect1"
-                    (change)="changeWebsite($event)">
-                    <option *ngFor="let item of Organizations" value="{{ item }}" [selected]="item === selected">
+                  <select
+                    class="browser-default custom-select mb-4"
+                    id="disabledSelect1"
+                    (change)="changeWebsite($event)"
+                  >
+                    <option
+                      *ngFor="let item of Organizations"
+                      value="{{ item }}"
+                      [selected]="item === selected"
+                    >
                       {{ item }}
                     </option>
                   </select>
@@ -156,46 +248,71 @@
                 <!-- <div class="col-md-6"></div> -->
 
                 <div class="col-sm-3">
-                  <label for="disabledTextInput" class="linerr" i18n="@@notice7">
-                    Name of Inspecting Officer</label>
+                  <label
+                    for="disabledTextInput"
+                    class="linerr"
+                    i18n="@@notice7"
+                  >
+                    Name of Inspecting Officer</label
+                  >
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" id="disabledTextInput" class="form-control mb-2" [formControlName]="'officer'"
-                    [(ngModel)]="nama_pegawai_merinyu" [ngClass]="{
-                    'is-invalid': submitted && f.officer.errors
-                  }" />
-                  <div *ngIf="submitted && f.officer.errors" class="invalid-feedback">
+                  <input
+                    type="text"
+                    id="disabledTextInput"
+                    class="form-control mb-2"
+                    [formControlName]="'officer'"
+                    [(ngModel)]="nama_pegawai_merinyu"
+                    [ngClass]="{
+                      'is-invalid': submitted && f.officer.errors
+                    }"
+                  />
+                  <div
+                    *ngIf="submitted && f.officer.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.officer.errors.required" class="errorMessage">
                       <span i18n="@@inspectingOffName">
-                        Name of Inspecting Officer is required</span>
+                        Name of Inspecting Officer is required</span
+                      >
                     </div>
                     <div *ngIf="f.officer.errors.pattern" class="errorMessage">
                       <span i18n="@@invalidname">Invaid Name</span>
                     </div>
                   </div>
                 </div>
-                <br>
-                <br>
+                <br />
+                <br />
                 <!-- <div class="col-md-6"></div> -->
 
                 <div class="col-sm-3">
-                  <label for="disabledTextInput" class="linerr" i18n="@@feedback">Feedback
+                  <label
+                    for="disabledTextInput"
+                    class="linerr"
+                    i18n="@@feedback"
+                    >Feedback
                   </label>
                 </div>
                 <div class="col-sm-9">
-                  <select class="form-control mb-2" placeholder="Huraian kerja yang telah dijalankan"
-                    [(ngModel)]="feedback" name="feedback" (change)="getfeedback($event)">
+                  <select
+                    class="form-control mb-2"
+                    placeholder="Huraian kerja yang telah dijalankan"
+                    [(ngModel)]="feedback"
+                    name="feedback"
+                    (change)="getfeedback($event)"
+                  >
                     <!-- <option  i18n="@@selesaai" value="SELESAI">
                       DONE
                     </option>
                     <option i18n="@@tidak" value="TIDAK SELESAI">
                       NOT COMPLETED
                     </option> -->
-                    <option *ngFor="let drop of feedbackDrop" [selected]="drop === feedback">
-                      {{drop}}
-
+                    <option
+                      *ngFor="let drop of feedbackDrop"
+                      [selected]="drop === feedback"
+                    >
+                      {{ drop }}
                     </option>
-
                   </select>
                   <!-- <input type="text" id="disabledTextInput" class="form-control mb-2"
                     placeholder="Huraian kerja yang telah dijalankan" [formControlName]="'feedback'"
@@ -215,17 +332,28 @@
                 <br />
                 <div class="col-sm-3">
                   <label for="disabledTextInput" class="linerr" i18n="@@Notes">
-                    Notes</label>
+                    Notes</label
+                  >
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" id="disabledTextInput" class="form-control mb-2" [formControlName]="'notes'"
-                    [(ngModel)]="notes" [ngClass]="{
-                    'is-invalid': submitted && f.notes.errors
-                  }" />
-                  <div *ngIf="submitted && f.notes.errors" class="invalid-feedback">
+                  <input
+                    type="text"
+                    id="disabledTextInput"
+                    class="form-control mb-2"
+                    [formControlName]="'notes'"
+                    [(ngModel)]="notes"
+                    [ngClass]="{
+                      'is-invalid': submitted && f.notes.errors
+                    }"
+                  />
+                  <div
+                    *ngIf="submitted && f.notes.errors"
+                    class="invalid-feedback"
+                  >
                     <div *ngIf="f.notes.errors.required" class="errorMessage">
                       <span i18n="@@inspectingOffName">
-                        Status is required</span>
+                        Status is required</span
+                      >
                     </div>
                     <div *ngIf="f.notes.errors.pattern" class="errorMessage">
                       <span i18n="@@invalidname">Invaid Name</span>
@@ -360,88 +488,119 @@
               </tbody>
             </table> -->
               </div>
-              <br>
-              <br>
+              <br />
+              <br />
 
               <div class="row">
                 <div class="col-2"></div>
                 <div class="col-4">
-                  <span style="cursor: pointer; margin-left: 30%"><b i18n="@@picbefore">Picture Before</b>&nbsp;<br />
+                  <span style="cursor: pointer; margin-left: 30%"
+                    ><b i18n="@@picbefore">Picture Before</b>&nbsp;<br />
                     <p style="margin-left: 27%">
                       {{
-                      firstlength > 6
-                      ? (beforedt | slice: 0:19) + ""
-                      : beforedt
+                        firstlength > 6
+                          ? (beforedt | slice : 0 : 19) + ""
+                          : beforedt
                       }}
                     </p>
                   </span>
                   <div class="div2 mx-auto">
                     <label class="custom-file-upload">
-                      <input style="cursor: pointer" type="file" ng2FileSelect accept=".png" id="file-upload"
-                        [uploader]="uploader" (click)="onselect1()"
-                        onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" />
+                      <input
+                        style="cursor: pointer"
+                        type="file"
+                        ng2FileSelect
+                        accept=".png"
+                        id="file-upload"
+                        [uploader]="uploader"
+                        (click)="onselect1()"
+                        onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
+                      />
 
                       <i class="fa fa-cloud-upload"></i>
                     </label>
 
-                    <img *ngIf="aimghide" src="{{ bimg }}" style="
+                    <img
+                      *ngIf="aimghide"
+                      src="{{ bimg }}"
+                      style="
                         max-width: 188%;
                         height: 184%;
                         margin-top: -45%;
                         margin-left: -43%;
-                      " />
+                      "
+                    />
 
-                    <img style="
+                    <img
+                      style="
                         max-width: 191%;
                         height: 187%;
                         margin-top: -45%;
                         margin-left: -45%;
-                      " id="blah" />
+                      "
+                      id="blah"
+                    />
 
                     <!-- <img [src]="url" height="200" /> </div> -->
                   </div>
                 </div>
                 <div class="col-4">
                   <span style="cursor: pointer; margin-left: 30%">
-                    <b> <span i18n="@@picafter"> Picture After</span></b>&nbsp;
+                    <b> <span i18n="@@picafter"> Picture After</span></b
+                    >&nbsp;
 
                     <p style="margin-left: 27%">
                       {{
-                      secondlength > 6
-                      ? (afterdt | slice: 0:19) + ""
-                      : afterdt
+                        secondlength > 6
+                          ? (afterdt | slice : 0 : 19) + ""
+                          : afterdt
                       }}
                     </p>
                   </span>
                   <div class="div2 mx-auto">
                     <label class="custom-file-upload">
-                      <input type="file" ng2FileSelect accept=".png" [uploader]="uploader1" multiple
+                      <input
+                        type="file"
+                        ng2FileSelect
+                        accept=".png"
+                        [uploader]="uploader1"
+                        multiple
                         (click)="onselect()"
-                        onchange="document.getElementById('blah1').src = window.URL.createObjectURL(this.files[0])" />
+                        onchange="document.getElementById('blah1').src = window.URL.createObjectURL(this.files[0])"
+                      />
 
                       <i class="fa fa-cloud-upload"></i>
                     </label>
 
-                    <img *ngIf="bimghide" src="{{ aimg }}" style="
+                    <img
+                      *ngIf="bimghide"
+                      src="{{ aimg }}"
+                      style="
                         max-width: 188%;
                         height: 183%;
                         margin-top: -44%;
                         margin-left: -43%;
-                      " />
-                    <img style="
+                      "
+                    />
+                    <img
+                      style="
                         max-width: 188%;
                         max-height: 189%;
                         height: 182%;
                         margin-top: -45%;
                         margin-left: -44%;
-                      " id="blah1" />
+                      "
+                      id="blah1"
+                    />
                   </div>
                 </div>
                 <div class="col-2"></div>
               </div>
 
               <div class="row mt-3">
-                <div class="col-12 col-md-12 d-flex justify-content-center margin">
+                <div
+                  class="col-12 col-md-12 d-flex justify-content-center margin"
+                >
                   <!-- <button
                     (click)="reset()"
                     id="fileInputId"
@@ -453,13 +612,25 @@
                     Reset
                   </button> -->
 
-                  <button (click)="cancel()" style="margin-right: 30px;" class="look_for_red" type="button"
-                    i18n="@@n74">
+                  <button
+                    (click)="cancel()"
+                    style="margin-right: 30px"
+                    class="look_for_red"
+                    type="button"
+                    i18n="@@n74"
+                  >
                     Back
                   </button>
 
-                  <button style="margin-left: 10px;" (click)="createfeedback()" id="fileInputId" mat-raised-button
-                    color="accent" class="look_for_red" i18n="@@update">
+                  <button
+                    style="margin-left: 10px"
+                    (click)="createfeedback()"
+                    id="fileInputId"
+                    mat-raised-button
+                    color="accent"
+                    class="look_for_red"
+                    i18n="@@update"
+                  >
                     Update
                   </button>
                 </div>
@@ -558,5 +729,9 @@
 
 <!-- ======= Footer ======= -->
 <app-footer></app-footer>
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
-    class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>

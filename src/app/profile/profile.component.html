@@ -1,34 +1,70 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#253d84" type="ball-clip-rotate-multiple"
-  [fullScreen]="true">
-
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#253d84"
+  type="ball-clip-rotate-multiple"
+  [fullScreen]="true"
+>
 </ngx-spinner>
 <!-- Success Modal Start-->
-<div class="modal" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display }" aria-labelledby=" staticBackdropLabel " aria-hidden="true ">
+<div
+  class="modal"
+  id="staticBackdrop"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display }"
+  aria-labelledby=" staticBackdropLabel "
+  aria-hidden="true "
+>
   <div class="modal-dialog modal-dialog-centered" role="document ">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex">
-          <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255)"></div>
+        <div
+          class="swal2-icon swal2-success swal2-animate-success-icon"
+          style="display: flex"
+        >
+          <div
+            class="swal2-success-circular-line-left"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
           <span class="swal2-success-line-tip"></span>
           <span class="swal2-success-line-long"></span>
           <div class="swal2-success-ring"></div>
-          <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255)"></div>
-          <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255)"></div>
+          <div
+            class="swal2-success-fix"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+          <div
+            class="swal2-success-circular-line-right"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
         </div>
       </div>
       <div class="modal-body">
         <h4 class="text-center">
-          <span i18n="@@passwordupd" class="dialog-msg">Password updated successfully!</span>
+          <span i18n="@@passwordupd" class="dialog-msg"
+            >Password updated successfully!</span
+          >
         </h4>
 
         <div class="d-flex justify-content-center">
-          <button type="button " i18n="@@ok" (click)="closeSuccessModal()" data-dismiss="modal " class="btn" style="
-              background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+          <button
+            type="button "
+            i18n="@@ok"
+            (click)="closeSuccessModal()"
+            data-dismiss="modal "
+            class="btn"
+            style="
+              background-image: -webkit-linear-gradient(
+                top,
+                #d9534f 0,
+                #c12e2a 100%
+              );
               color: white !important;
               border-radius: 4px !important;
-
-            ">
+            "
+          >
             OK
           </button>
         </div>
@@ -38,12 +74,26 @@
 </div>
 <!-- Success Modal End -->
 <!-- ResetPassword Modal Start -->
-<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: display1 }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div
+  class="modal"
+  id="staticBackdrop1"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display1 }"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" (click)="closeResetPasswordModal()" class="close" data-dismiss="modal" aria-label="Close">
+        <button
+          type="button"
+          (click)="closeResetPasswordModal()"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -81,17 +131,32 @@
             <div class="form-group">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="icofont-ui-user"></i></span>
+                  <span class="input-group-text"
+                    ><i class="icofont-ui-user"></i
+                  ></span>
                 </div>
-                <input type="text" class="form-control" placeholder="Nama Pengguna" formControlName="username"
-                  [(ngModel)]="usernamee" [ngClass]="{
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nama Pengguna"
+                  formControlName="username"
+                  [(ngModel)]="usernamee"
+                  [ngClass]="{
                     'is-invalid': submitted3 && f3.username.errors
-                  }" (ngModelChange)="loginError = false" style="text-transform: uppercase" />
+                  }"
+                  (ngModelChange)="loginError = false"
+                  style="text-transform: uppercase"
+                />
               </div>
             </div>
-            <div class="co signup-error" id="User" *ngIf="submitted3 && f3.username.errors">
+            <div
+              class="co signup-error"
+              id="User"
+              *ngIf="submitted3 && f3.username.errors"
+            >
               <i *ngIf="f3.username.errors.required" i18n="@@usernamerequired">
-                *Username is required</i>
+                *Username is required</i
+              >
             </div>
 
             <!-- <div class="form-group">
@@ -119,17 +184,33 @@
             <div class="form-group">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="icofont-id"></i></span>
+                  <span class="input-group-text"
+                    ><i class="icofont-id"></i
+                  ></span>
                 </div>
-                <input type="text" class="form-control" placeholder="NO. KAD PENGENALAN" formControlName="id_card"
-                  [(ngModel)]="user_id" [ngClass]="{
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="NO. KAD PENGENALAN"
+                  formControlName="id_card"
+                  [(ngModel)]="user_id"
+                  [ngClass]="{
                     'is-invalid': submitted3 && f3.username.errors
-                  }" (ngModelChange)="loginError = false" style="text-transform: uppercase" readonly />
+                  }"
+                  (ngModelChange)="loginError = false"
+                  style="text-transform: uppercase"
+                  readonly
+                />
               </div>
             </div>
-            <div class="co signup-error" id="idC" *ngIf="submitted3 && f3.id_card.errors">
+            <div
+              class="co signup-error"
+              id="idC"
+              *ngIf="submitted3 && f3.id_card.errors"
+            >
               <i *ngIf="f3.id_card.errors.required" i18n="@@idcardrequired">
-                *No ID Kad is required</i>
+                *No ID Kad is required</i
+              >
             </div>
 
             <!-- <div class="form-group">
@@ -156,19 +237,34 @@
             <div class="form-group">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="icofont-email"></i></span>
+                  <span class="input-group-text"
+                    ><i class="icofont-email"></i
+                  ></span>
                 </div>
-                <input type="text" class="form-control" placeholder="E-MEL" formControlName="email" [(ngModel)]="email"
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="E-MEL"
+                  formControlName="email"
+                  [(ngModel)]="email"
                   [ngClass]="{
                     'is-invalid': submitted3 && f3.email.errors
-                  }" (ngModelChange)="loginError = false">
+                  }"
+                  (ngModelChange)="loginError = false"
+                />
               </div>
             </div>
-            <div class="co signup-error" id="email" *ngIf="submitted3 && f3.email.errors">
+            <div
+              class="co signup-error"
+              id="email"
+              *ngIf="submitted3 && f3.email.errors"
+            >
               <i *ngIf="f3.email.errors.required" i18n="@@emailrequired">
-                *Email is required</i>
+                *Email is required</i
+              >
               <i *ngIf="f3.email.errors.pattern" i18n="@@validemail">
-                *Please enter a valid mail id</i>
+                *Please enter a valid mail id</i
+              >
             </div>
 
             <!-- <div class="form-group">
@@ -196,25 +292,48 @@
             <div class="form-group">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="icofont-ui-password"></i></span>
+                  <span class="input-group-text"
+                    ><i class="icofont-ui-password"></i
+                  ></span>
                 </div>
-                <input name="txtPassowrdPublic" type="password" id="txtPassowrdPublic" class="form-control"
-                  placeholder="KATA LALUAN" formControlName="passWord" [(ngModel)]="password" [ngClass]="{
+                <input
+                  name="txtPassowrdPublic"
+                  type="password"
+                  id="txtPassowrdPublic"
+                  class="form-control"
+                  placeholder="KATA LALUAN"
+                  formControlName="passWord"
+                  [(ngModel)]="password"
+                  [ngClass]="{
                     'is-invalid': submitted3 && f3.passWord.errors
-                  }" (ngModelChange)="loginError = false" >
+                  }"
+                  (ngModelChange)="loginError = false"
+                />
                 <div class="input-group-append">
-                  <span class="input-group-text"><i class="icofont-eye-blocked toggle-password-1"></i></span>
+                  <span class="input-group-text"
+                    ><i class="icofont-eye-blocked toggle-password-1"></i
+                  ></span>
                 </div>
               </div>
             </div>
-            <div class="co signup-error" id="err" *ngIf="submitted3 && f3.passWord.errors">
+            <div
+              class="co signup-error"
+              id="err"
+              *ngIf="submitted3 && f3.passWord.errors"
+            >
               <i *ngIf="f3.passWord.errors.required" i18n="@@passwordrequired">
-                *Password is required</i>
+                *Password is required</i
+              >
               <i *ngIf="f3.passWord.errors.pattern">
-                <span style="font-size: 13px !important" i18n="@@passwordlength">
-                  *Min 6 characters One capital letter,</span>
+                <span
+                  style="font-size: 13px !important"
+                  i18n="@@passwordlength"
+                >
+                  *Min 6 characters One capital letter,</span
+                >
                 <span style="font-size: 13px !important" i18n="@@passwordlengh">
-                  lowercase,number and special character</span>
+                  lowercase,number and special character</span
+                >
               </i>
             </div>
             <!-- <div class="form-group">
@@ -242,14 +361,26 @@
             <div class="form-group">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="icofont-ui-password"></i></span>
+                  <span class="input-group-text"
+                    ><i class="icofont-ui-password"></i
+                  ></span>
                 </div>
-                <input name="txtPasswordInternal" type="password" id="txtPasswordInternal" class="form-control"
-                  placeholder="PENGESAHAN KATA LALUAN" formControlName="confPass" [(ngModel)]="password1" [ngClass]="{
+                <input
+                  name="txtPasswordInternal"
+                  type="password"
+                  id="txtPasswordInternal"
+                  class="form-control"
+                  placeholder="PENGESAHAN KATA LALUAN"
+                  formControlName="confPass"
+                  [(ngModel)]="password1"
+                  [ngClass]="{
                     'is-invalid': submitted3 && f3.confPass.errors
-                  }" />
+                  }"
+                />
                 <div class="input-group-append">
-                  <span class="input-group-text"><i class="icofont-eye-blocked toggle-password-2"></i></span>
+                  <span class="input-group-text"
+                    ><i class="icofont-eye-blocked toggle-password-2"></i
+                  ></span>
                 </div>
               </div>
             </div>
@@ -274,12 +405,22 @@
               </p>
             </div> -->
 
-            <button class="btn" style="
-            background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
-            color: white !important;
-            border-radius: 4px !important;
-            width: 95px;border-radius:4px;margin-left: 181px;
-          " i18n="@@update">
+            <button
+              class="btn"
+              style="
+                background-image: -webkit-linear-gradient(
+                  top,
+                  #d9534f 0,
+                  #c12e2a 100%
+                );
+                color: white !important;
+                border-radius: 4px !important;
+                width: 95px;
+                border-radius: 4px;
+                margin-left: 181px;
+              "
+              i18n="@@update"
+            >
               SUBMIT
             </button>
           </div>
@@ -343,15 +484,28 @@
 </div>
 <!-- ResetPassword Modal End -->
 <!-- Error Modal Start -->
-<div class="modal" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog"
-  [ngStyle]="{ display: errorDisplay }" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div
+  class="modal"
+  id="staticBackdrop1"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: errorDisplay }"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <div class="col-12">
-          <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex; justify-content: center">
-            <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span
-                class="swal2-x-mark-line-right"></span></span>
+          <div
+            class="swal2-icon swal2-error swal2-animate-error-icon"
+            style="display: flex; justify-content: center"
+          >
+            <span class="swal2-x-mark"
+              ><span class="swal2-x-mark-line-left"></span
+              ><span class="swal2-x-mark-line-right"></span
+            ></span>
           </div>
         </div>
       </div>
@@ -359,15 +513,25 @@
         <h6 style="text-align: center">
           <span class="dialog-msg" i18n="@@invoiceinfo3">Bad request!</span>
           <br /><span class="dialog-msg" i18n="@@invoiceinfo4">
-            Please try again.</span>
+            Please try again.</span
+          >
         </h6>
 
         <div class="d-flex justify-content-center mt-4">
-          <button class="btn" (click)="closeErrorModal()" i18n="@@ok" style="
-               background-image: -webkit-linear-gradient(top, #d9534f 0, #c12e2a 100%);
+          <button
+            class="btn"
+            (click)="closeErrorModal()"
+            i18n="@@ok"
+            style="
+              background-image: -webkit-linear-gradient(
+                top,
+                #d9534f 0,
+                #c12e2a 100%
+              );
               color: white !important;
               border-radius: 4px !important;
-            ">
+            "
+          >
             Ok
           </button>
         </div>
@@ -379,92 +543,183 @@
 <app-topbar></app-topbar>
 <!-- ======= Header ======= -->
 
-<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2 !important">
+<div
+  class="container-fluid sticky-nav"
+  id=""
+  style="background-color: #f2f2f2 !important"
+>
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg">
-      <a routerLink="/public" class="navbar-brand text-white" style="
-        font-size: 13px;
-        font-weight: 500;
-        color: white !important ;
-        margin-left: 3px;
-     margin-top: 10px;
-      ">
-        <img src="../../../assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
-
+      <a
+        routerLink="/public"
+        class="navbar-brand text-white"
+        style="
+          font-size: 13px;
+          font-weight: 500;
+          color: white !important ;
+          margin-left: 3px;
+          margin-top: 10px;
+        "
+      >
+        <img src="assets/img/DBKL LOGO (Lorry).png" alt="" loading="lazy" />
       </a>
-      <button class="navbar-toggler border-white" type="button" data-toggle="collapse"
-        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler border-white"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <i class="fa fa-bars text-white"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul *ngIf="isUser == 'public'" class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a routerLink="/publicpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@home">HOME</a>
+            <a
+              routerLink="/publicpage"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home"
+              >HOME</a
+            >
           </li>
           <li class="nav-item">
-            <a routerLink="/publicpage" class="nav-link" style="color: #253d84 !important;; cursor: pointer"
-              i18n="@@psppaapplication">PSPPA APPLICATION</a>
+            <a
+              routerLink="/publicpage"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@psppaapplication"
+              >PSPPA APPLICATION</a
+            >
           </li>
           <li class="nav-item">
-            <a routerLink="/public/sevices" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@listofser">List Of Services</a>
+            <a
+              routerLink="/public/sevices"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@listofser"
+              >List Of Services</a
+            >
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+            >
               {{ username }}
             </a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" style="color: white; cursor: pointer" i18n="@@Profile">Profile</a>
-              <a class="dropdown-item" style="color: white; cursor: pointer" (click)="logout()"
-                i18n="@@jflogout">Logout</a>
+              <a
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@Profile"
+                >Profile</a
+              >
+              <a
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                (click)="logout()"
+                i18n="@@jflogout"
+                >Logout</a
+              >
             </div>
           </li>
         </ul>
         <ul *ngIf="isUser == 'agensi'" class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a routerLink="/agency/job-feedback" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@home">Home
+            <a
+              routerLink="/agency/job-feedback"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home"
+              >Home
             </a>
           </li>
           <li class="nav-item">
-            <a routerLink="/agency/updateinvoice" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@b2">Job
-              Payment Claims</a>
+            <a
+              routerLink="/agency/updateinvoice"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@b2"
+              >Job Payment Claims</a
+            >
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+            >
               {{ npid }}
             </a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" style="color: white; cursor: pointer" i18n="@@Profile">Profile</a>
-              <a class="dropdown-item" style="color: white; cursor: pointer" (click)="logout()"
-                i18n="@@jflogout">Logout</a>
+              <a
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@Profile"
+                >Profile</a
+              >
+              <a
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                (click)="logout()"
+                i18n="@@jflogout"
+                >Logout</a
+              >
             </div>
           </li>
         </ul>
 
         <ul *ngIf="isUser == 'dbkl'" class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a routerLink="/dbkl/dbklmainpage" class="nav-link" style="color: #253d84 !important; cursor: pointer"
-              i18n="@@home">HOME
+            <a
+              routerLink="/dbkl/dbklmainpage"
+              class="nav-link"
+              style="color: #253d84 !important; cursor: pointer"
+              i18n="@@home"
+              >HOME
             </a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="color: #253d84 !important; cursor: pointer">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="color: #253d84 !important; cursor: pointer"
+            >
               {{ dbkl_username }}
             </a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" style="color: white; cursor: pointer" i18n="@@Profile">Profile</a>
-              <a class="dropdown-item" style="color: white; cursor: pointer" (click)="logout()"
-                i18n="@@jflogout">Logout</a>
+              <a
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                i18n="@@Profile"
+                >Profile</a
+              >
+              <a
+                class="dropdown-item"
+                style="color: white; cursor: pointer"
+                (click)="logout()"
+                i18n="@@jflogout"
+                >Logout</a
+              >
             </div>
           </li>
         </ul>
@@ -488,10 +743,14 @@
             <div class="container">
               <form class="">
                 <div>
-
                   <div class="row d-flex">
                     <div class="col-5">
-                      <label for="disabledSelect" class="form-label font-weight-bold" i18n="@@user">Username</label>
+                      <label
+                        for="disabledSelect"
+                        class="form-label font-weight-bold"
+                        i18n="@@user"
+                        >Username</label
+                      >
                     </div>
                     <div class="col-7">
                       <label for="" class="">{{ username }} </label>
@@ -502,28 +761,48 @@
 
                   <div class="row d-flex">
                     <div class="col-5">
-                      <label for="disabledTextInput" class="form-label font-weight-bold" i18n="@@userrole">No.
-                        identification card</label>
+                      <label
+                        for="disabledTextInput"
+                        class="form-label font-weight-bold"
+                        i18n="@@userrole"
+                        >No. identification card</label
+                      >
                     </div>
                     <div class="col-7">
                       <label for="">{{ user_id }}</label>
                     </div>
                   </div>
-                  <div class="row d-flex" *ngIf="isUser == 'public' || isUser == 'dbkl'">
+                  <div
+                    class="row d-flex"
+                    *ngIf="isUser == 'public' || isUser == 'dbkl'"
+                  >
                     <div class="col-5">
-                      <label for="disabledTextInput" class="form-label font-weight-bold" i18n="@@email">Email</label>
+                      <label
+                        for="disabledTextInput"
+                        class="form-label font-weight-bold"
+                        i18n="@@email"
+                        >Email</label
+                      >
                     </div>
                     <div class="col-7">
                       <label for="">{{ email }}</label>
                     </div>
                   </div>
-                  <div class="row d-flex" *ngIf="isUser == 'public' || isUser == 'dbkl'">
+                  <div
+                    class="row d-flex"
+                    *ngIf="isUser == 'public' || isUser == 'dbkl'"
+                  >
                     <div class="col-5">
-                      <label for="disabledTextInput" class="form-label font-weight-bold"
-                        i18n="@@userpassword">Password</label>
+                      <label
+                        for="disabledTextInput"
+                        class="form-label font-weight-bold"
+                        i18n="@@userpassword"
+                        >Password</label
+                      >
                     </div>
                     <div class="col-7">
-                      <label for="">**********
+                      <label for=""
+                        >**********
                         <!-- <a (click)="openResetPassword()" style="cursor: pointer"
                           ><i class="fa fa-edit ml-2" style="color: #d9534f"></i
                         ></a> -->
@@ -533,13 +812,16 @@
 
                   <div class="row d-flex">
                     <div class="col-7">
-                      <button (click)="openResetPassword()" class="look_for" type="button" i18n="@@update">
+                      <button
+                        (click)="openResetPassword()"
+                        class="look_for"
+                        type="button"
+                        i18n="@@update"
+                      >
                         Update
                       </button>
                     </div>
-                    <div class="col-5">
-
-                    </div>
+                    <div class="col-5"></div>
                   </div>
                   <!-- <div class="col-md"></div> -->
                 </div>
@@ -549,10 +831,23 @@
                 <h2 i18n="@@activiti">Activities</h2>
               </div>
               <div class="card" style="overflow-x: scroll">
-                <ng2-smart-table [settings]="settings" [source]="profiles"></ng2-smart-table>
-                <button class="btn" type="button" style="background-color: #253d84; width: 100%" disabled *ngIf="show"
-                  i18n="@@loading1">
-                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <ng2-smart-table
+                  [settings]="settings"
+                  [source]="profiles"
+                ></ng2-smart-table>
+                <button
+                  class="btn"
+                  type="button"
+                  style="background-color: #253d84; width: 100%"
+                  disabled
+                  *ngIf="show"
+                  i18n="@@loading1"
+                >
+                  <span
+                    class="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
                   Loading...
                 </button>
               </div>
@@ -566,5 +861,9 @@
 </main>
 <!-- End #main -->
 <app-footer></app-footer>
-<a (click)="backtotop()" class="back-to-top" style="cursor: pointer;display:none;"><i
-    class="icofont-scroll-double-up"></i></a>
+<a
+  (click)="backtotop()"
+  class="back-to-top"
+  style="cursor: pointer; display: none"
+  ><i class="icofont-scroll-double-up"></i
+></a>
