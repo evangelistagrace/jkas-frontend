@@ -239,7 +239,7 @@ export class BarChartComponent implements OnInit {
         this.show = false;
         this.http
           .get(
-            "https://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/JKAS_GASET/MapServer?f=json"
+            "https://iwastekl.dbkl.gov.my/klgissvr/rest/services/JKAS_GASSET_MIL1/MapServer?f=json"
           )
           .subscribe((data) => {
             let buildLovsPromise = new Promise((resolve, reject) => {
@@ -326,7 +326,7 @@ export class BarChartComponent implements OnInit {
     for (let i = 0; i < this.topLayers.length; i++) {
       if (this.topLayers[i]["name"] === selected) {
         let url =
-          "https://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/JKAS_GASET/MapServer/" +
+          "https://iwastekl.dbkl.gov.my/klgissvr/rest/services/JKAS_GASSET_MIL1/MapServer/" +
           this.topLayers[i]["id"] +
           "/query?where=1%3D1&outFields=PARLIMEN,NAMA_JALAN,NAMA_TAMAN,NAMA_KAWASAN,KATEGORI,SERVIS_PERKHIDMATAN_JKAS&returnGeometry=false&returnTrueCurves=false&f=json";
         observableBatch.push(this.http.get(url));
@@ -639,7 +639,7 @@ export class BarChartComponent implements OnInit {
       if (this.topLayers[i]["name"] === categoryName) {
         console.log("adding ID: ", this.topLayers[i]["id"]);
         let url =
-          "https://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/JKAS_GASET/MapServer/" +
+          "https://iwastekl.dbkl.gov.my/klgissvr/rest/services/JKAS_GASSET_MIL1/MapServer/" +
           this.topLayers[i]["id"] +
           "/query?where=1%3D1&outFields=PARLIMEN&returnGeometry=false&returnTrueCurves=false&f=json";
         observableBatch.push(this.http.get(url));
@@ -827,7 +827,7 @@ export class BarChartComponent implements OnInit {
           this.topLayers[i]["parentLayerId"] === parentLayerId &&
           this.topLayers[i]["name"] === category
         ) {
-          url = `https://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/JKAS_GASET/MapServer/${this.topLayers[i]["id"]}/query?where=PARLIMEN='${parliament}'&outFields=PARLIMEN,NAMA_JALAN,NAMA_TAMAN,NAMA_KAWASAN,KATEGORI,SERVIS_PERKHIDMATAN_JKAS&returnGeometry=false&returnTrueCurves=false&f=json`;
+          url = `https://iwastekl.dbkl.gov.my/klgissvr/rest/services/JKAS_GASSET_MIL1/MapServer/${this.topLayers[i]["id"]}/query?where=PARLIMEN='${parliament}'&outFields=PARLIMEN,NAMA_JALAN,NAMA_TAMAN,NAMA_KAWASAN,KATEGORI,SERVIS_PERKHIDMATAN_JKAS&returnGeometry=false&returnTrueCurves=false&f=json`;
           console.log(
             `Found category layer: ${this.topLayers[i]["name"]} with ID: ${this.topLayers[i]["id"]}`
           );
@@ -841,7 +841,7 @@ export class BarChartComponent implements OnInit {
       console.log("Falling back to category-only search");
       for (let i = 0; i < this.topLayers.length; i++) {
         if (this.topLayers[i]["name"] === category) {
-          url = `https://g-aset.dbkl.gov.my/gasset1/rest/services/CERAPAN_WGS/JKAS_GASET/MapServer/${this.topLayers[i]["id"]}/query?where=PARLIMEN='${parliament}'&outFields=PARLIMEN,NAMA_JALAN,NAMA_TAMAN,NAMA_KAWASAN,KATEGORI,SERVIS_PERKHIDMATAN_JKAS&returnGeometry=false&returnTrueCurves=false&f=json`;
+          url = `https://iwastekl.dbkl.gov.my/klgissvr/rest/services/JKAS_GASSET_MIL1/MapServer/${this.topLayers[i]["id"]}/query?where=PARLIMEN='${parliament}'&outFields=PARLIMEN,NAMA_JALAN,NAMA_TAMAN,NAMA_KAWASAN,KATEGORI,SERVIS_PERKHIDMATAN_JKAS&returnGeometry=false&returnTrueCurves=false&f=json`;
           console.log(
             `Found generic category layer: ${this.topLayers[i]["name"]} with ID: ${this.topLayers[i]["id"]}`
           );

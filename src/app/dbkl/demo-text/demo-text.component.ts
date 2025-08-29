@@ -60,7 +60,7 @@ export class DemoTextComponent implements OnInit {
     this.map = L.map('map').setView([3.1390, 101.6869], 11);
     esri.basemapLayer("Streets").addTo(this.map);
     var parks = esri.featureLayer({
-      url: "https://kluo.dbkl.gov.my/klgissvr/rest/services/Support_Layer_iwaste_MIL1/MapServer/3",
+      url: "https://iwastekl.dbkl.gov.my/klgissvr/rest/services/Support_Layer_iwaste_MIL1/MapServer/3",
       style: function () {
         return { color: "black", weight: 2 };
       }
