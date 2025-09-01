@@ -208,53 +208,109 @@
                 <!-- <td i18n="@@cleaningservice">Cleaning service application letter for:</td> -->
                 <td>1.</td>
                 <td>
-                  <span i18n="@@cleaningservice"
-                    >Cleaning service application letter for:</span
-                  ><sup>*</sup>
-                  <ul style="list-style-type: lower-roman">
+                  <span>Surat Permohonan Perkhidmatan Kutipan dan Pembersihan :</span><sup>*</sup>
+                  <br><br>
+                  <strong>1. Kutipan sisa Pepejal:</strong>
+                  <ul style="list-style-type: lower-alpha; margin-left: 20px;">
                     <li>
                       <span class="d-flex justify-content-between">
-                        <span i18n="@@Garbage"
-                          >Garbage Collection (Please complete Bills
-                          1,2,3,4,5)</span
-                        ><span class="d-flex align-items-center"
-                          ><input
-                            type="checkbox"
-                            [(ngModel)]="garbageCollection" /></span
-                      ></span>
+                        <span>Kutipan sampah (Bil. 1,2,3,4,5)</span>
+                        <span class="d-flex align-items-center">
+                          <input type="checkbox" [(ngModel)]="garbageCollection" />
+                        </span>
+                      </span>
+                    </li>
+                  </ul>
+                  <br>
+                  <strong>2. Pembersihan awam:</strong>
+                  <ul style="list-style-type: lower-alpha; margin-left: 20px;">
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Sapuan Jalan (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input [(ngModel)]="supuanJalan" type="checkbox" />
+                        </span>
+                      </span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"
-                        ><span i18n="@@Street"
-                          >Street Sweep (Please complete Bills 1,2,6)</span
-                        >
-                        <span class="d-flex align-items-center"
-                          ><input
-                            [(ngModel)]="supuanJalan"
-                            type="checkbox" /></span
-                      ></span>
+                      <span class="d-flex justify-content-between">
+                        <span>Cucian Longkang (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input [(ngModel)]="drainCelaning" type="checkbox" />
+                        </span>
+                      </span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"
-                        ><span i18n="@@Drain"
-                          >Drain Cleaning (Please complete Bills 1,2,6)</span
-                        >
-                        <span class="d-flex align-items-center"
-                          ><input
-                            [(ngModel)]="drainCelaning"
-                            type="checkbox" /></span
-                      ></span>
+                      <span class="d-flex justify-content-between">
+                        <span>Pemotongan Rumput (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input [(ngModel)]="grassCutting" type="checkbox" />
+                        </span>
+                      </span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"
-                        ><span i18n="@@Grass"
-                          >Grass Cutting (Please complete Bills 1,2,6)</span
-                        >
-                        <span class="d-flex align-items-center"
-                          ><input
-                            [(ngModel)]="grassCutting"
-                            type="checkbox" /></span
-                      ></span>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Tempat Awam (Tempat Letak Kenderaan / Kawasan Lapang) (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input [(ngModel)]="pembersihanTempatAwam" type="checkbox" />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Pasar Awam (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input [(ngModel)]="pembersihanPasarAwam" type="checkbox" />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Jejantas (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input [(ngModel)]="pembersihanJejantas" type="checkbox" />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Tandas Awam (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input [(ngModel)]="pembersihanTandasAwam" type="checkbox" />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Pusat Penjaja (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input [(ngModel)]="pembersihanPusatPenjaja" type="checkbox" />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Hentian Bas (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input [(ngModel)]="pembersihanHentianBas" type="checkbox" />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Hentian Teksi (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input [(ngModel)]="pembersihanHentianTeksi" type="checkbox" />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Taman Permainan Kanak-Kanak (TPKK) (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input [(ngModel)]="tpkkArea" type="checkbox" />
+                        </span>
+                      </span>
                     </li>
                   </ul>
                 </td>
