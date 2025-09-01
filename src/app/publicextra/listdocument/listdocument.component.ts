@@ -149,6 +149,9 @@ export class ListdocumentComponent implements OnInit {
   pembersihanPusatPenjaja: boolean = false;
   pembersihanHentianBas: boolean = false;
   pembersihanHentianTeksi: boolean = false;
+  statusTanah: boolean = false;
+  lainLain: boolean = false;
+  suratPengesahan: boolean = false;
   strataTitle: boolean = false;
   freeHold: boolean = false;
   streetName: boolean = false;

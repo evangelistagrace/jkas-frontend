@@ -431,9 +431,8 @@
               <tr>
                 <td>2.</td>
                 <td>
-                  <span i18n="@@Copyletter"
-                    >Copy of CF / CCC / Form F / Confirmation Letter from JPIF
-                    (Infrastructure Planning Department)</span
+                  <span
+                    >Surat salinan CF / CCC / Borang F</span
                   >
                 </td>
                 <td style="text-align: center">
@@ -544,10 +543,9 @@
                                     </tr> -->
               <tr>
                 <td>4.</td>
-                <td i18n="@@sttowds">
+                <td>
                   <span
-                    >State the type of waste disposal system used and the number
-                    of bins.</span
+                    >Dinyatakan jenis sistem pelupusan sampah dan jumlah tong yang diluluskan oleh pihak SWCorp</span
                   >
                 </td>
                 <td style="text-align: center">
@@ -604,6 +602,24 @@
                         <span class="d-flex align-items-center"
                           ><input
                             [(ngModel)]="freeHold"
+                            type="checkbox" /></span
+                      ></span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between"
+                        ><span>Status Tanah (Kegunaan Tanah)</span>
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="statusTanah"
+                            type="checkbox" /></span
+                      ></span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between"
+                        ><span>Lain-lain</span>
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="lainLain"
                             type="checkbox" /></span
                       ></span>
                     </li>
@@ -712,6 +728,17 @@
                         <span class="d-flex align-items-center"
                           ><input
                             [(ngModel)]="largeSpace"
+                            type="checkbox" /></span
+                      ></span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between"
+                        ><span
+                          >Surat pengesahan dari Jabatan DBKL (JPIF, JPLR, JPRB (OSC))</span
+                        >
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="suratPengesahan"
                             type="checkbox" /></span
                       ></span>
                     </li>
