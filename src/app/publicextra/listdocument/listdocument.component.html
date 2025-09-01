@@ -139,13 +139,25 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="username">Nama:</label>
-                  <input type="text" class="form-control" id="username" [(ngModel)]="username" disabled />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    [(ngModel)]="username"
+                    disabled
+                  />
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="email">Emel:</label>
-                  <input type="email" class="form-control" id="email" [(ngModel)]="email" disabled/>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    [(ngModel)]="email"
+                    disabled
+                  />
                 </div>
               </div>
             </div>
@@ -153,13 +165,24 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="icNo">No. I/C:</label>
-                  <input type="text" class="form-control" id="icNo" [(ngModel)]="icNo" disabled/>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="icNo"
+                    [(ngModel)]="icNo"
+                    disabled
+                  />
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="no_tel_mobile">No. Tel (Mobile):</label>
-                  <input type="text" class="form-control" id="no_tel_mobile" [(ngModel)]="no_tel_mobile" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="no_tel_mobile"
+                    [(ngModel)]="no_tel_mobile"
+                  />
                 </div>
               </div>
             </div>
@@ -167,19 +190,29 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="no_tel_office">No. Tel (Pejabat):</label>
-                  <input type="text" class="form-control" id="no_tel_office" [(ngModel)]="no_tel_office" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="no_tel_office"
+                    [(ngModel)]="no_tel_office"
+                  />
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="nama_syarikat">Nama Syarikat:</label>
-                  <input type="text" class="form-control" id="nama_syarikat" [(ngModel)]="nama_syarikat" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nama_syarikat"
+                    [(ngModel)]="nama_syarikat"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
+
         <div class="table-responsive">
           <table
             class="table table-bordered table-striped table-hover table-condensed"
@@ -208,22 +241,27 @@
                 <!-- <td i18n="@@cleaningservice">Cleaning service application letter for:</td> -->
                 <td>1.</td>
                 <td>
-                  <span>Surat Permohonan Perkhidmatan Kutipan dan Pembersihan :</span><sup>*</sup>
-                  <br><br>
+                  <span
+                    >Surat Permohonan Perkhidmatan Kutipan dan Pembersihan
+                    :</span
+                  ><sup>*</sup> <br /><br />
                   <strong>1. Kutipan sisa Pepejal:</strong>
-                  <ul style="list-style-type: lower-alpha; margin-left: 20px;">
+                  <ul style="list-style-type: lower-alpha; margin-left: 20px">
                     <li>
                       <span class="d-flex justify-content-between">
                         <span>Kutipan sampah (Bil. 1,2,3,4,5)</span>
                         <span class="d-flex align-items-center">
-                          <input type="checkbox" [(ngModel)]="garbageCollection" />
+                          <input
+                            type="checkbox"
+                            [(ngModel)]="garbageCollection"
+                          />
                         </span>
                       </span>
                     </li>
                   </ul>
-                  <br>
+                  <br />
                   <strong>2. Pembersihan awam:</strong>
-                  <ul style="list-style-type: lower-alpha; margin-left: 20px;">
+                  <ul style="list-style-type: lower-alpha; margin-left: 20px">
                     <li>
                       <span class="d-flex justify-content-between">
                         <span>Sapuan Jalan (Bil. 1,3,5,6)</span>
@@ -250,9 +288,15 @@
                     </li>
                     <li>
                       <span class="d-flex justify-content-between">
-                        <span>Pembersihan Tempat Awam (Tempat Letak Kenderaan / Kawasan Lapang) (Bil. 1,3,5,6)</span>
+                        <span
+                          >Pembersihan Tempat Awam (Tempat Letak Kenderaan /
+                          Kawasan Lapang) (Bil. 1,3,5,6)</span
+                        >
                         <span class="d-flex align-items-center">
-                          <input [(ngModel)]="pembersihanTempatAwam" type="checkbox" />
+                          <input
+                            [(ngModel)]="pembersihanTempatAwam"
+                            type="checkbox"
+                          />
                         </span>
                       </span>
                     </li>
@@ -260,7 +304,10 @@
                       <span class="d-flex justify-content-between">
                         <span>Pembersihan Pasar Awam (Bil. 1,3,5,6)</span>
                         <span class="d-flex align-items-center">
-                          <input [(ngModel)]="pembersihanPasarAwam" type="checkbox" />
+                          <input
+                            [(ngModel)]="pembersihanPasarAwam"
+                            type="checkbox"
+                          />
                         </span>
                       </span>
                     </li>
@@ -268,7 +315,10 @@
                       <span class="d-flex justify-content-between">
                         <span>Pembersihan Jejantas (Bil. 1,3,5,6)</span>
                         <span class="d-flex align-items-center">
-                          <input [(ngModel)]="pembersihanJejantas" type="checkbox" />
+                          <input
+                            [(ngModel)]="pembersihanJejantas"
+                            type="checkbox"
+                          />
                         </span>
                       </span>
                     </li>
@@ -276,7 +326,10 @@
                       <span class="d-flex justify-content-between">
                         <span>Pembersihan Tandas Awam (Bil. 1,3,5,6)</span>
                         <span class="d-flex align-items-center">
-                          <input [(ngModel)]="pembersihanTandasAwam" type="checkbox" />
+                          <input
+                            [(ngModel)]="pembersihanTandasAwam"
+                            type="checkbox"
+                          />
                         </span>
                       </span>
                     </li>
@@ -284,7 +337,10 @@
                       <span class="d-flex justify-content-between">
                         <span>Pembersihan Pusat Penjaja (Bil. 1,3,5,6)</span>
                         <span class="d-flex align-items-center">
-                          <input [(ngModel)]="pembersihanPusatPenjaja" type="checkbox" />
+                          <input
+                            [(ngModel)]="pembersihanPusatPenjaja"
+                            type="checkbox"
+                          />
                         </span>
                       </span>
                     </li>
@@ -292,7 +348,10 @@
                       <span class="d-flex justify-content-between">
                         <span>Pembersihan Hentian Bas (Bil. 1,3,5,6)</span>
                         <span class="d-flex align-items-center">
-                          <input [(ngModel)]="pembersihanHentianBas" type="checkbox" />
+                          <input
+                            [(ngModel)]="pembersihanHentianBas"
+                            type="checkbox"
+                          />
                         </span>
                       </span>
                     </li>
@@ -300,13 +359,19 @@
                       <span class="d-flex justify-content-between">
                         <span>Pembersihan Hentian Teksi (Bil. 1,3,5,6)</span>
                         <span class="d-flex align-items-center">
-                          <input [(ngModel)]="pembersihanHentianTeksi" type="checkbox" />
+                          <input
+                            [(ngModel)]="pembersihanHentianTeksi"
+                            type="checkbox"
+                          />
                         </span>
                       </span>
                     </li>
                     <li>
                       <span class="d-flex justify-content-between">
-                        <span>Pembersihan Taman Permainan Kanak-Kanak (TPKK) (Bil. 1,3,5,6)</span>
+                        <span
+                          >Pembersihan Taman Permainan Kanak-Kanak (TPKK) (Bil.
+                          1,3,5,6)</span
+                        >
                         <span class="d-flex align-items-center">
                           <input [(ngModel)]="tpkkArea" type="checkbox" />
                         </span>

@@ -8,12 +8,11 @@ import { Router } from "@angular/router";
 import * as $ from "jquery";
 
 @Component({
-  selector: 'app-listdocument',
-  templateUrl: './listdocument.component.html',
-  styleUrls: ['./listdocument.component.css']
+  selector: "app-listdocument",
+  templateUrl: "./listdocument.component.html",
+  styleUrls: ["./listdocument.component.css"],
 })
 export class ListdocumentComponent implements OnInit {
-
   suratPermohonan: any = [];
   public uploader: FileUploader = new FileUploader({
     isHTML5: true,
@@ -21,14 +20,16 @@ export class ListdocumentComponent implements OnInit {
 
   doUploadSuratPermohonan() {
     this.spinner.show();
-    for (var i=0; i<this.uploader.queue.length; i++) {
+    for (var i = 0; i < this.uploader.queue.length; i++) {
       let data = new FormData();
       let fileItem = this.uploader.queue[i]._file;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + i);
-      this.http.post<any>(this.baseUrl + "/public/uploadFile", data).subscribe((response) => {
-        this.suratPermohonan.push(response.filename);
-      });
+      this.http
+        .post<any>(this.baseUrl + "/public/uploadFile", data)
+        .subscribe((response) => {
+          this.suratPermohonan.push(response.filename);
+        });
     }
     this.uploader.clearQueue();
     this.spinner.hide();
@@ -40,14 +41,16 @@ export class ListdocumentComponent implements OnInit {
   suratSalinan: any = [];
   doUploadSuratSalinan() {
     this.spinner.show();
-    for (var i=0; i<this.uploader.queue.length; i++) {
+    for (var i = 0; i < this.uploader.queue.length; i++) {
       let data = new FormData();
       let fileItem = this.uploader.queue[i]._file;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + i);
-      this.http.post<any>(this.baseUrl + "/public/uploadFile", data).subscribe((response) => {
-        this.suratSalinan.push(response.filename);
-      });
+      this.http
+        .post<any>(this.baseUrl + "/public/uploadFile", data)
+        .subscribe((response) => {
+          this.suratSalinan.push(response.filename);
+        });
     }
     this.uploader.clearQueue();
     this.spinner.hide();
@@ -59,14 +62,16 @@ export class ListdocumentComponent implements OnInit {
   typeDisposal: any = [];
   doUploadTypeDisposal() {
     this.spinner.show();
-    for (var i=0; i<this.uploader.queue.length; i++) {
+    for (var i = 0; i < this.uploader.queue.length; i++) {
       let data = new FormData();
       let fileItem = this.uploader.queue[i]._file;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + i);
-      this.http.post<any>(this.baseUrl + "/public/uploadFile", data).subscribe((response) => {
-        this.typeDisposal.push(response.filename);
-      });
+      this.http
+        .post<any>(this.baseUrl + "/public/uploadFile", data)
+        .subscribe((response) => {
+          this.typeDisposal.push(response.filename);
+        });
     }
     this.uploader.clearQueue();
     this.spinner.hide();
@@ -78,14 +83,16 @@ export class ListdocumentComponent implements OnInit {
   developmentStatus: any = [];
   doUploadDevelopmentStatus() {
     this.spinner.show();
-    for (var i=0; i<this.uploader.queue.length; i++) {
+    for (var i = 0; i < this.uploader.queue.length; i++) {
       let data = new FormData();
       let fileItem = this.uploader.queue[i]._file;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + i);
-      this.http.post<any>(this.baseUrl + "/public/uploadFile", data).subscribe((response) => {
-        this.developmentStatus.push(response.filename);
-      });
+      this.http
+        .post<any>(this.baseUrl + "/public/uploadFile", data)
+        .subscribe((response) => {
+          this.developmentStatus.push(response.filename);
+        });
     }
     this.uploader.clearQueue();
     this.spinner.hide();
@@ -97,14 +104,16 @@ export class ListdocumentComponent implements OnInit {
   otherDocuments: any = [];
   doUploadOtherDocuments() {
     this.spinner.show();
-    for (var i=0; i<this.uploader.queue.length; i++) {
+    for (var i = 0; i < this.uploader.queue.length; i++) {
       let data = new FormData();
       let fileItem = this.uploader.queue[i]._file;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + i);
-      this.http.post<any>(this.baseUrl + "/public/uploadFile", data).subscribe((response) => {
-        this.otherDocuments.push(response.filename);
-      });
+      this.http
+        .post<any>(this.baseUrl + "/public/uploadFile", data)
+        .subscribe((response) => {
+          this.otherDocuments.push(response.filename);
+        });
     }
     this.uploader.clearQueue();
     this.spinner.hide();
@@ -190,13 +199,17 @@ export class ListdocumentComponent implements OnInit {
       };
 
       this.http
-        .post(this.basePublicUrl + "/public/getPublicUSerInfo", {}, {
-          headers: headers,
-        })
+        .post(
+          this.basePublicUrl + "/public/getPublicUSerInfo",
+          {},
+          {
+            headers: headers,
+          }
+        )
         .subscribe(
           (res) => {
             this.spinner.hide();
-            
+
             if (res) {
               const userData: any = res;
               this.username = userData.username || this.username;
@@ -223,7 +236,7 @@ export class ListdocumentComponent implements OnInit {
             this.spinner.hide();
           }
         );
-      }
+    }
   }
 
   submit() {
@@ -357,11 +370,11 @@ export class ListdocumentComponent implements OnInit {
     // }
     // this.uploader4.clearQueue();
     if (!this.confirm) {
-      alert('Sila tanda pada checkbox pengesahan.');
+      alert("Sila tanda pada checkbox pengesahan.");
       return;
     }
     if (this.suratPermohonan.length == 0) {
-      alert('Sila muat naik surat permohonan pada bilangan 1.');
+      alert("Sila muat naik surat permohonan pada bilangan 1.");
       return;
     }
     // if (this.suratSalinan.length == 0) {
@@ -397,12 +410,17 @@ export class ListdocumentComponent implements OnInit {
       luas_kawasan_berumput: this.grassyArea,
       luas_kawasan_TPKK: this.tpkkArea,
       parkir_area: this.largeSpace,
-      surat_permohonan_perkhidmatan_pembersihan_dokumen: this.suratPermohonan.length != 0 ? this.suratPermohonan[0] : '',
-      surat_salinan_CF_dokumen: this.suratSalinan.length != 0 ? this.suratSalinan[0] : '',
-      salinan_status_pembanginan_dokumen: this.typeDisposal.length != 0 ? this.typeDisposal[0] : '',
-      bagi_status_pembangunan_dokumen: this.developmentStatus.length != 0 ? this.developmentStatus[0] : '',
-      confirm:this.confirm,
-      dinyatakan_jenis_sistem: this.otherDocuments.length != 0 ? this.otherDocuments[0] : '',
+      surat_permohonan_perkhidmatan_pembersihan_dokumen:
+        this.suratPermohonan.length != 0 ? this.suratPermohonan[0] : "",
+      surat_salinan_CF_dokumen:
+        this.suratSalinan.length != 0 ? this.suratSalinan[0] : "",
+      salinan_status_pembanginan_dokumen:
+        this.typeDisposal.length != 0 ? this.typeDisposal[0] : "",
+      bagi_status_pembangunan_dokumen:
+        this.developmentStatus.length != 0 ? this.developmentStatus[0] : "",
+      confirm: this.confirm,
+      dinyatakan_jenis_sistem:
+        this.otherDocuments.length != 0 ? this.otherDocuments[0] : "",
     };
     // console.log("body", body);
     this.http
@@ -423,10 +441,11 @@ export class ListdocumentComponent implements OnInit {
           this.npErrorMessage = error["error"]["message"];
           if (this.npErrorMessage == "application_not_added") {
             if (this.lang == "en") {
-              this.errormsg = "Application could not be submitted successfully!  Please refer console logs for further details.";
-            }
-            else {
-              this.errormsg = "Permohonan tidak berjaya dihantar! Sila rujuk log konsol untuk keterangan lebih lanjut.";
+              this.errormsg =
+                "Application could not be submitted successfully!  Please refer console logs for further details.";
+            } else {
+              this.errormsg =
+                "Permohonan tidak berjaya dihantar! Sila rujuk log konsol untuk keterangan lebih lanjut.";
             }
           }
         }
@@ -486,24 +505,38 @@ export class ListdocumentComponent implements OnInit {
         }
       );
   }
-  opendocument(){
+  opendocument() {
     // window.location.href = "this.basePublicUrl/jkas_resourses/free/pdfs/CONTOH SURAT PERMOHONAN.pdf";
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/CONTOH SURAT PERMOHONAN.pdf");
+    window.open(
+      this.basePublicUrl +
+        "/jkas_resourses/free/pdfs/CONTOH SURAT PERMOHONAN.pdf"
+    );
   }
-  open2nddocument(){
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/CONTOH BORANG F.pdf");
+  open2nddocument() {
+    window.open(
+      this.basePublicUrl + "/jkas_resourses/free/pdfs/CONTOH BORANG F.pdf"
+    );
   }
-  open3rddocument(){
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/JALAN AWAM.pdf");
+  open3rddocument() {
+    window.open(
+      this.basePublicUrl + "/jkas_resourses/free/pdfs/JALAN AWAM.pdf"
+    );
   }
-  open4rthdocument(){
-
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/PELAN JALAN AWAM.pdf");
+  open4rthdocument() {
+    window.open(
+      this.basePublicUrl + "/jkas_resourses/free/pdfs/PELAN JALAN AWAM.pdf"
+    );
   }
-  open5thdocument(){
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH SWCorp.pdf");
+  open5thdocument() {
+    window.open(
+      this.basePublicUrl +
+        "/jkas_resourses/free/pdfs/CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH SWCorp.pdf"
+    );
   }
-  open6thdocument(){
-    window.open(this.basePublicUrl+"/jkas_resourses/free/pdfs/PELAN INVENTORI KAWASAN PERKHIDMATAN PEMBERSIHAN.pdf");
+  open6thdocument() {
+    window.open(
+      this.basePublicUrl +
+        "/jkas_resourses/free/pdfs/PELAN INVENTORI KAWASAN PERKHIDMATAN PEMBERSIHAN.pdf"
+    );
   }
 }
