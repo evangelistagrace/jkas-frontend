@@ -223,31 +223,60 @@
               Please fill this required field.
             </div>
           </div>
-          <div class="row">
-            <div class="col-12">
-              <label for="select" i18n="@@em4">Type of Committee</label>
-            </div>
-            <div class="col-11">
-              <input
-                type="text"
-                class="form-control"
-                id="jenisMesyuarat"
-                [(ngModel)]="jenis_jawatankuasa"
-                name="jenis_jawatankuasa"
-                formControlName="jenis_jawatankuasa"
-                [ngClass]="{
-                  'is-invalid': submitted && f.bill_mesyuarat.errors
-                }"
-              />
-              <div
-                *ngIf="submitted && f.jenis_jawatankuasa.errors"
-                class="invalid-feedback"
-              >
-                <div *ngIf="f.jenis_jawatankuasa.errors.required" i18n="@@emvm">
-                  Please fill this required field.
-                </div>
+          <div class="col-12">
+            <label for="select" i18n="@@em4">Type of Committee</label>
+          </div>
+          <div class="col-11">
+            <select
+              class="browser-default custom-select form-control"
+              id="jenisMesyuarat"
+              [(ngModel)]="jenis_jawatankuasa"
+              name="jenis_jawatankuasa"
+              formControlName="jenis_jawatankuasa"
+              multiple
+              size="6"
+              [ngClass]="{
+                'is-invalid': submitted && f.jenis_jawatankuasa.errors
+              }"
+            >
+              <option value="SwCorp">SwCorp</option>
+              <option value="Alam Flora SDN BHD (Konsesi)">Alam Flora SDN BHD (Konsesi)</option>
+              <option value="Pejabat Pengurusan Tertinggi">Pejabat Pengurusan Tertinggi</option>
+              <option value="Jabatan Kewangan">Jabatan Kewangan</option>
+              <option value="Jabatan Pengurusan Sumber Manusia">Jabatan Pengurusan Sumber Manusia</option>
+              <option value="Jabatan Pentadbiran">Jabatan Pentadbiran</option>
+              <option value="Jabatan Pengurusan Maklumat">Jabatan Pengurusan Maklumat</option>
+              <option value="Institut Latihan Dewan Bandaraya Kuala Lumpur (IDB)">Institut Latihan Dewan Bandaraya Kuala Lumpur (IDB)</option>
+              <option value="Jabatan Penilaian Dan Pengurusan Harta">Jabatan Penilaian Dan Pengurusan Harta</option>
+              <option value="Jabatan Perancangan Infrastruktur">Jabatan Perancangan Infrastruktur</option>
+              <option value="Jabatan Perancangan Ekonomi Dan Pembangunan">Jabatan Perancangan Ekonomi Dan Pembangunan</option>
+              <option value="Jabatan Kawalan Bangunan">Jabatan Kawalan Bangunan</option>
+              <option value="Jabatan Perancangan Bandaraya">Jabatan Perancangan Bandaraya</option>
+              <option value="Jabatan Pelaksanaan Projek Dan Penyelenggaraan Bangunan">Jabatan Pelaksanaan Projek Dan Penyelenggaraan Bangunan</option>
+              <option value="Jabatan Kejuruteraan Mekanikal Dan Elektrikal">Jabatan Kejuruteraan Mekanikal Dan Elektrikal</option>
+              <option value="Jabatan Pembangunan Landskap Dan Rekreasi">Jabatan Pembangunan Landskap Dan Rekreasi</option>
+              <option value="Jabatan Ukur Bahan">Jabatan Ukur Bahan</option>
+              <option value="Jabatan Kejuruteraan Awam Dan Saliran">Jabatan Kejuruteraan Awam Dan Saliran</option>
+              <option value="Jabatan Pengangkutan Bandar">Jabatan Pengangkutan Bandar</option>
+              <option value="Jabatan Undang-Undang Dan Pendakwaan">Jabatan Undang-Undang Dan Pendakwaan</option>
+              <option value="Jabatan Perancangan Korporat">Jabatan Perancangan Korporat</option>
+              <option value="Jabatan Audit Dalam">Jabatan Audit Dalam</option>
+              <option value="Jabatan Integriti">Jabatan Integriti</option>
+              <option value="Jabatan Penguatkuasaan">Jabatan Penguatkuasaan</option>
+              <option value="Jabatan Pembangunan Komuniti Dan Kesejahteraan Bandar">Jabatan Pembangunan Komuniti Dan Kesejahteraan Bandar</option>
+              <option value="Jabatan Pelesenan Dan Pembangunan Perniagaan">Jabatan Pelesenan Dan Pembangunan Perniagaan</option>
+              <option value="Jabatan Kesihatan Dan Alam Sekitar">Jabatan Kesihatan Dan Alam Sekitar</option>
+              <option value="Jabatan Kebudayaan Kesenian Pelancongan Dan Sukan">Jabatan Kebudayaan Kesenian Pelancongan Dan Sukan</option>
+            </select>
+            <div
+              *ngIf="submitted && f.jenis_jawatankuasa.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.jenis_jawatankuasa.errors.required" i18n="@@emvm">
+                Please fill this required field.
               </div>
             </div>
+            <small class="form-text text-muted">Hold Ctrl (Windows) or Cmd (Mac) to select multiple committees</small>
           </div>
           <br />
           <div *ngIf="this.is1st" style="width: 625px">
@@ -392,6 +421,9 @@
           <div>&nbsp;</div>
 
           <div class="text-center">
+            <button class="look_for" type="button" (click)="printForm()">
+              Muat Turun
+            </button>
             <button
               class="look_for"
               type="button"
