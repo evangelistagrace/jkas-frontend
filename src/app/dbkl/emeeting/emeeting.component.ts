@@ -39,6 +39,7 @@ export class EmeetingComponent implements OnInit {
   isAdminType: string;
   senarai_permohonan: File | null = null;
   minit_mesyuarat: File | null = null;
+  uploadedFiles: { [key: string]: File } = {};
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -119,6 +120,9 @@ export class EmeetingComponent implements OnInit {
           );
       };
       reader.readAsDataURL(file);
+      
+      // Track uploaded files
+      this.uploadedFiles[fieldName] = file;
 
       if (fieldName === "senarai_permohonan") {
         this.senarai_permohonan = file;
@@ -176,6 +180,148 @@ export class EmeetingComponent implements OnInit {
     // this.isTable=true;
     // this.update();
   }
+printForm(): void {
+  // Get the form data
+  const formData = this.newGroup.value;
+  
+  // Create a new window for printing
+  const printWindow = window.open('', '_blank', 'width=800,height=600');
+  
+  if (printWindow) {
+    // Build the HTML content for printing
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>E-Meeting Form</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+          }
+          .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #253d84;
+            padding-bottom: 20px;
+          }
+          .form-section {
+            margin-bottom: 20px;
+          }
+          .form-row {
+            display: flex;
+            margin-bottom: 15px;
+          }
+          .form-row label {
+            font-weight: bold;
+            width: 200px;
+            display: inline-block;
+          }
+          .form-row span {
+            flex: 1;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 2px;
+          }
+          .logo {
+            max-width: 150px;
+            margin-bottom: 10px;
+          }
+          @media print {
+            body { margin: 0; }
+            .no-print { display: none; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <img src="../../../assets/img/dbkl_logo.png" alt="DBKL Logo" class="logo">
+          <h2>JABATAN KESIHATAN DAN ALAM SEKITAR</h2>
+          <h3>E-MEETINGS</h3>
+        </div>
+        
+        <div class="form-section">
+          <div class="form-row">
+            <label>Bil. Meeting:</label>
+            <span>${formData.bill_mesyuarat || '-'}</span>
+          </div>
+          
+          <div class="form-row">
+            <label>Meeting Type:</label>
+            <span>${formData.jenis_mesyuarat || '-'}</span>
+          </div>
+          
+          <div class="form-row">
+            <label>Type of Committee:</label>
+            <span>${formData.jenis_jawatankuasa || '-'}</span>
+          </div>
+          
+          <div class="form-row">
+            <label>Date of Meeting:</label>
+            <span>${this.formatDate(formData.tarikh_mesyuarat) || '-'}</span>
+          </div>
+          
+          <div class="form-row">
+            <label>Meeting Time:</label>
+            <span>${formData.masa_mesyuarat || '-'}</span>
+          </div>
+          
+          <div class="form-row">
+            <label>Until:</label>
+            <span>${formData.hingga || '-'}</span>
+          </div>
+          
+          <div class="form-row">
+            <label>Senarai Permohonan:</label>
+            <span>${this.getFileName('senarai_permohonan') || 'No file uploaded'}</span>
+          </div>
+          
+          <div class="form-row">
+            <label>Minit Mesyuarat:</label>
+            <span>${this.getFileName('minit_mesyuarat') || 'No file uploaded'}</span>
+          </div>
+        </div>
+        
+        <div style="margin-top: 50px; text-align: center;">
+          <p>Generated on: ${new Date().toLocaleDateString('en-MY')} ${new Date().toLocaleTimeString('en-MY')}</p>
+        </div>
+        
+        <script>
+          window.onload = function() {
+            window.print();
+            window.onafterprint = function() {
+              window.close();
+            };
+          };
+        </script>
+      </body>
+      </html>
+    `;
+    
+    // Write content to the new window
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+  }
+}
+
+// Helper method to format date
+private formatDate(dateString: string): string {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-MY', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+}
+
+// Helper method to get uploaded file names
+private getFileName(fieldName: string): string {
+  if (this.uploadedFiles && this.uploadedFiles[fieldName]) {
+    return this.uploadedFiles[fieldName].name;
+  }
+  return this.newGroup.get(fieldName)?.value || '';
+}
   update() {
     this.spinner.show();
     let key = localStorage.getItem("AccessToken");
