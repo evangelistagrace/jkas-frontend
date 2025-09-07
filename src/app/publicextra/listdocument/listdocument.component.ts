@@ -14,9 +14,17 @@ import * as $ from "jquery";
 })
 export class ListdocumentComponent implements OnInit {
   suratPermohonan: any = [];
-  public uploader: FileUploader = new FileUploader({
+    SERVER_URL = environment.basePublicUrl + "/public/uploadFreeFile";
+
+  uploader: FileUploader = new FileUploader({
     isHTML5: true,
+    url: this.SERVER_URL,
+    maxFileSize: 1024 * 1024 * 10, // 10MB
   });
+
+  // public uploader: FileUploader = new FileUploader({
+  //   isHTML5: true,
+  // });
 
   doUploadSuratPermohonan() {
     this.spinner.show();
@@ -25,11 +33,18 @@ export class ListdocumentComponent implements OnInit {
       let fileItem = this.uploader.queue[i]._file;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + i);
-      this.http
-        .post<any>(this.baseUrl + "/public/uploadFile", data)
-        .subscribe((response) => {
-          this.suratPermohonan.push(response.filename);
-        });
+
+      // data.append("fileName", fileName);
+      // this.http
+      //   .post<any>(this.baseUrl + "/public/uploadFile", data)
+      //   .subscribe((response) => {
+      //     this.suratPermohonan.push(response.filename);
+      //   });
+      // get filename
+      const fileName = fileItem.name;
+      this.uploadFile(data).subscribe((response) => {
+        this.suratPermohonan.push(fileName);
+      });
     }
     this.uploader.clearQueue();
     this.spinner.hide();
@@ -46,11 +61,16 @@ export class ListdocumentComponent implements OnInit {
       let fileItem = this.uploader.queue[i]._file;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + i);
-      this.http
-        .post<any>(this.baseUrl + "/public/uploadFile", data)
-        .subscribe((response) => {
-          this.suratSalinan.push(response.filename);
-        });
+      // this.http
+      //   .post<any>(this.baseUrl + "/public/uploadFile", data)
+      //   .subscribe((response) => {
+      //     this.suratSalinan.push(response.filename);
+      //   });
+      // get filename
+      const fileName = fileItem.name;
+      this.uploadFile(data).subscribe((response) => {
+        this.suratSalinan.push(fileName);
+      });
     }
     this.uploader.clearQueue();
     this.spinner.hide();
@@ -67,11 +87,16 @@ export class ListdocumentComponent implements OnInit {
       let fileItem = this.uploader.queue[i]._file;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + i);
-      this.http
-        .post<any>(this.baseUrl + "/public/uploadFile", data)
-        .subscribe((response) => {
-          this.typeDisposal.push(response.filename);
-        });
+      // this.http
+      //   .post<any>(this.baseUrl + "/public/uploadFile", data)
+      //   .subscribe((response) => {
+      //     this.typeDisposal.push(response.filename);
+      //   });
+      // get filename
+      const fileName = fileItem.name;
+      this.uploadFile(data).subscribe((response) => {
+        this.typeDisposal.push(fileName);
+      });
     }
     this.uploader.clearQueue();
     this.spinner.hide();
@@ -88,11 +113,16 @@ export class ListdocumentComponent implements OnInit {
       let fileItem = this.uploader.queue[i]._file;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + i);
-      this.http
-        .post<any>(this.baseUrl + "/public/uploadFile", data)
-        .subscribe((response) => {
-          this.developmentStatus.push(response.filename);
-        });
+      // this.http
+      //   .post<any>(this.baseUrl + "/public/uploadFile", data)
+      //   .subscribe((response) => {
+      //     this.developmentStatus.push(response.filename);
+      //   });
+      // get filename
+      const fileName = fileItem.name;
+      this.uploadFile(data).subscribe((response) => {
+        this.developmentStatus.push(fileName);
+      });
     }
     this.uploader.clearQueue();
     this.spinner.hide();
@@ -109,11 +139,16 @@ export class ListdocumentComponent implements OnInit {
       let fileItem = this.uploader.queue[i]._file;
       data.append("file", fileItem);
       data.append("fileSeq", "seq" + i);
-      this.http
-        .post<any>(this.baseUrl + "/public/uploadFile", data)
-        .subscribe((response) => {
-          this.otherDocuments.push(response.filename);
-        });
+      // this.http
+      //   .post<any>(this.baseUrl + "/public/uploadFile", data)
+      //   .subscribe((response) => {
+      //     this.otherDocuments.push(response.filename);
+      //   });
+      // get filename
+      const fileName = fileItem.name;
+      this.uploadFile(data).subscribe((response) => {
+        this.otherDocuments.push(fileName);
+      });
     }
     this.uploader.clearQueue();
     this.spinner.hide();
@@ -455,9 +490,9 @@ export class ListdocumentComponent implements OnInit {
       );
   }
 
-  uploadFile(data: FormData): Observable<any> {
-    return this.http.post<any>(this.baseUrl + "/public/uploadFile", data);
-  }
+  // uploadFile(data: FormData): Observable<any> {
+  //   return this.http.post<any>(this.baseUrl + "/public/uploadFile", data);
+  // }
   public onSaveUsernameChanged(value: boolean) {
     this.uuk35 = value;
   }
@@ -541,5 +576,9 @@ export class ListdocumentComponent implements OnInit {
       this.basePublicUrl +
         "/jkas_resourses/free/pdfs/PELAN INVENTORI KAWASAN PERKHIDMATAN PEMBERSIHAN.pdf"
     );
+  }
+
+  uploadFile(data: FormData): Observable<any> {
+    return this.http.post<any>(this.SERVER_URL, data);
   }
 }
