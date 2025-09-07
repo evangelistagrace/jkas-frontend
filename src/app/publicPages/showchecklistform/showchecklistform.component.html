@@ -267,13 +267,15 @@
               <tr>
                 <td>1.</td>
                 <td>
-                  <span i18n="@@cleaningservice"
-                    >Cleaning service application letter for:</span
-                  >
-                  <ul style="list-style-type: lower-roman">
+                  <span
+                    >Surat Permohonan Perkhidmatan Kutipan dan Pembersihan
+                    :</span
+                  ><sup>*</sup> <br /><br />
+                  <strong>1. Kutipan sisa Pepejal:</strong>
+                  <ul style="list-style-type: lower-alpha; margin-left: 20px">
                     <li>
                       <span class="d-flex justify-content-between">
-                        <span i18n="@@Garbage">Garbage Collection</span>
+                        <span>Kutipan sampah (Bil. 1,2,3,4,5)</span>
                         <span *ngFor="let val of data">
                           <span
                             class="d-flex align-items-center"
@@ -308,9 +310,13 @@
                         </span>
                       </span>
                     </li>
+                  </ul>
+                  <br />
+                  <strong>2. Pembersihan awam:</strong>
+                  <ul style="list-style-type: lower-alpha; margin-left: 20px">
                     <li>
                       <span class="d-flex justify-content-between">
-                        <span i18n="@@Street"> Street Sweep</span>
+                        <span>Sapuan Jalan (Bil. 1,3,5,6)</span>
                         <span *ngFor="let val of data">
                           <span
                             class="d-flex align-items-center"
@@ -343,8 +349,8 @@
                       </span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"
-                        ><span i18n="@@Drain">Drain Cleaning</span>
+                      <span class="d-flex justify-content-between">
+                        <span>Cucian Longkang (Bil. 1,3,5,6)</span>
                         <span *ngFor="let val of data">
                           <span
                             class="d-flex align-items-center"
@@ -376,8 +382,8 @@
                       </span>
                     </li>
                     <li>
-                      <span class="d-flex justify-content-between"
-                        ><span i18n="@@Grass">Grass Cutting</span>
+                      <span class="d-flex justify-content-between">
+                        <span>Pemotongan Rumput (Bil. 1,3,5,6)</span>
                         <span *ngFor="let val of data">
                           <span
                             class="d-flex align-items-center"
@@ -402,6 +408,115 @@
                               (change)="
                                 onSaveUsernameChanged3(
                                   saveUserNameCheckBox3.checked
+                                )
+                              "
+                          /></span>
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span
+                          >Pembersihan Tempat Awam (Tempat Letak Kenderaan /
+                          Kawasan Lapang) (Bil. 1,3,5,6)</span
+                        >
+                        <span class="d-flex align-items-center">
+                          <input
+                            type="checkbox"
+                          />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Pasar Awam (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input
+                            type="checkbox"
+                          />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Jejantas (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input
+                            type="checkbox"
+                          />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Tandas Awam (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input
+                            type="checkbox"
+                          />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Pusat Penjaja (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input
+                            type="checkbox"
+                          />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Hentian Bas (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input
+                            type="checkbox"
+                          />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Pembersihan Hentian Teksi (Bil. 1,3,5,6)</span>
+                        <span class="d-flex align-items-center">
+                          <input
+                            type="checkbox"
+                          />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span
+                          >Pembersihan Taman Permainan Kanak-Kanak (TPKK) (Bil.
+                          1,3,5,6)</span
+                        >
+                        <span *ngFor="let val of data">
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.luas_kawasan_TPKK == true"
+                            ><input
+                              type="checkbox"
+                              checked
+                              #saveUserNameCheckBox10
+                              (change)="
+                                onSaveUsernameChanged10(
+                                  saveUserNameCheckBox10.checked
+                                )
+                              "
+                          /></span>
+
+                          <span
+                            class="d-flex align-items-center"
+                            *ngIf="val.luas_kawasan_TPKK == false"
+                            ><input
+                              type="checkbox"
+                              #saveUserNameCheckBox10
+                              (change)="
+                                onSaveUsernameChanged10(
+                                  saveUserNameCheckBox10.checked
                                 )
                               "
                           /></span>
@@ -556,9 +671,10 @@
               </tr>
               <tr>
                 <td>2.</td>
-                <td i18n="@@Copyletter">
-                  Copy of CF / CCC / Form F / Confirmation Letter from JPIF
-                  (Infrastructure Planning Department)
+                <td>
+                  <span
+                    >Surat salinan CF / CCC / Borang F</span
+                  >
                 </td>
                 <td style="text-align: center" class="anc">
                   <label class="custom-file-upload">
@@ -716,7 +832,9 @@
               <tr>
                 <td>3.</td>
                 <td i18n="@@State">
-                  State the name of the building/park to be serviced
+                  <span
+                    >State the name of the building/park to be serviced</span
+                  >
                 </td>
                 <td>
                   <textarea
@@ -732,10 +850,9 @@
               </tr>
               <tr>
                 <td>4.</td>
-                <td i18n="@@sttowds">
+                <td>
                   <span
-                    >State the type of waste disposal system used and the number
-                    of bins.</span
+                    >Dinyatakan jenis sistem pelupusan sampah dan jumlah tong yang diluluskan oleh pihak SWCorp</span
                   >
                 </td>
                 <td style="text-align: center">
@@ -777,7 +894,7 @@
                 <td>5.</td>
                 <td>
                   <span i18n="@@Copy">Copy of Development Status</span>
-                  <ul style="list-style-type: lower-roman">
+                  <ul style="list-style-type: lower-alpha">
                     <li>
                       <span class="d-flex justify-content-between"
                         ><span i18n="@@Strata">Strata "Title"</span>
@@ -839,6 +956,26 @@
                                 )
                               "
                           /></span>
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Status Tanah (Kegunaan Tanah)</span>
+                        <span class="d-flex align-items-center">
+                          <input
+                            type="checkbox"
+                          />
+                        </span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between">
+                        <span>Lain-lain</span>
+                        <span class="d-flex align-items-center">
+                          <input
+                            type="checkbox"
+                          />
                         </span>
                       </span>
                     </li>
@@ -963,14 +1100,14 @@
               <tr>
                 <td>6.</td>
                 <td>
-                  <h6 i18n="@@Fordevelopment1">
-                    Share development status other than "title" strata
-                  </h6>
-                  <h6 id="Fordevelopment" i18n="@@Fordevelopment">
-                    Enclosed is an inventory of areas for the application of
-                    drain cleaning and lawn mowing services such as:-
-                  </h6>
-                  <ul style="list-style-type: lower-roman">
+                  <span i18n="@@Fordevelopment1">
+                    Share development status other than "title" strata </span
+                  ><br />
+                  <span id="Fordevelopment" i18n="@@Fordevelopment">
+                    Enclosed is an inventory (area) for applications for road
+                    sweeping, drain cleaning and grass cutting services such as:
+                  </span>
+                  <ul style="list-style-type: lower-alpha">
                     <li>
                       <span class="d-flex justify-content-between"
                         ><span i18n="@@StreetName">Street Name</span>
@@ -1006,8 +1143,8 @@
                     </li>
                     <li>
                       <span class="d-flex justify-content-between"
-                        ><span i18n="@@Roadlength">
-                          Road length by street name</span
+                        ><span i18n="@@Roadlength"
+                          >Road length by street name</span
                         >
                         <span *ngFor="let val of data">
                           <span
@@ -1178,6 +1315,17 @@
                           /></span>
                         </span>
                       </span>
+                    </li>
+                    <li>
+                      <span class="d-flex justify-content-between"
+                        ><span
+                          >Surat pengesahan dari Jabatan DBKL (JPIF, JPLR, JPRB (OSC))</span
+                        >
+                        <span class="d-flex align-items-center"
+                          ><input
+                            [(ngModel)]="suratPengesahan"
+                            type="checkbox" /></span
+                      ></span>
                     </li>
                   </ul>
                 </td>

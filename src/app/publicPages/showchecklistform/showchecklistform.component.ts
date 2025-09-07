@@ -241,6 +241,8 @@ suratSalinan: any = [];
   sp5: any;
   dinyatakan_jenis_sistem: any;
   temp4: any;
+  suratPengesahan: boolean = false;
+
 
   constructor(
     private http: HttpClient,
