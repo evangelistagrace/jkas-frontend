@@ -469,8 +469,13 @@ export class ListdocumentComponent implements OnInit {
         (res) => {
           // console.log("result after submit", res);
           this.appno = res["app_srl_no"];
-          this.spinner.hide();
-          this.openSuccessModal();
+          // make call to update user details if any
+          if (this.no_tel_mobile || this.no_tel_office || this.nama_syarikat) {
+            this.updateUserDetails();
+          } else {
+            this.spinner.hide();
+            this.openSuccessModal();
+          }
         },
         (error) => {
           // console.log("error is", error);
@@ -581,4 +586,44 @@ export class ListdocumentComponent implements OnInit {
   uploadFile(data: FormData): Observable<any> {
     return this.http.post<any>(this.SERVER_URL, data);
   }
+
+  updateUserDetails() {
+    let headers = {
+      "Content-Type": "application/json",
+      accept: "application/json",
+      Authorization: this.accessToken,
+    };
+
+      let body = {
+        no_tel_mobile: this.no_tel_mobile,
+        no_tel_office: this.no_tel_office,
+        nama_syarikat: this.nama_syarikat,
+      };
+      console.log(body);
+      
+      this.http
+        .post(this.basePublicUrl + "/public/updatePublicUserInfo2", body, {
+          headers: headers,
+        })
+        .subscribe(
+          (res) => {
+            this.spinner.hide();
+            this.openSuccessModal();
+          },
+          (error) => {
+             this.spinner.hide();
+            this.openErrorModal();
+            this.npErrorMessage = error["error"]["message"];
+            if (this.npErrorMessage == "application_not_added") {
+              if (this.lang == "en") {
+                this.errormsg =
+                  "Application could not be submitted successfully!  Please refer console logs for further details.";
+              } else {
+                this.errormsg =
+                  "Permohonan tidak berjaya dihantar! Sila rujuk log konsol untuk keterangan lebih lanjut.";
+              }
+            }
+          }
+        );
+    }
 }
