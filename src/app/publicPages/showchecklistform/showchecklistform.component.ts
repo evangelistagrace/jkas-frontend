@@ -901,17 +901,22 @@ suratSalinan: any = [];
   }
 
   getPdf(e) {
-    //  console.log(e)
-    this.downloadPdf(e)
-      .then(blob => {
-        //  console.log(blob)
-        saveAs(blob, e);
-        var fileURL = window.URL.createObjectURL(blob);
-        //  console.log(fileURL);
+     console.log('filename: ', e)
+    
+    const fileExtension = e.split(".").pop()?.toLowerCase();
+    const DOWNLOAD_EXTENSIONS = ["docx", "pptx", "xls", "xlsx", "zip", "rar"];
+    const PREVIEW_EXTENSIONS = ["pdf", "png", "jpg", "jpeg"];
 
-        let tab = window.open();
-        tab.location.href = fileURL
-      });
+    if (DOWNLOAD_EXTENSIONS.includes(fileExtension)) {
+      // Download the file
+      this.downloadFile(e, this.getFileUrl(e));
+    } else if (PREVIEW_EXTENSIONS.includes(fileExtension)) {
+      // Open in new tab for preview (especially for PDFs)
+      window.open(this.getFileUrl(e), "_blank");
+    } else {
+      // Default behavior - try to open in new tab
+      window.open(this.getFileUrl(e), "_blank");
+    }
   }
   downloadPdf(id: number) {
     let key = localStorage.getItem("AccessToken");
@@ -923,7 +928,7 @@ suratSalinan: any = [];
 
 
     return this.http
-      .get(this.basePublicUrl + "/jkas_resourses/public/pdfs/" + id, { headers, responseType: 'blob' })
+      .get(this.basePublicUrl + "/jkas_resourses/free/docs/" + id, { headers, responseType: 'blob' })
       .toPromise();
   }
   opendocument() {
@@ -945,6 +950,61 @@ suratSalinan: any = [];
   }
   open6thdocument() {
     window.open(this.basePublicUrl + "/jkas_resourses/free/pdfs/PELAN INVENTORI KAWASAN PERKHIDMATAN PEMBERSIHAN.pdf");
+  }
+
+  downloadFile(filename: string, fileUrl: string): void {
+    console.log('download file url: ', fileUrl);
+    this.spinner.show();
+
+    this.http.get(fileUrl, { responseType: "blob" }).subscribe(
+      (blob: Blob) => {
+        this.spinner.hide();
+
+        // Create blob URL
+        const url = window.URL.createObjectURL(blob);
+
+        // Create download link
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+
+        // Trigger download
+        document.body.appendChild(link);
+        link.click();
+
+        // Cleanup
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      },
+      (error) => {
+        this.spinner.hide();
+        console.error('Download error:', error);
+
+        // Show error message to user
+        this.errorMessage = "Failed to download file. Please try again.";
+        this.openErrorModal();
+      }
+    );
+  }
+
+  getFileUrl(filename: string): string {
+    // Process filename to match backend logic
+    // Remove all characters except alphanumeric and dots (same as backend regex)
+    let processedFilename = filename.replace(/[^a-zA-Z0-9.]/g, '');
+    
+    let fileExtension = processedFilename.split(".").pop()?.toLowerCase();
+    let path = "";
+
+    let PHOTO_EXTENSIONS = ["png", "jpg", "jpeg"];
+    let DOC_EXTENSIONS = ["pdf", "docx", "pptx", "xls", "xlsx"];
+
+    if (PHOTO_EXTENSIONS.includes(fileExtension)) {
+      path = "images";
+    } else if (DOC_EXTENSIONS.includes(fileExtension)) {
+      path = "docs";
+    }
+
+    return `${environment.basePublicUrl}/jkas_resourses/free/${path}/${processedFilename}`;
   }
 
 }
