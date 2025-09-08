@@ -16,7 +16,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isPublicPage: boolean = false;
   routerSubscription: Subscription;
   userRole: string = localStorage.getItem("roleforuser");
+  // username: string = localStorage.getItem("username"); // Assuming username is stored in localStorage
 
+  isAdminType = localStorage.getItem("isAdmin");
+  username = localStorage.getItem("nama_pengguna");
+  dbkl_access_token = localStorage.getItem("dbkl_access_token");
 
   // Navigation items structure for dynamic rendering
   navItems = [
@@ -24,7 +28,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       label: "Utama",
       path: "/",
       fragment: null,
-      showFor: ["public", "admin", "adminregister"],
+      showFor: ["public", "admin", "adminregister", "dbkldata"],
     },
     {
       label: "Log Masuk",
@@ -55,6 +59,57 @@ export class NavbarComponent implements OnInit, AfterViewInit {
           label: "JKAS DBKL",
           path: "/dbkl/adminregister",
           showFor: ["public"],
+        },
+      ],
+    },
+    // DBKL Admin navigation items
+    {
+      label: "Pentadbir",
+      dropdown: true,
+      showFor: ["dbkldata"],
+      items: [
+        {
+          label: "Halaman Utama",
+          path: "/dbkl/dbkldata",
+          showFor: ["dbkldata"],
+        },
+        {
+          label: "Pengurusan Pengguna",
+          path: "/dbkl/usermanagement",
+          showFor: ["dbkldata"],
+        },
+        {
+          label: "Semakan Permohonan PSPPA",
+          path: "/dbkl/applicationprocess",
+          showFor: ["dbkldata"],
+        },
+        {
+          label: "Pengurusan Inventori",
+          path: "/dbkl/inventorymanage",
+          showFor: ["dbkldata"],
+        },
+        {
+          label: "E-Mesyuarat",
+          path: "/dbkl/emeeting",
+          showFor: ["dbkldata"],
+        },
+      ],
+    },
+    // User profile dropdown for dbkldata
+    {
+      label: this.username,
+      dropdown: true,
+      showFor: ["dbkldata"],
+      items: [
+        {
+          label: "Profil",
+          path: "/profileLog",
+          showFor: ["dbkldata"],
+        },
+        {
+          label: "Log Keluar",
+          onClick: () => { this.logout(); },
+          showFor: ["dbkldata"],
         },
       ],
     },
@@ -234,6 +289,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       return true;
     }
 
+    // Add support for dbkldata path
+    if (
+      this.currentPath.includes("/dbkldata") &&
+      navItem.showFor.includes("dbkldata")
+    ) {
+      return true;
+    }
+
     return false;
   }
 
@@ -253,5 +316,16 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   showForm(formType: FormType): void {
     this.formToggleService.showForm(formType);
+  }
+
+  // Add logout method
+  logout(): void {
+    // Implement logout logic similar to headerc component
+    const token = localStorage.getItem("dbkl_access_token");
+    if (token) {
+      // Clear localStorage and redirect
+      localStorage.clear();
+      this.router.navigateByUrl("/dbkl/adminregister");
+    }
   }
 }

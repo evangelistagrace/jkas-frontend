@@ -1,7 +1,10 @@
-<app-topbar></app-topbar>
+<!-- <app-topbar></app-topbar> -->
 <!-- End of Topbar -->
 <!-- Header -->
-<app-headerc></app-headerc>
+<app-navbar></app-navbar>
+
+<main id="main">
+  <!-- ======= Pricing Section ======= -->
 <ngx-spinner
   bdColor="rgba(0, 0, 0, 0.8)"
   size="medium"
@@ -10,9 +13,6 @@
   [fullScreen]="true"
 >
 </ngx-spinner>
-<main id="main">
-  <!-- ======= Pricing Section ======= -->
-
   <section id="pricing" class="pricing">
     <div class="container">
       <app-statistics

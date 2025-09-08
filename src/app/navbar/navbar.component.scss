@@ -148,3 +148,15 @@
 h5 {
   font-size: 1.1rem;
 }
+
+#mainNav {
+  text-transform: unset;
+}
+
+.nav-item {
+  text-transform: uppercase;
+}
+
+.dropdown-item {
+  text-transform: capitalize;
+}
