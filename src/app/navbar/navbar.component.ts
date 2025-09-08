@@ -76,32 +76,32 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     {
       label: "Pentadbir",
       dropdown: true,
-      showFor: ["dbkl"],
+      showFor: ["dbkldata", "usermanagement", "applicationprocess", "inventorymanage", "emeeting"],
       items: [
         {
           label: "Halaman Utama",
           path: "/dbkl/dbkldata",
-          showFor: ["dbkl"],
+          showFor: ["dbkldata", "usermanagement", "applicationprocess", "inventorymanage", "emeeting"],
         },
         {
           label: "Pengurusan Pengguna",
           path: "/dbkl/usermanagement",
-          showFor: ["dbkl"],
+          showFor: ["dbkldata", "usermanagement", "applicationprocess", "inventorymanage", "emeeting"],
         },
         {
           label: "Semakan Permohonan PSPPA",
           path: "/dbkl/applicationprocess",
-          showFor: ["dbkl"],
+          showFor: ["dbkldata", "usermanagement", "applicationprocess", "inventorymanage", "emeeting"],
         },
         {
           label: "Pengurusan Inventori",
           path: "/dbkl/inventorymanage",
-          showFor: ["dbkl"],
+          showFor: ["dbkldata", "usermanagement", "applicationprocess", "inventorymanage", "emeeting"],
         },
         {
           label: "E-Mesyuarat",
           path: "/dbkl/emeeting",
-          showFor: ["dbkl"],
+          showFor: ["dbkldata", "usermanagement", "applicationprocess", "inventorymanage", "emeeting"],
         },
       ],
     },
@@ -305,6 +305,35 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (
       this.currentPath.includes("/dbkldata") &&
       navItem.showFor.includes("dbkldata")
+    ) {
+      return true;
+    }
+
+    // Add support for additional DBKL admin paths
+    if (
+      this.currentPath.includes("/usermanagement") &&
+      navItem.showFor.includes("usermanagement")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/applicationprocess") &&
+      navItem.showFor.includes("applicationprocess")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/inventorymanage") &&
+      navItem.showFor.includes("inventorymanage")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/emeeting") &&
+      navItem.showFor.includes("emeeting")
     ) {
       return true;
     }
