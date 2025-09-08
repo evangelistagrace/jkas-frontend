@@ -16,7 +16,7 @@ import { FileUploader } from "ng2-file-upload";
   styleUrls: ["./mtbwork-form.component.css"],
 })
 export class MtbworkFormComponent implements OnInit {
-  SERVER_URL = environment.basePublicUrl + "/free/uploadFile";
+  SERVER_URL = environment.basePublicUrl + "/public/uploadFreeFile";
   uploader: FileUploader = new FileUploader({
     //isHTML5: true,
     url: this.SERVER_URL,
