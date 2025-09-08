@@ -1,16 +1,9 @@
-<ngx-spinner
-  bdColor="rgba(0, 0, 0, 0.8)"
-  size="medium"
-  color="#253d84"
-  type="ball-clip-rotate-multiple"
-  [fullScreen]="true"
->
-</ngx-spinner>
+
 <!-- Topbar -->
-<app-topbar></app-topbar>
+<!-- <app-topbar></app-topbar> -->
 <!-- End of Topbar -->
 <!-- Header -->
-<div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2">
+<!-- <div class="container-fluid sticky-nav" id="" style="background-color: #f2f2f2">
   <div class="container-fluid" ngStickyNav>
     <nav class="navbar navbar-expand-lg">
       <a routerLink="/public" class="navbar-brand">
@@ -127,10 +120,19 @@
       </div>
     </nav>
   </div>
-</div>
+</div> -->
 <!-- End of Header -->
+<app-navbar></app-navbar>
 
 <main>
+  <ngx-spinner
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#253d84"
+    type="ball-clip-rotate-multiple"
+    [fullScreen]="true"
+  >
+  </ngx-spinner>
   <section class="meting" id="meting">
     <div class="card">
       <!-- ======= Services Section ======= -->

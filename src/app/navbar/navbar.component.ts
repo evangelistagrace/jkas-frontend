@@ -5,6 +5,9 @@ import { Subscription } from "rxjs";
 import { filter } from "rxjs/operators";
 import { FormToggleService } from '../services/toggle-form.service';
 import { FormType } from "../models/form-type.enum";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-navbar",
@@ -21,6 +24,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isAdminType = localStorage.getItem("isAdmin");
   username = localStorage.getItem("nama_pengguna");
   dbkl_access_token = localStorage.getItem("dbkl_access_token");
+  baseUrl = environment.basePublicUrl;
 
   // Navigation items structure for dynamic rendering
   navItems = [
@@ -173,8 +177,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ];
 
   constructor(
+    private http: HttpClient,
     private router: Router,
-    private formToggleService: FormToggleService
+    private formToggleService: FormToggleService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -324,14 +330,27 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.formToggleService.showForm(formType);
   }
 
-  // Add logout method
-  logout(): void {
-    // Implement logout logic similar to headerc component
-    const token = localStorage.getItem("dbkl_access_token");
-    if (token) {
-      // Clear localStorage and redirect
-      localStorage.clear();
-      this.router.navigateByUrl("/dbkl/adminregister");
-    }
+  logout() {
+    this.spinner.show();
+    let header = {
+      accept: "application/json",
+      Authorization: "Bearer " + this.dbkl_access_token,
+    };
+
+    let body = {};
+
+    // if (this.userRole === 'Superadmin') {
+      this.http
+      .post(this.baseUrl + "/dbkl/logout", body, { headers: header })
+      .subscribe(
+        (res) => {
+          this.router.navigateByUrl("/dbkl/adminregister");
+          localStorage.clear();
+          this.spinner.hide();
+        },
+        (error) => {
+          // this.openErrorModal();
+        }
+      );
   }
 }

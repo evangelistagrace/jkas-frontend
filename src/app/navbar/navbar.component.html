@@ -76,9 +76,19 @@
                 <ng-container *ngFor="let subItem of item.items">
                   <ng-container *ngIf="shouldShowNavItem(subItem)">
                     <!-- Regular dropdown item -->
+                    <!-- For subItem with onClick action -->
+                    <a
+                      *ngIf="!subItem?.dropdown && subItem?.onClick"
+                      class="dropdown-item"
+                      href="javascript:void(0);"
+                      (click)="handleNavItemClick(subItem?.onClick)"
+                    >
+                      {{ subItem?.label }}
+                    </a>
+
                     <!-- For subItem that's not a dropdown but has externalPath (PDF file) -->
                     <a
-                      *ngIf="!subItem?.dropdown && subItem.externalPath"
+                      *ngIf="!subItem?.dropdown && !subItem?.onClick && subItem.externalPath"
                       class="dropdown-item"
                       href="javascript:void(0);"
                       (click)="handlePdfClick(subItem.externalPath)"
@@ -86,9 +96,9 @@
                       {{ subItem?.label }}
                     </a>
 
-                    <!-- For subItem that's not a dropdown and not externalPath (normal navigation) -->
+                    <!-- For subItem that's not a dropdown and not externalPath and not onClick (normal navigation) -->
                     <a
-                      *ngIf="!subItem?.dropdown && !subItem.externalPath"
+                      *ngIf="!subItem?.dropdown && !subItem?.onClick && !subItem.externalPath"
                       class="dropdown-item"
                       [routerLink]="subItem?.path ? [subItem?.path] : []"
                       [fragment]="subItem?.fragment"
@@ -110,13 +120,13 @@
                               : null
                           "
                           [routerLink]="
-                            nestedItem?.path ? [nestedItem?.path] : null
+                            nestedItem?.path && !nestedItem?.onClick ? [nestedItem?.path] : null
                           "
                           [fragment]="nestedItem?.fragment"
                           (click)="
-                            nestedItem.externalPath
-                              ? handlePdfClick(nestedItem.externalPath)
-                              : null
+                            nestedItem?.onClick ? handleNavItemClick(nestedItem?.onClick) :
+                            nestedItem.externalPath ? handlePdfClick(nestedItem.externalPath) :
+                            null
                           "
                         >
                           {{ nestedItem?.label }}
