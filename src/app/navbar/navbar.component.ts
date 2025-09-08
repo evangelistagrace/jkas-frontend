@@ -105,6 +105,35 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         },
       ],
     },
+    // inventory menu
+    {
+      label: "Inventori Data",
+      dropdown: true,
+      showFor: ["inventorymap", "omplama", "ompbaru", "inactivearea"],
+      items: [
+        {
+          label: "Halaman Utama",
+          path: "/dbkl/inventorymap",
+          showFor: ["inventorymap", "omplama", "ompbaru", "inactivearea"],
+        },
+        {
+          label: "OMP Lama",
+          path: "/dbkl/omplama",
+          showFor: ["inventorymap", "omplama", "ompbaru", "inactivearea"],
+        },
+        {
+          label: "OMP Baru",
+          path: "/dbkl/ompbaru",
+          showFor: ["inventorymap", "omplama", "ompbaru", "inactivearea"],
+        },
+        {
+          label: "Kawasan Tidak Aktif (Pemotongan Bayaran)",
+          path: "/dbkl/inactivearea",
+          showFor: ["inventorymap", "omplama", "ompbaru", "inactivearea"],
+        },
+      ],
+    },
+    
     // User profile dropdown for dbkl
     {
       label: this.username,
@@ -334,6 +363,35 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (
       this.currentPath.includes("/emeeting") &&
       navItem.showFor.includes("emeeting")
+    ) {
+      return true;
+    }
+
+    // Add support for inventory data paths
+    if (
+      this.currentPath.includes("/inventorymap") &&
+      navItem.showFor.includes("inventorymap")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/omplama") &&
+      navItem.showFor.includes("omplama")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/ompbaru") &&
+      navItem.showFor.includes("ompbaru")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/inactivearea") &&
+      navItem.showFor.includes("inactivearea")
     ) {
       return true;
     }
