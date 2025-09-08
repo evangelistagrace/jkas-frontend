@@ -940,17 +940,81 @@ export class DbklchecklistComponent implements OnInit {
   }
 
   getPdf(e) {
-    //console.log(e)
-    this.downloadPdf(e).then((blob) => {
-      //console.log(blob)
-      saveAs(blob, e);
-      var fileURL = window.URL.createObjectURL(blob);
-      //console.log(fileURL);
+    
+    const fileExtension = e.split(".").pop()?.toLowerCase();
+    const DOWNLOAD_EXTENSIONS = ["docx", "pptx", "xls", "xlsx", "zip", "rar"];
+    const PREVIEW_EXTENSIONS = ["pdf", "png", "jpg", "jpeg"];
 
-      let tab = window.open();
-      tab.location.href = fileURL;
-    });
+    if (DOWNLOAD_EXTENSIONS.includes(fileExtension)) {
+      // Download the file
+      this.downloadFile(e, this.getFileUrl(e));
+    } else if (PREVIEW_EXTENSIONS.includes(fileExtension)) {
+      // Open in new tab for preview (especially for PDFs)
+      window.open(this.getFileUrl(e), "_blank");
+    } else {
+      // Default behavior - try to open in new tab
+      window.open(this.getFileUrl(e), "_blank");
+    }
   }
+
+  downloadFile(filename: string, fileUrl: string): void {
+    this.spinner.show();
+
+    this.http.get(fileUrl, { responseType: "blob" }).subscribe(
+      (blob: Blob) => {
+        this.spinner.hide();
+
+        // Create blob URL
+        const url = window.URL.createObjectURL(blob);
+
+        // Create download link
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+
+        // Trigger download
+        document.body.appendChild(link);
+        link.click();
+
+        // Cleanup
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      },
+      (error) => {
+        this.spinner.hide();
+        console.error('Download error:', error);
+
+        if (this.lang == "en") {
+          this.errorMsg = "Failed to download file. Please try again.";
+        } else {
+          this.errorMsg = "Gagal memuat turun fail. Sila cuba lagi.";
+        }
+
+        this.openErrorModal();
+      }
+    );
+  }
+
+  getFileUrl(filename: string): string {
+    // Process filename to match backend logic
+    // Remove all characters except alphanumeric and dots (same as backend regex)
+    let processedFilename = filename.replace(/[^a-zA-Z0-9.]/g, '');
+    
+    let fileExtension = processedFilename.split(".").pop()?.toLowerCase();
+    let path = "";
+
+    let PHOTO_EXTENSIONS = ["png", "jpg", "jpeg"];
+    let DOC_EXTENSIONS = ["pdf", "docx", "pptx", "xls", "xlsx"];
+
+    if (PHOTO_EXTENSIONS.includes(fileExtension)) {
+      path = "images";
+    } else if (DOC_EXTENSIONS.includes(fileExtension)) {
+      path = "docs";
+    }
+
+    return `${environment.basePublicUrl}/jkas_resourses/free/${path}/${processedFilename}`;
+  }
+
   downloadPdf(id: number) {
     let key = localStorage.getItem("AccessToken");
     let headers = {
