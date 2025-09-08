@@ -17,7 +17,7 @@ import { FileUploader } from "ng2-file-upload";
   styleUrls: ["./mtkworkform.component.css"],
 })
 export class MtkworkformComponent implements OnInit {
-  SERVER_URL = environment.basePublicUrl + "/public/uploadFile";
+  SERVER_URL = environment.basePublicUrl + "/public/uploadFreeFile";
   uploader: FileUploader = new FileUploader({
     isHTML5: true,
     url: this.SERVER_URL,
@@ -727,7 +727,6 @@ export class MtkworkformComponent implements OnInit {
       Authorization: key,
     };
 
-    // console.log(body);
     this.http
       .post(this.baseUrl + "/dbkl/addComplaintInvestigation", body, {
         headers: headers,
