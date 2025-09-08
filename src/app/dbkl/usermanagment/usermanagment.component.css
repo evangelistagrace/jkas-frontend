@@ -149,6 +149,7 @@ main section {
     overflow: hidden;
     padding-left: 205px;
     padding-right: 205px;
+    padding-top: 10rem;
 }
 
 .section-title {

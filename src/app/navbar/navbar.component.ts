@@ -28,7 +28,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       label: "Utama",
       path: "/",
       fragment: null,
-      showFor: ["public", "admin", "adminregister", "dbkldata"],
+      showFor: ["public", "admin", "adminregister"],
+    },
+    {
+      label: "Utama",
+      path: "/dbkl/dbklmainpage",
+      fragment: null,
+      showFor: ["dbkl"],
     },
     {
       label: "Log Masuk",
@@ -66,50 +72,50 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     {
       label: "Pentadbir",
       dropdown: true,
-      showFor: ["dbkldata"],
+      showFor: ["dbkl"],
       items: [
         {
           label: "Halaman Utama",
           path: "/dbkl/dbkldata",
-          showFor: ["dbkldata"],
+          showFor: ["dbkl"],
         },
         {
           label: "Pengurusan Pengguna",
           path: "/dbkl/usermanagement",
-          showFor: ["dbkldata"],
+          showFor: ["dbkl"],
         },
         {
           label: "Semakan Permohonan PSPPA",
           path: "/dbkl/applicationprocess",
-          showFor: ["dbkldata"],
+          showFor: ["dbkl"],
         },
         {
           label: "Pengurusan Inventori",
           path: "/dbkl/inventorymanage",
-          showFor: ["dbkldata"],
+          showFor: ["dbkl"],
         },
         {
           label: "E-Mesyuarat",
           path: "/dbkl/emeeting",
-          showFor: ["dbkldata"],
+          showFor: ["dbkl"],
         },
       ],
     },
-    // User profile dropdown for dbkldata
+    // User profile dropdown for dbkl
     {
       label: this.username,
       dropdown: true,
-      showFor: ["dbkldata"],
+      showFor: ["dbkl"],
       items: [
         {
           label: "Profil",
           path: "/profileLog",
-          showFor: ["dbkldata"],
+          showFor: ["dbkl"],
         },
         {
           label: "Log Keluar",
           onClick: () => { this.logout(); },
-          showFor: ["dbkldata"],
+          showFor: ["dbkl"],
         },
       ],
     },
@@ -277,7 +283,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     if (
       this.currentPath.includes("/dbkl") &&
-      navItem.showFor.includes("admin")
+      navItem.showFor.includes("dbkl")
     ) {
       return true;
     }
