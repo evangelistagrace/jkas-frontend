@@ -89,6 +89,7 @@ section {
     /* padding: 60px 0; */
     padding: 3em 13em;
     overflow: hidden;
+    padding-top: 10rem;
 }
 
 .section-title {

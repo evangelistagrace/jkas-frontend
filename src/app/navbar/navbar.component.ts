@@ -212,6 +212,29 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         },
       ],
     },
+    // chart and analysis
+    {
+      label: "Analisis & Laporan",
+      dropdown: true,
+      showFor: ["barchart", "merinyuanalysis", "compoundanalysis"],
+      items: [
+        {
+          label: "Analisis Inventori",
+          path: "/dbkl/barchart",
+          showFor: ["barchart", "merinyuanalysis", "compoundanalysis"],
+        },
+        {
+          label: "Analisis Merinyu",
+          path: "/dbkl/merinyuanalysis",
+          showFor: ["barchart", "merinyuanalysis", "compoundanalysis"],
+        },
+        {
+          label: "Analisis Kompaun",
+          path: "/dbkl/compoundanalysis",
+          showFor: ["barchart", "merinyuanalysis", "compoundanalysis"],
+        },
+      ],
+    },
     // User profile dropdown for dbkl
     {
       label: this.username,
@@ -398,6 +421,21 @@ export class NavbarComponent implements OnInit, AfterViewInit {
              this.userRole === 'Analisis,MerinyuMTB,MerinyuMTK';
     };
 
+    const hasAnalysisAccess = () => {
+      return this.userRole === 'Superadmin' || 
+             this.userRole === 'Analisis,MerinyuMTB,MerinyuMTK' ||
+             this.userRole === 'Kewangan';
+    };
+
+    // Check for Analysis & Laporan path-based visibility with role validation
+    if (navItem.showFor.some(item => ["barchart", "merinyuanalysis", "compoundanalysis"].includes(item))) {
+      return hasAnalysisAccess() && (
+        this.currentPath.includes("/barchart") ||
+        this.currentPath.includes("/merinyuanalysis") ||
+        this.currentPath.includes("/compoundanalysis")
+      );
+    }
+
     // Check for MTB path-based visibility with role validation
     if (navItem.showFor.some(item => ["mapview", "mtbworkform", "mtbcompoundform", "mtbworklog", "mtblistofcompound"].includes(item))) {
       return hasMTBAccess() && (
@@ -518,6 +556,28 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     if (
       this.currentPath.includes("/inactivearea") &&
       navItem.showFor.includes("inactivearea")
+    ) {
+      return true;
+    }
+
+    // Add support for analysis paths
+    if (
+      this.currentPath.includes("/barchart") &&
+      navItem.showFor.includes("barchart")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/merinyuanalysis") &&
+      navItem.showFor.includes("merinyuanalysis")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/compoundanalysis") &&
+      navItem.showFor.includes("compoundanalysis")
     ) {
       return true;
     }
