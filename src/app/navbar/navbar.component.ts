@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       label: "Utama",
       path: "/dbkl/dbklmainpage",
       fragment: null,
-      showFor: ["dbkl"],
+      showFor: ["dbkl", "profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
     },
     {
       label: "Log Masuk",
@@ -239,17 +239,65 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     {
       label: this.username,
       dropdown: true,
-      showFor: ["dbkl"],
+      showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
       items: [
         {
           label: "Profil",
           path: "/profileLog",
-          showFor: ["dbkl"],
+          showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+        },
+        {
+          label: "Tetapan",
+          dropdown: true,
+          showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+          roleCondition: () => this.userRole === 'Superadmin' || this.userRole === 'Admin',
+          items: [
+            {
+              label: "Pengumuman",
+              path: "/admin/announcements",
+              showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+            },
+            {
+              label: "Manual",
+              path: "/superadmin/manualupload",
+              showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+            },
+            {
+              label: "Foto Galeri",
+              path: "/superadmin/galeryphoto",
+              showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+            },
+          ],
+        },
+        {
+          label: "Manual Pengguna Staf",
+          dropdown: true,
+          showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+          items: [
+            {
+              label: "DBKL",
+              onClick: () => { this.dbkl(); },
+              showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+              roleCondition: () => this.userRole === 'Superadmin' || this.userRole === 'Admin',
+            },
+            {
+              label: "MTB",
+              onClick: () => { this.mtb(); },
+              showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+              roleCondition: () => this.userRole === 'MerinyuMTB',
+            },
+            {
+              label: "MTK",
+              onClick: () => { this.mtk(); },
+              showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+              roleCondition: () => this.userRole === 'MerinyuMTK',
+            },
+          ],
         },
         {
           label: "Log Keluar",
           onClick: () => { this.logout(); },
-          showFor: ["dbkl"],
+          showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
         },
       ],
     },
@@ -406,6 +454,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   shouldShowNavItem(navItem: any): boolean {
     if (!navItem?.showFor) return true;
 
+    // Check role condition if it exists
+    if (navItem.roleCondition && typeof navItem.roleCondition === 'function') {
+      if (!navItem.roleCondition()) {
+        return false;
+      }
+    }
+
     // Helper function to check if user has MTB/MTK access
     const hasMTBAccess = () => {
       return this.userRole === 'Superadmin' || 
@@ -426,6 +481,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
              this.userRole === 'Analisis,MerinyuMTB,MerinyuMTK' ||
              this.userRole === 'Kewangan';
     };
+
+    // Check for username dropdown (profile menu) - show for all DBKL users
+    if (navItem.showFor.some(item => ["profileLog", "announcements", "manualupload", "galeryphoto"].includes(item))) {
+      return this.currentPath.includes("/dbkl") ||
+             this.currentPath.includes("/profileLog") ||
+             this.currentPath.includes("/admin/announcements") ||
+             this.currentPath.includes("/superadmin/manualupload") ||
+             this.currentPath.includes("/superadmin/galeryphoto");
+    }
 
     // Check for Analysis & Laporan path-based visibility with role validation
     if (navItem.showFor.some(item => ["barchart", "merinyuanalysis", "compoundanalysis"].includes(item))) {
@@ -625,5 +689,21 @@ export class NavbarComponent implements OnInit, AfterViewInit {
           // this.openErrorModal();
         }
       );
+  }
+
+  // Add the manual functions referenced in the header component
+  dbkl(): void {
+    // Add implementation for DBKL manual
+    window.open('path/to/dbkl/manual.pdf', '_blank');
+  }
+
+  mtb(): void {
+    // Add implementation for MTB manual
+    window.open('path/to/mtb/manual.pdf', '_blank');
+  }
+
+  mtk(): void {
+    // Add implementation for MTK manual
+    window.open('path/to/mtk/manual.pdf', '_blank');
   }
 }
