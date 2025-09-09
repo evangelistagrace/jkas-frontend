@@ -933,10 +933,10 @@ suratSalinan: any = [];
   }
   opendocument() {
     // window.location.href = this.basePublicUrl+"/jkas_resourses/free/pdfs/CONTOH SURAT PERMOHONAN.pdf";
-    window.open(this.basePublicUrl + "/jkas_resourses/free/pdfs/CONTOH SURAT PERMOHONAN.pdf");
+    window.open(this.basePublicUrl + "/jkas_resourses/free/docs/Contoh Surat Permohonan.pdf");
   }
   open2nddocument() {
-    window.open(this.basePublicUrl + "/jkas_resourses/free/pdfs/CONTOH BORANG F.pdf");
+    window.open(this.basePublicUrl + "/jkas_resourses/free/docs/Contoh Borang F.pdf");
   }
   open3rddocument() {
     window.open(this.basePublicUrl + "/jkas_resourses/free/pdfs/JALAN AWAM.pdf");
@@ -946,7 +946,7 @@ suratSalinan: any = [];
     window.open(this.basePublicUrl + "/jkas_resourses/free/pdfs/PELAN JALAN AWAM.pdf");
   }
   open5thdocument() {
-    window.open(this.basePublicUrl + "/jkas_resourses/free/pdfs/CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH SWCorp.pdf");
+    window.open(this.basePublicUrl + "/jkas_resourses/free/docs/CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH SWCORP.pdf");
   }
   open6thdocument() {
     window.open(this.basePublicUrl + "/jkas_resourses/free/pdfs/PELAN INVENTORI KAWASAN PERKHIDMATAN PEMBERSIHAN.pdf");

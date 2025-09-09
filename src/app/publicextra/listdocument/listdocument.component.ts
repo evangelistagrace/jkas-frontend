@@ -552,12 +552,12 @@ export class ListdocumentComponent implements OnInit {
     // window.location.href = "this.basePublicUrl/jkas_resourses/free/pdfs/CONTOH SURAT PERMOHONAN.pdf";
     window.open(
       this.basePublicUrl +
-        "/jkas_resourses/free/pdfs/CONTOH SURAT PERMOHONAN.pdf"
+        "/jkas_resourses/free/docs/Contoh Surat Permohonan.pdf"
     );
   }
   open2nddocument() {
     window.open(
-      this.basePublicUrl + "/jkas_resourses/free/pdfs/CONTOH BORANG F.pdf"
+      this.basePublicUrl + "/jkas_resourses/free/docs/Contoh Borang F.pdf"
     );
   }
   open3rddocument() {
@@ -573,7 +573,7 @@ export class ListdocumentComponent implements OnInit {
   open5thdocument() {
     window.open(
       this.basePublicUrl +
-        "/jkas_resourses/free/pdfs/CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH SWCorp.pdf"
+        "/jkas_resourses/free/docs/CONTOH PELAN RUMAH SAMPAH YANG DILULUSKAN OLEH SWCORP.pdf"
     );
   }
   open6thdocument() {
