@@ -458,6 +458,58 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         },
       ],
     },
+    // Kewangan menu
+    {
+      label: "Kewangan",
+      dropdown: true,
+      showFor: [
+        "kewangan",
+        "claimreview",
+        "dbklmainpage",
+      ],
+      roleCondition: () =>
+        this.userRole === "Superadmin" ||
+        this.userRole === "Admin" ||
+        this.userRole === "Kewangan",
+      items: [
+        {
+          label: "Financial Dashboard",
+          externalPath: "https://jkas-kewangan-hcc9b8fegedvchd3.southeastasia-01.azurewebsites.net/",
+          showFor: [
+            "kewangan",
+            "claimreview",
+            "dbklmainpage",
+          ],
+        },
+        {
+          label: "Pelarasan",
+          externalPath: "https://jkas-pelarasan.azurewebsites.net/",
+          showFor: [
+            "kewangan",
+            "claimreview",
+            "dbklmainpage",
+          ],
+        },
+        {
+          label: "Tuntutan",
+          externalPath: "https://jkas-tuntutan.azurewebsites.net/",
+          showFor: [
+            "kewangan",
+            "claimreview",
+            "dbklmainpage",
+          ],
+        },
+        {
+          label: "Review of Dataman Financial Claims",
+          path: "/dbkl/claim-review",
+          showFor: [
+            "kewangan",
+            "claimreview",
+            "dbklmainpage",
+          ],
+        },
+      ],
+    },
     // User profile dropdown for dbkl
     {
       label: this.username,
@@ -888,6 +940,16 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       }
     }
 
+    // Add Kewangan path check
+    if (
+      this.currentPath.includes("/claim-review") ||
+      this.currentPath.includes("/kewangan")
+    ) {
+      return navItem.showFor.some((item) =>
+        ["kewangan", "claimreview", "dbklmainpage"].includes(item)
+      );
+    }
+
     // Fallback checks for other paths
     if (this.isPublicPage && navItem.showFor.includes("public")) {
       return true;
@@ -923,6 +985,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     // Open PDF in new tab
     window.open(pdfPath, "_blank");
+  }
+
+  handleExternalLink(url: string): void {
+    // Open external URL in new tab
+    window.open(url, "_blank");
   }
 
   ngOnDestroy(): void {
