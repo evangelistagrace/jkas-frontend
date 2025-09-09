@@ -183,32 +183,32 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     {
       label: "MTK",
       dropdown: true,
-      showFor: ["mtkmapview", "mtkworkform", "mtbcompoundform", "inspectingofficers", "mtblistofcompound"],
+      showFor: ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers", "mtblistofcompound"],
       items: [
         {
           label: "Pemantauan MTK",
           path: "/dbkl/mtkmapview",
-          showFor: ["mtkmapview", "mtkworkform", "mtbcompoundform", "inspectingofficers", "mtblistofcompound"],
+          showFor: ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers", "mtblistofcompound"],
         },
         {
           label: "Borang Kerja",
           path: "/dbkl/mtkworkform",
-          showFor: ["mtkmapview", "mtkworkform", "mtbcompoundform", "inspectingofficers", "mtblistofcompound"],
+          showFor: ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers", "mtblistofcompound"],
         },
         {
           label: "Borang Kompaun",
-          path: "/dbkl/mtbcompoundform",
-          showFor: ["mtkmapview", "mtkworkform", "mtbcompoundform", "inspectingofficers", "mtblistofcompound"],
+          path: "/dbkl/mtkcompoundform",
+          showFor: ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers", "mtblistofcompound"],
         },
         {
           label: "Kerja MTB",
           path: "/dbkl/inspectingofficers",
-          showFor: ["mtkmapview", "mtkworkform", "mtbcompoundform", "inspectingofficers", "mtblistofcompound"],
+          showFor: ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers", "mtblistofcompound"],
         },
         {
           label: "Kompaun MTB",
           path: "/dbkl/mtblistofcompound",
-          showFor: ["mtkmapview", "mtkworkform", "mtbcompoundform", "inspectingofficers", "mtblistofcompound"],
+          showFor: ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers", "mtblistofcompound"],
         },
       ],
     },
@@ -405,34 +405,34 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.currentPath.includes("/mtbwork-form") ||
         this.currentPath.includes("/mtbcompoundform") ||
         this.currentPath.includes("/mtbwork-log") ||
-        this.currentPath.includes("/mtblistofcompound")
+        this.currentPath.includes("/mtblistofcompound") ||
+        this.currentPath.includes("/mtkcompoundform") ||
+        this.currentPath.includes("/mtkmapview") ||
+        this.currentPath.includes("/mtkworkform") ||
+        this.currentPath.includes("/inspectingofficers")
       );
     }
 
     // Check for MTK path-based visibility with role validation
-    if (navItem.showFor.some(item => ["mtkmapview", "mtkworkform", "inspectingofficers"].includes(item))) {
+    if (navItem.showFor.some(item => ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers"].includes(item))) {
       return hasMTKAccess() && (
         this.currentPath.includes("/mtkmapview") ||
         this.currentPath.includes("/mtkworkform") ||
-        this.currentPath.includes("/mtbcompoundform") ||
         this.currentPath.includes("/inspectingofficers") ||
-        this.currentPath.includes("/mtblistofcompound")
+        this.currentPath.includes("/mtkcompoundform") ||
+        this.currentPath.includes("/mtblistofcompound") ||
+        this.currentPath.includes("/mapview") ||
+        this.currentPath.includes("/mtbwork-form") ||
+        this.currentPath.includes("/mtbwork-log")
       );
     }
 
-    // Legacy role-based checks for backward compatibility
-    if (navItem.showFor.includes("mtb")) {
-      return hasMTBAccess();
-    }
-
-    if (navItem.showFor.includes("mtk")) {
-      return hasMTKAccess();
-    }
-
+    // Check for public path-based visibility
     if (this.isPublicPage && navItem.showFor.includes("public")) {
       return true;
     }
 
+    // Check for agency path-based visibility
     if (
       this.currentPath.includes("/agency") &&
       navItem.showFor.includes("agency")
@@ -440,6 +440,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       return true;
     }
 
+    // Check for dbkl path-based visibility
     if (
       this.currentPath.includes("/dbkl") &&
       navItem.showFor.includes("dbkl")
@@ -447,6 +448,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       return true;
     }
 
+    // Check for adminregister path-based visibility
     if (
       this.currentPath.includes("/adminregister") &&
       navItem.showFor.includes("adminregister")
@@ -518,29 +520,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       navItem.showFor.includes("inactivearea")
     ) {
       return true;
-    }
-
-    // Add support for MTB/MTK specific paths
-    if (
-      (this.currentPath.includes("/mapview") ||
-       this.currentPath.includes("/mtbwork-form") ||
-       this.currentPath.includes("/mtbcompoundform") ||
-       this.currentPath.includes("/mtbwork-log") ||
-       this.currentPath.includes("/mtblistofcompound")) &&
-      navItem.showFor.some(item => ["mapview", "mtbworkform", "mtbcompoundform", "mtbworklog", "mtblistofcompound"].includes(item))
-    ) {
-      return hasMTBAccess();
-    }
-
-    if (
-      (this.currentPath.includes("/mtkmapview") ||
-       this.currentPath.includes("/mtkworkform") ||
-       this.currentPath.includes("/mtbcompoundform") ||
-       this.currentPath.includes("/inspectingofficers") ||
-       this.currentPath.includes("/mtblistofcompound")) &&
-      navItem.showFor.some(item => ["mtkmapview", "mtkworkform", "mtbcompoundform", "inspectingofficers", "mtblistofcompound"].includes(item))
-    ) {
-      return hasMTKAccess();
     }
 
     return false;

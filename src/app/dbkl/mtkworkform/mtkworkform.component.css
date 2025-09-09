@@ -252,6 +252,7 @@
   
   main section {
     overflow: hidden;
+    padding-top: 10rem;
   }
   
   .section-title {

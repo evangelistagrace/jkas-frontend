@@ -141,7 +141,8 @@ h6 {
 section {
   padding: 3rem 13rem;
   overflow: hidden;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
+  padding-top: 10rem;
 }
 
 .section-title {

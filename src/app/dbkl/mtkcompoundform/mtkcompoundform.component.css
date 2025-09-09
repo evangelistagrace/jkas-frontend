@@ -271,7 +271,8 @@
   main section {
     padding: 3em 13em;
     overflow: hidden;
-    margin-bottom: 32px;
+    /* margin-bottom: 32px; */
+    padding-top: 10rem;
   }
   
   .section-title {
