@@ -3,7 +3,7 @@ import { Router, NavigationEnd, Event } from "@angular/router";
 import * as $ from "jquery";
 import { Subscription } from "rxjs";
 import { filter } from "rxjs/operators";
-import { FormToggleService } from '../services/toggle-form.service';
+import { FormToggleService } from "../services/toggle-form.service";
 import { FormType } from "../models/form-type.enum";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
@@ -38,16 +38,49 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       label: "Utama",
       path: "/dbkl/dbklmainpage",
       fragment: null,
-      showFor: ["dbkl", "profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+      showFor: [
+        "dbkl",
+        "profileLog",
+        "dbklmainpage",
+        "announcements",
+        "manualupload",
+        "galeryphoto",
+        "dbkldata",
+        "usermanagement",
+        "applicationprocess",
+        "inventorymanage",
+        "emeeting",
+        "inventorymap",
+        "omplama",
+        "ompbaru",
+        "inactivearea",
+        "mapview",
+        "mtbworkform",
+        "mtbcompoundform",
+        "mtbworklog",
+        "mtblistofcompound",
+        "mtkmapview",
+        "mtkworkform",
+        "mtkcompoundform",
+        "inspectingofficers",
+        "mtblistofcompound",
+        "barchart",
+        "merinyuanalysis",
+        "compoundanalysis",
+      ],
     },
     {
       label: "Log Masuk",
-      onClick: () => { this.showForm(FormType.LOGIN); },
+      onClick: () => {
+        this.showForm(FormType.LOGIN);
+      },
       showFor: ["adminregister"],
     },
     {
       label: "Daftar",
-      onClick: () => { this.showForm(FormType.REGISTER); },
+      onClick: () => {
+        this.showForm(FormType.REGISTER);
+      },
       showFor: ["adminregister"],
     },
     {
@@ -76,32 +109,74 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     {
       label: "Pentadbir",
       dropdown: true,
-      showFor: ["dbkldata", "usermanagement", "applicationprocess", "inventorymanage", "emeeting"],
+      showFor: [
+        "dbkldata",
+        "usermanagement",
+        "applicationprocess",
+        "inventorymanage",
+        "emeeting",
+        "dbklmainpage",
+      ],
       items: [
         {
           label: "Halaman Utama",
           path: "/dbkl/dbkldata",
-          showFor: ["dbkldata", "usermanagement", "applicationprocess", "inventorymanage", "emeeting"],
+          showFor: [
+            "dbkldata",
+            "usermanagement",
+            "applicationprocess",
+            "inventorymanage",
+            "emeeting",
+            "dbklmainpage",
+          ],
         },
         {
           label: "Pengurusan Pengguna",
           path: "/dbkl/usermanagement",
-          showFor: ["dbkldata", "usermanagement", "applicationprocess", "inventorymanage", "emeeting"],
+          showFor: [
+            "dbkldata",
+            "usermanagement",
+            "applicationprocess",
+            "inventorymanage",
+            "emeeting",
+            "dbklmainpage",
+          ],
         },
         {
           label: "Semakan Permohonan PSPPA",
           path: "/dbkl/applicationprocess",
-          showFor: ["dbkldata", "usermanagement", "applicationprocess", "inventorymanage", "emeeting"],
+          showFor: [
+            "dbkldata",
+            "usermanagement",
+            "applicationprocess",
+            "inventorymanage",
+            "emeeting",
+            "dbklmainpage",
+          ],
         },
         {
           label: "Pengurusan Inventori",
           path: "/dbkl/inventorymanage",
-          showFor: ["dbkldata", "usermanagement", "applicationprocess", "inventorymanage", "emeeting"],
+          showFor: [
+            "dbkldata",
+            "usermanagement",
+            "applicationprocess",
+            "inventorymanage",
+            "emeeting",
+            "dbklmainpage",
+          ],
         },
         {
           label: "E-Mesyuarat",
           path: "/dbkl/emeeting",
-          showFor: ["dbkldata", "usermanagement", "applicationprocess", "inventorymanage", "emeeting"],
+          showFor: [
+            "dbkldata",
+            "usermanagement",
+            "applicationprocess",
+            "inventorymanage",
+            "emeeting",
+            "dbklmainpage",
+          ],
         },
       ],
     },
@@ -109,27 +184,57 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     {
       label: "Inventori Data",
       dropdown: true,
-      showFor: ["inventorymap", "omplama", "ompbaru", "inactivearea"],
+      showFor: [
+        "inventorymap",
+        "omplama",
+        "ompbaru",
+        "inactivearea",
+        "dbklmainpage",
+      ],
       items: [
         {
           label: "Halaman Utama",
           path: "/dbkl/inventorymap",
-          showFor: ["inventorymap", "omplama", "ompbaru", "inactivearea"],
+          showFor: [
+            "inventorymap",
+            "omplama",
+            "ompbaru",
+            "inactivearea",
+            "dbklmainpage",
+          ],
         },
         {
           label: "OMP Lama",
           path: "/dbkl/omplama",
-          showFor: ["inventorymap", "omplama", "ompbaru", "inactivearea"],
+          showFor: [
+            "inventorymap",
+            "omplama",
+            "ompbaru",
+            "inactivearea",
+            "dbklmainpage",
+          ],
         },
         {
           label: "OMP Baru",
           path: "/dbkl/ompbaru",
-          showFor: ["inventorymap", "omplama", "ompbaru", "inactivearea"],
+          showFor: [
+            "inventorymap",
+            "omplama",
+            "ompbaru",
+            "inactivearea",
+            "dbklmainpage",
+          ],
         },
         {
           label: "Kawasan Tidak Aktif (Pemotongan Bayaran)",
           path: "/dbkl/inactivearea",
-          showFor: ["inventorymap", "omplama", "ompbaru", "inactivearea"],
+          showFor: [
+            "inventorymap",
+            "omplama",
+            "ompbaru",
+            "inactivearea",
+            "dbklmainpage",
+          ],
         },
       ],
     },
@@ -137,44 +242,100 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     {
       label: "MTB",
       dropdown: true,
-      showFor: ["mapview", "mtbworkform", "mtbcompoundform", "mtbworklog", "mtblistofcompound"],
+      showFor: [
+        "mapview",
+        "mtbworkform",
+        "mtbcompoundform",
+        "mtbworklog",
+        "mtblistofcompound",
+        "dbklmainpage",
+      ],
       items: [
         {
           label: "Paparan Peta",
           path: "/dbkl/mapview",
-          showFor: ["mapview", "mtbworkform", "mtbcompoundform", "mtbworklog", "mtblistofcompound"],
+          showFor: [
+            "mapview",
+            "mtbworkform",
+            "mtbcompoundform",
+            "mtbworklog",
+            "mtblistofcompound",
+            "dbklmainpage",
+          ],
         },
         {
           label: "Borang",
           dropdown: true,
-          showFor: ["mapview", "mtbworkform", "mtbcompoundform", "mtbworklog", "mtblistofcompound"],
+          showFor: [
+            "mapview",
+            "mtbworkform",
+            "mtbcompoundform",
+            "mtbworklog",
+            "mtblistofcompound",
+            "dbklmainpage",
+          ],
           items: [
             {
               label: "Borang Kerja",
               path: "/dbkl/mtbwork-form",
-              showFor: ["mapview", "mtbworkform", "mtbcompoundform", "mtbworklog", "mtblistofcompound"],
+              showFor: [
+                "mapview",
+                "mtbworkform",
+                "mtbcompoundform",
+                "mtbworklog",
+                "mtblistofcompound",
+                "dbklmainpage",
+              ],
             },
             {
               label: "Borang Kompaun",
               path: "/dbkl/mtbcompoundform",
-              showFor: ["mapview", "mtbworkform", "mtbcompoundform", "mtbworklog", "mtblistofcompound"],
+              showFor: [
+                "mapview",
+                "mtbworkform",
+                "mtbcompoundform",
+                "mtbworklog",
+                "mtblistofcompound",
+                "dbklmainpage",
+              ],
             },
           ],
         },
         {
           label: "Log Kerja",
           dropdown: true,
-          showFor: ["mapview", "mtbworkform", "mtbcompoundform", "mtbworklog", "mtblistofcompound"],
+          showFor: [
+            "mapview",
+            "mtbworkform",
+            "mtbcompoundform",
+            "mtbworklog",
+            "mtblistofcompound",
+            "dbklmainpage",
+          ],
           items: [
             {
               label: "Kerja / Aduan Harian",
               path: "/dbkl/mtbwork-log",
-              showFor: ["mapview", "mtbworkform", "mtbcompoundform", "mtbworklog", "mtblistofcompound"],
+              showFor: [
+                "mapview",
+                "mtbworkform",
+                "mtbcompoundform",
+                "mtbworklog",
+                "mtblistofcompound",
+                "dbklmainpage",
+              ],
             },
             {
               label: "Senarai Kompaun",
               path: "/dbkl/mtblistofcompound",
-              showFor: ["mapview", "mtbworkform", "mtbcompoundform", "mtbworklog", "mtblistofcompound"],
+              showFor: [
+                "mapview",
+                "mtbworkform",
+                "mtbcompoundform",
+                "mtbworklog",
+                "mtblistofcompound",
+                "dbklmainpage",
+              ],
             },
           ],
         },
@@ -183,32 +344,74 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     {
       label: "MTK",
       dropdown: true,
-      showFor: ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers", "mtblistofcompound"],
+      showFor: [
+        "mtkmapview",
+        "mtkworkform",
+        "mtkcompoundform",
+        "inspectingofficers",
+        "mtblistofcompound",
+        "dbklmainpage",
+      ],
       items: [
         {
           label: "Pemantauan MTK",
           path: "/dbkl/mtkmapview",
-          showFor: ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers", "mtblistofcompound"],
+          showFor: [
+            "mtkmapview",
+            "mtkworkform",
+            "mtkcompoundform",
+            "inspectingofficers",
+            "mtblistofcompound",
+            "dbklmainpage",
+          ],
         },
         {
           label: "Borang Kerja",
           path: "/dbkl/mtkworkform",
-          showFor: ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers", "mtblistofcompound"],
+          showFor: [
+            "mtkmapview",
+            "mtkworkform",
+            "mtkcompoundform",
+            "inspectingofficers",
+            "mtblistofcompound",
+            "dbklmainpage",
+          ],
         },
         {
           label: "Borang Kompaun",
           path: "/dbkl/mtkcompoundform",
-          showFor: ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers", "mtblistofcompound"],
+          showFor: [
+            "mtkmapview",
+            "mtkworkform",
+            "mtkcompoundform",
+            "inspectingofficers",
+            "mtblistofcompound",
+            "dbklmainpage",
+          ],
         },
         {
           label: "Kerja MTB",
           path: "/dbkl/inspectingofficers",
-          showFor: ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers", "mtblistofcompound"],
+          showFor: [
+            "mtkmapview",
+            "mtkworkform",
+            "mtkcompoundform",
+            "inspectingofficers",
+            "mtblistofcompound",
+            "dbklmainpage",
+          ],
         },
         {
           label: "Kompaun MTB",
           path: "/dbkl/mtblistofcompound",
-          showFor: ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers", "mtblistofcompound"],
+          showFor: [
+            "mtkmapview",
+            "mtkworkform",
+            "mtkcompoundform",
+            "inspectingofficers",
+            "mtblistofcompound",
+            "dbklmainpage",
+          ],
         },
       ],
     },
@@ -216,22 +419,42 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     {
       label: "Analisis & Laporan",
       dropdown: true,
-      showFor: ["barchart", "merinyuanalysis", "compoundanalysis"],
+      showFor: [
+        "barchart",
+        "merinyuanalysis",
+        "compoundanalysis",
+        "dbklmainpage",
+      ],
       items: [
         {
           label: "Analisis Inventori",
           path: "/dbkl/barchart",
-          showFor: ["barchart", "merinyuanalysis", "compoundanalysis"],
+          showFor: [
+            "barchart",
+            "merinyuanalysis",
+            "compoundanalysis",
+            "dbklmainpage",
+          ],
         },
         {
           label: "Analisis Merinyu",
           path: "/dbkl/merinyuanalysis",
-          showFor: ["barchart", "merinyuanalysis", "compoundanalysis"],
+          showFor: [
+            "barchart",
+            "merinyuanalysis",
+            "compoundanalysis",
+            "dbklmainpage",
+          ],
         },
         {
           label: "Analisis Kompaun",
           path: "/dbkl/compoundanalysis",
-          showFor: ["barchart", "merinyuanalysis", "compoundanalysis"],
+          showFor: [
+            "barchart",
+            "merinyuanalysis",
+            "compoundanalysis",
+            "dbklmainpage",
+          ],
         },
       ],
     },
@@ -239,65 +462,152 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     {
       label: this.username,
       dropdown: true,
-      showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+      showFor: [
+        "profileLog",
+        "dbkl",
+        "announcements",
+        "manualupload",
+        "galeryphoto",
+        "dbklmainpage",
+      ],
       items: [
         {
           label: "Profil",
           path: "/profileLog",
-          showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+          showFor: [
+            "profileLog",
+            "dbkl",
+            "announcements",
+            "manualupload",
+            "galeryphoto",
+            "dbklmainpage",
+          ],
         },
         {
           label: "Tetapan",
           dropdown: true,
-          showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
-          roleCondition: () => this.userRole === 'Superadmin' || this.userRole === 'Admin',
+          showFor: [
+            "profileLog",
+            "dbkl",
+            "announcements",
+            "manualupload",
+            "galeryphoto",
+            "dbklmainpage",
+          ],
+          roleCondition: () =>
+            this.userRole === "Superadmin" || this.userRole === "Admin",
           items: [
             {
               label: "Pengumuman",
               path: "/admin/announcements",
-              showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+              showFor: [
+                "profileLog",
+                "dbkl",
+                "announcements",
+                "manualupload",
+                "galeryphoto",
+                "dbklmainpage",
+              ],
             },
             {
               label: "Manual",
               path: "/superadmin/manualupload",
-              showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+              showFor: [
+                "profileLog",
+                "dbkl",
+                "announcements",
+                "manualupload",
+                "galeryphoto",
+                "dbklmainpage",
+              ],
             },
             {
               label: "Foto Galeri",
               path: "/superadmin/galeryphoto",
-              showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+              showFor: [
+                "profileLog",
+                "dbkl",
+                "announcements",
+                "manualupload",
+                "galeryphoto",
+                "dbklmainpage",
+              ],
             },
           ],
         },
         {
           label: "Manual Pengguna Staf",
           dropdown: true,
-          showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+          showFor: [
+            "profileLog",
+            "dbkl",
+            "announcements",
+            "manualupload",
+            "galeryphoto",
+            "dbklmainpage",
+          ],
           items: [
             {
               label: "DBKL",
-              onClick: () => { this.dbkl(); },
-              showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
-              roleCondition: () => this.userRole === 'Superadmin' || this.userRole === 'Admin',
+              onClick: () => {
+                this.dbkl();
+              },
+              showFor: [
+                "profileLog",
+                "dbkl",
+                "announcements",
+                "manualupload",
+                "galeryphoto",
+                "dbklmainpage",
+              ],
+              roleCondition: () =>
+                this.userRole === "Superadmin" || this.userRole === "Admin",
             },
             {
               label: "MTB",
-              onClick: () => { this.mtb(); },
-              showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
-              roleCondition: () => this.userRole === 'MerinyuMTB',
+              onClick: () => {
+                this.mtb();
+              },
+              showFor: [
+                "profileLog",
+                "dbkl",
+                "announcements",
+                "manualupload",
+                "galeryphoto",
+                "dbklmainpage",
+              ],
+              roleCondition: () => this.userRole === "MerinyuMTB",
             },
             {
               label: "MTK",
-              onClick: () => { this.mtk(); },
-              showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
-              roleCondition: () => this.userRole === 'MerinyuMTK',
+              onClick: () => {
+                this.mtk();
+              },
+              showFor: [
+                "profileLog",
+                "dbkl",
+                "announcements",
+                "manualupload",
+                "galeryphoto",
+                "dbklmainpage",
+              ],
+              roleCondition: () => this.userRole === "MerinyuMTK",
             },
           ],
         },
         {
           label: "Log Keluar",
-          onClick: () => { this.logout(); },
-          showFor: ["profileLog", "dbkl", "announcements", "manualupload", "galeryphoto"],
+          onClick: () => {
+            this.logout();
+          },
+          showFor: [
+            "profileLog",
+            "dbkl",
+            "announcements",
+            "manualupload",
+            "galeryphoto",
+            "dbklmainpage",
+          ],
         },
       ],
     },
@@ -340,18 +650,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       fragment: "galeri",
       showFor: ["public"],
     },
-    this.userRole === 'Superadmin' ? {
-      label: "Admin",
-      dropdown: true,
-      showFor: ["public"],
-      items: [
-        {
-          label: "Pengumuman",
-          path: "/admin/announcements",
-          showFor: ["public", "admin"],
-        },
-      ],
-    } : null,
+    this.userRole === "Superadmin"
+      ? {
+          label: "Admin",
+          dropdown: true,
+          showFor: ["public"],
+          items: [
+            {
+              label: "Pengumuman",
+              path: "/admin/announcements",
+              showFor: ["public", "admin"],
+            },
+          ],
+        }
+      : null,
   ];
 
   constructor(
@@ -454,87 +766,133 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   shouldShowNavItem(navItem: any): boolean {
     if (!navItem?.showFor) return true;
 
-    // Check role condition if it exists
-    if (navItem.roleCondition && typeof navItem.roleCondition === 'function') {
+    // Check role condition if it exists (keep only for specific items like profile settings)
+    if (navItem.roleCondition && typeof navItem.roleCondition === "function") {
       if (!navItem.roleCondition()) {
         return false;
       }
     }
 
-    // Helper function to check if user has MTB/MTK access
-    const hasMTBAccess = () => {
-      return this.userRole === 'Superadmin' || 
-             this.userRole === 'MerinyuMTB' || 
-             this.userRole === 'Kewangan' || 
-             this.userRole === 'Analisis,MerinyuMTB,MerinyuMTK';
-    };
-
-    const hasMTKAccess = () => {
-      return this.userRole === 'Superadmin' || 
-             this.userRole === 'MerinyuMTK' || 
-             this.userRole === 'Kewangan' || 
-             this.userRole === 'Analisis,MerinyuMTB,MerinyuMTK';
-    };
-
-    const hasAnalysisAccess = () => {
-      return this.userRole === 'Superadmin' || 
-             this.userRole === 'Analisis,MerinyuMTB,MerinyuMTK' ||
-             this.userRole === 'Kewangan';
-    };
-
-    // Check for username dropdown (profile menu) - show for all DBKL users
-    if (navItem.showFor.some(item => ["profileLog", "announcements", "manualupload", "galeryphoto"].includes(item))) {
-      return this.currentPath.includes("/dbkl") ||
-             this.currentPath.includes("/profileLog") ||
-             this.currentPath.includes("/admin/announcements") ||
-             this.currentPath.includes("/superadmin/manualupload") ||
-             this.currentPath.includes("/superadmin/galeryphoto");
-    }
-
-    // Check for Analysis & Laporan path-based visibility with role validation
-    if (navItem.showFor.some(item => ["barchart", "merinyuanalysis", "compoundanalysis"].includes(item))) {
-      return hasAnalysisAccess() && (
-        this.currentPath.includes("/barchart") ||
-        this.currentPath.includes("/merinyuanalysis") ||
-        this.currentPath.includes("/compoundanalysis")
+    // Special case: Username menu (like Utama menu) should appear on all DBKL pages
+    if (
+      navItem.label === this.username &&
+      navItem.showFor.some((item) =>
+        [
+          "profileLog",
+          "announcements",
+          "manualupload",
+          "galeryphoto",
+          "dbklmainpage",
+        ].includes(item)
+      )
+    ) {
+      return (
+        this.currentPath.includes("/dbkl") ||
+        this.currentPath.includes("/profileLog") ||
+        this.currentPath.includes("/admin/announcements") ||
+        this.currentPath.includes("/superadmin/manualupload") ||
+        this.currentPath.includes("/superadmin/galeryphoto")
       );
     }
 
-    // Check for MTB path-based visibility with role validation
-    if (navItem.showFor.some(item => ["mapview", "mtbworkform", "mtbcompoundform", "mtbworklog", "mtblistofcompound"].includes(item))) {
-      return hasMTBAccess() && (
-        this.currentPath.includes("/mapview") ||
-        this.currentPath.includes("/mtbwork-form") ||
-        this.currentPath.includes("/mtbcompoundform") ||
-        this.currentPath.includes("/mtbwork-log") ||
-        this.currentPath.includes("/mtblistofcompound") ||
-        this.currentPath.includes("/mtkcompoundform") ||
-        this.currentPath.includes("/mtkmapview") ||
-        this.currentPath.includes("/mtkworkform") ||
-        this.currentPath.includes("/inspectingofficers")
+    // Special case: Username menu nested items should also appear on all DBKL pages
+    if (
+      navItem.showFor.some((item) =>
+        ["profileLog", "announcements", "manualupload", "galeryphoto"].includes(
+          item
+        )
+      ) &&
+      navItem.showFor.includes("dbklmainpage")
+    ) {
+      return (
+        this.currentPath.includes("/dbkl") ||
+        this.currentPath.includes("/profileLog") ||
+        this.currentPath.includes("/admin/announcements") ||
+        this.currentPath.includes("/superadmin/manualupload") ||
+        this.currentPath.includes("/superadmin/galeryphoto")
       );
     }
 
-    // Check for MTK path-based visibility with role validation
-    if (navItem.showFor.some(item => ["mtkmapview", "mtkworkform", "mtkcompoundform", "inspectingofficers"].includes(item))) {
-      return hasMTKAccess() && (
-        this.currentPath.includes("/mtkmapview") ||
-        this.currentPath.includes("/mtkworkform") ||
-        this.currentPath.includes("/inspectingofficers") ||
-        this.currentPath.includes("/mtkcompoundform") ||
-        this.currentPath.includes("/mtblistofcompound") ||
-        this.currentPath.includes("/mapview") ||
-        this.currentPath.includes("/mtbwork-form") ||
-        this.currentPath.includes("/mtbwork-log")
-      );
+    // Special case: On dbklmainpage, show all menus that include "dbklmainpage" in showFor
+    if (this.currentPath.includes("/dbklmainpage")) {
+      return navItem.showFor.includes("dbklmainpage");
     }
 
-    // Check for public path-based visibility
+    // For specific pages, check individual path matches
+    const pathChecks = [
+      {
+        paths: [
+          "/dbkldata",
+          "/usermanagement",
+          "/applicationprocess",
+          "/inventorymanage",
+          "/emeeting",
+        ],
+        showForItems: [
+          "dbkldata",
+          "usermanagement",
+          "applicationprocess",
+          "inventorymanage",
+          "emeeting",
+        ],
+      },
+      {
+        paths: ["/inventorymap", "/omplama", "/ompbaru", "/inactivearea"],
+        showForItems: ["inventorymap", "omplama", "ompbaru", "inactivearea"],
+      },
+      {
+        paths: [
+          "/mapview",
+          "/mtbwork-form",
+          "/mtbcompoundform",
+          "/mtbwork-log",
+          "/mtblistofcompound",
+        ],
+        showForItems: [
+          "mapview",
+          "mtbworkform",
+          "mtbcompoundform",
+          "mtbworklog",
+          "mtblistofcompound",
+        ],
+      },
+      {
+        paths: [
+          "/mtkmapview",
+          "/mtkworkform",
+          "/inspectingofficers",
+          "/mtkcompoundform",
+        ],
+        showForItems: [
+          "mtkmapview",
+          "mtkworkform",
+          "mtkcompoundform",
+          "inspectingofficers",
+        ],
+      },
+      {
+        paths: ["/barchart", "/merinyuanalysis", "/compoundanalysis"],
+        showForItems: ["barchart", "merinyuanalysis", "compoundanalysis"],
+      },
+    ];
+
+    // Check if current path matches any of the specific path groups
+    for (const check of pathChecks) {
+      const isOnThisPath = check.paths.some((path) =>
+        this.currentPath.includes(path)
+      );
+      if (isOnThisPath) {
+        return navItem.showFor.some((item) =>
+          check.showForItems.includes(item)
+        );
+      }
+    }
+
+    // Fallback checks for other paths
     if (this.isPublicPage && navItem.showFor.includes("public")) {
       return true;
     }
 
-    // Check for agency path-based visibility
     if (
       this.currentPath.includes("/agency") &&
       navItem.showFor.includes("agency")
@@ -542,7 +900,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       return true;
     }
 
-    // Check for dbkl path-based visibility
     if (
       this.currentPath.includes("/dbkl") &&
       navItem.showFor.includes("dbkl")
@@ -550,98 +907,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       return true;
     }
 
-    // Check for adminregister path-based visibility
     if (
       this.currentPath.includes("/adminregister") &&
       navItem.showFor.includes("adminregister")
-    ) {
-      return true;
-    }
-
-    // Add support for dbkldata path
-    if (
-      this.currentPath.includes("/dbkldata") &&
-      navItem.showFor.includes("dbkldata")
-    ) {
-      return true;
-    }
-
-    // Add support for additional DBKL admin paths
-    if (
-      this.currentPath.includes("/usermanagement") &&
-      navItem.showFor.includes("usermanagement")
-    ) {
-      return true;
-    }
-
-    if (
-      this.currentPath.includes("/applicationprocess") &&
-      navItem.showFor.includes("applicationprocess")
-    ) {
-      return true;
-    }
-
-    if (
-      this.currentPath.includes("/inventorymanage") &&
-      navItem.showFor.includes("inventorymanage")
-    ) {
-      return true;
-    }
-
-    if (
-      this.currentPath.includes("/emeeting") &&
-      navItem.showFor.includes("emeeting")
-    ) {
-      return true;
-    }
-
-    // Add support for inventory data paths
-    if (
-      this.currentPath.includes("/inventorymap") &&
-      navItem.showFor.includes("inventorymap")
-    ) {
-      return true;
-    }
-
-    if (
-      this.currentPath.includes("/omplama") &&
-      navItem.showFor.includes("omplama")
-    ) {
-      return true;
-    }
-
-    if (
-      this.currentPath.includes("/ompbaru") &&
-      navItem.showFor.includes("ompbaru")
-    ) {
-      return true;
-    }
-
-    if (
-      this.currentPath.includes("/inactivearea") &&
-      navItem.showFor.includes("inactivearea")
-    ) {
-      return true;
-    }
-
-    // Add support for analysis paths
-    if (
-      this.currentPath.includes("/barchart") &&
-      navItem.showFor.includes("barchart")
-    ) {
-      return true;
-    }
-
-    if (
-      this.currentPath.includes("/merinyuanalysis") &&
-      navItem.showFor.includes("merinyuanalysis")
-    ) {
-      return true;
-    }
-
-    if (
-      this.currentPath.includes("/compoundanalysis") &&
-      navItem.showFor.includes("compoundanalysis")
     ) {
       return true;
     }
@@ -677,7 +945,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     let body = {};
 
     // if (this.userRole === 'Superadmin') {
-      this.http
+    this.http
       .post(this.baseUrl + "/dbkl/logout", body, { headers: header })
       .subscribe(
         (res) => {
@@ -694,16 +962,16 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   // Add the manual functions referenced in the header component
   dbkl(): void {
     // Add implementation for DBKL manual
-    window.open('path/to/dbkl/manual.pdf', '_blank');
+    window.open("path/to/dbkl/manual.pdf", "_blank");
   }
 
   mtb(): void {
     // Add implementation for MTB manual
-    window.open('path/to/mtb/manual.pdf', '_blank');
+    window.open("path/to/mtb/manual.pdf", "_blank");
   }
 
   mtk(): void {
     // Add implementation for MTK manual
-    window.open('path/to/mtk/manual.pdf', '_blank');
+    window.open("path/to/mtk/manual.pdf", "_blank");
   }
 }
