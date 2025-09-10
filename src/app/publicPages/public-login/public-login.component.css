@@ -1028,4 +1028,6 @@ nav .nav-item:hover {
   }
   
   
-  
+  main section {
+    padding-top: 10rem;
+  }

@@ -32,20 +32,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       label: "Utama",
       path: "/",
       fragment: null,
-      showFor: ["public", "admin", "adminregister", "publicpage", "sevices", "checklistoption", "listdocument", "checklist", "publicpages"],
+      showFor: ["public", "admin", "publicpage", "sevices", "checklistoption", "listdocument", "checklist", "publicpages", "publicLogin", "collectionshedule", "cleaningshedule"],
     },
     // public page navigation items
     {
       label: "Senarai Perkhidmatan",
       path: "/public/sevices",
       fragment: null,
-      showFor: ["publicpage"],
+      showFor: ["publicpage", "collectionshedule", "cleaningshedule"],
     },
     {
       label: "Semakan Permohonan PSPPA",
       path: "/publicpage",
       fragment: null,
-      showFor: ["checklistoption", "listdocument", "checklist", "publicpages"],
+      showFor: ["checklistoption", "listdocument", "checklist", "publicpages", "collectionshedule", "cleaningshedule"],
     },
     {
       label: "Utama",
@@ -523,8 +523,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         },
       ],
     },
-    // User profile dropdown
-    {
+    // User profile dropdown - only show if user is logged in
+    this.username && (this.dbkl_access_token || this.accessToken) && {
       label: this.username,
       dropdown: true,
       showFor: [
@@ -539,7 +539,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         "checklistoption",
         "listdocument",
         "checklist",
-        "publicpages"
+        "publicpages",
+        "collectionshedule",
+        "cleaningshedule"
       ],
       items: [
         {
@@ -557,7 +559,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
             "checklistoption",
             "listdocument",
             "checklist",
-            "publicpages"
+            "publicpages",
+            "collectionshedule",
+            "cleaningshedule"
           ],
         },
         {
@@ -696,7 +700,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
             "checklistoption",
             "listdocument",
             "checklist",
-            "publicpages"
+            "publicpages",
+            "collectionshedule",
+            "cleaningshedule"
           ],
         },
       ],
@@ -879,7 +885,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
           "checklistoption",
           "listdocument",
           "checklist",
-          "publicpages"
+          "publicpages",
+          "collectionshedule",
+          "cleaningshedule"
         ].includes(item)
       )
     ) {
@@ -894,7 +902,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.currentPath.includes("/checklistoption") ||
         this.currentPath.includes("/listdocument") ||
         this.currentPath.includes("/checklist") ||
-        this.currentPath.includes("/publicpages")
+        this.currentPath.includes("/publicpages") ||
+        this.currentPath.includes("/collectionshedule") ||
+        this.currentPath.includes("/cleaningshedule")
       );
     }
 
@@ -910,7 +920,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("checklistoption")) ||
       (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("listdocument")) ||
       (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("checklist")) ||
-      (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("publicpages"))
+      (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("publicpages")) ||
+      (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("collectionshedule")) ||
+      (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("cleaningshedule"))
     ) {
       return (
         this.currentPath.includes("/dbkl") ||
@@ -923,7 +935,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.currentPath.includes("/checklistoption") ||
         this.currentPath.includes("/listdocument") ||
         this.currentPath.includes("/checklist") ||
-        this.currentPath.includes("/publicpages")
+        this.currentPath.includes("/publicpages") ||
+        this.currentPath.includes("/collectionshedule") ||
+        this.currentPath.includes("/cleaningshedule")
       );
     }
 
@@ -1014,6 +1028,27 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     // Fallback checks for other paths
     if (this.isPublicPage && navItem.showFor.includes("public")) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/publicLogin") &&
+      navItem.showFor.includes("publicLogin")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/collectionshedule") &&
+      navItem.showFor.includes("collectionshedule")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/cleaningshedule") &&
+      navItem.showFor.includes("cleaningshedule")
+    ) {
       return true;
     }
 

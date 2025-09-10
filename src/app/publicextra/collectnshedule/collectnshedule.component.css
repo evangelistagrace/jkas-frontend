@@ -133,6 +133,12 @@ section {
 }
 */
 
+section {
+    padding: 3rem;
+    overflow: hidden;
+    padding-top: 10rem;
+}
+
 .section-title {
     margin-top: 5px;
     text-align: center;
@@ -648,7 +654,7 @@ width: 100%;
     display: none;
     position: fixed;
     z-index: 4;
-    padding-top: 33px;
+    padding-top: 10rem;
     left: 0;
     top: 0;
     width: 100%;
@@ -666,6 +672,7 @@ width: 100%;
     border: 1px solid #888;
     width: 50%;
     border-radius: 4px;
+    color: black;
   }
   
   /* The Close Button */
