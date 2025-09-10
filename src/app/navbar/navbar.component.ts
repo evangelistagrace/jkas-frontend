@@ -18,13 +18,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   currentPath: string = "";
   isPublicPage: boolean = false;
   routerSubscription: Subscription;
-  userRole: string = localStorage.getItem("roleforuser");
-  // username: string = localStorage.getItem("username"); // Assuming username is stored in localStorage
-
+  userRole: string =
+  localStorage.getItem("roleforuser") || localStorage.getItem("user_role");
   isAdminType = localStorage.getItem("isAdmin");
-  username = localStorage.getItem("nama_pengguna");
+  username = localStorage.getItem("nama_pengguna") || localStorage.getItem("username");
   dbkl_access_token = localStorage.getItem("dbkl_access_token");
   baseUrl = environment.basePublicUrl;
+  accessToken = localStorage.getItem("AccessToken");
 
   // Navigation items structure for dynamic rendering
   navItems = [
@@ -32,7 +32,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       label: "Utama",
       path: "/",
       fragment: null,
-      showFor: ["public", "admin", "adminregister"],
+      showFor: ["public", "admin", "adminregister", "publicpage", "sevices"],
+    },
+    // public page navigation items
+    {
+      label: "Senarai Perkhidmatan",
+      path: "/public/sevices",
+      fragment: null,
+      showFor: ["publicpage"],
     },
     {
       label: "Utama",
@@ -510,7 +517,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         },
       ],
     },
-    // User profile dropdown for dbkl
+    // User profile dropdown
     {
       label: this.username,
       dropdown: true,
@@ -521,6 +528,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         "manualupload",
         "galeryphoto",
         "dbklmainpage",
+        "publicpage",
+        "sevices"
       ],
       items: [
         {
@@ -533,6 +542,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
             "manualupload",
             "galeryphoto",
             "dbklmainpage",
+            "publicpage",
+            "sevices"
           ],
         },
         {
@@ -572,6 +583,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
                 "galeryphoto",
                 "dbklmainpage",
               ],
+              roleCondition: () =>
+                this.userRole === "Superadmin" || this.userRole === "Admin",
             },
             {
               label: "Foto Galeri",
@@ -598,6 +611,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
             "galeryphoto",
             "dbklmainpage",
           ],
+          roleCondition: () =>
+            this.userRole === "Superadmin" ||
+            this.userRole === "Admin" ||
+            this.userRole === "MerinyuMTB" ||
+            this.userRole === "MerinyuMTK",
           items: [
             {
               label: "DBKL",
@@ -659,6 +677,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
             "manualupload",
             "galeryphoto",
             "dbklmainpage",
+            "publicpage",
+            "sevices"
           ],
         },
       ],
@@ -780,7 +800,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   private updatePageType(): void {
     // console.log("Current path: ", this.currentPath);
     this.isPublicPage =
-      this.currentPath.includes("/public") || this.currentPath === "/";
+      ((/^\/public(?:[?#].*)?$/).test(this.currentPath) || this.currentPath === "/") &&
+      !this.currentPath.includes("/publicpage");
     // You can add more conditions here to determine other page types
   }
 
@@ -825,7 +846,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       }
     }
 
-    // Special case: Username menu (like Utama menu) should appear on all DBKL pages
+    // Special case: Username menu (like Utama menu) should appear on all DBKL pages and publicpage
     if (
       navItem.label === this.username &&
       navItem.showFor.some((item) =>
@@ -835,6 +856,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
           "manualupload",
           "galeryphoto",
           "dbklmainpage",
+          "publicpage",
+          "sevices"
         ].includes(item)
       )
     ) {
@@ -843,25 +866,30 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.currentPath.includes("/profileLog") ||
         this.currentPath.includes("/admin/announcements") ||
         this.currentPath.includes("/superadmin/manualupload") ||
-        this.currentPath.includes("/superadmin/galeryphoto")
+        this.currentPath.includes("/superadmin/galeryphoto") ||
+        this.currentPath.includes("/publicpage") ||
+        this.currentPath.includes("/sevices")
       );
     }
 
-    // Special case: Username menu nested items should also appear on all DBKL pages
+    // Special case: Username menu nested items should also appear on all DBKL pages and publicpage
     if (
       navItem.showFor.some((item) =>
         ["profileLog", "announcements", "manualupload", "galeryphoto"].includes(
           item
         )
       ) &&
-      navItem.showFor.includes("dbklmainpage")
+      (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("publicpage")) ||
+      (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("sevices"))
     ) {
       return (
         this.currentPath.includes("/dbkl") ||
         this.currentPath.includes("/profileLog") ||
         this.currentPath.includes("/admin/announcements") ||
         this.currentPath.includes("/superadmin/manualupload") ||
-        this.currentPath.includes("/superadmin/galeryphoto")
+        this.currentPath.includes("/superadmin/galeryphoto") ||
+        this.currentPath.includes("/publicpage") ||
+        this.currentPath.includes("/sevices")
       );
     }
 
@@ -956,6 +984,21 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
 
     if (
+      this.currentPath.includes("/publicpage") &&
+      navItem.showFor.includes("publicpage")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("sevices") &&
+      navItem.showFor.includes("sevices")
+    ) {
+      return true;
+    }
+
+
+    if (
       this.currentPath.includes("/agency") &&
       navItem.showFor.includes("agency")
     ) {
@@ -1004,14 +1047,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   logout() {
     this.spinner.show();
-    let header = {
-      accept: "application/json",
-      Authorization: "Bearer " + this.dbkl_access_token,
-    };
+    let header = {};
 
     let body = {};
 
-    // if (this.userRole === 'Superadmin') {
+    if (this.userRole === 'Superadmin' || this.userRole === 'Admin' || this.userRole === 'MerinyuMTB' || this.userRole === 'MerinyuMTK') {
+    header = {
+      accept: "application/json",
+      Authorization: "Bearer " + this.dbkl_access_token,
+    };
     this.http
       .post(this.baseUrl + "/dbkl/logout", body, { headers: header })
       .subscribe(
@@ -1024,6 +1068,26 @@ export class NavbarComponent implements OnInit, AfterViewInit {
           // this.openErrorModal();
         }
       );
+    } else {
+    header = {
+      accept: "application/json",
+      Authorization: "Bearer " + this.accessToken,
+      };
+      this.http
+      .post(this.baseUrl + "/public/logout", body, { headers: header })
+      .subscribe(
+        (res) => {
+          // console.log("res", res);
+          this.router.navigateByUrl("/publicLogin");
+          localStorage.removeItem("AccessToken");
+          localStorage.removeItem("username");
+          this.spinner.hide();
+        },
+        (error) => {
+          // console.log("error is", error["error"]);
+        }
+      );
+    }
   }
 
   // Add the manual functions referenced in the header component
