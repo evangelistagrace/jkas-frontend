@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       label: "Utama",
       path: "/",
       fragment: null,
-      showFor: ["public", "admin", "adminregister", "publicpage", "sevices"],
+      showFor: ["public", "admin", "adminregister", "publicpage", "sevices", "checklistoption", "listdocument", "checklist", "publicpages"],
     },
     // public page navigation items
     {
@@ -40,6 +40,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       path: "/public/sevices",
       fragment: null,
       showFor: ["publicpage"],
+    },
+    {
+      label: "Semakan Permohonan PSPPA",
+      path: "/publicpage",
+      fragment: null,
+      showFor: ["checklistoption", "listdocument", "checklist", "publicpages"],
     },
     {
       label: "Utama",
@@ -529,7 +535,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         "galeryphoto",
         "dbklmainpage",
         "publicpage",
-        "sevices"
+        "sevices",
+        "checklistoption",
+        "listdocument",
+        "checklist",
+        "publicpages"
       ],
       items: [
         {
@@ -543,7 +553,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
             "galeryphoto",
             "dbklmainpage",
             "publicpage",
-            "sevices"
+            "sevices",
+            "checklistoption",
+            "listdocument",
+            "checklist",
+            "publicpages"
           ],
         },
         {
@@ -678,7 +692,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
             "galeryphoto",
             "dbklmainpage",
             "publicpage",
-            "sevices"
+            "sevices",
+            "checklistoption",
+            "listdocument",
+            "checklist",
+            "publicpages"
           ],
         },
       ],
@@ -857,7 +875,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
           "galeryphoto",
           "dbklmainpage",
           "publicpage",
-          "sevices"
+          "sevices",
+          "checklistoption",
+          "listdocument",
+          "checklist",
+          "publicpages"
         ].includes(item)
       )
     ) {
@@ -868,7 +890,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.currentPath.includes("/superadmin/manualupload") ||
         this.currentPath.includes("/superadmin/galeryphoto") ||
         this.currentPath.includes("/publicpage") ||
-        this.currentPath.includes("/sevices")
+        this.currentPath.includes("/sevices") ||
+        this.currentPath.includes("/checklistoption") ||
+        this.currentPath.includes("/listdocument") ||
+        this.currentPath.includes("/checklist") ||
+        this.currentPath.includes("/publicpages")
       );
     }
 
@@ -880,7 +906,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         )
       ) &&
       (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("publicpage")) ||
-      (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("sevices"))
+      (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("sevices")) ||
+      (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("checklistoption")) ||
+      (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("listdocument")) ||
+      (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("checklist")) ||
+      (navItem.showFor.includes("dbklmainpage") && navItem.showFor.includes("publicpages"))
     ) {
       return (
         this.currentPath.includes("/dbkl") ||
@@ -889,7 +919,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.currentPath.includes("/superadmin/manualupload") ||
         this.currentPath.includes("/superadmin/galeryphoto") ||
         this.currentPath.includes("/publicpage") ||
-        this.currentPath.includes("/sevices")
+        this.currentPath.includes("/sevices") ||
+        this.currentPath.includes("/checklistoption") ||
+        this.currentPath.includes("/listdocument") ||
+        this.currentPath.includes("/checklist") ||
+        this.currentPath.includes("/publicpages")
       );
     }
 
@@ -997,6 +1031,33 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       return true;
     }
 
+    if (
+      this.currentPath.includes("/checklistoption") &&
+      navItem.showFor.includes("checklistoption")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/listdocument") &&
+      navItem.showFor.includes("listdocument")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/checklist") &&
+      navItem.showFor.includes("checklist")
+    ) {
+      return true;
+    }
+
+    if (
+      this.currentPath.includes("/publicpages") &&
+      navItem.showFor.includes("publicpages")
+    ) {
+      return true;
+    }
 
     if (
       this.currentPath.includes("/agency") &&
