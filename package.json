@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "start:en": "ng serve --configuration=en",
-    "start:ms": "NODE_OPTIONS=--openssl-legacy-provider ng serve --configuration=ms",
+    "start:ms": "node --max_old_space_size=4096 --openssl-legacy-provider ./node_modules/@angular/cli/bin/ng serve --configuration=ms",
     "build:en": "NODE_OPTIONS=--openssl-legacy-provider node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng build --configuration=production --output-path=dist --base-href=/en/ --deploy-url=/en/ --build-optimizer --vendor-chunk --common-chunk",
-    "build:ms": "NODE_OPTIONS=--openssl-legacy-provider node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng build --configuration=production --output-path=dist --base-href=/ms/ --deploy-url=/ms/ --build-optimizer --vendor-chunk --common-chunk",
+    "build:ms": "node --openssl-legacy-provider --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --configuration=production --output-path=dist --base-href=/ms/ --deploy-url=/ms/ --build-optimizer --vendor-chunk --common-chunk",
     "build-locale:ms": "ng build --configuration production --build-optimizer --vendor-chunk --common-chunk --i18n-locale ms --i18n-format xlf --i18n-file src/i18n/messages.ms.xlf --output-path=dist/ms --base-href /ms/",
     "build-locale:en": "ng build --configuration production --build-optimizer --vendor-chunk --common-chunk --i18n-locale en --i18n-format xlf --i18n-file src/i18n/messages.en.xlf  --output-path=dist/en --base-href /en/",
     "ng": "ng",

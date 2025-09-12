@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   mailid: "jkas.ppks@gmail.com",
-  basePublicUrl: "http://localhost:8080/api",
+  basePublicUrl: "http://10.212.0.73:5000/api",
 };
 
 /*

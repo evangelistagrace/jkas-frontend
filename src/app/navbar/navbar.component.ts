@@ -487,7 +487,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       items: [
         {
           label: "Financial Dashboard",
-          externalPath: "https://jkas-kewangan-hcc9b8fegedvchd3.southeastasia-01.azurewebsites.net/",
+          externalPath: "https://iwastekl.dbkl.gov.my/kewangan/financial_data.html",
           showFor: [
             "kewangan",
             "claimreview",
@@ -496,7 +496,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         },
         {
           label: "Pelarasan",
-          externalPath: "https://jkas-pelarasan.azurewebsites.net/",
+          externalPath: "https://iwastekl.dbkl.gov.my/pelarasan/pelarasan.html",
           showFor: [
             "kewangan",
             "claimreview",
@@ -505,7 +505,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         },
         {
           label: "Tuntutan",
-          externalPath: "https://jkas-tuntutan.azurewebsites.net/",
+          externalPath: "https://iwastekl.dbkl.gov.my/tuntutan/kewangan.html",
           showFor: [
             "kewangan",
             "claimreview",
