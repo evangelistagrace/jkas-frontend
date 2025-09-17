@@ -19,28 +19,28 @@
     <div class="intro-body">
       <div class="container">
         <div class="row">
-          <div class="col mx-auto">
+          <div class="col mx-auto" style="display: flex; flex-direction: column; align-items: center;">
             <h6 class="brand-heading" style="font-size: 35px; margin-bottom: 15px;">SELAMAT DATANG</h6>
             <h6
               class="intro-text"
               style="
-                font-family: Cabin, Helvetica Neue, Helvetica, Arial, sans-serif;
-                font-size: 45px;
+                font-size: 38px;
                 font-weight: bold;
-                line-height: 0.6;
-                margin-bottom: 20px;
                 white-space: nowrap;
-                margin-right: 80px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                width: 100%;
+                line-height: 1.2;
               "
             >
-              KE PORTAL RASMI INTEGRATED WASTE MANAGEMENT KUALA LUMPUR <br><br> IWASTE@KL
+              KE PORTAL RASMI INTEGRATED WASTE MANAGEMENT KUALA LUMPUR
+              <br>
+              IWASTE@KL
             </h6>
+            <!-- <h6
+              class="intro-text"
+              style="
+                font-size: 38px;
+                font-weight: bold;
+              "
+            >IWASTE@KL</h6> -->
             <a
               class="btn btn-link btn-circle"
               role="button"
@@ -69,7 +69,7 @@
           <div class="service-item position-relative">
             <div class="icon"><i class="bi bi-activity icon"></i></div>
             <h4>
-              <a href="/public/serviceLogin" class="stretched-link"
+              <a routerLink="/public/serviceLogin" class="stretched-link"
                 >Senarai Kawasan Perkhidmatan</a
               >
             </h4>
@@ -89,7 +89,7 @@
               <i class="bi bi-bounding-box-circles icon"></i>
             </div>
             <h4>
-              <a href="https://www.swcorp.gov.my/myHCS/#" class="stretched-link"
+              <a href="https://eservice.swcorp.my/jadual" class="stretched-link"
                 >Jadual</a
               >
             </h4>
@@ -133,10 +133,10 @@
               <button
                 class="btn btn-primary btn-lg btn-default"
                 type="button"
-                style="width: 100%"
+                style="width: 100%; z-index:99999;"
               >
                 <a
-                  href="https://www.swcorp.gov.my"
+                  href="https://jpa.spab.gov.my/eApps/system/index.do"
                   style="color: white; width: 100%; display: block"
                   >SISPAA</a
                 >
@@ -144,7 +144,7 @@
               <button
                 class="btn btn-primary btn-lg btn-default"
                 type="button"
-                style="width: 100%; margin-top: 10px"
+                style="width: 100%; margin-top: 10px; z-index:99999;"
               >
                 <a
                   href="https://adukl.dbkl.gov.my/"
